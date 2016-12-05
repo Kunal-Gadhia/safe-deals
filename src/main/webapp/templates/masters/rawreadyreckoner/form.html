@@ -1,0 +1,93 @@
+
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveRawReadyReckoner(editableRawReadyReckoner)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                       Raw Ready Reckoner Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" placeholder="City" ng-model="editableRawReadyReckoner.city"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input class="form-control" placeholder="Location" ng-model="editableRawReadyReckoner.location"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">               
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>SD Zone</label>
+                                <input class="form-control" placeholder="SD Zone" ng-model="editableRawReadyReckoner.sdZone"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Type</label>
+                                <input class="form-control" placeholder="Location Type" ng-model="editableRawReadyReckoner.locationType"/>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Use of location</label>
+                                <input class="form-control" placeholder="Use of location" ng-model="editableRawReadyReckoner.useOfLocation"/>
+                            </div>
+                        </div>                
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Year</label>
+                                <input type="number" class="form-control" placeholder="RR Year" ng-model="editableRawReadyReckoner.rrYear"/>
+                            </div>
+                        </div>                
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Rate Land</label>
+                                <input type="number" class="form-control" placeholder="RR Rate land" ng-model="editableRawReadyReckoner.rrRateLand"/>
+                            </div>
+                        </div>                
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Rate Plot</label>
+                                <input type="number" class="form-control" placeholder="RR Rate plot" ng-model="editableRawReadyReckoner.rrRatePlot"/>
+                            </div>
+                        </div>                
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Rate Apartment</label>
+                                <input type="number" class="form-control" placeholder="RR Rate apartment" ng-model="editableRawReadyReckoner.rrRateApartment"/>
+                            </div>
+                        </div>                             
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

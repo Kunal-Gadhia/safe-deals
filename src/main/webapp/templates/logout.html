@@ -1,0 +1,29 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="logout()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-sign-out"></i>
+                        Confirm Logout
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout of the application? Any unsaved changes will be lost.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-sign-out"></i>
+                        Logout
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

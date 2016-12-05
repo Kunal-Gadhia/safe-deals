@@ -1,0 +1,267 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">		
+        <div class="modal-content map-details">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3 class="modal-title">
+                            {{location.name}}
+                        </h3>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class=" pull-right btn btn-link">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ul class="nav nav-tabs" id="location_tabs">
+                        <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                            <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div  ng-switch on="selection" class="locations"> 
+                    <!--                    <div ng-show="myValue">-->
+                    <div ng-show="myValue">
+                        <div class="col-md-offset-4">
+                            <nav class="navbar locations_nav">
+                                <ul class="nav">
+                                    <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                        <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left main_locations">{{amenityCode.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div ng-show="amenities">
+                            <nav class="navbar locations_nav">
+                                <ul id={{amenityCode.id}} class="nav">
+                                    <li ng-repeat="amenity in amenitiesList">
+                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="row">   
+                            <div id="locationDetailMapContainer" style="height: 400px;"></div>    
+                        </div>
+                    </div>
+                    <div ng-switch-when="Work Places" class="locations">
+                        <div ng-show="myWorkplaces">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="workplace in workplaces" ng-click="toggle()">
+                                            <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left main_locations">{{workplace.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
+                                            <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="row">    
+                                <div id="locationDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Projects" class="locations">
+                        <div ng-show="myProjects">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="project in projects" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations">{{project.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+<!--                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenity in amenitiesList">
+                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>-->
+                            <div class="row">    
+                                <div id="locationDetailMapContainerProjects" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Properties" class="locations">
+                        <div ng-show="myProperties">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="property in properties" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+<!--                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenity in amenitiesList">
+                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>-->
+                            <div class="row">    
+                                <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Overview">
+                        <div>
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><label>Location Name : </label></td>
+                                        <td> {{ location.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Location Description :</label></td>
+                                        <td> {{ location.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Population :</label></td>
+                                        <td> {{ location.population}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Major Approach Road : </label></td>
+                                        <td> {{ location.majorApproachRoad}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label>Public Transport :</label></td>
+                                        <td> {{ location.publicTransport}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Source Of Water :</label></td>
+                                        <td>      
+                                            {{ location.sourceOfWater}} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                    <div ng-switch-when="Price Trends">
+                        <!--<h2>Dummy Text for Price Trends</h2>-->
+                        <div class="row">
+                            <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
+                                                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--old code-->
+<!--<div class="row">
+    <div class="col-sm-2" style="padding-right: 0">
+        <nav class="navbar">
+            <ul class="nav nav-pills nav-stacked navbar-default"  style="height: 500px;">
+                <li ng-class="{'active': amenity === 'property'}" ng-click="showAmenity('property')"><a>Properties</a></li>
+                <li ng-class="{'active': amenity === 'project'}" ng-click="showAmenity('project')"><a>Projects</a></li>
+                <li ng-class="{'active': amenity === 'school'}" ng-click="showAmenity('school')"><a>Schools</a></li>                                          
+                <li ng-class="{'active': amenity === 'bank'}" ng-click="showAmenity('bank')"><a>Bank/Atm's</a></li>                                          
+                <li ng-class="{'active': amenity === 'hospital'}" ng-click="showAmenity('hospital')"><a>Hospitals</a></li>                                          
+                <li ng-class="{'active': amenity === 'mall'}" ng-click="showAmenity('mall')"><a>Shopping Mall's</a></li>
+                <li data-ui-sref-active="active"><a href="#">Bus Stop</a></li>
+                <li data-ui-sref-active="active"><a href="#">Worship Place</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-sm-10" style="padding-left: 0">    
+        <input id="pac-input" class="map-controls" type="text" placeholder="Search Box" style="color: #333">
+        <div id="locationMapContainer" style="height:500px;"></div>    
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6"> 
+        <div class="form-group">
+            <div id="chartContainer"></div>
+        </div>
+    </div>
+    <div class="col-md-6"> 
+        <div class="form-group">                           
+            <div id="chart"></div>
+        </div>            
+    </div>
+</div>
+<div class="modal-header panel-heading">
+
+    <div class="modal-title"><h3>Location Details</h3></div>
+</div>
+
+<div class="modal-body">
+    <h5><b>Orchid Petals</b></h5>
+    <p>By Landmark Properties Builders & Developers</p>
+    <p><strong>Property Type:</strong> 2 BHK Apartment</p>
+    <p><strong>Price:</strong> INR 69.68 Lacs </p>
+    <p><strong>Possession:</strong> 1 April, 2016</p>
+    <p>Well planned spacious apartments skillfully crafted to give you a comfortable life. It is a piece of architectural brilliance that will invoke awe among the visitors and instill a sense of pride in the resident. Situated in lush green surroundings it provides you with clean and pollution free environment.</p>
+    <p>Strategically established apartments which cater all the modern facilities and necessary amenities to provide you luxurious lifestyle. Elegantly designed to create a serene ambiance so that you can achieve luxury and satisfy every need of aspiring families. Apartments which you will love to call as your Home-Sweet-Home.</p>
+    <p>Read More...</p>
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <p><strong>Project Area:</strong></p>
+            <p>16 Acres</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Total No. of Tower:</strong></p>
+            <p>9</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Total No. of Floors:</strong></p>
+            <p>21 Floors</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Total & available units:</strong></p>
+            <p>750</p>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <p><strong>Carpet Area:</strong></p>
+            <p>1058 sq. ft.</p>
+
+        </div>
+        <div class="col-md-3">
+            <p><strong> Price:</strong> 
+            <p>Rs. 61.10 Lac</p>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Possession</strong> 
+            <p>June 2018</p>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Furnished:</strong> 
+            <p>Unfurnished</p>
+            </p>
+        </div>
+    </div>
+</div>
+-->

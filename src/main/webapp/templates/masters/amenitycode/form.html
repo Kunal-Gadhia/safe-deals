@@ -1,0 +1,56 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveAmenityCode(editableAmenityCode)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Amenity Code Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Amenity Code name" ng-model="editableAmenityCode.name"/>
+                            </div>
+                        </div> 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Amenity Detail Tab</label>
+                                <!--                                <input class="form-control" placeholder="Amenity Code name" ng-model="editableAmenityCode.name"/>-->
+                                <select class="form-control" ng-model="editableAmenityCode.amenityDetailTab">
+                                    <option value="">Choose Amenity Detail</option>
+                                    <option value='AMENITIES'>Amenities</option>
+                                    <option value='WORKPLACES'>Work Places</option>
+                                    <option value='PROJECTS'>Projects</option>
+                                    <option value='PROPERTIES'>Properties</option>
+                                </select>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row" ng-show="editableAmenityCode.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

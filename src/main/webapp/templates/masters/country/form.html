@@ -1,0 +1,48 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveCountry(editableCountry)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-globe"></i>
+                        Country Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input required class="form-control" placeholder="Country Name" ng-model="editableCountry.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country Calling Code</label>
+                                <input required class="form-control" placeholder="Country Calling Code" ng-model="editableCountry.callingCode"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input required class="form-control" placeholder="Description" ng-model="editableCountry.description"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

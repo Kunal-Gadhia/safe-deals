@@ -1,0 +1,160 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveMarketPrice(editableMarketPrice)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Market Price Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <!--                    <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label>Location :</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="typeahead-demo">
+                                                        <input type="text" ng-model="editableMarketPrice.location.name" placeholder="Location" typeahead-on-select="setLocation($item)"
+                                                               typeahead-editable="false" uib-typeahead="location.name for location in locations| filter:$viewValue | limitTo:8"
+                                                               typeahead-no-results="noResults" class="form-control">
+                                                        <div ng-show="noResults">
+                                                            <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                <label>City Name</label>
+                                <input class="form-control"
+                                       placeholder="Select City"
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                       typeahead-on-select="setCity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound"                                       
+                                       ng-model="editableMarketPrice.city.name" required />
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                            </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Location Name</label>
+                                    <input class="form-control"
+                                           placeholder="Select Location"
+                                           uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                           typeahead-on-select="setLocation($item)"
+                                           typeahead-editable="false"
+                                           typeahead-loading="loadingLocations" 
+                                           typeahead-no-results="noLocationsFound"                                       
+                                           ng-model="editableMarketPrice.location.name" required />
+                                    <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                    <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Year</label>
+                                    <input class="form-control" placeholder="Market Price year" ng-model="editableMarketPrice.year"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Month</label>
+                                    <input type="number" min="1" max="12" class="form-control" placeholder="Select month range" uib-tooltip="Select month between 1-12" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="editableMarketPrice.month"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Agri Land / Acre (lowest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpAgriLandLowest"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Agri Land / Acre (highest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpAgriLandHighest"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Plot/Sq Ft. (lowest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpPlotLowest"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Plot/Sq Ft. (highest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpPlotHighest"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Residential Building/Sq Ft (lowest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpResidentialLowest"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Residential Building/Sq Ft (highest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpResidentialHighest"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Commercial Building/Sq Ft (lowest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpCommercialLowest"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Commercial Building/Sq Ft (highest)</label>
+                                    <input class="form-control" placeholder="Market Price month" ng-model="editableMarketPrice.mpCommercialHighest"/>
+                                </div>
+                            </div>                        
+                        </div>                        
+                    </div>                
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

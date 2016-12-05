@@ -1,0 +1,142 @@
+<div class="panel-body thumbnail thumbnail-border custom-background">
+    <!--    <div class="pull-right">
+            <button type="button" class="btn btn-link btn-sm" data-ui-sref="main.help">Generate Report</button>
+        </div>-->
+    <div class="">
+        <div>
+            <h2>Location Selection</h2>
+        </div>        
+        <div class="col-md-9 col-sm-9">
+            <div class="form-group">
+                <form ng-submit="validateForm(cityName, minBudget, maxBudget, searchPropertySize)">
+                    <div class="row form-group">
+                        <div class="btn-group">                                 
+                            <input placeholder="Select State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"                                           
+                                   typeahead-on-select="selectState($item)"                                           
+                                   typeahead-loading="loadingStates" 
+                                   typeahead-no-results="noStatesFound"                                           
+                                   ng-model="stateName"  />
+                            <p ng-show="noStatesFound" class="help-block text-muted">No States found</p>
+                            <p ng-show="loadingStates" class="help-block text-muted">loading...</p>
+                        </div>
+                        <div class="btn-group">                             
+                            <input placeholder="Select City" class="form-control" uib-typeahead="city.id as city.name for city in searchCities($viewValue)"                                           
+                                   typeahead-on-select="selectCity($item)"                                           
+                                   typeahead-loading="loadingCities" 
+                                   typeahead-no-results="noCitiesFound"                                           
+                                   ng-model="cityName"  required="required"/>
+                            <p ng-show="noCitiesFound" class="help-block text-muted">No City found</p>
+                            <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                        </div>
+                        <div class="btn-group">                    
+                            <select class="form-control" ng-model="minBudget" required="required">
+                                <option value="">Min Budget</option>
+                                <option value="0">&#8377; 0</option>
+                                <option value="500000">&#8377; 5 Lac</option>
+                                <option value="2500000">&#8377; 25 Lac</option>
+                                <option value="5000000">&#8377; 50 Lac</option>
+                                <option value="7500000">&#8377; 75 Lac</option>
+                                <option value="10000000">&#8377; 1 Crore</option>
+                                <option value="12500000">&#8377; 1.25 Crore</option>
+                                <option value="15000000">&#8377; 1.5 Crore</option>
+                                <option value="17500000">&#8377; 1.75 Crore</option>
+                            </select>           
+                        </div>
+                        <div class="btn-group">                    
+                            <select class="form-control" ng-model="maxBudget" required="required">
+                                <option value="">Max Budget</option>
+                                <option value="500000">&#8377; 5 Lac</option>
+                                <option value="2500000">&#8377; 25 Lac</option>
+                                <option value="5000000">&#8377; 50 Lac</option>
+                                <option value="7500000">&#8377; 75 Lac</option>
+                                <option value="10000000">&#8377; 1 Crore</option>
+                                <option value="12500000">&#8377; 1.25 Crore</option>
+                                <option value="15000000">&#8377; 1.5 Crore</option>
+                                <option value="17500000">&#8377; 1.75 Crore</option>
+                                <option value="20000000">&#8377; 2 Crore</option>
+                            </select>      
+                        </div>
+                        <div class="btn-group">
+                            <select class="form-control" id="searchPropertyValue" ng-model="searchPropertySize" required="required">
+                                <option value="">Select Project</option>
+                                <option value="600">1 BHK</option>
+                                <option value="1000">2 BHK</option>
+                                <option value="1500">3 BHK</option>
+                                <option value="2000">4 BHK</option>
+                            </select>            
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <!--</div>-->
+            </div>
+            <div class="row form-group">
+                <div class="custom-background">
+                    <!--<input id="pac-input" class="map-controls" type="text" placeholder="Search Box" style="color: #333">-->
+                    <div id="locationMapContainer" style="  height:400px;"></div>
+                </div>  
+            </div>
+            <div ng-hide="hideCompareButton" class="">
+                <div class="panel-body thumbnail row form-group">
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <h2>Compare Locations</h2>
+                        </div>  
+                        <div class="col-md-1">
+                            <button ng-hide="hideCompareButton" class="btn btn-primary" data-ui-sref="main.location.location_comparison">Compare</button>
+                        </div>  
+                    </div>  
+                    <div class="">
+                        <table class="table table-striped">
+                            <tr>
+                                <th ng-repeat = "selectedLocation in selectedLocationList"> 
+                                    <div class="thumbnail thumbnail-border"> 
+                                        <p>
+                                            <strong>{{selectedLocation.name}}</strong>
+                                            <i class="fa fa-times btn-link pull-right"
+                                               ng-click="removeLocation(selectedLocation)" aria-hidden="true"></i>                                            
+                                        </p>
+                                        <img src="images/5.jpg"/>
+                                    </div>
+                                </th> 
+                            </tr>
+                        </table>
+                    </div>  
+                </div>  
+            </div>
+        </div>  
+        <div class="col-md-3 location_list"  style="overflow-y:auto; max-height:400px;">
+            <ul class="list">
+                <li ng-repeat="location in locations">
+                    <div class="row form-group">
+                        <div class="image col-sm-5" data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                            <a href="#"><img src="images/5.jpg" width="100" height="90"/></a>
+                        </div>
+                        <div class="name col-sm-7">
+                            <div class="row">
+                                <span data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                                    <strong>{{ location.name}}</strong>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span><strong>&#8377; {{location.propertyRate}} per sqft </strong>
+                                </span>
+                            </div>
+                            <!--<div class="row"><span><input type="checkbox" ng-checked="comparisionFunction(location)"  name="Add to compare"> Add to compare</span></div>-->
+                            <div class="row" ng-hide="hideCheckbox">
+                                <span><input type="checkbox" name="Add to compare" ng-model="location.flag"> Add to compare</span></div>
+                            <div class="row">
+                                <span class="pull-left">
+                                    <button class="btn btn-link" title="Details" data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                                        View Details</button></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div data-ui-view=''></div>

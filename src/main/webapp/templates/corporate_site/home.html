@@ -1,0 +1,136 @@
+<div class="">        
+    <div>
+        <uib-carousel  active="active" interval="myInterval">
+            <uib-slide ng-repeat="slide in slides" index="$index">
+                <img ng-src="{{slide.image}}" style="margin:auto;" />
+                <div class="carousel-caption">
+                    <h4>Slide {{$index + 1}}</h4>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
+</div>
+<div class="">    
+    <!--<div data-ui-view class></div>-->
+    <div class="row">        
+        <div class="col-sm-6 col-md-6">
+<!--            <a class="img-overlay">  
+                <p class="text-center" style="color: #000"><b>Property Buying Guide</b></p>
+            </a>-->
+            <a target="_blank" data-ui-sref="main.intro.intro_tagline">
+                <img src="images/img1.jpg" title="Property Selling Guide" >
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-6">
+<!--            <a class="img-overlay">  
+                <p class="text-center" style="color: #000"><b>Home Loan Guide</b></p>
+            </a>-->
+            <a target="_blank" data-ui-sref="main.guidelines">  
+                <img src="images/img2.jpg" title="Home Loan Guide">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+<!--            <a class="img-overlay">  
+                <p class="text-center" style="color: #000"><b>Property Selling Guide</b></p>
+            </a>-->
+            <a target="_blank" data-ui-sref="main.location">
+                <img src="images/img3.jpg" title="Property Selling Guide">
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div>
+                <a target="_blank" data-ui-sref="corporate_site.postQuery">
+                    <img src="images/about-us-img4.jpg" title="Post Your Query">  
+                </a>
+<!--                <a class="img-overlay">  
+                    <p class="text-center" style="color: #000"><b>Post Your Query</b></p>
+                </a>-->
+                <div class="row text-center panel-body social-icon">          
+                    <div class="col-md-2 col-md-ofset-1">        
+                        <a href="#" title="Twitter" class="Twitter">
+                            <img src="images/icons_svg/twitter.svg"></a>
+                    </div>
+                    <div class="col-md-2">          
+                        <a href="#" title="Youtube" class="Youtube">
+                            <img src="images/icons_svg/youtube.svg"></a>
+                    </div>
+                    <div class="col-md-2">          
+                        <a href="#" title="Facebook" class="Facebook">
+                            <img src="images/icons_svg/fb.svg"></a>
+                    </div>
+                    <div class="col-md-2">          
+                        <a href="#" title="Google" class="Google">
+                            <img src="images/icons_svg/gmail.svg"></a>
+                    </div>
+                    <div class="col-md-2">          
+                        <a href="#" title="LinkedIn" class="LinkedIn">
+                            <img src="images/icons_svg/linkedin.svg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- old carousel -->
+
+<!--<div class="panel row">
+    <div class="co_site panel-body">
+        <div id="thumbnail-preview-indicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#thumbnail-preview-indicators" data-slide-to="0" class="active">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="images/Landscape.jpg">
+                    </div>
+                </li>
+                <li data-target="#thumbnail-preview-indicators" data-slide-to="1">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="images/Sydney.jpg">
+                    </div>
+                </li>
+                <li data-target="#thumbnail-preview-indicators" data-slide-to="2">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="images/dsc.jpg">
+                    </div>
+                </li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item slides active">
+                    <div class="slide-1"></div>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>New carousel layout</h1>
+                            <p>Responsive thumbnail preview in carousel indicators.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-2"></div>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Another example headline.</h1>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-3"></div>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>One more for good measure.</h1>
+                            <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#thumbnail-preview-indicators" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#thumbnail-preview-indicators" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div> 
+    </div>
+</div>-->

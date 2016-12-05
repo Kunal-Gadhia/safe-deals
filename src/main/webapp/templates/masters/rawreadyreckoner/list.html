@@ -1,0 +1,92 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <a data-ui-sref="admin.masters"
+               class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </a>
+        </div>
+        <div class="pull-right">
+            <a data-ui-sref="admin.masters_raw_ready_reckoner.add"
+               class="btn btn-default">
+                <i class="fa fa-plus"></i>
+                Add Raw RR
+            </a>
+        </div>
+        <div>
+            <h4>Raw Ready Reckoner Master</h4>
+        </div>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-right">#</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>SD Zone</th>
+                <th>Location Type</th>
+                <th>Location Category</th>
+                <th>RR Year</th>
+                <th>RR Rate Land</th>
+                <th>RR Rate Plot</th>
+                <th>RR Rate Apartment</th>
+                <th class="text-right">
+                    <a data-ui-sref="admin.masters_raw_ready_reckoner.browse"
+                       class="btn btn-default">
+                        <i class="fa fa-plus"></i>
+                        Browse
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rrr in rawReadyReckoners">
+                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td>{{ rrr.city.name}}</td>
+                <td>{{ rrr.location}}</td>
+                <td>{{ rrr.safedealZone.name}}</td>
+                <td>{{ rrr.locationType.name}}</td>
+                <td>
+                    <ul>
+                        <li ng-repeat="locationCategory in rrr.locationCategoryObjects">{{locationCategory.name}}</li>
+                    </ul>
+                </td>
+                <td>{{ rrr.rrYear}}</td>
+                <td>{{ rrr.rrRateLand}}</td>
+                <td>{{ rrr.rrRatePlot}}</td>
+                <td>{{ rrr.rrRateApartment}}</td>
+
+                <td class="text-right">
+                    <a data-ui-sref="admin.masters_raw_ready_reckoner.edit({ rawReadyReckonerId: rawReadyReckoner.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a data-ui-sref="admin.masters_raw_ready_reckoner.delete({ rawReadyReckonerId: rawReadyReckoner.id })"
+                       class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav class="panel-footer">
+        <ul class="pager">
+            <li>
+                <button ng-click="previousPage()" 
+                        ng-disabled="{{ currentOffset == 0}}" 
+                        class="btn btn-default" >
+                    <i class="fa fa-arrow-left"></i>
+                    Previous
+                </button>
+            </li>
+            <li>
+                <button ng-click="nextPage()" class="btn btn-default">
+                    Next 
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div data-ui-view=""></div>

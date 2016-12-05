@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="pull-left">
+        <a data-ui-sref="admin.masters"
+           class="btn btn-default">
+            <i class="fa fa-arrow-left"></i>
+            Back
+        </a>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="pull-right">
+                <a data-ui-sref="admin.masters_country.add"
+                   class="btn btn-default">
+                    <i class="fa fa-plus"></i>                        
+                </a>  
+            </div>
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Country List
+                </h4>
+            </div>
+            <div class="list-group">
+                <a ng-repeat="c in countries"
+                   data-ui-sref="admin.masters_country.state({ countryId: c.id })"
+                   data-ui-sref-active="active"
+                   class="list-group-item">                   
+                    {{ c.name}} ( {{ c.callingCode}})               
+                </a>
+            </div>
+            <nav class="panel-footer">
+                <ul class="pager">
+                    <li>
+                        <button ng-click="previousPage()" 
+                                ng-disabled="{{ currentOffset == 0}}" 
+                                class="btn btn-default" >
+                            <i class="fa fa-arrow-left"></i>
+                            Previous
+                        </button>
+                    </li>
+                    <li>
+                        <button ng-click="nextPage()" class="btn btn-default">
+                            Next 
+                            <i class="fa fa-arrow-right"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-sm-6" data-ui-view="">
+
+    </div>
+</div>

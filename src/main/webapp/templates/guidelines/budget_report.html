@@ -1,0 +1,81 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row text-center">
+                        <a><img src="images/safedeals.jpg" width="100" height="75" ></a>
+                    </div>
+                    <h3 class="modal-title text-center">
+                        <!--<i class="fa fa-amenitydetail"></i>-->
+                        Budget Report 
+                    </h3>
+                </div>
+                <div class="modal-body">
+
+                    <p>Dear<strong> {{ budgetReportDetails.name }}</strong>, thanks for using our system to know your disposable budget especially for buying property.</p> 
+                    <p> We at Safe Deals are committed to offer you genuine, unbiased and transparent information based on your input. Please go though the valuable guidelines in order to draw maximum benefits.
+                        Based on your Annual Income, assests and liabilities here is a summary of your overall budget:-
+                    </p>
+                    <p><strong>Cash in Hand for spending on OC (Own Contribution):</strong> {{ budgetReportDetails.cashInHand }}</p>
+                    <p><strong>Loan Eligibility through selected bank SBI </strong>: {{ budgetReportDetails.loanEligibility }} </p>
+                    <p><strong>EMI for Loan Repayment for a period of 20 Yrs  Rs. </strong>{{ budgetReportDetails.emiEligibility }} </p>
+                    <p><strong>Budget for Property Value :</strong>  {{ budgetReportDetails.eligiblePropertyValue }}</p>
+                    <p><strong>Budget for Overheads </strong>  _______________</p>
+                    <p><strong>Gross Budget including all resources:</strong> {{ budgetReportDetails.grossBudget }}</p>
+                    <div>
+                        <p class=" bullet-point"><i class="fa fa-circle fa-fw "></i> <strong class="bullet-center">Cautions </strong></p>
+                        <p>These calculations are made on standard guidelines preveiling in lending policy of various banks and you must adhere to these calculation in order to avoid over spending.</p>
+                        <p>Do not put your entire money into one purchase untill unless it is properly planned and effectivly managed.</p>
+                        <p>Be practical while entering values for liquidable assests. Try always to account for 20% less value for calculation where market value is subjected to change.</p>
+                        <p>Take into consideration about planned expenditure and emergency funds.</p>
+                    </div>
+                    <div>
+                        <p class=" bullet-point"><i class="fa fa-circle fa-fw"></i> <strong class="bullet-center">Options available</strong></p>
+                        <p> Now, look for various options available in your chosen locations based on your budget, type & size of property, livable amenities, design, specification, occupancy and offered price.
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" bullet-point"><i class="fa fa-circle fa-fw"></i> <strong class="bullet-center">DO`s and DON`TS</strong></p>
+                        <strong>Know the DO`s and DON`TS in order to identify the best suitable property;</strong>
+                        <p> At this stage you know that these are short listed properties and you need to finalise or choose the best suitable one based on our guidelines.</p>
+                        
+                        <strong>DO`s :-</strong>
+                        <p><i class="fa fa-caret-right"></i>    Select top two or three properties, meeting your requirements and prepare a comparison chart under various heads in order to choose the best one, like; size of property in terms of usable area, offered price to know whether it is realistic or not, attractive design and specifications to make your property look exclusive, livable amenities to enjoy your routine life, occupancy and supportive neighborhood to give you clear idea of development potential. Look out for amenities those are of actual use and not becomes a burden lateron.</p>
+                        
+                        <strong>DON`TS :-</strong>
+                        <p>Also, adhere to vital point check list to minimize risk and ensure overall success, like; </p>
+                        <strong>Never buy a property in the following circumstances</strong>
+                        <p><i class="fa fa-caret-right"></i>   Without registered agreement to sale or sale deed. It assures you of legal and technical perfection.</p>
+                        <p><i class="fa fa-caret-right"></i>   Where property is not eligible for loan from nationalize bank.</p>
+                        <p><i class="fa fa-caret-right"></i>   For location if it is detached from the main city, especially for residential properties.</p>
+                        <p><i class="fa fa-caret-right"></i>   For location where no work places are nearby.</p>
+                        <p><i class="fa fa-caret-right"></i>   For location where source of basic amenities are doubtful, like; transportation, shopping, medical, school/college, parks etc.</p>
+                        <p><i class="fa fa-caret-right"></i>   For project not having clear and legal approach road.</p>
+                        <p><i class="fa fa-caret-right"></i>   If approach road is not safe to travel by kids and ladies in odd hours.</p>
+                        <p><i class="fa fa-caret-right"></i>   For projects where unsold dwelling units are lying vacant for more than 2 years.</p>
+                        <p><i class="fa fa-caret-right"></i>   For ready project where occupancy is very low.</p>
+                        <p><i class="fa fa-caret-right"></i>   For areas where there is a risk for health hazards like; low areas, near chemical/medicine industries, power plants, filthy lakes and areas prone to crimes.</p>
+                        <p><i class="fa fa-caret-right"></i>   Don’t buy overpriced property. Buy below market price or at least at realistic price.</p>
+                        <p><i class="fa fa-caret-right"></i>   Don’t just rely on verbal promises, ensure creditability of seller.</p>
+
+                        <strong>Process of finalizing the deal;</strong>
+                        <p><i class="fa fa-caret-right"></i>   At this point you must be clear about which property is most suitable for you. There comes the process of finalizing and it is better if it is done through real estate professional.</p>
+                        <p><i class="fa fa-caret-right"></i>   You need to prepare, check list to cross check legal and technical marketability of property / project, prepare list of terms and conditions to be entered into conveyance document and valid points for price negotiation before finalizing the deals.</p>
+                        <p><i class="fa fa-caret-right"></i>   Above all you need to know what price to pay and what can be the acceptable variations.</p>
+                        <p><i class="fa fa-caret-right"></i>   Keep in mind that your decision taken today is going to decide your future success or failure. There is no point of cursing your luck later if you do not pay intention to the guidelines today.</p>
+                        <p><i class="fa fa-caret-right"></i>   These guidelines are applicable universally, but if you have any specific enquiry  and you need any sort of assistance to take informed decision for buying property in and around Nagpur, feel free to contact us at 88888 43 880, 7755 92 3368. </p>
+                        <p><i class="fa fa-caret-right"></i>     We offer free service to help you to identify suitable property and gets third party genuine information related to property buying.</p>
+                        <p> Created for public interest by Safe Deals, Nagpur.</p>
+                        <p>Wish you a successful buying.</p>
+                        <p>Good Luck!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveAmenityDetail(editableAmenityDetail)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-amenitydetail"></i>
+                        Amenity Detail Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Name</label>
+                                <input class="form-control" placeholder="Name" ng-model="editableAmenityDetail.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Address</label>
+                                <input class="form-control" placeholder="Address" ng-model="editableAmenityDetail.address"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableAmenityDetail.repeatAmenityDetail">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Phone No.</label>
+                                <input class="form-control" pattern='\d{2}\d{4}\d{4}' placeholder="Phone No." ng-model="editableAmenityDetail.phoneNumber"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Mobile No.</label>
+                                <input class="form-control" pattern='\d{2}\d{4}\d{4}' placeholder="Mobile No." ng-model="editableAmenityDetail.mobileNumber"/>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City Name</label>
+                                <input class="form-control"
+                                       placeholder="Select City"
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                       typeahead-on-select="setCity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound"                                       
+                                       ng-model="editableAmenityDetail.city.name" required />
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableAmenityDetail.location.name" required />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>                                              
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Amenity Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Amenity"
+                                       uib-typeahead="amenity.id as amenity.name for amenity in searchAmenity($viewValue)"
+                                       typeahead-on-select="setAmenity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingAmenities" 
+                                       typeahead-no-results="noAmenitiesFound"                                       
+                                       ng-model="editableAmenityDetail.amenity.name" required />
+                                <p ng-show="noAmenitiesFound" class="help-block text-muted">No Amenities found</p>
+                                <p ng-show="loadingAmenities" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>  
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> latitude</label>
+                                <input class="form-control" type="number" step="any" placeholder="latitude" ng-model="editableAmenityDetail.latitude"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> longitude</label>
+                                <input class="form-control" type="number" step="any" placeholder="longitude" ng-model="editableAmenityDetail.longitude"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

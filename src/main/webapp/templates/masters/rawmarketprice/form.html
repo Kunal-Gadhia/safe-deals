@@ -1,0 +1,239 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveRawMarketPrice(editableRawMarketPrice)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"
+                            onclick='window.history.back()'
+                            class=" pull-right btn btn-link">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Raw Market Price Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City </label>
+                                <div class="typeahead-demo">
+                                    <input type="text" ng-model="editableRawMarketPrice.city.name" placeholder="City" typeahead-on-select="setCity($item)"
+                                           typeahead-editable="false" uib-typeahead="city.name for city in cities| filter:$viewValue | limitTo:8"
+                                           typeahead-no-results="noResultsCity" class="form-control">
+                                    <div ng-show="noResultsCity">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.name as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableRawMarketPrice.location.name" required />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">               
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>SD Zone </label>
+                                <div class="typeahead-demo">
+                                    <input type="text" ng-model="editableRawMarketPrice.safedealZone.name" placeholder="SafedealZone" typeahead-on-select="setSafedealZone($item)"
+                                           typeahead-editable="false" uib-typeahead="safedealZone.name for safedealZone in safedealZones| filter:$viewValue | limitTo:8"
+                                           typeahead-no-results="noResultsSd" class="form-control">
+                                    <div ng-show="noResultsSd">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Type </label>
+                                <div class="typeahead-demo">
+                                    <input type="text" ng-model="editableRawMarketPrice.locationType.name" placeholder="Location Type" typeahead-on-select="setLocationType($item)"
+                                           typeahead-editable="false" uib-typeahead="locationType.name for locationType in locationTypes| filter:$viewValue | limitTo:8"
+                                           typeahead-no-results="noResultsLt" class="form-control">
+                                    <div ng-show="noResultsLt">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">               
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location categories </label>
+                                <div class="typeahead-demo">
+                                    <input type="text" ng-model="editableRawMarketPrice.locationType.name" placeholder="Location Type" typeahead-on-select="setLocationType($item)"
+                                           typeahead-editable="false" uib-typeahead="locationType.name for locationType in locationTypes| filter:$viewValue | limitTo:8"
+                                           typeahead-no-results="noResultsLt" class="form-control">
+                                    <div ng-show="noResultsLt">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description </label>
+                                <input class="form-control" placeholder="Description" ng-model="editableRawMarketPrice.description"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Year </label>
+                                                    <input class="form-control" placeholder="Year" ng-model="editableRawMarketPrice.year"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Month </label>
+                                                    <input class="form-control" placeholder="Month" ng-model="editableRawMarketPrice.month"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Agri land lowest </label>
+                                                    <input class="form-control" placeholder="Mp Agri land lowest" ng-model="editableRawMarketPrice.mpAgriLandLowest"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Agri land highest </label>
+                                                    <input class="form-control" placeholder="Mp Agri land highest" ng-model="editableRawMarketPrice.mpAgriLandHighest"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Plot lowest </label>
+                                                    <input class="form-control" placeholder="Mp plot lowest" ng-model="editableRawMarketPrice.mpPlotLowest"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Plot Highest </label>
+                                                    <input class="form-control" placeholder="Mp Plot Highest" ng-model="editableRawMarketPrice.mpPlotHighest"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Residential Lowest</label>
+                                                    <input class="form-control" placeholder="Mp Residential Lowest" ng-model="editableRawMarketPrice.mpResidentialLowest"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Residential Highest </label>
+                                                    <input class="form-control" placeholder="Mp Residential Highest" ng-model="editableRawMarketPrice.mpResidentialHighest"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Commercial lowest </label>
+                                                    <input class="form-control" placeholder="Mp Commercial lowest" ng-model="editableRawMarketPrice.mpCommercialLowest"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Mp Commercial Highest </label>
+                                                    <input class="form-control" placeholder="Mp Commercial Highest" ng-model="editableRawMarketPrice.mpCommercialHighest"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Is Commercial Center </label>
+                                                    <input class="form-control" placeholder="Is Commercial Center " ng-model="editableRawMarketPrice.isCommercialCenter "/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Major Approach Road</label>
+                                                    <input class="form-control" placeholder="Major Approach Road" ng-model="editableRawMarketPrice.majorApproachRoad"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Source Of Water</label>
+                                                    <input class="form-control" placeholder="Source Of Water" ng-model="editableRawMarketPrice.sourceOfWater"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Public Transport</label>
+                                                    <input class="form-control" placeholder="Public Transport" ng-model="editableRawMarketPrice.publicTransport"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Advantage </label>
+                                                    <input class="form-control" placeholder="Advantage" ng-model="editableRawMarketPrice.advantage"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Disadvantage </label>
+                                                    <input class="form-control" placeholder="Disadvantage" ng-model="editableRawMarketPrice.disadvantage"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">               
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Population </label>
+                                                    <input class="form-control" placeholder="Population" ng-model="editableRawMarketPrice.population"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Migration Rate</label>
+                                                    <input class="form-control" placeholder="Migration Rate" ng-model="editableRawMarketPrice.migrationRate"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

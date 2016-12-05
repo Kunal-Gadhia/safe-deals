@@ -1,0 +1,47 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveworkplaceArea(editableWorkplaceArea)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Workplace Area Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" type="text" placeholder=" Workplace Area name" ng-model="editableWorkplaceArea.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Size</label>
+                                <input class="form-control" type="number" placeholder=" Workplace Area size" ng-model="editableWorkplaceArea.size"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableWorkplaceArea.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        Cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

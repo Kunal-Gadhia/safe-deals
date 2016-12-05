@@ -1,0 +1,305 @@
+<div  class=" panel panel-default">
+    <form>
+        <div class="row panel-body">
+            <div class="col-md-6">
+                <h4>Primary Income</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Primary Income</label>
+                            <div class="col-sm-7">
+                                <label class="radio-inline"><input id="employeeType" type="radio" name="optradio" ng-model="primaryIncomeType" value="monthlyIncome" ng-click="yesnoCheck()"/>Employee</label>
+                                <label class="radio-inline"><input id="businessType" type="radio" name="optradio" ng-model="primaryIncomeType" value="annualIncome" ng-click="yesnoCheck()"/>Business</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="employee">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input" class="col-sm-5 control-label">Monthly Income:</label>
+                                <div class="col-sm-7">
+                                    <input type="number" class="form-control" ng-model="primaryMonthlyIncome" tooltip="Please enter your income. " tooltip-trigger="focus" tooltip-placement="bottom"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="business">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input" class="col-sm-5 control-label">Annual Income:</label>
+                                <div class="col-sm-7">
+                                    <input type="number" class="form-control" ng-model="primaryAnnualIncome" tooltip="Please enter your income. " tooltip-trigger="focus" tooltip-placement="bottom"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>Secondary Income</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Additional Income:</label>
+                            <div class="col-sm-7">
+                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="additionalIncomeType" value="monthlyIncome"/>Monthly</label>
+                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="additionalIncomeType" value="annualIncome"/>Annually</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Type of Income:</label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+                                    <option>Select type of income </option>
+                                    <option>Rental </option>
+                                    <option>Other </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Additional Income:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="additionalIncome" tooltip="Please enter your income. " tooltip-trigger="focus" tooltip-placement="bottom"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div>
+                            <label for="input" class="col-sm-5 control-label">Total Income:</label>
+                            <div class="col-sm-7">
+                                <h2>{{totalIncome}} &#8377;</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button class="btn btn-primary" ng-click="calculateTotalIncome()">Calculate Total Income</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div><!-- Total Income stage A-->
+<div  class=" panel panel-default">
+    <form>
+        <div class="row panel-body">
+            <div class="col-md-6">
+                <h4>Bank</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Do you have any existing loan</label>
+                            <div class="col-sm-7">
+                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="liabilitiesType" value="yes" ng-click="liabilitiesCheck()"/>Yes</label>
+                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="liabilitiesType" value="no" ng-click="liabilitiesCheck()"/>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="yes">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input" class="col-sm-5 control-label">Please enter your existing emi</label>
+                                <div class="col-sm-7">
+                                    <input type="number" class="form-control" ng-model="liabilities" tooltip="Please enter your existing emi. " tooltip-trigger="focus" tooltip-placement="bottom"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Bank name:</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Select Bank" ng-model="bank.name" readonly="">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="showBankWidget = !showBankWidget">
+                                            Select
+                                        </button>
+                                    </div>
+                                </div>                                
+                                <div data-sd-bank-select="" data-show-widget="showBankWidget" data-on-select='setBank(bank)'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>EMI Eligibility</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">EMI Eligibility</label>
+                            <div class="col-sm-7">
+                                <h2>{{emi}} &#8377;</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div><!-- EMI eligibility stage B, C-->
+<div  class=" panel panel-default">
+    <form>
+        <div class="row panel-body">
+            <div class="col-md-6">
+                <h4>Major Plan Expenditure</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Child's Education:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="childEducation"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Marriage:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="marriage"/>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Vehicle Purchase:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="vehicle"/>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" ng-click="totalExpenditure()">Total</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>Expenditure</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Total expenditure</label>
+                            <div class="col-sm-7">
+                                <h2>{{expenditure}} &#8377;</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div><!-- Expenditure stage F-->
+<div  class=" panel panel-default">
+    <form>
+        <div class="row panel-body">
+            <div class="col-md-6">
+                <h4>Source of own contribution</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Savings:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="saving"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Liquidable:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="liquid"/>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Retirement:</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" ng-model="retirement"/>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" ng-click="totalContribution()">Total</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>Contribution</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-5 control-label">Total contribution</label>
+                            <div class="col-sm-7">
+                                <h2>{{contribution}} &#8377;</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer ">
+            <div class="row">
+
+                 <h2>Your disposable fund is <span>{{contribution - expenditure}}</span> &#8377;</h2>
+            </div>
+        </div>
+    </form>
+</div><!-- EMI eligibility stage B, C-->

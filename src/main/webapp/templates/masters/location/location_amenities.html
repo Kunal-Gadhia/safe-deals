@@ -1,0 +1,39 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">		
+        <div class="modal-content map-details">
+            <div class="modal-header">
+                <div class="form-group">                                    
+                    <label> Select amenities for {{editableLocation.name}}:</label>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class=" pull-right btn btn-link">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">                     
+                    <div class="row">
+                        <div class="col-sm-10" style="padding-left: 10">    
+                            <div id="locationAmenitiesMapContainer"  style = "height:500px; width:850px;"></div>    
+                        </div>
+                    </div>
+                    <div class="modal-footer">	
+                        <button type="button"
+                                ng-click="saveLocationAmenitiesFromMap()"
+                                class="btn btn-success" >
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>
+                    </div>
+                </div>		
+            </div>
+        </div>
+    </div>
+</div>

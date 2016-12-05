@@ -1,0 +1,138 @@
+
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveBranch(editableBranch)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Branch Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Branch Name</label>
+                                <input class="form-control" placeholder="Branch Name" ng-model="editableBranch.name"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Bank"
+                                       uib-typeahead="bank.id as bank.name for bank in searchBanks($viewValue)"
+                                       typeahead-on-select="setBank($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingBanks" 
+                                       typeahead-no-results="noBanksFound"                                       
+                                       ng-model="editableBranch.bank.name" required />
+                                <p ng-show="noBanksFound" class="help-block text-muted">No Banks found</p>
+                                <p ng-show="loadingBanks" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show="editableBranch.repeatBranch">
+
+                        <div  class="col-sm-6 text-danger">Found Records For Above Entered Name</div>
+                        <div  class="col-sm-6"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" placeholder="Address" ng-model="editableBranch.address"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Phone No.</label>
+                                <input class="form-control" pattern='\d{2}\d{4}\d{4}' placeholder="Phone No." ng-model="editableBranch.phoneNo"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City Name</label>
+                                <input class="form-control"
+                                       placeholder="Select City"
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                       typeahead-on-select="setCity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound"                                       
+                                       ng-model="editableBranch.city.name" required />
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableBranch.location.name" required />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>IFSC Code</label>
+                                <input class="form-control" placeholder="IFSC Code" ng-model="editableBranch.ifscCode"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>MICR Code</label>
+                                <input type="number" class="form-control" placeholder="MICR Code" ng-model="editableBranch.micrCode"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Fax No.</label>
+                                <input class="form-control" placeholder="Fax No." ng-model="editableBranch.fax"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="abc@xyz.com" ng-model="editableBranch.email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveBank(editableBank)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Bank Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Name</label>
+                                <input class="form-control" placeholder="Bank name" ng-model="editableBank.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Max age for salaried</label>
+                                <input type="number" class="form-control" placeholder="Max age for salaried" ng-model="editableBank.maxAgeForSalaried"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableBank.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Loan Interest Rate For Male</label>
+                                <input type="number" step="any" class="form-control" placeholder="Loan Interest Rate For Male" ng-model="editableBank.loanInterestRateForMale"/>
+                            </div>
+                        </div>                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Max age for businessman</label>
+                                <input type="number" class="form-control" placeholder="Max age for businessman" ng-model="editableBank.maxAgeForBusinessman"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Loan Interest Rate For Female</label>
+                                <input type="number" step="any" class="form-control" placeholder="Loan Interest Rate For Female" ng-model="editableBank.loanInterestRateForFemale"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Max Loan Tenure</label>
+                                <input type="number" class="form-control" placeholder="Max Loan Tenure" ng-model="editableBank.maxLoanTenure"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

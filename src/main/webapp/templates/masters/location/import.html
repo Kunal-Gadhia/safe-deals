@@ -1,0 +1,51 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">		
+        <div class="modal-content map-details">
+            <form ng-submit="saveLocationFromMap()">
+            <!--<form>-->
+                <div class="modal-header">
+                    <div class="form-group">                                            
+                        <div class="col-sm-2">                                
+                            <label> Select city:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="typeahead-demo">
+                                <input type="text" ng-model="cityName"  
+                                       typeahead-on-select="setCity(cityName)" 
+                                       typeahead-editable="false" 
+                                       uib-typeahead="city as city.name for city in cities | filter:$viewValue | limitTo:8" 
+                                       typeahead-no-results="noResults" class="form-control input">
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class=" pull-right btn btn-link">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">                     
+                        <div class="row">
+                            <div class="col-sm-10" style="padding-left: 10">    
+                                <div id="locationImportMapContainer"  style="height:500px; width:850px;"></div>    
+                            </div>
+                        </div>
+                        <div class="modal-footer">	
+                            <button type="submit"
+                                    ng-submit="saveLocationFromMap()"
+                                    class="btn btn-success" >
+                                Save
+                            </button>
+                        </div>
+                    </div>		
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

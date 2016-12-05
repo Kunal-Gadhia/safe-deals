@@ -1,0 +1,65 @@
+<!--<div class="modal modal-safedeals" ng-if="showWidget">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">		
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        ng-click='close()'
+                        class=" pull-right btn btn-link" >
+                    <i class="fa fa-times"></i>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa fa-dollar"></i>
+                    Select Country
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-right">#</th>
+                                <th>Country</th>
+                                <th class="text-right">
+                                    Select
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="country in countries">
+                                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                                <td>{{ country.name}}</td>
+                                <td class="text-right">
+                                    <button type="button" ng-click="select(country)"
+                                            class="btn btn-default">
+                                        Select
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">				
+                <ul class="pager">								
+                    <li>
+                        <button ng-click="previousPage()"
+                                type="button"
+                                ng-disabled="currentOffset == 0" 
+                                class="btn btn-default" >
+                            <i class="fa fa-arrow-left"></i>
+                            Previous
+                        </button>
+                    </li>
+                    <li>
+                        <button ng-click="nextPage()" type="button"
+                                class="btn btn-default">
+                            Next 
+                            <i class="fa fa-arrow-right"></i>
+                        </button>
+                    </li>
+                </ul>				
+            </div>
+        </div>		
+    </div>
+</div>-->

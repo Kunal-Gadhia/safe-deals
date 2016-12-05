@@ -1,0 +1,66 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveWorkplaceCategory(editableWorkplaceCategory)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Workplace Category Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Workplace Category Name</label>
+                                <input class="form-control" placeholder="Workplace Category name" ng-model="editableWorkplaceCategory.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Workplace Area</label>
+                                <div class="input-group">
+                                    <input class="form-control"
+                                           placeholder="Workplace Area" 
+                                           uib-typeahead="workplaceArea.id as workplaceArea.name for workplaceArea in searchWorkplaceArea($viewValue)"
+                                           typeahead-on-select="setWorkplaceArea($item)"
+                                           typeahead-editable="false"
+                                           typeahead-loading="loadingWorkplaceArea"
+                                           typeahead-on-results="noworkplaceArea"
+                                           ng-model="editableWorkplaceCategory.workplaceArea.name" required/>
+                                    <p ng-show="loadingWorkplaceArea" class="help-block text-muted">loading..</p>
+                                    <p ng-show="noWorkplaceArea" class="help-block text-muted">No Workplace Area Found</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableWorkplaceCategory.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" placeholder="Description" ng-model="editableWorkplaceCategory.description"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

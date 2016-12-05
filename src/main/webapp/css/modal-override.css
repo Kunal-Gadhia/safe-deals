@@ -1,0 +1,30 @@
+/* 
+    Created on : 8 Mar, 2016, 10:07:58 AM
+    Author     : sabrina
+*/
+
+/*
+ * Extensions for the Bootstrap Modal to be shown as soon as it's partial is loaded.
+ * This is specifically because each modal has it's own state, and we don't want to do handle the management
+ *
+ */
+.modal-safedeals
+{
+    display:block;
+}
+
+.modal-safedeals > .modal-backdrop
+{
+    height:100%;
+    z-index:1060;
+}
+
+.modal-safedeals > .modal-dialog
+{
+    z-index:1070;
+}
+
+body .modal-safedeals
+{
+    overflow: auto;
+}

@@ -1,0 +1,111 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveBusinessAssociate(editableBusinessAssociate)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Business Associate Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" type="text" placeholder=" Name" ng-model="editableBusinessAssociate.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" type="text" placeholder=" Address" ng-model="editableBusinessAssociate.address"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableBusinessAssociate.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Fax</label>
+                                <input class="form-control" type="text" placeholder=" Fax" ng-model="editableBusinessAssociate.fax"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="email" placeholder="Email" ng-model="editableBusinessAssociate.email"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone Number 1</label>
+                                <input class="form-control" type="" placeholder=" Phone number 1" ng-model="editableBusinessAssociate.phoneNumber1"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone Number 2</label>
+                                <input class="form-control" type="" placeholder=" Phone number 2" ng-model="editableBusinessAssociate.phoneNumber2"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>City </label>
+                            <div class="form-group">
+                                <input type="text" ng-model="editableBusinessAssociate.city.name"  
+                                       placeholder="Select City"
+                                       typeahead-on-select="setCity($item)" 
+                                       typeahead-editable="false" 
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)" 
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound" 
+                                       class="form-control">
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>               
+                        <div class="col-sm-6">
+                            <label>Location </label>
+                            <div class="form-group">
+                                <input type="text" 
+                                       ng-model="editableBusinessAssociate.location.name" 
+                                       placeholder="Select Location"
+                                       typeahead-on-select="setLocation($item)" 
+                                       typeahead-editable="false" 
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"
+                                       class="form-control">
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+<!--                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                </div>-->
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            Cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

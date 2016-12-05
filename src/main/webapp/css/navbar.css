@@ -1,0 +1,107 @@
+#mainNav {
+    /*    background-color: #4d79ff;
+        border-color: #3366ff;*/
+    min-height: 80px;
+    background-color: white;
+
+
+}/*
+*/.checkout-bar > li > a {
+    font-family : Arial;
+    font-size: 18px;
+    color: grey;
+    border-radius: 10px;
+    /*border: 1px solid #a1a1a1;*/    
+}
+
+/*****navbar-default css****/
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #0098DA;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #0098da;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #235d9e;
+}
+
+.navbar-default.nav-upper {
+    height: 50px;
+    color:#4386f9;
+    background-color:#fff;
+}
+.navbar-default.navbar-lower {
+    background-color:#fff;
+}
+.navbar-default.nav-upper ul {
+    float: right;
+    display: table;
+}
+.navbar-default.nav-upper .navbar-upper > li {
+    display: table-cell;
+    font-size: 14px;
+}
+.navbar-default.nav-upper .navbar-upper > li > a {
+    color: #235d9e;
+    background-color: transparent;
+}
+@media (min-width: 768px) {
+    .navbar.navbar-lower .navbar-nav {
+        margin-left: 100px;
+    }
+}
+.navbar-logo { 
+/*    background-image: url('../images/safedeals.png');
+    width: 90px;
+    height: 90px;*/
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    z-index: 1051;
+}
+
+/*************navbar-default css************/
+
+/*************social-icon css************/
+
+.facebook{ background: #3b5998; }
+linkedin{ background: #007bb6; }
+.twitter{ background: #00aced; }
+.youtube{ background: #dd4b39; }
+.google{ background: #dd4b39; }
+
+/*************social-icon css************/
+
+/*************carousel-overlay css************/
+.carousel-overlay{
+    position: absolute;
+    z-index: 10;
+    top: 66%;
+    height:26%;
+    width: 60%;
+    background-color: #fff;
+    opacity: 0.4;
+    font-size:52px;
+    padding: 15px;}
+
+/*************carousel-overlay css************/
+
+/*************img-overlay css************/
+.img-overlay{
+    position: absolute;
+    z-index: 10;
+    bottom: 15%;
+    height:15%;
+    width: 90%;
+    font-size:30px;
+    padding: 15px;
+}
+
+/*************img-overlay css************/

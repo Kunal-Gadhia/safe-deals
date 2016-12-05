@@ -1,0 +1,70 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveAgent(editableAgent)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Agent Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Agent Name</label>
+                                <input class="form-control" placeholder="Agent name" ng-model="editableAgent.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" placeholder="Description" ng-model="editableAgent.description"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableAgent.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" placeholder="Address" ng-model="editableAgent.address"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Agency </label>
+                                <div class="typeahead-demo">
+                                    <input type="text" ng-model="editableAgent.agency.name" placeholder="Agency" typeahead-on-select="setAgency($item)"
+                                           typeahead-editable="false" uib-typeahead="agency.name for agency in agencies| filter:$viewValue | limitTo:8"
+                                           typeahead-no-results="noResults" class="form-control">
+                                    <div ng-show="noResults">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

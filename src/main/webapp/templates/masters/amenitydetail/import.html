@@ -1,0 +1,56 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">		
+        <div class="modal-content map-details">
+            <div class="modal-header">
+                <div class="form-group">                                            
+                    <div class="col-sm-2">                                
+                        <label> Select city:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="typeahead-demo">
+                            <input type="text" ng-model="cityName"  typeahead-on-select="setCity(cityName)" typeahead-editable="false" uib-typeahead="city as city.name for city in cities | filter:$viewValue | limitTo:8" typeahead-no-results="noResults" class="form-control input">
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class=" pull-right btn btn-link">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">                    
+                <div class="row">
+                    <div class="col-sm-9" style="padding-left:10">   
+                        <div id="amenityDetailImportMapContainer"  style="height:450px; width:650px;"></div>    
+                    </div>
+                    <div class="col-sm-3"> 
+                        <div style="height:450px; overflow-y:scroll">
+                            <h4>AMENITIES</h4>
+                            <ul ng-repeat="amenity in amenities">
+                                <li>{{ amenity.name}}</li> 
+                                <li><button type="button" ng-click="getAmenityDetail(amenity)" class="btn btn-link pull-right" >
+                                        Save
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>		
+            </div>
+            <div class="modal-footer">	
+                <button type="button"
+                        ng-click="saveAmenityDetailFromMap()"
+                        class="btn btn-success" >
+                    Save
+                </button>
+                <button type="button" class="btn btn-link" onclick="window.history.back()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="thumbnail thumbnail-border row form-group">
+    <div class="co_site panel-body">
+        <img src="images/contactus.jpg" alt="Map" width="905" height="470">
+    </div>
+</div>
+<div class="thumbnail thumbnail-border row">
+    <div class="co_site panel-body">
+        <div class="row text-center">
+            <h2>
+                List of Franchisee
+            </h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="active">
+                        <th class="text-center">City</th>
+                        <th class="text-center">Address</th>
+                        <th class="text-center">Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="franchise in franchises">
+                        <td class="text-center">{{franchise.city.name}}</td>
+                        <td class="text-center">{{franchise.address}}</td>
+                        <td class="text-center">{{franchise.phoneNumber1}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pager">
+                <li>
+                    <button ng-click="previousPage()" 
+                            ng-disabled="{{ currentOffset == 0}}" 
+                            class="btn btn-default" >
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                </li>
+                <li>
+                    <button ng-click="nextPage()"
+                            ng-disabled="franchises.length < 5 || nextFranchises.length === 0"
+                            class="btn btn-default">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

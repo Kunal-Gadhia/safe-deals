@@ -1,0 +1,77 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveAmenity(editableAmenity)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Amenity Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Amenity name" ng-model="editableAmenity.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" placeholder="Amenity description" ng-model="editableAmenity.description"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show="editableAmenity.repeatAmenity">
+
+                        <div  class="col-sm-6 text-danger">Found Records For Above Entered Name</div>
+                        <div  class="col-sm-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Amenity Code</label>
+                                <!--                                <input class="form-control" placeholder="Amenity code" ng-model="editableAmenity.amenityCode"/>-->                              
+                                <input class="form-control"
+                                       placeholder="Select Amenity Code"
+                                       uib-typeahead="amenityCode.id as amenityCode.name for amenityCode in searchAmenityCodes($viewValue)"
+                                       typeahead-on-select="setAmenityCode($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingAmenityCodes" 
+                                       typeahead-no-results="noAmenityCodesFound"                                       
+                                       ng-model="editableAmenity.amenityCode.name" required />
+                                <p ng-show="noAmenityCodesFound" class="help-block text-muted">No Amenity Codes found</p>
+                                <p ng-show="loadingAmenityCodes" class="help-block text-muted">loading...</p>                                    
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Amenity Type</label>
+                                <select class="form-control" ng-model="editableAmenity.amenityType">
+                                    <option value="">Choose amenity type</option>
+                                    <option value="RESIDENTIAL">Residential</option>
+                                    <option value="COMMERCIAL">Commercial</option>
+                                    <option value="INDUSTRIAL">Industrial</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

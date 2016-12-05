@@ -1,0 +1,30 @@
+<div class="pull-right">
+    <button type="button" class="btn btn-link btn-sm" data-ui-sref="main.help">Generate Report</button>
+</div>
+<div class="intro">
+    <div>
+        <h2>Location Selection</h2>
+    </div>        
+    <div  data-ui-view="" class="col-md-9 col-sm-9">
+    </div>
+    <div class="col-md-3">
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-primary col-sm-4" data-ui-sref="main.location.location_comparison">Compare<span class="badge">3</span></button>
+            </div>
+        </div>
+        <ul class="list">
+            <li ng-repeat="location in locations">
+                <div class="row form-group">
+                    <div class="image col-sm-5" data-ui-sref="main.location_detail({ locationId: location.id })"><a href="#"><img src="images/5.jpg" width="100" height="90"/></a></div>
+                    <div class="name col-sm-7">
+                        <div class="row"><span data-ui-sref="main.location_detail({ locationId: location.id })"><strong>{{ location.name}}</strong></span></div>
+                        <div class="row"><span><strong>&#8377; {{location.propertyRate}} per sqft </strong></span></div>
+                        <div class="row"><span><input type="checkbox" name="Add to campare"> Add to compare</span></div>
+                        <div class="row"><span class="pull-left"><button class="btn btn-link" title="Details" data-ui-sref="main.location_detail({ locationId: location.id })">View Details</button></span></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

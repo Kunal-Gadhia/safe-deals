@@ -1,0 +1,72 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveHospital(editableHospital)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Hospital Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Hospital Name</label>
+                                <input class="form-control" placeholder="Hospital name" ng-model="editableHospital.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Speciality</label>
+                                <input class="form-control" placeholder="Speciality" ng-model="editableHospital.speciality"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show="editableHospital.repeatHospital">
+
+                        <div  class="col-sm-6 text-danger">Found Records For Above Entered Name</div>
+                        <div  class="col-sm-6"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Services</label>
+                                <input class="form-control" placeholder="Services" ng-model="editableHospital.service"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableHospital.location.name" required />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

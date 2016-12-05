@@ -1,0 +1,111 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveBuilder(editableBuilder)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Builder Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Builder Name</label>
+                                <input class="form-control" placeholder="Builder name" ng-model="editableBuilder.name"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" placeholder="Description" ng-model="editableBuilder.description"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="editableBuilder.repeatName">
+                        <div class="col-sm-6 text-danger">
+                            Found Records For Above Entered Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" placeholder="Address" ng-model="editableBuilder.address"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control" type="" placeholder="Phone Number" ng-model="editableBuilder.phoneNumber"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Name</label>
+                                <input class="form-control" placeholder="Project Name" ng-model="editableBuilder.projectName"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Name</label>
+                                <input class="form-control" placeholder="Property Name" ng-model="editableBuilder.propertyName"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control"
+                                       placeholder="Select City"
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                       typeahead-on-select="setCity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound"                                       
+                                       ng-model="editableBuilder.city.name" required />
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                        <!--                        <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>City </label>
+                                                        <div class="typeahead-demo">
+                                                            <input type="text" ng-model="editableBuilder.city.name" placeholder="City" typeahead-on-select="setCity($item)"
+                                                                   typeahead-editable="false" uib-typeahead="city.name for city in cities| filter:$viewValue | limitTo:8"
+                                                                   typeahead-no-results="noResults" class="form-control">
+                                                            <div ng-show="noResults">
+                                                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

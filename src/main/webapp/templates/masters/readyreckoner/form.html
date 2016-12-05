@@ -1,0 +1,74 @@
+
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveReadyReckoner(editableReadyReckoner)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Ready Reckoner Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location Name</label>
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableReadyReckoner.location.name" required />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Year</label>
+                                <input type="number" class="form-control" placeholder="RR Year" ng-model="editableReadyReckoner.rrYear"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">               
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Rate Land</label>
+                                <input type="number" class="form-control" placeholder="RR Rate land" ng-model="editableReadyReckoner.rrRateLand"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>RR Rate Plot</label>
+                                <input type="number" class="form-control" placeholder="RR Rate plot" ng-model="editableReadyReckoner.rrRatePlot"/>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                               <label>RR Rate Apartment</label>
+                                <input type="number" class="form-control" placeholder="RR Rate apartment" ng-model="editableReadyReckoner.rrRateApartment"/>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <a data-ui-sref="admin.masters"
+               class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </a>
+        </div>
+        <div class="pull-right">
+            <a data-ui-sref="admin.masters_amenity.add"
+               class="btn btn-default">
+                <i class="fa fa-plus"></i>
+                Add Amenity
+            </a>
+
+            <a ng-click="amenityExport()"
+               class="btn btn-default">
+                <i class="fa fa-plus"></i>
+                Export
+            </a>
+        </div>
+        <div>
+            <h4>Amenity Master</h4>
+        </div>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-right">#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amenity Code</th>
+                <th>Amenity Type</th>
+                <th class="text-right">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="amenity in amenities">
+                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td>{{ amenity.name}}</td>   
+                <td>{{ amenity.description}}</td> 
+                <td>{{ amenity.amenityCodeObject.name}}</td> 
+                <td>{{ amenity.amenityType}}</td>              
+                <td class="text-right">
+                    <a data-ui-sref="admin.masters_amenity.edit({ amenityId: amenity.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a data-ui-sref="admin.masters_amenity.delete({ amenityId: amenity.id })"
+                       class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav class="panel-footer">
+        <ul class="pager">
+            <li>
+                <button ng-click="previousPage()" 
+                        ng-disabled="{{ currentOffset == 0}}" 
+                        class="btn btn-default" >
+                    <i class="fa fa-arrow-left"></i>
+                    Previous
+                </button>
+            </li>
+            <li>
+                <button ng-click="nextPage()"
+                        ng-disabled="amenities.length < 5 || nextAmenities.length === 0"
+                        class="btn btn-default">
+                    Next 
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div data-ui-view=""></div>

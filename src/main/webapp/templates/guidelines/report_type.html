@@ -1,0 +1,53 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveGuidelinesReportDetail(personalDetails)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-amenitydetail"></i>
+                       Submit Report Details
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Name</label>
+                                <input class="form-control" placeholder="Name" ng-model="personalDetails.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> E-mail</label>
+                                <input class="form-control" placeholder="Address" ng-model="personalDetails.email"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Phone No.</label>
+                                <input class="form-control" placeholder="Phone No." ng-model="personalDetails.phoneNumber"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

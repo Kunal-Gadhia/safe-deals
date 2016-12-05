@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="btn-group pull-right " dropdown>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a data-ui-sref="admin.masters_country.state.edit({ countryId: country.id })">
+                            <i class="fa fa-pencil"></i>
+                            Edit {{ country.name}}
+                        </a>
+                    </li>
+                    <li>
+                        <a data-ui-sref="admin.masters_country.state.delete({ countryId: country.id })">
+                            <i class="fa fa-trash"></i>
+                            Delete {{ country.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-heading">                
+                <h4 class="panel-title">
+                    {{ country.name}}
+                </h4>
+            </div>    
+            <div class="list-group">
+                <a ng-repeat="s in states" 
+                   data-ui-sref="admin.masters_country.state.city({ countryId: country.id, stateId: s.id })"
+                   data-ui-sref-active="active"
+                   class="list-group-item">                        
+                    {{ s.name}}
+                </a>
+                <a data-ui-sref="admin.masters_country.state.add"
+                   class="list-group-item">
+                    <i class="fa fa-plus"></i>
+                    New State
+                </a>
+            </div>
+        </div>        
+    </div>
+    <div class="col-sm-6" data-ui-view="">
+    </div>
+</div>

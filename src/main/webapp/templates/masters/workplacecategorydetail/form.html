@@ -1,0 +1,86 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveWorkplaceCategoryDetail(editableWorkplaceCategoryDetail)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Workplace Category Detail Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Workplace Category Name</label>
+                                <div class="input-group">
+                                    <input class="form-control"
+                                           placeholder="Workplace Category Name" 
+                                           uib-typeahead="workplaceCategory.id as workplaceCategory.name for workplaceCategory in searchWorkplaceCategory($viewValue)"
+                                           typeahead-on-select="setWorkplaceCategory($item)"
+                                           typeahead-editable="false"
+                                           typeahead-loading="loadingWorkplaceCategory"
+                                           typeahead-on-results="noworkplaceCategoryFound"
+                                           ng-model="editableWorkplaceCategoryDetail.workplaceCategory.name" required/>
+                                    <p ng-show="loadingWorkplaceCategory" class="help-block text-muted">loading..</p>
+                                    <p ng-show="noworkplaceCategoryFound" class="help-block text-muted">No WorkPlace Category Found</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Salary Range Description</label>
+                                <div class="input-group">
+                                    <input class="form-control"
+                                           placeholder="Salary Range Description" 
+                                           uib-typeahead="salaryRange.id as salaryRange.description for salaryRange in searchSalaryRange($viewValue)"
+                                           typeahead-on-select="setSalaryRange($item)"
+                                           typeahead-editable="false"
+                                           typeahead-loading="loadingSalaryRange"
+                                           typeahead-on-results="nosalaryRange"
+                                           ng-model="editableWorkplaceCategoryDetail.salaryRange.description" required/>
+                                    <p ng-show="loadingSalaryRange" class="help-block text-muted">loading..</p>
+                                    <p ng-show="noSalaryRange" class="help-block text-muted">No Salary Range Found</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Number of Employee</label>
+                                <input class="form-control" type="number" placeholder="Number of Employee" ng-model="editableWorkplaceCategoryDetail.numberOfEmployee"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Number of Student</label>
+                                <input class="form-control" type="number" placeholder="Number of Student" ng-model="editableWorkplaceCategoryDetail.numberOfStudent"/>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Number of Bed</label>
+                                <input class="form-control" type="number" placeholder="Number of Bed" ng-model="editableWorkplaceCategoryDetail.numberOfBed"/>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

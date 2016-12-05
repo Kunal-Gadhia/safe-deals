@@ -1,0 +1,84 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <a data-ui-sref="admin.masters"
+               class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </a>
+        </div>
+        <div class="pull-right">
+            <a data-ui-sref="admin.masters_business_associate.add"
+               class="btn btn-default">
+                <i class="fa fa-plus"></i>
+                Add Business Associate
+            </a>
+        </div>
+        <div>
+            <h4>Business Associate Master</h4>
+        </div>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-right">#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>CIty</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Phone Number 1</th>
+                <th>Phone Number 2</th>
+                <th>Fax</th>
+
+                <th class="text-right">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="businessAssociate in businessAssociates">
+                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td>{{ businessAssociate.name}}</td>   
+                <td>{{ businessAssociate.address}}</td>   
+                <td>{{ businessAssociate.city.name}}</td>   
+                <td>{{ businessAssociate.location.name}}</td>   
+                <td>{{ businessAssociate.email}}</td>   
+                <td>{{ businessAssociate.phoneNumber1}}</td>   
+                <td>{{ businessAssociate.phoneNumber2}}</td>   
+                <td>{{ businessAssociate.fax}}</td>             
+                <td class="text-right">
+                    <a data-ui-sref="admin.masters_business_associate.edit({ businessAssociateId: businessAssociate.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a data-ui-sref="admin.masters_business_associate.delete({ businessAssociateId: businessAssociate.id })"
+                       class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav class="panel-footer">
+        <ul class="pager">
+            <li>
+                <button ng-click="previousPage()" 
+                        ng-disabled="{{ currentOffset == 0}}" 
+                        class="btn btn-default" >
+                    <i class="fa fa-arrow-left"></i>
+                    Previous
+                </button>
+            </li>
+            <li>
+                <button ng-click="nextPage()"
+                        ng-disabled="businessAssociates.length < 5 || nextBusinessAssociates.length === 0"
+                        class="btn btn-default">
+                    Next 
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div data-ui-view=""></div>

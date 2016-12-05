@@ -1,0 +1,54 @@
+
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    Select File                    
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <label ng-hide="showDetails === 'false'">Add Attachment</label>
+                            <div ng-hide="showDetails === 'false'">
+
+                                <input type="file" name="file" uploader="fileUploader" nv-file-select="">
+                            </div>					
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="alert alert-info" ng-if="uploadInProgress">
+                            Attachment upload is in progress...
+                        </div>
+                        <div class="alert alert-warning" ng-if="uploadWarning">
+                            Attachment Already Exist
+                        </div>
+                        <div class="alert alert-danger" ng-if="uploadFailed">
+                            Attachment upload failed
+                        </div>
+                        <div class="alert alert-success" ng-if="uploadSuccess">
+                            Attachment upload success
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" 
+                        type="button"
+                        ng-click="goBack()"
+                        ng-disabled="enableSaveButton">
+                    Save
+                </button>
+                <button class="btn btn-link" 
+                        type="button"
+                        onclick="window.history.back()">
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

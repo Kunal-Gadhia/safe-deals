@@ -1,0 +1,59 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveTeam(editableTeam)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-map-signs"></i>
+                        Team Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input class="form-control"
+                                       placeholder="Select User"
+                                       uib-typeahead="user.username as user.username for user in searchUsers($viewValue)"
+                                       typeahead-on-select="setUser($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingUsers" 
+                                       typeahead-no-results="noUsersFound"                                       
+                                       ng-model="editableTeam.user.username" required />
+                                <p ng-show="noUsersFound" class="help-block text-muted">No Users found</p>
+                                <p ng-show="loadingUsers" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input class="form-control" placeholder="Designation" ng-model="editableTeam.designation"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" placeholder="Description" ng-model="editableTeam.description"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form ng-submit="saveEnquiry(editableEnquiry)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-bank"></i>
+                        Enquiry Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Name" ng-model="editableEnquiry.name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input class="form-control" placeholder="98XXXXXXX0" ng-model="editableEnquiry.mobileNo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="email" placeholder="Email" ng-model="editableEnquiry.email"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Mode Of Contact</label>
+                                <select class="form-control" ng-model="editableEnquiry.modeOfContact">
+                                    <option value="">Choose Mode Of Contact</option>
+                                    <option value="SMS">SMS</option>
+                                    <option value="EMAIL">Email</option>
+                                    <option value="WHATSAPP">Whatsapp</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-control" ng-model="editableEnquiry.category">
+                                    <option value="">Choose Category</option>
+                                    <option value="PROPERTY_GUIDANCE">Property Guidance</option>
+                                    <option value="PROPERTY_SELLING">Property Selling</option>
+                                    <option value="PROPERTY_BUYING">Property Buying</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Guidance</label>
+                                <input class="form-control" placeholder="Property Guidance" ng-model="editableEnquiry.propertyGuidance"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Selling</label>
+                                <input class="form-control" placeholder="Property Selling" ng-model="editableEnquiry.propertySelling"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Buying</label>
+                                <input class="form-control" placeholder="Property Buying" ng-model="editableEnquiry.propertyBuying"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
