@@ -10,7 +10,7 @@ body{
     min-height: 680px;
 }
 .bg-site{
-    background: url("../images/noise-texture-background.png") fixed;
+    /*background: url("../images/noise-texture-background.png") fixed;*/
     background-size: cover
 }
 .list{
@@ -106,9 +106,9 @@ form.login .forgot-pass-content
     height: 60px;
 }
 /*----content-----*/
-.h1, .h2, .h3, h1, h2, h3 {
+/*.h1, .h2, .h3, h1, h2, h3 {
     margin-top: 0;
-}
+}*/
 hr.ft-hr {
     max-width: 50px;
     border-color: #f05f40;

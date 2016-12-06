@@ -58,6 +58,7 @@
 .navbar-default.nav-upper .navbar-upper > li > a {
     color: #000;
     background-color: transparent;
+    padding: 5px;
 }
 @media (min-width: 768px) {
     .navbar.navbar-lower .navbar-nav {
@@ -65,9 +66,9 @@
     }
 }
 .navbar-logo { 
-/*    background-image: url('../images/safedeals.png');
-    width: 90px;
-    height: 90px;*/
+    /*    background-image: url('../images/safedeals.png');
+        width: 90px;
+        height: 90px;*/
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -112,6 +113,7 @@ linkedin{ background: #007bb6; }
     width: 90%;
     font-size:36px;
     padding: 15px;
+    color: #000;
 }
 .overlay{
     position: absolute;
@@ -121,6 +123,7 @@ linkedin{ background: #007bb6; }
     width: 90%;
     font-size:36px;
     padding: 15px;
+    color: #fff;
 }
 /*************img-overlay css************/
 
@@ -131,6 +134,58 @@ linkedin{ background: #007bb6; }
 }
 #footer a{
     color:#fff;
-   text-decoration: none; 
+    text-decoration: none; 
 }
 /*************#footer css************/
+
+/*************#content css************/
+.content_background{
+    background-color: #EBF6FC;
+}
+
+.left_padding{
+    padding-left: 45px;
+}
+
+.right_padding{
+    padding-right: 0px;
+}
+
+.bottom_border{
+    border-bottom: 1px dotted #000;
+    font-size: 14px;
+    padding: 5px;
+}
+/*************#content css************/
+
+.team_1{
+    background-color: #245DA0;
+}
+
+.team_2{
+    background-color: #000000;
+}
+.team_3{
+    background-color: #5C5857;
+}
+.team_4{
+    background-color: #A70101;
+}
+.team_content{
+    color: #fff;
+}
+
+.img_opacity{
+    opacity: 0.6;
+}
+
+.imgAndText{
+    position: relative; 
+}
+.imgAndText .col{
+    font-size: 28px;
+    position: absolute;
+    z-index: 1;
+    bottom:0;
+    padding-left: 63px;
+}
