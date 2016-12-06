@@ -14,6 +14,14 @@
     /*border: 1px solid #a1a1a1;*/    
 }
 
+
+/*padding*/
+.padding{
+    padding: 0px;
+}
+/*padding*/
+
+
 /*****navbar-default css****/
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -27,6 +35,7 @@
 }
 .navbar-default .navbar-nav>li>a {
     color: #235d9e;
+    font-size: 18px;
 }
 
 .navbar-default.nav-upper {
@@ -43,10 +52,11 @@
 }
 .navbar-default.nav-upper .navbar-upper > li {
     display: table-cell;
-    font-size: 14px;
+    font-size: 16px;
+    color: #000;
 }
 .navbar-default.nav-upper .navbar-upper > li > a {
-    color: #235d9e;
+    color: #000;
     background-color: transparent;
 }
 @media (min-width: 768px) {
@@ -97,11 +107,30 @@ linkedin{ background: #007bb6; }
 .img-overlay{
     position: absolute;
     z-index: 10;
-    bottom: 15%;
+    bottom: 5%;
     height:15%;
     width: 90%;
-    font-size:30px;
+    font-size:36px;
     padding: 15px;
 }
-
+.overlay{
+    position: absolute;
+    z-index: 10;
+    bottom: 30%;
+    height:15%;
+    width: 90%;
+    font-size:36px;
+    padding: 15px;
+}
 /*************img-overlay css************/
+
+/*************#footer css************/
+#footer{
+    background-color: #235d9e;
+    color:#fff
+}
+#footer a{
+    color:#fff;
+   text-decoration: none; 
+}
+/*************#footer css************/
