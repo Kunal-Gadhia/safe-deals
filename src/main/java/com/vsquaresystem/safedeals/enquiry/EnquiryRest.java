@@ -5,7 +5,6 @@
  */
 package com.vsquaresystem.safedeals.enquiry;
 
-import java.io.IOException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,10 +55,11 @@ public class EnquiryRest {
         return enquiryDAL.findByName(name);
     }
 
-    @RequestMapping(value = "/send_sms")
-    public void sendSms() throws IOException {
+    @RequestMapping(value = "/send_sms", method = RequestMethod.POST)
+    public String sendSms() {
         // logger.info("client no rest ", clientNumber);
-        enquiryService.sendSms();
+        EnquiryService.sendSms();
+        return "greeting";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -5,17 +5,16 @@
  */
 package com.vsquaresystem.safedeals.enquiry;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.twilio.sdk.TwilioRestClient;
+import com.twilio.sdk.TwilioRestException;
+import com.twilio.sdk.resource.factory.MessageFactory;
+import com.twilio.sdk.resource.instance.Message;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 /**
  *
@@ -25,43 +24,78 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class EnquiryService {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    public static final String ACCOUNT_SID = "AC1ca6ddcc802ce33b3ce5ac969e107f67";
+    public static final String AUTH_TOKEN = "93d33b1a7f5a2885fccb1cba7ddd59c6";
+    public static final String TWILIO_NUMBER = "+14149821487";
 
-    public Boolean sendSms() throws IOException {
-        logger.info("swap calling");
-        // logger.info("client no : ", clientNumber);
+    public static void sendSms() {
+        System.out.println("Coming to service");
         try {
-            String phoneNumber = "9766136110";
-            String appKey = "153b70e2-4d6e-4a20-ba1c-4fc389b81406";
-            String appSecret = "I4CDKOG4oEizdnfWhmkk7w==";
-            String message = "Hello, world!";
-            URL url = new URL("https://messagingapi.sinch.com/v1/sms/" + phoneNumber);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            String userCredentials = "application\\" + appKey + ":" + appSecret;
-            byte[] encoded = Base64.encodeBase64(userCredentials.getBytes());
-            String basicAuth = "Basic " + new String(encoded);
-            connection.setRequestProperty("Authorization", basicAuth);
-            String postData = "{\"Message\":\"" + message + "\"}";
-            OutputStream os = connection.getOutputStream();
-            os.write(postData.getBytes());
-            StringBuilder response = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                response.append(line);
-            }
-            br.close();
-            os.close();
-            System.out.println("response " + response.toString());
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+            System.out.println("In Try");
+            TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
+            // Build a filter for the MessageList
+            List<NameValuePair> params = new ArrayList<>();
+            params.add(new BasicNameValuePair("Body", "Hello, World REST Message!"));
+            params.add(new BasicNameValuePair("To", "+919766136110")); //Add real number here
+            params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
+
+            MessageFactory messageFactory = client.getAccount().getMessageFactory();
+            Message message = messageFactory.create(params);
+            System.out.println(message.getSid());
+            System.out.println("Message :"+message.getSid());
+        } catch (TwilioRestException e) {
+            System.out.println("In Catch");
+            System.out.println(e.getErrorMessage());
+        }
+        //////////////////////////////////////////////
+//        TwilioRestClient client = new TwilioRestClient("YOUR_TWILIO_ACCOUNT_SID", "YOUR_TWILIO_AUTH_TOKEN");
+// 
+//        Account account = client.getAccount();
+// 
+//        SmsFactory factory = account.getSmsFactory();
+// 
+//        HashMap<String, String> message = new HashMap<>();
+// 
+//        message.put("To", "YOUR_PHONE_NUMBER");
+//        message.put("From", "YOUR_TWILIO_PHONE_NUMBER");
+//        message.put("Body", "Ahoy from Twilio!");
+// 
+//        factory.create(message);
+        //////////////////////////////////////////////
+//        try {
+//            System.out.println("In Try");
+//            String phoneNumber = "9766136110";
+//            String appKey = "153b70e2-4d6e-4a20-ba1c-4fc389b81406";
+//            String appSecret = "I4CDKOG4oEizdnfWhmkk7w==";
+//            String message = "Hello, world!";
+//            URL url = new URL("https://messagingapi.sinch.com/v1/sms/" + phoneNumber);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setDoOutput(true);
+//            connection.setRequestMethod("POST");
+//            connection.setRequestProperty("Content-Type", "application/json");
+//            String userCredentials = "application\\" + appKey + ":" + appSecret;
+//            byte[] encoded = Base64.encodeBase64(userCredentials.getBytes());
+//            String basicAuth = "Basic " + new String(encoded);
+//            connection.setRequestProperty("Authorization", basicAuth);
+//            String postData = "{\"Message\":\"" + message + "\"}";
+//            OutputStream os = connection.getOutputStream();
+//            os.write(postData.getBytes());
+//            StringBuilder response = new StringBuilder();
+//            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                response.append(line);
+//            }
+//            br.close();
+//            os.close();
+//            System.out.println("response " + response.toString());
+////            return true;
+//        } catch (IOException e) {
+//            System.out.println("In Catch");
+//            e.printStackTrace();
+////            return false;
+//        }
     }
 
 }
