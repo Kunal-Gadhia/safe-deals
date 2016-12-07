@@ -117,7 +117,7 @@ CREATE TABLE `road_master` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PRIMARY KEY',
   `name` varchar(100) DEFAULT NULL,
   `size` int(20) DEFAULT '0',
-  `condition` varchar(100) NOT NULL COMMENT 'JAVA ENUM com.vsquaresystem.safedeals.road.Condition'
+  `condition` varchar(100) NOT NULL COMMENT 'JAVA ENUM com.vsquaresystem.safedeals.road.Condition',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
