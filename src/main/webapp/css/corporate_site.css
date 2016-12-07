@@ -104,6 +104,9 @@ linkedin{ background: #007bb6; }
 
 /*************carousel-overlay css************/
 
+.img_opacity{
+    opacity: 0.6;
+}
 /*************img-overlay css************/
 .img-overlay{
     position: absolute;
@@ -126,6 +129,23 @@ linkedin{ background: #007bb6; }
     color: #fff;
 }
 /*************img-overlay css************/
+
+/*************aboutus-img-overlay css************/
+.img {
+    position: relative;
+}
+
+.text {
+    width:100%;
+    position: absolute;
+    bottom:0%;
+    left:0;
+    padding:1rem;
+    font-size: 28px;
+    text-align: center;
+
+}
+/*************aboutus-img-overlay css************/
 
 /*************#footer css************/
 #footer{
@@ -175,17 +195,4 @@ linkedin{ background: #007bb6; }
     color: #fff;
 }
 
-.img_opacity{
-    opacity: 0.6;
-}
 
-.imgAndText{
-    position: relative; 
-}
-.imgAndText .col{
-    font-size: 28px;
-    position: absolute;
-    z-index: 1;
-    bottom:0;
-    padding-left: 63px;
-}
