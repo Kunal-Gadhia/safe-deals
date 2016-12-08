@@ -24,6 +24,13 @@
 
 /*****navbar-default css****/
 
+
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    height: 290px;
+}
+
+
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     color: #0098DA;
     background-color: transparent;
@@ -198,7 +205,7 @@ linkedin{ background: #007bb6; }
 }
 .team_4 {
     width: 100%;
-   background-color: #A70101;
+    background-color: #A70101;
     color: #fff;
 }
 

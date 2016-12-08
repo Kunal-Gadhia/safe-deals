@@ -1,148 +1,326 @@
-<!--<style>
-    #slides_control > div{
-        height: 200px;
+<style>
+    #saby {        /*//incase you want to shrink carousel*/
+        width: 50%;
+        height: 40%;
+        top:150px;
+        left: 0;         /*// change to align carousel*/
+        margin-left: 0;         /*// change to align carousel*/
+        &>div {
+            width: 50%; 
+            /*// change for inner editing*/
+        }
     }
-    img{
+    image{
         margin:auto;
-        width: 400px;
+        width: 20%;
+        height: 40%;
     }
-    #slides_control {
-        width: 400px;
-        left:50%;
-        top:20px;
-        margin-left:-200px;
+    .quote {
+        color: #0079bf;
+        text-align: center;
+        margin-bottom: 30px;
     }
-</style>-->
-<div class="panel site row form-group">
-    <div class="panel-body">
-        <div class="">
-            <h3 class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> For Buyers</h3>
-            <p class="content" ng-class="{ less: IsVisible }">
+</style>
+<div class="container-fluid">    
+    <div class="row content_background">
+        <div class="col-sm-8 col-md-8 left_padding">
+            <h3>For Buyers</h3>
+            <p class="bottom_border">
                 dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
                 Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
                 rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <h3>For Buyers</h3>
+            <p class="bottom_border">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <h3> For Agent</h3>
+            <p class="bottom_border">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <h3>For Builder</h3>
+            <p class="bottom_border">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <h3> For Bank</h3>
+            <p class="bottom_border">
                 dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
                 Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
                 rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
             </p>
         </div>
-        <div class="pull-right">    
-            <button class="btn btn-sm btn-primary" ng-click="IsVisible = !IsVisible">
-                {{IsVisible ? 'Read more' : 'Read less'}}
-            </button>
+        <div class="col-sm-4 col-md-4 right_padding">
+            <div class="img">
+                <a target="_blank" data-ui-sref="main.intro.intro_tagline">
+                    <img src="images/about-us-img1.jpg" title="Property Buying Guide" class="img-responsive img_opacity">
+                    <div class="text">
+                        <p><b>Property Buying Guide</b></p>
+                    </div>
+                </a>
+            </div>
+            <div class="img">
+                <a target="_blank" data-ui-sref="main.guidelines">
+                    <img src="images/about-us-img2.jpg" title="Home Loan Guide" class="img-responsive img_opacity">
+                    <div class="text">
+                        <p><b>Home Loan Guide</b></p>
+                    </div>
+                </a>
+            </div>
+            <div class="img">
+                <a target="_blank" data-ui-sref="main.location">
+                    <img src="images/about-us-img3.jpg" title="Property Selling Guide" class="img-responsive img_opacity">
+                    <div class="text">
+                        <p><b>Property Selling Guide</b></p>
+                    </div>
+                </a>
+            </div>
+            <div class="img">
+                <a data-ui-sref="corporate_site.postQuery">
+                    <img src="images/about-us-img4.jpg" title="Post Your Query" class="img-responsive img_opacity">
+                    <div class="text">
+                        <p style="color:#fff;"><b>Post Your Query</b></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-<div class="panel site row form-group">
-    <div class="panel-body">
-        <h3 class="text-center"><i class="fa fa-user" aria-hidden="true"></i> For Sellers</h3>
-        <p  class="content" ng-class="{ less: Hide }">
-            dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
-            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-        </p>
-        <div class="pull-right">         
-            <button class="btn btn-sm btn-primary" ng-click="Hide = !Hide">
-                {{Hide ? 'Read more' : 'Read less'}}
-            </button>
+    <div class="row">        
+        <div class="col-md-8 col-md-offset-2">
+            <!--            <div id="saby">            
+                            <uib-carousel  active="active" interval="myInterval" hide-indicators="true">
+                                <uib-slide ng-repeat="slide in slides" index="$index">
+                                    <div class="col-md-6">
+                                        <img class="image" ng-src="{{slide.image}}"/>
+                                        <div class="carousel-caption">
+                                            <h4>Slide {{$index + 1}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <blockquote>                    
+                                            <p>{{slide.text}}</p>
+                                        </blockquote>
+                                    </div>
+                                </uib-slide>
+                            </uib-carousel>
+                        </div>-->
         </div>
     </div>
-</div>
-<div class="panel site row form-group">
-    <div class="panel-body">
-        <h3 class="text-center"><i class="fa fa-users" aria-hidden="true"></i> For Agent</h3>
-        <p class="content" ng-class="{ less: Toggle }">
-            dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
-            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-        </p>
-        <div class="pull-right">          
-            <button class="btn btn-sm btn-primary" ng-click="Toggle = !Toggle">
-                {{Toggle ? 'Read more' : 'Read less'}}
-            </button>
-        </div>
-    </div>
-</div>
-<div class="panel site row form-group">
-    <div class="panel-body">
-        <h3 class="text-center"><i class="fa fa-building" aria-hidden="true"></i> For Builder</h3>
-        <p class="content" ng-class="{ less: hidden }">
-            dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
-            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-        </p>
-        <div class="pull-right">           
-            <button class="btn btn-sm btn-primary" ng-click="Hidden = !Hidden">
-                {{Hidden ? 'Read more' : 'Read less'}}
-            </button>
-        </div>
-    </div>
-</div>
-<div class="panel site row form-group">
-    <div class="panel-body">
-        <h3 class="text-center"><i class="fa fa-university" aria-hidden="true"></i> For Bank</h3>
-        <p class="content" ng-class="{ less: Content }">
-            dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
-            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-        </p>
-        <div class="pull-right">           
-            <button class="btn btn-sm btn-primary" ng-click="Content = !Content">
-                {{Content ? 'Read more' : 'Read less'}}
-            </button>
-        </div>
-    </div>
-</div>
-
-<div class="thumbnail thumbnail-border row co_site">
-    <div class="btm-margin text-center">
-        <h2>Testimonials</h2>
-    </div>
-<!--    <div id="slides_control">
-        <carousel interval="myInterval" ng-repeat="testimonial in testimonials">
-            <slide active="slide.active">
-                <img ng-src="{{testimonial.attachment}}">
-                <div class="carousel-caption">
-                    <h4>Slide {{$index + 1}}</h4>
+    <!--        <div class="col-md-8 col-md-offset-2">
+                <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
+                <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                    Carousel indicators 
+                    <ol class="carousel-indicators">
+                        <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#fade-quote-carousel" data-slide-to="1" class=""></li>
+                        <li data-target="#fade-quote-carousel" data-slide-to="2" class=""></li>
+                        <li data-target="#fade-quote-carousel" data-slide-to="3" class=""></li>
+                        <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                        <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+                    </ol>
+                    Carousel items 
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <div class="profile-circle"  style="background-color: rgba(0,0,0,.2);">
+                                <img src="images/img5.jpg" class="img-responsive">
+                            </div>
+                            <blockquote>                            
+                                <h4><b>JONH EDISON</b></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
+                                    laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
+                                    Impedit temporibus nisi accusamus.</p>
+                            </blockquote>	
+                        </div>
+                        <div class="item">
+                            <div class="profile-circle" style="background-color: rgba(77,5,51,.2);">
+                                <img src="images/img6.jpg" class="img-responsive">
+                            </div>
+                            <blockquote>
+                                <h4><b>ROBIN SHARMA</b></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
+                                    laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi.
+                                    Impedit temporibus nisi accusamus.</p>
+                            </blockquote>
+                        </div>
+                        <div class="item">
+                            <div class="profile-circle" style="background-color: rgba(145,169,216,.2);">
+                                <img src="images/img7.jpg" class="img-responsive">
+                            </div>
+                            <blockquote>
+                                <h4><b>JONH EDISON</b></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
+                                    laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
+                                    Impedit temporibus nisi accusamus.</p>
+                            </blockquote>
+                        </div>
+                        <div class="item">
+                            <div class="profile-circle" style="background-color: rgba(145,169,216,.2);">
+                                <img src="images/img8.jpg" class="img-responsive">
+                            </div>
+                            <blockquote>
+                                <h4><b>ROBIN SHARMA</b></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
+                                    laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
+                                    Impedit temporibus nisi accusamus.</p>
+                            </blockquote>
+                        </div>
+                    </div>
                 </div>
-            </slide>
-        </carousel>
-    </div>-->
+            </div>	
+    </div>
+    
+    <!--OLD CODE-->
+    <!--<style>
+        #slides_control > div{
+            height: 200px;
+        }
+        img{
+            margin:auto;
+            width: 400px;
+        }
+        #slides_control {
+            width: 400px;
+            left:50%;
+            top:20px;
+            margin-left:-200px;
+        }
+    </style>-->
+    <!--<div class="panel site row form-group">
+        <div class="panel-body">
+            <div class="">
+                <h3 class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> For Buyers</h3>
+                <p class="content" ng-class="{ less: IsVisible }">
+                    dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                    Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                    rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                    dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                    Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                    rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                </p>
+            </div>
+            <div class="pull-right">    
+                <button class="btn btn-sm btn-primary" ng-click="IsVisible = !IsVisible">
+                    {{IsVisible ? 'Read more' : 'Read less'}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel site row form-group">
+        <div class="panel-body">
+            <h3 class="text-center"><i class="fa fa-user" aria-hidden="true"></i> For Sellers</h3>
+            <p  class="content" ng-class="{ less: Hide }">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <div class="pull-right">         
+                <button class="btn btn-sm btn-primary" ng-click="Hide = !Hide">
+                    {{Hide ? 'Read more' : 'Read less'}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel site row form-group">
+        <div class="panel-body">
+            <h3 class="text-center"><i class="fa fa-users" aria-hidden="true"></i> For Agent</h3>
+            <p class="content" ng-class="{ less: Toggle }">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <div class="pull-right">          
+                <button class="btn btn-sm btn-primary" ng-click="Toggle = !Toggle">
+                    {{Toggle ? 'Read more' : 'Read less'}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel site row form-group">
+        <div class="panel-body">
+            <h3 class="text-center"><i class="fa fa-building" aria-hidden="true"></i> For Builder</h3>
+            <p class="content" ng-class="{ less: hidden }">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <div class="pull-right">           
+                <button class="btn btn-sm btn-primary" ng-click="Hidden = !Hidden">
+                    {{Hidden ? 'Read more' : 'Read less'}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel site row form-group">
+        <div class="panel-body">
+            <h3 class="text-center"><i class="fa fa-university" aria-hidden="true"></i> For Bank</h3>
+            <p class="content" ng-class="{ less: Content }">
+                dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+            </p>
+            <div class="pull-right">           
+                <button class="btn btn-sm btn-primary" ng-click="Content = !Content">
+                    {{Content ? 'Read more' : 'Read less'}}
+                </button>
+            </div>
+        </div>
+    </div>--> 
+    <div class="row">
+        <div class="btm-margin text-center">
+            <h2><b>Testimonials</b></h2>
+        </div>
+        <div id="slides_control">
+            <carousel interval="myInterval" ng-repeat="testimonial in testimonials">
+                <slide active="slide.active">
+                    <img ng-src="{{testimonial.attachment}}">
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index + 1}}</h4>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
         <div id="tcb-testimonial-carousel" class="carousel slide" data-ride="carousel">
-             <!--Indicators--> 
-            <ol class="carousel-indicators">
+            <!--Indicators--> 
+<!--            <ol class="carousel-indicators">
                 <li data-target="#tcb-testimonial-carousel" data-slide-to="0" class="active"></li>
                 <li data-target="#tcb-testimonial-carousel" data-slide-to="1"></li>
                 <li data-target="#tcb-testimonial-carousel" data-slide-to="2"></li>
-            </ol>
-             <!--Wrapper for slides--> 
+            </ol>-->
+            <!--Wrapper for slides--> 
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
                         <div class="col-xs-12">
                             <figure class="clearfix">
-                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
                                     <img class="img-responsive media-object" src="images/user1.jpg">
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <figcaption class="caption">
                                         <h3>Kristiana</h3>
                                         <p><i class="glyphicon glyphicon-globe"></i> Web Developer www.example1.com</p>
                                         <p><span class="glyphicon glyphicon-thumbs-up"></span>
-                                            This is a testimonial window. Feedback of user can be displayed here.</p>
+                                            dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                                            rhoncus ut,</p>
                                     </figcaption>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <img class="img-responsive media-object" src="images/user2.jpg">
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <figcaption class="caption">
-                                        <h3>Williamson</h3>
-                                        <p><i class="glyphicon glyphicon-globe"></i> Web Developer www.example1.com</p>                                    
-                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
-                                            This is a testimonial window. Feedback of user can be displayed here.</p>
-                                    </figcaption>
-                                </div>
+                                <!--                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                                                    <img class="img-responsive media-object" src="images/user2.jpg">
+                                                                </div>
+                                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                    <figcaption class="caption">
+                                                                        <h3>Williamson</h3>
+                                                                        <p><i class="glyphicon glyphicon-globe"></i> Web Developer www.example1.com</p>                                    
+                                                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
+                                                                            This is a testimonial window. Feedback of user can be displayed here.</p>
+                                                                    </figcaption>
+                                                                </div>-->
                             </figure>
                         </div>
                     </div>
@@ -151,28 +329,29 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <figure class="clearfix">
-                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
                                     <img class="img-responsive media-object" src="images/user3.jpg">
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <figcaption class="caption">
                                         <h3>Smith Thomas</h3>
                                         <p><i class="glyphicon glyphicon-globe"></i> Associate www.example1.com</p>
                                         <p><span class="glyphicon glyphicon-thumbs-up"></span> 
-                                            This is a testimonial window. Feedback of user can be displayed here.</p>
-                                    </figcaption>
+                                    dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                                            rhoncus ut, </figcaption>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <img class="img-responsive media-object" src="images/user2.jpg">
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <figcaption class="caption">
-                                        <h3>William</h3>
-                                        <p><i class="glyphicon glyphicon-globe"></i> Businessman www.example1.com </p>
-                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
-                                             This is a testimonial window. Feedback of user can be displayed here.</p>
-                                    </figcaption>
-                                </div>
+                                <!--                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                                                    <img class="img-responsive media-object" src="images/user2.jpg">
+                                                                </div>
+                                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                    <figcaption class="caption">
+                                                                        <h3>William</h3>
+                                                                        <p><i class="glyphicon glyphicon-globe"></i> Businessman www.example1.com </p>
+                                                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
+                                                                             This is a testimonial window. Feedback of user can be displayed here.</p>
+                                                                    </figcaption>
+                                                                </div>-->
                             </figure>
                         </div>
                     </div>
@@ -181,32 +360,33 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <figure class="clearfix">
-                                <div class="col-md-2 col-sm-2 col-xs-12"><img class="img-responsive media-object" src="images/user1.jpg"> </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12"><img class="img-responsive media-object" src="images/user1.jpg"> </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <figcaption class="caption">
                                         <h3>Thomas</h3>
                                         <p><i class="glyphicon glyphicon-globe"></i> Teacher www.example1.com</p>
                                         <p><span class="glyphicon glyphicon-thumbs-up"></span>
-                                            This is a testimonial window. Feedback of user can be displayed here.</p>
-                                    </figcaption>
+                                   dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+                                            rhoncus ut, </figcaption>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xs-12"><img class="img-responsive media-object" src="images/user3.jpg"> </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <figcaption class="caption">
-                                        <h3>Shakespear</h3> 
-                                        <p><i class="glyphicon glyphicon-globe"></i> Doctor www.example1.com</p>
-                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
-                                            This is a testimonial window. Feedback of user can be displayed here.</p>
-                                    </figcaption>
-                                </div>
+                                <!--                                <div class="col-md-2 col-sm-2 col-xs-12"><img class="img-responsive media-object" src="images/user3.jpg"> </div>
+                                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                    <figcaption class="caption">
+                                                                        <h3>Shakespear</h3> 
+                                                                        <p><i class="glyphicon glyphicon-globe"></i> Doctor www.example1.com</p>
+                                                                        <p><span class="glyphicon glyphicon-thumbs-up"></span>
+                                                                            This is a testimonial window. Feedback of user can be displayed here.</p>
+                                                                    </figcaption>
+                                                                </div>-->
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
-             <!--Controls--> 
+            <!--Controls--> 
             <a class="left carousel-control" href="#tcb-testimonial-carousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
             <a class="right carousel-control" href="#tcb-testimonial-carousel" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
         </div>
-    <br />
-</div>
+        <br />
+    </div>

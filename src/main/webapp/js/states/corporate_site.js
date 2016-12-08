@@ -60,14 +60,36 @@ angular.module("safedeals.states.corporate_site", [])
         })
 
         .controller('ServiceController', function ($scope, TestimonialService) {
-            $scope.IsVisible = true;
-//            $scope.IsHidden = true;
-//            $scope.IsContent = true;
-//            $scope.IsHide = true;
-//            $scope.IsToggle = true;
-            $scope.testimonials = TestimonialService.query();
-            console.log("$scope.testimonials", $scope.testimonials);
-            $scope.myInterval = 3000;
+            $scope.myInterval = 2000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            $scope.slides = [
+                {
+                    image: 'images/img5.jpg',
+                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing'
+                },
+                {
+                    image: 'images/img6.jpg',
+                    text: 'Awesome photograph'
+                },
+                {
+                    image: 'images/img7.jpg',
+                    text: 'That is so cool'
+                },
+                {
+                    image: 'images/img8.jpg',
+                    text: 'I love that'
+                }
+            ];
+
+//            $scope.IsVisible = true;
+////            $scope.IsHidden = true;
+////            $scope.IsContent = true;
+////            $scope.IsHide = true;
+////            $scope.IsToggle = true;
+//            $scope.testimonials = TestimonialService.query();
+//            console.log("$scope.testimonials", $scope.testimonials);
+//            $scope.myInterval = 3000;
         })
 
         .controller('SdNetworkController', function ($scope, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
