@@ -131,7 +131,7 @@
         <script src="${pageContext.request.contextPath}/js/states/event.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/team.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/amenity_code.js"></script>
-
+        <script src="${pageContext.request.contextPath}/js/states/private_amenities.js"></script>
 
 
         <!--Services-->
@@ -176,7 +176,7 @@
         <script src="${pageContext.request.contextPath}/js/services/team_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/enquiry_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/amenity_code_service.js"></script>
-
+        <script src="${pageContext.request.contextPath}/js/services/private_amenities_service.js"></script>
 
     </head>
     <body>

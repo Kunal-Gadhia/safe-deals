@@ -53,6 +53,7 @@ angular.module("safedeals", [
     'safedeals.services.team',
     'safedeals.services.video',
     'safedeals.services.enquiry',
+    'safedeals.services.private_amenities',
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',
@@ -95,6 +96,7 @@ angular.module("safedeals", [
     'safedeals.states.franchise',
     'safedeals.states.property_type',
     'safedeals.states.agency',
+    'safedeals.states.private_amenities',
     'safedeals.states.agent',
     'safedeals.states.builder',
     'safedeals.states.testimonial',
