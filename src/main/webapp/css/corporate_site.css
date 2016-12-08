@@ -143,6 +143,7 @@ linkedin{ background: #007bb6; }
     padding:1rem;
     font-size: 28px;
     text-align: center;
+    color: #000;
 
 }
 /*************aboutus-img-overlay css************/
@@ -178,21 +179,61 @@ linkedin{ background: #007bb6; }
 }
 /*************#content css************/
 
-.team_1{
-    background-color: #245DA0;
-}
+/*************#our team css************/
 
-.team_2{
+.team_1 {
+    width: 100%;
+    background-color: #245DA0;
+    color: #fff;
+}
+.team_2 {
+    width: 100%;
     background-color: #000000;
+    color: #fff;
 }
-.team_3{
+.team_3 {
+    width: 100%;
     background-color: #5C5857;
+    color: #fff;
 }
-.team_4{
-    background-color: #A70101;
-}
-.team_content{
+.team_4 {
+    width: 100%;
+   background-color: #A70101;
     color: #fff;
 }
 
+@media only screen and (max-width: 700px){
+    .team_1 {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+    .team_2 {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+    .team_3 {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+    .team_4 {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
 
+@media only screen and (max-width: 500px){
+    .team_1 {
+        width: 100%;
+    }
+    .team_2 {
+        width: 100%;
+    }
+    .team_3 {
+        width: 100%;
+    }
+    .team_4 {
+        width: 100%;
+    }
+}
+
+/*************#our team css************/
