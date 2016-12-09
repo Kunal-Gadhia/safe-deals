@@ -9,6 +9,15 @@ angular.module("safedeals.services.franchise")
                         'name': '@name'
                     },
                     'isArray': false
+                },                
+                'findByCityId': {
+                    'method': 'GET',
+                    'url': restRoot + '/franchise/find/city_id',
+                    'params': {
+                        'cityId': '@cityId'
+                    },
+                    'isArray': true
                 }
+            
             });
         });

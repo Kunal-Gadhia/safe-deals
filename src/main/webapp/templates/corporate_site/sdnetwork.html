@@ -7,9 +7,20 @@
                     <input class="form-control" placeholder="Select City" ng-model=""/>
                 </div>
             </form>
+
+            <div ng-repeat="franchise in franchises">
+                <label>{{franchise.name}}</label>
+                <p>{{franchise.address}}</p>
+                <p>{{franchise.email}}</p>
+                <p>{{franchise.phoneNumber1}} , {{franchise.phoneNumber2}}</p>
+
+
+
+            </div>
+
         </div>
-        <div class="col-sm-8 col-md-8 right_padding">
-            <img src="images/contactus.jpg" alt="Map" width="845" height="560">
+        <div class="col-sm-8 col-md-8 right_padding" id="mapContainerSdNetwork" style="height: 560px">
+
         </div>
     </div>
 </div>

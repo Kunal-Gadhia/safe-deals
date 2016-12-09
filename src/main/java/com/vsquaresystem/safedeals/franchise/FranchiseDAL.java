@@ -1,4 +1,3 @@
-
 package com.vsquaresystem.safedeals.franchise;
 
 import java.util.HashMap;
@@ -13,11 +12,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FranchiseDAL {
-    
+
     public static final String TABLE_NAME = "franchise";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertFranchise;
-    
+
     public static final class Columns {
 
         public static final String ID = "id";
@@ -30,7 +29,7 @@ public class FranchiseDAL {
         public static final String PHONE_NUMBER2 = "phone_number2";
         public static final String FAX = "fax";
     };
-    
+
     @Autowired
     public FranchiseDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -47,22 +46,27 @@ public class FranchiseDAL {
                         Columns.FAX)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
-    
+
     public List<Franchise> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Franchise.class));
     }
-    
+
     public List<Franchise> findAllFranchises() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Franchise.class));
     }
-    
+
     public Franchise findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Franchise.class));
     }
-    
+
+    public List<Franchise> findByCityId(Integer cityId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CITY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{cityId}, new BeanPropertyRowMapper<>(Franchise.class));
+    }
+
     public Franchise insert(Franchise franchise) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, franchise.getName());
@@ -74,7 +78,6 @@ public class FranchiseDAL {
         parameters.put(Columns.PHONE_NUMBER2, franchise.getPhoneNumber2());
         parameters.put(Columns.FAX, franchise.getFax());
 
-
         Number newId = insertFranchise.executeAndReturnKey(parameters);
         franchise = findById(newId.intValue());
         return franchise;
@@ -84,14 +87,14 @@ public class FranchiseDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Franchise.class));
     }
-    
+
     public Franchise update(Franchise franchise) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET " 
-                + Columns.NAME + " = ? ," 
-                + Columns.ADDRESS + " = ? ," 
-                + Columns.CITY_ID + " = ? ," 
-                + Columns.LOCATION_ID + " = ? ," 
-                + Columns.EMAIL + " = ? ," 
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
+                + Columns.NAME + " = ? ,"
+                + Columns.ADDRESS + " = ? ,"
+                + Columns.CITY_ID + " = ? ,"
+                + Columns.LOCATION_ID + " = ? ,"
+                + Columns.EMAIL + " = ? ,"
                 + Columns.PHONE_NUMBER1 + " = ? ,"
                 + Columns.PHONE_NUMBER2 + " = ? ,"
                 + Columns.FAX + " = ? WHERE " + Columns.ID + " = ?";

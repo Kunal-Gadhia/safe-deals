@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/franchise")
 public class FranchiseRest {
-    
+
     @Autowired
     private FranchiseDAL franchiseDal;
 
@@ -40,6 +40,11 @@ public class FranchiseRest {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Franchise findById(@PathVariable("id") Integer id) {
         return franchiseDal.findById(id);
+    }
+
+    @RequestMapping(value = "/find/city_id", method = RequestMethod.GET)
+    public List<Franchise> findByCityId(@RequestParam("cityId") Integer cityId) {
+        return franchiseDal.findByCityId(cityId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -61,5 +66,5 @@ public class FranchiseRest {
     public Franchise update(@RequestBody Franchise franchise) {
         return franchiseDal.update(franchise);
     }
-    
+
 }

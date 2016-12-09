@@ -92,38 +92,78 @@ angular.module("safedeals.states.corporate_site", [])
 //            $scope.myInterval = 3000;
         })
 
-        .controller('SdNetworkController', function ($scope, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
+        .controller('SdNetworkController', function ($scope, CityService, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
 
-            if (
-                    $stateParams.offset === undefined ||
-                    isNaN($stateParams.offset) ||
-                    new Number($stateParams.offset) < 0)
-            {
-                $scope.currentOffset = 0;
-            } else {
-                $scope.currentOffset = new Number($stateParams.offset);
-            }
 
-            $scope.nextOffset = $scope.currentOffset + 5;
+            var map;
+            var mapContainer = document.getElementById("mapContainerSdNetwork");
+            var nagpurCoordinate = new google.maps.LatLng(21.1458, 79.0882);
+            var mapProp = {
+                center: nagpurCoordinate,
+                zoom: 11,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var drawMap = function () {
+                map = new google.maps.Map(mapContainer, mapProp);
+            };
+            drawMap();
 
-            $scope.nextFranchises = FranchiseService.query({
-                'offset': $scope.nextOffset
-            });
-
-            $scope.franchises = FranchiseService.query({
-                'offset': $scope.currentOffset
-            }
-            , function (franchises) {
+            $scope.franchises = FranchiseService.findByCityId({
+                'cityId': 78
+            }, function (franchises) {
                 angular.forEach(franchises, function (franchise) {
-
-                    franchise.city = CityService.get({
-                        'id': franchise.cityId
-                    });
-                    franchise.location = LocationService.get({
+                    console.log("Single Object :%O", franchise);
+                    LocationService.get({
                         'id': franchise.locationId
+                    }, function (locationObject) {                     
+                        drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
                     });
+
                 });
             });
+
+
+            var drawMarker = function (position, title, map) {
+                console.log("Position :%O", position);
+                new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    title: title
+                            // icon: 'images/icons_svg/dot.png'
+                });
+            };
+
+
+//            if (
+//                    $stateParams.offset === undefined ||
+//                    isNaN($stateParams.offset) ||
+//                    new Number($stateParams.offset) < 0)
+//            {
+//                $scope.currentOffset = 0;
+//            } else {
+//                $scope.currentOffset = new Number($stateParams.offset);
+//            }
+//
+//            $scope.nextOffset = $scope.currentOffset + 5;
+//
+//            $scope.nextFranchises = FranchiseService.query({
+//                'offset': $scope.nextOffset
+//            });
+//
+//            $scope.franchises = FranchiseService.query({
+//                'offset': $scope.currentOffset
+//            }
+//            , function (franchises) {
+//                angular.forEach(franchises, function (franchise) {
+//
+//                    franchise.city = CityService.get({
+//                        'id': franchise.cityId
+//                    });
+//                    franchise.location = LocationService.get({
+//                        'id': franchise.locationId
+//                    });
+//                });
+//            });
             console.log("$scope.franchises", $scope.franchises);
 
             $scope.nextPage = function () {
@@ -158,7 +198,7 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.events = EventService.findByDate();
             console.log("$scope.events", $scope.events);
 
-           $scope.myInterval = 2000;
+            $scope.myInterval = 2000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = [
