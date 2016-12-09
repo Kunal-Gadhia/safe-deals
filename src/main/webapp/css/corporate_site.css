@@ -24,7 +24,10 @@
 
 /*****navbar-default css****/
 
-
+.upper_navbar_content{
+    margin-top: 15px;
+    padding-right: 10px
+}
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     height: 290px;
@@ -88,12 +91,9 @@
 /*************navbar-default css************/
 
 /*************social-icon css************/
-
-.facebook{ background: #3b5998; }
-linkedin{ background: #007bb6; }
-.twitter{ background: #00aced; }
-.youtube{ background: #dd4b39; }
-.google{ background: #dd4b39; }
+footer a, footer {
+    color:#fff;
+}
 
 /*************social-icon css************/
 

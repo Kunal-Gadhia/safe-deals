@@ -1,4 +1,20 @@
-<div class="thumbnail thumbnail-border row">
+<div class="container-fluid">        
+    <div class="row">
+        <uib-carousel  active="active" interval="myInterval">
+            <uib-slide ng-repeat="slide in slides" index="$index">
+                <img ng-src="{{slide.image}}" style="margin:auto;" />
+                <div class="carousel-caption">
+                    <h4>Slide {{$index + 1}}</h4>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
+</div>
+
+
+<!-- old UI -->
+
+<!--<div class="thumbnail thumbnail-border row">
     <div class="co_site panel-body">
         <div>
           <uib-carousel interval="myInterval" active="active">
@@ -38,9 +54,9 @@
     </div>
 </div>
 
-<!-- old carousel -->
+ old carousel 
 
-<!--        <div id='carousel-custom' class='carousel slide co-site' data-ride='carousel'>
+        <div id='carousel-custom' class='carousel slide co-site' data-ride='carousel'>
                     <div class='carousel-outer'>
                          Wrapper for slides 
                         <div class='carousel-inner'>

@@ -158,12 +158,12 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.events = EventService.findByDate();
             console.log("$scope.events", $scope.events);
 
-            $scope.myInterval = 2000;
+           $scope.myInterval = 2000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = [
                 {
-                    image: 'images/bannner.jpg'
+                    image: 'images/banner.jpg'
                 },
                 {
                     image: 'images/banner.jpg'
