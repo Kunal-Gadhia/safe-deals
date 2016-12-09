@@ -132,6 +132,7 @@
         <script src="${pageContext.request.contextPath}/js/states/team.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/amenity_code.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/private_amenities.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/transportation.js"></script>
 
 
         <!--Services-->
@@ -151,7 +152,7 @@
         <script src="${pageContext.request.contextPath}/js/services/guidelines_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/project_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/mall_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/tranportation_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/transportation_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/ready_reckoner_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/raw_ready_reckoner_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/raw_market_price_service.js"></script>
