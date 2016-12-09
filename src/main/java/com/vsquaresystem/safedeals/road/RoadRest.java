@@ -51,10 +51,10 @@ public class RoadRest {
         return roadDAL.findByName(name);
     }
 
-    @RequestMapping(value = "/find_by_tab_name", method = RequestMethod.GET)
-    public List<Road> findByTabName(@RequestParam("name") String name) {
-        return roadDAL.findByNameLike(name);
-    }        
+//    @RequestMapping(value = "/find_by_tab_name", method = RequestMethod.GET)
+//    public List<Road> findByNameLike(@RequestParam("name") String name) {
+//        return roadDAL.findByNameLike(name);
+//    }        
 
     @RequestMapping(method = RequestMethod.POST)
     public Road insert(@RequestBody Road road) {

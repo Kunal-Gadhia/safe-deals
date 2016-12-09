@@ -54,6 +54,7 @@ angular.module("safedeals", [
     'safedeals.services.video',
     'safedeals.services.enquiry',
     'safedeals.services.private_amenities',
+    'safedeals.services.road',
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',
@@ -105,6 +106,7 @@ angular.module("safedeals", [
     'safedeals.states.team',
     'safedeals.states.video',
     'safedeals.states.user',
+    'safedeals.states.road',
     'safedeals.states.auth'
 ])
 
