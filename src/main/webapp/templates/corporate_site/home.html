@@ -3,9 +3,10 @@
         <uib-carousel  active="active" interval="myInterval">
             <uib-slide ng-repeat="slide in slides" index="$index">
                 <img ng-src="{{slide.image}}" style="margin:auto;" />
-                <div class="carousel-caption">
-                    <h4>Slide {{$index + 1}}</h4>
-                    <p>{{slide.text}}</p>
+                <div class="col-md-offset-1 overlay">
+                    <!--<h4>Slide {{$index + 1}}</h4>-->
+                    <p><b>{{slide.text}}</b></p>
+                    <!--<p><b>To take an<br> Informed Decision</b></p>-->
                 </div>
             </uib-slide>
         </uib-carousel>
