@@ -280,7 +280,7 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.slides = [
                 {
                     image: 'images/banner.jpg',
-                    text:'To Take An Informed Decision'
+                    text:'To take an Informed Decision'
                 },
                 {
                     image: 'images/banner.jpg'
@@ -288,6 +288,5 @@ angular.module("safedeals.states.corporate_site", [])
                 {
                     image: 'images/banner.jpg'
                 }
-
             ];
         });

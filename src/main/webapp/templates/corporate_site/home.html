@@ -2,7 +2,7 @@
     <div class="row">
         <uib-carousel  active="active" interval="myInterval">
             <uib-slide ng-repeat="slide in slides" index="$index">
-                <img ng-src="{{slide.image}}" style="margin:auto;" />
+                <img class="img-responsive" ng-src="{{slide.image}}" style="margin:auto;" />
                 <div class="col-md-offset-1 overlay">
                     <!--<h4>Slide {{$index + 1}}</h4>-->
                     <p><b>{{slide.text}}</b></p>
