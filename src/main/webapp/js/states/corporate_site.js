@@ -108,6 +108,13 @@ angular.module("safedeals.states.corporate_site", [])
             };
             drawMap();
 
+            var drawDynamicMap = function (newMapProp) {
+                console.log("newMapProp %O", newMapProp);
+                map = new google.maps.Map(mapContainer, newMapProp);
+
+            };
+
+
             $scope.franchises = FranchiseService.findByCityId({
                 'cityId': 78
             }, function (franchises) {
@@ -115,7 +122,7 @@ angular.module("safedeals.states.corporate_site", [])
                     console.log("Single Object :%O", franchise);
                     LocationService.get({
                         'id': franchise.locationId
-                    }, function (locationObject) {                     
+                    }, function (locationObject) {
                         drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
                     });
 
@@ -131,6 +138,36 @@ angular.module("safedeals.states.corporate_site", [])
                     title: title
                             // icon: 'images/icons_svg/dot.png'
                 });
+            };
+
+            $scope.setCity = function (city) {
+                $scope.city = city;
+                $scope.franchises = FranchiseService.findByCityId({
+                    'cityId': city.id
+                }, function (franchiseList) {
+                    angular.forEach(franchiseList, function (franchise) {
+                        LocationService.get({
+                            'id': franchise.locationId
+                        }, function (locationObject) {
+                            var newMapProp = {
+                                center: new google.maps.LatLng(city.latitude, city.longitude),
+                                zoom: 11,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+
+                            };
+                            console.log("new map prop %O", newMapProp);
+                            drawDynamicMap(newMapProp);
+                            drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
+                        });
+                    });
+                });
+            };
+
+            $scope.searchCities = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
             };
 
 
