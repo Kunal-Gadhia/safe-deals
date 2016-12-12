@@ -279,7 +279,8 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.active = 0;
             $scope.slides = [
                 {
-                    image: 'images/banner.jpg'
+                    image: 'images/banner.jpg',
+                    text:'To Take An Informed Decision'
                 },
                 {
                     image: 'images/banner.jpg'
