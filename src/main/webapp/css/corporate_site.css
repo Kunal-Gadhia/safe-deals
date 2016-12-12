@@ -21,6 +21,12 @@
 }
 /*padding*/
 
+/*image width*/
+.img_width{
+    width: 100%
+}
+/*image width*/
+
 
 /*****navbar-default css****/
 
@@ -215,23 +221,22 @@ footer a, footer {
     background-color: #A70101;
     color: #fff;
 }
+.aboutus_title{
+    width: 95%;
+}
 
 @media only screen and (max-width: 700px){
     .team_1 {
         width: 49.99999%;
-        margin: 6px 0;
     }
     .team_2 {
         width: 49.99999%;
-        margin: 6px 0;
     }
     .team_3 {
         width: 49.99999%;
-        margin: 6px 0;
     }
     .team_4 {
         width: 49.99999%;
-        margin: 6px 0;
     }
 }
 
