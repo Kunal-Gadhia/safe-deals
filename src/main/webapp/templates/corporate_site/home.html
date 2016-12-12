@@ -2,7 +2,7 @@
     <div class="row">
         <uib-carousel  active="active" interval="myInterval">
             <uib-slide ng-repeat="slide in slides" index="$index">
-                <img ng-src="{{slide.image}}" style="margin:auto;" />
+                <img class="img-responsive" ng-src="{{slide.image}}" style="margin:auto;" />
                 <div class="col-md-offset-1 overlay">
                     <!--<h4>Slide {{$index + 1}}</h4>-->
                     <p><b>{{slide.text}}</b></p>
@@ -21,7 +21,7 @@
                         </a>-->
             <div class="img">
                 <a target="_blank" data-ui-sref="main.intro.intro_tagline">
-                    <img src="images/img1.jpg" title="Property Buying Guide" class="img-responsive img_opacity">
+                    <img src="images/img1.jpg" title="Property Buying Guide" class="img-responsive img_width img_opacity">
                     <div class="text">
                         <h1><b>Property Buying Guides</b></h1>
                     </div>
@@ -31,7 +31,7 @@
         <div class="padding col-sm-6 col-md-6">
             <div class="img">
                 <a target="_blank" data-ui-sref="main.guidelines">
-                    <img src="images/img2.jpg" title="Home Loan Guide" class="img-responsive img_opacity">
+                    <img src="images/img2.jpg" title="Home Loan Guide" class="img-responsive img_width img_opacity">
                     <div class="text">
                         <h1><b>Home Loan Guide</b></h1>
                     </div>
@@ -43,7 +43,7 @@
         <div class="padding col-sm-6 col-md-6">
             <div class="img">
                 <a target="_blank" data-ui-sref="main.location">
-                    <img src="images/img3.jpg" title="Property Selling Guide" class="img-responsive img_opacity">
+                    <img src="images/img3.jpg" title="Property Selling Guide" class="img-responsive img_width img_opacity">
                     <div class="text">
                       <h1><b>Property Selling Guide</b></h1>
                     </div>
@@ -54,7 +54,7 @@
             <div class="">
                 <div class="img">
                     <a data-ui-sref="corporate_site.postQuery">
-                        <img src="images/img4.jpg" title="Post Your Query" class="img-responsive img_opacity">
+                        <img src="images/img4.jpg" title="Post Your Query" class="img-responsive img_width img_opacity">
                         <div class="text">
                             <h1 style="color:#fff;"><b>Post Your Query</b></h1>
                         </div>
