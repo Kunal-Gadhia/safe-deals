@@ -24,6 +24,13 @@
 
 /*****navbar-default css****/
 
+.navbar-default .navbar-toggle:hover {
+    background-color: #fff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+     background-color: #135280; 
+}
+
 .upper_navbar_content{
     margin-top: 15px;
     padding-right: 10px
