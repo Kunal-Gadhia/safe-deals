@@ -19,29 +19,29 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" placeholder="Name" ng-model="editableEnquiry.name"/>
+                                <label>Name</label><span class="text-danger">*</span>
+                                <input class="form-control" required="required" placeholder="Name" ng-model="editableEnquiry.name"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Mobile Number</label>
-                                <input class="form-control" placeholder="98XXXXXXX0" ng-model="editableEnquiry.mobileNo"/>
+                                <label>Mobile Number</label><span class="text-danger">*</span>
+                                <input class="form-control" required="required" placeholder="98XXXXXXX0" ng-model="editableEnquiry.mobileNo"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Email</label>
-                                <input class="form-control" type="email" placeholder="Email" ng-model="editableEnquiry.email"/>
+                                <label>Email</label><span class="text-danger">*</span>
+                                <input class="form-control" required="required" type="email" placeholder="Email" ng-model="editableEnquiry.email"/>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Mode Of Contact</label>
-                                <select class="form-control" ng-model="editableEnquiry.modeOfContact">
+                                <label>Mode Of Contact</label><span class="text-danger">*</span>
+                                <select class="form-control" required="required" ng-model="editableEnquiry.modeOfContact">
                                     <option value="">Choose Mode Of Contact</option>
                                     <option value="SMS">SMS</option>
                                     <option value="EMAIL">Email</option>
@@ -55,8 +55,8 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Category</label>
-                                <select class="form-control" ng-model="editableEnquiry.category">
+                                <label>Category</label><span class="text-danger">*</span>
+                                <select class="form-control" required="required" ng-model="editableEnquiry.category">
                                     <option value="">Choose Category</option>
                                     <option value="PROPERTY_GUIDANCE">Property Guidance</option>
                                     <option value="PROPERTY_SELLING">Property Selling</option>
@@ -65,27 +65,35 @@ and open the template in the editor.
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group" ng-show="propertyGuidance">
                                 <label>Property Guidance</label>
                                 <input class="form-control" placeholder="Property Guidance" ng-model="editableEnquiry.propertyGuidance"/>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group" ng-show="propertySelling">
                                 <label>Property Selling</label>
                                 <input class="form-control" placeholder="Property Selling" ng-model="editableEnquiry.propertySelling"/>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group" ng-show="propertyBuying">
                                 <label>Property Buying</label>
                                 <input class="form-control" placeholder="Property Buying" ng-model="editableEnquiry.propertyBuying"/>
                             </div>
                         </div>
                     </div>
+
+<!--                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-show="propertySelling">
+                                <label>Property Selling</label>
+                                <input class="form-control" placeholder="Property Selling" ng-model="editableEnquiry.propertySelling"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-show="propertyBuying">
+                                <label>Property Buying</label>
+                                <input class="form-control" placeholder="Property Buying" ng-model="editableEnquiry.propertyBuying"/>
+                            </div>
+                        </div>
+                    </div>-->
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-lg btn-primary">

@@ -58,9 +58,10 @@ angular.module("safedeals.states.location", [])
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var drawMap = function () {
+                console.log("Priop :%O", mapProp);
                 map = new google.maps.Map(mapContainer, mapProp);
             };
-            
+
             $scope.locations = [];
             $scope.searchStates = function (searchTerm) {
                 return StateService.findByNameLike({
@@ -88,6 +89,7 @@ angular.module("safedeals.states.location", [])
             };
             $scope.selectCity = function (city) {
                 //only change if not same as previously selected state
+                console.log("City :%O", city);
                 $scope.cityName = city.name;
                 $scope.cityId = city.id;
                 $scope.city = city;
