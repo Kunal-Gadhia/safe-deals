@@ -115,7 +115,7 @@ angular.module("safedeals.states.corporate_site", [])
                     console.log("Single Object :%O", franchise);
                     LocationService.get({
                         'id': franchise.locationId
-                    }, function (locationObject) {                     
+                    }, function (locationObject) {
                         drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
                     });
 
@@ -189,9 +189,29 @@ angular.module("safedeals.states.corporate_site", [])
                 });
             };
             $scope.sendSms = function (clientNumber) {
-                console.log("Coming to this additional function with number?? :%O", clientNumber);
                 EnquiryService.sendSms();
             };
+
+            $scope.$watch('editableEnquiry.category', function (category) {
+                console.log("Category :" + category);
+                if(category === "PROPERTY_GUIDANCE"){
+                    $scope.propertyGuidance = true;
+                    $scope.propertySelling = false;
+                    $scope.propertyBuying = false;
+                }else if(category === "PROPERTY_SELLING"){
+                    $scope.propertyGuidance = false;
+                    $scope.propertySelling = true;
+                    $scope.propertyBuying = false;
+                }else if(category === "PROPERTY_BUYING"){
+                    $scope.propertyGuidance = false;
+                    $scope.propertySelling = false;
+                    $scope.propertyBuying = true;
+                }else{
+                    $scope.propertyGuidance = false;
+                    $scope.propertySelling = false;
+                    $scope.propertyBuying = false;
+                }
+            });
         })
         .controller('EventsController', function ($scope, EventService) {
             console.log("EventController");
