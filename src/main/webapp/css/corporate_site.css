@@ -145,8 +145,9 @@ footer a, footer {
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     /*@media (min-width: 768px) {*/
     .overlay{
-        bottom: 5px;
-        padding-left: 10px;
+        bottom: 1px;
+        padding-left: 12px;
+        width: 45%;
     }
 }
 /*************img-overlay css************/
