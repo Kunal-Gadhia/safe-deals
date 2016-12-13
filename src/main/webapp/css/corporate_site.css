@@ -229,10 +229,10 @@ footer a, footer {
     color: #fff;
 }
 .aboutus_title{
-    width: 95%;
+    width: 90%;
 }
 
-@media only screen and (max-width: 700px){
+/*@media only screen and (max-width: 700px){
     .team_1 {
         width: 49.99999%;
     }
@@ -247,19 +247,12 @@ footer a, footer {
     }
 }
 
-@media only screen and (max-width: 500px){
-    .team_1 {
+*/
+@media only screen and (min-width: 300px) and (max-width: 875px){
+    .team_img {
         width: 100%;
     }
-    .team_2 {
-        width: 100%;
-    }
-    .team_3 {
-        width: 100%;
-    }
-    .team_4 {
-        width: 100%;
-    }
+    
 }
 
 /*************#our team css************/
