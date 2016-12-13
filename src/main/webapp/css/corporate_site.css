@@ -270,3 +270,22 @@ footer a, footer {
     margin-bottom: 5px;
 }
 /*************#Submit Button css************/
+
+/*************#testimonial css************/
+#testimonial {        /*//incase you want to shrink carousel*/
+        /*width: 60%;*/       
+    }
+    .image{
+        border-radius: 50%;
+    }
+    .quote {
+        color: #0079bf;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .carousel-control.left, .carousel-control.right {
+    background-image: none;
+    width: 1%;
+    }
+    
+/*************#testimonial css************/

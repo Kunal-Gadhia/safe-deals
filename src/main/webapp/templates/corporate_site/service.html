@@ -1,27 +1,4 @@
-<style>
-    #saby {        /*//incase you want to shrink carousel*/
-        width: 50%;
-        height: 40%;
-        top:150px;
-        left: 0;         /*// change to align carousel*/
-        margin-left: 0;         /*// change to align carousel*/
-        &>div {
-            width: 50%; 
-            /*// change for inner editing*/
-        }
-    }
-    image{
-        margin:auto;
-        width: 20%;
-        height: 40%;
-    }
-    .quote {
-        color: #0079bf;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-</style>
-<div class="container-fluid">    
+<div class="container-fluid content_background">    
     <div class="row content_background">
         <div class="col-sm-8 col-md-8 left_padding">
             <h3>For Buyers</h3>
@@ -90,88 +67,29 @@
             </div>
         </div>
     </div>
-    <div class="row">        
-        <div class="col-md-8 col-md-offset-2">
-            <div id="saby">            
+    <div class="row">    
+        <div class="btm-margin text-center">
+            <h2><b>Testimonials</b></h2>
+        </div>
+        <div class="col-md-9 col-sm-12 btm-margin col-md-offset-2">
+            <div id="testimonial">            
                 <uib-carousel  active="active" interval="myInterval" hide-indicators="true">
                     <uib-slide ng-repeat="slide in slides" index="$index">
-                        <div class="col-md-6">
-                            <img class="image" ng-src="{{slide.image}}"/>
-                            <div class="carousel-caption">
-                                <h4>Slide {{$index + 1}}</h4>
-                            </div>
+                        <div class="col-md-5">
+                            <img class="image" width="250" height="300" ng-src="{{slide.image}}"/>
                         </div>
-                        <div class="col-md-6">
-                            <blockquote>                    
-                                <p>{{slide.text}}</p>
-                            </blockquote>
+                        <div class="col-md-5">      
+                            <figcaption class="caption">
+                                <h3>{{slide.name}}</h3>
+                                <p><i class="glyphicon glyphicon-globe"></i> {{slide.designation}}</p>
+                                <p><span class="glyphicon glyphicon-thumbs-up"></span> {{slide.text}}</p>
+                            </figcaption>
                         </div>
                     </uib-slide>
                 </uib-carousel>
             </div>
         </div>
     </div>
-    <div class="col-md-8 col-md-offset-2">
-        <!--<div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>-->
-        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-            Carousel indicators 
-            <ol class="carousel-indicators">
-                <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#fade-quote-carousel" data-slide-to="1" class=""></li>
-                <li data-target="#fade-quote-carousel" data-slide-to="2" class=""></li>
-                <li data-target="#fade-quote-carousel" data-slide-to="3" class=""></li>
-                <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
-                <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
-            </ol>
-            Carousel items 
-            <div class="carousel-inner">
-                <div class="active item">
-                    <div class="profile-circle"  style="background-color: rgba(0,0,0,.2);">
-                        <img src="images/img5.jpg" class="img-responsive">
-                    </div>
-                    <blockquote>                            
-                        <h4><b>JONH EDISON</b></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
-                            laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
-                            Impedit temporibus nisi accusamus.</p>
-                    </blockquote>	
-                </div>
-                <div class="item">
-                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);">
-                        <img src="images/img6.jpg" class="img-responsive">
-                    </div>
-                    <blockquote>
-                        <h4><b>ROBIN SHARMA</b></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
-                            laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi.
-                            Impedit temporibus nisi accusamus.</p>
-                    </blockquote>
-                </div>
-                <div class="item">
-                    <div class="profile-circle" style="background-color: rgba(145,169,216,.2);">
-                        <img src="images/img7.jpg" class="img-responsive">
-                    </div>
-                    <blockquote>
-                        <h4><b>JONH EDISON</b></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
-                            laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
-                            Impedit temporibus nisi accusamus.</p>
-                    </blockquote>
-                </div>
-                <div class="item">
-                    <div class="profile-circle" style="background-color: rgba(145,169,216,.2);">
-                        <img src="images/img8.jpg" class="img-responsive">
-                    </div>
-                    <blockquote>
-                        <h4><b>ROBIN SHARMA</b></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum 
-                            laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. 
-                            Impedit temporibus nisi accusamus.</p>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </div>	
 </div>
 
 <!--OLD CODE-->
