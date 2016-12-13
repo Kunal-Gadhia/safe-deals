@@ -151,8 +151,9 @@ footer a, footer {
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     /*@media (min-width: 768px) {*/
     .overlay{
-        bottom: 5px;
-        padding-left: 10px;
+        bottom: 1px;
+        padding-left: 12px;
+        width: 45%;
     }
 }
 /*************img-overlay css************/
@@ -262,3 +263,22 @@ footer a, footer {
     margin-bottom: 5px;
 }
 /*************#Submit Button css************/
+
+/*************#testimonial css************/
+#testimonial {        /*//incase you want to shrink carousel*/
+        /*width: 60%;*/       
+    }
+    .image{
+        border-radius: 50%;
+    }
+    .quote {
+        color: #0079bf;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .carousel-control.left, .carousel-control.right {
+    background-image: none;
+    width: 1%;
+    }
+    
+/*************#testimonial css************/
