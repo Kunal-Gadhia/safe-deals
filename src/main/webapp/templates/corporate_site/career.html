@@ -1,5 +1,5 @@
-<div class="container-fluid">    
-    <div class="row content_background">
+<div class="container-fluid content_background">    
+    <div class="row">
         <div class="col-sm-8 col-md-8 left_padding">
             <h3>Career Options</h3>
             <p class="bottom_border">
@@ -57,16 +57,19 @@
     </div>
     <div class="row">   
         <div class="btm-margin text-center">
-            <h2><b>Testimonials</b></h2>
+            <div class="quote">
+                <i class="fa fa-quote-left fa-4x"></i>
+                <h2><b>Testimonials</b></h2>
+            </div>
         </div>
         <div class="col-md-9 col-sm-12 btm-margin col-md-offset-2">
             <div id="testimonial">            
                 <uib-carousel  active="active" interval="myInterval" hide-indicators="true">
                     <uib-slide ng-repeat="slide in slides" index="$index">
-                        <div class="col-md-5" style="background-color: #235d9e">
+                        <div class="col-md-5">
                             <img class="image" width="250" height="300" ng-src="{{slide.image}}"/>
                         </div>
-                        <div class="col-md-5" style="background-color: #EBF6FC; height:300px;">      
+                        <div class="col-md-5">      
                             <figcaption class="caption">
                                 <h3>{{slide.name}}</h3>
                                 <p><i class="glyphicon glyphicon-globe"></i> {{slide.designation}}</p>
