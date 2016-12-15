@@ -43,7 +43,8 @@ angular.module("safedeals.states.corporate_site", [])
                     })
                     .state('corporate_site.career', {
                         'url': '/career',
-                        'templateUrl': templateRoot + '/corporate_site/career.html'
+                        'templateUrl': templateRoot + '/corporate_site/career.html',
+                        'controller': 'CareerController'
                     });
         })
 
@@ -61,28 +62,39 @@ angular.module("safedeals.states.corporate_site", [])
         })
 
         .controller('ServiceController', function ($scope, TestimonialService) {
-            $scope.myInterval = 2000;
+            $scope.myInterval = 3000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = [
                 {
                     image: 'images/img5.jpg',
-                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing'
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img6.jpg',
-                    text: 'Awesome photograph'
+                    name: 'Kristiana',
+                    designation: 'photographer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img7.jpg',
-                    text: 'That is so cool'
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img8.jpg',
-                    text: 'I love that'
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 }
             ];
-
 //            $scope.IsVisible = true;
 ////            $scope.IsHidden = true;
 ////            $scope.IsContent = true;
@@ -108,14 +120,10 @@ angular.module("safedeals.states.corporate_site", [])
                 map = new google.maps.Map(mapContainer, mapProp);
             };
             drawMap();
-
             var drawDynamicMap = function (newMapProp) {
                 console.log("newMapProp %O", newMapProp);
                 map = new google.maps.Map(mapContainer, newMapProp);
-
             };
-
-
             $scope.franchises = FranchiseService.findByCityId({
                 'cityId': 78
             }, function (franchises) {
@@ -126,11 +134,8 @@ angular.module("safedeals.states.corporate_site", [])
                     }, function (locationObject) {
                         drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
                     });
-
                 });
             });
-
-
             var drawMarker = function (position, title, map) {
                 console.log("Position :%O", position);
                 new google.maps.Marker({
@@ -140,7 +145,6 @@ angular.module("safedeals.states.corporate_site", [])
                             // icon: 'images/icons_svg/dot.png'
                 });
             };
-
             $scope.setCity = function (city) {
                 $scope.city = city;
                 $scope.franchises = FranchiseService.findByCityId({
@@ -163,15 +167,12 @@ angular.module("safedeals.states.corporate_site", [])
                     });
                 });
             };
-
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return CityService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
-
-
 //            if (
 //                    $stateParams.offset === undefined ||
 //                    isNaN($stateParams.offset) ||
@@ -203,7 +204,6 @@ angular.module("safedeals.states.corporate_site", [])
 //                });
 //            });
             console.log("$scope.franchises", $scope.franchises);
-
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
@@ -229,7 +229,6 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.sendSms = function (clientNumber) {
                 EnquiryService.sendSms();
             };
-
             $scope.$watch('editableEnquiry.category', function (category) {
                 console.log("Category :" + category);
                 if (category === "PROPERTY_GUIDANCE") {
@@ -255,7 +254,6 @@ angular.module("safedeals.states.corporate_site", [])
             console.log("EventController");
             $scope.events = EventService.findByDate();
             console.log("$scope.events", $scope.events);
-
             $scope.myInterval = 2000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
@@ -291,29 +289,49 @@ angular.module("safedeals.states.corporate_site", [])
                 }
             ];
         })
+        .controller('CareerController', function ($scope, TestimonialService) {
+            $scope.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            $scope.slides = [
+                {
+                    image: 'images/img5.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img6.jpg',
+                    name: 'Kristiana',
+                    designation: 'photographer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img7.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img8.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                }
+            ];
+        })
         .controller('ContactController', function ($scope, $state, MailService) {
             $scope.editableEnquiry = {};
             $scope.sendMail = function (mailObject) {
                 console.log("Mail Object :%O", mailObject);
                 MailService.sendEmail({
-                   'mailId' :mailObject.email
-                }, function(){
+                    'mailId': mailObject.email
+                }, function () {
                     $state.go('corporate_site.contact', null, {'reload': true});
                 });
             };
-//            $scope.myInterval = 2000;
-//            $scope.noWrapSlides = false;
-//            $scope.active = 0;
-//            $scope.slides = [
-//                {
-//                    image: 'images/banner.jpg',
-//                    text:'To take an Informed Decision'
-//                },
-//                {
-//                    image: 'images/banner.jpg'
-//                },
-//                {
-//                    image: 'images/banner.jpg'
-//                }
-//            ];
         });
