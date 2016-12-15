@@ -60,13 +60,12 @@ angular.module("safedeals.states.corporate_site", [])
             };
         })
 
-                .controller('AboutUsController', function ($scope) {
-                    $scope.hidden = true;
-                    $scope.IsVisible = true;
-                    $scope.Toggle = true;
-                })
+        .controller('AboutUsController', function ($scope) {
+            $scope.hidden = true;
+            $scope.IsVisible = true;
+            $scope.Toggle = true;
+        })
 
-<<<<<<< HEAD
         .controller('ServiceController', function ($scope, TestimonialService) {
             $scope.myInterval = 3000;
             $scope.noWrapSlides = false;
@@ -101,42 +100,6 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 }
             ];
-=======
-                .controller('ServiceController', function ($scope, TestimonialService) {
-                    $scope.myInterval = 3000;
-                    $scope.noWrapSlides = false;
-                    $scope.active = 0;
-                    $scope.slides = [
-                        {
-                            image: 'images/img5.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img6.jpg',
-                            name: 'Kristiana',
-                            designation: 'photographer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img7.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img8.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        }
-                    ];
->>>>>>> origin/master
 //            $scope.IsVisible = true;
 ////            $scope.IsHidden = true;
 ////            $scope.IsContent = true;
@@ -145,12 +108,11 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 //            $scope.testimonials = TestimonialService.query();
 //            console.log("$scope.testimonials", $scope.testimonials);
 //            $scope.myInterval = 3000;
-                })
+        })
 
-                .controller('SdNetworkController', function ($scope, CityService, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
+        .controller('SdNetworkController', function ($scope, CityService, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
 
 
-<<<<<<< HEAD
             var map;
             var mapContainer = document.getElementById("mapContainerSdNetwork");
             var nagpurCoordinate = new google.maps.LatLng(21.1458, 79.0882);
@@ -206,37 +168,8 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                             console.log("new map prop %O", newMapProp);
                             drawDynamicMap(newMapProp);
                             drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
-=======
-                    var map;
-                    var mapContainer = document.getElementById("mapContainerSdNetwork");
-                    var nagpurCoordinate = new google.maps.LatLng(21.1458, 79.0882);
-                    var mapProp = {
-                        center: nagpurCoordinate,
-                        zoom: 11,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    var drawMap = function () {
-                        map = new google.maps.Map(mapContainer, mapProp);
-                    };
-                    drawMap();
-                    var drawDynamicMap = function (newMapProp) {
-                        console.log("newMapProp %O", newMapProp);
-                        map = new google.maps.Map(mapContainer, newMapProp);
-                    };
-                    $scope.franchises = FranchiseService.findByCityId({
-                        'cityId': 78
-                    }, function (franchises) {
-                        angular.forEach(franchises, function (franchise) {
-                            console.log("Single Object :%O", franchise);
-                            LocationService.get({
-                                'id': franchise.locationId
-                            }, function (locationObject) {
-                                drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
-                            });
->>>>>>> origin/master
                         });
                     });
-<<<<<<< HEAD
                 });
             };
             $scope.searchCities = function (searchTerm) {
@@ -245,45 +178,6 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                     'name': searchTerm
                 }).$promise;
             };
-=======
-                    var drawMarker = function (position, title, map) {
-                        console.log("Position :%O", position);
-                        new google.maps.Marker({
-                            map: map,
-                            position: position,
-                            title: title
-                                    // icon: 'images/icons_svg/dot.png'
-                        });
-                    };
-                    $scope.setCity = function (city) {
-                        $scope.city = city;
-                        $scope.franchises = FranchiseService.findByCityId({
-                            'cityId': city.id
-                        }, function (franchiseList) {
-                            angular.forEach(franchiseList, function (franchise) {
-                                LocationService.get({
-                                    'id': franchise.locationId
-                                }, function (locationObject) {
-                                    var newMapProp = {
-                                        center: new google.maps.LatLng(city.latitude, city.longitude),
-                                        zoom: 11,
-                                        mapTypeId: google.maps.MapTypeId.ROADMAP
-
-                                    };
-                                    console.log("new map prop %O", newMapProp);
-                                    drawDynamicMap(newMapProp);
-                                    drawMarker({lat: locationObject.latitude, lng: locationObject.longitude}, franchise.name, map);
-                                });
-                            });
-                        });
-                    };
-                    $scope.searchCities = function (searchTerm) {
-                        console.log("Search Term :%O", searchTerm);
-                        return CityService.findByNameLike({
-                            'name': searchTerm
-                        }).$promise;
-                    };
->>>>>>> origin/master
 //            if (
 //                    $stateParams.offset === undefined ||
 //                    isNaN($stateParams.offset) ||
@@ -314,7 +208,6 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 //                    });
 //                });
 //            });
-<<<<<<< HEAD
             console.log("$scope.franchises", $scope.franchises);
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
@@ -328,138 +221,15 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-=======
-                    console.log("$scope.franchises", $scope.franchises);
-                    $scope.nextPage = function () {
-                        $scope.currentOffset += paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                    };
-                    $scope.previousPage = function () {
-                        if ($scope.currentOffset <= 0) {
-                            return;
-                        }
-                        $scope.currentOffset -= paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                    };
-                })
 
-                .controller('PostQueryController', function (EnquiryService, $scope, $state) {
-                    $scope.editableEnquiry = {};
-                    $scope.saveEnquiry = function (enquiry) {
-                        console.log("enquiry name:", enquiry);
-                        $scope.sendSms(enquiry.mobileNo);
-                        EnquiryService.save(enquiry, function () {
-                            $state.go('corporate_site.home', null, {'reload': true});
-                        });
-                    };
-                    $scope.sendSms = function (clientNumber) {
-                        EnquiryService.sendSms();
-                    };
-                    $scope.$watch('editableEnquiry.category', function (category) {
-                        console.log("Category :" + category);
-                        if (category === "PROPERTY_GUIDANCE") {
-                            $scope.propertyGuidance = true;
-                            $scope.propertySelling = false;
-                            $scope.propertyBuying = false;
-                        } else if (category === "PROPERTY_SELLING") {
-                            $scope.propertyGuidance = false;
-                            $scope.propertySelling = true;
-                            $scope.propertyBuying = false;
-                        } else if (category === "PROPERTY_BUYING") {
-                            $scope.propertyGuidance = false;
-                            $scope.propertySelling = false;
-                            $scope.propertyBuying = true;
-                        } else {
-                            $scope.propertyGuidance = false;
-                            $scope.propertySelling = false;
-                            $scope.propertyBuying = false;
-                        }
-                    });
-                })
-                .controller('EventsController', function ($scope, EventService) {
-                    console.log("EventController");
-                    $scope.events = EventService.findByDate();
-                    console.log("$scope.events", $scope.events);
-                    $scope.myInterval = 2000;
-                    $scope.noWrapSlides = false;
-                    $scope.active = 0;
-                    $scope.slides = [
-                        {
-                            image: 'images/banner.jpg'
-                        },
-                        {
-                            image: 'images/banner.jpg'
-                        },
-                        {
-                            image: 'images/banner.jpg'
-                        }
->>>>>>> origin/master
-
-                    ];
-                })
-
-                .controller('HomeController', function ($scope) {
-
-                    $scope.myInterval = 2000;
-                    $scope.noWrapSlides = false;
-                    $scope.active = 0;
-                    $scope.slides = [
-                        {
-                            image: 'images/banner.jpg',
-                            text: 'To take an Informed Decision'
-                        },
-                        {
-                            image: 'images/banner.jpg'
-                        },
-                        {
-                            image: 'images/banner.jpg'
-                        }
-                    ];
-                })
-                .controller('CareerController', function ($scope, TestimonialService) {
-                    $scope.myInterval = 3000;
-                    $scope.noWrapSlides = false;
-                    $scope.active = 0;
-                    $scope.slides = [
-                        {
-                            image: 'images/img5.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img6.jpg',
-                            name: 'Kristiana',
-                            designation: 'photographer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img7.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        },
-                        {
-                            image: 'images/img8.jpg',
-                            name: 'Kristiana',
-                            designation: 'Web Developer www.example1.com',
-                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-                        }
-                    ];
-//            $scope.IsVisible = true;
-////            $scope.IsHidden = true;
-////            $scope.IsContent = true;
-////            $scope.IsHide = true;
-////            $scope.IsToggle = true;
-//            $scope.testimonials = TestimonialService.query();
-//            console.log("$scope.testimonials", $scope.testimonials);
-//            $scope.myInterval = 3000;
+        .controller('PostQueryController', function (EnquiryService, $scope, $state) {
+            $scope.editableEnquiry = {};
+            $scope.saveEnquiry = function (enquiry) {
+                console.log("enquiry name:", enquiry);
+                $scope.sendSms(enquiry.mobileNo);
+                EnquiryService.save(enquiry, function () {
+                    $state.go('corporate_site.home', null, {'reload': true});
                 });
-<<<<<<< HEAD
             };
             $scope.sendSms = function (clientNumber) {
                 EnquiryService.sendSms();
@@ -503,6 +273,41 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                     image: 'images/banner.jpg'
                 }
 
+            ];
+        })
+        .controller('CareerController', function ($scope, TestimonialService) {
+            $scope.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            $scope.slides = [
+                {
+                    image: 'images/img5.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img6.jpg',
+                    name: 'Kristiana',
+                    designation: 'photographer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img7.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img8.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                }
             ];
         })
 
@@ -570,5 +375,3 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                 });
             };
         });
-=======
->>>>>>> origin/master
