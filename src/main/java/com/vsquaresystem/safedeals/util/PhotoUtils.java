@@ -6,6 +6,7 @@
 package com.vsquaresystem.safedeals.util;
 //
 
+import com.vsquaresystem.safedeals.event.Event;
 import com.vsquaresystem.safedeals.team.Team;
 import com.vsquaresystem.safedeals.testimonial.Testimonial;
 import com.vsquaresystem.safedeals.util.AttachmentUtils.AttachmentType;
@@ -115,4 +116,26 @@ public class PhotoUtils {
         return new File(teamDir, PHOTO_FILE_NAME);
     }
     /////////////////////////////////////////////////
+    public File getEventPhoto(Event event) throws FileNotFoundException, IOException {
+        if (event.getPhotoPath() != null) {
+            PHOTO_FILE_NAME = event.getPhotoPath().get(0).toString();
+        }
+        File photoFile = getEventPhotoFile(event);
+        return photoFile;
+    }
+
+    public File setEventPhoto(
+            InputStream inputStream,
+            Event event)
+            throws IOException {
+
+        File photoFile = getEventPhotoFile(event);
+        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
+        return photoFile;
+    }
+
+    public File getEventPhotoFile(Event event) throws IOException {
+        File eventDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.EVENT, event.getId(), true);
+        return new File(eventDir, PHOTO_FILE_NAME);
+    }
 }

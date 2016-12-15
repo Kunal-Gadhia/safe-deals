@@ -40,6 +40,7 @@ public class AttachmentUtils {
     private static final String LOCATION_ATTACHMENT_DIR_NAME = "location";
     private static final String TESTIMONIAL_ATTACHMENT_DIR_NAME = "testimonial";
     private static final String TEAM_ATTACHMENT_DIR_NAME = "team";
+    private static final String EVENT_ATTACHMENT_DIR_NAME = "event";
     private static final String AMENITY_NAME = "amenity_name";
 
     public static enum AttachmentType {
@@ -53,7 +54,8 @@ public class AttachmentUtils {
         CITY,
         TESTIMONIAL,
         TEAM,
-        AMENITY_NAME
+        AMENITY_NAME,
+        EVENT
     }
 
     public File getRootDirectory() {
@@ -198,6 +200,11 @@ public class AttachmentUtils {
 
             case TEAM:
                 attachmentDir = new File(getAttachmentRootDirectory(), TEAM_ATTACHMENT_DIR_NAME);
+                logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
+                break;
+
+            case EVENT:
+                attachmentDir = new File(getAttachmentRootDirectory(), EVENT_ATTACHMENT_DIR_NAME);
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;
 

@@ -34,6 +34,7 @@ public class EventDAL {
         public static final String VENUE = "venue";
         public static final String DESCRIPTION = "description";
         private static final String DATE = "date";
+        private static final String PHOTO_PATH = "photo_path";
     };
 
     @Autowired
@@ -82,11 +83,13 @@ public class EventDAL {
     }
 
     public Event update(Event event) {
+        String path = event.getPhotoPath().get(0).toString().replace("\\", "\\\\");
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ? ,"
                 + Columns.VENUE + " = ? ,"
                 + Columns.DESCRIPTION + " = ? ,"
-                + Columns.DATE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.DATE + " = ? ,"
+                + Columns.PHOTO_PATH + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             event.getName(),
             event.getVenue(),

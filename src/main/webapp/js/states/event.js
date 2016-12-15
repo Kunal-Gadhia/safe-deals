@@ -20,8 +20,74 @@ angular.module("safedeals.states.event", [])
                 'templateUrl': templateRoot + '/masters/event/delete.html',
                 'controller': 'EventDeleteController'
             });
+            $stateProvider.state('admin.masters_event.photo', {
+                'url': '/:eventId/photo',
+                'templateUrl': templateRoot + '/masters/event/photo.html',
+                'controller': 'EventPhotoController'
+            });
+            $stateProvider.state('admin.masters_event.view', {
+                'url': '/:eventId/view',
+                'templateUrl': templateRoot + '/masters/event/view.html',
+                'controller': 'EventViewController'
+            });
         })
+        .controller('EventViewController', function ($scope, $stateParams, $state) {
+            $scope.event = {};
+            $scope.event.id = $stateParams.eventId;
+            $scope.goBack = function () {
+                $state.go('admin.masters_event', {}, {'reload': true});
+            };
+        })
+        .controller('EventPhotoController', function (restRoot, FileUploader, $scope, $stateParams, $state) {
+            $scope.enableSaveButton = false;
+            $scope.goBack = function () {
+                $state.go('admin.masters_event', {}, {'reload': true});
+            };
+            var uploader = $scope.fileUploader = new FileUploader({
+                url: restRoot + '/event/' + $stateParams.eventId + '/attachment',
+                autoUpload: true,
+                alias: 'attachment'
+            });
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.uploadInProgress = true;
+                $scope.uploadSuccess = false;
+                console.log("before upload item:", item);
+                console.log("uploader", uploader);
+            };
+            uploader.onErrorItem = function ($scope) {
+                $scope.uploadFailed = true;
+                $scope.uploadInProgress = false;
+                $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+            };
+            uploader.onCompleteItem = function ($scope, response, status) {
+                console.log("Status :%O", status);
+                if (status === 200) {
+                    console.log("Coming to 200 ??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+                    $scope.uploadSuccess = true;
+                    $scope.enableSaveButton = true;
+                    console.log("In Progress :" + $scope.uploadInProgress);
+                    console.log("Failed :" + $scope.uploadFailed);
+                    console.log("Success :" + $scope.uploadSuccess);
+                    console.log("Save Button :" + $scope.enableSaveButton);
+                } else if (status === 500)
+                {
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                } else {
+                    console.log("Coming to else??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = true;
+                }
 
+                console.log("upload completion", response);
+            };
+        })
         .controller('EventListController', function (EventService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
