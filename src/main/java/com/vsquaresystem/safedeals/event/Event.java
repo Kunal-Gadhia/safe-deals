@@ -6,6 +6,7 @@
 package com.vsquaresystem.safedeals.event;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,6 +19,7 @@ public class Event {
     private String name;
     private String venue;
     private String description;
+    private List<String> photoPath;
     private Date date;
 
     public Integer getId() {
@@ -50,6 +52,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(List<String> photoPath) {
+        this.photoPath = photoPath;
     }
 
     public Date getDate() {

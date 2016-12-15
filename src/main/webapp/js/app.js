@@ -55,6 +55,7 @@ angular.module("safedeals", [
     'safedeals.services.enquiry',
     'safedeals.services.private_amenities',
     'safedeals.services.road',
+    'safedeals.services.mail',
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',

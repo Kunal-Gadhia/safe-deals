@@ -5,17 +5,25 @@
  */
 package com.vsquaresystem.safedeals.event;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -28,6 +36,9 @@ public class EventRest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private EventDAL eventDal;
+
+    @Autowired
+    private EventService eventService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Event> findAll(
@@ -46,7 +57,7 @@ public class EventRest {
     }
 
     @RequestMapping(value = "/find/date", method = RequestMethod.GET)
-    public List<Event> findByDate() {        
+    public List<Event> findByDate() {
         return eventDal.findByDate();
     }
 
@@ -63,6 +74,24 @@ public class EventRest {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
         eventDal.delete(id);
+    }
+
+    @RequestMapping(value = "/{id}/attachment", method = RequestMethod.POST)
+    public Event uploadAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER+++++++++++++++++" + attachment.getName());
+        return eventService.insertAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/attachment", method = RequestMethod.GET)
+    public void getAttachment(@PathVariable Integer id, HttpServletResponse response) throws IOException {
+        File photoFile = eventService.getPhoto(id);
+        response.setContentType(Files.probeContentType(Paths.get(photoFile.getAbsolutePath())));
+        response.setContentLengthLong(photoFile.length());
+        logger.debug("filename: {}, size: {}", photoFile.getAbsoluteFile(), photoFile.length());
+        FileCopyUtils.copy(new FileInputStream(photoFile), response.getOutputStream());
     }
 
 }

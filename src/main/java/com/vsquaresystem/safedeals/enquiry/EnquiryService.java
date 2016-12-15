@@ -36,7 +36,7 @@ public class EnquiryService {
 
             // Build a filter for the MessageList
             List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("Body", "Hello, World REST Message!"));
+            params.add(new BasicNameValuePair("Body", "Hello, Thank you for your intrest in SafeDeals,our customer care executive will get back to you soon regarding your query."));
             params.add(new BasicNameValuePair("To", "+919766136110")); //Add real number here
             params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
 

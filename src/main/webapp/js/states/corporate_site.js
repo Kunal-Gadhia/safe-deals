@@ -28,7 +28,8 @@ angular.module("safedeals.states.corporate_site", [])
                     })
                     .state('corporate_site.contact', {
                         'url': '/contact',
-                        'templateUrl': templateRoot + '/corporate_site/contact.html'
+                        'templateUrl': templateRoot + '/corporate_site/contact.html',
+                        'controller': 'ContactController'
                     })
                     .state('corporate_site.events', {
                         'url': '/events',
@@ -47,11 +48,16 @@ angular.module("safedeals.states.corporate_site", [])
                     });
         })
 
-        .controller('CorporateSiteController', function ($scope, $stateParams, $state) {
+        .controller('CorporateSiteController', function ($scope, $stateParams, $state, $location) {
             var parrentDiv = $('#parrentDiv');
             parrentDiv.removeClass();
             parrentDiv.addClass('bg-site');
             $scope.hidden = true;
+
+            $scope.gotoTop = function () {
+                $location.hash('top');
+                $anchorScroll();
+            };
         })
 
         .controller('AboutUsController', function ($scope) {
@@ -269,6 +275,41 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 
             ];
         })
+        .controller('CareerController', function ($scope, TestimonialService) {
+            $scope.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            $scope.slides = [
+                {
+                    image: 'images/img5.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img6.jpg',
+                    name: 'Kristiana',
+                    designation: 'photographer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img7.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                },
+                {
+                    image: 'images/img8.jpg',
+                    name: 'Kristiana',
+                    designation: 'Web Developer www.example1.com',
+                    text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
+                }
+            ];
+        })
 
         .controller('HomeController', function ($scope) {
 
@@ -322,12 +363,15 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 }
             ];
-//            $scope.IsVisible = true;
-////            $scope.IsHidden = true;
-////            $scope.IsContent = true;
-////            $scope.IsHide = true;
-////            $scope.IsToggle = true;
-//            $scope.testimonials = TestimonialService.query();
-//            console.log("$scope.testimonials", $scope.testimonials);
-//            $scope.myInterval = 3000;
+        })
+        .controller('ContactController', function ($scope, $state, MailService) {
+            $scope.editableEnquiry = {};
+            $scope.sendMail = function (mailObject) {
+                console.log("Mail Object :%O", mailObject);
+                MailService.sendEmail({
+                    'mailId': mailObject.email
+                }, function () {
+                    $state.go('corporate_site.contact', null, {'reload': true});
+                });
+            };
         });
