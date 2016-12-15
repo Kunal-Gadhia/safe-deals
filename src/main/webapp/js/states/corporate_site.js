@@ -371,6 +371,7 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                 MailService.sendEmail({
                     'mailId': mailObject.email
                 }, function () {
+                    alert("Enquiry Submitted Successfully.Safe-Deals team will get back to you soon regarding your enquiry.");
                     $state.go('corporate_site.contact', null, {'reload': true});
                 });
             };
