@@ -181,6 +181,7 @@
         <script src="${pageContext.request.contextPath}/js/services/amenity_code_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/private_amenities_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/road_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/mail_service.js"></script>
 
     </head>
     <body>

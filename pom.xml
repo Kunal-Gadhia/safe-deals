@@ -75,7 +75,7 @@
             <version>${jackson.version}</version>
         </dependency>
         
-        <!-- Spring Context -->
+        <!-- Spring Context -->       
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -166,13 +166,21 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4</version>
-        </dependency>
+        </dependency>        
 
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>javax.mail-api</artifactId>
             <version>1.5.1</version>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
         
         <!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio-java-sdk -->
         <dependency>

@@ -28,7 +28,8 @@ angular.module("safedeals.states.corporate_site", [])
                     })
                     .state('corporate_site.contact', {
                         'url': '/contact',
-                        'templateUrl': templateRoot + '/corporate_site/contact.html'
+                        'templateUrl': templateRoot + '/corporate_site/contact.html',
+                        'controller': 'ContactController'
                     })
                     .state('corporate_site.events', {
                         'url': '/events',
@@ -231,19 +232,19 @@ angular.module("safedeals.states.corporate_site", [])
 
             $scope.$watch('editableEnquiry.category', function (category) {
                 console.log("Category :" + category);
-                if(category === "PROPERTY_GUIDANCE"){
+                if (category === "PROPERTY_GUIDANCE") {
                     $scope.propertyGuidance = true;
                     $scope.propertySelling = false;
                     $scope.propertyBuying = false;
-                }else if(category === "PROPERTY_SELLING"){
+                } else if (category === "PROPERTY_SELLING") {
                     $scope.propertyGuidance = false;
                     $scope.propertySelling = true;
                     $scope.propertyBuying = false;
-                }else if(category === "PROPERTY_BUYING"){
+                } else if (category === "PROPERTY_BUYING") {
                     $scope.propertyGuidance = false;
                     $scope.propertySelling = false;
                     $scope.propertyBuying = true;
-                }else{
+                } else {
                     $scope.propertyGuidance = false;
                     $scope.propertySelling = false;
                     $scope.propertyBuying = false;
@@ -280,7 +281,7 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.slides = [
                 {
                     image: 'images/banner.jpg',
-                    text:'To take an Informed Decision'
+                    text: 'To take an Informed Decision'
                 },
                 {
                     image: 'images/banner.jpg'
@@ -289,4 +290,30 @@ angular.module("safedeals.states.corporate_site", [])
                     image: 'images/banner.jpg'
                 }
             ];
+        })
+        .controller('ContactController', function ($scope, $state, MailService) {
+            $scope.editableEnquiry = {};
+            $scope.sendMail = function (mailObject) {
+                console.log("Mail Object :%O", mailObject);
+                MailService.sendEmail({
+                   'mailId' :mailObject.email
+                }, function(){
+                    $state.go('corporate_site.contact', null, {'reload': true});
+                });
+            };
+//            $scope.myInterval = 2000;
+//            $scope.noWrapSlides = false;
+//            $scope.active = 0;
+//            $scope.slides = [
+//                {
+//                    image: 'images/banner.jpg',
+//                    text:'To take an Informed Decision'
+//                },
+//                {
+//                    image: 'images/banner.jpg'
+//                },
+//                {
+//                    image: 'images/banner.jpg'
+//                }
+//            ];
         });
