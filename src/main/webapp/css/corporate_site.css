@@ -273,19 +273,19 @@ footer a, footer {
 
 /*************#testimonial css************/
 #testimonial {        /*//incase you want to shrink carousel*/
-        /*width: 60%;*/       
-    }
-    .image{
-        border-radius: 50%;
-    }
-    .quote {
-        color: #0079bf;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .carousel-control.left, .carousel-control.right {
+    /*width: 60%;*/       
+}
+.image{
+    border-radius: 50%;
+}
+.quote {
+    color: #0079bf;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.carousel-control.left, .carousel-control.right {
     background-image: none;
-    width: 1%;
-    }
-    
+    width: 3%;
+}
+
 /*************#testimonial css************/

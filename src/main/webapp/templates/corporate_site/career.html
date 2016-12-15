@@ -63,10 +63,10 @@
             <div id="testimonial">            
                 <uib-carousel  active="active" interval="myInterval" hide-indicators="true">
                     <uib-slide ng-repeat="slide in slides" index="$index">
-                        <div class="col-md-5">
+                        <div class="col-md-5" style="background-color: #235d9e">
                             <img class="image" width="250" height="300" ng-src="{{slide.image}}"/>
                         </div>
-                        <div class="col-md-5">      
+                        <div class="col-md-5" style="background-color: #EBF6FC; height:300px;">      
                             <figcaption class="caption">
                                 <h3>{{slide.name}}</h3>
                                 <p><i class="glyphicon glyphicon-globe"></i> {{slide.designation}}</p>

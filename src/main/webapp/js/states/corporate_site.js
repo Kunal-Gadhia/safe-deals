@@ -295,29 +295,29 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
             $scope.slides = [
                 {
                     image: 'images/img5.jpg',
-                    name: 'Kristiana',
+                    name: 'KRISTIANA ANDREW',
                     designation: 'Web Developer www.example1.com',
                     text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img6.jpg',
-                    name: 'Kristiana',
-                    designation: 'photographer www.example1.com',
+                    name: 'JONH EDISON',
+                    designation: 'Photographer www.example1.com',
                     text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img7.jpg',
-                    name: 'Kristiana',
+                    name: 'ROBIN SHARMA',
                     designation: 'Web Developer www.example1.com',
                     text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 },
                 {
                     image: 'images/img8.jpg',
-                    name: 'Kristiana',
-                    designation: 'Web Developer www.example1.com',
+                    name: 'ANDREW JONH',
+                    designation: 'Photographer www.example1.com',
                     text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
                 }
