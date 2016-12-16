@@ -91,6 +91,12 @@
         margin-top: 5px;
         padding-right: 10px
     }
+    .navbar.navbar-lower .navbar-nav {
+        margin-left: 8px;
+    }
+    #navbar ul li {
+        border-bottom: 1px solid #cdcdcd;
+    }
 }
 .navbar-logo { 
     /*    background-image: url('../images/safedeals.png');
