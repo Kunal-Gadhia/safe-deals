@@ -43,7 +43,7 @@
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    height: 170px;
+    height: 300px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -96,12 +96,6 @@
     }
     #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
-    }
-}
-@media only screen and (min-width: 700px) and (max-width: 1024px){
-    .navbar-nav{
-        float: left;
-        margin: 0px;
     }
 }
 .navbar-logo { 
