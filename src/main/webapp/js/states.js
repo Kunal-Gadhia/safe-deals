@@ -10,11 +10,11 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
 //                'templateUrl': templateRoot + '/logout.html',
 //                'controller': 'LogoutController'
 //            });
-            $stateProvider.state('main', {
-                'url': '/main',
-                'templateUrl': templateRoot + '/main.html',
-                'controller': 'MainController'
-            });
+//            $stateProvider.state('main', {
+//                'url': '/main',
+//                'templateUrl': templateRoot + '/main.html',
+//                'controller': 'MainController'
+//            });
             $stateProvider.state('main.masters', {
                 'url': '/masters',
                 'templateUrl': templateRoot + '/masters/menu.html'
@@ -23,12 +23,12 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 'https://www.youtube.com/embed/**'
             ]);
         })
-        .controller('MainController', function ($scope, VideoService, $state, $window) {
-            $scope.introVideo = VideoService.findIntroVideo();
-            var parrentDiv = $('#parrentDiv');
-            parrentDiv.removeClass();
-            parrentDiv.addClass('bg-city-spcl');
-        })
+//        .controller('MainController', function ($scope, VideoService, $state, $window) {
+//            $scope.introVideo = VideoService.findIntroVideo();
+//            var parrentDiv = $('#parrentDiv');
+//            parrentDiv.removeClass();
+//            parrentDiv.addClass('bg-city-spcl');
+//        })
         .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService) {
             $scope.username = $stateParams.username;
             $scope.message = $stateParams.message;
