@@ -9,6 +9,42 @@
             </uib-slide>
         </uib-carousel>
     </div>
+    <div class="row">
+        <h2 class="text-center"><b>Events</b></h2>
+    </div>
+    <div class="row">
+        <div class="">
+            <div ng-repeat="event in events">
+                <div class="col-md-4 col-sm-4">
+                    <div class="thumbnail panel-primary" id="thumbnail" data-ui-sref="main.masters_account">
+                        <img ng-src="./rest/event/{{event.id}}/attachment" width="380" class="event_img" style="height: 250px">
+                        <div class="caption panel-footer panel-primary">
+                            <p> {{event.date| date:"MMM d, y"}} </p>
+                            <p> <b>{{event.name}}</b> </p>
+                            <p> {{event.description}} </p>
+                            <p> {{event.venue}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="col-md-3 col-sm-3">
+                            <div class="thumbnail panel-primary" id="thumbnail" data-ui-sref="main.masters_account">
+                                <img src="images/img7.jpg">
+                                <div class="caption panel-footer panel-primary">
+                                    event1
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="thumbnail panel-primary" id="thumbnail" data-ui-sref="main.masters_account">
+                                <img src="images/img7.jpg">
+                                <div class="caption panel-footer panel-primary">
+                                    event1
+                                </div>
+                            </div>
+                        </div>-->
+        </div>
+    </div>
 </div>
 
 
