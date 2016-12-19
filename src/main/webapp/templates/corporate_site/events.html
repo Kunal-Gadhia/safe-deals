@@ -17,7 +17,7 @@
             <div ng-repeat="event in events">
                 <div class="col-md-4 col-sm-4">
                     <div class="thumbnail panel-primary" id="thumbnail" data-ui-sref="main.masters_account">
-                        <img ng-src="./rest/event/{{event.id}}/attachment" width="380" class="event_img" style="height: 250px">
+                        <img ng-src="./rest/event/{{event.id}}/attachment" width="380" class="event_img team_img img-responsive" style="height: 250px">
                         <div class="caption panel-footer panel-primary">
                             <p> {{event.date| date:"MMM d, y"}} </p>
                             <p> <b>{{event.name}}</b> </p>

@@ -43,7 +43,7 @@
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    height: 290px;
+    height: 170px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -83,7 +83,7 @@
     padding: 5px;
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-    /*@media (min-width: 768px) {*/
+
     .navbar.navbar-lower .navbar-nav {
         margin-left: 100px;
     }
@@ -96,6 +96,12 @@
     }
     #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 1024px){
+    .navbar-nav{
+        float: left;
+        margin: 0px;
     }
 }
 .navbar-logo { 
@@ -294,7 +300,8 @@ footer a, footer {
 
 /*************#event image css************/
 .event_img{
-    margin-bottom: 5px;
+    margin: 5px;
+    margin-bottom: 9px;
 }
 /*************#event image css************/
 
