@@ -42,8 +42,8 @@
     padding-right: 10px
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    height: 320px;
+.navbar-fixed-top .navbar-collapse {
+    max-height: 265px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -100,16 +100,6 @@
     }
 }
 
-@media only screen and (min-width: 435px) and (max-width: 570px) {
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        height: 218px;
-    }
-}
-@media only screen and (min-width: 620px) and (max-width: 670px) {
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        height: 280px;
-    }
-}
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
