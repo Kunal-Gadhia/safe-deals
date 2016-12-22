@@ -43,7 +43,7 @@
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    height: 300px;
+    height: 320px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -99,6 +99,17 @@
         border-bottom: 1px solid #cdcdcd;
     }
 }
+
+@media only screen and (min-width: 435px) and (max-width: 570px) {
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        height: 218px;
+    }
+}
+@media only screen and (min-width: 620px) and (max-width: 670px) {
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        height: 280px;
+    }
+}
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
@@ -125,7 +136,7 @@
         margin-top: 7.5px;
         height: 300px;
     }
-     #navbar ul li {
+    #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
     }
     .navbar-nav>li {
