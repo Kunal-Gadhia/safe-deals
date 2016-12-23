@@ -58,6 +58,7 @@
 .navbar-default .navbar-nav>li>a {
     color: #235d9e;
     font-size: 18px;
+    line-height: 10px;
 }
 
 .navbar-default.nav-upper {
@@ -93,7 +94,7 @@
     }
     .navbar.navbar-lower .navbar-nav {
         margin-left: 8px;
-        height: 300px;
+        height: 220px;
     }
     #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
@@ -204,7 +205,7 @@ footer a, footer {
     .overlay{
         bottom: 1px;
         padding-left: 12px;
-        width: 45%;
+        width: 46%;
     }
 }
 /*************img-overlay css************/
