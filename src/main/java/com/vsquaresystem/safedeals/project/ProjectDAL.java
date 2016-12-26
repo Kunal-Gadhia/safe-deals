@@ -143,10 +143,10 @@ public class ProjectDAL {
         parameters.put(Columns.TOTAL_FLOORS, project.getTotalFloors());
         parameters.put(Columns.IMAGES, project.getImages() == null ? "[]" : mapper.writeValueAsString(project.getImages()));
         parameters.put(Columns.VIDEOS, project.getVideos() == null ? "[]" : mapper.writeValueAsString(project.getVideos()));
-        parameters.put(Columns.TOTAL_UNITS, project.getTotal_units());
+        parameters.put(Columns.TOTAL_UNITS, project.getTotalUnits());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, project.getMajorApproachRoad());
         parameters.put(Columns.PUBLIC_TRANSPORT, project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()));
-        parameters.put(Columns.OFFERED_PRICE, project.getOffered_price());
+        parameters.put(Columns.OFFERED_PRICE, project.getOfferedPrice());
         parameters.put(Columns.DISCOUNT, project.getDiscount());
         parameters.put(Columns.OFFER_VALID_TILL, project.getOfferValidTill());
         parameters.put(Columns.PAYMENT_SCHEDULE, project.getPaymentSchedule());
@@ -241,10 +241,10 @@ public class ProjectDAL {
             project.getTotalFloors(),
             project.getImages() == null ? "[]" : mapper.writeValueAsString(project.getImages()),
             project.getVideos() == null ? "[]" : mapper.writeValueAsString(project.getVideos()),
-            project.getTotal_units(),
+            project.getTotalUnits(),
             project.getMajorApproachRoad(),
             project.getPublicTransport()  == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
-            project.getOffered_price(),
+            project.getOfferedPrice(),
             project.getDiscount(),
             project.getOfferValidTill(),
             project.getPaymentSchedule(),
