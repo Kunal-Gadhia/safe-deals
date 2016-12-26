@@ -13,14 +13,43 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Number of Rooms</label>
-                                <input class="form-control" type="number" placeholder="Number of Rooms" ng-model="editablePropertyType.numberOfRooms"/>
+                                <label>Number of BHK</label>
+                                <!--                                <input class="form-control" type="number" placeholder="Number of Rooms" ng-model="editablePropertyType.numberOfBhk"/>-->
+                                <select class="form-control" ng-model="editablePropertyType.numberOfBhk" required>
+                                    <option value="1_BHK">1 BHK</option>
+                                    <option value="2_BHK">2 BHK</option>
+                                    <option value="3_BHK">3 BHK</option>
+                                    <option value="4_BHK">4 BHK</option>
+                                    <option value="5_BHK">5 BHK</option>
+                                    <option value="6_BHK">6 BHK</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Carpet Area(in sqft)</label>
                                 <input class="form-control" type="number" placeholder="Carpet Area" ng-model="editablePropertyType.carpetArea"/>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price Range</label>
+                                <select class="form-control" ng-model="editablePropertyType.priceRange" required="required">
+                                    <option value="">Salary Range</option>
+                                    <option value="500000">&#8377; 0 - &#8377; 5 Lac</option>
+                                    <option value="2500000">&#8377; 5 Lac - &#8377; 25 Lac</option>
+                                    <option value="5000000">&#8377; 25 Lac - &#8377; 50 Lac</option>
+                                    <option value="7500000">&#8377; 50 Lac - &#8377; 75 Lac</option>
+                                    <option value="10000000">&#8377; 75 Lac - &#8377; 1 Crore</option>
+                                    <option value="12500000">&#8377; 1 Crore - &#8377; 1.25 Crore</option>
+                                    <option value="15000000">&#8377; 1.25 Crore - &#8377; 1.5 Crore</option>
+                                    <option value="17500000">&#8377; 1.5 Crore - &#8377; 1.75 Crore</option>
+                                    <option value="20000000">&#8377; 1.75 Crore - &#8377; 2 Crore</option>
+                                </select>
                             </div>
                         </div>
                     </div>                    

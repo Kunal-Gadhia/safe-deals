@@ -30,10 +30,10 @@ private final Logger logger = LoggerFactory.getLogger(getClass());
         return propertyTypeDal.findById(id);
     }
     
-     @RequestMapping(value = "/find/number_of_rooms", method = RequestMethod.GET)
-    public PropertyType findByNumberOfRooms(@RequestParam("numberOfRooms") Integer numberOfRooms) {
+     @RequestMapping(value = "/find/number_of_bhk", method = RequestMethod.GET)
+    public PropertyType findByNumberOfBhk(@RequestParam("numberOfbhk") Integer numberOfBhk) {
         logger.info("are we here");
-        return propertyTypeDal.findByNumberOfRooms(numberOfRooms);
+        return propertyTypeDal.findByNumberOfBhk(numberOfBhk);
     }
     
     @RequestMapping(method = RequestMethod.POST)

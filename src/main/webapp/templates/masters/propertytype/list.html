@@ -22,16 +22,18 @@
         <thead>
             <tr>
                 <th class="text-right">#</th>
-                <th>Number of Rooms</th>
+                <th>Number of BHK</th>
                 <th>Carpet Area</th>
+                <th>Salary Range</th>
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="propertyType in propertyTypes">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ propertyType.numberOfRooms}}</td>              
-                <td>{{ propertyType.carpetArea}}</td>                          
+                <td>{{ propertyType.numberOfBhk}}</td>              
+                <td>{{ propertyType.carpetArea}} Sq.Ft</td>
+                <td>{{ propertyType.priceRange}}</td>
                 <td class="text-right">
                     <a data-ui-sref="admin.masters_property_type.edit({ propertyTypeId: propertyType.id })"
                        class="btn btn-primary">					

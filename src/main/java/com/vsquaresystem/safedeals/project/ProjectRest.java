@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.project;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ public class ProjectRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Project insert(@RequestBody Project project) {
+    public Project insert(@RequestBody Project project) throws JsonProcessingException {
         return projectDal.insert(project);
     }
 
@@ -37,10 +38,10 @@ public class ProjectRest {
         return projectDal.findByLocationId(locationId);
     }
     
-    @RequestMapping(value = "/find/project_cost", method = RequestMethod.GET)
-    public List<Project> findByProjectCost(@RequestParam("projectCost") Double projectCost) {
-        return projectDal.findByProjectCost(projectCost);
-    }
+//    @RequestMapping(value = "/find/project_cost", method = RequestMethod.GET)
+//    public List<Project> findByProjectCost(@RequestParam("projectCost") Double projectCost) {
+//        return projectDal.findByProjectCost(projectCost);
+//    }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -49,7 +50,7 @@ public class ProjectRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Project update(@RequestBody Project project) {
+    public Project update(@RequestBody Project project) throws JsonProcessingException {
         return projectDal.update(project);
     }
 }

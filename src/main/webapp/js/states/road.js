@@ -41,6 +41,7 @@ angular.module("safedeals.states.road", [])
             $scope.roads = RoadService.query({
                 'offset': $scope.currentOffset
             });
+            console.log("Roads :%O", $scope.roads);
 
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;

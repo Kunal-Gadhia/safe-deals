@@ -33,7 +33,7 @@ public class RoadDAL {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String SIZE = "size";
-        public static final String CONDITION = "condition";
+        public static final String ROAD_CONDITION = "road_condition";
     };
 
     @Autowired
@@ -44,7 +44,7 @@ public class RoadDAL {
                 .usingColumns(
                         Columns.NAME,
                         Columns.SIZE,
-                        Columns.CONDITION)
+                        Columns.ROAD_CONDITION)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -73,7 +73,7 @@ public class RoadDAL {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, road.getName());
         parameters.put(Columns.SIZE, road.getSize());
-        parameters.put(Columns.CONDITION, road.getCondition().name());
+        parameters.put(Columns.ROAD_CONDITION, road.getRoadCondition().name());
 //        parameters.put(Columns.AMENITY_DETAIL_TAB, road.getAmenityDetailTab().name());
         Number newId = insertRoad.executeAndReturnKey(parameters);
         road = findById(newId.intValue());
@@ -85,10 +85,11 @@ public class RoadDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ?,"
                 + Columns.SIZE + " = ?,"
-                + Columns.CONDITION + "=? WHERE " + Columns.ID + " = ?";
+                + Columns.ROAD_CONDITION + "=? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             road.getName(),
-            road.getCondition().name(),
+            road.getSize(),
+            road.getRoadCondition().name(),
             road.getId()});
         road = findById(road.getId());
         return road;

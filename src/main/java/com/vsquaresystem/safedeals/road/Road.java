@@ -15,7 +15,7 @@ public class Road {
     private Integer id;
     private String name;
     private Integer size;
-    private Condition condition;
+    private RoadCondition roadCondition;
 
     public Integer getId() {
         return id;
@@ -41,21 +41,21 @@ public class Road {
         this.size = size;
     }
 
-    public Condition getCondition() {
-        return condition;
+    public RoadCondition getRoadCondition() {
+        return roadCondition;
     }
 
-    public void setCondition(Condition condition) {
-        this.condition = condition;
+    public void setRoadCondition(RoadCondition roadCondition) {
+        this.roadCondition = roadCondition;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.size);
-        hash = 53 * hash + Objects.hashCode(this.condition);
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.size);
+        hash = 43 * hash + Objects.hashCode(this.roadCondition);
         return hash;
     }
 
@@ -77,7 +77,7 @@ public class Road {
         if (!Objects.equals(this.size, other.size)) {
             return false;
         }
-        if (!Objects.equals(this.condition, other.condition)) {
+        if (this.roadCondition != other.roadCondition) {
             return false;
         }
         return true;
@@ -85,8 +85,8 @@ public class Road {
 
     @Override
     public String toString() {
-        return "Road{" + "id=" + id + ", name=" + name + ", size=" + size + ", condition=" + condition + '}';
+        return "Road{" + "id=" + id + ", name=" + name + ", size=" + size + ", roadCondition=" + roadCondition + '}';
     }
-    
+
     
 }

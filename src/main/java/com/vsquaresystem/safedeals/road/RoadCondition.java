@@ -9,7 +9,7 @@ package com.vsquaresystem.safedeals.road;
  *
  * @author hp2
  */
-public enum Condition {
+public enum RoadCondition {
     GOOD,
     AVERAGE,
     BAD

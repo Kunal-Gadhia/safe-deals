@@ -4,8 +4,9 @@ import java.util.Objects;
 
 public class PropertyType {
     private Integer id;
-    private Integer numberOfRooms;
+    private String numberOfBhk;
     private Integer carpetArea;
+    private String priceRange;
 
     public Integer getId() {
         return id;
@@ -15,12 +16,12 @@ public class PropertyType {
         this.id = id;
     }
 
-    public Integer getNumberOfRooms() {
-        return numberOfRooms;
+    public String getNumberOfBhk() {
+        return numberOfBhk;
     }
 
-    public void setNumberOfRooms(Integer numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
+    public void setNumberOfBhk(String numberOfBhk) {
+        this.numberOfBhk = numberOfBhk;
     }
 
     public Integer getCarpetArea() {
@@ -31,25 +32,26 @@ public class PropertyType {
         this.carpetArea = carpetArea;
     }
 
-    @Override
-    public String toString() {
-        return "PropertyType{" + "id=" + id + ", numberOfRooms=" + numberOfRooms + ", carpetArea=" + carpetArea + '}';
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.numberOfRooms);
-        hash = 41 * hash + Objects.hashCode(this.carpetArea);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.numberOfBhk);
+        hash = 47 * hash + Objects.hashCode(this.carpetArea);
+        hash = 47 * hash + Objects.hashCode(this.priceRange);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -60,14 +62,23 @@ public class PropertyType {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.numberOfRooms, other.numberOfRooms)) {
+        if (!Objects.equals(this.numberOfBhk, other.numberOfBhk)) {
             return false;
         }
         if (!Objects.equals(this.carpetArea, other.carpetArea)) {
             return false;
         }
+        if (!Objects.equals(this.priceRange, other.priceRange)) {
+            return false;
+        }
         return true;
     }
 
-   
+    @Override
+    public String toString() {
+        return "PropertyType{" + "id=" + id + ", numberOfBhk=" + numberOfBhk + ", carpetArea=" + carpetArea + ", priceRange=" + priceRange + '}';
+    }
+    
+    
+    
 }
