@@ -1,6 +1,6 @@
-<header class="navbar-fixed-top top-bar">
+<header class="navbar-fixed-top">
     <nav class="navbar navbar-default navbar-static-top navbar-lower">
-        <div class="navbar-header">
+        <div class="navbar-header" id="city_logo">
             <a class="" href="#">
                 <img alt="Brand" src="images/safedeals.png" class="img-responsive" width="245" height="80" data-ui-sref="corporate_site.home">
             </a>
@@ -13,24 +13,35 @@
                     <span class="icon-bar button_icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse navbar-right" id="navbar">
-                <ul class="nav navbar-nav"> 
-                    <ul class="checkout-bar nav navbar-nav">
-                        <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.intro.intro_content({ videoId: introVideo.id })">What we offer</a></li>
-                        <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.guidelines">Know your requirement</a></li>
-                        <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.location"> Find suitable location</a></li>
-                        <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.property.property_map_container">Find suitable property</a></li>
-                        <li id="lastTab" data-ui-sref-active="active"><a class="step" data-ui-sref="main.final">Finalizing of deal</a></li>
-                    </ul>                        
-                </ul>
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav" id="city_nav"> 
+                    <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.intro.intro_content({ videoId: introVideo.id })">What we offer</a></li>
+                    <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.guidelines">Know your requirement</a></li>
+                    <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.location"> Find suitable location</a></li>
+                    <li data-ui-sref-active="active"><a class="step" data-ui-sref="main.property.property_map_container">Find suitable property</a></li>
+                    <li id="lastTab" data-ui-sref-active="active"><a class="step" data-ui-sref="main.final">Finalizing of deal</a></li>
+                </ul>    
             </div>
         </div>
     </nav>
 </header><!--<End:header-->
 <div class="wrapper">
-    <div data-ui-view class=""></div>
+    <div data-ui-view style="margin-top: 125px;"></div>
 </div>
-<div>
+
+<footer id="footer">
+    <div class="container clearfix">
+        <div class="row">
+            <hr>
+            <div class="text-center">
+                <strong>Copyright &COPY; 2016, All Rights Reserved Safe Deals</strong>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- old code -->
+<!--<div>
     <footer class="text-center clearfix container">
         <div class="">
             <hr class="ft-hr">
@@ -39,4 +50,4 @@
             </p>
         </div>
     </footer>
-</div>
+</div>-->

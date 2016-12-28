@@ -4,18 +4,64 @@
 body{
     font-size: 14px;
 }
-.bg-city-spcl{
-    background: url("../images/noise-texture-background.png") fixed;
-    overflow: hidden;
-    min-height: 680px;
-}
-.bg-site{
-    /*background: url("../images/noise-texture-background.png") fixed;*/
-    background-size: cover
-}
+
 .list{
     list-style-type: none;
 }
+
+/*----icon height-----*/
+.icon_ht{
+    height: 60px;
+}
+/*----content-----*/
+/*.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0;
+}*/
+hr.ft-hr {
+    max-width: 50px;
+    border-color: #f05f40;
+    border-width: 3px;
+}
+.logo{  background-color: #fff;
+        padding: 6px;
+        box-shadow: 0px 2px 4px #222;}
+.vertical-line{
+    border-right: 1px solid #e0e0e0;
+}
+.wrapper{
+    margin: 95px 15px 0;
+}
+.map-controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+/*************************** City Special ********************************/
+.bg-city-spcl{
+    /*    background: url("../images/noise-texture-background.png") fixed;*/
+    background-color: #EBF6FC;
+    overflow: hidden;
+    min-height: 680px;
+}
+
+#city_logo{
+    padding: 10px;
+}
+
+#city_nav{
+    margin-top: 30px;
+}
+/*.bg-site{
+    background: url("../images/noise-texture-background.png") fixed;
+    background-size: cover
+}*/
+
+/*************************** Login Page ********************************/
 .loginpage
 {
     background: url("../images/2.jpg") fixed;
@@ -101,38 +147,7 @@ form.login .forgot-pass-content
 {
     color: #2ecc71;
 }
-/*----icon height-----*/
-.icon_ht{
-    height: 60px;
-}
-/*----content-----*/
-/*.h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 0;
-}*/
-hr.ft-hr {
-    max-width: 50px;
-    border-color: #f05f40;
-    border-width: 3px;
-}
-.logo{  background-color: #fff;
-        padding: 6px;
-        box-shadow: 0px 2px 4px #222;}
-.vertical-line{
-    border-right: 1px solid #e0e0e0;
-}
-.wrapper{
-    margin: 95px 15px 0;
-}
-.map-controls {
-    margin-top: 10px;
-    border: 1px solid transparent;
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    height: 32px;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
+
 #pac-input {
     background-color: #fff;
     font-family: Roboto;
@@ -168,7 +183,7 @@ hr.ft-hr {
     box-shadow: 1px 1px 1px 0;
     height:82px
 }*/
-.top-bar{
+/*.top-bar{
     height:82px
 }
 .top-bar ul li{
@@ -176,7 +191,7 @@ hr.ft-hr {
     padding: 5px 10px;
     margin-top:10px
 
-}
+}*/
 .intro-bar{
     background: url("../images/intro.jpg");
     background-position: 0 -487px;
@@ -338,7 +353,7 @@ form.tab-form-demo .tab-pane {
     height:450px
 }
 /*navbar transition*/
-#nav li a{
+/*#nav li a{
     font-size:14px;
     color:#FFF;
     line-height:14px;
@@ -419,7 +434,7 @@ form.tab-form-demo .tab-pane {
 .btm-margin{
     margin-top:15px;
     margin-bottom:15px;
-}
+}*/
 /*-------------------------------*/
 /*-------------------------------*/
 .quote {
@@ -450,11 +465,11 @@ form.tab-form-demo .tab-pane {
 }
 #footer a{
     color:#fff;
-   text-decoration: none; 
+    text-decoration: none; 
 }
 /****** Slider ******/
 /*Social slider*/
-.social {
+/*.social {
     position: fixed;
     top: 260px;
 }
@@ -517,7 +532,7 @@ form.tab-form-demo .tab-pane {
 .social ul li.linkedin{ background: #007bb6; }
 .social ul li.twitter{ background: #00aced; }
 .social ul li.youtube{ background: #dd4b39; }
-.social ul li.google{ background: #dd4b39; }
+.social ul li.google{ background: #dd4b39; }*/
 /*Social slider*/
 .admin{
     margin-top: 65px;
@@ -595,7 +610,7 @@ form.tab-form-demo .tab-pane {
 }
 
 /*fix nav bar*/
-#first {
+/*#first {
     height:96px
 }
 .f-nav{ 
@@ -607,7 +622,7 @@ form.tab-form-demo .tab-pane {
 }
 .nav { 
     height: 10px;
-}
+}*/
 
 /*tcb-testimonial-carousel*/
 /*@brand-color: #b20000;*/
@@ -755,7 +770,7 @@ custom-btn{
 
 /*--Locations--*/
 .location_list{
- margin-top: 49px;   
+    margin-top: 49px;   
 }
 #location_tabs{
     height: 39px;
