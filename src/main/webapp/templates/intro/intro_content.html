@@ -1,4 +1,33 @@
- <iframe class="video" ng-src="{{selectedVideo.videoUrl}}" frameborder="0" allowfullscreen></iframe>
+<div>
+    <div class="col-md-9">
+        <iframe class="video" ng-src="{{selectedVideo.videoUrl}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-3 col-sm-6 guidelines-content">
+        <div class="">
+            <div class="row form-group" ng-repeat="video in videos">
+                <div class="image col-sm-5">
+                    <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
+                        <img ng-src="{{video.thumbnailImgSrc}}" width="125" height="100"/>
+                    </a>
+                </div>
+                <div class="side col-sm-7">
+                    <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
+                        <strong>{{video.name}}</strong>
+                    </a>
+                    <p>
+                        <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
+                            <small>{{video.description}}</small>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!----old code---->
+<!-- <iframe class="video" ng-src="{{selectedVideo.videoUrl}}" frameborder="0" allowfullscreen></iframe>
 <div class="thumbnail thumbnail-border panel-body">
     <div class="guidelines">
         <div>
@@ -45,4 +74,4 @@
             <p><i class="fa fa-caret-right fa-fw"></i>Now, look for various options available in your chosen locations based on your budget, type & size of property, livable amenities, design, specification, occupancy and offered price.</p>
         </div>
     </div>
-</div>
+</div>-->
