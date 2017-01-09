@@ -1,8 +1,8 @@
 angular.module("safedeals.services.property", []);
 angular.module("safedeals.services.property")
         .factory('PropertyService', function ($resource, restRoot) {
-            return $resource(restRoot + '/property/:id', {'id': '@id'},{
-                'findByLocationId':{
+            return $resource(restRoot + '/property/:id', {'id': '@id'}, {
+                'findByLocationId': {
                     'method': 'GET',
                     'url': restRoot + '/property/find/location_id',
                     'params': {
@@ -10,11 +10,11 @@ angular.module("safedeals.services.property")
                     },
                     'isArray': true
                 },
-                'findByPropertyCost':{
+                'findByNameLike': {
                     'method': 'GET',
-                    'url': restRoot + '/property/find/property_cost',
+                    'url': restRoot + '/property/find/name_like',
                     'params': {
-                        'propertyCost': '@propertyCost'
+                        'name': '@name'
                     },
                     'isArray': true
                 }

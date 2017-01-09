@@ -13,44 +13,48 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/project")
 public class ProjectRest {
-        @Autowired
-    private ProjectDAL projectDal;
+
+    @Autowired
+    private ProjectDAL projectDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Project> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        return projectDal.findAll(offset);
+        return projectDAL.findAll(offset);
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Project findById(@PathVariable("id") Integer id) {
-        return projectDal.findById(id);
+        return projectDAL.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Project insert(@RequestBody Project project) throws JsonProcessingException {
-        return projectDal.insert(project);
+        return projectDAL.insert(project);
     }
 
     @RequestMapping(value = "/find/location_id", method = RequestMethod.GET)
     public List<Project> findByLocationId(@RequestParam("locationId") Integer locationId) {
-        return projectDal.findByLocationId(locationId);
+        return projectDAL.findByLocationId(locationId);
     }
-    
+
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<Project> findByNameLike(@RequestParam("name") String name) {
+        return projectDAL.findByNameLike(name);
+    }
+
 //    @RequestMapping(value = "/find/project_cost", method = RequestMethod.GET)
 //    public List<Project> findByProjectCost(@RequestParam("projectCost") Double projectCost) {
-//        return projectDal.findByProjectCost(projectCost);
+//        return projectDAL.findByProjectCost(projectCost);
 //    }
-
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        projectDal.delete(id);
+        projectDAL.delete(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Project update(@RequestBody Project project) throws JsonProcessingException {
-        return projectDal.update(project);
+        return projectDAL.update(project);
     }
 }

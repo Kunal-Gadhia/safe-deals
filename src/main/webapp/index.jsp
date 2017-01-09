@@ -135,7 +135,7 @@
         <script src="${pageContext.request.contextPath}/js/states/private_amenities.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/transportation.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/road.js"></script>
-
+        <script src="${pageContext.request.contextPath}/js/states/image.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/branch_service.js"></script>
@@ -182,6 +182,7 @@
         <script src="${pageContext.request.contextPath}/js/services/private_amenities_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/road_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/mail_service.js"></script>
+         <script src="${pageContext.request.contextPath}/js/services/image_service.js"></script>
 
     </head>
     <body>

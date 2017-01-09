@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.property;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,46 +24,46 @@ import org.springframework.web.bind.annotation.RestController;
 public class PropertyRest {
 
     @Autowired
-    private PropertyDAL propertyDal;
+    private PropertyDAL propertyDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Property> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        return propertyDal.findAll(offset);
-
+        return propertyDAL.findAll(offset);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Property findById(@PathVariable("id") Integer id) {
-        return propertyDal.findById(id);
+        return propertyDAL.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Property insert(@RequestBody Property property) {
-        return propertyDal.insert(property);
+    public Property insert(@RequestBody Property property) throws JsonProcessingException {
+        return propertyDAL.insert(property);
     }
 
     @RequestMapping(value = "/find/location_id", method = RequestMethod.GET)
     public List<Property> findByLocationId(@RequestParam("locationId") Integer locationId) {
-        return propertyDal.findByLocationId(locationId);
-    }
-    @RequestMapping(value = "/find/property_cost", method = RequestMethod.GET)
-    public List<Property> findByPropertyCost(@RequestParam("propertyCost") Double propertyCost) {
-        return propertyDal.findByPropertyCost(propertyCost);
+        return propertyDAL.findByLocationId(locationId);
     }
 
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public List<Property> findByName(@RequestParam("name") String name) {
-        return propertyDal.findByName(name);
+        return propertyDAL.findByName(name);
+    }
+
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<Property> findByNameLike(@RequestParam("name") String name) {
+        return propertyDAL.findByNameLike(name);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        propertyDal.delete(id);
+        propertyDAL.delete(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Property update(@RequestBody Property property) {
-        return propertyDal.update(property);
+        return propertyDAL.update(property);
     }
 }

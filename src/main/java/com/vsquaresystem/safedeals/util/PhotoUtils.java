@@ -7,6 +7,7 @@ package com.vsquaresystem.safedeals.util;
 //
 
 import com.vsquaresystem.safedeals.event.Event;
+import com.vsquaresystem.safedeals.image.Image;
 import com.vsquaresystem.safedeals.team.Team;
 import com.vsquaresystem.safedeals.testimonial.Testimonial;
 import com.vsquaresystem.safedeals.util.AttachmentUtils.AttachmentType;
@@ -115,7 +116,9 @@ public class PhotoUtils {
         File teamDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.TEAM, team.getId(), true);
         return new File(teamDir, PHOTO_FILE_NAME);
     }
+
     /////////////////////////////////////////////////
+
     public File getEventPhoto(Event event) throws FileNotFoundException, IOException {
         if (event.getPhotoPath() != null) {
             PHOTO_FILE_NAME = event.getPhotoPath().get(0).toString();
@@ -137,5 +140,29 @@ public class PhotoUtils {
     public File getEventPhotoFile(Event event) throws IOException {
         File eventDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.EVENT, event.getId(), true);
         return new File(eventDir, PHOTO_FILE_NAME);
+    }
+
+    ///////////////////////////////////////////////
+    public File getImagePhoto(Image image) throws FileNotFoundException, IOException {
+        if (image.getPhotoPath() != null) {
+            PHOTO_FILE_NAME = image.getPhotoPath().get(0).toString();
+        }
+        File photoFile = getImagePhotoFile(image);
+        return photoFile;
+    }
+
+    public File setImagePhoto(
+            InputStream inputStream,
+            Image image)
+            throws IOException {
+
+        File photoFile = getImagePhotoFile(image);
+        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
+        return photoFile;
+    }
+
+    public File getImagePhotoFile(Image image) throws IOException {
+        File imageDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.EVENT, image.getId(), true);
+        return new File(imageDir, PHOTO_FILE_NAME);
     }
 }

@@ -17,6 +17,14 @@ angular.module("safedeals.services.project")
                         'projectCost': '@projectCost'
                     },
                     'isArray': true
+                },
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/project/find/name_like',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
                 }
             });
         });

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
-import org.docx4j.fonts.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProjectDAL {
+
     public static final class Columns {
 
         public static final String ID = "id";
@@ -57,7 +57,7 @@ public class ProjectDAL {
         public static final String OPEN_LAND = "open_land";
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
-        
+
     }
 
     public static final String TABLE_NAME = "project";
@@ -126,7 +126,7 @@ public class ProjectDAL {
     }
 
     public Project insert(Project project) throws JsonProcessingException {
-        
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, project.getName());
         parameters.put(Columns.STATE_ID, project.getStateId());
@@ -156,7 +156,7 @@ public class ProjectDAL {
         parameters.put(Columns.OWNERSHIP_PROOF, project.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(project.getOwnershipProof()));
         parameters.put(Columns.APPROVED_BANKS, project.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(project.getApprovedBanks()));
         parameters.put(Columns.SD_VERIFIED, project.getSdVerified());
-        parameters.put(Columns.PRIVATE_AMENITIES, project.getPrivateAmenities() == null ? "[]" :mapper.writeValueAsString(project.getPrivateAmenities()));
+        parameters.put(Columns.PRIVATE_AMENITIES, project.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(project.getPrivateAmenities()));
         parameters.put(Columns.PROJECT_TESTIMONIAL, project.getProjectTestimonial());
         parameters.put(Columns.SALABLE_AREA, project.getSalableArea());
         parameters.put(Columns.CARPET_AREA, project.getCarpetArea());
@@ -171,21 +171,19 @@ public class ProjectDAL {
         project = findById(newId.intValue());
         return project;
     }
-    
+
     public List<Project> findByLocationId(Integer locationId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(Project.class));
     }
-    
+
 //    public List<Project> findByProjectCost(Double projectCost) {
 //        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROJECT_COST + " <= ?";
 //        return jdbcTemplate.query(sqlQuery, new Object[]{projectCost}, new BeanPropertyRowMapper<>(Project.class));
 //    }
-
-    
     public Project update(Project project) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.NAME + " =?,"                
+                + Columns.NAME + " =?,"
                 + Columns.STATE_ID + " =?,"
                 + Columns.CITY_ID + " =?,"
                 + Columns.LOCATION_ID + " =?,"
@@ -243,7 +241,7 @@ public class ProjectDAL {
             project.getVideos() == null ? "[]" : mapper.writeValueAsString(project.getVideos()),
             project.getTotalUnits(),
             project.getMajorApproachRoad(),
-            project.getPublicTransport()  == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
+            project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
             project.getOfferedPrice(),
             project.getDiscount(),
             project.getOfferValidTill(),
@@ -269,8 +267,14 @@ public class ProjectDAL {
         project = findById(project.getId());
         return project;
     }
-    
-     public void delete(Integer id) {
+
+    public List<Project> findByNameLike(String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+        String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Project.class));
+    }
+
+    public void delete(Integer id) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{true, id});
     }
