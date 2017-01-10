@@ -27,13 +27,15 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class ImageService {
-     public final Logger logger = LoggerFactory.getLogger(getClass());
+
+    public final Logger logger = LoggerFactory.getLogger(getClass());
+    
     @Autowired
-    AttachmentUtils attachmentUtils;    
+    AttachmentUtils attachmentUtils;
 
     @Autowired
     PhotoUtils photoUtils;
-    
+
     @Autowired
     ImageDAL imageDAL;
 
@@ -43,11 +45,11 @@ public class ImageService {
         File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
                 attachmentMultipartFile.getOriginalFilename(),
                 attachmentMultipartFile.getInputStream(),
-                AttachmentUtils.AttachmentType.EVENT,
+                AttachmentUtils.AttachmentType.IMAGE,
                 image.getId(),
                 isView
         );
-        System.out.println("THIS IS OUTPUTFILE==================" + outputFile.toString());
+        System.out.println("THIS IS OUTPUT FILE==================" + outputFile.toString());
         List<String> attachments = new ArrayList<>();
         attachments.add(outputFile.getName().toString());
         image.setPhotoPath(attachments);
