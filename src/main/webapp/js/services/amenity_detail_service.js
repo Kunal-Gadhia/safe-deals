@@ -30,6 +30,14 @@ angular.module("safedeals.services.amenity_detail")
                         'cityId': '@cityId'
                     },
                     'isArray': true
+                },
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/amenitydetail/find/name_like',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
                 }
             });
         });

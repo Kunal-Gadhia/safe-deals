@@ -96,6 +96,7 @@
         <script src="${pageContext.request.contextPath}/js/states/location_master.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/property_master.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/property.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/project_master.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/faqs.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/thanku.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/help.js"></script>

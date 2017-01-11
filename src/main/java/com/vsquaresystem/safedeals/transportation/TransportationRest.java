@@ -36,6 +36,11 @@ public class TransportationRest {
     public Transportation findByName(@RequestParam("name") String name) {
         return transportationDAL.findByName(name);
     }
+    
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<Transportation> findByNameLike(@RequestParam("name") String name) {
+        return transportationDAL.findByNameLike(name);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Transportation update(@RequestBody Transportation transportation) {

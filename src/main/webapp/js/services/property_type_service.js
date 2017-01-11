@@ -8,6 +8,14 @@ angular.module("safedeals.services.property_type")
                     'params': {
                         'numberOfRooms': '@numberOfRooms'
                     }
+                },
+                'findByNumberOfBhkLike':{
+                    'method': 'GET',
+                    'url': restRoot + '/property_type/find/number_of_bhk_like',
+                    'params': {
+                        'numberOfBhkLike': '@numberOfBhkLike'
+                    },
+                    'isArray': true
                 }
             });
         });

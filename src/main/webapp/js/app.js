@@ -67,6 +67,7 @@ angular.module("safedeals", [
     'safedeals.states.location_master',
     'safedeals.states.property',
     'safedeals.states.property_master',
+    'safedeals.states.project_master',
     'safedeals.states.faqs',
     'safedeals.states.thanku',
     'safedeals.states.faqs',

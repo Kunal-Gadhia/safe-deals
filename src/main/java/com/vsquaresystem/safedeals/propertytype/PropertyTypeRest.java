@@ -36,6 +36,11 @@ private final Logger logger = LoggerFactory.getLogger(getClass());
         return propertyTypeDal.findByNumberOfBhk(numberOfBhk);
     }
     
+    @RequestMapping(value = "/find/number_of_bhk_like", method = RequestMethod.GET)
+    public List<PropertyType> findByNumberOfBhkLike(@RequestParam("numberOfBhkLike") String numberOfBhkLike) {        
+        return propertyTypeDal.findByNumberOfBhkLike(numberOfBhkLike);
+    }
+    
     @RequestMapping(method = RequestMethod.POST)
     public PropertyType insert(@RequestBody PropertyType propertyType) {
         return propertyTypeDal.insert(propertyType);

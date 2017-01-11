@@ -23,55 +23,60 @@ public class AmenityDetailRest {
     private AmenityDetailService amenitydetailservice;
 
     @Autowired
-    private AmenityDetailDAL amenitydetailDal;
+    private AmenityDetailDAL amenityDetailDal;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<AmenityDetail> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        return amenitydetailDal.findAll(offset);
+        return amenityDetailDal.findAll(offset);
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AmenityDetail findById(@PathVariable("id") Integer id) {
-        return amenitydetailDal.findById(id);
+        return amenityDetailDal.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public AmenityDetail insert(@RequestBody AmenityDetail amenitydetail) {
-        return amenitydetailDal.insert(amenitydetail);
+        return amenityDetailDal.insert(amenitydetail);
     }
 
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public List<AmenityDetail> findByName(@RequestParam("name") String name) {
-        return amenitydetailDal.findByName(name);
+        return amenityDetailDal.findByName(name);
+    }
+    
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<AmenityDetail> findByNameLike(@RequestParam("name") String name) {
+        return amenityDetailDal.findByNameLike(name);
     }
 
     @RequestMapping(value = "/find/amenity_detail_name", method = RequestMethod.GET)
     public AmenityDetail findByAmenityDetailName(@RequestParam("name") String name) {
-        return amenitydetailDal.findByAmenityDetailName(name);
+        return amenityDetailDal.findByAmenityDetailName(name);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        amenitydetailDal.delete(id);
+        amenityDetailDal.delete(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public AmenityDetail update(@RequestBody AmenityDetail amenitydetail) {
         logger.info("amenitydetail", amenitydetail);
-        return amenitydetailDal.update(amenitydetail);
+        return amenityDetailDal.update(amenitydetail);
     }
 
     @RequestMapping(value = "/ad_filter", method = RequestMethod.GET)
     public List<AmenityDetail> findByADFilter(
             @ModelAttribute AmenityDetailFilter amenityDetailFilter) {
-        return amenitydetailDal.findByADFilter(amenityDetailFilter);
+        return amenityDetailDal.findByADFilter(amenityDetailFilter);
     }
     
     @RequestMapping(value = "/find/amenity_id/city_id", method = RequestMethod.GET)
     public List<AmenityDetail> findByAmenityIdCityId(@RequestParam("amenityId") Integer amenityId, @RequestParam("cityId") Integer cityId) {
-        return amenitydetailDal.findByAmenityIdCityId(amenityId, cityId);
+        return amenityDetailDal.findByAmenityIdCityId(amenityId, cityId);
     }
 
 

@@ -11,38 +11,555 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project Name</label>
-                                <input class="form-control" placeholder="Property name" ng-model="editableProperty.name"/>
+                        <ul class="nav nav-tabs" id="location_tabs">
+                            <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                                <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form role="form" ng-submit="saveProject(editableProject)">
+                        <div  ng-switch on="selection" class="locations"> 
+                            <!--                    <div ng-show="myValue">-->
+                            <div ng-show="myValue">                            
+                                <div>
+                                    <!--                                    <div class="modal-header">
+                                                                            <h3 class="modal-title">
+                                                                                <i class="fa fa-bank"></i>
+                                                                                Event Form
+                                                                            </h3>
+                                                                        </div>-->
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Project Name</label>
+                                                    <input class="form-control" placeholder="Project Name" ng-model="editableProject.name"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>State</label>                                                    
+                                                    <input placeholder="Select State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"
+                                                           typeahead-on-select="setState($item)"                                           
+                                                           typeahead-loading="loadingStates" 
+                                                           typeahead-no-results="noStatesFound"                                           
+                                                           ng-model="editableProject.state.name"  />
+                                                    <p ng-show="noStatesFound" class="help-block text-muted">No States found</p>
+                                                    <p ng-show="loadingStates" class="help-block text-muted">loading...</p>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="editableProject.repeatName">
+                                            <div class="col-sm-6 text-danger">
+                                                Found Records For Above Entered Name
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <input class="form-control"
+                                                           placeholder="Select City"
+                                                           uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                                           typeahead-on-select="setCity($item)"
+                                                           typeahead-editable="false"
+                                                           typeahead-loading="loadingCities" 
+                                                           typeahead-no-results="noCitiesFound"                                       
+                                                           ng-model="editableProject.city.name" />
+                                                    <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                                    <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Location</label>                                                    
+                                                    <input class="form-control"
+                                                           placeholder="Select Location"
+                                                           uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                                           typeahead-on-select="setLocation($item)"
+                                                           typeahead-editable="false"
+                                                           typeahead-loading="loadingLocations" 
+                                                           typeahead-no-results="noLocationsFound"                                       
+                                                           ng-model="editableProject.location.name" />
+                                                    <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                                    <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Sub Location</label>                                                    
+                                                    <input class="form-control" placeholder="Enter Sub Location" ng-model="editableProject.subLocation" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Type Of Project</label>                                                    
+                                                    <select class="form-control" ng-model="editableProject.projectType">
+                                                        <option value="">Type Of Project</option>
+                                                        <option value="RESIDENTIAL">Residential</option>
+                                                        <option value="INDUSTRIAL">Industrial</option>
+                                                        <option value="COMMERCIAL">Commercial</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Project Scale</label>
+                                                    <select class="form-control" ng-model="editableProject.projectScale">
+                                                        <option value="">Scale Of Project</option>
+                                                        <option value="SMALL_PROJECT">Small Project</option>
+                                                        <option value="BIG_PROJECT">Big Project</option>
+                                                        <option value="TOWNSHIP">Township</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Type Of Properties</label>                                                    
+                                                    <!--<input class="form-control" ng-model="editableProject.propertiesType">-->
+                                                    <input class="form-control"
+                                                           placeholder="Select Type Of Property"
+                                                           uib-typeahead="propertyType.id as propertyType.numberOfBhk for propertyType in searchPropertyType($viewValue)"
+                                                           typeahead-on-select="setPropertyType($item)"
+                                                           typeahead-editable="false"
+                                                           typeahead-loading="loadingPropertyType" 
+                                                           typeahead-no-results="noPropertyTypeFound"                                       
+                                                           ng-model="propertyType" />
+                                                    <p ng-show="noPropertyTypeFound" class="help-block text-muted">No Property Type Found</p>
+                                                    <p ng-show="loadingPropertyType" class="help-block text-muted">Loading...</p>
+                                                </div>                 
+                                            </div>
+
+                                        </div>
+                                        <!--  ////////////////////////////////////////-->
+                                        <div class="row">
+                                            <div class="col-sm-6">                                                
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul ng-repeat="propertyType in propertiesTypeDisplay">
+                                                    <li>{{propertyType.numberOfBhk}} <button type="button" ng-click="removePropertyType(propertyType)">Remove</button></li>
+                                                </ul>
+                                            </div>                                            
+                                        </div>
+                                        <!--////////////////////////////////////////-->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Booking Start Date</label>
+                                                    <p class="input-group">
+                                                        <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.bookingStartDate"
+                                                               popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" >
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default" ng-click="datePicker.toggle()">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Completion Date</label>
+                                                    <p class="input-group">
+                                                        <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.completionDate"
+                                                               popup-placement="bottom"   is-open="completionDatePicker.opened" datepicker-options="dateOptions" close-text="Close">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default" ng-click="completionDatePicker.toggle()">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Construction Stage</label>                                                    
+                                                    <select class="form-control" ng-model="editableProject.constructionStage">
+                                                        <option value="">Select Construction Stage</option>
+                                                        <option value="STARTED">Started</option>
+                                                        <option value="IN_PROGRESS">In Progress</option>
+                                                        <option value="COMPLETED">Completed</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Total Buildings</label>
+                                                    <input class="form-control" type="number" ng-model="editableProject.totalBuildings">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Total Floors</label>                                                    
+                                                    <input class="form-control" type="number" ng-model="editableProject.totalFloors">                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Total Units</label>
+                                                    <input class="form-control" type="number" ng-model="editableProject.totalUnits">
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                            </div>
+                            <div ng-switch-when="Connectivity" class="locations">
+                                <div ng-show="connectivity">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Major Approach Road</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Major Approach Road"
+                                                       uib-typeahead="road.id as road.name for road in searchRoad($viewValue)"
+                                                       typeahead-on-select="setRoad($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingRoad" 
+                                                       typeahead-no-results="noRoadFound"                                       
+                                                       ng-model="editableProject.road.name" />
+                                                <p ng-show="noRoadFound" class="help-block text-muted">No Road Found</p>
+                                                <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Public Transport</label>                                                    
+                                                <input class="form-control"
+                                                       placeholder="Select Public Transport"
+                                                       uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
+                                                       typeahead-on-select="setTransportation($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingTransportation" 
+                                                       typeahead-no-results="noTransportationFound"                                       
+                                                       ng-model="basicAmenities" />
+                                                <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
+                                                <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="basicAmenities in publicTransportDisplay">
+                                                <li>{{basicAmenities.name}} <button type="button" ng-click="removeTransportation(basicAmenities)">Remove</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>                                        
+                                </div>
+                            </div>
+                            <div ng-switch-when="Costing" class="locations">
+                                <div ng-show="costing">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Offered Price</label>
+                                                <input class="form-control" type="number" ng-model="editableProject.offeredPrice">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Discounts</label>
+                                                <input class="form-control" type="number" ng-model="editableProject.discount">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Offer Valid Till</label>
+                                                <p class="input-group">
+                                                    <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.offerValidTill"
+                                                           popup-placement="bottom"   is-open="offerValidTill.opened" datepicker-options="dateOptions" close-text="Close" required>
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="offerValidTill.toggle()">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Payment Schedule</label>
+                                                <input class="form-control" ng-model="editableProject.paymentSchedule">
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+                            </div>
+                            <div ng-switch-when="Demand For Rental/Resale" class="locations">
+                                <div ng-show="demandForRentalResale">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Workplaces</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Workplaces"
+                                                       uib-typeahead="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
+                                                       typeahead-on-select="setWorkplaces($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingWorkplaces" 
+                                                       typeahead-no-results="noWorkplacesFound"                                       
+                                                       ng-model="workplaces" />
+                                                <p ng-show="noWorkplacesFound" class="help-block text-muted">No Workplaces Found</p>
+                                                <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Basic Amenities</label>                                                    
+                                                <input class="form-control"
+                                                       placeholder="Select Basic Amenities"
+                                                       uib-typeahead="basicAmenities.id as basicAmenitites.name for basicAmenitites in searchBasicAmenities($viewValue)"
+                                                       typeahead-on-select="setBasicAmenities($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingBasicAmenities" 
+                                                       typeahead-no-results="noBasicAmenitiesFound"                                       
+                                                       ng-model="basicAmenities" />
+                                                <p ng-show="noBasicAmenitiesFound" class="help-block text-muted">No Basic Amenities Found</p>
+                                                <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="workplaces in workplacesDisplay">
+                                                <li>{{workplaces.name}}                                                     
+                                                    <button type="button" ng-click="removeWorkplaces(workplaces)">Remove</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="basicAmenities in basicAmenitiesDisplay">
+                                                <li>{{basicAmenities.name}} 
+                                                    <button type="button" ng-click="removeBasicAmenities(basicAmenities)">Remove</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Luxury Amenities</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Luxury Amenities"
+                                                       uib-typeahead="luxuryAmenities.id as luxuryAmenities.name for luxuryAmenities in searchLuxuryAmenities($viewValue)"
+                                                       typeahead-on-select="setLuxuryAmenities($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingLuxuryAmenities" 
+                                                       typeahead-no-results="noLuxuryAmenitiesFound"                                       
+                                                       ng-model="luxuryAmenities" />
+                                                <p ng-show="noLuxuryAmenitiesFound" class="help-block text-muted">No Luxury Amenities Found</p>
+                                                <p ng-show="loadingLuxuryAmenities" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="luxuryAmenities in luxuryAmenitiesDisplay">
+                                                <li>{{luxuryAmenities.name}}                                                     
+                                                    <button type="button" ng-click="removeLuxuryAmenities(luxuryAmenities)">Remove</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-when="Marketability" class="locations">
+                                <div ng-show="marketability">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Approved Banks</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Approved Banks"
+                                                       uib-typeahead="approvedBanks.id as approvedBanks.name for approvedBanks in searchApprovedBanks($viewValue)"
+                                                       typeahead-on-select="setApprovedBanks($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingApprovedBanks" 
+                                                       typeahead-no-results="noApprovedBanksFound"                                       
+                                                       ng-model="amenitiesWithinProject" />
+                                                <p ng-show="noApprovedBanksFound" class="help-block text-muted">No Approved Banks Found</p>
+                                                <p ng-show="loadingApprovedBanks" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>SD Verified</label>
+                                                <!--                                                <input class="form-control" type="checkbox" ng-model="editableProject.discount">-->
+                                                <input class="form-control" type="checkbox" ng-model="editableProject.sdVerified">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="amenitiesWithinProject in approvedBanksDisplay">
+                                                <li>{{amenitiesWithinProject.name}}                                                     
+                                                    <button type="button" ng-click="removeApprovedBanks(amenitiesWithinProject)">Remove</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+
+                                        </div>
+                                    </div>                                        
+                                </div>
+                            </div>
+                            <div ng-switch-when="Project Highlights" class="locations">
+                                <div ng-show="projectHighlights">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Amenities within project</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Amenities Within Project"
+                                                       uib-typeahead="amenitiesWithinProject.id as amenitiesWithinProject.name for amenitiesWithinProject in searchAmenitiesWithinProject($viewValue)"
+                                                       typeahead-on-select="setAmenitiesWithinProject($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingAmenitiesWithinProject" 
+                                                       typeahead-no-results="noAmenitiesWithinProjectFound"
+                                                       ng-model="amenitiesWithinProject" />
+                                                <p ng-show="noAmenitiesWithinProjectFound" class="help-block text-muted">No Amenities Within Project Found</p>
+                                                <p ng-show="loadingAmenitiesWithinProject" class="help-block text-muted">Loading...</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul ng-repeat="amenitiesWithinProject in amenitiesWithinProjectDisplay">
+                                                <li>{{amenitiesWithinProject.name}}
+                                                    <button type="button" ng-click="removeAmenitiesWithinProject(amenitiesWithinProject)">Remove</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+
+                                        </div>
+                                    </div>                                        
+                                </div>
+                            </div>
+                            <div ng-switch-when="Sellers Credability" class="locations">
+                                <div ng-show="sellersCredability">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Project Specific Testimonial</label>
+                                                <textarea class="form-control" rows="5" cols="100" maxlength="500" ng-model="editableProject.projectTestimonial"></textarea>      
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div ng-switch-when="Unit Details" class="locations">
+                                <div ng-show="unitDetails">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Salable Area</label>
+                                                <input type="number" step="any" class="form-control" ng-model="editableProject.salableArea">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Carpet Area</label>
+                                                <input type="number" step="any" class="form-control" ng-model="editableProject.carpetArea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Build Up Area</label>
+                                                <input type="number" step="any" class="form-control" ng-model="editableProject.buildUpArea">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Number Of Balcony</label>
+                                                <input type="number" class="form-control" ng-model="editableProject.balconyCount">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Number Of Toilets</label>
+                                                <input type="number" class="form-control" ng-model="editableProject.toiletCount">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Open Terrace</label>                                                
+                                                <input class="form-control" type="checkbox" ng-model="editableProject.openTerrace">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Open Land</label>
+                                                <input class="form-control" type="checkbox" ng-model="editableProject.openLand">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Latitude</label>
+                                                <input class="form-control" type="number" step="any" ng-model="editableProject.latitude" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Longitude</label>
+                                                <input class="form-control" type="number" step="any" ng-model="editableProject.longitude" />
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <input class="form-control" placeholder="Description" ng-model="editableProperty.description"/>
-                            </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-lg btn-primary">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
+                            <button type="button"
+                                    onclick="window.history.back()"
+                                    class="btn btn-link" >
+                                cancel
+                            </button>				
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Property Type</label>
-                                <input class="form-control" placeholder="Property type" ng-model="editableProperty.propertyType"/>
-                            </div>
-                        </div>
-                    </div>                    
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-lg btn-primary">
-                        <i class="fa fa-save"></i>
-                        Save
-                    </button>
-                    <button type="button"
-                            onclick="window.history.back()"
-                            class="btn btn-link" >
-                        cancel
-                    </button>				
-                </div>
-            </div>
         </form>
     </div>
 </div>

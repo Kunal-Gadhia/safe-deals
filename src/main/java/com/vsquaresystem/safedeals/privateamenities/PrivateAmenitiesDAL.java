@@ -60,6 +60,12 @@ public class PrivateAmenitiesDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(PrivateAmenities.class));
     }
+    
+    public List<PrivateAmenities> findByNameLike(String name) {
+    String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+    String nameLike = "%" + name.toLowerCase() + "%";
+    return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(PrivateAmenities.class));
+    }
 
     public PrivateAmenities insert(PrivateAmenities project) {
         Map<String, Object> parameters = new HashMap<>();

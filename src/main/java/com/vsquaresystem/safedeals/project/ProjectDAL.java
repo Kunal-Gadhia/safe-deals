@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
-import org.docx4j.fonts.Mapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProjectDAL {
+
     public static final class Columns {
 
         public static final String ID = "id";
@@ -31,8 +33,6 @@ public class ProjectDAL {
         public static final String COMPLETION_DATE = "completion_date";
         public static final String TOTAL_BUILDINGS = "total_buildings";
         public static final String TOTAL_FLOORS = "total_floors";
-        public static final String IMAGES = "images";
-        public static final String VIDEOS = "videos";
         public static final String TOTAL_UNITS = "total_units";
         public static final String MAJOR_APPROACH_ROAD = "major_approach_road";
         public static final String PUBLIC_TRANSPORT = "public_transport";
@@ -57,11 +57,11 @@ public class ProjectDAL {
         public static final String OPEN_LAND = "open_land";
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
-        
+
     }
 
     public static final String TABLE_NAME = "project";
-
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertProject;
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -85,8 +85,6 @@ public class ProjectDAL {
                         Columns.COMPLETION_DATE,
                         Columns.TOTAL_BUILDINGS,
                         Columns.TOTAL_FLOORS,
-                        Columns.IMAGES,
-                        Columns.VIDEOS,
                         Columns.TOTAL_UNITS,
                         Columns.MAJOR_APPROACH_ROAD,
                         Columns.PUBLIC_TRANSPORT,
@@ -96,8 +94,7 @@ public class ProjectDAL {
                         Columns.PAYMENT_SCHEDULE,
                         Columns.WORKPLACES,
                         Columns.BASIC_AMENITIES,
-                        Columns.LUXURY_AMENITIES,
-                        Columns.OWNERSHIP_PROOF,
+                        Columns.LUXURY_AMENITIES,                        
                         Columns.APPROVED_BANKS,
                         Columns.SD_VERIFIED,
                         Columns.PRIVATE_AMENITIES,
@@ -126,23 +123,22 @@ public class ProjectDAL {
     }
 
     public Project insert(Project project) throws JsonProcessingException {
-        
+        logger.info("Project :{}", project);
+        System.out.println("Kunal" +project);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, project.getName());
         parameters.put(Columns.STATE_ID, project.getStateId());
         parameters.put(Columns.CITY_ID, project.getCityId());
         parameters.put(Columns.LOCATION_ID, project.getLocationId());
         parameters.put(Columns.SUB_LOCATION, project.getSubLocation());
-        parameters.put(Columns.PROJECT_TYPE, project.getProjectType());
-        parameters.put(Columns.PROJECT_SCALE, project.getProjectScale());
+        parameters.put(Columns.PROJECT_TYPE, project.getProjectType().name());
+        parameters.put(Columns.PROJECT_SCALE, project.getProjectScale().name());
         parameters.put(Columns.PROPERTIES_TYPE, project.getPropertiesType() == null ? "[]" : mapper.writeValueAsString(project.getPropertiesType()));
         parameters.put(Columns.BOOKING_START_DATE, project.getBookingStartDate());
-        parameters.put(Columns.CONSTRUCTION_STAGE, project.getConstructionStage());
+        parameters.put(Columns.CONSTRUCTION_STAGE, project.getConstructionStage().name());
         parameters.put(Columns.COMPLETION_DATE, project.getCompletionDate());
         parameters.put(Columns.TOTAL_BUILDINGS, project.getTotalBuildings());
         parameters.put(Columns.TOTAL_FLOORS, project.getTotalFloors());
-        parameters.put(Columns.IMAGES, project.getImages() == null ? "[]" : mapper.writeValueAsString(project.getImages()));
-        parameters.put(Columns.VIDEOS, project.getVideos() == null ? "[]" : mapper.writeValueAsString(project.getVideos()));
         parameters.put(Columns.TOTAL_UNITS, project.getTotalUnits());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, project.getMajorApproachRoad());
         parameters.put(Columns.PUBLIC_TRANSPORT, project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()));
@@ -152,11 +148,10 @@ public class ProjectDAL {
         parameters.put(Columns.PAYMENT_SCHEDULE, project.getPaymentSchedule());
         parameters.put(Columns.WORKPLACES, project.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(project.getWorkplaces()));
         parameters.put(Columns.BASIC_AMENITIES, project.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(project.getBasicAmenities()));
-        parameters.put(Columns.LUXURY_AMENITIES, project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()));
-        parameters.put(Columns.OWNERSHIP_PROOF, project.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(project.getOwnershipProof()));
+        parameters.put(Columns.LUXURY_AMENITIES, project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()));        
         parameters.put(Columns.APPROVED_BANKS, project.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(project.getApprovedBanks()));
         parameters.put(Columns.SD_VERIFIED, project.getSdVerified());
-        parameters.put(Columns.PRIVATE_AMENITIES, project.getPrivateAmenities() == null ? "[]" :mapper.writeValueAsString(project.getPrivateAmenities()));
+        parameters.put(Columns.PRIVATE_AMENITIES, project.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(project.getPrivateAmenities()));
         parameters.put(Columns.PROJECT_TESTIMONIAL, project.getProjectTestimonial());
         parameters.put(Columns.SALABLE_AREA, project.getSalableArea());
         parameters.put(Columns.CARPET_AREA, project.getCarpetArea());
@@ -171,21 +166,19 @@ public class ProjectDAL {
         project = findById(newId.intValue());
         return project;
     }
-    
+
     public List<Project> findByLocationId(Integer locationId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(Project.class));
     }
-    
+
 //    public List<Project> findByProjectCost(Double projectCost) {
 //        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROJECT_COST + " <= ?";
 //        return jdbcTemplate.query(sqlQuery, new Object[]{projectCost}, new BeanPropertyRowMapper<>(Project.class));
 //    }
-
-    
     public Project update(Project project) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.NAME + " =?,"                
+                + Columns.NAME + " =?,"
                 + Columns.STATE_ID + " =?,"
                 + Columns.CITY_ID + " =?,"
                 + Columns.LOCATION_ID + " =?,"
@@ -198,8 +191,6 @@ public class ProjectDAL {
                 + Columns.COMPLETION_DATE + " =?,"
                 + Columns.TOTAL_BUILDINGS + " =?,"
                 + Columns.TOTAL_FLOORS + " =?,"
-                + Columns.IMAGES + " =?,"
-                + Columns.VIDEOS + " =?,"
                 + Columns.TOTAL_UNITS + " =?,"
                 + Columns.MAJOR_APPROACH_ROAD + " =?,"
                 + Columns.PUBLIC_TRANSPORT + " =?,"
@@ -239,11 +230,9 @@ public class ProjectDAL {
             project.getCompletionDate(),
             project.getTotalBuildings(),
             project.getTotalFloors(),
-            project.getImages() == null ? "[]" : mapper.writeValueAsString(project.getImages()),
-            project.getVideos() == null ? "[]" : mapper.writeValueAsString(project.getVideos()),
             project.getTotalUnits(),
             project.getMajorApproachRoad(),
-            project.getPublicTransport()  == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
+            project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
             project.getOfferedPrice(),
             project.getDiscount(),
             project.getOfferValidTill(),
@@ -269,8 +258,8 @@ public class ProjectDAL {
         project = findById(project.getId());
         return project;
     }
-    
-     public void delete(Integer id) {
+
+    public void delete(Integer id) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{true, id});
     }

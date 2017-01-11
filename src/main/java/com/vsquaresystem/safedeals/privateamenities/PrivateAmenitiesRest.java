@@ -41,6 +41,11 @@ public class PrivateAmenitiesRest {
     public PrivateAmenities findByName(@RequestParam("name") String name) {
         return privateAmenitiesDAL.findByName(name);
     }
+    
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<PrivateAmenities> findByNameLike(@RequestParam("name") String name) {
+        return privateAmenitiesDAL.findByNameLike(name);
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public PrivateAmenities insert(@RequestBody PrivateAmenities privateAmenities) {
