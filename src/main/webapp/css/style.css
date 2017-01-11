@@ -560,7 +560,7 @@ form.tab-form-demo .tab-pane {
 }
 
 /*thumbnail slider*/
-#thumbnail-preview-indicators {
+/*#thumbnail-preview-indicators {
     position: relative;
     overflow: hidden;
 }
@@ -628,7 +628,7 @@ form.tab-form-demo .tab-pane {
         margin-top: -50px;
         margin-left: -25px;
     }
-}
+}*/
 
 /*fix nav bar*/
 /*#first {
