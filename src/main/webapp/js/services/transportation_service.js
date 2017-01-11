@@ -9,6 +9,14 @@ angular.module("safedeals.services.transportation")
                         'name': '@name'
                     },
                     'isArray': false
+                },
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/transportation/find/name_like',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
                 }
             });
         });

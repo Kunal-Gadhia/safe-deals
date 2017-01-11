@@ -67,6 +67,12 @@ public class AmenityDetailDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AmenityDetail.class));
     }
+    
+    public List<AmenityDetail> findByNameLike(String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+        String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(AmenityDetail.class));
+    }
 
     public AmenityDetail findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";

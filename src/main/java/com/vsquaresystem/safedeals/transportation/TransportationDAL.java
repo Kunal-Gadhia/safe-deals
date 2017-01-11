@@ -46,6 +46,12 @@ public class TransportationDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Transportation.class));
     }
+    
+    public List<Transportation> findByNameLike(String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+        String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Transportation.class));
+    }
 
     public Transportation insert(Transportation transportation) {
         Map<String, Object> parameters = new HashMap<>();

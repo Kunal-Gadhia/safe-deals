@@ -28,6 +28,20 @@ hr.ft-hr {
 #myNavbar ul {
     margin-top: 30px;
 }
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    #myNavbar ul {
+        margin-top: 8px;
+        height: 168px;
+    }
+    #myNavbar ul li{
+        border-bottom: 1px solid #cdcdcd;
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+    .toggle{
+        margin-top: 30px;
+    }
+}
 #navbar-default{
     background-color: #fff;
 }
@@ -229,7 +243,8 @@ form.tab-form-demo .tab-pane {
     position: absolute;
     color:#f5dabc;
     left: 663px;
-    top: 80%;}
+    top: 80%;
+}
 
 .tagline .tag button{
     border-color: #a55324;

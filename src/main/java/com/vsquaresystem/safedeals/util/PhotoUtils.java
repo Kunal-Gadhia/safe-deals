@@ -4,7 +4,6 @@
 // * and open the template in the editor.
 // */
 package com.vsquaresystem.safedeals.util;
-//
 
 import com.vsquaresystem.safedeals.event.Event;
 import com.vsquaresystem.safedeals.image.Image;
@@ -118,7 +117,6 @@ public class PhotoUtils {
     }
 
     /////////////////////////////////////////////////
-
     public File getEventPhoto(Event event) throws FileNotFoundException, IOException {
         if (event.getPhotoPath() != null) {
             PHOTO_FILE_NAME = event.getPhotoPath().get(0).toString();
@@ -162,7 +160,7 @@ public class PhotoUtils {
     }
 
     public File getImagePhotoFile(Image image) throws IOException {
-        File imageDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.EVENT, image.getId(), true);
+        File imageDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.IMAGE, image.getId(), true);
         return new File(imageDir, PHOTO_FILE_NAME);
     }
 }

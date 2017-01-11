@@ -55,6 +55,12 @@ public class PropertyTypeDAL {
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{numberOfBhk}, new BeanPropertyRowMapper<>(PropertyType.class));
     }
     
+    public List<PropertyType> findByNumberOfBhkLike(String numberOfBhk) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(number_of_bhk) LIKE?";
+        String nameLike = "%" + numberOfBhk.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(PropertyType.class));
+    }
+    
     public PropertyType insert(PropertyType propertyType) {
         logger.info("Insert Object :{}", propertyType);
         Map<String, Object> parameters = new HashMap<>();

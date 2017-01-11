@@ -41,6 +41,19 @@ angular.module("safedeals.states.private_amenities", [])
             $scope.privateAmenitiess = PrivateAmenitiesService.query({
                 'offset': $scope.currentOffset
             });
+
+            $scope.nextPage = function () {
+                $scope.currentOffset += paginationLimit;
+                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
+            
+            $scope.previousPage = function () {
+                if ($scope.currentOffset <= 0) {
+                    return;
+                }
+                $scope.currentOffset -= paginationLimit;
+                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
         })
         .controller('PrivateAmenitiesAddController', function (PrivateAmenitiesService, $scope, $state) {
             $scope.editablePrivateAmenities = {};

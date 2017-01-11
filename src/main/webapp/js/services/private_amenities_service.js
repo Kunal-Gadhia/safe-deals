@@ -15,6 +15,14 @@ angular.module("safedeals.services.private_amenities")
                         'name': '@name'
                     },
                     'isArray': false
+                },
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/private_amenities/find/name_like',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
                 }
             });
         });
