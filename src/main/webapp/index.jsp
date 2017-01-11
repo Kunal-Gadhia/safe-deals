@@ -35,7 +35,7 @@
         <!--<script src="${pageContext.request.contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>--> 
         <script src="${pageContext.request.contextPath}/js/lib/angular-google-map.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/angular-simple-logger.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&region=IN"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&region=IN&key=AIzaSyBEYDdJx8BB-fQa_H2qKoUO84oUrH8BFQE"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.charts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.theme.fint.js"></script>
