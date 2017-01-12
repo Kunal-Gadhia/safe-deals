@@ -66,7 +66,7 @@ hr.ft-hr {
     /*    background: url("../images/noise-texture-background.png") fixed;*/
     background-color: #EBF6FC;
     overflow: hidden;
-    min-height: 680px;
+/*    min-height: 680px;*/
 }
 
 #city_logo{
@@ -234,15 +234,15 @@ form.tab-form-demo .tab-pane {
     margin-bottom: 0;
 }
 .tagline{
-    background: url("../images/image.jpg") center center;
+/*    background: url("../images/image.jpg") center center;
+    height:450px;*/
     z-index: 1000;
-    height:450px;
     position: relative
 }
 .tagline .tag{
     position: absolute;
     color:#f5dabc;
-    left: 663px;
+/*    left: 663px;*/
     top: 80%;
 }
 
@@ -360,10 +360,10 @@ form.tab-form-demo .tab-pane {
 #calc-nav {
     margin-bottom: 50px;
 }
-.custom-background {
+/*.custom-background {
     background-color: white;
     border : 1px solid #D3D3D3;
-}
+}*/
 .custom_hr{
     margin: 0;
     padding: 4px 0 3px;

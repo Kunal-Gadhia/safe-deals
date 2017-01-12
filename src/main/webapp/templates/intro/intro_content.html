@@ -1,14 +1,14 @@
 <div class="col-md-9 col-xs-12">
     <iframe class="video" ng-src="{{selectedVideo.videoUrl}}" frameborder="0" allowfullscreen></iframe>
 </div>
-<div class="col-md-3 col-sm-6 col-xs-4" style="overflow-y:auto; max-height:450px;">
+<div class="col-md-3 col-sm-6 col-xs-12" style="overflow-y:auto; max-height:432px;">
     <div class="row form-group" ng-repeat="video in videos">
-        <div class="image col-sm-6">
+        <div class="image col-sm-6 col-xs-6">
             <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
                 <img ng-src="{{video.thumbnailImgSrc}}" width="125" height="100"/>
             </a>
         </div>
-        <div class="side col-sm-6">
+        <div class="side col-sm-6 col-xs-6">
             <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
                 <strong>{{video.name}}</strong>
             </a>

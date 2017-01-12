@@ -1,16 +1,17 @@
-<div class="tagline modal-body text-center custom-background col-md-9 col-xs-12">
-    <div class="tag">
+<div class="col-md-9 col-xs-12 padding form-group">
+     <img alt="" src="images/image.png" class="img-responsive" data-ui-sref="main.intro.intro_content({ videoId: introVideo.id })">
+<!--    <div class="tag">
         <button type="button" class="btn btn-default btn-lg" style="width:192px" data-ui-sref="main.intro.intro_content({ videoId: introVideo.id })">Watch Video <i class="fa fa-play-circle-o"></i></button>
-    </div>
+    </div>-->
 </div>
-<div class="col-md-3 col-sm-6 col-xs-12" style="overflow-y:auto; max-height:450px;">
-    <div class="col-sm-12 col-xs-4 form-group" ng-repeat="video in videos">
-        <div class="image col-sm-5">
+<div class="col-md-3 col-sm-6 col-xs-12" style="overflow-y:auto; max-height:427px;">
+    <div class="row form-group" ng-repeat="video in videos">
+        <div class="image col-sm-6 col-xs-6">
             <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
                 <img ng-src="{{video.thumbnailImgSrc}}" width="125" height="100"/>
             </a>
         </div>
-        <div class="side col-sm-7">
+        <div class="side col-sm-6 col-xs-6">
             <a href="#" data-ui-sref="main.intro.intro_content({ videoId: video.id })">
                 <strong>{{video.name}}</strong>
             </a>
@@ -22,6 +23,7 @@
         </div>
     </div>
 </div>
+
 
 <!----old code---->
 <!--<div class="tagline modal-body text-center custom-background">
