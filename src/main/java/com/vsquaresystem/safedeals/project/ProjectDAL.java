@@ -1,7 +1,11 @@
 package com.vsquaresystem.safedeals.project;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +15,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProjectDAL {
+
+    public static final String TABLE_NAME = "project";
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert insertProject;
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static final class Columns {
 
@@ -60,12 +71,6 @@ public class ProjectDAL {
 
     }
 
-    public static final String TABLE_NAME = "project";
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-    private final JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert insertProject;
-    private static final ObjectMapper mapper = new ObjectMapper();
-
     @Autowired
     public ProjectDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -94,7 +99,7 @@ public class ProjectDAL {
                         Columns.PAYMENT_SCHEDULE,
                         Columns.WORKPLACES,
                         Columns.BASIC_AMENITIES,
-                        Columns.LUXURY_AMENITIES,                        
+                        Columns.LUXURY_AMENITIES,
                         Columns.APPROVED_BANKS,
                         Columns.SD_VERIFIED,
                         Columns.PRIVATE_AMENITIES,
@@ -113,18 +118,20 @@ public class ProjectDAL {
     }
 
     public List<Project> findAll(Integer offset) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ? ";
-        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Project.class));
+        System.out.println("Offset :" + offset);
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
+        System.out.println("Sql Query :" + sqlQuery);
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, projectRowMapper);
     }
 
     public Project findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Project.class));
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, projectRowMapper);
     }
 
     public Project insert(Project project) throws JsonProcessingException {
         logger.info("Project :{}", project);
-        System.out.println("Kunal" +project);
+        System.out.println("Kunal" + project);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, project.getName());
         parameters.put(Columns.STATE_ID, project.getStateId());
@@ -148,7 +155,7 @@ public class ProjectDAL {
         parameters.put(Columns.PAYMENT_SCHEDULE, project.getPaymentSchedule());
         parameters.put(Columns.WORKPLACES, project.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(project.getWorkplaces()));
         parameters.put(Columns.BASIC_AMENITIES, project.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(project.getBasicAmenities()));
-        parameters.put(Columns.LUXURY_AMENITIES, project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()));        
+        parameters.put(Columns.LUXURY_AMENITIES, project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()));
         parameters.put(Columns.APPROVED_BANKS, project.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(project.getApprovedBanks()));
         parameters.put(Columns.SD_VERIFIED, project.getSdVerified());
         parameters.put(Columns.PRIVATE_AMENITIES, project.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(project.getPrivateAmenities()));
@@ -169,7 +176,7 @@ public class ProjectDAL {
 
     public List<Project> findByLocationId(Integer locationId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(Project.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, projectRowMapper);
     }
 
 //    public List<Project> findByProjectCost(Double projectCost) {
@@ -262,12 +269,148 @@ public class ProjectDAL {
     public List<Project> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
-        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Project.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, projectRowMapper);
     }
 
     public void delete(Integer id) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{true, id});
     }
+
+    private final RowMapper<Project> projectRowMapper = new RowMapper<Project>() {
+
+        @Override
+        public Project mapRow(ResultSet rs, int i) throws SQLException {
+            Project project = new Project();
+            project.setId(rs.getInt(Columns.ID));
+            project.setName(rs.getString(Columns.NAME));
+            project.setStateId(rs.getInt(Columns.STATE_ID));
+            if (rs.wasNull()) {
+                project.setStateId(null);
+            }
+            project.setCityId(rs.getInt(Columns.CITY_ID));
+            if (rs.wasNull()) {
+                project.setCityId(null);
+            }
+            project.setLocationId(rs.getInt(Columns.LOCATION_ID));
+            if (rs.wasNull()) {
+                project.setLocationId(null);
+            }
+            project.setSubLocation(rs.getString(Columns.SUB_LOCATION));
+            if (rs.getString(Columns.PROJECT_TYPE) != null) {
+                project.setProjectType(ProjectType.valueOf(rs.getString(Columns.PROJECT_TYPE)));
+            }
+            if (rs.getString(Columns.PROJECT_SCALE) != null) {
+                project.setProjectScale(ProjectScale.valueOf(rs.getString(Columns.PROJECT_SCALE)));
+            }
+            String propertiesTypeList = rs.getString(Columns.PROPERTIES_TYPE);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> propertiesType = mapper.readValue(propertiesTypeList, new TypeReference<List<Integer>>() {
+                });
+                project.setPropertiesType(propertiesType);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing propertiesTypeList: '" + propertiesTypeList + "' ", ex);
+            }
+            project.setBookingStartDate(rs.getDate(Columns.BOOKING_START_DATE));
+            if (rs.getString(Columns.CONSTRUCTION_STAGE) != null) {
+                project.setConstructionStage(ConstructionStage.valueOf(rs.getString(Columns.CONSTRUCTION_STAGE)));
+            }
+            project.setCompletionDate(rs.getDate(Columns.COMPLETION_DATE));
+            project.setTotalBuildings(rs.getInt(Columns.TOTAL_BUILDINGS));
+            project.setTotalFloors(rs.getInt(Columns.TOTAL_FLOORS));
+            project.setTotalUnits(rs.getInt(Columns.TOTAL_UNITS));
+            project.setMajorApproachRoad(rs.getInt(Columns.MAJOR_APPROACH_ROAD));
+            if (rs.wasNull()) {
+                project.setMajorApproachRoad(null);
+            }
+            String publicTransportList = rs.getString(Columns.PUBLIC_TRANSPORT);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
+                });
+                project.setPublicTransport(publicTransport);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing publicTransportList: '" + publicTransportList + "' ", ex);
+            }
+            project.setOfferedPrice(rs.getDouble(Columns.OFFERED_PRICE));
+            project.setDiscount(rs.getDouble(Columns.DISCOUNT));
+            project.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
+            project.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
+            String workplacesList = rs.getString(Columns.WORKPLACES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> workplace = mapper.readValue(workplacesList, new TypeReference<List<Integer>>() {
+                });
+                project.setWorkplaces(workplace);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing workplacesList: '" + workplacesList + "' ", ex);
+            }
+            String basicAmenitiesList = rs.getString(Columns.BASIC_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> basicAmenities = mapper.readValue(basicAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                project.setBasicAmenities(basicAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing basicAmenitiesList: '" + basicAmenitiesList + "' ", ex);
+            }
+            String luxuryAmenitiesList = rs.getString(Columns.LUXURY_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> luxuryAmenities = mapper.readValue(luxuryAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                project.setLuxuryAmenities(luxuryAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
+            }
+            String ownershipProofList = rs.getString(Columns.OWNERSHIP_PROOF);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
+                });
+                project.setOwnershipProof(ownershipProof);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
+            }
+            String approvedBanksList = rs.getString(Columns.APPROVED_BANKS);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> approvedBanks = mapper.readValue(approvedBanksList, new TypeReference<List<Integer>>() {
+                });
+                project.setApprovedBanks(approvedBanks);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing approvedBanksList: '" + approvedBanksList + "' ", ex);
+            }
+            project.setSdVerified(rs.getBoolean(Columns.SD_VERIFIED));
+            String privateAmenitiesList = rs.getString(Columns.PRIVATE_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> privateAmenities = mapper.readValue(privateAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                project.setPrivateAmenities(privateAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing privateAmenitiesList: '" + privateAmenitiesList + "' ", ex);
+            }
+            project.setProjectTestimonial(rs.getString(Columns.PROJECT_TESTIMONIAL));
+            project.setSalableArea(rs.getDouble(Columns.SALABLE_AREA));
+            project.setCarpetArea(rs.getDouble(Columns.CARPET_AREA));
+            project.setBuildUpArea(rs.getDouble(Columns.BUILD_UP_AREA));
+            project.setBalconyCount(rs.getInt(Columns.BALCONY_COUNT));
+            project.setToiletCount(rs.getInt(Columns.TOILET_COUNT));
+            project.setOpenTerrace(rs.getBoolean(Columns.OPEN_TERRACE));
+            project.setOpenLand(rs.getBoolean(Columns.OPEN_LAND));
+            project.setLatitude(rs.getDouble(Columns.LATITUDE));
+            project.setLongitude(rs.getDouble(Columns.LONGITUDE));
+
+            return project;
+        }
+//
+//        @Override
+//        public Project mapRow(ResultSet rs, int i) throws SQLException {
+//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        }
+
+    };
 
 }

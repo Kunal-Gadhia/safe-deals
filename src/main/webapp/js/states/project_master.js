@@ -21,7 +21,7 @@ angular.module("safedeals.states.project_master", [])
                 'controller': 'ProjectDeleteController'
             });
         })
-        .controller('ProjectListController', function (CityService, CountryService, StateService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectListController', function (CityService, CountryService, StateService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -34,11 +34,11 @@ angular.module("safedeals.states.project_master", [])
 
             $scope.nextOffset = $scope.currentOffset + 5;
 
-            $scope.nextProperties = PropertyService.query({
+            $scope.nextProjects = ProjectService.query({
                 'offset': $scope.nextOffset
             });
 
-            $scope.properties = PropertyService.query({
+            $scope.projects = ProjectService.query({
                 'offset': $scope.currentOffset
             });
 //            , function () {
