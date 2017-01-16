@@ -23,8 +23,11 @@
             <tr>
                 <th class="text-right">#</th>
                 <th>Project Name</th>               
-                <th>Description</th>
-                <th>Project Type</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>Offered Price</th>
+                <th>Build Up Area</th>
+                <th>Carpet Area</th>
                 <!--                <th>Location</th>
                                 <th>City</th>-->
 
@@ -37,18 +40,23 @@
             <tr ng-repeat="project in projects">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
                 <td>{{ project.name}}</td>              
-                <td>{{ project.description}}</td>              
-                <td>{{ project.propertyType}}</td>              
-                <!--                <td>{{ property.location.name}}</td>              
-                                <td>{{ property.city.name}}</td>              -->
+                <td>{{ project.city.name}}</td>              
+                <td>{{ project.location.name}}</td>
+                <td>&#8377; {{ project.offeredPrice}}</td>
+                <td>{{ project.buildUpArea}} Sq.Ft</td>
+                <td>{{ project.carpetArea}} Sq.Ft</td>              
                 <td class="text-right">
-                    <a data-ui-sref="admin.masters_property.edit({ propertyId: property.id })"
+                     <a data-ui-sref="admin.masters_project.view({ propertyId: property.id })"
                        class="btn btn-primary">					
-                        <i class="fa fa-pencil"></i>
+                         <i class="fa fa-file-text" title="View"></i>
                     </a>
-                    <a data-ui-sref="admin.masters_property.delete({ propertyId: property.id })"
+                    <a data-ui-sref="admin.masters_project.edit({ projectId: project.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil" title="Edit"></i>
+                    </a>
+                    <a data-ui-sref="admin.masters_project.delete({ projectId: project.id })"
                        class="btn btn-danger">
-                        <i class="fa fa-trash"></i>
+                        <i class="fa fa-trash" title="Delete"></i>
                     </a>
                 </td>
             </tr>

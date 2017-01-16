@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -229,11 +232,11 @@ public class ProjectDAL {
             project.getCityId(),
             project.getLocationId(),
             project.getSubLocation(),
-            project.getProjectType(),
-            project.getProjectScale(),
+            project.getProjectType().name(),
+            project.getProjectScale().name(),
             project.getPropertiesType() == null ? "[]" : mapper.writeValueAsString(project.getPropertiesType()),
             project.getBookingStartDate(),
-            project.getConstructionStage(),
+            project.getConstructionStage().name(),
             project.getCompletionDate(),
             project.getTotalBuildings(),
             project.getTotalFloors(),
@@ -312,7 +315,7 @@ public class ProjectDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing propertiesTypeList: '" + propertiesTypeList + "' ", ex);
             }
-            project.setBookingStartDate(rs.getDate(Columns.BOOKING_START_DATE));
+            project.setBookingStartDate(rs.getDate(Columns.BOOKING_START_DATE));            
             if (rs.getString(Columns.CONSTRUCTION_STAGE) != null) {
                 project.setConstructionStage(ConstructionStage.valueOf(rs.getString(Columns.CONSTRUCTION_STAGE)));
             }
