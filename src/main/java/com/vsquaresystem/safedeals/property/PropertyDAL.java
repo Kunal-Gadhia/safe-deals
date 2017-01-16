@@ -1,14 +1,18 @@
 package com.vsquaresystem.safedeals.property;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -114,12 +118,12 @@ public class PropertyDAL {
 
     public List<Property> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ? ";
-        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Property.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, propertyRowMapper);
     }
 
     public Property findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Property.class));
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, propertyRowMapper);
     }
 
     public Property insert(Property property) throws JsonProcessingException {
@@ -168,7 +172,7 @@ public class PropertyDAL {
 
     public List<Property> findByLocationId(Integer locationId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(Property.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, propertyRowMapper);
     }
 
     public Property update(Property property) {
@@ -257,12 +261,155 @@ public class PropertyDAL {
 
     public List<Property> findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Property.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{name}, propertyRowMapper);
     }
 
     public List<Property> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
-        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Property.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, propertyRowMapper);
     }
+
+    private final RowMapper<Property> propertyRowMapper = new RowMapper<Property>() {
+
+        @Override
+        public Property mapRow(ResultSet rs, int i) throws SQLException {
+            Property property = new Property();
+            property.setId(rs.getInt(PropertyDAL.Columns.ID));
+
+            property.setName(rs.getString(PropertyDAL.Columns.NAME));
+
+            property.setCityId(rs.getInt(PropertyDAL.Columns.CITY_ID));
+            if (rs.wasNull()) {
+                property.setCityId(null);
+            }
+            property.setLocationId(rs.getInt(PropertyDAL.Columns.LOCATION_ID));
+            if (rs.wasNull()) {
+                property.setLocationId(null);
+            }
+
+            if (rs.getString(PropertyDAL.Columns.PROPERTY_TYPE) != null) {
+                property.setPropertyType(PropertyType.valueOf(rs.getString(PropertyDAL.Columns.PROPERTY_TYPE)));
+            }
+
+            property.setPropertySize(rs.getInt(PropertyDAL.Columns.PROPERTY_SIZE));
+
+            property.setSize(rs.getDouble(PropertyDAL.Columns.SIZE));
+
+            property.setPriceRange(rs.getDouble(PropertyDAL.Columns.PRICE_RANGE));
+
+            property.setBuildingAge(rs.getDate(PropertyDAL.Columns.BUILDING_AGE));
+
+            property.setTotalFloors(rs.getInt(PropertyDAL.Columns.TOTAL_FLOORS));
+
+            if (rs.getString(PropertyDAL.Columns.ENTRY_FACES) != null) {
+                property.setEntryFacing(EntryFacing.valueOf(rs.getString(PropertyDAL.Columns.ENTRY_FACES)));
+            }
+
+            if (rs.getString(PropertyDAL.Columns.BUILDING_CONDITION) != null) {
+                property.setBuildingCondition(BuildingCondition.valueOf(rs.getString(PropertyDAL.Columns.BUILDING_CONDITION)));
+            }
+
+            property.setProjectId(rs.getInt(PropertyDAL.Columns.PROJECT_ID));
+            if (rs.wasNull()) {
+                property.setProjectId(null);
+            }
+
+            property.setMajorApproachRoad(rs.getInt(PropertyDAL.Columns.MAJOR_APPROACH_ROAD));
+            if (rs.wasNull()) {
+                property.setMajorApproachRoad(null);
+            }
+
+            String publicTransportList = rs.getString(PropertyDAL.Columns.PUBLIC_TRANSPORT);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
+                });
+                property.setPublicTransport(publicTransport);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing publicTransportList: '" + publicTransportList + "' ", ex);
+            }
+
+//            property.setCompletionDate(rs.getDate(PropertyDAL.Columns.COMPLETION_DATE));
+//            property.setTotalBuildings(rs.getInt(PropertyDAL.Columns.TOTAL_BUILDINGS));
+//            property.setTotalFloors(rs.getInt(PropertyDAL.Columns.TOTAL_FLOORS));
+//            property.setTotalUnits(rs.getInt(PropertyDAL.Columns.TOTAL_UNITS));
+            property.setOfferedPrice(rs.getDouble(PropertyDAL.Columns.OFFERED_PRICE));
+            property.setDiscount(rs.getDouble(PropertyDAL.Columns.DISCOUNT));
+            property.setOfferValidTill(rs.getDate(PropertyDAL.Columns.OFFER_VALID_TILL));
+            property.setPaymentSchedule(rs.getString(PropertyDAL.Columns.PAYMENT_SCHEDULE));
+            String workplacesList = rs.getString(PropertyDAL.Columns.WORKPLACES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> workplace = mapper.readValue(workplacesList, new TypeReference<List<Integer>>() {
+                });
+                property.setWorkplaces(workplace);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing workplacesList: '" + workplacesList + "' ", ex);
+            }
+
+            String basicAmenitiesList = rs.getString(PropertyDAL.Columns.BASIC_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> basicAmenities = mapper.readValue(basicAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                property.setBasicAmenities(basicAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing basicAmenitiesList: '" + basicAmenitiesList + "' ", ex);
+            }
+            String luxuryAmenitiesList = rs.getString(PropertyDAL.Columns.LUXURY_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> luxuryAmenities = mapper.readValue(luxuryAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                property.setLuxuryAmenities(luxuryAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
+            }
+            String ownershipProofList = rs.getString(PropertyDAL.Columns.OWNERSHIP_PROOF);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
+                });
+                property.setOwnershipProof(ownershipProof);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
+            }
+            String approvedBanksList = rs.getString(PropertyDAL.Columns.APPROVED_BANKS);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> approvedBanks = mapper.readValue(approvedBanksList, new TypeReference<List<Integer>>() {
+                });
+                property.setApprovedBanks(approvedBanks);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing approvedBanksList: '" + approvedBanksList + "' ", ex);
+            }
+            property.setSdVerified(rs.getBoolean(PropertyDAL.Columns.SD_VERIFIED));
+
+            String privateAmenitiesList = rs.getString(PropertyDAL.Columns.PRIVATE_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> privateAmenities = mapper.readValue(privateAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                property.setPrivateAmenities(privateAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing privateAmenitiesList: '" + privateAmenitiesList + "' ", ex);
+            }
+
+            property.setSellerCommisionAgreement(rs.getBoolean(PropertyDAL.Columns.SELLER_COMMISION_AGREEMENT));
+            // property.setProjectTestimonial(rs.getString(PropertyDAL.Columns.PROJECT_TESTIMONIAL));
+            property.setSalableArea(rs.getDouble(PropertyDAL.Columns.SALABLE_AREA));
+            property.setCarpetArea(rs.getDouble(PropertyDAL.Columns.CARPET_AREA));
+            property.setBuildUpArea(rs.getDouble(PropertyDAL.Columns.BUILD_UP_AREA));
+            property.setBalconyCount(rs.getInt(PropertyDAL.Columns.BALCONY_COUNT));
+            property.setToiletCount(rs.getInt(PropertyDAL.Columns.TOILET_COUNT));
+            property.setOpenTerrace(rs.getBoolean(PropertyDAL.Columns.OPEN_TERRACE));
+            property.setOpenLand(rs.getBoolean(PropertyDAL.Columns.OPEN_LAND));
+            property.setLatitude(rs.getDouble(PropertyDAL.Columns.LATITUDE));
+            property.setLongitude(rs.getDouble(PropertyDAL.Columns.LONGITUDE));
+
+            return property;
+        }
+
+    };
 }
