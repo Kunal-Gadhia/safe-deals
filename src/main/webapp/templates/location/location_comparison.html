@@ -1,7 +1,6 @@
 <div class="modal modal-safedeals">
     <div class="modal-backdrop fade in"></div>
-    <div class="modal-dialog modal-lg">
-        <!--<form role="form" ng-submit="saveAgency(editableAgency)">-->
+    <div class="modal-dialog modal-lg">        
         <div class="modal-content overflow">
             <div class="modal-header">
                 <div class="row form-group">
@@ -47,12 +46,7 @@
                         <tr>
                             <td><i class="fa fa-bus "></i>&nbsp <b>Public Transport</b></td>
                             <td ng-repeat="location in compareList">{{location.publicTransport}}</td>
-                        </tr>
-                        <!--                        <tr>
-                                                    <td><i class="fa fa-building-o "></i>&nbsp <b>Commercial Center</b></td>
-                                                    <td ng-repeat="location in compareList" ng-if="location.isCommercialCenter === true">Yes</td>
-                                                    <td ng-repeat="location in compareList" ng-if="location.isCommercialCenter === false">No</td>
-                                                </tr>-->
+                        </tr>                        
                         <tr>
                             <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Advantages</b></td>
                             <td ng-repeat="location in compareList">{{location.advantage}}</td>
@@ -63,49 +57,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <!--                <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Agency Name</label>
-                                            <input class="form-control" placeholder="Agency name" ng-model="editableAgency.name"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <input class="form-control" placeholder="Address" ng-model="editableAgency.address"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" ng-show="editableAgency.repeatName">
-                                    <div class="col-sm-6 text-danger">
-                                        Found Records For Above Entered Name
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <input class="form-control" placeholder="Desription" ng-model="editableAgency.description"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-lg btn-primary">
-                                        <i class="fa fa-save"></i>
-                                        Save
-                                    </button>
-                                    <button type="button"
-                                            onclick="window.history.back()"
-                                            class="btn btn-link" >
-                                        cancel
-                                    </button>				
-                                </div>
-                            </div>
-                        </div>-->
-            <!--</form>-->
+            </div>            
         </div>
     </div>
 

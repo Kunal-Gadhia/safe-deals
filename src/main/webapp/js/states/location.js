@@ -20,7 +20,7 @@ angular.module("safedeals.states.location", [])
 
         .controller('LocationController', function ($scope, $state, $filter, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
-
+            $scope.hideCompareButton = true;
             $scope.validateForm = function (cityName, minBudget, maxBudget, propertySize) {
                 console.log("Min Budget :" + minBudget);
                 console.log("Max Budget :" + maxBudget);
