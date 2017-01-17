@@ -1,6 +1,6 @@
 <div class="modal modal-safedeals">
     <div class="modal-backdrop fade in"></div>
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <form role="form" ng-submit="saveProject(editableProject)">
             <div class="modal-content">
                 <div class="modal-header">
@@ -17,7 +17,8 @@
                             </li>
                         </ul>
                     </div>
-                    <form role="form" ng-submit="saveProject(editableProject)">
+                    <div>
+                        <!--<form role="form" ng-submit="saveProject(editableProject)">-->
                         <div  ng-switch on="selection" class="locations"> 
                             <!--                    <div ng-show="myValue">-->
                             <div ng-show="myValue">                            
@@ -207,7 +208,6 @@
                                         </div>
                                     </div>                                    
                                 </div>
-
                             </div>
                             <div ng-switch-when="Connectivity" class="locations">
                                 <div ng-show="connectivity">
@@ -553,7 +553,10 @@
                                 cancel
                             </button>				
                         </div>
+
+                    </div>
                 </div>
+            </div>
         </form>
     </div>
 </div>

@@ -23,11 +23,16 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 'https://www.youtube.com/embed/**'
             ]);
         })
-        .controller('MainController', function ($scope, VideoService, $state, $window) {
+        .controller('MainController', function ($scope, VideoService, $state, $window, $location) {
             $scope.introVideo = VideoService.findIntroVideo();
             var parrentDiv = $('#parrentDiv');
             parrentDiv.removeClass();
             parrentDiv.addClass('bg-city-spcl');
+            
+            $scope.gotoTop = function () {
+                $location.hash('top');
+                $anchorScroll();
+            };
         })
         .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService) {
             $scope.username = $stateParams.username;
