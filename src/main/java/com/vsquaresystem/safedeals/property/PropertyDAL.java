@@ -29,9 +29,9 @@ public class PropertyDAL {
         public static final String PROPERTY_SIZE = "size_of_property";
         public static final String SIZE = "size";
         public static final String PRICE_RANGE = "price_range";
-        public static final String BUILDING_AGE = "building_age";
+        public static final String BUILDING_AGE = "age_of_building";
         public static final String TOTAL_FLOORS = "total_floors";
-        public static final String ENTRY_FACES = "entry_faces";
+        public static final String ENTRY_FACING = "entry_facing";
 
         public static final String BUILDING_CONDITION = "building_condition";
         public static final String PROJECT_ID = "project_id";
@@ -42,7 +42,7 @@ public class PropertyDAL {
         public static final String OFFER_VALID_TILL = "offer_valid_till";
         public static final String PAYMENT_SCHEDULE = "payment_schedule";
         public static final String WORKPLACES = "workplaces";
-        public static final String PROJECT_NEARBY = "project_nearby";
+        public static final String PROJECTS_NEARBY = "projects_nearby";
         public static final String BASIC_AMENITIES = "basic_amenities";
         public static final String LUXURY_AMENITIES = "luxury_amenities";
         public static final String OWNERSHIP_PROOF = "ownership_proof";
@@ -85,7 +85,7 @@ public class PropertyDAL {
                         Columns.PRICE_RANGE,
                         Columns.BUILDING_AGE,
                         Columns.TOTAL_FLOORS,
-                        Columns.ENTRY_FACES,
+                        Columns.ENTRY_FACING,
                         Columns.BUILDING_CONDITION,
                         Columns.PROJECT_ID,
                         Columns.MAJOR_APPROACH_ROAD,
@@ -95,10 +95,9 @@ public class PropertyDAL {
                         Columns.OFFER_VALID_TILL,
                         Columns.PAYMENT_SCHEDULE,
                         Columns.WORKPLACES,
-                        Columns.PROJECT_NEARBY,
+                        Columns.PROJECTS_NEARBY,
                         Columns.BASIC_AMENITIES,
                         Columns.LUXURY_AMENITIES,
-                        Columns.OWNERSHIP_PROOF,
                         Columns.APPROVED_BANKS,
                         Columns.SD_VERIFIED,
                         Columns.PRIVATE_AMENITIES,
@@ -131,15 +130,14 @@ public class PropertyDAL {
         parameters.put(Columns.NAME, property.getName());
         parameters.put(Columns.CITY_ID, property.getCityId());
         parameters.put(Columns.LOCATION_ID, property.getLocationId());
-        parameters.put(Columns.PROPERTY_TYPE, property.getPropertyType());
+        parameters.put(Columns.PROPERTY_TYPE, property.getPropertyType().name());
         parameters.put(Columns.PROPERTY_SIZE, property.getPropertySize());
         parameters.put(Columns.SIZE, property.getSize());
         parameters.put(Columns.PRICE_RANGE, property.getPriceRange());
         parameters.put(Columns.BUILDING_AGE, property.getBuildingAge());
         parameters.put(Columns.TOTAL_FLOORS, property.getTotalFloors());
-        parameters.put(Columns.ENTRY_FACES, property.getEntryFacing());
-
-        parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition());
+        parameters.put(Columns.ENTRY_FACING, property.getEntryFacing().name());
+        parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition().name());
         parameters.put(Columns.PROJECT_ID, property.getProjectId());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, property.getMajorApproachRoad());
         parameters.put(Columns.PUBLIC_TRANSPORT, property.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(property.getPublicTransport()));
@@ -148,10 +146,9 @@ public class PropertyDAL {
         parameters.put(Columns.OFFER_VALID_TILL, property.getOfferValidTill());
         parameters.put(Columns.PAYMENT_SCHEDULE, property.getPaymentSchedule());
         parameters.put(Columns.WORKPLACES, property.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(property.getWorkplaces()));
-        parameters.put(Columns.PROJECT_NEARBY, property.getProjectNearby());
+        parameters.put(Columns.PROJECTS_NEARBY, property.getProjectsNearby() == null ? "[]" : mapper.writeValueAsString(property.getProjectsNearby()));
         parameters.put(Columns.BASIC_AMENITIES, property.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(property.getBasicAmenities()));
-        // parameters.put(Columns.LUXURY_AMENITIES, property.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(property.getLuxuryAmenities()));
-        parameters.put(Columns.OWNERSHIP_PROOF, property.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(property.getOwnershipProof()));
+        parameters.put(Columns.LUXURY_AMENITIES, property.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(property.getLuxuryAmenities()));
         parameters.put(Columns.APPROVED_BANKS, property.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(property.getApprovedBanks()));
         parameters.put(Columns.SD_VERIFIED, property.getSdVerified());
         parameters.put(Columns.PRIVATE_AMENITIES, property.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(property.getPrivateAmenities()));
@@ -175,7 +172,7 @@ public class PropertyDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, propertyRowMapper);
     }
 
-    public Property update(Property property) {
+    public Property update(Property property) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " =?,"
                 + Columns.CITY_ID + " =?,"
@@ -186,7 +183,7 @@ public class PropertyDAL {
                 + Columns.PRICE_RANGE + " =?,"
                 + Columns.BUILDING_AGE + " =?,"
                 + Columns.TOTAL_FLOORS + " =?,"
-                + Columns.ENTRY_FACES + " =?,"
+                + Columns.ENTRY_FACING + " =?,"
                 + Columns.BUILDING_CONDITION + " =?,"
                 + Columns.PROJECT_ID + " =?,"
                 + Columns.MAJOR_APPROACH_ROAD + " =?,"
@@ -196,8 +193,9 @@ public class PropertyDAL {
                 + Columns.OFFER_VALID_TILL + " =?,"
                 + Columns.PAYMENT_SCHEDULE + " =?,"
                 + Columns.WORKPLACES + " =?,"
-                + Columns.PROJECT_NEARBY + " =?,"
+                + Columns.PROJECTS_NEARBY + " =?,"
                 + Columns.BASIC_AMENITIES + " =?,"
+                + Columns.LUXURY_AMENITIES + " =?,"
                 + Columns.OWNERSHIP_PROOF + " =?,"
                 + Columns.APPROVED_BANKS + " =?,"
                 + Columns.SD_VERIFIED + " =?,"
@@ -217,28 +215,29 @@ public class PropertyDAL {
             property.getName(),
             property.getCityId(),
             property.getLocationId(),
-            property.getPropertyType(),
+            property.getPropertyType().name(),
             property.getPropertySize(),
             property.getSize(),
             property.getPriceRange(),
             property.getBuildingAge(),
             property.getTotalFloors(),
-            property.getEntryFacing(),
-            property.getBuildingCondition(),
+            property.getEntryFacing().name(),
+            property.getBuildingCondition().name(),
             property.getProjectId(),
             property.getMajorApproachRoad(),
-            property.getPublicTransport(),
+            property.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(property.getPublicTransport()),
             property.getOfferedPrice(),
             property.getDiscount(),
             property.getOfferValidTill(),
             property.getPaymentSchedule(),
-            property.getWorkplaces(),
-            property.getProjectNearby(),
-            property.getBasicAmenities(),
-            property.getOwnershipProof(),
-            property.getApprovedBanks(),
+            property.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(property.getWorkplaces()),
+            property.getProjectsNearby() == null ? "[]" : mapper.writeValueAsString(property.getProjectsNearby()),
+            property.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(property.getBasicAmenities()),
+            property.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(property.getLuxuryAmenities()),
+            property.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(property.getOwnershipProof()),
+            property.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(property.getApprovedBanks()),
             property.getSdVerified(),
-            property.getPrivateAmenities(),
+            property.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(property.getPrivateAmenities()),
             property.getSellerCommisionAgreement(),
             property.getSalableArea(),
             property.getCarpetArea(),
@@ -275,52 +274,56 @@ public class PropertyDAL {
         @Override
         public Property mapRow(ResultSet rs, int i) throws SQLException {
             Property property = new Property();
-            property.setId(rs.getInt(PropertyDAL.Columns.ID));
+            property.setId(rs.getInt(Columns.ID));
 
-            property.setName(rs.getString(PropertyDAL.Columns.NAME));
+            property.setName(rs.getString(Columns.NAME));
 
-            property.setCityId(rs.getInt(PropertyDAL.Columns.CITY_ID));
+            property.setCityId(rs.getInt(Columns.CITY_ID));
             if (rs.wasNull()) {
                 property.setCityId(null);
             }
-            property.setLocationId(rs.getInt(PropertyDAL.Columns.LOCATION_ID));
+            property.setLocationId(rs.getInt(Columns.LOCATION_ID));
             if (rs.wasNull()) {
                 property.setLocationId(null);
             }
 
-            if (rs.getString(PropertyDAL.Columns.PROPERTY_TYPE) != null) {
-                property.setPropertyType(PropertyType.valueOf(rs.getString(PropertyDAL.Columns.PROPERTY_TYPE)));
+            if (rs.getString(Columns.PROPERTY_TYPE) != null) {
+                property.setPropertyType(PropertyType.valueOf(rs.getString(Columns.PROPERTY_TYPE)));
             }
 
-            property.setPropertySize(rs.getInt(PropertyDAL.Columns.PROPERTY_SIZE));
+            property.setPropertySize(rs.getInt(Columns.PROPERTY_SIZE));
+            if (rs.wasNull()) {
+                property.setPropertySize(null);
+            }
+//            property.setPropertySize(rs.getInt(Columns.PROPERTY_SIZE));
 
-            property.setSize(rs.getDouble(PropertyDAL.Columns.SIZE));
+            property.setSize(rs.getDouble(Columns.SIZE));
 
-            property.setPriceRange(rs.getDouble(PropertyDAL.Columns.PRICE_RANGE));
+            property.setPriceRange(rs.getDouble(Columns.PRICE_RANGE));
 
-            property.setBuildingAge(rs.getDate(PropertyDAL.Columns.BUILDING_AGE));
+            property.setBuildingAge(rs.getDate(Columns.BUILDING_AGE));
 
-            property.setTotalFloors(rs.getInt(PropertyDAL.Columns.TOTAL_FLOORS));
+            property.setTotalFloors(rs.getInt(Columns.TOTAL_FLOORS));
 
-            if (rs.getString(PropertyDAL.Columns.ENTRY_FACES) != null) {
-                property.setEntryFacing(EntryFacing.valueOf(rs.getString(PropertyDAL.Columns.ENTRY_FACES)));
+            if (rs.getString(Columns.ENTRY_FACING) != null) {
+                property.setEntryFacing(EntryFacing.valueOf(rs.getString(Columns.ENTRY_FACING)));
             }
 
-            if (rs.getString(PropertyDAL.Columns.BUILDING_CONDITION) != null) {
-                property.setBuildingCondition(BuildingCondition.valueOf(rs.getString(PropertyDAL.Columns.BUILDING_CONDITION)));
+            if (rs.getString(Columns.BUILDING_CONDITION) != null) {
+                property.setBuildingCondition(BuildingCondition.valueOf(rs.getString(Columns.BUILDING_CONDITION)));
             }
 
-            property.setProjectId(rs.getInt(PropertyDAL.Columns.PROJECT_ID));
+            property.setProjectId(rs.getInt(Columns.PROJECT_ID));
             if (rs.wasNull()) {
                 property.setProjectId(null);
             }
 
-            property.setMajorApproachRoad(rs.getInt(PropertyDAL.Columns.MAJOR_APPROACH_ROAD));
+            property.setMajorApproachRoad(rs.getInt(Columns.MAJOR_APPROACH_ROAD));
             if (rs.wasNull()) {
                 property.setMajorApproachRoad(null);
             }
 
-            String publicTransportList = rs.getString(PropertyDAL.Columns.PUBLIC_TRANSPORT);
+            String publicTransportList = rs.getString(Columns.PUBLIC_TRANSPORT);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
@@ -334,11 +337,11 @@ public class PropertyDAL {
 //            property.setTotalBuildings(rs.getInt(PropertyDAL.Columns.TOTAL_BUILDINGS));
 //            property.setTotalFloors(rs.getInt(PropertyDAL.Columns.TOTAL_FLOORS));
 //            property.setTotalUnits(rs.getInt(PropertyDAL.Columns.TOTAL_UNITS));
-            property.setOfferedPrice(rs.getDouble(PropertyDAL.Columns.OFFERED_PRICE));
-            property.setDiscount(rs.getDouble(PropertyDAL.Columns.DISCOUNT));
-            property.setOfferValidTill(rs.getDate(PropertyDAL.Columns.OFFER_VALID_TILL));
-            property.setPaymentSchedule(rs.getString(PropertyDAL.Columns.PAYMENT_SCHEDULE));
-            String workplacesList = rs.getString(PropertyDAL.Columns.WORKPLACES);
+            property.setOfferedPrice(rs.getDouble(Columns.OFFERED_PRICE));
+            property.setDiscount(rs.getDouble(Columns.DISCOUNT));
+            property.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
+            property.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
+            String workplacesList = rs.getString(Columns.WORKPLACES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> workplace = mapper.readValue(workplacesList, new TypeReference<List<Integer>>() {
@@ -347,8 +350,16 @@ public class PropertyDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing workplacesList: '" + workplacesList + "' ", ex);
             }
-
-            String basicAmenitiesList = rs.getString(PropertyDAL.Columns.BASIC_AMENITIES);
+            String projectsNearbyList = rs.getString(Columns.PROJECTS_NEARBY);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> projectNearby = mapper.readValue(projectsNearbyList, new TypeReference<List<Integer>>() {
+                });
+                property.setProjectsNearby(projectNearby);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing projectsNearbyList: '" + projectsNearbyList + "' ", ex);
+            }
+            String basicAmenitiesList = rs.getString(Columns.BASIC_AMENITIES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> basicAmenities = mapper.readValue(basicAmenitiesList, new TypeReference<List<Integer>>() {
@@ -357,7 +368,7 @@ public class PropertyDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing basicAmenitiesList: '" + basicAmenitiesList + "' ", ex);
             }
-            String luxuryAmenitiesList = rs.getString(PropertyDAL.Columns.LUXURY_AMENITIES);
+            String luxuryAmenitiesList = rs.getString(Columns.LUXURY_AMENITIES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> luxuryAmenities = mapper.readValue(luxuryAmenitiesList, new TypeReference<List<Integer>>() {
@@ -366,7 +377,7 @@ public class PropertyDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
             }
-            String ownershipProofList = rs.getString(PropertyDAL.Columns.OWNERSHIP_PROOF);
+            String ownershipProofList = rs.getString(Columns.OWNERSHIP_PROOF);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
@@ -375,7 +386,7 @@ public class PropertyDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
             }
-            String approvedBanksList = rs.getString(PropertyDAL.Columns.APPROVED_BANKS);
+            String approvedBanksList = rs.getString(Columns.APPROVED_BANKS);
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> approvedBanks = mapper.readValue(approvedBanksList, new TypeReference<List<Integer>>() {
@@ -384,29 +395,29 @@ public class PropertyDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing approvedBanksList: '" + approvedBanksList + "' ", ex);
             }
-            property.setSdVerified(rs.getBoolean(PropertyDAL.Columns.SD_VERIFIED));
+            property.setSdVerified(rs.getBoolean(Columns.SD_VERIFIED));
 
-            String privateAmenitiesList = rs.getString(PropertyDAL.Columns.PRIVATE_AMENITIES);
+            String privateAmenitiesList = rs.getString(Columns.PRIVATE_AMENITIES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
-                List<String> privateAmenities = mapper.readValue(privateAmenitiesList, new TypeReference<List<Integer>>() {
+                List<Integer> privateAmenities = mapper.readValue(privateAmenitiesList, new TypeReference<List<Integer>>() {
                 });
                 property.setPrivateAmenities(privateAmenities);
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing privateAmenitiesList: '" + privateAmenitiesList + "' ", ex);
             }
 
-            property.setSellerCommisionAgreement(rs.getBoolean(PropertyDAL.Columns.SELLER_COMMISION_AGREEMENT));
+            property.setSellerCommisionAgreement(rs.getBoolean(Columns.SELLER_COMMISION_AGREEMENT));
             // property.setProjectTestimonial(rs.getString(PropertyDAL.Columns.PROJECT_TESTIMONIAL));
-            property.setSalableArea(rs.getDouble(PropertyDAL.Columns.SALABLE_AREA));
-            property.setCarpetArea(rs.getDouble(PropertyDAL.Columns.CARPET_AREA));
-            property.setBuildUpArea(rs.getDouble(PropertyDAL.Columns.BUILD_UP_AREA));
-            property.setBalconyCount(rs.getInt(PropertyDAL.Columns.BALCONY_COUNT));
-            property.setToiletCount(rs.getInt(PropertyDAL.Columns.TOILET_COUNT));
-            property.setOpenTerrace(rs.getBoolean(PropertyDAL.Columns.OPEN_TERRACE));
-            property.setOpenLand(rs.getBoolean(PropertyDAL.Columns.OPEN_LAND));
-            property.setLatitude(rs.getDouble(PropertyDAL.Columns.LATITUDE));
-            property.setLongitude(rs.getDouble(PropertyDAL.Columns.LONGITUDE));
+            property.setSalableArea(rs.getDouble(Columns.SALABLE_AREA));
+            property.setCarpetArea(rs.getDouble(Columns.CARPET_AREA));
+            property.setBuildUpArea(rs.getDouble(Columns.BUILD_UP_AREA));
+            property.setBalconyCount(rs.getInt(Columns.BALCONY_COUNT));
+            property.setToiletCount(rs.getInt(Columns.TOILET_COUNT));
+            property.setOpenTerrace(rs.getBoolean(Columns.OPEN_TERRACE));
+            property.setOpenLand(rs.getBoolean(Columns.OPEN_LAND));
+            property.setLatitude(rs.getDouble(Columns.LATITUDE));
+            property.setLongitude(rs.getDouble(Columns.LONGITUDE));
 
             return property;
         }

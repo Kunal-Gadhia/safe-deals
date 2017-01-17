@@ -23,8 +23,11 @@
             <tr>
                 <th class="text-right">#</th>
                 <th>Property Name</th>               
-                <th>Description</th>
-                <th>Property Type</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>Offered Price</th>
+                <th>Build Up Area</th>
+                <th>Carpet Area</th>
                 <!--                <th>Location</th>
                                 <th>City</th>-->
 
@@ -37,10 +40,12 @@
             <tr ng-repeat="property in properties">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
                 <td>{{ property.name}}</td>              
-                <td>{{ property.description}}</td>              
-                <td>{{ property.propertyType}}</td>              
-                <!--                <td>{{ property.location.name}}</td>              
-                                <td>{{ property.city.name}}</td>              -->
+                <td>{{ property.city.name}}</td>              
+                <td>{{ property.location.name}}</td>
+                <td>&#8377; {{ property.offeredPrice}}</td>
+                <td>{{ property.buildUpArea}} Sq.Ft</td>
+                <td>{{ property.carpetArea}} Sq.Ft</td>
+
                 <td class="text-right">
                     <a data-ui-sref="admin.masters_property.edit({ propertyId: property.id })"
                        class="btn btn-primary">					
