@@ -63,7 +63,7 @@ public class PropertyRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Property update(@RequestBody Property property) {
+    public Property update(@RequestBody Property property) throws JsonProcessingException {
         return propertyDAL.update(property);
     }
 }

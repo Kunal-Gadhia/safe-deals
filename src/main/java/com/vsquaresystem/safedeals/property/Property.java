@@ -26,7 +26,6 @@ public class Property {
     private Date buildingAge;
     private Integer totalFloors;
     private EntryFacing entryFacing;
-
     private BuildingCondition buildingCondition;
     private Integer projectId;
     private Integer majorApproachRoad;
@@ -36,13 +35,13 @@ public class Property {
     private Date offerValidTill;
     private String paymentSchedule;
     private List<Integer> workplaces;
-    private List<Integer> projectNearby;
+    private List<Integer> projectsNearby;
     private List<Integer> basicAmenities;
     private List<Integer> luxuryAmenities;
     private List<String> ownershipProof;
     private List<Integer> approvedBanks;
     private Boolean sdVerified;
-    private List<String> privateAmenities;
+    private List<Integer> privateAmenities;
     private Boolean sellerCommisionAgreement;
     private Double salableArea;
     private Double carpetArea;
@@ -214,12 +213,12 @@ public class Property {
         this.workplaces = workplaces;
     }
 
-    public List<Integer> getProjectNearby() {
-        return projectNearby;
+    public List<Integer> getProjectsNearby() {
+        return projectsNearby;
     }
 
-    public void setProjectNearby(List<Integer> projectNearby) {
-        this.projectNearby = projectNearby;
+    public void setProjectsNearby(List<Integer> projectsNearby) {
+        this.projectsNearby = projectsNearby;
     }
 
     public List<Integer> getBasicAmenities() {
@@ -262,11 +261,11 @@ public class Property {
         this.sdVerified = sdVerified;
     }
 
-    public List<String> getPrivateAmenities() {
+    public List<Integer> getPrivateAmenities() {
         return privateAmenities;
     }
 
-    public void setPrivateAmenities(List<String> privateAmenities) {
+    public void setPrivateAmenities(List<Integer> privateAmenities) {
         this.privateAmenities = privateAmenities;
     }
 
@@ -353,43 +352,43 @@ public class Property {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.cityId);
-        hash = 97 * hash + Objects.hashCode(this.locationId);
-        hash = 97 * hash + Objects.hashCode(this.propertyType);
-        hash = 97 * hash + Objects.hashCode(this.propertySize);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.buildingAge);
-        hash = 97 * hash + Objects.hashCode(this.totalFloors);
-        hash = 97 * hash + Objects.hashCode(this.entryFacing);
-        hash = 97 * hash + Objects.hashCode(this.buildingCondition);
-        hash = 97 * hash + Objects.hashCode(this.projectId);
-        hash = 97 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 97 * hash + Objects.hashCode(this.publicTransport);
-        hash = 97 * hash + Objects.hashCode(this.offeredPrice);
-        hash = 97 * hash + Objects.hashCode(this.discount);
-        hash = 97 * hash + Objects.hashCode(this.offerValidTill);
-        hash = 97 * hash + Objects.hashCode(this.paymentSchedule);
-        hash = 97 * hash + Objects.hashCode(this.workplaces);
-        hash = 97 * hash + Objects.hashCode(this.projectNearby);
-        hash = 97 * hash + Objects.hashCode(this.basicAmenities);
-        hash = 97 * hash + Objects.hashCode(this.luxuryAmenities);
-        hash = 97 * hash + Objects.hashCode(this.ownershipProof);
-        hash = 97 * hash + Objects.hashCode(this.approvedBanks);
-        hash = 97 * hash + Objects.hashCode(this.sdVerified);
-        hash = 97 * hash + Objects.hashCode(this.privateAmenities);
-        hash = 97 * hash + Objects.hashCode(this.sellerCommisionAgreement);
-        hash = 97 * hash + Objects.hashCode(this.salableArea);
-        hash = 97 * hash + Objects.hashCode(this.carpetArea);
-        hash = 97 * hash + Objects.hashCode(this.buildUpArea);
-        hash = 97 * hash + Objects.hashCode(this.balconyCount);
-        hash = 97 * hash + Objects.hashCode(this.toiletCount);
-        hash = 97 * hash + Objects.hashCode(this.openTerrace);
-        hash = 97 * hash + Objects.hashCode(this.openLand);
-        hash = 97 * hash + Objects.hashCode(this.latitude);
-        hash = 97 * hash + Objects.hashCode(this.longitude);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.cityId);
+        hash = 59 * hash + Objects.hashCode(this.locationId);
+        hash = 59 * hash + Objects.hashCode(this.propertyType);
+        hash = 59 * hash + Objects.hashCode(this.propertySize);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.buildingAge);
+        hash = 59 * hash + Objects.hashCode(this.totalFloors);
+        hash = 59 * hash + Objects.hashCode(this.entryFacing);
+        hash = 59 * hash + Objects.hashCode(this.buildingCondition);
+        hash = 59 * hash + Objects.hashCode(this.projectId);
+        hash = 59 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 59 * hash + Objects.hashCode(this.publicTransport);
+        hash = 59 * hash + Objects.hashCode(this.offeredPrice);
+        hash = 59 * hash + Objects.hashCode(this.discount);
+        hash = 59 * hash + Objects.hashCode(this.offerValidTill);
+        hash = 59 * hash + Objects.hashCode(this.paymentSchedule);
+        hash = 59 * hash + Objects.hashCode(this.workplaces);
+        hash = 59 * hash + Objects.hashCode(this.projectsNearby);
+        hash = 59 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 59 * hash + Objects.hashCode(this.luxuryAmenities);
+        hash = 59 * hash + Objects.hashCode(this.ownershipProof);
+        hash = 59 * hash + Objects.hashCode(this.approvedBanks);
+        hash = 59 * hash + Objects.hashCode(this.sdVerified);
+        hash = 59 * hash + Objects.hashCode(this.privateAmenities);
+        hash = 59 * hash + Objects.hashCode(this.sellerCommisionAgreement);
+        hash = 59 * hash + Objects.hashCode(this.salableArea);
+        hash = 59 * hash + Objects.hashCode(this.carpetArea);
+        hash = 59 * hash + Objects.hashCode(this.buildUpArea);
+        hash = 59 * hash + Objects.hashCode(this.balconyCount);
+        hash = 59 * hash + Objects.hashCode(this.toiletCount);
+        hash = 59 * hash + Objects.hashCode(this.openTerrace);
+        hash = 59 * hash + Objects.hashCode(this.openLand);
+        hash = 59 * hash + Objects.hashCode(this.latitude);
+        hash = 59 * hash + Objects.hashCode(this.longitude);
         return hash;
     }
 
@@ -435,7 +434,6 @@ public class Property {
         if (this.entryFacing != other.entryFacing) {
             return false;
         }
-
         if (this.buildingCondition != other.buildingCondition) {
             return false;
         }
@@ -463,7 +461,7 @@ public class Property {
         if (!Objects.equals(this.workplaces, other.workplaces)) {
             return false;
         }
-        if (!Objects.equals(this.projectNearby, other.projectNearby)) {
+        if (!Objects.equals(this.projectsNearby, other.projectsNearby)) {
             return false;
         }
         if (!Objects.equals(this.basicAmenities, other.basicAmenities)) {
@@ -519,7 +517,8 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Property{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", buildingAge=" + buildingAge + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", buildingCondition=" + buildingCondition + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", workplaces=" + workplaces + ", projectNearby=" + projectNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + '}';
+        return "Property{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", buildingAge=" + buildingAge + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", buildingCondition=" + buildingCondition + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + '}';
     }
 
+    
 }
