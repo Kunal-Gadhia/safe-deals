@@ -109,6 +109,8 @@ angular.module("safedeals.states.location", [])
                     map.setZoom(13);
                 });
                 console.log("City Id :%O", $stateParams.cityId);
+                console.log("Min Budget :%O", $stateParams.locationMinBudget);
+                console.log("Max Budget :%O", $stateParams.locationMaxBudget);
                 MarketPriceService.findByRequirement({
                     'cityId': $stateParams.cityId, // cityId is hard coded for 1.0 version
                     'locationMinBudget': Math.round($stateParams.locationMinBudget),

@@ -17,13 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProjectRest {
 
     @Autowired
-
     private ProjectDAL projectDAL;
+    
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Project> findAll(
-            @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+    public List<Project> findAll(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         return projectDAL.findAll(offset);
 
     }

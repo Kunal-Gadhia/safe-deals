@@ -98,8 +98,12 @@ public class MarketPriceDAL {
     public List<MarketPrice> findByRequirement(Integer cityId, Integer locationMinBudget, Integer locationMaxBudget) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CITY_ID + " = ? AND " + Columns.MP_RESIDENTIAL_LOWEST + " >= ? AND "
-                + Columns.MP_RESIDENTIAL_LOWEST + " < ? AND " + Columns.YEAR + " = ? AND " + Columns.MONTH + " = ?";
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "
+                + Columns.CITY_ID + " = ? AND "
+                + Columns.MP_RESIDENTIAL_LOWEST + " >= ? AND "
+                + Columns.MP_RESIDENTIAL_LOWEST + " < ? AND "
+                + Columns.YEAR + " = ? AND "
+                + Columns.MONTH + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{cityId, locationMinBudget, locationMaxBudget, year, month}, new BeanPropertyRowMapper<>(MarketPrice.class));
     }
 
