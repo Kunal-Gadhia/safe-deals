@@ -76,6 +76,10 @@ hr.ft-hr {
 #city_nav{
     margin-top: 30px;
 }
+
+.overflow{
+    overflow-x: auto;
+}
 /*.bg-site{
     background: url("../images/noise-texture-background.png") fixed;
     background-size: cover
