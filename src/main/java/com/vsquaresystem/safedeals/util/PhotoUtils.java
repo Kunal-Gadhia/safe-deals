@@ -7,6 +7,7 @@ package com.vsquaresystem.safedeals.util;
 
 import com.vsquaresystem.safedeals.event.Event;
 import com.vsquaresystem.safedeals.image.Image;
+import com.vsquaresystem.safedeals.property.Property;
 import com.vsquaresystem.safedeals.team.Team;
 import com.vsquaresystem.safedeals.testimonial.Testimonial;
 import com.vsquaresystem.safedeals.util.AttachmentUtils.AttachmentType;
@@ -163,4 +164,31 @@ public class PhotoUtils {
         File imageDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.IMAGE, image.getId(), true);
         return new File(imageDir, PHOTO_FILE_NAME);
     }
+
+    /////////////////////////////////////////////////
+
+    public File getPropertyPhoto(Property property) throws FileNotFoundException, IOException {
+        if (property.getOwnershipProof() != null) {
+            PHOTO_FILE_NAME = property.getOwnershipProof().get(0).toString();
+        }
+        File photoFile = getPropertyPhotoFile(property);
+        return photoFile;
+    }
+
+    public File setPropertyPhoto(
+            InputStream inputStream,
+            Property property)
+            throws IOException {
+
+        File photoFile = getPropertyPhotoFile(property);
+        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
+        return photoFile;
+    }
+
+    public File getPropertyPhotoFile(Property property) throws IOException {
+        File propertyDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROPERTY, property.getId(), true);
+        return new File(propertyDir, PHOTO_FILE_NAME);
+    }
+
+    ///////////////////////////////////////////////
 }
