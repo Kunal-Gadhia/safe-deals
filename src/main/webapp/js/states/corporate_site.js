@@ -48,7 +48,7 @@ angular.module("safedeals.states.corporate_site", [])
                     });
         })
 
-        .controller('CorporateSiteController', function ($scope, $stateParams, $state, $location) {
+        .controller('CorporateSiteController', function ($scope, $stateParams, $state, $location, $anchorScroll) {
             var parrentDiv = $('#parrentDiv');
             parrentDiv.removeClass();
             parrentDiv.addClass('bg-site');
