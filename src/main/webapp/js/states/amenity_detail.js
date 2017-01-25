@@ -27,6 +27,7 @@ angular.module("safedeals.states.amenity_detail", [])
             });
         })
         .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService, CityService, $scope, $stateParams, $state, paginationLimit) {
+
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -70,6 +71,19 @@ angular.module("safedeals.states.amenity_detail", [])
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
+//            angular.element($window).bind("scroll", function () {
+//                console.log("Page Y Offset :%O", this.pageYOffset);
+//                if (this.pageYOffset >= 10) {
+//
+//                      $scope.nextPage();
+//                    console.log('Scrolled below header.');
+//                } else {
+//
+////                    $scope.previousPage();
+//                    console.log('Header is in view.');
+//                }
+//                $scope.$apply();
+//            });
             $scope.previousPage = function () {
                 if ($scope.currentOffset <= 0) {
                     return;
