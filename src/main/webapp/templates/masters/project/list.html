@@ -28,6 +28,7 @@
                 <th>Offered Price</th>
                 <th>Build Up Area</th>
                 <th>Carpet Area</th>
+                <th>Ownership Proof</th>
                 <!--                <th>Location</th>
                                 <th>City</th>-->
 
@@ -44,11 +45,16 @@
                 <td>{{ project.location.name}}</td>
                 <td>&#8377; {{ project.offeredPrice}}</td>
                 <td>{{ project.buildUpArea}} Sq.Ft</td>
-                <td>{{ project.carpetArea}} Sq.Ft</td>              
+                <td>{{ project.carpetArea}} Sq.Ft</td>
+                <td><a data-ui-sref="admin.masters_project.view({projectId: project.id})">{{ project.ownershipProof.toString()}}</a></td>
                 <td class="text-right">
-                     <a data-ui-sref="admin.masters_project.view({ propertyId: property.id })"
+                    <a data-ui-sref="admin.masters_project.photo({ projectId: project.id })"
                        class="btn btn-primary">					
-                         <i class="fa fa-file-text" title="View"></i>
+                        <i class="fa fa-upload"></i>
+                    </a>
+                    <a data-ui-sref="admin.masters_project.view({ projectId: project.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-file-text" title="View"></i>
                     </a>
                     <a data-ui-sref="admin.masters_project.edit({ projectId: project.id })"
                        class="btn btn-primary">					

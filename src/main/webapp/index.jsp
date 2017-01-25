@@ -35,6 +35,7 @@
         <!--<script src="${pageContext.request.contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>--> 
         <script src="${pageContext.request.contextPath}/js/lib/angular-google-map.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/angular-simple-logger.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/infinite-scroll.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&region=IN&key=AIzaSyBEYDdJx8BB-fQa_H2qKoUO84oUrH8BFQE"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.charts.js"></script>
@@ -45,6 +46,7 @@
         <script src="${pageContext.request.contextPath}/js/lib/jquery.flexslider-min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/scripts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/wow.min.js"></script>
+        <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
         <!--<script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>-->
         <!--        <script>
                     $(document).ready(function () {
@@ -85,6 +87,7 @@
         <script src="${pageContext.request.contextPath}/js/auth.js"></script>
         <script src="${pageContext.request.contextPath}/js/filters.js"></script>
         <script src="${pageContext.request.contextPath}/js/directives/datetime_picker.js"></script>
+        <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
         <!--states-->
         <script src="${pageContext.request.contextPath}/js/states.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/admin.js"></script>
@@ -183,7 +186,7 @@
         <script src="${pageContext.request.contextPath}/js/services/private_amenities_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/road_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/mail_service.js"></script>
-         <script src="${pageContext.request.contextPath}/js/services/image_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/image_service.js"></script>
 
     </head>
     <body>
