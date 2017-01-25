@@ -1,6 +1,7 @@
 package com.vsquaresystem.safedeals.amenitydetail;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,16 @@ public class AmenityDetailRest {
 
     }
 
+    @RequestMapping(value = "/complete_amenity_details", method = RequestMethod.GET)
+    public List<AmenityDetail> findAmenityDetails() {
+        return amenityDetailDal.findAmenityDetails();
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public Integer count() throws SQLException {
+        return amenityDetailDal.count();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AmenityDetail findById(@PathVariable("id") Integer id) {
         return amenityDetailDal.findById(id);
@@ -46,7 +57,7 @@ public class AmenityDetailRest {
     public List<AmenityDetail> findByName(@RequestParam("name") String name) {
         return amenityDetailDal.findByName(name);
     }
-    
+
     @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
     public List<AmenityDetail> findByNameLike(@RequestParam("name") String name) {
         return amenityDetailDal.findByNameLike(name);
@@ -73,12 +84,11 @@ public class AmenityDetailRest {
             @ModelAttribute AmenityDetailFilter amenityDetailFilter) {
         return amenityDetailDal.findByADFilter(amenityDetailFilter);
     }
-    
+
     @RequestMapping(value = "/find/amenity_id/city_id", method = RequestMethod.GET)
     public List<AmenityDetail> findByAmenityIdCityId(@RequestParam("amenityId") Integer amenityId, @RequestParam("cityId") Integer cityId) {
         return amenityDetailDal.findByAmenityIdCityId(amenityId, cityId);
     }
-
 
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public Boolean exportExcelData() throws IOException {

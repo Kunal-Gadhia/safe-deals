@@ -26,7 +26,8 @@ angular.module("safedeals.states.amenity_detail", [])
                 'controller': 'AmenityDetailImportController'
             });
         })
-        .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService, CityService, $scope, $window, $stateParams, $state, paginationLimit) {
+        .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService, CityService, $scope, $stateParams, $state, paginationLimit) {
+
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||

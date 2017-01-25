@@ -7,6 +7,7 @@ package com.vsquaresystem.safedeals.util;
 
 import com.vsquaresystem.safedeals.event.Event;
 import com.vsquaresystem.safedeals.image.Image;
+import com.vsquaresystem.safedeals.project.Project;
 import com.vsquaresystem.safedeals.property.Property;
 import com.vsquaresystem.safedeals.team.Team;
 import com.vsquaresystem.safedeals.testimonial.Testimonial;
@@ -140,6 +141,30 @@ public class PhotoUtils {
         File eventDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.EVENT, event.getId(), true);
         return new File(eventDir, PHOTO_FILE_NAME);
     }
+    ///////////////////////////////////////////////
+
+    public File getProjectOwnershipPhoto(Project project) throws FileNotFoundException, IOException {
+        if (project.getOwnershipProof() != null) {
+            PHOTO_FILE_NAME = project.getOwnershipProof().get(0).toString();
+        }
+        File photoFile = getProjectOwnershipPhotoFile(project);
+        return photoFile;
+    }
+
+    public File setProjectOwnershipPhoto(
+            InputStream inputStream,
+            Project project)
+            throws IOException {
+
+        File photoFile = getProjectOwnershipPhotoFile(project);
+        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
+        return photoFile;
+    }
+
+    public File getProjectOwnershipPhotoFile(Project project) throws IOException {
+        File projectOwnershipDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_OWNERSHIP_PROOF, project.getId(), true);
+        return new File(projectOwnershipDir, PHOTO_FILE_NAME);
+    }
 
     ///////////////////////////////////////////////
     public File getImagePhoto(Image image) throws FileNotFoundException, IOException {
@@ -166,7 +191,6 @@ public class PhotoUtils {
     }
 
     /////////////////////////////////////////////////
-
     public File getPropertyPhoto(Property property) throws FileNotFoundException, IOException {
         if (property.getOwnershipProof() != null) {
             PHOTO_FILE_NAME = property.getOwnershipProof().get(0).toString();

@@ -12,7 +12,6 @@ angular.module("safedeals.services.raw_market_price")
                 'saveExcelData': {
                     'method': 'POST',
                     'url': restRoot + '/rawmarketprice/save_excel'
-
                 },
                 'exportAllRawMarketPrice': {
                     'method': 'POST',

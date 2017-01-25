@@ -30,9 +30,9 @@ public class AmenityDetailDAL {
         public static final String PHONE_NUMBER = "phone_number";
         public static final String MOBILE_NUMBER = "mobile_number";
         public static final String LOCATION_ID = "location_id";
-        public static final String AMENITY_ID = "amenity_id";                
+        public static final String AMENITY_ID = "amenity_id";
         public static final String LATITUDE = "latitude";
-        public static final String LONGITUDE = "longitude";        
+        public static final String LONGITUDE = "longitude";
         private static final String CITY_ID = "city_id";
     };
 
@@ -46,7 +46,7 @@ public class AmenityDetailDAL {
                         Columns.PHONE_NUMBER,
                         Columns.MOBILE_NUMBER,
                         Columns.LOCATION_ID,
-                        Columns.AMENITY_ID,                        
+                        Columns.AMENITY_ID,
                         Columns.LATITUDE,
                         Columns.LONGITUDE,
                         Columns.CITY_ID)
@@ -58,6 +58,16 @@ public class AmenityDetailDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(AmenityDetail.class));
     }
 
+    public List<AmenityDetail> findAmenityDetails() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AmenityDetail.class));
+    }
+
+    public Integer count() {
+        String sqlQuery = "SELECT count(*) FROM " + TABLE_NAME + " WHERE deleted = FALSE";
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{}, Integer.class);
+    }
+
     public AmenityDetail findByAmenityDetailName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(AmenityDetail.class));
@@ -67,7 +77,7 @@ public class AmenityDetailDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AmenityDetail.class));
     }
-    
+
     public List<AmenityDetail> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
@@ -86,7 +96,7 @@ public class AmenityDetailDAL {
         parameters.put(Columns.PHONE_NUMBER, amenitydetail.getPhoneNumber());
         parameters.put(Columns.MOBILE_NUMBER, amenitydetail.getMobileNumber());
         parameters.put(Columns.LOCATION_ID, amenitydetail.getLocationId());
-        parameters.put(Columns.AMENITY_ID, amenitydetail.getAmenityId());                      
+        parameters.put(Columns.AMENITY_ID, amenitydetail.getAmenityId());
         parameters.put(Columns.LATITUDE, amenitydetail.getLatitude());
         parameters.put(Columns.LONGITUDE, amenitydetail.getLongitude());
         parameters.put(Columns.CITY_ID, amenitydetail.getCityId());
@@ -114,11 +124,11 @@ public class AmenityDetailDAL {
         }
         return jdbcTemplate.query(sqlString, parameters.toArray(), new BeanPropertyRowMapper<>(AmenityDetail.class));
     }
-    
+
     public List<AmenityDetail> findByAmenityIdCityId(Integer amenityId, Integer cityId) {
         String sqlString = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "
-                +Columns.AMENITY_ID+ "=? AND "
-                +Columns.CITY_ID+ "=?";
+                + Columns.AMENITY_ID + "=? AND "
+                + Columns.CITY_ID + "=?";
         return jdbcTemplate.query(sqlString, new Object[]{amenityId, cityId}, new BeanPropertyRowMapper<>(AmenityDetail.class));
     }
 
@@ -134,7 +144,7 @@ public class AmenityDetailDAL {
                 + Columns.PHONE_NUMBER + " = ?,"
                 + Columns.MOBILE_NUMBER + " = ?,"
                 + Columns.LOCATION_ID + " = ?,"
-                + Columns.AMENITY_ID + " = ?,"                
+                + Columns.AMENITY_ID + " = ?,"
                 + Columns.LATITUDE + " = ?,"
                 + Columns.LONGITUDE + " = ?,"
                 + Columns.CITY_ID + "=? WHERE " + Columns.ID + " = ?";
@@ -145,10 +155,10 @@ public class AmenityDetailDAL {
                     amenitydetail.getPhoneNumber(),
                     amenitydetail.getMobileNumber(),
                     amenitydetail.getLocationId(),
-                    amenitydetail.getAmenityId(),                    
+                    amenitydetail.getAmenityId(),
                     amenitydetail.getLatitude(),
-                    amenitydetail.getLongitude(),                    
-                    amenitydetail.getCityId(),                    
+                    amenitydetail.getLongitude(),
+                    amenitydetail.getCityId(),
                     amenitydetail.getId()
                 }
         );
