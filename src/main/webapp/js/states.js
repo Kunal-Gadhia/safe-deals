@@ -23,7 +23,7 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 'https://www.youtube.com/embed/**'
             ]);
         })
-        .controller('MainController', function ($scope, VideoService, $state, $window, $location) {
+        .controller('MainController', function ($scope, VideoService, $state, $window, $location, $anchorScroll) {
             $scope.introVideo = VideoService.findIntroVideo();
             var parrentDiv = $('#parrentDiv');
             parrentDiv.removeClass();
