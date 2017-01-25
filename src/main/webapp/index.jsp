@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/font-awesome/4.4.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/modal-override.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/corporate_site.css"/>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flexslider.css"/>
+        <!--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flexslider.css"/>-->
 
         <!--Libraries-->
         <script src="${pageContext.request.contextPath}/webjars/jquery/1.12.0/jquery.min.js"></script>
