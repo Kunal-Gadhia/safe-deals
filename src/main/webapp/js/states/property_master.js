@@ -20,6 +20,73 @@ angular.module("safedeals.states.property_master", [])
                 'templateUrl': templateRoot + '/masters/property/delete.html',
                 'controller': 'PropertyDeleteController'
             });
+            $stateProvider.state('admin.masters_property.photo', {
+                'url': '/:propertyId/photo',
+                'templateUrl': templateRoot + '/masters/property/photo.html',
+                'controller': 'PropertyPhotoController'
+            });
+            $stateProvider.state('admin.masters_property.view', {
+                'url': '/:propertyId/view',
+                'templateUrl': templateRoot + '/masters/property/view.html',
+                'controller': 'PropertyViewController'
+            });
+        })
+        .controller('PropertyViewController', function ($scope, $stateParams, $state) {
+            $scope.property = {};
+            $scope.property.id = $stateParams.propertyId;
+            $scope.goBack = function () {
+                $state.go('admin.masters_property', {}, {'reload': true});
+            };
+        })
+        .controller('PropertyPhotoController', function (restRoot, FileUploader, $scope, $stateParams, $state) {
+            $scope.enableSaveButton = false;
+            $scope.goBack = function () {
+                $state.go('admin.masters_property', {}, {'reload': true});
+            };
+            var uploader = $scope.fileUploader = new FileUploader({
+                url: restRoot + '/property/' + $stateParams.propertyId + '/attachment',
+                autoUpload: true,
+                alias: 'attachment'
+            });
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.uploadInProgress = true;
+                $scope.uploadSuccess = false;
+                console.log("before upload item:", item);
+                console.log("uploader", uploader);
+            };
+            uploader.onErrorItem = function ($scope) {
+                $scope.uploadFailed = true;
+                $scope.uploadInProgress = false;
+                $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+            };
+            uploader.onCompleteItem = function ($scope, response, status) {
+                console.log("Status :%O", status);
+                if (status === 200) {
+                    console.log("Coming to 200 ??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+                    $scope.uploadSuccess = true;
+                    $scope.enableSaveButton = true;
+                    console.log("In Progress :" + $scope.uploadInProgress);
+                    console.log("Failed :" + $scope.uploadFailed);
+                    console.log("Success :" + $scope.uploadSuccess);
+                    console.log("Save Button :" + $scope.enableSaveButton);
+                } else if (status === 500)
+                {
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                } else {
+                    console.log("Coming to else??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = true;
+                }
+
+                console.log("upload completion", response);
+            };
         })
         .controller('PropertyListController', function (CityService, LocationService, CountryService, StateService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             if (
