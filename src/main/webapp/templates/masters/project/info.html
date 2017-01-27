@@ -1,0 +1,121 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">
+        <!--<form role="form" ng-submit="saveProject(editableProject)">-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fa fa-bank"></i>
+                    Project Information
+                </h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Project Name</label> 
+                            <span> : {{editableProject.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>State</label>                                                    
+                            <span> : {{editableProject.state.name}}</span>
+                        </div>
+                    </div>
+                </div>               
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>City</label>
+                            <span> : {{editableProject.city.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Location</label>                                                    
+                            <span> : {{editableProject.location.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Sub Location</label>
+                            <span> : {{editableProject.subLocation}}</span>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Type Of Project</label>                                                    
+                            <span> : {{editableProject.projectType}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Project Scale</label>
+                            <span> : {{editableProject.projectScale}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Type Of Properties</label>                                                    
+                            <ul>
+                                <li ng-repeat="propertiesTypeObject in editableProject.propertiesTypeObjects">{{propertiesTypeObject.numberOfBhk}}</li>
+                            </ul>
+                        </div>                 
+                    </div>
+
+                </div>                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Booking Start Date</label>
+                            <span> : {{editableProject.bookingStartDate}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Completion Date</label>
+                            <span> : {{editableProject.completionDate}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Construction Stage</label>                                                    
+                            <span> : {{editableProject.constructionStage}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Total Buildings</label>
+                            <span> : {{editableProject.totalBuildings}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Total Floors</label>                                                    
+                            <span> : {{editableProject.totalFloors}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Total Units</label>
+                            <span> : {{editableProject.totalUnits}}</span>
+                        </div>
+                    </div>                                            
+                </div>
+            </div>                                    
+
+        </div>
+    </div>
+</div>

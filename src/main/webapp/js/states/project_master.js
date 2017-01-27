@@ -30,6 +30,11 @@ angular.module("safedeals.states.project_master", [])
                 'templateUrl': templateRoot + '/masters/project/view.html',
                 'controller': 'ProjectViewController'
             });
+            $stateProvider.state('admin.masters_project.info', {
+                'url': '/:projectId/info',
+                'templateUrl': templateRoot + '/masters/project/info.html',
+                'controller': 'ProjectInfoController'
+            });
         })
         .controller('ProjectListController', function (CityService, LocationService, CountryService, StateService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             if (
@@ -946,6 +951,26 @@ angular.module("safedeals.states.project_master", [])
 
                 console.log("upload completion", response);
             };
+        })
+        .controller('ProjectInfoController', function (LocationService, PropertyTypeService, ProjectService, CityService, StateService, $scope, $stateParams, $state) {
+            $scope.editableProject = ProjectService.get({'id': $stateParams.projectId}, function (project) {
+                $scope.editableProject.state = StateService.get({
+                    'id': $scope.editableProject.stateId
+                });
+                $scope.editableProject.city = CityService.get({
+                    'id': $scope.editableProject.cityId
+                });
+                $scope.editableProject.location = LocationService.get({
+                    'id': $scope.editableProject.locationId
+                });
+                project.propertiesTypeObjects = [];
+                angular.forEach(project.propertiesType, function (propertyType) {
+                    project.propertiesTypeObjects.push(PropertyTypeService.get({
+                        'id': propertyType
+                    }));
+                });
+            });
+            console.log("Editable Project in Info :%O", $scope.editableProject);
         })
         .controller('ProjectDeleteController', function (ProjectService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = ProjectService.get({'id': $stateParams.projectId});
