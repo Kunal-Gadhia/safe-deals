@@ -20,6 +20,21 @@ angular.module("safedeals.states.project_master", [])
                 'templateUrl': templateRoot + '/masters/project/delete.html',
                 'controller': 'ProjectDeleteController'
             });
+            $stateProvider.state('admin.masters_project.photo', {
+                'url': '/:projectId/photo',
+                'templateUrl': templateRoot + '/masters/project/photo.html',
+                'controller': 'ProjectPhotoController'
+            });
+            $stateProvider.state('admin.masters_project.view', {
+                'url': '/:projectId/view',
+                'templateUrl': templateRoot + '/masters/project/view.html',
+                'controller': 'ProjectViewController'
+            });
+            $stateProvider.state('admin.masters_project.info', {
+                'url': '/:projectId/info',
+                'templateUrl': templateRoot + '/masters/project/info.html',
+                'controller': 'ProjectInfoController'
+            });
         })
         .controller('ProjectListController', function (CityService, LocationService, CountryService, StateService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             if (
@@ -879,6 +894,83 @@ angular.module("safedeals.states.project_master", [])
                     $scope.unitDetails = false;
                 }
             };
+        })
+        .controller('ProjectViewController', function ($scope, $stateParams, $state) {
+            $scope.project = {};
+            $scope.project.id = $stateParams.projectId;
+            $scope.goBack = function () {
+                $state.go('admin.masters_project', {}, {'reload': true});
+            };
+        })
+        .controller('ProjectPhotoController', function (restRoot, FileUploader, $scope, $stateParams, $state) {
+            $scope.enableSaveButton = false;
+            $scope.goBack = function () {
+                $state.go('admin.masters_project', {}, {'reload': true});
+            };
+            var uploader = $scope.fileUploader = new FileUploader({
+                url: restRoot + '/project/' + $stateParams.projectId + '/attachment',
+                autoUpload: true,
+                alias: 'attachment'
+            });
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.uploadInProgress = true;
+                $scope.uploadSuccess = false;
+                console.log("before upload item:", item);
+                console.log("uploader", uploader);
+            };
+            uploader.onErrorItem = function ($scope) {
+                $scope.uploadFailed = true;
+                $scope.uploadInProgress = false;
+                $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+            };
+            uploader.onCompleteItem = function ($scope, response, status) {
+                console.log("Status :%O", status);
+                if (status === 200) {
+                    console.log("Coming to 200 ??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+                    $scope.uploadSuccess = true;
+                    $scope.enableSaveButton = true;
+                    console.log("In Progress :" + $scope.uploadInProgress);
+                    console.log("Failed :" + $scope.uploadFailed);
+                    console.log("Success :" + $scope.uploadSuccess);
+                    console.log("Save Button :" + $scope.enableSaveButton);
+                } else if (status === 500)
+                {
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                } else {
+                    console.log("Coming to else??");
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = true;
+                }
+
+                console.log("upload completion", response);
+            };
+        })
+        .controller('ProjectInfoController', function (LocationService, PropertyTypeService, ProjectService, CityService, StateService, $scope, $stateParams, $state) {
+            $scope.editableProject = ProjectService.get({'id': $stateParams.projectId}, function (project) {
+                $scope.editableProject.state = StateService.get({
+                    'id': $scope.editableProject.stateId
+                });
+                $scope.editableProject.city = CityService.get({
+                    'id': $scope.editableProject.cityId
+                });
+                $scope.editableProject.location = LocationService.get({
+                    'id': $scope.editableProject.locationId
+                });
+                project.propertiesTypeObjects = [];
+                angular.forEach(project.propertiesType, function (propertyType) {
+                    project.propertiesTypeObjects.push(PropertyTypeService.get({
+                        'id': propertyType
+                    }));
+                });
+            });
+            console.log("Editable Project in Info :%O", $scope.editableProject);
         })
         .controller('ProjectDeleteController', function (ProjectService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = ProjectService.get({'id': $stateParams.projectId});

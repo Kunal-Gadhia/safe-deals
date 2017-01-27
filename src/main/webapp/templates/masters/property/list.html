@@ -28,6 +28,7 @@
                 <th>Offered Price</th>
                 <th>Build Up Area</th>
                 <th>Carpet Area</th>
+                <th>Ownership Proof</th>
                 <!--                <th>Location</th>
                                 <th>City</th>-->
 
@@ -45,6 +46,12 @@
                 <td>&#8377; {{ property.offeredPrice}}</td>
                 <td>{{ property.buildUpArea}} Sq.Ft</td>
                 <td>{{ property.carpetArea}} Sq.Ft</td>
+                <td><a data-ui-sref="admin.masters_property.view({propertyId: property.id})">{{ property.ownershipProof.toString()}}</a></td>
+                <td class="text-right">
+                    <a data-ui-sref="admin.masters_property.photo({ propertyId: property.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-upload"></i>
+                    </a>
 
                 <td class="text-right">
                     <a data-ui-sref="admin.masters_property.edit({ propertyId: property.id })"

@@ -11,6 +11,8 @@ angular.module("safedeals", [
     'safedeals.filters',
     //  include constants
     'safedeals.constants',
+    // include directives
+//    'safedeals.services.scroll',
     // include services
     'safedeals.services.branch',
     'safedeals.services.country',

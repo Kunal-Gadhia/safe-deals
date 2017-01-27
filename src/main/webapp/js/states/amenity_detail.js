@@ -26,7 +26,8 @@ angular.module("safedeals.states.amenity_detail", [])
                 'controller': 'AmenityDetailImportController'
             });
         })
-        .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService,CityService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService, CityService, $scope, $stateParams, $state, paginationLimit) {
+
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -42,7 +43,7 @@ angular.module("safedeals.states.amenity_detail", [])
             $scope.nextAmenitydetails = AmenityDetailService.query({
                 'offset': $scope.nextOffset
             });
-            
+
             $scope.amenitydetails = AmenityDetailService.query({
                 'offset': $scope.currentOffset
             }
@@ -70,6 +71,19 @@ angular.module("safedeals.states.amenity_detail", [])
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
+//            angular.element($window).bind("scroll", function () {
+//                console.log("Page Y Offset :%O", this.pageYOffset);
+//                if (this.pageYOffset >= 10) {
+//
+//                      $scope.nextPage();
+//                    console.log('Scrolled below header.');
+//                } else {
+//
+////                    $scope.previousPage();
+//                    console.log('Header is in view.');
+//                }
+//                $scope.$apply();
+//            });
             $scope.previousPage = function () {
                 if ($scope.currentOffset <= 0) {
                     return;
@@ -111,7 +125,7 @@ angular.module("safedeals.states.amenity_detail", [])
                 $scope.editableAmenityDetail.location = location;
             };
             $scope.searchLocations = function (searchTerm) {
-                 if ($scope.editableAmenityDetail.cityId === undefined) {
+                if ($scope.editableAmenityDetail.cityId === undefined) {
                     return LocationService.findByNameLike({
                         'name': searchTerm
                     }).$promise;
@@ -160,7 +174,7 @@ angular.module("safedeals.states.amenity_detail", [])
                 });
             };
         })
-        .controller('AmenityDetailEditController', function (AmenityDetailService, AmenityService, LocationService, WorkplaceCategoryService,CityService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('AmenityDetailEditController', function (AmenityDetailService, AmenityService, LocationService, WorkplaceCategoryService, CityService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableAmenityDetail = AmenityDetailService.get({
                 'id': $stateParams.amenity_detailId
             }, function () {
@@ -202,8 +216,8 @@ angular.module("safedeals.states.amenity_detail", [])
                 $scope.editableAmenityDetail.locationId = location.id;
                 $scope.editableAmenityDetail.location = location;
             };
-           $scope.searchLocations = function (searchTerm) {
-                 if ($scope.editableAmenityDetail.cityId === undefined) {
+            $scope.searchLocations = function (searchTerm) {
+                if ($scope.editableAmenityDetail.cityId === undefined) {
                     return LocationService.findByNameLike({
                         'name': searchTerm
                     }).$promise;

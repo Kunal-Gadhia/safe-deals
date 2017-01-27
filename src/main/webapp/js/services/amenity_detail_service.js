@@ -38,6 +38,16 @@ angular.module("safedeals.services.amenity_detail")
                         'name': '@name'
                     },
                     'isArray': true
+                },
+                'findAmenityDetails': {
+                    'method': 'GET',
+                    'url': restRoot + '/amenitydetail/complete_amenity_details',
+                    'isArray': true
+                },
+                'count': {
+                    'method': 'GET',
+                    'url': restRoot + '/amenitydetail/count',
+                    'isArray': false
                 }
             });
         });
