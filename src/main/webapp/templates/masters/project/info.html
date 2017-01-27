@@ -10,109 +10,314 @@
                 </h3>
             </div>
             <div class="modal-body">
+                <div>
+                    <h4> <u>Basic Details</u> : </h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Name :</label> 
+                                <span>{{editableProject.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>State :</label>                                                    
+                                <span>{{editableProject.state.name}}</span>
+                            </div>
+                        </div>
+                    </div>               
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City :</label>
+                                <span>{{editableProject.city.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location :</label>
+                                <span>{{editableProject.location.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Sub Location :</label>
+                                <span>{{editableProject.subLocation}}</span>                            
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Type Of Project :</label>
+                                <span>{{editableProject.projectType}}</span>
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Project Name</label> 
-                            <span> : {{editableProject.name}}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Scale :</label>
+                                <span>{{editableProject.projectScale}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Type Of Properties :</label>
+                                <ul>
+                                    <li ng-repeat="propertiesTypeObject in editableProject.propertiesTypeObjects">{{propertiesTypeObject.numberOfBhk}}</li>
+                                </ul>
+                            </div>                 
+                        </div>
+
+                    </div>                
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Booking Start Date :</label>
+                                <span>{{editableProject.bookingStartDate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Completion Date :</label>
+                                <span>{{editableProject.completionDate}}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>State</label>                                                    
-                            <span> : {{editableProject.state.name}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Construction Stage :</label>                                                    
+                                <span>{{editableProject.constructionStage}}</span>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Buildings :</label>
+                                <span>{{editableProject.totalBuildings}}</span>
+                            </div>
+                        </div>
+
                     </div>
-                </div>               
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <span> : {{editableProject.city.name}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Floors :</label>                                                    
+                                <span>{{editableProject.totalFloors}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Location</label>                                                    
-                            <span> : {{editableProject.location.name}}</span>
-                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Units :</label>
+                                <span>{{editableProject.totalUnits}}</span>
+                            </div>
+                        </div>                                            
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Sub Location</label>
-                            <span> : {{editableProject.subLocation}}</span>                            
+                <div>
+                    <h4><u>Connectivity</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Major Approach Road :</label>
+                                <span>{{editableProject.road.name}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Type Of Project</label>                                                    
-                            <span> : {{editableProject.projectType}}</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Project Scale</label>
-                            <span> : {{editableProject.projectScale}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Type Of Properties</label>                                                    
-                            <ul>
-                                <li ng-repeat="propertiesTypeObject in editableProject.propertiesTypeObjects">{{propertiesTypeObject.numberOfBhk}}</li>
-                            </ul>
-                        </div>                 
-                    </div>
-
-                </div>                
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Booking Start Date</label>
-                            <span> : {{editableProject.bookingStartDate}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Completion Date</label>
-                            <span> : {{editableProject.completionDate}}</span>
-                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Public Transport :</label>
+                                <ul>
+                                    <li ng-repeat="publicTransportObject in editableProject.publicTransportObjects">{{publicTransportObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>                                            
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Construction Stage</label>                                                    
-                            <span> : {{editableProject.constructionStage}}</span>
+                <div>
+                    <h4><u>Costing</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Offered Price :</label>
+                                <span>&#8377; {{editableProject.offeredPrice}}</span>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Discount :</label>
+                                <span>&#8377; {{editableProject.discount}}</span>
+                            </div>
+                        </div>                                            
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Total Buildings</label>
-                            <span> : {{editableProject.totalBuildings}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Offer Valid Till :</label>
+                                <span>{{editableProject.offerValidTill}}</span>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Payment Schedule :</label>
+                                <span>{{editableProject.paymentSchedule}}</span>
+                            </div>
+                        </div>                                            
                     </div>
-
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Total Floors</label>                                                    
-                            <span> : {{editableProject.totalFloors}}</span>
+                <div>
+                    <h4><u>Demand For Rental/Resale</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Workplaces :</label>
+                                <ul>
+                                    <li ng-repeat="workplacesObject in editableProject.workplacesObjects">{{workplacesObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Basic Amenities :</label>
+                                <ul>
+                                    <li ng-repeat="basicAmenitiesObject in editableProject.basicAmenitiesObjects">{{basicAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>                                            
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Luxury Amenities :</label>
+                                <ul>
+                                    <li ng-repeat="luxuryAmenitiesObject in editableProject.luxuryAmenitiesObjects">{{luxuryAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>                                            
+                    </div>
+                </div>
+                <div>
+                    <h4><u>Marketability</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Approved Banks :</label>
+                                <ul>
+                                    <li ng-repeat="approvedBanksObject in editableProject.approvedBanksObjects">{{approvedBanksObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>SD Verified :</label>
+                                <span ng-if="editableProject.sdVerified === true">Yes</span>
+                                <span ng-if="editableProject.sdVerified === false">No</span>
+                            </div>
+                        </div>                                            
+                    </div>
+                </div>
+                <div>
+                    <h4><u>Project Highlights</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Amenities Within Project :</label>
+                                <ul>
+                                    <li ng-repeat="privateAmenitiesObject in editableProject.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                            
+                        </div>                                            
+                    </div>
+                </div>
+                <div>
+                    <h4><u>Seller's Credibility</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Specific Testimonial :</label>
+                                <span>{{editableProject.projectTestimonial}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                            
+                        </div>                                            
+                    </div>
+                </div>
+                <div>
+                    <h4><u>Unit Details</u> :</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Salable Area :</label>
+                                <span>{{editableProject.salableArea}} Sq.Ft</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                            
+                            <div class="form-group">
+                                <label>Carpet Area :</label>
+                                <span>{{editableProject.carpetArea}} Sq.Ft</span>
+                            </div>
+                        </div>                                            
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Build Up Area :</label>
+                                <span>{{editableProject.buildUpArea}} Sq.Ft</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                            
+                            <div class="form-group">
+                                <label>Total Number Of Balcony :</label>
+                                <span>{{editableProject.balconyCount}}</span>
+                            </div>
+                        </div>                                       
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Number Of Toilet :</label>
+                                <span>{{editableProject.toiletCount}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                                                        
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Total Units</label>
-                            <span> : {{editableProject.totalUnits}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Open Terrace :</label>
+                                <span ng-if="editableProject.openTerrace === true"> Yes</span>
+                                <span ng-if="editableProject.openTerrace !== true"> No</span>
+                            </div>
                         </div>
-                    </div>                                            
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Open Land :</label>
+                                <span ng-if="editableProject.openLand === true"> Yes</span>
+                                <span ng-if="editableProject.openLand !== true"> No</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Latitude :</label>
+                                <span>{{editableProject.latitude}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Longitude :</label>
+                                <span>{{editableProject.longitude}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>                                    
 
