@@ -106,8 +106,9 @@ angular.module("safedeals.states.project_master", [])
                 'Demand For Rental/Resale',
                 'Marketability',
                 'Project Highlights',
-                'Sellers Credability',
-                'Unit Details'
+                'Unit Details',
+                'Sellers Credability'
+                
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
@@ -952,7 +953,7 @@ angular.module("safedeals.states.project_master", [])
                 console.log("upload completion", response);
             };
         })
-        .controller('ProjectInfoController', function (LocationService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, ProjectService, CityService, StateService, $scope, $stateParams, $state) {
+        .controller('ProjectInfoController', function (LocationService, PropertyTypeService, ProjectService, CityService, StateService, $scope, $stateParams, $state) {
             $scope.editableProject = ProjectService.get({'id': $stateParams.projectId}, function (project) {
                 $scope.editableProject.state = StateService.get({
                     'id': $scope.editableProject.stateId
@@ -963,49 +964,10 @@ angular.module("safedeals.states.project_master", [])
                 $scope.editableProject.location = LocationService.get({
                     'id': $scope.editableProject.locationId
                 });
-                $scope.editableProject.road = RoadService.get({
-                    'id': $scope.editableProject.majorApproachRoad
-                });
                 project.propertiesTypeObjects = [];
                 angular.forEach(project.propertiesType, function (propertyType) {
                     project.propertiesTypeObjects.push(PropertyTypeService.get({
                         'id': propertyType
-                    }));
-                });
-                project.publicTransportObjects = [];
-                angular.forEach(project.publicTransport, function (publicTransport) {
-                    project.publicTransportObjects.push(TransportationService.get({
-                        'id': publicTransport
-                    }));
-                });
-                project.workplacesObjects = [];
-                angular.forEach(project.workplaces, function (workplace) {
-                    project.workplacesObjects.push(AmenityDetailService.get({
-                        'id': workplace
-                    }));
-                });
-                project.basicAmenitiesObjects = [];
-                angular.forEach(project.basicAmenities, function (basicAmenity) {
-                    project.basicAmenitiesObjects.push(AmenityDetailService.get({
-                        'id': basicAmenity
-                    }));
-                });
-                project.luxuryAmenitiesObjects = [];
-                angular.forEach(project.luxuryAmenities, function (luxuryAmenity) {
-                    project.luxuryAmenitiesObjects.push(AmenityDetailService.get({
-                        'id': luxuryAmenity
-                    }));
-                });
-                project.approvedBanksObjects = [];
-                angular.forEach(project.approvedBanks, function (approvedBank) {
-                    project.approvedBanksObjects.push(BankService.get({
-                        'id': approvedBank
-                    }));
-                });
-                project.privateAmenitiesObjects = [];
-                angular.forEach(project.privateAmenities, function (privateAmenity) {
-                    project.privateAmenitiesObjects.push(PrivateAmenitiesService.get({
-                        'id': privateAmenity
                     }));
                 });
             });
