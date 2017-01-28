@@ -30,6 +30,66 @@ angular.module("safedeals.states.property_master", [])
                 'templateUrl': templateRoot + '/masters/property/view.html',
                 'controller': 'PropertyViewController'
             });
+            $stateProvider.state('admin.masters_property.info', {
+                'url': '/:propertyId/info',
+                'templateUrl': templateRoot + '/masters/property/info.html',
+                'controller': 'PropertyInfoController'
+            });
+        })
+        .controller('PropertyInfoController', function (PropertyService, AmenityDetailService, TransportationService, RoadService, ProjectService, CityService, LocationService, $scope, $stateParams, $state) {
+            $scope.editableProperty = PropertyService.get({
+                'id': $stateParams.propertyId
+            }, function (property) {
+                $scope.editableProperty.city = CityService.get({
+                    'id': $scope.editableProperty.cityId
+                });
+                $scope.editableProperty.location = LocationService.get({
+                    'id': $scope.editableProperty.locationId
+                });
+                $scope.editableProperty.project = ProjectService.get({
+                    'id': $scope.editableProperty.projectId
+                });
+                $scope.editableProperty.road = RoadService.get({
+                    'id': $scope.editableProperty.majorApproachRoad
+                });
+                property.publicTransportObjects = [];
+                angular.forEach(property.publicTransport, function (publicTransport) {
+                    property.publicTransportObjects.push(TransportationService.get({
+                        'id': publicTransport
+                    }));
+                });
+
+                property.workplacesObjects = [];
+                angular.forEach(property.workplaces, function (workplaces) {
+                    property.workplacesObjects.push(AmenityDetailService.get({
+                        'id': workplaces
+                    }));
+                });
+
+                property.projectsNearbyObjects = [];
+                angular.forEach(property.projectsNearby, function (projectsNearby) {
+                    property.projectsNearbyObjects.push(ProjectService.get({
+                        'id': projectsNearby
+                    }));
+                });
+
+                property.basicAmenitiesObjects = [];
+                angular.forEach(property.basicAmenities, function (basicAmenities) {
+                    property.basicAmenitiesObjects.push(AmenityDetailService.get({
+                        'id': basicAmenities
+                    }));
+                });
+
+                property.luxuryAmenitiesObjects = [];
+                angular.forEach(property.luxuryAmenities, function (luxuryAmenities) {
+                    property.luxuryAmenitiesObjects.push(AmenityDetailService.get({
+                        'id': luxuryAmenities
+                    }));
+                });
+
+//                property.propertiesSizeObjects = [];
+            })
+
         })
         .controller('PropertyViewController', function ($scope, $stateParams, $state) {
             $scope.property = {};
