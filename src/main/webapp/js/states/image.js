@@ -94,7 +94,7 @@ angular.module("safedeals.states.image", [])
                 console.log("upload completion", response);
             };
         })
-        .controller('ImageListController', function (ImageService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ImageListController', function (ImageService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -113,7 +113,18 @@ angular.module("safedeals.states.image", [])
 
             $scope.images = ImageService.query({
                 'offset': $scope.currentOffset
+            }, function (imageList) {
+                angular.forEach($scope.images, function (images) {
+                    console.log("Images :%O", images);
+                    images.project = ProjectService.get({
+                        'id': images.projectId
+                    });
+                    images.property = PropertyService.get({
+                        'id': images.propertyId
+                    });
+                });
             });
+            console.log("Images :%O", $scope.images);
 
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
