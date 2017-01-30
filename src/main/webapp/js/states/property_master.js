@@ -36,7 +36,7 @@ angular.module("safedeals.states.property_master", [])
                 'controller': 'PropertyInfoController'
             });
         })
-        .controller('PropertyInfoController', function (PropertyService, AmenityDetailService, TransportationService, RoadService, ProjectService, CityService, LocationService, $scope, $stateParams, $state) {
+        .controller('PropertyInfoController', function (PropertyService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, ProjectService, CityService, LocationService, $scope, $stateParams, $state) {
             $scope.editableProperty = PropertyService.get({
                 'id': $stateParams.propertyId
             }, function (property) {
@@ -84,6 +84,20 @@ angular.module("safedeals.states.property_master", [])
                 angular.forEach(property.luxuryAmenities, function (luxuryAmenities) {
                     property.luxuryAmenitiesObjects.push(AmenityDetailService.get({
                         'id': luxuryAmenities
+                    }));
+                });
+
+                property.approvedBanksObjects = [];
+                angular.forEach(property.approvedBanks, function (approvedBank) {
+                    property.approvedBanksObjects.push(BankService.get({
+                        'id': approvedBank
+                    }));
+                });
+
+                property.privateAmenitiesObjects = [];
+                angular.forEach(property.privateAmenities, function (privateAmenity) {
+                    property.privateAmenitiesObjects.push(PrivateAmenitiesService.get({
+                        'id': privateAmenity
                     }));
                 });
 
