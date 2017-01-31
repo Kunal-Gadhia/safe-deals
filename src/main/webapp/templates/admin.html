@@ -1,41 +1,43 @@
 <!--<div id="wrapper">-->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Safedeals</a>
-            </div>
-            <ul class="nav navbar-nav">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#adminNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Safedeals</a>
+        </div>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+            <ul class="nav navbar-nav">                        
                 <li data-ui-sref-active="active"><a href="#">Home</a></li>
                 <li data-ui-sref-active="active"><a data-ui-sref="admin.masters" >Masters</a></li>
-<!--                <li data-ui-sref-active="active"><a href="#">Transaction</a></li>-->
+                <li data-ui-sref-active="active"><a href="#">Transaction</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <!--            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Admin</a></li>-->
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{currentUser.username}}</a></li>
                 <li><a data-ui-sref="admin.logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
-    </nav>
-
-    <!--<div class="container-fluid" data-ui-view="">
-    </div>-->
-    <div class="container-fluid">
-        <div class="row">
-            <div id="main-content" ng-class="{
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div id="main-content" ng-class="{
                         'col-md-12' : !opened, 'col-sm - 9 col-md-9' : opened
                     }" data-ui-view="">                     
-            </div>
         </div>
     </div>
-
-    <div class="wrapper">
-        <footer class="text-center clearfix container">
-            <div class="">
-                <hr class="ft-hr">
-                <p>
-                    <strong>Copyright &COPY; 2015 <a href="http://www.vsquaresystem.com/"> www.vsquaresystem.com</a></strong>
-                </p>
-            </div>
-        </footer>
-    </div>
+</div>
+<div class="wrapper">
+    <footer class="text-center clearfix container">
+        <div class="">
+            <hr class="ft-hr">
+            <p>
+                <strong>Copyright &COPY; 2015 <a href="http://www.vsquaresystem.com/"> www.vsquaresystem.com</a></strong>
+            </p>
+        </div>
+    </footer>
+</div>
 <!--</div>-->

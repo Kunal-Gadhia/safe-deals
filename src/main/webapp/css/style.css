@@ -45,6 +45,11 @@ hr.ft-hr {
 #navbar-default{
     background-color: #fff;
 }
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    #adminNavbar ul {
+        height: 80px;
+    }
+}
 .vertical-line{
     border-right: 1px solid #e0e0e0;
 }
@@ -66,7 +71,7 @@ hr.ft-hr {
     /*    background: url("../images/noise-texture-background.png") fixed;*/
     background-color: #EBF6FC;
     overflow: hidden;
-/*    min-height: 680px;*/
+    /*    min-height: 680px;*/
 }
 
 #city_logo{
@@ -238,15 +243,15 @@ form.tab-form-demo .tab-pane {
     margin-bottom: 0;
 }
 .tagline{
-/*    background: url("../images/image.jpg") center center;
-    height:450px;*/
+    /*    background: url("../images/image.jpg") center center;
+        height:450px;*/
     z-index: 1000;
     position: relative
 }
 .tagline .tag{
     position: absolute;
     color:#f5dabc;
-/*    left: 663px;*/
+    /*    left: 663px;*/
     top: 80%;
 }
 
