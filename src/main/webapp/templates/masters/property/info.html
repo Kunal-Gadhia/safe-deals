@@ -1,16 +1,20 @@
 <div class="modal modal-safedeals">
     <div class="modal-backdrop fade in"></div>
     <div class="modal-dialog modal-lg">
-        <!--<form role="form" ng-submit="saveProperty(editableProperty)">-->
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">
                     <i class="fa fa-bank"></i>
                     Property Information
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class=" pull-right btn btn-link">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </h3>
             </div>
             <div class="modal-body">
-
+                <h4> <u>Basic Details</u> : </h4>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -24,9 +28,9 @@
                             <span> : {{editableProperty.city.name}}</span>
                         </div>
                     </div>
-                </div>               
-                <div class="row">
+                </div> 
 
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Location</label>                                                    
@@ -40,71 +44,53 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Property Size</label>
                             <span> : {{editableProperty.propertySize}}</span>
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label> Size</label>
                             <span> : {{editableProperty.size}}</span>
                         </div>
                     </div>
-
                 </div>
 
-
-
                 <div class="row">
-
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Price Range</label>
                             <span> : {{editableProperty.priceRange}}</span>
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label> Building Age</label>
                             <span> : {{editableProperty.buildingAge}}</span>
                         </div>
                     </div>
-
                 </div>
 
-
-
-
-
-
                 <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Total Floors</label>                                                    
                             <span> : {{editableProperty.totalFloors}}</span>
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Entry Facing</label>                                                    
                             <span> : {{editableProperty.entryFacing}}</span>
                         </div>
                     </div>
+                </div>    
 
-
-                </div>                
                 <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Building Condition</label>
@@ -118,19 +104,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
 
+                <div class="row">
+                    <h4> <u>Connectivity</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Major Approach Road</label>
                             <span> : {{editableProperty.road.name}}</span>
                         </div>
                     </div>
-
-
-                </div>
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Public Transport : </label>                                                    
@@ -138,47 +120,42 @@
                                 <li ng-repeat="publicTransportObject in editableProperty.publicTransportObjects">{{publicTransportObject.name}}</li>
                             </ul>
                         </div>                 
-                    </div>    
+                    </div> 
+                </div>
 
+                <div class="row">
+                    <h4> <u>Costing</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Offered Price</label>
                             <span> : {{editableProperty.offeredPrice}}</span>
                         </div>
                     </div>
-
-
-
-                </div>
-
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Discount</label>
                             <span> : {{editableProperty.discount}}</span>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Offer Valid Till</label>
                             <span> : {{editableProperty.offerValidTill}}</span>
                         </div>
                     </div>
-
-                </div>
-
-
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Payment Schedule</label>
                             <span> : {{editableProperty.paymentSchedule}}</span>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
+                    <h4> <u>Demand for Rental/ Retail</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Workplace : </label>                                                    
@@ -187,12 +164,6 @@
                             </ul>
                         </div>                 
                     </div> 
-
-
-
-                </div>
-
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>projects Nearby : </label>                                                    
@@ -201,7 +172,10 @@
                             </ul>
                         </div>                 
                     </div> 
+                </div>
 
+                <div class="row">
+                    <h4> <u>Livability</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Basic Amenities : </label>                                                    
@@ -210,13 +184,6 @@
                             </ul>
                         </div>                 
                     </div>
-
-
-                </div>
-
-
-
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Luxury Amenities : </label>                                                    
@@ -225,7 +192,10 @@
                             </ul>
                         </div>                 
                     </div>
+                </div>
 
+                <div class="row">
+                    <h4> <u>Marketability</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Approved Banks : </label>                                                    
@@ -234,135 +204,96 @@
                             </ul>
                         </div>                 
                     </div>
-
-                </div>
-
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>SD Verified</label>
-                            <!--                            <span> : {{editableProperty.sdVerified}}</span>-->
-                            <span ng-if="editableProperty.sdVerified === true">Yes</span>
-                            <span ng-if="editableProperty.sdVerified === false">No</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Private Amenities : </label>                                                    
+                            <label> Amenities within Properties : </label>                                                    
                             <ul>
                                 <li ng-repeat="privateAmenitiesObject in editableProperty.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
                             </ul>
                         </div>                 
                     </div> 
-
-
-
                 </div>
 
                 <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Seller Commission Agreement</label>
-                            <!--                            <span> : {{editableProperty.sellerCommisionAgreement}}</span>-->
-                            <span ng-if="editableProperty.sellerCommisionAgreement === true">Yes</span>
-                            <span ng-if="editableProperty.sellerCommisionAgreement === false">No</span>
+                            <label>SD Verified</label>
+                            <span ng-if="editableProperty.sdVerified === true">Yes</span>
+                            <span ng-if="editableProperty.sdVerified === false">No</span>
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Salable Area</label>
-                            <span> : {{editableProperty.salableArea}}</span>
-                        </div>
-                    </div>
-
                 </div>
 
-
                 <div class="row">
-
+                    <h4> <u>Unit Details</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Carpet Area</label>
                             <span> : {{editableProperty.carpetArea}}</span>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Salable Area</label>
+                            <span> : {{editableProperty.salableArea}}</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Build Up Area</label>
                             <span> : {{editableProperty.buildUpArea}}</span>
                         </div>
                     </div>
-
-                </div>
-
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Balcony Count</label>
                             <span> : {{editableProperty.balconyCount}}</span>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Toilet Count</label>
                             <span> : {{editableProperty.toiletCount}}</span>
                         </div>
                     </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>Open Terrace</label>
-                            <!--                            <span> : {{editableProperty.openTerrace}}</span>-->
                             <span ng-if="editableProperty.openTerrace === true">Yes</span>
                             <span ng-if="editableProperty.openTerrace === false">No</span>
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>Open Land</label>
-                            <!--                            <span> : {{editableProperty.openLand}}</span>-->
                             <span ng-if="editableProperty.openLand === true">Yes</span>
                             <span ng-if="editableProperty.openLand === false">No</span>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Latitude</label>
                             <span> : {{editableProperty.latitude}}</span>
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Longitude</label>
                             <span> : {{editableProperty.longitude}}</span>
                         </div>
                     </div>
-
                 </div>
 
-
-
-
             </div>                                    
-
         </div>
     </div>
 </div>
