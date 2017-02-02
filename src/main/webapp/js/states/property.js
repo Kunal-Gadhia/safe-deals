@@ -34,20 +34,20 @@ angular.module("safedeals.states.property", [])
                 }
             };
             $scope.searchLocationByLocationAndBudget = function (cityName, minBudget, maxBudget, propertySize) {
-                console.log("property:" + propertySize);
-                console.log("City Id :" + cityName);
-                console.log("Min Budget :" + minBudget);
-                console.log("Max Budget :" + maxBudget);
-                $scope.cityObject = CityService.findByCityName({
-                    'name': cityName
-                });
-                console.log("City Object :%O", $scope.cityObject);
-                $state.go('main.location', {
-                    locationMinBudget: minBudget / propertySize,
-                    locationMaxBudget: maxBudget / propertySize,
-                    propertyDetails: propertySize,
-                    cityId: $scope.cityId
-                });
+//                console.log("property:" + propertySize);
+//                console.log("City Id :" + cityName);
+//                console.log("Min Budget :" + minBudget);
+//                console.log("Max Budget :" + maxBudget);
+//                $scope.cityObject = CityService.findByCityName({
+//                    'name': cityName
+//                });
+//                console.log("City Object :%O", $scope.cityObject);
+//                $state.go('main.location', {
+//                    locationMinBudget: minBudget / propertySize,
+//                    locationMaxBudget: maxBudget / propertySize,
+//                    propertyDetails: propertySize,
+//                    cityId: $scope.cityId
+//                });
             };
             var map;
             var mapContainer = document.getElementById("locationMapContainer");

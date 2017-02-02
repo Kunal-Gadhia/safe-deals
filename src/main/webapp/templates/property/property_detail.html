@@ -1,0 +1,317 @@
+
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">		
+        <div class="modal-content map-details">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3 class="modal-title">
+                            {{property.name}}
+                        </h3>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class=" pull-right btn btn-link">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ul class="nav nav-tabs" id="location_tabs">
+                        <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                            <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div  ng-switch on="selection" class="locations"> 
+                    <!--                    <div ng-show="myValue">-->
+                    <div ng-show="myValue">
+                        <div class="col-md-offset-4">
+                            <nav class="navbar locations_nav">
+                                <ul class="nav">
+                                    <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                        <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left main_locations">{{amenityCode.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div ng-show="amenities">
+                            <nav class="navbar locations_nav">
+                                <ul id={{amenityCode.id}} class="nav">
+                                    <li ng-repeat="amenity in amenitiesList">
+                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="row">   
+                            <div id="locationDetailMapContainer" style="height: 400px;"></div>    
+                        </div>
+                    </div>
+                    <div ng-switch-when="Work Places" class="locations">
+                        <div ng-show="myWorkplaces">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="workplace in workplaces" ng-click="toggle()">
+                                            <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left main_locations">{{workplace.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
+                                            <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="row">    
+                                <div id="locationDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Projects" class="locations">
+                        <div ng-show="myProjects">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="project in projects" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations">{{project.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+<!--                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenity in amenitiesList">
+                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>-->
+                            <div class="row">    
+                                <div id="locationDetailMapContainerProjects" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Properties" class="locations">
+                        <div ng-show="myProperties">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="property in properties" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+<!--                            <div ng-show="amenities">
+                                <nav class="navbar locations_nav">
+                                    <ul id={{amenityCode.id}} class="nav">
+                                        <li ng-repeat="amenity in amenitiesList">
+                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>-->
+                            <div class="row">    
+                                <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Overview">
+                        <div>
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><label>Location Name : </label></td>
+                                        <td> {{ location.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Location Description :</label></td>
+                                        <td> {{ location.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Population :</label></td>
+                                        <td> {{ location.population}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Major Approach Road : </label></td>
+                                        <td> {{ location.majorApproachRoad}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label>Public Transport :</label></td>
+                                        <td> {{ location.publicTransport}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Source Of Water :</label></td>
+                                        <td>      
+                                            {{ location.sourceOfWater}} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                    <div ng-switch-when="Price Trends">
+                        <!--<h2>Dummy Text for Price Trends</h2>-->
+                        <div class="row">
+                            <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
+                                                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="pull-right">
+    <button type="button" class="btn btn-link btn-sm" data-ui-sref="main.help">Generate Report</button>
+</div>
+<div class="intro">
+    <h2>Projects And Properties</h2>   
+    <div class="col-md-12 col-sm-12">
+        <div class="row form-group">
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Property Type
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label> Flat:</label>
+                                            <ul style="list-style-type:none">
+                                                <li><input type="checkbox"/> 1BHK</li>
+                                                <li><input type="checkbox"/> 2BHK</li>
+                                                <li><input type="checkbox"/> 3BHK</li>
+                                                <li><input type="checkbox"/> 4BHK</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label> House:</label>
+                                            <ul style="list-style-type:none">
+                                                <li><input type="checkbox"/> Bungalow</li>
+                                                <li><input type="checkbox"/> Pent House</li>
+                                                <li><input type="checkbox"/> Farm House</li>
+                                                <li><input type="checkbox"/> Duplex</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Plot & House:</label>
+                                            <ul style="list-style-type:none">
+                                                <li><input type="checkbox"/> Only Plot</li>
+                                                <li><input type="checkbox"/> Plot + Constructed Home</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div><label class="col-sm-3 label-text">Budget: </label></div>
+                <div class="col-sm-9">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Property Type
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                           
+                                                
+                                                <ul style="list-style-type:none">
+                                                    <li><input style="width: 50px" type="number"/> Min</li>
+                                                    <li>
+                                                        <ul style="list-style-type:none"  ng-repeat="slab in slabs" ng-class="{active: $index == getCurrentStepIndex()}">
+                                                            <li>  <a href="" ng-click="getMinSlabValue(slab)">{{slab}}</a> </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                          
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-1">
+                                           
+                                                
+                                                <ul style="list-style-type:none">
+                                                    <li><input  style="width: 50px" type="number"/> Max</li>
+                                                   
+                                                </ul>
+                                          
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-3">
+                <div><label class="col-sm-3 label-text">Location: </label></div>
+                <div class="col-sm-9">
+                    <select class="form-control">
+                        <option>Isasani</option>
+                        <option>Ramdespeth</option>
+                        <option>Dhantoli</option>
+                        <option>Khamla</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2"> 
+                <div class=" col-sm-6">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2" style="padding-right: 0">
+                <nav class="navbar">
+                    <ul class="nav nav-pills nav-stacked navbar-default"  style="height: 500px;">
+                                                <li data-ui-sref-active="active"><a data-ui-sref="main.property.property_map_container">Properties</a></li>                                            
+                                                <li data-ui-sref-active="active"><a data-ui-sref="main.property.project_map_container">Projects</a></li>
+                        <li data-ui-sref-active="active"><a data-ui-sref="main.property.school_map_container">Schools</a></li>                                            
+                        <li data-ui-sref-active="active"><a data-ui-sref="main.property.atm_map_container">Bank/Atm's</a></li>
+                        <li data-ui-sref-active="active"><a data-ui-sref="main.property.hospital_map_container">Hospitals</a></li>
+                        <li data-ui-sref-active="active"><a href="#">Bus Stop</a></li>
+                        <li data-ui-sref-active="active"><a href="#">Shopping Mall's</a></li>
+                        <li data-ui-sref-active="active"><a href="#">Worship Place</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div data-ui-view="" class="col-sm-10" style="padding-left: 0">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+-->
+<!--<div class="col-md-offset-3">
+    <img src="images/COMING-SOON 2.png" width="680" height="390" class="img-responsive"/>
+</div>-->
+ 
