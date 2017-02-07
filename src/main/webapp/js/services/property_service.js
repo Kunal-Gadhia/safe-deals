@@ -9,7 +9,8 @@ angular.module("safedeals.services.property")
                         'locationId': '@locationId'
                     },
                     'isArray': true
-                }, 'findByLocationAndCity': {
+                },
+                'findByLocationAndCity': {
                     'method': 'GET',
                     'url': restRoot + '/property/find/location_id/city_id',
                     'params': {
@@ -17,7 +18,8 @@ angular.module("safedeals.services.property")
                         'cityId': '@cityId'
                     },
                     'isArray': true
-                }, 'findByMinAndMaxBudget': {
+                },
+                'findByMinAndMaxBudget': {
                     'method': 'GET',
                     'url': restRoot + '/property/find/min_budget/max_budget',
                     'params': {

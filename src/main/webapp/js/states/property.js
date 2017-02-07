@@ -74,6 +74,8 @@ angular.module("safedeals.states.property", [])
                 $scope.stateId = state.id;
                 $scope.state = state;
             };
+
+
             $scope.searchCities = function (searchTerm) {
                 console.log("State Id :%O", $scope.stateId);
                 if ($scope.stateId === undefined) {
@@ -93,6 +95,28 @@ angular.module("safedeals.states.property", [])
                 $scope.cityName = city.name;
                 $scope.cityId = city.id;
                 $scope.city = city;
+            };
+
+            $scope.searchLocations = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                console.log("City Id :%O", $scope.cityId);
+                if ($scope.cityId === undefined) {
+                    console.log("Coming to if ??");
+                    return LocationService.findByNameLike({
+                        'name': searchTerm
+                    }).$promise;
+                } else {
+                    console.log("Coming to Else ??");
+                    return LocationService.findByNameAndCityId({
+                        'name': searchTerm,
+                        'cityId': $scope.cityId
+                    }).$promise;
+                }
+            };
+            $scope.setLocation = function (location) {
+                $scope.locationId = location.id;
+                $scope.location = location;
+                console.log("$scope.location ", $scope.location);
             };
             drawMap();
             console.log("Location Min Budget :%O", $stateParams.locationMinBudget);
@@ -122,7 +146,7 @@ angular.module("safedeals.states.property", [])
                             'id': mpObject.locationId
                         }, function (location) {
                             $scope.locations.push(location);
-                            console.log("Locations :%O", location);                            
+                            console.log("Locations :%O", location);
                             drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
                             var myCity = new google.maps.Circle({
                                 center: new google.maps.LatLng(location.latitude, location.longitude),

@@ -25,6 +25,15 @@
                             <p ng-show="noCitiesFound" class="help-block text-muted">No City found</p>
                             <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                         </div>
+                        <div class="btn-group">                             
+                            <input placeholder="Select Location" class="form-control" uib-typeahead="location.name as location.name for location in searchLocations($viewValue)"                                           
+                                   typeahead-on-select="setLocation($item)"                                           
+                                   typeahead-loading="loadingLocations" 
+                                   typeahead-no-results="noLocationsFound"                                           
+                                   ng-model="locationName"  required="required"/>
+                            <p ng-show="noLocationsFound" class="help-block text-muted">No Location found</p>
+                            <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
+                        </div>
                         <div class="btn-group">                    
                             <select class="form-control" ng-model="minBudget" required="required">
                                 <option value="">Min Budget</option>
@@ -89,15 +98,15 @@
                         <table class="table table-striped">
                             <tr>
                                 <th ng-repeat = "selectedLocation in selectedLocationList"> 
-                                    <div class="thumbnail thumbnail-border"> 
-                                        <p>
-                                            <strong>{{selectedLocation.name}}</strong>
-                                            <i class="fa fa-times btn-link pull-right"
-                                               ng-click="removeLocation(selectedLocation)" aria-hidden="true"></i>                                            
-                                        </p>
-                                        <img src="images/5.jpg"/>
-                                    </div>
-                                </th> 
+                            <div class="thumbnail thumbnail-border"> 
+                                <p>
+                                    <strong>{{selectedLocation.name}}</strong>
+                                    <i class="fa fa-times btn-link pull-right"
+                                       ng-click="removeLocation(selectedLocation)" aria-hidden="true"></i>                                            
+                                </p>
+                                <img src="images/5.jpg"/>
+                            </div>
+                            </th> 
                             </tr>
                         </table>
                     </div>  

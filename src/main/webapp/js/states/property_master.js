@@ -510,7 +510,7 @@ angular.module("safedeals.states.property_master", [])
                         'name': searchTerm
                     }).$promise;
                 } else {
-                    console.log("Coming to Else ??");
+                    console.log("Coming to Else ??");F
                     return LocationService.findByNameAndCityId({
                         'name': searchTerm,
                         'cityId': $scope.editableProperty.cityId
