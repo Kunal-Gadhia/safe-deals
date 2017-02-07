@@ -172,6 +172,16 @@ public class PropertyDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, propertyRowMapper);
     }
 
+    public List<Property> findByCityAndLocation(Integer locationId, Integer cityId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " =? AND " + Columns.CITY_ID + " =? ";
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId, cityId}, propertyRowMapper);
+    }
+
+    public List<Property> findByMinAndMaxBudget(Integer minBudget, Integer maxBudget) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.OFFERED_PRICE + " >= ? AND " + Columns.OFFERED_PRICE + "<=?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{minBudget, maxBudget}, propertyRowMapper);
+    }
+
     public Property update(Property property) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " =?,"

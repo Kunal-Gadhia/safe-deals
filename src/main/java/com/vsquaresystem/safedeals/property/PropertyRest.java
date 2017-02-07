@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import static org.apache.poi.hwpf.model.FileInformationBlock.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,6 +56,18 @@ public class PropertyRest {
     @RequestMapping(value = "/find/location_id", method = RequestMethod.GET)
     public List<Property> findByLocationId(@RequestParam("locationId") Integer locationId) {
         return propertyDAL.findByLocationId(locationId);
+    }
+
+    @RequestMapping(value = "/find/location_id/city_id", method = RequestMethod.GET)
+    public List<Property> findByLocationAndCity(@RequestParam("locationId") Integer locationId,
+            @RequestParam("cityId") Integer cityId) {
+        return propertyDAL.findByCityAndLocation(locationId, cityId);
+    }
+
+    @RequestMapping(value = "/find/min_budget/max_budget", method = RequestMethod.GET)
+    public List<Property> findByMinAndMaxBudget(@RequestParam("minBudget") Integer minBudget,
+            @RequestParam("maxBudget") Integer maxBudget) {
+        return propertyDAL.findByMinAndMaxBudget(minBudget, maxBudget);
     }
 
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
