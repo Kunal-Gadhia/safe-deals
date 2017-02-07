@@ -17,11 +17,6 @@ body{
 /*.h1, .h2, .h3, h1, h2, h3 {
     margin-top: 0;
 }*/
-hr.ft-hr {
-    max-width: 50px;
-    border-color: #f05f40;
-    border-width: 3px;
-}
 .logo{ 
     padding: 10px;
 }
@@ -48,6 +43,7 @@ hr.ft-hr {
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     #adminNavbar ul {
         height: 80px;
+        margin-top: 20px;
     }
 }
 .vertical-line{

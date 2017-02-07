@@ -1,4 +1,3 @@
-<!--<div id="wrapper">-->
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -7,16 +6,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#">Safedeals</a>
+            <a class="" href="#">
+                <img alt="Brand" src="images/safedeals.png" class="logo img-responsive" width="200" height="40">
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="adminNavbar">
-            <ul class="nav navbar-nav">                        
-                <li data-ui-sref-active="active"><a href="#">Home</a></li>
-                <li data-ui-sref-active="active"><a data-ui-sref="admin.masters" >Masters</a></li>
-                <li data-ui-sref-active="active"><a href="#">Transaction</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{currentUser.username}}</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{currentUser.username}}</a></li>
                 <li><a data-ui-sref="admin.logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
@@ -24,20 +20,19 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div id="main-content" ng-class="{
+        <div id="main-content" style="min-height: 495px;" ng-class="{
                         'col-md-12' : !opened, 'col-sm - 9 col-md-9' : opened
                     }" data-ui-view="">                     
         </div>
     </div>
 </div>
-<div class="wrapper">
-    <footer class="text-center clearfix container">
-        <div class="">
-            <hr class="ft-hr">
-            <p>
-                <strong>Copyright &COPY; 2015 <a href="http://www.vsquaresystem.com/"> www.vsquaresystem.com</a></strong>
-            </p>
+<footer id="footer">
+    <div class="container clearfix">
+        <div class="row">
+            <hr>
+            <div class="text-center">
+                <strong>Copyright &COPY; 2016, All Rights Reserved Safe Deals</strong>
+            </div>
         </div>
-    </footer>
-</div>
-<!--</div>-->
+    </div>
+</footer>
