@@ -212,6 +212,13 @@ angular.module("safedeals.states.property", [])
                     });
                     map.setZoom(13);
                 });
+                $scope.$watch('location', function (location) {
+                    map.setCenter({
+                        lat: location.latitude,
+                        lng: location.longitude
+                    });
+                    map.setZoom(14);
+                });
             }
             ;
             var drawMarker = function (position, title, map) {
