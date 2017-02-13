@@ -172,14 +172,30 @@ public class PropertyDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, propertyRowMapper);
     }
 
-    public List<Property> findByCityAndLocation(Integer locationId, Integer cityId) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " =? AND " + Columns.CITY_ID + " =? ";
-        return jdbcTemplate.query(sqlQuery, new Object[]{locationId, cityId}, propertyRowMapper);
+    public List<Property> findByCityAndLocation(Integer locationId, Integer cityId, Integer propertySize) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "
+                + Columns.LOCATION_ID + " =? AND "
+                + Columns.CITY_ID + " =? AND "
+                + Columns.PROPERTY_SIZE + " =?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId, cityId, propertySize}, propertyRowMapper);
     }
 
-    public List<Property> findByMinAndMaxBudget(Integer minBudget, Integer maxBudget) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.OFFERED_PRICE + " >= ? AND " + Columns.OFFERED_PRICE + "<=?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{minBudget, maxBudget}, propertyRowMapper);
+    public List<Property> findByMinAndMaxBudget(Integer minBudget, Integer maxBudget, Integer propertySize) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.OFFERED_PRICE + " >= ? AND "
+                + Columns.OFFERED_PRICE + "<=? AND "
+                + Columns.PROPERTY_SIZE + " =?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{minBudget, maxBudget, propertySize}, propertyRowMapper);
+    }
+
+    public List<Property> findByFilters(Integer cityId, Integer locationId, Integer propertySize, Integer minBudget, Integer maxBudget) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "
+                + Columns.CITY_ID + "= ? AND "
+                + Columns.LOCATION_ID + "= ? AND "
+                + Columns.PROPERTY_SIZE + "= ? AND "
+                + Columns.OFFERED_PRICE + ">= ? AND "
+                + Columns.OFFERED_PRICE + "<= ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{cityId, locationId, propertySize, minBudget, maxBudget}, propertyRowMapper);
+
     }
 
     public Property update(Property property) throws JsonProcessingException {

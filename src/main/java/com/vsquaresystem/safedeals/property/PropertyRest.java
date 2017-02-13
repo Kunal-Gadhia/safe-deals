@@ -58,16 +58,25 @@ public class PropertyRest {
         return propertyDAL.findByLocationId(locationId);
     }
 
-    @RequestMapping(value = "/find/location_id/city_id", method = RequestMethod.GET)
+    @RequestMapping(value = "/find/location_id/city_id/property_size", method = RequestMethod.GET)
     public List<Property> findByLocationAndCity(@RequestParam("locationId") Integer locationId,
-            @RequestParam("cityId") Integer cityId) {
-        return propertyDAL.findByCityAndLocation(locationId, cityId);
+            @RequestParam("cityId") Integer cityId, @RequestParam("propertySize") Integer propertySize) {
+        return propertyDAL.findByCityAndLocation(locationId, cityId, propertySize);
     }
 
-    @RequestMapping(value = "/find/min_budget/max_budget", method = RequestMethod.GET)
+    @RequestMapping(value = "/find/min_budget/max_budget/property_size", method = RequestMethod.GET)
     public List<Property> findByMinAndMaxBudget(@RequestParam("minBudget") Integer minBudget,
-            @RequestParam("maxBudget") Integer maxBudget) {
-        return propertyDAL.findByMinAndMaxBudget(minBudget, maxBudget);
+            @RequestParam("maxBudget") Integer maxBudget, @RequestParam("propertySize") Integer propertySize) {
+        return propertyDAL.findByMinAndMaxBudget(minBudget, maxBudget, propertySize);
+    }
+
+    @RequestMapping(value = "/find/filter", method = RequestMethod.GET)
+    public List<Property> findByFilters(@RequestParam(value = "cityId", required = false) Integer cityId,
+            @RequestParam(value = "locationId", required = false) Integer locationId,
+            @RequestParam(value = "propertySize", required = false) Integer propertySize,
+            @RequestParam(value = "minBudget", required = false) Integer minBudget,
+            @RequestParam(value = "maxBudget", required = false) Integer maxBudget) {
+        return propertyDAL.findByFilters(cityId, locationId, propertySize, minBudget, maxBudget);
     }
 
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)

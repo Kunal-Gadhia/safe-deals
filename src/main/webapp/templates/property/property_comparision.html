@@ -1,16 +1,64 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">        
+        <div class="modal-content overflow">
+            <div class="modal-header">
+                <div class="row form-group">
+                    <div class="col-md-11 col-xs-10">
+                        <h3 class="modal-title">
+                            <i class="fa fa-globe text-primary"></i>
+                            Compare Locations
+                        </h3>
+                    </div>
+                    <div class="col-md-1 col-xs-2">
+                        <button class="btn btn-link" onclick="window.history.back()">
+                            <i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th ng-repeat="property in compareList">{{property.name}}</th>
+                        </tr>                            
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fa fa-users"></i>&nbsp <b>Population</b></td>
+                            <td ng-repeat="property in compareList">{{property.population}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-file-text"></i>&nbsp<b> Description</b></td>
+                            <td ng-repeat="property in compareList">{{property.description}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-tint"></i>&nbsp <b>Source Of Water</b></td>
+                            <td ng-repeat="property in compareList">{{property.sourceOfWater}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-road"></i>&nbsp <b>Major Approach Road</b></td>
+                            <td ng-repeat="property in compareList">{{property.majorApproachRoad}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-map-marker "></i>&nbsp <b>Distance From Center Of City</b></td>
+                            <td ng-repeat="property in compareList">{{property.distanceFromCentreOfCity}}&nbsp;Kms</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-bus "></i>&nbsp <b>Public Transport</b></td>
+                            <td ng-repeat="property in compareList">{{property.publicTransport}}</td>
+                        </tr>                        
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Advantages</b></td>
+                            <td ng-repeat="property in compareList">{{property.advantage}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-down "></i>&nbsp <b>Disadvantages</b></td>
+                            <td ng-repeat="property in compareList">{{property.disadvantage}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>
+    </div>
+
+
