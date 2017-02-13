@@ -26,13 +26,13 @@
                             <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                         </div>
                         <div class="form-group">
-                            <select class="form-control" ng-model="minBudget" required="required">
+                            <select id="minBudget" class="form-control" ng-model="minBudget" required="required">
                                 <option value="">Min Budget</option>
                                 <option value="0">&#8377; 0</option>
-                                <option value="500000">&#8377; 5 Lac</option>
-                                <option value="2500000">&#8377; 25 Lac</option>
-                                <option value="5000000">&#8377; 50 Lac</option>
-                                <option value="7500000">&#8377; 75 Lac</option>
+                                <option value="500000">&#8377; 5 Lakhs</option>
+                                <option value="2500000">&#8377; 25 Lakhs</option>
+                                <option value="5000000">&#8377; 50 Lakhs</option>
+                                <option value="7500000">&#8377; 75 Lakhs</option>
                                 <option value="10000000">&#8377; 1 Crore</option>
                                 <option value="12500000">&#8377; 1.25 Crore</option>
                                 <option value="15000000">&#8377; 1.5 Crore</option>
@@ -40,12 +40,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="form-control" ng-model="maxBudget" required="required">
+                            <select id="maxBudget" class="form-control" ng-model="maxBudget" required="required">
                                 <option value="">Max Budget</option>
-                                <option value="500000">&#8377; 5 Lac</option>
-                                <option value="2500000">&#8377; 25 Lac</option>
-                                <option value="5000000">&#8377; 50 Lac</option>
-                                <option value="7500000">&#8377; 75 Lac</option>
+                                <option value="500000">&#8377; 5 Lakhs</option>
+                                <option value="2500000">&#8377; 25 Lakhs</option>
+                                <option value="5000000">&#8377; 50 Lakhs</option>
+                                <option value="7500000">&#8377; 75 Lakhs</option>
                                 <option value="10000000">&#8377; 1 Crore</option>
                                 <option value="12500000">&#8377; 1.25 Crore</option>
                                 <option value="15000000">&#8377; 1.5 Crore</option>
@@ -84,12 +84,17 @@
                                 </span>
                             </div>
                             <div class="row">
-                                <span><strong>&#8377; {{location.propertyRate}} per sqft </strong>
+                                <span><strong>&#8377; {{location.marketPrice}} per sqft </strong>
                                 </span>
                             </div>
+
                             <!--<div class="row"><span><input type="checkbox" ng-checked="comparisionFunction(location)"  name="Add to compare"> Add to compare</span></div>-->
                             <div class="row" ng-hide="hideCheckbox">
-                                <span><input type="checkbox" name="Add to compare" ng-model="location.flag"> Add to compare</span></div>
+                                <span><input type="checkbox" name="Add to compare" ng-model="location.flag"> Add to compare</span>
+                            </div>
+                            <div class="row">
+                                <button data-ui-sref="">Select Location</button>
+                            </div>
                             <div class="row">
                                 <span class="pull-left">
                                     <button class="btn btn-link" title="Details" data-ui-sref="main.location.location_detail({ locationId: location.id })">
@@ -116,15 +121,15 @@
                 <table class="table table-striped">
                     <tr>
                         <th ng-repeat = "selectedLocation in selectedLocationList"> 
-                            <div class="thumbnail thumbnail-border"> 
-                                <p>
-                                    <strong>{{selectedLocation.name}}</strong>
-                                    <i class="fa fa-times btn-link pull-right"
-                                       ng-click="removeLocation(selectedLocation)" aria-hidden="true"></i>                                            
-                                </p>
-                                <img src="images/5.jpg"/>
-                            </div>
-                        </th> 
+                    <div class="thumbnail thumbnail-border"> 
+                        <p>
+                            <strong>{{selectedLocation.name}}</strong>
+                            <i class="fa fa-times btn-link pull-right"
+                               ng-click="removeLocation(selectedLocation)" aria-hidden="true"></i>                                            
+                        </p>
+                        <img src="images/5.jpg"/>
+                    </div>
+                    </th> 
                     </tr>
                 </table>
             </div>  

@@ -5,7 +5,7 @@
         </div>        
         <div class="col-md-9 col-sm-9">
             <div class="form-group">
-                <form ng-submit="validateForm(cityName, minBudget, maxBudget, searchPropertySize)">
+                <form ng-submit="validateForm(stateName, cityName, locationName, minBudget, maxBudget, propertySize)">
                     <div class="row form-group">
                         <div class="btn-group">                                 
                             <input placeholder="Select State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"                                           
@@ -63,8 +63,8 @@
                             </select>      
                         </div>
                         <div class="btn-group">
-                            <select class="form-control" id="searchPropertyValue" ng-model="searchPropertySize" required="required">
-                                <option value="">Select Project</option>
+                            <select class="form-control" id="searchPropertyValue" ng-model="propertySize" required="required">
+                                <option value="">Select Property Size</option>
                                 <option value="600">1 BHK</option>
                                 <option value="1000">2 BHK</option>
                                 <option value="1500">3 BHK</option>

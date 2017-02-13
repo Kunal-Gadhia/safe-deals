@@ -21,6 +21,30 @@ angular.module("safedeals.states.location", [])
         .controller('LocationController', function ($scope, $state, $filter, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
+
+            if ($stateParams.cityId !== null) {
+                console.log("inside This Thing");
+                CityService.get({
+                    'id': $stateParams.cityId
+                }, function (cityObject) {
+                    $scope.cityName = cityObject.name;
+                    $scope.cityId = cityObject.id;
+                    $scope.city = cityObject;
+
+                    StateService.get({
+                        'id': cityObject.stateId
+                    }, function (stateObject) {
+                        $scope.stateName = stateObject.name;
+                        $scope.stateId = stateObject.id;
+                        $scope.state = stateObject;
+                    });
+                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
+                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
+                    $scope.searchPropertySize = $stateParams.propertyDetails;
+                    console.log("Min Budget :%O", $scope.minBudget);
+                });
+
+            }
             $scope.validateForm = function (cityName, minBudget, maxBudget, propertySize) {
                 console.log("Min Budget :" + minBudget);
                 console.log("Max Budget :" + maxBudget);
@@ -121,6 +145,7 @@ angular.module("safedeals.states.location", [])
                         LocationService.get({
                             'id': mpObject.locationId
                         }, function (location) {
+                            location.marketPrice = mpObject.mpResidentialAverage;
 //                            location.flag = false;
                             $scope.locations.push(location);
                             console.log("Locations :%O", location);
