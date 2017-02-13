@@ -63,21 +63,11 @@
                             </select>      
                         </div>
                         <div class="btn-group">
-<<<<<<< HEAD
-                            <select class="form-control" id="searchPropertyValue" ng-model="propertySize" required="required">
-                                <option value="">Select Property Size</option>
-                                <option value="600">1 BHK</option>
-                                <option value="1000">2 BHK</option>
-                                <option value="1500">3 BHK</option>
-                                <option value="2000">4 BHK</option>
-                            </select>            
-=======
 
                             <select class="form-control" id="propertySizeId" ng-model="propertySize" required="required">
                                 <option value="">Select Property Size</option>
                                 <option ng-repeat="propertyTypeObject in propertyTypesList" value="{{propertyTypeObject.id}}" >{{propertyTypeObject.numberOfBhk}}</option>
                             </select>
->>>>>>> e6b77bb8b0c63c8745c91538d9c08d497dc6ff07
                         </div>
                         <div class="btn-group">
                             <button class="btn btn-primary">Search</button>
