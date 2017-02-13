@@ -12,17 +12,31 @@ angular.module("safedeals.services.property")
                 },
                 'findByLocationAndCity': {
                     'method': 'GET',
-                    'url': restRoot + '/property/find/location_id/city_id',
+                    'url': restRoot + '/property/find/location_id/city_id/property_size',
                     'params': {
                         'locationId': '@locationId',
-                        'cityId': '@cityId'
+                        'cityId': '@cityId',
+                        'propertySize': '@propertySize'
                     },
                     'isArray': true
                 },
                 'findByMinAndMaxBudget': {
                     'method': 'GET',
-                    'url': restRoot + '/property/find/min_budget/max_budget',
+                    'url': restRoot + '/property/find/min_budget/max_budget/property_size',
                     'params': {
+                        'minBudget': '@minBudget',
+                        'maxBudget': '@maxBudget',
+                        'propertySize': '@propertySize'
+                    },
+                    'isArray': true
+                },
+                'findByFilters': {
+                    'method': 'GET',
+                    'url': restRoot + '/property/find/filter',
+                    'params': {
+                        'cityId': '@cityId',
+                        'locationId': '@locationId',
+                        'propertySize': '@propertySize',
                         'minBudget': '@minBudget',
                         'maxBudget': '@maxBudget'
                     },
