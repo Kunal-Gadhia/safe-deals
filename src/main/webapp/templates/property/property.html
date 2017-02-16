@@ -62,8 +62,9 @@
                                 <option value="20000000">&#8377; 2 Crore</option>
                             </select>      
                         </div>
+                    </div>
+                    <div class="row form-group">
                         <div class="btn-group">
-
                             <select class="form-control" id="propertySizeId" ng-model="propertySize" required="required">
                                 <option value="">Select Property Size</option>
                                 <option ng-repeat="propertyTypeObject in propertyTypesList" value="{{propertyTypeObject.id}}" >{{propertyTypeObject.numberOfBhk}}</option>
