@@ -63,6 +63,29 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 /*************************** City Special ********************************/
+.page-wrap {
+    -ms-touch-action: pan-y;
+    -ms-overflow-style: none !important;
+    width: 1262px; 
+}
+.horizontal-slide {
+    white-space: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.horizontal-slide .tile {
+    display: inline-block;
+    float: none;
+}
+.tile { 
+    width: 210px;
+    height: 220px;
+    margin: 20px;
+    display: inline-block;
+}
+.tile.selected {
+    background-color: red !important;
+}
 .bg-city-spcl{
     /*    background: url("../images/noise-texture-background.png") fixed;*/
     background-color: #EBF6FC;
