@@ -7,7 +7,7 @@
                     <div class="col-md-11 col-xs-10">
                         <h3 class="modal-title">
                             <i class="fa fa-globe text-primary"></i>
-                            Compare Locations
+                            Compare Properties
                         </h3>
                     </div>
                     <div class="col-md-1 col-xs-2">
@@ -18,43 +18,141 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Description</th>
+                            <th>Name</th>
                             <th ng-repeat="property in compareList">{{property.name}}</th>
                         </tr>                            
                     </thead>
                     <tbody>
                         <tr>
-                            <td><i class="fa fa-users"></i>&nbsp <b>Population</b></td>
-                            <td ng-repeat="property in compareList">{{property.population}}</td>
+                            <td><i class="fa fa-users"></i>&nbsp <b>Location</b></td>
+                            <td ng-repeat="property in finalCompareArray">{{property.location.name}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-file-text"></i>&nbsp<b> Description</b></td>
-                            <td ng-repeat="property in compareList">{{property.description}}</td>
+                            <td><i class="fa fa-file-text"></i>&nbsp<b> Property Type</b></td>
+                            <td ng-repeat="property in compareList">{{property.propertyType}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-tint"></i>&nbsp <b>Source Of Water</b></td>
-                            <td ng-repeat="property in compareList">{{property.sourceOfWater}}</td>
+                            <td><i class="fa fa-tint"></i>&nbsp <b>Size</b></td>
+                            <td ng-repeat="property in compareList">{{property.size}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-road"></i>&nbsp <b>Major Approach Road</b></td>
-                            <td ng-repeat="property in compareList">{{property.majorApproachRoad}}</td>
+                            <td><i class="fa fa-road"></i>&nbsp <b>Building Construction Date</b></td>
+                            <td ng-repeat="property in compareList">{{property.buildingAge}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-map-marker "></i>&nbsp <b>Distance From Center Of City</b></td>
-                            <td ng-repeat="property in compareList">{{property.distanceFromCentreOfCity}}&nbsp;Kms</td>
+                            <td><i class="fa fa-map-marker "></i>&nbsp <b>Floors</b></td>
+                            <td ng-repeat="property in compareList">{{property.totalFloors}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-bus "></i>&nbsp <b>Public Transport</b></td>
-                            <td ng-repeat="property in compareList">{{property.publicTransport}}</td>
+                            <td><i class="fa fa-bus "></i>&nbsp <b>Entry Facing</b></td>
+                            <td ng-repeat="property in compareList">{{property.entryFacing}}</td>
                         </tr>                        
                         <tr>
-                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Advantages</b></td>
-                            <td ng-repeat="property in compareList">{{property.advantage}}</td>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Project</b></td>
+                            <td ng-repeat="property in finalCompareArray">{{property.project.name}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-thumbs-down "></i>&nbsp <b>Disadvantages</b></td>
-                            <td ng-repeat="property in compareList">{{property.disadvantage}}</td>
+                            <td><i class="fa fa-thumbs-down "></i>&nbsp <b>Major Approach Road</b></td>
+                            <td ng-repeat="property in finalCompareArray">{{property.majorApproachRoadObject.name}}</td>
                         </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Public Transport</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="publicTransportObject in property.publicTransportDisplay">
+                                        {{publicTransportObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Offered Price</b></td>
+                            <td ng-repeat="property in compareList">{{property.offeredPrice}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Workplaces</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="workplaceObject in property.workplacesDisplay">
+                                        {{workplaceObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Projects Nearby</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="projectsNearbyObject in property.projectsNearbyDisplay">
+                                        {{projectsNearbyObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Basic Amenities</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="basicAmenitiesObject in property.basicAmenitiesDisplay">
+                                        {{basicAmenitiesObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Luxury Amenities</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="luxuryAmenitiesObject in property.luxuryAmenitiesDisplay">
+                                        {{luxuryAmenitiesObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Approved Banks</b></td>
+                            <td ng-repeat="property in finalCompareArray"> 
+                                <ul>
+                                    <li ng-repeat="approvedBanksObject in property.approvedBanksDisplay">
+                                        {{approvedBanksObject.name}}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Salable Area</b></td>
+                            <td ng-repeat="property in compareList">{{property.salableArea}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Carpet Area</b></td>
+                            <td ng-repeat="property in compareList">{{property.carpetArea}}</td>
+                        </tr>
+
+
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>BuildUp Area</b></td>
+                            <td ng-repeat="property in compareList">{{property.buildUpArea}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Balcony Count</b></td>
+                            <td ng-repeat="property in compareList">{{property.balconyCount}}</td>
+                        </tr>
+                        <tr>
+                            
+                            
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Open Terrace</b></td>
+                            <td ng-repeat="property in compareList">{{property.openTerrace}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-thumbs-up "></i>&nbsp <b>Open Land</b></td>
+                            <td ng-repeat="property in compareList">{{property.openLand}}</td>
+                        </tr>
+
+
+
                     </tbody>
                 </table>
             </div>            
