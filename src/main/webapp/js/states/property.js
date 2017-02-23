@@ -401,12 +401,105 @@ angular.module("safedeals.states.property", [])
                 });
             };
         })
-        .controller('PropertyComparisionController', function ($scope) {
+
+        .controller('PropertyComparisionController', function ($scope, LocationService, BankService, AmenityDetailService, TransportationService, RoadService, ProjectService) {
             console.log("Property Comaparision Controller");
             console.log("Selected List :%O", $scope.$parent.selectedPropertyList);
             $scope.compareList = $scope.$parent.selectedPropertyList;
-//            console.log("$rootScope", $rootScope);
-//            console.log("$parent", $parent);
+            $scope.finalCompareArray = [];
+            angular.forEach($scope.compareList, function (compareList) {
+                console.log("locationID??", compareList.locationId);
+                LocationService.get({
+                    'id': compareList.locationId
+                }, function (locationObject) {
+                    compareList.location = locationObject;
+                    console.log("compareList.location111 :%O", compareList.location);
+                });
+
+                ProjectService.get({
+                    'id': compareList.projectId
+                }, function (projectObject) {
+                    compareList.project = projectObject;
+                    console.log("compareList.project111 :%O", compareList.project);
+                });
+
+                RoadService.get({
+                    'id': compareList.majorApproachRoad
+                }, function (majorApproachRoadObject) {
+                    compareList.majorApproachRoadObject = majorApproachRoadObject;
+                    //  console.log("compareList.majorApproachRoad111 :%O", compareList.majorApproachRoadObject);
+                });
+
+//                TransportationService.get({
+//                    'id': compareList.publicTransport
+//                }, function (publicTransportObject) {
+//                    compareList.publicTransportObject = publicTransportObject;
+//                  //  console.log("compareList.publicTransport111 :%O", compareList.publicTransportObject);
+//                });
+
+                compareList.publicTransportDisplay = [];
+                angular.forEach(compareList.publicTransport, function (publicTransport) {
+                    TransportationService.get({
+                        'id': publicTransport
+                    }, function (data) {
+                        compareList.publicTransportDisplay.push(data);
+                    });
+                });
+
+
+
+                compareList.workplacesDisplay = [];
+                angular.forEach(compareList.workplaces, function (workplaces) {
+                    AmenityDetailService.get({
+                        'id': workplaces
+                    }, function (data) {
+                        compareList.workplacesDisplay.push(data);
+                    });
+                });
+
+                compareList.basicAmenitiesDisplay = [];
+                angular.forEach(compareList.basicAmenities, function (basicAmenities) {
+                    AmenityDetailService.get({
+                        'id': basicAmenities
+                    }, function (data) {
+                        compareList.basicAmenitiesDisplay.push(data);
+                    });
+                });
+
+                compareList.luxuryAmenitiesDisplay = [];
+                angular.forEach(compareList.luxuryAmenities, function (luxuryAmenities) {
+                    AmenityDetailService.get({
+                        'id': luxuryAmenities
+                    }, function (data) {
+                        compareList.luxuryAmenitiesDisplay.push(data);
+                    });
+                });
+
+                compareList.approvedBanksDisplay = [];
+                angular.forEach(compareList.approvedBanks, function (approvedbanks) {
+                    BankService.get({
+                        'id': approvedbanks
+                    }, function (data) {
+                        compareList.approvedBanksDisplay.push(data);
+                    });
+                });
+
+                compareList.projectsNearbyDisplay = [];
+                angular.forEach(compareList.projectsNearby, function (projectsNearby) {
+                    console.log("Nearby Projects :%O", projectsNearby);
+                    ProjectService.get({
+                        'id': projectsNearby
+                    }, function (data) {
+                        compareList.projectsNearbyDisplay.push(data);
+                    });
+                });
+
+                console.log("compareList.location :%O", compareList.location);
+                $scope.finalCompareArray.push(compareList);
+            });
+
+
+
         })
         .controller('PropertyDetailController', function ($scope, $filter, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
             var map;

@@ -1,9 +1,9 @@
 *{
     padding: 0;
 }
-body{
+/*body{
     font-size: 14px;
-}
+}*/
 
 .list{
     list-style-type: none;
@@ -63,6 +63,68 @@ body{
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 /*************************** City Special ********************************/
+.page-wrap {
+    -ms-touch-action: pan-y;
+    -ms-overflow-style: none !important;
+    width: 1262px; 
+}
+.horizontal-slide {
+    white-space: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.horizontal-slide .tile {
+    display: inline-block;
+    float: none;
+}
+.tile { 
+    width: 210px;
+    height: 220px;
+    margin: 20px;
+    display: inline-block;
+}
+.tile.selected {
+    background-color: red !important;
+}
+
+.rightBottomBox, .rightBottomBoxBtn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    z-index: 990;
+}
+
+.rightBottomList {
+    position: fixed;
+    background: #fff;
+    border-radius: 5px;
+    bottom: 1px;
+    right: 0;
+}
+
+.rightBottomList .HeadingBlock {
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    padding: 15px 19px 10px 14px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
+}
+
+.rightBottomList .HeadingText {
+    float: left
+}
+
+.rightBottomList .closeChat {
+    height: 11px;
+    width: 11px;
+    display: block;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
 .bg-city-spcl{
     /*    background: url("../images/noise-texture-background.png") fixed;*/
     background-color: #EBF6FC;
@@ -81,6 +143,7 @@ body{
 .overflow{
     overflow-x: auto;
 }
+.badge-success { background-color: #82af6f!important }
 /*.bg-site{
     background: url("../images/noise-texture-background.png") fixed;
     background-size: cover
