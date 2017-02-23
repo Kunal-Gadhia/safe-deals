@@ -112,7 +112,52 @@
                     </div>
                 </div>
             </div>  
-            <!--        <div class="location_list"  style="overflow-x:auto;">
+        </div> 
+    </div>
+
+    <div ng-hide="hideCompareButton" class="col-md-3">
+        <div class="rightBottomBox">
+            <div class="rightBottomList">
+                <div class="HeadingBlock">
+                    <div class="HeadingText"> Compare <span class="badge badge-success">7</span></div>
+                    <div class=""><i class="fa fa-minus pull-right" aria-hidden="true"></i></div>
+                    <div class="clearAll"></div>
+                </div>
+                <div class="panel-body">
+                    <h4><b>Localities</b></h4>
+                    <ul class="list">
+                        <li ng-repeat = "selectedLocation in selectedLocationList">
+                            <div class="row form-group">
+                                <div>
+                                    <div class="image col-sm-5 col-xs-6">
+                                        <a href="#"><img src="images/5.jpg" width="120" height="120"/></a>
+                                    </div>
+                                    <div class="name col-sm-7 col-xs-6">
+                                        <div class="row">
+                                            <strong>{{selectedLocation.name}}</strong>
+                                            <button class="btn btn-link pull-right" title="Remove" 
+                                                    ng-click="removeLocation(selectedLocation)">
+                                                <i class="fa fa-close"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custom_hr">
+                        </li>
+                    </ul>
+                    <div class="col-md-offset-3 form-group">
+                        <button ng-hide="hideCompareButton" class="btn btn-primary" data-ui-sref="main.location.location_comparison">Compare Localities</button>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+</div>        
+<div data-ui-view=''></div>
+
+<!-- location list old code -->
+<!--        <div class="location_list"  style="overflow-x:auto;">
                         <div class="">
                             <div class="col-md-2" ng-repeat="location in locations">
                                 <div class="">
@@ -148,49 +193,6 @@
                             </div>
                         </div>
                     </div>        -->
-        </div> 
-    </div>
-
-    <div ng-hide="hideCompareButton" class="col-md-3">
-        <div class="rightBottomBox">
-            <div class="rightBottomList">
-                <div class="HeadingBlock">
-                    <div class="HeadingText"> Compare <span class="badge badge-success">7</span></div>
-                    <div class=""><i class="fa fa-minus pull-right" aria-hidden="true"></i></div>
-                    <div class="clearAll"></div>
-                </div>
-                <div class="panel-body">
-                    <h4><b>Localities</b></h4>
-                    <ul class="list">
-                        <li ng-repeat = "selectedLocation in selectedLocationList">
-                            <div class="row">
-                                <div>
-                                    <div class="image col-sm-5 col-xs-6">
-                                        <a href="#"><img src="images/5.jpg" width="120" height="120"/></a>
-                                    </div>
-                                    <div class="name col-sm-7 col-xs-6">
-                                        <div class="row">
-                                            <strong>{{selectedLocation.name}}</strong>
-                                            <button class="btn btn-link pull-right" title="Remove" 
-                                                    ng-click="removeLocation(selectedLocation)">
-                                                <i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                        </li>
-                    </ul>
-                    <div class="col-md-offset-3 form-group">
-                        <button ng-hide="hideCompareButton" class="btn btn-primary" data-ui-sref="main.location.location_comparison">Compare Localities</button>
-                    </div>
-                </div> 
-
-            </div>
-        </div>
-    </div>
-</div>        
-<div data-ui-view=''></div>
 
 <!-- compare old code -->
         <!--        <header class="">
