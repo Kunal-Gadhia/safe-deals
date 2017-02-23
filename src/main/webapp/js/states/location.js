@@ -6,7 +6,7 @@ angular.module("safedeals.states.location", [])
                 'templateUrl': templateRoot + '/location/location.html',
                 'controller': 'LocationController'
             });
-            $stateProvider.state("main.location.location_detail", {
+            $stateProvider.state("main.location_detail", {
                 'url': '/:locationId/location_detail',
                 'templateUrl': templateRoot + '/location/location_detail.html',
                 'controller': 'LocationDetailController'
