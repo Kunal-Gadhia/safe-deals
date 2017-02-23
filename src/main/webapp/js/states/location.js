@@ -296,7 +296,7 @@ angular.module("safedeals.states.location", [])
                 map3 = new google.maps.Map(mapContainer3, mapProperty);
             };
             var drawMarker = function (position, title, map) {
-                console.log("Position :%O", position);
+                console.log("Position in marking:%O", position);
                 new google.maps.Marker({
                     map: map,
                     position: position,
@@ -330,17 +330,18 @@ angular.module("safedeals.states.location", [])
                     $scope.infowindow.open(map, this);
                 });
                 drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
-//                var myCity1 = new google.maps.Circle({
-//                    center: new google.maps.LatLng(location.latitude, location.longitude),
-//                    radius: 5000,
-//                    strokeColor: "#87C4C2",
-//                    strokeOpacity: 0.2,
-//                    strokeWeight: 2,
-//                    fillColor: "#C1E6E5",
-//                    fillOpacity: 0.8,
-//                    zoom: 13
-//                });
-//                myCity1.setMap(map);
+                var myCity = new google.maps.Circle({
+                    center: new google.maps.LatLng(location.latitude, location.longitude),
+                    radius: 5000,
+                    strokeColor: "#87C4C2",
+                    strokeOpacity: 0.2,
+                    strokeWeight: 2,
+                    fillColor: "#C1E6E5",
+                    fillOpacity: 0.8,
+                    zoom: 13
+                });
+                myCity.setMap(map);
+                map.fitBounds(myCity.getBounds());
             };
             var drawWorkplaceMarker = function (position, title, map) {
                 console.log("Position 1 :%O", position);
