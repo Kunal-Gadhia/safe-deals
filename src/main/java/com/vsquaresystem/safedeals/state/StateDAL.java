@@ -74,13 +74,13 @@ public class StateDAL {
 
     public List<State> findByNameAndCountryId(String name, Integer countryId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND country_id = ? AND LOWER(name) LIKE ?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{countryId, nameLike}, new BeanPropertyRowMapper<>(State.class));
     }
 
     public List<State> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND LOWER(name) LIKE ?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(State.class));
     }
 

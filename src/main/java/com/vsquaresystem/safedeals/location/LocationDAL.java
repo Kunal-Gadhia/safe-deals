@@ -95,7 +95,7 @@ public class LocationDAL {
 
     public List<Location> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, locationRowMapper);
     }
 
@@ -117,7 +117,7 @@ public class LocationDAL {
     
     public List<Location> findByNameAndCityId(String name, Integer cityId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CITY_ID + " = ? AND LOWER(name) LIKE ?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{cityId, nameLike}, locationRowMapper);
     }
 

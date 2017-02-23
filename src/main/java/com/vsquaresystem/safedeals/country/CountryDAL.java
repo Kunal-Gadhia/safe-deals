@@ -72,7 +72,7 @@ public class CountryDAL {
 
 	public List<Country> findByName(String name) {
 		String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND LOWER(name) LIKE ?";
-		String nameLike = "%" + name.toLowerCase() + "%";
+		String nameLike = "" + name.toLowerCase() + "%";
 		return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Country.class));
 	}
 
