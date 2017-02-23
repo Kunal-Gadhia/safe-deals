@@ -51,22 +51,23 @@ public class CityDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE DELETED = FALSE LIMIT 5 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(City.class));
     }
+
     public List<City> findAllCities() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(City.class));
     }
-    
+
     public List<City> findByNameLike(String name) {
-    String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
-    String nameLike = "%" + name.toLowerCase() + "%";
-    return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(City.class));
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+        String nameLike = "" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(City.class));
     }
 
     public City findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(City.class));
     }
-    
+
     public City findByCityName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(City.class));
@@ -89,29 +90,29 @@ public class CityDAL {
 
     public List<City> findByNameAndStateId(String name, Integer stateId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.STATE_ID + " = ? AND LOWER(name) LIKE ?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{stateId, nameLike}, new BeanPropertyRowMapper<>(City.class));
     }
 
     public List<City> findByNameAndCountryId(String name, Integer countryId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COUNTRY_ID + " = ? AND LOWER(name) LIKE ?";
-        String nameLike = "%" + name.toLowerCase() + "%";
+        String nameLike = "" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{countryId, nameLike}, new BeanPropertyRowMapper<>(City.class));
     }
 
     public List<City> findByStateId(Integer stateId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.STATE_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{stateId}, new BeanPropertyRowMapper<>(City.class));
-    }    
+    }
 
     public City update(City city) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET " 
-                + Columns.NAME + " = ?, " 
-                + Columns.COUNTRY_ID + " = ?, " 
-                + Columns.STATE_ID + " = ?, " 
-                + Columns.LATITUDE + " = ?, " 
-                + Columns.LONGITUDE + " = ?, " 
-                + Columns.DESCRIPTION + " = ?, " 
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
+                + Columns.NAME + " = ?, "
+                + Columns.COUNTRY_ID + " = ?, "
+                + Columns.STATE_ID + " = ?, "
+                + Columns.LATITUDE + " = ?, "
+                + Columns.LONGITUDE + " = ?, "
+                + Columns.DESCRIPTION + " = ?, "
                 + Columns.RADIUS + " = ?, "
                 + Columns.IMAGE_URL + "=?  WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{

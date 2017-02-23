@@ -12,7 +12,7 @@
                                    typeahead-on-select="selectState($item)"                                           
                                    typeahead-loading="loadingStates" 
                                    typeahead-no-results="noStatesFound"                                           
-                                   ng-model="stateName" />
+                                   ng-model="stateName" required="required"/>
                             <p ng-show="noStatesFound" class="help-block text-muted">No States found</p>
                             <p ng-show="loadingStates" class="help-block text-muted">loading...</p>
                         </div>
@@ -21,7 +21,7 @@
                                    typeahead-on-select="selectCity($item)"                                           
                                    typeahead-loading="loadingCities" 
                                    typeahead-no-results="noCitiesFound"                                           
-                                   ng-model="cityName" />
+                                   ng-model="cityName" required="required"/>
                             <p ng-show="noCitiesFound" class="help-block text-muted">No City found</p>
                             <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                         </div>
@@ -30,12 +30,12 @@
                                    typeahead-on-select="setLocation($item)"                                           
                                    typeahead-loading="loadingLocations" 
                                    typeahead-no-results="noLocationsFound"                                           
-                                   ng-model="locationName" />
+                                   ng-model="locationName" required="required"/>
                             <p ng-show="noLocationsFound" class="help-block text-muted">No Location found</p>
                             <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
                         </div>
                         <div class="btn-group">                    
-                            <select class="form-control" ng-model="minBudget" >
+                            <select class="form-control" ng-model="minBudget" required="required">
                                 <option value="">Min Budget</option>
                                 <option value="0">&#8377; 0</option>
                                 <option value="500000">&#8377; 5 Lac</option>
@@ -49,7 +49,7 @@
                             </select>           
                         </div>
                         <div class="btn-group">                    
-                            <select class="form-control" ng-model="maxBudget" >
+                            <select class="form-control" ng-model="maxBudget" required="required">
                                 <option value="">Max Budget</option>
                                 <option value="500000">&#8377; 5 Lac</option>
                                 <option value="2500000">&#8377; 25 Lac</option>
@@ -116,12 +116,12 @@
             <ul class="list">
                 <li ng-repeat="property in propertyList">
                     <div class="row form-group">
-                        <div class="image col-sm-5" data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                        <div class="image col-sm-5" data-ui-sref="main.property.property_detail({ propertyId: property.id })">
                             <a href="#"><img src="images/5.jpg" width="100" height="90"/></a>
                         </div>
                         <div class="name col-sm-7">
                             <div class="row">
-                                <span data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                                <span data-ui-sref="main.property.property_detail({ propertyId: property.id })">
                                     <strong>{{ property.name}}</strong>
                                 </span>
                             </div>
@@ -134,7 +134,7 @@
                                 <span><input type="checkbox" name="Add to compare" ng-model="property.flag"> Add to compare</span></div>
                             <div class="row">
                                 <span class="pull-left">
-                                    <button class="btn btn-link" title="Details" data-ui-sref="main.location.location_detail({ locationId: location.id })">
+                                    <button class="btn btn-link" title="Details" data-ui-sref="main.property.property_detail({ propertyId: property.id })">
                                         View Details</button></span>
                             </div>
                         </div>

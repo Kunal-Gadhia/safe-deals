@@ -22,8 +22,8 @@
             <div class="modal-body">
                 <div class="row">
                     <ul class="nav nav-tabs" id="location_tabs">
-                        <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
-                            <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                        <li ng-repeat="propertyStep in propertySteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                            <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                             </nav>
                         </div>
                         <div class="row">   
-                            <div id="locationDetailMapContainer" style="height: 400px;"></div>    
+                            <div id="propertyDetailMapContainer" style="height: 400px;"></div>    
                         </div>
                     </div>
                     <div ng-switch-when="Work Places" class="locations">
@@ -73,7 +73,7 @@
                                 </nav>
                             </div>
                             <div class="row">    
-                                <div id="locationDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                                <div id="propertyDetailMapContainerWorkplaces" style="height: 400px;"></div>    
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </nav>
                             </div>-->
                             <div class="row">    
-                                <div id="locationDetailMapContainerProjects" style="height: 400px;"></div>    
+                                <div id="propertyDetailMapContainerProjects" style="height: 400px;"></div>    
                             </div>
                         </div>
                     </div>
@@ -133,29 +133,29 @@
                                 <tbody>
                                     <tr>
                                         <td><label>Location Name : </label></td>
-                                        <td> {{ location.name}}</td>
+                                        <td> {{ property.name}}</td>
                                     </tr>
                                     <tr>
                                         <td><label>Location Description :</label></td>
-                                        <td> {{ location.description}}</td>
+                                        <td> {{ property.description}}</td>
                                     </tr>
                                     <tr>
                                         <td><label>Population :</label></td>
-                                        <td> {{ location.population}}</td>
+                                        <td> {{ property.population}}</td>
                                     </tr>
                                     <tr>
                                         <td><label>Major Approach Road : </label></td>
-                                        <td> {{ location.majorApproachRoad}}</td>
+                                        <td> {{ property.majorApproachRoad}}</td>
                                     </tr>
 
                                     <tr>
                                         <td><label>Public Transport :</label></td>
-                                        <td> {{ location.publicTransport}}</td>
+                                        <td> {{ property.publicTransport}}</td>
                                     </tr>
                                     <tr>
                                         <td><label>Source Of Water :</label></td>
                                         <td>      
-                                            {{ location.sourceOfWater}} 
+                                            {{ property.sourceOfWater}} 
                                         </td>
                                     </tr>
                                 </tbody>

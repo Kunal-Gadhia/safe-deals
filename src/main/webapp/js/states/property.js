@@ -10,11 +10,11 @@ angular.module("safedeals.states.property", [])
                 'templateUrl': templateRoot + '/property/property.html',
                 'controller': 'PropertyController'
             });
-//            $stateProvider.state("main.location.location_detail", {
-//                'url': '/:locationId/location_detail',
-//                'templateUrl': templateRoot + '/location/location_detail.html',
-//                'controller': 'LocationDetailController'
-//            });
+            $stateProvider.state("main.property.property_detail", {
+                'url': '/:propertyId/property_detail',
+                'templateUrl': templateRoot + '/property/property_detail.html',
+                'controller': 'PropertyDetailController'
+            });
             $stateProvider.state("main.property.property_comparison", {
                 'url': '/property_comparison',
                 'templateUrl': templateRoot + '/property/property_comparision.html',
@@ -408,13 +408,13 @@ angular.module("safedeals.states.property", [])
 //            console.log("$rootScope", $rootScope);
 //            console.log("$parent", $parent);
         })
-        .controller('LocationDetailController', function ($scope, $filter, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
+        .controller('PropertyDetailController', function ($scope, $filter, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
             var map;
             var map1;
             var map2;
             var map3;
-            var mapContainer = document.getElementById("locationDetailMapContainer");
-            console.log("$stateparams ID::::::", $stateParams.locationId);
+            var mapContainer = document.getElementById("propertyDetailMapContainer");
+            console.log("$stateparams ID::::::", $stateParams.propertyId);
             var drawMap = function (mapProperty) {
                 console.log("Coming To Draw Map %O", mapContainer);
                 map = new google.maps.Map(mapContainer, mapProperty);
@@ -423,12 +423,10 @@ angular.module("safedeals.states.property", [])
                 console.log("Coming To Draw Map 1 :" + mapContainer1);
                 map1 = new google.maps.Map(mapContainer1, mapProperty);
             };
-
             var drawMap2 = function (mapProperty, mapContainer2) {
                 console.log("Coming To Draw Map 2 :" + mapContainer2);
                 map2 = new google.maps.Map(mapContainer2, mapProperty);
             };
-
             var drawMap3 = function (mapProperty, mapContainer3) {
                 console.log("Coming To Draw Map 3 :" + mapContainer3);
                 map3 = new google.maps.Map(mapContainer3, mapProperty);
@@ -458,20 +456,45 @@ angular.module("safedeals.states.property", [])
                     title: title
                 });
             };
-            LocationService.get({
-                'id': $stateParams.locationId
-            }, function (location) {
-                $scope.location = location;
-                var nagpurCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
+//            LocationService.get({
+//                'id': $stateParams.locationId
+//            }, function (location) {
+//                $scope.location = location;
+//                var nagpurCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
+//                var mapProp = {
+//                    center: nagpurCoordinate,
+//                    zoom: 15,
+//                    mapTypeId: google.maps.MapTypeId.ROADMAP
+//                };
+//                drawMap(mapProp);
+//                drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
+//                var myCity = new google.maps.Circle({
+//                    center: new google.maps.LatLng(location.latitude, location.longitude),
+//                    radius: 5000,
+//                    strokeColor: "#87C4C2",
+//                    strokeOpacity: 0.8,
+//                    strokeWeight: 2,
+//                    fillColor: "#C1E6E5",
+//                    fillOpacity: 0.2,
+//                    zoom: 13
+//                });
+//                myCity.setMap(map);
+//                map.fitBounds(myCity.getBounds());
+//            });
+            PropertyService.get({
+                'id': $stateParams.propertyId
+            }, function (property) {
+                $scope.property = property;
+                var propertyCoordinate = new google.maps.LatLng(property.latitude, property.longitude);
                 var mapProp = {
-                    center: nagpurCoordinate,
+                    center: propertyCoordinate,
                     zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 drawMap(mapProp);
-                drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
+                drawMarker({lat: property.latitude, lng: property.longitude}, property.name, map);
                 var myCity = new google.maps.Circle({
-                    center: new google.maps.LatLng(location.latitude, location.longitude),
+                    center: new google.maps.LatLng(property.latitude, property.longitude),
                     radius: 5000,
                     strokeColor: "#87C4C2",
                     strokeOpacity: 0.8,
@@ -486,12 +509,12 @@ angular.module("safedeals.states.property", [])
             $scope.getAmenityDetailByAmenity = function (amenityDetail) {
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
-                    'cityId': $scope.location.cityId
+                    'cityId': $scope.property.cityId
                 };
-                $scope.amenityDetailCityFilter.cityId = $scope.location.cityId;
+                $scope.amenityDetailCityFilter.cityId = $scope.property.cityId;
                 AmenityDetailService.findByAmenityIdCityId({
                     'amenityId': amenityDetail.id,
-                    'cityId': $scope.location.cityId
+                    'cityId': $scope.property.cityId
                 }, function (amenityDetailObject) {
                     $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
@@ -506,12 +529,12 @@ angular.module("safedeals.states.property", [])
             $scope.getAmenityDetailByAmenityWorkplaces = function (amenityDetail) {
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
-                    'cityId': $scope.location.cityId
+                    'cityId': $scope.property.cityId
                 };
-                $scope.amenityDetailCityFilter.cityId = $scope.location.cityId;
+                $scope.amenityDetailCityFilter.cityId = $scope.property.cityId;
                 AmenityDetailService.findByAmenityIdCityId({
                     'amenityId': amenityDetail.id,
-                    'cityId': $scope.location.cityId
+                    'cityId': $scope.property.cityId
                 }, function (amenityDetailObject) {
                     $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
@@ -522,14 +545,13 @@ angular.module("safedeals.states.property", [])
             $scope.toggle = function () {
                 $scope.amenities = !$scope.amenities;
             };
-            $scope.locationSteps = [
+            $scope.propertySteps = [
                 'Amenities',
                 'Work Places',
-                'Projects',
-                'Properties',
+                'Projects',                
                 'Overview'
             ];
-            $scope.selection = $scope.locationSteps[0];
+            $scope.selection = $scope.propertySteps[0];
             console.log("What is Selection :%O", $scope.selection);
 
             $scope.$watch('selection', function (newSelection) {
@@ -547,16 +569,16 @@ angular.module("safedeals.states.property", [])
             $scope.amenityCodes = AmenityCodeService.findByTabName({
                 'name': $scope.selection
             });
-            $scope.locations = [];
+//            $scope.locations = [];
             $scope.getCurrentStepIndex = function () {
                 // Get the index of the current step given selection
-                return _.indexOf($scope.locationSteps, $scope.selection);
+                return _.indexOf($scope.propertySteps, $scope.selection);
             };
 //            // Go to a defined step index
             $scope.goToStep = function (index) {
-                if (!_.isUndefined($scope.locationSteps[index]))
+                if (!_.isUndefined($scope.propertySteps[index]))
                 {
-                    $scope.selection = $scope.locationSteps[index];
+                    $scope.selection = $scope.propertySteps[index];
                 }
             };
 //            $scope.amenityCodes = AmenityCodeService.query();
@@ -576,38 +598,38 @@ angular.module("safedeals.states.property", [])
                 console.log("Amenities List :%O", $scope.amenitiesWorkplaceList);
             };
             $scope.myValue = true;
-            $scope.getLocationStep = function (locationstep) {
-                console.log("Location Step :%O", locationstep);
-                $scope.selection = locationstep;
-                if (locationstep === "Amenities") {
+            $scope.getPropertyStep = function (propertyStep) {
+                console.log("Property Step :%O", propertyStep);
+                $scope.selection = propertyStep;
+                if (propertyStep === "Amenities") {
 //                    $scope.amenityCodes = AmenityCodeService.findByTabName({
 //                       'name' : AMENITIES
 //                    });
                     $scope.myValue = true;
-                } else if (locationstep === "Work Places") {
+                } else if (propertyStep === "Work Places") {
                     $scope.myWorkplaces = true;
                     $scope.myValue = false;
                     $scope.myProjects = false;
                     $scope.myProperties = false;
-                    LocationService.get({
-                        'id': $stateParams.locationId
-                    }, function (location) {
-                        var mapContainer1 = document.getElementById("locationDetailMapContainerWorkplaces");
-                        var locationCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
+                    PropertyService.get({
+                        'id': $stateParams.propertyId
+                    }, function (property) {
+                        var mapContainer1 = document.getElementById("propertyDetailMapContainerWorkplaces");
+                        var propertyCoordinate = new google.maps.LatLng(property.latitude, property.longitude);
                         var mapProp = {
-                            center: locationCoordinate,
+                            center: propertyCoordinate,
                             zoom: 15,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
                         drawMap1(mapProp, mapContainer1);
                         var drawMarker1 = new google.maps.Marker({
                             map: map1,
-                            position: locationCoordinate,
-                            title: location.name,
+                            position: propertyCoordinate,
+                            title: property.name,
                             icon: 'images/icons_svg/dot.png'
                         });
                         var myCity1 = new google.maps.Circle({
-                            center: new google.maps.LatLng(location.latitude, location.longitude),
+                            center: new google.maps.LatLng(property.latitude, property.longitude),
                             radius: 5000,
                             strokeColor: "#87C4C2",
                             strokeOpacity: 0.8,
@@ -621,30 +643,30 @@ angular.module("safedeals.states.property", [])
                         map1.fitBounds(myCity1.getBounds());
                     });
                 }
-                else if (locationstep === "Projects") {
+                else if (propertyStep === "Projects") {
                     $scope.myProjects = true;
                     $scope.myWorkplaces = false;
                     $scope.myProperties = false;
                     $scope.myValue = false;
-                    LocationService.get({
-                        'id': $stateParams.locationId
-                    }, function (location) {
-                        var mapContainer2 = document.getElementById("locationDetailMapContainerProjects");
-                        var locationCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
+                    PropertyService.get({
+                        'id': $stateParams.propertyId
+                    }, function (property) {
+                        var mapContainer2 = document.getElementById("propertyDetailMapContainerProjects");
+                        var propertyCoordinate = new google.maps.LatLng(property.latitude, property.longitude);
                         var mapProp = {
-                            center: locationCoordinate,
+                            center: propertyCoordinate,
                             zoom: 15,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
                         drawMap2(mapProp, mapContainer2);
                         var drawMarker2 = new google.maps.Marker({
                             map: map2,
-                            position: locationCoordinate,
-                            title: location.name,
+                            position: propertyCoordinate,
+                            title: property.name,
                             icon: 'images/icons_svg/dot.png'
                         });
                         var myCity2 = new google.maps.Circle({
-                            center: locationCoordinate,
+                            center: propertyCoordinate,
                             radius: 5000,
                             strokeColor: "#87C4C2",
                             strokeOpacity: 0.8,
@@ -658,43 +680,44 @@ angular.module("safedeals.states.property", [])
                         map2.fitBounds(myCity2.getBounds());
                     });
                 }
-                else if (locationstep === "Properties") {
-                    $scope.myProperties = true;
-                    $scope.myWorkplaces = false;
-                    $scope.myProjects = false;
-                    $scope.myValue = false;
-                    LocationService.get({
-                        'id': $stateParams.locationId
-                    }, function (location) {
-                        var mapContainer3 = document.getElementById("locationDetailMapContainerProperties");
-                        var locationCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
-                        var mapProp = {
-                            center: locationCoordinate,
-                            zoom: 15,
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        };
-                        drawMap3(mapProp, mapContainer3);
-                        var drawMarker3 = new google.maps.Marker({
-                            map: map3,
-                            position: locationCoordinate,
-                            title: location.name,
-                            icon: 'images/icons_svg/dot.png'
-                        });
-                        var myCity3 = new google.maps.Circle({
-                            center: new google.maps.LatLng(location.latitude, location.longitude),
-                            radius: 5000,
-                            strokeColor: "#87C4C2",
-                            strokeOpacity: 0.8,
-                            strokeWeight: 2,
-                            fillColor: "#C1E6E5",
-                            fillOpacity: 0.2,
-                            zoom: 13
-                        });
-                        myCity3.setMap(map3);
-                        drawMarker3.setMap(map3);
-                        map3.fitBounds(myCity3.getBounds());
-                    });
-                } else {
+//                else if (propertyStep === "Properties") {
+//                    $scope.myProperties = true;
+//                    $scope.myWorkplaces = false;
+//                    $scope.myProjects = false;
+//                    $scope.myValue = false;
+//                    LocationService.get({
+//                        'id': $stateParams.locationId
+//                    }, function (location) {
+//                        var mapContainer3 = document.getElementById("locationDetailMapContainerProperties");
+//                        var locationCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
+//                        var mapProp = {
+//                            center: locationCoordinate,
+//                            zoom: 15,
+//                            mapTypeId: google.maps.MapTypeId.ROADMAP
+//                        };
+//                        drawMap3(mapProp, mapContainer3);
+//                        var drawMarker3 = new google.maps.Marker({
+//                            map: map3,
+//                            position: locationCoordinate,
+//                            title: location.name,
+//                            icon: 'images/icons_svg/dot.png'
+//                        });
+//                        var myCity3 = new google.maps.Circle({
+//                            center: new google.maps.LatLng(location.latitude, location.longitude),
+//                            radius: 5000,
+//                            strokeColor: "#87C4C2",
+//                            strokeOpacity: 0.8,
+//                            strokeWeight: 2,
+//                            fillColor: "#C1E6E5",
+//                            fillOpacity: 0.2,
+//                            zoom: 13
+//                        });
+//                        myCity3.setMap(map3);
+//                        drawMarker3.setMap(map3);
+//                        map3.fitBounds(myCity3.getBounds());
+//                    });
+//                } 
+                else {
                     $scope.myValue = false;
                     $scope.myWorkplaces = false;
                     $scope.myProjects = false;
