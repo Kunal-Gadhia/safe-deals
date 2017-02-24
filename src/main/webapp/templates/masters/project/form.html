@@ -17,7 +17,9 @@
                 <div class="modal-body">
                     <div class="row">
                         <ul class="nav nav-tabs" id="location_tabs">
-                            <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                            <li ng-repeat="locationstep in locationSteps" ng-class="{
+                                        active: $index == getCurrentStepIndex()
+                                    }">
                                 <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
                             </li>
                         </ul>
@@ -541,7 +543,7 @@
                                             <div class="form-group">
                                                 <label>Latitude</label>
                                                 <input class="form-control" type="number" step="any" ng-model="editableProject.latitude" />
-                                            </div>
+                                            </div>                                            
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -549,6 +551,11 @@
                                                 <input class="form-control" type="number" step="any" ng-model="editableProject.longitude" />
                                             </div>
                                         </div>                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">                                            
+                                            <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
