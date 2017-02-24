@@ -21,6 +21,7 @@ angular.module("safedeals.states.location", [])
         .controller('LocationController', function ($scope, $state, $filter, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
+            $scope.hideSutaibleLocation = true;
 
             if ($stateParams.cityId !== null) {
                 console.log("inside This Thing");
@@ -56,6 +57,7 @@ angular.module("safedeals.states.location", [])
                 else {
                     $scope.searchLocationByLocationAndBudget(cityName, minBudget, maxBudget, propertySize);
                 }
+                
             };
             $scope.selectLocation = function (location) {
                 $scope.propertySize;
@@ -198,8 +200,10 @@ angular.module("safedeals.states.location", [])
                         $scope.selectedLocationList = $filter("filter")(n, {flag: true});
                         console.log("What is trues :%O", $scope.selectedLocationList);
                         console.log("Trues Length :%O", $scope.selectedLocationList.length);
+                        $scope.length = $scope.selectedLocationList.length;
                         if ($scope.selectedLocationList.length === 0) {
                             $scope.hideCompareButton = true;
+                            $scope.hideSutaibleLocation = false;
                         } else if ($scope.selectedLocationList.length > 0) {
                             $scope.hideCompareButton = false;
                         }
