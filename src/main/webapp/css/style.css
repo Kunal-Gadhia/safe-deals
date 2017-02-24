@@ -103,7 +103,8 @@
     right: 0;
 }
 
-.rightBottomList .HeadingBlock {
+.rightBottomList .headingBlock {
+    width: 280px;
     background: #000;
     color: #fff;
     font-size: 14px;
@@ -113,7 +114,7 @@
     border-radius: 5px 5px 0 0;
 }
 
-.rightBottomList .HeadingText {
+.rightBottomList .headingText {
     float: left
 }
 
@@ -123,6 +124,10 @@
     display: block;
     cursor: pointer;
     margin-top: 5px;
+}
+
+.icon{
+    cursor: pointer;
 }
 
 .bg-city-spcl{
