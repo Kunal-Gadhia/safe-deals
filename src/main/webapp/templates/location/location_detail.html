@@ -1,4 +1,9 @@
 <div class="thumbnail">
+    <ol class="breadcrumb margin" style="background: none">
+        <li><a href="" data-ui-sref="main.intro.intro_tagline">Home</a></li>
+        <li><a href="" onclick="window.history.back()">Location Selection</a></li>
+        <li class="active" data-ui-sref="main.location_detail({ locationId: location.id })">{{location.name}}</li>
+    </ol>
     <div class="modal-header">
         <div class="row">
             <div class="col-md-10">
