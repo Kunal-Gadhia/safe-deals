@@ -10,7 +10,7 @@ angular.module("safedeals.states.property", [])
                 'templateUrl': templateRoot + '/property/property.html',
                 'controller': 'PropertyController'
             });
-            $stateProvider.state("main.property.property_detail", {
+            $stateProvider.state("main.property_detail", {
                 'url': '/:propertyId/property_detail',
                 'templateUrl': templateRoot + '/property/property_detail.html',
                 'controller': 'PropertyDetailController'

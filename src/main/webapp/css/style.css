@@ -70,7 +70,7 @@
 }
 .horizontal-slide {
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 .horizontal-slide .tile {

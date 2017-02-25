@@ -27,15 +27,13 @@
             <!--                    <div ng-show="myValue">-->
             <div ng-show="myValue">
                 <div class="row">
-                    <div class="">
-                        <nav class="navbar">
-                            <ul class="nav">
-                                <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
-                                    <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <nav class="navbar">
+                        <ul class="nav">
+                            <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
                 <div ng-show="amenities">
                     <nav class="navbar sub_locations locations_nav">
