@@ -25,6 +25,7 @@ angular.module("safedeals.states.property", [])
         .controller('PropertyController', function ($scope, $state, $filter, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
+            $scope.hideSutaibleProperty = true;
 
 
             if ($stateParams.cityId !== null) {
@@ -400,8 +401,10 @@ angular.module("safedeals.states.property", [])
                 $scope.selectedPropertyList = $filter("filter")(n, {flag: true});
                 console.log("What is trues :%O", $scope.selectedPropertyList);
                 console.log("Trues Length :%O", $scope.selectedPropertyList.length);
+                $scope.length = $scope.selectedPropertyList.length;
                 if ($scope.selectedPropertyList.length === 0) {
                     $scope.hideCompareButton = true;
+                    $scope.hideSutaibleProperty = false;
                 } else if ($scope.selectedPropertyList.length > 0) {
                     $scope.hideCompareButton = false;
                 }

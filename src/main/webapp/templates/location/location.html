@@ -1,10 +1,13 @@
 <script>
     $(".icon").click(function () {
-        $("#icon1").toggleClass("glyphicon-minus glyphicon-plus");
-
-    });
-</script>
+    $("#icon1").toggleClass("glyphicon-minus glyphicon-plus");
+    });</script>
 <div class="panel-body thumbnail">
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Location Selection</a></li>
+        <li class="active" data-ui-sref="main.location_detail({ locationId: location.id })">View Detail</li>
+    </ol>
     <div>
         <h2>Location Selection</h2>
     </div>        
@@ -120,8 +123,7 @@
             </div>  
         </div> 
     </div>
-
-    <div ng-hide="hideCompareButton" class="col-md-3">
+    <div ng-hide="hideCompareButton" class="">
         <div class="rightBottomBox">
             <div class="rightBottomList">
                 <div class="">
@@ -131,7 +133,6 @@
                         </div>
                         <div class="icon">
                             <i class="glyphicon glyphicon-minus pull-right" aria-hidden="true" id="icon1" data-toggle="collapse" data-target="#collapse"></i>
-
                         </div>
                         <div class="clearAll"></div>
                     </div>
