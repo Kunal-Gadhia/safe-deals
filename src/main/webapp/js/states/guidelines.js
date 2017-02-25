@@ -187,7 +187,7 @@ angular.module("safedeals.states.guidelines", [])
                         break;
                     default:
                 }
-            };            
+            };
             var getMainApplicant = function (user1, user2, user3) {
                 var maxAge;
                 maxAge = Math.max.apply(Math, [user1.age, user2.age, user3.age]);
@@ -290,28 +290,34 @@ angular.module("safedeals.states.guidelines", [])
                 angular.forEach(family, function (room) {
                     console.log("room", room);
                     $scope.totalRooms.push(room);
-                })
+                });
                 $.each($scope.totalRooms, function () {
                     $scope.totalNoOfRooms += this;
                     console.log("total", $scope.totalNoOfRooms);
-                })
+                });
                 angular.forEach(family, function (a) {
                     console.log("aaaaaaaaaaa::::::::", a);
-                })
+                });
                 if (family != null) {
                     alert("Saved successfully");
                 } else {
                     alert("Please fill the details");
                 }
+                console.log("Total Number Of Rooms Kunal:%O", $scope.totalNoOfRooms);
 
-                $scope.propertyType = PropertyTypeService.findByNumberOfRooms({
-                    'numberOfRooms': $scope.totalNoOfRooms
-                }, function (propertType) {
-                    console.log("propertType", propertType);
-                    $scope.propertyTypeArea = propertType;
-                    $scope.carpetArea = $scope.propertyTypeArea.carpetArea;
-                    console.log("mila kya", $scope.carpetArea);
-                })
+                $scope.propertyType = PropertyTypeService.findByNumberOfBhkLike({
+                    'numberOfBhkLike': $scope.totalNoOfRooms
+                }, function (propertyType) {
+                    angular.forEach(propertyType, function (propertyType1) {
+                        $scope.propertyTypeArea = propertyType1;
+                        $scope.carpetArea = propertyType1.carpetArea;
+                        console.log("mila kya", $scope.carpetArea);
+                    });
+                    console.log("propertType", propertyType);
+//                    $scope.propertyTypeArea = propertType;
+//                    $scope.carpetArea = $scope.propertyTypeArea.carpetArea;
+
+                });
 
             };
             /*****************************************/
@@ -907,6 +913,7 @@ angular.module("safedeals.states.guidelines", [])
                     console.log("max value", $scope.eligiblePropertyMaxValue);
                     $scope.eligiblePropertyMinValue = $scope.eligiblePropertyValue * 0.80;
                     console.log("min value", $scope.eligiblePropertyMinValue);
+                    console.log("Carpet Area :%O", $scope.carpetArea);
                     $scope.eligibleMaxSqFtArea = $scope.eligiblePropertyMaxValue / $scope.carpetArea;
                     console.log("$scope.eligibleMaxSqFtArea", $scope.eligibleMaxSqFtArea);
                     $scope.eligibleMinSqFtArea = $scope.eligiblePropertyMinValue / $scope.carpetArea;
