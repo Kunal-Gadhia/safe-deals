@@ -22,9 +22,45 @@ angular.module("safedeals.states.property", [])
             });
         })
 
-        .controller('PropertyController', function ($scope, $state, $filter, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('PropertyController', function ($scope, $state, $filter, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
+
+
+            if ($stateParams.cityId !== null) {
+                console.log("inside This Thing");
+                CityService.get({
+                    'id': $stateParams.cityId
+                }, function (cityObject) {
+                    $scope.cityName = cityObject.name;
+                    $scope.cityId = cityObject.id;
+                    $scope.city = cityObject;
+
+                    StateService.get({
+                        'id': cityObject.stateId
+                    }, function (stateObject) {
+                        $scope.stateName = stateObject.name;
+                        $scope.stateId = stateObject.id;
+                        $scope.state = stateObject;
+                    });
+
+                    LocationService.get({
+                        'id': $stateParams.locationId
+                    }, function (locationObject) {
+                        $scope.locationId = locationObject.id;
+                        $scope.locationName = locationObject.name;
+                        $scope.location = locationObject;
+                    });
+                    $("#minBudget").val($stateParams.minBudget);
+                    $("#maxBudget").val($stateParams.maxBudget);
+                    $scope.propertySize = $stateParams.propertySize;
+                    console.log("Min Budget :%O", $scope.minBudget);
+                });
+
+            }
+
+
+
             $scope.propertyTypesList = PropertyTypeService.query();
             console.log("Property type List :%O", $scope.propertyTypesList);
             $scope.validateForm = function (cityId, locationId, propertySize, minBudget, maxBudget) {
