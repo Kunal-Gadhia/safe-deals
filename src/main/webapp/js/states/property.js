@@ -22,9 +22,45 @@ angular.module("safedeals.states.property", [])
             });
         })
 
-        .controller('PropertyController', function ($scope, $state, $filter, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('PropertyController', function ($scope, $state, $filter, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
+
+
+            if ($stateParams.cityId !== null) {
+                console.log("inside This Thing");
+                CityService.get({
+                    'id': $stateParams.cityId
+                }, function (cityObject) {
+                    $scope.cityName = cityObject.name;
+                    $scope.cityId = cityObject.id;
+                    $scope.city = cityObject;
+
+                    StateService.get({
+                        'id': cityObject.stateId
+                    }, function (stateObject) {
+                        $scope.stateName = stateObject.name;
+                        $scope.stateId = stateObject.id;
+                        $scope.state = stateObject;
+                    });
+
+                    LocationService.get({
+                        'id': $stateParams.locationId
+                    }, function (locationObject) {
+                        $scope.locationId = locationObject.id;
+                        $scope.locationName = locationObject.name;
+                        $scope.location = locationObject;
+                    });
+                    $("#minBudget").val($stateParams.minBudget);
+                    $("#maxBudget").val($stateParams.maxBudget);
+                    $scope.propertySize = $stateParams.propertySize;
+                    console.log("Min Budget :%O", $scope.minBudget);
+                });
+
+            }
+
+
+
             $scope.propertyTypesList = PropertyTypeService.query();
             console.log("Property type List :%O", $scope.propertyTypesList);
             $scope.validateForm = function (cityId, locationId, propertySize, minBudget, maxBudget) {
@@ -501,7 +537,7 @@ angular.module("safedeals.states.property", [])
 
 
         })
-        .controller('PropertyDetailController', function ($scope, $filter, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
+        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
             var map;
             var map1;
             var map2;
@@ -577,7 +613,74 @@ angular.module("safedeals.states.property", [])
             PropertyService.get({
                 'id': $stateParams.propertyId
             }, function (property) {
+                console.log("into Property thing :%O", property);
+                property.city = CityService.get({
+                    'id': property.cityId
+                });
+                property.location = LocationService.get({
+                    'id': property.locationId
+                });
+                property.project = ProjectService.get({
+                    'id': property.projectId
+                });
+                property.road = RoadService.get({
+                    'id': property.majorApproachRoad
+                });
+                property.publicTransportObjects = [];
+                console.log("Public Transport :%O", property.publicTransport);
+                angular.forEach(property.publicTransport, function (publicTransport) {
+                    property.publicTransportObjects.push(TransportationService.get({
+                        'id': publicTransport
+                    }));
+                    console.log("property.publicTransportObjects %O", property.publicTransportObjects);
+                });
+
+
+                property.workplacesObjects = [];
+                angular.forEach(property.workplaces, function (workplaces) {
+                    property.workplacesObjects.push(AmenityDetailService.get({
+                        'id': workplaces
+                    }));
+                });
+
+                property.projectsNearbyObjects = [];
+                angular.forEach(property.projectsNearby, function (projectsNearby) {
+                    property.projectsNearbyObjects.push(ProjectService.get({
+                        'id': projectsNearby
+                    }));
+                });
+
+                property.basicAmenitiesObjects = [];
+                angular.forEach(property.basicAmenities, function (basicAmenities) {
+                    property.basicAmenitiesObjects.push(AmenityDetailService.get({
+                        'id': basicAmenities
+                    }));
+                });
+
+                property.luxuryAmenitiesObjects = [];
+                angular.forEach(property.luxuryAmenities, function (luxuryAmenities) {
+                    property.luxuryAmenitiesObjects.push(AmenityDetailService.get({
+                        'id': luxuryAmenities
+                    }));
+                });
+
+                property.approvedBanksObjects = [];
+                angular.forEach(property.approvedBanks, function (approvedBank) {
+                    property.approvedBanksObjects.push(BankService.get({
+                        'id': approvedBank
+                    }));
+                });
+
+                property.privateAmenitiesObjects = [];
+                angular.forEach(property.privateAmenities, function (privateAmenity) {
+                    property.privateAmenitiesObjects.push(PrivateAmenitiesService.get({
+                        'id': privateAmenity
+                    }));
+                });
+
                 $scope.property = property;
+                console.log("Property Object FInal :%O", $scope.property);
+
                 var propertyCoordinate = new google.maps.LatLng(property.latitude, property.longitude);
                 var mapProp = {
                     center: propertyCoordinate,
@@ -641,7 +744,7 @@ angular.module("safedeals.states.property", [])
             $scope.propertySteps = [
                 'Amenities',
                 'Work Places',
-                'Projects',                
+                'Projects',
                 'Overview'
             ];
             $scope.selection = $scope.propertySteps[0];
