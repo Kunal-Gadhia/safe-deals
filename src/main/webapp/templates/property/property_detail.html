@@ -1,17 +1,15 @@
 <div class="thumbnail">	
+    <ol class="breadcrumb margin" style="background: none">
+        <li><a href="" data-ui-sref="main.intro.intro_tagline">Home</a></li>
+        <li><a href="" onclick="window.history.back()">Property Selection</a></li>
+        <li class="active" data-ui-sref="main.property_detail({ propertyId: property.id })">{{property.name}}</li>
+    </ol>
     <div class="modal-header">
         <div class="row">
             <div class="col-md-10">
                 <h3 class="modal-title">
                     {{property.name}}
                 </h3>
-            </div>
-            <div class="col-md-2">
-                <button type="button"
-                        onclick="window.history.back()"
-                        class=" pull-right btn btn-link">
-                    <i class="fa fa-times"></i>
-                </button>
             </div>
         </div>
     </div>
@@ -40,6 +38,7 @@
                         <ul id={{amenityCode.id}} class="nav">
                             <li ng-repeat="amenity in amenitiesList">
                                 <a ng-click="getAmenityDetailByAmenity(amenity)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                            <hr class="custom_hr">
                             </li>
                         </ul>
                     </nav>
@@ -64,6 +63,7 @@
                             <ul id={{amenityCode.id}} class="nav">
                                 <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
                                     <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                <hr class="custom_hr">
                                 </li>
                             </ul>
                         </nav>
