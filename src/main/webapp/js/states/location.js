@@ -461,7 +461,7 @@ angular.module("safedeals.states.location", [])
                 });
             };
             $scope.toggle = function () {
-                $scope.amenities = !$scope.amenities;
+                $scope.amenities = 'clicked';
             };
             $scope.locationSteps = [
                 'Amenities',

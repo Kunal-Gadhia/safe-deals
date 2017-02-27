@@ -742,7 +742,7 @@ angular.module("safedeals.states.property", [])
                 });
             };
             $scope.toggle = function () {
-                $scope.amenities = !$scope.amenities;
+                $scope.amenities = 'clicked';
             };
             $scope.propertySteps = [
                 'Amenities',
