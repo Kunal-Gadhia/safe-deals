@@ -348,6 +348,7 @@ angular.module("safedeals.states.property", [])
                     console.log("Property objects :%O", propertyObjects);
                     $scope.propertyList = propertyObjects;
                     angular.forEach(propertyObjects, function (propertyObject) {
+                        $scope.hideSutaibleProperty = false;
                         $scope.properties.push(propertyObject);
                         LocationService.get({
                             'id': propertyObject.locationId
@@ -404,7 +405,6 @@ angular.module("safedeals.states.property", [])
                 $scope.length = $scope.selectedPropertyList.length;
                 if ($scope.selectedPropertyList.length === 0) {
                     $scope.hideCompareButton = true;
-                    $scope.hideSutaibleProperty = false;
                 } else if ($scope.selectedPropertyList.length > 0) {
                     $scope.hideCompareButton = false;
                 }
