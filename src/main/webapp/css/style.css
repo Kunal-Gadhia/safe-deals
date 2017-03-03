@@ -148,7 +148,13 @@
 .overflow{
     overflow-x: auto;
 }
-.badge-success { background-color: #82af6f!important }
+.badge-success { 
+    background-color: #82af6f!important 
+}
+
+.overview_list{
+    list-style-position: inside;
+}
 /*.bg-site{
     background: url("../images/noise-texture-background.png") fixed;
     background-size: cover
