@@ -24,9 +24,9 @@ import org.apache.http.message.BasicNameValuePair;
 @Transactional
 public class EnquiryService {
 
-    public static final String ACCOUNT_SID = "AC1ca6ddcc802ce33b3ce5ac969e107f67";
-    public static final String AUTH_TOKEN = "93d33b1a7f5a2885fccb1cba7ddd59c6";
-    public static final String TWILIO_NUMBER = "+14149821487";
+    public static final String ACCOUNT_SID = "AC96ce189faa1c77694353b230987c8d82";
+    public static final String AUTH_TOKEN = "e9bf1ef76e1ec2c780d665c045fac01e";
+    public static final String TWILIO_NUMBER = "+15097745141";
 
     public static void sendSms() {
         System.out.println("Coming to service");
