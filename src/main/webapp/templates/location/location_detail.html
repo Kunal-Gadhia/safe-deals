@@ -1,10 +1,5 @@
 <div class="thumbnail">
-    <ol class="breadcrumb margin" style="background: none">
-        <li><a href="" data-ui-sref="main.intro.intro_tagline">Home</a></li>
-        <li><a href="" onclick="window.history.back()">Location Selection</a></li>
-        <li class="active" data-ui-sref="main.location_detail({ locationId: location.id })">{{location.name}}</li>
-    </ol>
-    <div class="modal-header">
+    <div class="">
         <div class="row">
             <div class="col-md-10">
                 <h3 class="modal-title">
@@ -25,7 +20,7 @@
             <!--                    <div ng-show="myValue">-->
             <div ng-show="myValue">
                 <div class="row">
-                    <nav class="navbar">
+                    <nav class="">
                         <ul class="nav">
                             <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
                                 <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
@@ -50,7 +45,7 @@
             <div ng-switch-when="Work Places" class="locations">
                 <div ng-show="myWorkplaces">
                     <div class="row">
-                        <nav class="navbar">
+                        <nav class="">
                             <ul class="nav">
                                 <li ng-repeat="workplace in workplaces" ng-click="toggle()">
                                     <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left">{{workplace.name}}</a>
