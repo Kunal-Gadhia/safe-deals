@@ -1,11 +1,16 @@
 <div class="thumbnail">
-    <div class="">
-        <div class="row">
-            <div class="col-md-10">
-                <h3 class="modal-title">
-                    {{location.name}}
-                </h3>
-            </div>
+    <div class="row">
+        <div class="col-md-10">
+            <h3 class="modal-title">
+                {{location.name}}
+            </h3>
+        </div>
+        <div class="col-md-2">
+            <button type="button"
+                    onclick="window.history.back()"
+                    class=" pull-right btn btn-link">
+                <i class="fa fa-times"></i>
+            </button>
         </div>
     </div>
     <div class="modal-body">
