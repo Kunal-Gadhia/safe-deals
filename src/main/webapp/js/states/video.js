@@ -27,7 +27,7 @@ angular.module("safedeals.states.video", [])
 //            });
         })
 
-        .controller('VideoListController', function (VideoService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('VideoListController', function (VideoService, PropertyService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -44,11 +44,18 @@ angular.module("safedeals.states.video", [])
                 'offset': $scope.nextOffset
             });
 
-            VideoService.query({
+            $scope.videos = VideoService.query({
                 'offset': $scope.currentOffset
-            }, function (s) {
-                $scope.videos = s;
-                console.log("VideoService ", s);
+            }
+            , function () {
+                angular.forEach($scope.videos, function (video) {
+                    video.project = ProjectService.get({
+                        'id': video.projectId
+                    });
+                    video.property = PropertyService.get({
+                        'id': video.propertyId
+                    });
+                });
             });
 
             $scope.nextPage = function () {
@@ -63,9 +70,34 @@ angular.module("safedeals.states.video", [])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('VideoAddController', function (VideoService, $scope, $stateParams, $state, paginationLimit, $timeout, FileUploader, restRoot) {
+        .controller('VideoAddController', function (VideoService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit, $timeout, FileUploader, restRoot) {
 
             $scope.editableVideo = {};
+
+            $scope.setProject = function (project) {
+                console.log("setproject", project);
+                $scope.editableVideo.projectId = project.id;
+                $scope.editableVideo.project = project;
+            };
+            $scope.searchProjects = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return ProjectService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setProperty = function (property) {
+                console.log("setproject", property);
+                $scope.editableVideo.propertyId = property.id;
+                $scope.editableVideo.property = property;
+            };
+            $scope.searchProperties = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return PropertyService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
 
             $scope.saveVideo = function (video) {
                 console.log("video", video);
@@ -76,8 +108,32 @@ angular.module("safedeals.states.video", [])
 
 
         })
-        .controller('VideoEditController', function (VideoService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('VideoEditController', function (VideoService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableVideo = VideoService.get({'id': $stateParams.videoId});
+
+            $scope.setProject = function (project) {
+                console.log("setproject", project);
+                $scope.editableVideo.projectId = project.id;
+                $scope.editableVideo.project = project;
+            };
+            $scope.searchProjects = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return ProjectService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setProperty = function (property) {
+                console.log("setproject", property);
+                $scope.editableVideo.propertyId = property.id;
+                $scope.editableVideo.property = property;
+            };
+            $scope.searchProperties = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return PropertyService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
 
             $scope.saveVideo = function (video) {
                 video.$save(function () {

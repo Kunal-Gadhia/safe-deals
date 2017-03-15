@@ -32,6 +32,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project</label>
+                                <input class="form-control"
+                                       placeholder="Select Project"
+                                       uib-typeahead="project.id as project.name for project in searchProjects($viewValue)"
+                                       typeahead-on-select="setProject($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingProjects" 
+                                       typeahead-no-results="noProjectsFound"                                       
+                                       ng-model="editableVideo.project.name" required />
+                                <p ng-show="noProjectsFound" class="help-block text-muted">No Projects found</p>
+                                <p ng-show="loadingProjects" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property</label>
+                                <input class="form-control"
+                                       placeholder="Select Property"
+                                       uib-typeahead="property.id as property.name for property in searchProperties($viewValue)"
+                                       typeahead-on-select="setProperty($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingProperties" 
+                                       typeahead-no-results="noPropertiesFound"                                       
+                                       ng-model="editableVideo.property.name" required />
+                                <p ng-show="noPropertiesFound" class="help-block text-muted">No Properties found</p>
+                                <p ng-show="loadingProperties" class="help-block text-muted">loading...</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-lg btn-primary" >

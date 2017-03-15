@@ -19,8 +19,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class VideoDAL {
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    
+
     public static final String TABLE_NAME = "video";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertVideo;
@@ -32,6 +33,8 @@ public class VideoDAL {
         public static final String DESCRIPTION = "description";
         public static final String VIDEO_URL = "video_url";
         public static final String IS_INTRO_VIDEO = "is_intro_video";
+        public static final String PROJECT_ID = "project_id";
+        public static final String PROPERTY_ID = "property_id";
     };
 
     @Autowired
@@ -43,7 +46,9 @@ public class VideoDAL {
                         Columns.NAME,
                         Columns.DESCRIPTION,
                         Columns.VIDEO_URL,
-                        Columns.IS_INTRO_VIDEO)
+                        Columns.IS_INTRO_VIDEO,
+                        Columns.PROJECT_ID,
+                        Columns.PROPERTY_ID)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -51,7 +56,6 @@ public class VideoDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Video.class));
     }
-    
 
     public List<Video> findAllVideos() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
@@ -69,6 +73,8 @@ public class VideoDAL {
         parameters.put(Columns.DESCRIPTION, video.getDescription());
         parameters.put(Columns.VIDEO_URL, video.getVideoUrl());
         parameters.put(Columns.IS_INTRO_VIDEO, video.getIsIntroVideo());
+        parameters.put(Columns.PROJECT_ID, video.getProjectId());
+        parameters.put(Columns.PROPERTY_ID, video.getPropertyId());
         Number newId = insertVideo.executeAndReturnKey(parameters);
         video = findById(newId.intValue());
         return video;
@@ -83,8 +89,10 @@ public class VideoDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ? ,"
                 + Columns.DESCRIPTION + " = ? , "
-                + Columns.VIDEO_URL + " = ?  , " 
-                + Columns.IS_INTRO_VIDEO + " = ?  WHERE " 
+                + Columns.VIDEO_URL + " = ?  , "
+                + Columns.IS_INTRO_VIDEO + " = ?  , "
+                + Columns.PROJECT_ID + " = ?  , "
+                + Columns.PROPERTY_ID + " = ?  WHERE "
                 + Columns.ID + " = ?";
         ObjectMapper mapper = new ObjectMapper();
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
@@ -92,6 +100,8 @@ public class VideoDAL {
             video.getDescription(),
             video.getVideoUrl(),
             video.getIsIntroVideo(),
+            video.getProjectId(),
+            video.getPropertyId(),
             video.getId()});
         video = findById(video.getId());
         return video;
@@ -106,6 +116,8 @@ public class VideoDAL {
             video.setDescription(rs.getString(Columns.DESCRIPTION));
             video.setVideoUrl(rs.getString(Columns.VIDEO_URL));
             video.setIsIntroVideo(rs.getBoolean(Columns.IS_INTRO_VIDEO));
+            video.setProjectId(rs.getInt(Columns.PROJECT_ID));
+            video.setPropertyId(rs.getInt(Columns.PROPERTY_ID));
             return video;
         }
     };

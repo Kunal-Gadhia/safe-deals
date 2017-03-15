@@ -1,6 +1,5 @@
 package com.vsquaresystem.safedeals.video;
 
-import java.io.File;
 import java.util.Objects;
 
 public class Video {
@@ -10,6 +9,8 @@ public class Video {
     private String description;
     private String videoUrl;
     private Boolean isIntroVideo;
+    private Integer projectId;
+    private Integer propertyId;
 
     public Integer getId() {
         return id;
@@ -51,14 +52,37 @@ public class Video {
         this.isIntroVideo = isIntroVideo;
     }
 
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public Integer getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" + "id=" + id + ", name=" + name + ", description=" + description + ", videoUrl=" + videoUrl + ", isIntroVideo=" + isIntroVideo + ", projectId=" + projectId + ", propertyId=" + propertyId + '}';
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.description);
-        hash = 53 * hash + Objects.hashCode(this.videoUrl);
-        hash = 53 * hash + Objects.hashCode(this.isIntroVideo);
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.name);
+        hash = 73 * hash + Objects.hashCode(this.description);
+        hash = 73 * hash + Objects.hashCode(this.videoUrl);
+        hash = 73 * hash + Objects.hashCode(this.isIntroVideo);
+        hash = 73 * hash + Objects.hashCode(this.projectId);
+        hash = 73 * hash + Objects.hashCode(this.propertyId);
         return hash;
     }
 
@@ -86,11 +110,13 @@ public class Video {
         if (!Objects.equals(this.isIntroVideo, other.isIntroVideo)) {
             return false;
         }
+        if (!Objects.equals(this.projectId, other.projectId)) {
+            return false;
+        }
+        if (!Objects.equals(this.propertyId, other.propertyId)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Video{" + "id=" + id + ", name=" + name + ", description=" + description + ", videoUrl=" + videoUrl + ", isIntroVideo=" + isIntroVideo + '}';
-    }
 }

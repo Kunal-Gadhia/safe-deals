@@ -25,6 +25,8 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Video Url</th>
+                <th>Project</th>
+                <th>Property</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -34,6 +36,8 @@
                 <td>{{ video.name}}</td>
                 <td>{{ video.description}}</td>
                 <td>{{ video.videoUrl}}</td>
+                <td>{{ video.project.name}}</td>
+                <td>{{ video.property.name}}</td>
 
                 <td class="text-center">
                     <a data-ui-sref="admin.masters_video.edit({ videoId: video.id })"
@@ -59,7 +63,7 @@
                 </button>
             </li>
             <li>
-                 <button ng-click="nextPage()"
+                <button ng-click="nextPage()"
                         ng-disabled="videos.length < 5 || nextVideos.length === 0"
                         class="btn btn-default">
                     Next 
