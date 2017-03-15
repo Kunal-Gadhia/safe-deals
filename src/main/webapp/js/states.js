@@ -28,7 +28,7 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
             var parrentDiv = $('#parrentDiv');
             parrentDiv.removeClass();
             parrentDiv.addClass('bg-city-spcl');
-            
+
             $scope.gotoTop = function () {
                 $location.hash('top');
                 $anchorScroll();
@@ -57,6 +57,11 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
             };
             $scope.guestLogin = function () {
                 $scope.login("guest", "guest");
+            };
+
+            function googleTranslateElementInit() {
+                console.log("Into Translator");
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
             };
         });
 //        .controller('LogoutController', function (UserService, $scope, $state) {

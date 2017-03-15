@@ -15,6 +15,22 @@ angular.module("safedeals.services.image")
                         'name': '@name'
                     },
                     'isArray': false
+                },
+                'findByProjectId': {
+                    'method': 'GET',
+                    'url': restRoot + '/image/find/projectId',
+                    'params': {
+                        'projectId': '@projectId'
+                    },
+                    'isArray': true
+                },
+                'findByPropertyId': {
+                    'method': 'GET',
+                    'url': restRoot + '/image/find/propertyId',
+                    'params': {
+                        'propertyId': '@propertyId'
+                    },
+                    'isArray': true
                 }
             });
         });

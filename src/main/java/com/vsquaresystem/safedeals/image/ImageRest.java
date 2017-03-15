@@ -50,6 +50,16 @@ public class ImageRest {
         return imageDal.findById(id);
     }
 
+    @RequestMapping(value = "/find/projectId", method = RequestMethod.GET)
+    public List<Image> findByProjectId(@RequestParam("projectId") Integer projectId) {
+        return imageDal.findByProjectId(projectId);
+    }
+
+    @RequestMapping(value = "/find/propertyId", method = RequestMethod.GET)
+    public List<Image> findByPropertyId(@RequestParam("propertyId") Integer propertyId) {
+        return imageDal.findByPropertyId(propertyId);
+    }
+
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public Image findByName(@RequestParam("name") String name) {
         return imageDal.findByName(name);

@@ -53,6 +53,16 @@ public class ImageDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Image.class));
     }
 
+    public List<Image> findByProjectId(Integer projectId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROJECT_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{projectId}, new BeanPropertyRowMapper<>(Image.class));
+    }
+
+    public List<Image> findByPropertyId(Integer propertyId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROPERTY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{propertyId}, new BeanPropertyRowMapper<>(Image.class));
+    }
+
     public Image findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Image.class));

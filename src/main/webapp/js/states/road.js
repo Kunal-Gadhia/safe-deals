@@ -67,6 +67,7 @@ angular.module("safedeals.states.road", [])
             $scope.$watch('editableRoad.name', function (name) {
                 console.log("Name :" + name);
                 RoadService.findByName({'name': name}).$promise.catch(function (response) {
+                    console.log("Response :%O", response);
                     if (response.status === 500) {
                         $scope.editableRoad.repeatName = false;
                     }
@@ -77,6 +78,7 @@ angular.module("safedeals.states.road", [])
                         $scope.editableRoad.repeatName = false;
                     }
                 }).then(function (road) {
+                    console.log("Road :%O", road);
                     if (road.name !== null) {
                         $scope.editableRoad.repeatName = true;
                     }

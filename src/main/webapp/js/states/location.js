@@ -39,10 +39,11 @@ angular.module("safedeals.states.location", [])
                         $scope.stateId = stateObject.id;
                         $scope.state = stateObject;
                     });
-                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
-                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
+                    $scope.minBudget = ($stateParams.locationMinBudget * $stateParams.propertyDetails);
+//                    console.log("Min Budget Kunal:%O", $scope.minBudget);
+//                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
+//                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
                     $scope.searchPropertySize = $stateParams.propertyDetails;
-                    console.log("Min Budget :%O", $scope.minBudget);
                 });
 
             }
@@ -57,7 +58,7 @@ angular.module("safedeals.states.location", [])
                 else {
                     $scope.searchLocationByLocationAndBudget(cityName, minBudget, maxBudget, propertySize);
                 }
-                
+
             };
             $scope.selectLocation = function (location) {
                 $scope.propertySize;
@@ -70,13 +71,15 @@ angular.module("safedeals.states.location", [])
                 } else if ($stateParams.propertyDetails === "2000") {
                     $scope.propertySize = 4;
                 }
+                var minBudget = $("#minBudget").val();
+                var maxBudget = $("#maxBudget").val();
 
                 $state.go('main.property', {
                     cityId: $scope.cityId,
                     locationId: location.id,
-                    propertySize: $scope.propertySize
-//                    minBudget: $("#minBudget").val(),
-//                    maxBudget: $("#maxBudget").val()
+                    propertySize: $scope.propertySize,
+                    minBudget: minBudget,
+                    maxBudget: maxBudget
                 });
             };
             $scope.searchLocationByLocationAndBudget = function (cityName, minBudget, maxBudget, propertySize) {
