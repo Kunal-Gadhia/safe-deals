@@ -1,4 +1,4 @@
-angular.module("safedeals.states.property", [])
+angular.module("safedeals.states.property", ['bootstrapLightbox'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('main.property', {
                 'url': '/property/?:cityId?:locationId?:propertySize?:minBudget?:maxBudget?',
@@ -540,7 +540,29 @@ angular.module("safedeals.states.property", [])
 
 
         })
-        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
+        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams, ImageService) {
+            $scope.galleryModal = true;
+            $scope.images = ImageService.findByPropertyId({
+                'propertyId': $stateParams.propertyId
+            }, function (images) {
+                console.log("Images :%O", images);
+            });
+            $scope.openLightboxModal = function (image) {
+                $scope.galleryModal = false;
+                $scope.tempImageId = image.id;
+                $scope.arrayImage = [];
+                console.log("What is image :" + image);
+                angular.forEach($scope.images, function (image) {
+                    $scope.arrayImage.push(image.id);
+                });
+                console.log("Array :%O", $scope.arrayImage);
+//                Lightbox.openModal($scope.images, index);
+            };
+            
+             $scope.closeLightboxModal = function () {
+                $scope.galleryModal = true;
+            };
+            
             var map;
             var map1;
             var map2;
