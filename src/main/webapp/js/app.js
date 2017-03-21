@@ -59,6 +59,7 @@ angular.module("safedeals", [
     'safedeals.services.road',
     'safedeals.services.mail',
     'safedeals.services.image',
+    'safedeals.services.price_range',
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',
@@ -113,6 +114,7 @@ angular.module("safedeals", [
     'safedeals.states.user',
     'safedeals.states.road',
     'safedeals.states.image',
+    'safedeals.states.price_range',
     'safedeals.states.auth'
 ])
 

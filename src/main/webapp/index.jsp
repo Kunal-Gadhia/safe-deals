@@ -122,6 +122,7 @@
         <script src="${pageContext.request.contextPath}/js/states/workplace_category.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/workplace_category_detail.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/user.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/price_range.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/location_type.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/location_category.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/market_price.js"></script>
@@ -155,6 +156,7 @@
         <script src="${pageContext.request.contextPath}/js/services/co_ordinate_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/school_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/hospital_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/price_range_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/guidelines_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/project_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/mall_service.js"></script>

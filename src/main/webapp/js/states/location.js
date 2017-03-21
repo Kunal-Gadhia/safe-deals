@@ -22,6 +22,7 @@ angular.module("safedeals.states.location", [])
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
             $scope.hideSutaibleLocation = true;
+            $scope.hideDescription = true;
 
             if ($stateParams.cityId !== null) {
                 console.log("inside This Thing");
@@ -40,10 +41,23 @@ angular.module("safedeals.states.location", [])
                         $scope.state = stateObject;
                     });
                     $scope.minBudget = ($stateParams.locationMinBudget * $stateParams.propertyDetails);
+                    $scope.maxBudget = ($stateParams.locationMaxBudget * $stateParams.propertyDetails);
 //                    console.log("Min Budget Kunal:%O", $scope.minBudget);
 //                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
 //                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
                     $scope.searchPropertySize = $stateParams.propertyDetails;
+                    if ($stateParams.propertyDetails === "600") {
+                        $scope.propertySize = "1 BHK";
+                    } else if ($stateParams.propertyDetails === "1000") {
+                        $scope.propertySize = "2 BHK";
+                    } else if ($stateParams.propertyDetails === "1500") {
+                        $scope.propertySize = "3 BHK";
+                    } else if ($stateParams.propertyDetails === "2000") {
+                        $scope.propertySize = "4 BHK";
+                    } else {
+                        $scope.propertySize = "0 BHK";
+                    }
+                    $scope.hideDescription = false;
                 });
 
             }
