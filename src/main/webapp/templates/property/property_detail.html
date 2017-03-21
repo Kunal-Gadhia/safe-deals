@@ -14,46 +14,56 @@
         </div>
     </div>
     <div class="modal-body">
-        <div class="row">
-            <ul class="nav nav-tabs" id="location_tabs">
-                <li ng-repeat="propertyStep in propertySteps" ng-class="{active: $index == getCurrentStepIndex()}">
-                    <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
-                </li>
-            </ul>
-        </div>
-        <div  ng-switch on="selection" class="locations"> 
-            <!--                    <div ng-show="myValue">-->
-            <div ng-show="myValue">
-                <div class="row">
-                    <nav class="">
-                        <ul class="nav">
-                            <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
-                                <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
-                            </li>
-                        </ul>
-                    </nav>
+        <div class="" ng-hide="galleryModal">
+            <div class="modal modal-safedeals">
+                <div class="modal-backdrop fade in">
+                    <button type="button" class="pull-right btn btn-link" ng-click="closeLightboxModal()">
+                        <i style="color: #778899" class="fa fa-times fa-2x"></i>
+                    </button>
                 </div>
-                <div ng-show="amenities">
-                    <nav class="navbar sub_locations locations_nav">
-                        <ul id={{amenityCode.id}} class="nav">
-                            <li ng-repeat="amenity in amenitiesList">
-                                <a ng-click="getAmenityDetailByAmenity(amenity)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
-                                <hr class="custom_hr">
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="row">   
-                    <div id="propertyDetailMapContainer" style="height: 400px;"></div>    
+                <div class="modal-dialog">
+                    <uib-carousel  active="active">
+                        <uib-slide ng-repeat="image in arrayImage" index="$index">
+                            <img ng-src="./rest/image/{{image}}/attachment" width="600px" style="height: 500px;" class="admin"/>
+                            <div class="carousel-caption">
+                                <h4>Slide {{$index + 1}}</h4>
+                            </div>
+                        </uib-slide>
+                    </uib-carousel>
                 </div>
             </div>
-            <div ng-switch-when="Work Places" class="locations">
-                <div ng-show="myWorkplaces">
+        </div>
+        <div class="row">
+            <div class="gallery gallery1">
+                <div ng-repeat="image in images">
+                    <div class="col-md-2 col-sm-2 padding">
+                        <div class="thumbnail" id="thumbnail">
+                            <a ng-click="openLightboxModal(image)">
+                                <img ng-src="./rest/image/{{image.id}}/attachment" width="380" class="img-responsive" style="height: 115px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="row">
+                <ul class="nav nav-tabs" id="location_tabs">
+                    <li ng-repeat="propertyStep in propertySteps" ng-class="{
+                                active: $index == getCurrentStepIndex()
+                            }">
+                        <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div  ng-switch on="selection" class="locations"> 
+                <!--                    <div ng-show="myValue">-->
+                <div ng-show="myValue">
                     <div class="row">
-                        <nav class="navbar">
+                        <nav class="">
                             <ul class="nav">
-                                <li ng-repeat="workplace in workplaces" ng-click="toggle()">
-                                    <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left" style="color: #000">{{workplace.name}}</a>
+                                <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                    <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
                                 </li>
                             </ul>
                         </nav>
@@ -61,253 +71,279 @@
                     <div ng-show="amenities">
                         <nav class="navbar sub_locations locations_nav">
                             <ul id={{amenityCode.id}} class="nav">
-                                <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
-                                    <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                <li ng-repeat="amenity in amenitiesList">
+                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
                                     <hr class="custom_hr">
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="row">    
-                        <div id="propertyDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                    <div class="row">   
+                        <div id="propertyDetailMapContainer" style="height: 400px;"></div>    
                     </div>
                 </div>
-            </div>
-            <div ng-switch-when="Projects" class="locations">
-                <div ng-show="myProjects">
-                    <div class="col-md-offset-4">
-                        <nav class="navbar locations_nav">
-                            <ul class="nav">
-                                <li ng-repeat="project in projects" ng-click="toggle()">
-                                    <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left">{{project.name}}</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!--                            <div ng-show="amenities">
-                                                    <nav class="navbar locations_nav">
-                                                        <ul id={{amenityCode.id}} class="nav">
-                                                            <li ng-repeat="amenity in amenitiesList">
-                                                                <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
-                                                </div>-->
-                    <div class="row">    
-                        <div id="propertyDetailMapContainerProjects" style="height: 400px;"></div>    
-                    </div>
-                </div>
-            </div>
-            <div ng-switch-when="Properties" class="locations">
-                <div ng-show="myProperties">
-                    <div class="col-md-offset-4">
-                        <nav class="navbar locations_nav">
-                            <ul class="nav">
-                                <li ng-repeat="property in properties" ng-click="toggle()">
-                                    <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left">{{property.name}}</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!--                            <div ng-show="amenities">
-                                                    <nav class="navbar locations_nav">
-                                                        <ul id={{amenityCode.id}} class="nav">
-                                                            <li ng-repeat="amenity in amenitiesList">
-                                                                <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
-                                                </div>-->
-                    <div class="row">    
-                        <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
+                <div ng-switch-when="Work Places" class="locations">
+                    <div ng-show="myWorkplaces">
+                        <div class="row">
+                            <nav class="">
+                                <ul class="nav">
+                                    <li ng-repeat="workplace in workplaces" ng-click="toggle()">
+                                        <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left" style="color: #000">{{workplace.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div ng-show="amenities">
+                            <nav class="navbar sub_locations locations_nav">
+                                <ul id={{amenityCode.id}} class="nav">
+                                    <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
+                                        <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                        <hr class="custom_hr">
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="row">    
+                            <div id="propertyDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div ng-switch-when="Overview">
-                <div>
-                    <table class="table table-bordered table-striped">
-                        <tbody>
-                            <tr>
-                                <td><label>Property Name : </label></td>
-                                <td> {{ property.name}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>City :</label></td>
-                                <td> {{ property.city.name}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Location :</label></td>
-                                <td> {{ property.location.name}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Major Approach Road : </label></td>
-                                <td> {{ property.road.name}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><label>Type Of Property : </label></td>
-                                <td> {{ property.propertyType}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Size : </label></td>
-                                <td> {{ property.propertySize}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Size : </label></td>
-                                <td> {{ property.size}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Price Range : </label></td>
-                                <td> {{ property.priceRange}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Building Age : </label></td>
-                                <td> {{ property.buildingAge}}</td>
-                            </tr><tr>
-                                <td><label>Total Floors : </label></td>
-                                <td> {{ property.totalFloors}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Entry Facing : </label></td>
-                                <td> {{ property.entryFacing}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Building Condition : </label></td>
-                                <td> {{ property.buildingCondition}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Project Name : </label></td>
-                                <td> {{ property.project.name}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Public Transport : </label></td>
-                                <td>
-                                    <ul class="overview_list">
-                                        <li ng-repeat="publicTransportObject in property.publicTransportObjects">{{publicTransportObject.name}}</li>
-                                    </ul>              
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Offered Price : </label></td>
-                                <td> {{ property.offeredPrice}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Discount : </label></td>
-                                <td> {{ property.discount}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Offer Valid Till : </label></td>
-                                <td> {{ property.offerValidTill}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Payment Schedule : </label></td>
-                                <td> {{ property.paymentSchedule}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Workplace : </label></td>
-                                <td> 
-                                    <ul class="overview_list">
-                                        <li ng-repeat="workplacesObject in property.workplacesObjects">{{workplacesObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>projects Nearby : </label></td>
-                                <td>
-                                    <ul class="overview_list">
-                                        <li ng-repeat="projectsNearbyObject in property.projectsNearbyObjects">{{projectsNearbyObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Basic Amenities : </label></td>
-                                <td> 
-                                    <ul class="overview_list">
-                                        <li ng-repeat="basicAmenitiesObject in property.basicAmenitiesObjects">{{basicAmenitiesObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Luxury Amenities : </label></td>
-                                <td>  
-                                    <ul class="overview_list">
-                                        <li ng-repeat="luxuryAmenitiesObject in property.luxuryAmenitiesObjects">{{luxuryAmenitiesObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Approved Banks : </label></td>
-                                <td>  
-                                    <ul class="overview_list">
-                                        <li ng-repeat="approvedBanksObject in property.approvedBanksObjects">{{approvedBanksObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Amenities within Properties : </label></td>
-                                <td>
-                                    <ul class="overview_list">
-                                        <li ng-repeat="privateAmenitiesObject in property.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>SD Verified : </label></td>
-                                <td><span ng-if="property.sdVerified === true">Yes</span>
-                                    <span ng-if="property.sdVerified === false">No</span></td>
-                            </tr>
-                            <tr>
-                                <td><label>Carpet Area : </label></td>
-                                <td> {{ property.carpetArea}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Salable Area : </label></td>
-                                <td> {{ property.salableArea}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Build Up Area : </label></td>
-                                <td> {{ property.buildUpArea}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Total Balcony :</label></td>
-                                <td> {{ property.balconyCount}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Total Toilet :</label></td>
-                                <td>      
-                                    {{ property.toiletCount}} 
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>Open Terrace : </label></td>
-                                <td><span ng-if="property.openTerrace === true">Yes</span>
-                                    <span ng-if="property.openTerrace === false">No</span></td>
-                            </tr>
-                            <tr>
-                                <td><label>Open Land : </label></td>
-                                <td> <span ng-if="property.openLand === true">Yes</span>
-                                    <span ng-if="property.openLand === false">No</span></td>
-                            </tr>
-                            <tr>
-                                <td><label>Latitude : </label></td>
-                                <td> {{ property.latitude}}</td>
-                            </tr>
-                            <tr>
-                                <td><label>Longitude : </label></td>
-                                <td> {{ property.longitude}}</td>
-                            </tr>
-
-                        </tbody>
-                    </table>  
+                <div ng-switch-when="Projects" class="locations">
+                    <div ng-show="myProjects">
+                        <div class="col-md-offset-4">
+                            <nav class="navbar locations_nav">
+                                <ul class="nav">
+                                    <li ng-repeat="project in projects" ng-click="toggle()">
+                                        <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left">{{project.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!--                            <div ng-show="amenities">
+                                                        <nav class="navbar locations_nav">
+                                                            <ul id={{amenityCode.id}} class="nav">
+                                                                <li ng-repeat="amenity in amenitiesList">
+                                                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>-->
+                        <div class="row">    
+                            <div id="propertyDetailMapContainerProjects" style="height: 400px;"></div>    
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div ng-switch-when="Price Trends">
-                <!--<h2>Dummy Text for Price Trends</h2>-->
-                <div class="row">
-                    <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
-                                                </div>-->
+                <div ng-switch-when="Properties" class="locations">
+                    <div ng-show="myProperties">
+                        <div class="col-md-offset-4">
+                            <nav class="navbar locations_nav">
+                                <ul class="nav">
+                                    <li ng-repeat="property in properties" ng-click="toggle()">
+                                        <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left">{{property.name}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!--                            <div ng-show="amenities">
+                                                        <nav class="navbar locations_nav">
+                                                            <ul id={{amenityCode.id}} class="nav">
+                                                                <li ng-repeat="amenity in amenitiesList">
+                                                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>-->
+                        <div class="row">    
+                            <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="Overview">
+                    <div>
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <td><label>Property Name : </label></td>
+                                    <td> {{ property.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>City :</label></td>
+                                    <td> {{ property.city.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Location :</label></td>
+                                    <td> {{ property.location.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Major Approach Road : </label></td>
+                                    <td> {{ property.road.name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>Type Of Property : </label></td>
+                                    <td> {{ property.propertyType}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Property Size : </label></td>
+                                    <td> {{ property.propertySize}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Size : </label></td>
+                                    <td> {{ property.size}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Price Range : </label></td>
+                                    <td> {{ property.priceRange}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Building Age : </label></td>
+                                    <td> {{ property.buildingAge}}</td>
+                                </tr><tr>
+                                    <td><label>Total Floors : </label></td>
+                                    <td> {{ property.totalFloors}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Entry Facing : </label></td>
+                                    <td> {{ property.entryFacing}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Building Condition : </label></td>
+                                    <td> {{ property.buildingCondition}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Project Name : </label></td>
+                                    <td> {{ property.project.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Public Transport : </label></td>
+                                    <td>
+                                        <ul class="overview_list">
+                                            <li ng-repeat="publicTransportObject in property.publicTransportObjects">{{publicTransportObject.name}}</li>
+                                        </ul>              
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Offered Price : </label></td>
+                                    <td> {{ property.offeredPrice}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Discount : </label></td>
+                                    <td> {{ property.discount}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Offer Valid Till : </label></td>
+                                    <td> {{ property.offerValidTill}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Payment Schedule : </label></td>
+                                    <td> {{ property.paymentSchedule}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Workplace : </label></td>
+                                    <td> 
+                                        <ul class="overview_list">
+                                            <li ng-repeat="workplacesObject in property.workplacesObjects">{{workplacesObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>projects Nearby : </label></td>
+                                    <td>
+                                        <ul class="overview_list">
+                                            <li ng-repeat="projectsNearbyObject in property.projectsNearbyObjects">{{projectsNearbyObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Basic Amenities : </label></td>
+                                    <td> 
+                                        <ul class="overview_list">
+                                            <li ng-repeat="basicAmenitiesObject in property.basicAmenitiesObjects">{{basicAmenitiesObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Luxury Amenities : </label></td>
+                                    <td>  
+                                        <ul class="overview_list">
+                                            <li ng-repeat="luxuryAmenitiesObject in property.luxuryAmenitiesObjects">{{luxuryAmenitiesObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Approved Banks : </label></td>
+                                    <td>  
+                                        <ul class="overview_list">
+                                            <li ng-repeat="approvedBanksObject in property.approvedBanksObjects">{{approvedBanksObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Amenities within Properties : </label></td>
+                                    <td>
+                                        <ul class="overview_list">
+                                            <li ng-repeat="privateAmenitiesObject in property.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>SD Verified : </label></td>
+                                    <td><span ng-if="property.sdVerified === true">Yes</span>
+                                        <span ng-if="property.sdVerified === false">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Carpet Area : </label></td>
+                                    <td> {{ property.carpetArea}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Salable Area : </label></td>
+                                    <td> {{ property.salableArea}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Build Up Area : </label></td>
+                                    <td> {{ property.buildUpArea}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Total Balcony :</label></td>
+                                    <td> {{ property.balconyCount}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Total Toilet :</label></td>
+                                    <td>      
+                                        {{ property.toiletCount}} 
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>Open Terrace : </label></td>
+                                    <td><span ng-if="property.openTerrace === true">Yes</span>
+                                        <span ng-if="property.openTerrace === false">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Open Land : </label></td>
+                                    <td> <span ng-if="property.openLand === true">Yes</span>
+                                        <span ng-if="property.openLand === false">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Latitude : </label></td>
+                                    <td> {{ property.latitude}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Longitude : </label></td>
+                                    <td> {{ property.longitude}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>  
+                    </div>
+                </div>
+                <div ng-switch-when="Price Trends">
+                    <!--<h2>Dummy Text for Price Trends</h2>-->
+                    <div class="row">
+                        <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
+                                                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>

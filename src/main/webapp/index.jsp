@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/font-awesome/4.4.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/modal-override.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/corporate_site.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/angular-bootstrap-lightbox.css"/>
         <!--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flexslider.css"/>-->
 
         <!--Libraries-->
@@ -46,6 +47,7 @@
         <script src="${pageContext.request.contextPath}/js/lib/jquery.flexslider-min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/scripts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/wow.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/angular-bootstrap-lightbox.js"></script>
         <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
         <!--<script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>-->
         <!--        <script>
