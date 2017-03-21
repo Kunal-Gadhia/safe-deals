@@ -63,7 +63,7 @@
                         <nav class="">
                             <ul class="nav">
                                 <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
-                                    <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left" style="color: #000">{{amenityCode.name}}</a>
+                                    <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left black_color">{{amenityCode.name}}</a>
                                 </li>
                             </ul>
                         </nav>
@@ -72,7 +72,7 @@
                         <nav class="navbar sub_locations locations_nav">
                             <ul id={{amenityCode.id}} class="nav">
                                 <li ng-repeat="amenity in amenitiesList">
-                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href=""class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
                                     <hr class="custom_hr">
                                 </li>
                             </ul>
@@ -88,7 +88,7 @@
                             <nav class="">
                                 <ul class="nav">
                                     <li ng-repeat="workplace in workplaces" ng-click="toggle()">
-                                        <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left" style="color: #000">{{workplace.name}}</a>
+                                        <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left black_color">{{workplace.name}}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -97,7 +97,7 @@
                             <nav class="navbar sub_locations locations_nav">
                                 <ul id={{amenityCode.id}} class="nav">
                                     <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
-                                        <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                        <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
                                         <hr class="custom_hr">
                                     </li>
                                 </ul>
