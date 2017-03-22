@@ -109,7 +109,15 @@ angular.module("safedeals.states.video", [])
 
         })
         .controller('VideoEditController', function (VideoService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
-            $scope.editableVideo = VideoService.get({'id': $stateParams.videoId});
+            $scope.editableVideo = VideoService.get({'id': $stateParams.videoId},
+            function () {
+                $scope.editableVideo.project = ProjectService.get({
+                    'id': $scope.editableVideo.projectId
+                });
+                $scope.editableVideo.property = PropertyService.get({
+                    'id': $scope.editableVideo.propertyId
+                });
+            });
 
             $scope.setProject = function (project) {
                 console.log("setproject", project);
