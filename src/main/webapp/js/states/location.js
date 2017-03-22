@@ -18,7 +18,7 @@ angular.module("safedeals.states.location", [])
             });
         })
 
-        .controller('LocationController', function ($scope, $state, $filter, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('LocationController', function ($scope, $state, $filter, PriceRangeService, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
             $scope.hideSutaibleLocation = true;
@@ -40,9 +40,10 @@ angular.module("safedeals.states.location", [])
                         $scope.stateId = stateObject.id;
                         $scope.state = stateObject;
                     });
-                    $scope.minBudget = ($stateParams.locationMinBudget * $stateParams.propertyDetails);
-                    $scope.maxBudget = ($stateParams.locationMaxBudget * $stateParams.propertyDetails);
-//                    console.log("Min Budget Kunal:%O", $scope.minBudget);
+                    $scope.minBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
+                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
+                    console.log("Min Budget Kunal:%O", $scope.minBudget);
+                    console.log("Max Budget Kunal :%O", $scope.maxBudget);
 //                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
 //                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
                     $scope.searchPropertySize = $stateParams.propertyDetails;
@@ -137,6 +138,20 @@ angular.module("safedeals.states.location", [])
                 $scope.stateId = state.id;
                 $scope.state = state;
             };
+            $scope.minBudgetList = PriceRangeService.findAllList();
+            $scope.maxBudgetList = PriceRangeService.findAllList();
+            console.log("Min Budghet List :%O", $scope.minBudgetList);
+
+            $scope.$watch('minBudget', function (data) {
+                console.log("Data", data);
+                PriceRangeService.findByMinBudget({
+                    'minBudget': data
+                }, function (priceRange) {
+                    console.log("Price Range :%O", priceRange);
+                    $scope.maxBudgetList = priceRange;
+                });
+            });
+
             $scope.searchCities = function (searchTerm) {
                 console.log("State Id :%O", $scope.stateId);
                 if ($scope.stateId === undefined) {

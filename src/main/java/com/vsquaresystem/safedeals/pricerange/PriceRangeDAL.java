@@ -30,6 +30,7 @@ public class PriceRangeDAL {
 
         public static final String ID = "id";
         public static final String PRICE = "price";
+        public static final String DESCRIPTION = "description";
     };
 
     @Autowired
@@ -38,7 +39,8 @@ public class PriceRangeDAL {
         insertPriceRange = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName(TABLE_NAME)
                 .usingColumns(
-                        Columns.PRICE)
+                        Columns.PRICE,
+                        Columns.DESCRIPTION)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -46,10 +48,17 @@ public class PriceRangeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(PriceRange.class));
     }
-    
+
+    public List<PriceRange> findAllList() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(PriceRange.class));
+    }
+
     public List<PriceRange> findByMinBudget(Integer minBudget) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "+Columns.PRICE+"<= ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{minBudget}, new BeanPropertyRowMapper<>(PriceRange.class));
+        Integer mainMinBudget = (minBudget * 2);
+        System.out.println("Main Min Budget :" + mainMinBudget);
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PRICE + "<= ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{mainMinBudget}, new BeanPropertyRowMapper<>(PriceRange.class));
     }
 
     public PriceRange findById(Integer id) {
@@ -60,6 +69,7 @@ public class PriceRangeDAL {
     public PriceRange insert(PriceRange priceRange) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.PRICE, priceRange.getPrice());
+        parameters.put(Columns.DESCRIPTION, priceRange.getDescription());
 
         Number newId = insertPriceRange.executeAndReturnKey(parameters);
         priceRange = findById(newId.intValue());
@@ -68,9 +78,11 @@ public class PriceRangeDAL {
 
     public PriceRange update(PriceRange priceRange) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.PRICE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.PRICE + " = ? ,"
+                + Columns.DESCRIPTION + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             priceRange.getPrice(),
+            priceRange.getDescription(),
             priceRange.getId()});
         priceRange = findById(priceRange.getId());
         return priceRange;

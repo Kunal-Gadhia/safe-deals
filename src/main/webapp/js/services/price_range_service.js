@@ -7,5 +7,10 @@ angular.module("safedeals.services.price_range")
                     'url': restRoot + '/pricerange/find_by_minbudget',
                     'isArray': true
                 },
+                'findAllList': {
+                    'method': 'GET',
+                    'url': restRoot + '/pricerange/find_all',
+                    'isArray': true
+                }
             });
         });

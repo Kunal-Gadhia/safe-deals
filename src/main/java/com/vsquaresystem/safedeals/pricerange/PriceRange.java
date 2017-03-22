@@ -15,6 +15,7 @@ public class PriceRange {
 
     private Integer id;
     private Integer price;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -32,11 +33,20 @@ public class PriceRange {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.price);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.price);
+        hash = 89 * hash + Objects.hashCode(this.description);
         return hash;
     }
 
@@ -55,13 +65,15 @@ public class PriceRange {
         if (!Objects.equals(this.price, other.price)) {
             return false;
         }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "PriceRange{" + "id=" + id + ", price=" + price + '}';
+        return "PriceRange{" + "id=" + id + ", price=" + price + ", description=" + description + '}';
     }
 
-    
 }

@@ -22,11 +22,11 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             });
         })
 
-        .controller('PropertyController', function ($scope, $state, $filter, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('PropertyController', function ($scope, $state, $filter, PriceRangeService, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
             $scope.hideSutaibleProperty = true;
-
+            $scope.hideDescription = true;
 
             if ($stateParams.cityId !== null) {
                 console.log("inside This Thing");
@@ -52,10 +52,13 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         $scope.locationName = locationObject.name;
                         $scope.location = locationObject;
                     });
-                    $("#minBudget").val($stateParams.minBudget);
-                    $("#maxBudget").val($stateParams.maxBudget);
+                    $scope.minBudget = $stateParams.minBudget;
+                    $scope.maxBudget = $stateParams.maxBudget;
+//                    $("#minBudget").val($stateParams.minBudget);
+//                    $("#maxBudget").val($stateParams.maxBudget);
                     $scope.propertySize = $stateParams.propertySize;
                     console.log("Min Budget :%O", $scope.minBudget);
+                    $scope.hideDescription = false;
                 });
 
             }
@@ -158,7 +161,19 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 $scope.stateId = state.id;
                 $scope.state = state;
             };
+            $scope.minBudgetList = PriceRangeService.findAllList();
+            $scope.maxBudgetList = PriceRangeService.findAllList();
+            console.log("Min Budghet List :%O", $scope.minBudgetList);
 
+            $scope.$watch('minBudget', function (data) {
+                console.log("Data", data);
+                PriceRangeService.findByMinBudget({
+                    'minBudget': data
+                }, function (priceRange) {
+                    console.log("Price Range :%O", priceRange);
+                    $scope.maxBudgetList = priceRange;
+                });
+            });
 
             $scope.searchCities = function (searchTerm) {
                 console.log("State Id :%O", $scope.stateId);
@@ -558,11 +573,11 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 console.log("Array :%O", $scope.arrayImage);
 //                Lightbox.openModal($scope.images, index);
             };
-            
-             $scope.closeLightboxModal = function () {
+
+            $scope.closeLightboxModal = function () {
                 $scope.galleryModal = true;
             };
-            
+
             var map;
             var map1;
             var map2;

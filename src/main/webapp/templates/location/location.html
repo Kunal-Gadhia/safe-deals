@@ -34,30 +34,26 @@
                         <div class="form-group">
                             <select id="minBudget" class="form-control" ng-model="minBudget" required="required">
                                 <option value="">Min Budget</option>
-                                <option value="0">&#8377; 0</option>
-                                <option value="500000">&#8377; 5 Lakhs</option>
-                                <option value="2500000">&#8377; 25 Lakhs</option>
-                                <option value="5000000">&#8377; 50 Lakhs</option>
-                                <option value="7500000">&#8377; 75 Lakhs</option>
-                                <option value="10000000">&#8377; 1 Crore</option>
-                                <option value="12500000">&#8377; 1.25 Crore</option>
-                                <option value="15000000">&#8377; 1.5 Crore</option>
-                                <option value="17500000">&#8377; 1.75 Crore</option>
+                                <option ng-repeat="minBudgetObject in minBudgetList" value="{{minBudgetObject.price}}" >&#8377; {{minBudgetObject.description}}</option>
                             </select>
                         </div>
                         <div class="form-group">
+                            <!--                            <select id="maxBudget" class="form-control" ng-model="maxBudget" required="required">
+                                                            <option value="">Max Budget</option>
+                                                            <option value="500000">&#8377; 5 Lakhs</option>
+                                                            <option value="2500000">&#8377; 25 Lakhs</option>
+                                                            <option value="5000000">&#8377; 50 Lakhs</option>
+                                                            <option value="7500000">&#8377; 75 Lakhs</option>
+                                                            <option value="10000000">&#8377; 1 Crore</option>
+                                                            <option value="12500000">&#8377; 1.25 Crore</option>
+                                                            <option value="15000000">&#8377; 1.5 Crore</option>
+                                                            <option value="17500000">&#8377; 1.75 Crore</option>
+                                                            <option value="20000000">&#8377; 2 Crore</option>
+                                                        </select> -->
                             <select id="maxBudget" class="form-control" ng-model="maxBudget" required="required">
-                                <option value="">Max Budget</option>
-                                <option value="500000">&#8377; 5 Lakhs</option>
-                                <option value="2500000">&#8377; 25 Lakhs</option>
-                                <option value="5000000">&#8377; 50 Lakhs</option>
-                                <option value="7500000">&#8377; 75 Lakhs</option>
-                                <option value="10000000">&#8377; 1 Crore</option>
-                                <option value="12500000">&#8377; 1.25 Crore</option>
-                                <option value="15000000">&#8377; 1.5 Crore</option>
-                                <option value="17500000">&#8377; 1.75 Crore</option>
-                                <option value="20000000">&#8377; 2 Crore</option>
-                            </select> 
+                                <option value="">Min Budget</option>
+                                <option ng-repeat="maxBudgetObject in maxBudgetList" value="{{maxBudgetObject.price}}" >&#8377; {{maxBudgetObject.description}}</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <select class="form-control" id="searchPropertyValue" ng-model="searchPropertySize" required="required">

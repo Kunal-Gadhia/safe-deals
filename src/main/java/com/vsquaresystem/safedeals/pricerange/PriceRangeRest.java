@@ -33,6 +33,11 @@ public class PriceRangeRest {
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         return priceRangeDal.findAll(offset);
     }
+    
+    @RequestMapping(value = "/find_all", method = RequestMethod.GET)
+    public List<PriceRange> findAllList() {
+        return priceRangeDal.findAllList();
+    }
 
     @RequestMapping(value = "/find_by_minbudget", method = RequestMethod.GET)
     public List<PriceRange> findByMinBudget(@RequestParam("minBudget") Integer minBudget) {
