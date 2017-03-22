@@ -116,15 +116,22 @@ angular.module("safedeals.states.image", [])
             }, function (imageList) {
                 angular.forEach($scope.images, function (images) {
                     console.log("Images :%O", images);
-                    images.project = ProjectService.get({
-                        'id': images.projectId
-                    });
-                    images.property = PropertyService.get({
-                        'id': images.propertyId
-                    });
+                    if (images.projectId !== null) {
+                        console.log("Project Id Null");
+                        images.project = ProjectService.get({
+                            'id': images.projectId
+                        });
+                    }
+                    if (images.propertyId !== null) {
+                        console.log("Property Id Null");
+                        images.property = PropertyService.get({
+                            'id': images.propertyId
+                        });
+                    }
+
                 });
             });
-            console.log("Images :%O", $scope.images);
+            console.log("Images  111111 :%O", $scope.images);
 
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
@@ -195,7 +202,25 @@ angular.module("safedeals.states.image", [])
             });
         })
         .controller('ImageEditController', function (ImageService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
-            $scope.editableImage = ImageService.get({'id': $stateParams.imageId});
+            $scope.editableImage = ImageService.get({'id': $stateParams.imageId}, function () {
+                if ($scope.editableImage.projectId !== null) {
+                    ProjectService.get({
+                        'id': $scope.editableImage.projectId
+                    }, function (project) {
+                        $scope.editableImage.project = project;
+                    });
+                }
+                if ($scope.editableImage.propertyId !== null) {
+                    PropertyService.get({
+                        'id': $scope.editableImage.propertyId
+                    }, function (property) {
+                        console.log("Property :%O", property);
+                        $scope.editableImage.property = property;
+                    });
+                }
+
+            });
+            console.log("Ediatble Image Object :%O", $scope.editableImage);
             $scope.setProject = function (project) {
                 $scope.editableImage.projectId = project.id;
                 $scope.editableImage.project = project;
