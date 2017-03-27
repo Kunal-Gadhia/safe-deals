@@ -3,10 +3,9 @@
         border-color: #3366ff;*/
     min-height: 80px;
     background-color: white;
+}
 
-
-}/*
-*/.checkout-bar > li > a {
+.checkout-bar > li > a {
     font-family : Arial;
     font-size: 18px;
     color: grey;
@@ -14,25 +13,30 @@
     /*border: 1px solid #a1a1a1;*/    
 }
 
-
 /*padding*/
 .padding{
     padding: 0px;
 }
-/*padding*/
 
 /*Margin*/
 .margin{
     margin: 0px;
 }
-/*Margin*/
 
 /*image width*/
 .img_width{
     width: 100%
 }
-/*image width*/
 
+/*image opacity*/
+.img_opacity{
+    opacity: 0.6;
+}
+
+/*Submit Button css*/
+.submit_btn{
+    margin-bottom: 5px;
+}
 
 /*****navbar-default css****/
 
@@ -162,12 +166,25 @@
 
 /*************navbar-default css************/
 
-/*************social-icon css************/
-footer a, footer {
-    color:#fff;
+/*************#content css************/
+.content_background{
+    background-color: #EBF6FC;
 }
 
-/*************social-icon css************/
+.left_padding{
+    padding-left: 45px;
+}
+
+.right_padding{
+    padding-right: 0px;
+}
+
+.bottom_border{
+    border-bottom: 1px dotted #000;
+    font-size: 14px;
+    padding: 5px;
+}
+/*************#content css************/
 
 /*************carousel-overlay css************/
 .carousel-overlay{
@@ -183,9 +200,6 @@ footer a, footer {
 
 /*************carousel-overlay css************/
 
-.img_opacity{
-    opacity: 0.6;
-}
 /*************img-overlay css************/
 .img-overlay{
     position: absolute;
@@ -234,39 +248,7 @@ footer a, footer {
 }
 /*************aboutus-img-overlay css************/
 
-/*************#footer css************/
-#footer{
-    background-color: #235d9e;
-    color:#fff
-}
-#footer a{
-    color:#fff;
-    text-decoration: none; 
-}
-/*************#footer css************/
-
-/*************#content css************/
-.content_background{
-    background-color: #EBF6FC;
-}
-
-.left_padding{
-    padding-left: 45px;
-}
-
-.right_padding{
-    padding-right: 0px;
-}
-
-.bottom_border{
-    border-bottom: 1px dotted #000;
-    font-size: 14px;
-    padding: 5px;
-}
-/*************#content css************/
-
 /*************#our team css************/
-
 .team_1 {
     width: 100%;
     background-color: #245DA0;
@@ -287,10 +269,17 @@ footer a, footer {
     background-color: #A70101;
     color: #fff;
 }
+
 .aboutus_title{
     width: 90%;
 }
 
+@media only screen and (min-width: 300px) and (max-width: 875px){
+    .team_img {
+        width: 100%;
+    }
+
+}
 /*@media only screen and (max-width: 700px){
     .team_1 {
         width: 49.99999%;
@@ -307,20 +296,7 @@ footer a, footer {
 }
 
 */
-@media only screen and (min-width: 300px) and (max-width: 875px){
-    .team_img {
-        width: 100%;
-    }
-
-}
-
 /*************#our team css************/
-
-/*************#Submit Button css************/
-.submit_btn{
-    margin-bottom: 5px;
-}
-/*************#Submit Button css************/
 
 /*************#testimonial css************/
 /*#testimonial {       /incase you want to shrink carousel
@@ -334,6 +310,7 @@ footer a, footer {
     text-align: center;
     margin-bottom: 30px;
 }
+
 .carousel-control.left, .carousel-control.right {
     background-image: none;
     /*width: 5%;*/
@@ -348,3 +325,19 @@ footer a, footer {
 }
 /*************#event image css************/
 
+/*************#footer css************/
+#footer{
+    background-color: #235d9e;
+    color:#fff
+}
+#footer a{
+    color:#fff;
+    text-decoration: none; 
+}
+
+/*social-icon css*/
+footer a, footer {
+    color:#fff;
+}
+
+/*************#footer css************/

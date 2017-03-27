@@ -1,9 +1,15 @@
 *{
     padding: 0;
 }
-/*body{
-    font-size: 14px;
-}*/
+
+/*----content-----*/
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0;
+}
+
+.admin{
+    margin-top: 65px;
+}
 
 .list{
     list-style-type: none;
@@ -13,45 +19,23 @@
 .icon_ht{
     height: 60px;
 }
-/*----content-----*/
-.h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 0;
-}
+
 .logo{ 
     padding: 10px;
 }
-#myNavbar ul {
-    margin-top: 30px;
+
+#thumbnail{
+    border: none;
 }
-@media only screen and (min-width: 320px) and (max-width: 768px) {
-    #myNavbar ul {
-        margin-top: 8px;
-        height: 168px;
-    }
-    #myNavbar ul li{
-        border-bottom: 1px solid #cdcdcd;
-        margin-right: 8px;
-        margin-left: 8px;
-    }
-    .toggle{
-        margin-top: 30px;
-    }
-}
-#navbar-default{
-    background-color: #fff;
-}
-@media only screen and (min-width: 320px) and (max-width: 768px) {
-    #adminNavbar ul {
-        height: 80px;
-        margin-top: 20px;
-    }
-}
+
 .vertical-line{
     border-right: 1px solid #e0e0e0;
 }
+
 .wrapper{
     margin: 95px 15px 0;
 }
+
 .map-controls {
     margin-top: 10px;
     border: 1px solid transparent;
@@ -62,169 +46,23 @@
     outline: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-/*************************** City Special ********************************/
-.page-wrap {
-    -ms-touch-action: pan-y;
-    -ms-overflow-style: none !important;
-    width: 1262px; 
-}
-.horizontal-slide {
-    white-space: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-.horizontal-slide .tile {
-    display: inline-block;
-    float: none;
-}
-.tile { 
-    width: 210px;
-    height: 220px;
-    margin: 20px;
-    display: inline-block;
-}
-.tile.selected {
-    background-color: red !important;
-}
 
-.rightBottomBox, .rightBottomBoxBtn {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    font-size: 12px;
-    z-index: 990;
-}
-
-.rightBottomList {
-    position: fixed;
-    background: #fff;
-    border-radius: 5px;
-    bottom: 0px;
-    right: 0;
-}
-
-.rightBottomList .headingBlock {
-    width: 300px;
-    background: #000;
-    color: #fff;
-    font-size: 14px;
-    padding: 15px 19px 10px 14px;
-    height: 50px;
-    box-sizing: border-box;
-    border-radius: 5px 5px 0 0;
-}
-
-.rightBottomList .headingText {
-    float: left
-}
-
-.rightBottomList .closeChat {
-    height: 11px;
-    width: 11px;
-    display: block;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.icon{
-    cursor: pointer;
-}
-
-.bg-city-spcl{
-    /*    background: url("../images/noise-texture-background.png") fixed;*/
-    background-color: #EBF6FC;
-    overflow: hidden;
-    /*    min-height: 680px;*/
-}
-
-#city_logo{
-    padding: 10px;
-}
-
-#city_nav{
-    margin-top: 30px;
-}
-
-.overflow{
-    overflow-x: auto;
-}
-.badge-success { 
-    background-color: #82af6f!important 
-}
-
-.overview_list{
-    list-style-position: inside;
-}
-/*.bg-site{
-    background: url("../images/noise-texture-background.png") fixed;
-    background-size: cover
-}*/
-
-#thumbnail{
-    border: none;
-}
-
-
-/*--Locations--*/
-.black_color{
-color: #000;    
-}
-
-.location_list{
-    margin-top: 49px;   
-}
-#location_tabs{
-    height: 42px;
-}
-.locations_nav{
-    min-height: 0px;
-    margin-bottom: 0px;
-}
-.main_locations{
-   padding: 0px 6px 10px 0px;
-    margin: 0px;
-    position: absolute;
-    left: 10px;
-    top: 160px;
-    z-index: 9;
-    width: 220px;
-    max-height: 300px;
-    /* opacity: 0.5; */
-    background: #fff;
-    border: 1px solid #e4e4e4;
-    overflow: auto;
-}
-.sub_locations{
-    padding: 0px 6px 10px 0px;
-    margin: 0px;
-    position: absolute;
-    left: 10px;
-    top: 300px;
-    z-index: 9;
-    width: 220px;
-    max-height: 300px;
-    /* opacity: 0.5; */
-    background: #fff;
-    border: 1px solid #e4e4e4;
-    overflow: auto;
-}
 /*************************** Login Page ********************************/
-.loginpage
-{
+.loginpage{
     background: url("../images/2.jpg") fixed;
     background-size: cover;
     height:683px;
 }
-.wrap
-{
+
+.wrap{
     position: absolute;
     top: 170px;
     background-color: #FDD496;
     border-radius: 15px;
     padding: 10px;    
 }
-p.form-title
-{
+
+p.form-title{
     font-size: 35px;
     font-weight: 600;
     text-align: center;
@@ -232,8 +70,8 @@ p.form-title
     text-transform: uppercase;
     letter-spacing: 5px;
 }
-.loginpage form
-{
+
+.loginpage form{
     width: 300px;
 }
 .loginpage form.login input[type="text"], form.login input[type="password"]
@@ -305,40 +143,23 @@ form.login .forgot-pass-content
     text-overflow: ellipsis;
     width: 300px;
 }
-
 #pac-input:focus {
     border-color: #4d90fe;
 }
+
 .like{
     color:#009933;
 }
 .dislike{
     color:#db4a4a;
 }
+
 .side{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
 
-/*header{
-    background-image: url("../images/noise-texture-background.png");
-    width: 100%; 
-    padding:5px 0;
-
-    background-color: #fff;
-    box-shadow: 1px 1px 1px 0;
-    height:82px
-}*/
-/*.top-bar{
-    height:82px
-}
-.top-bar ul li{
-    float:left;
-    padding: 5px 10px;
-    margin-top:10px
-
-}*/
 .intro-bar{
     background: url("../images/intro.jpg");
     background-position: 0 -487px;
@@ -350,16 +171,20 @@ form.login .forgot-pass-content
     margin-top: 65px;
     background-color: rgba(0,0,0,0.4);
 }
+
 form.tab-form-demo .tab-pane {
     margin: 20px 20px;
 }
+
 .compare ul{
     padding: 0 0 0 14px;
 
 }
+
 .property-nav{
     margin-bottom: 0;
 }
+
 .tagline{
     /*    background: url("../images/image.jpg") center center;
         height:450px;*/
@@ -372,12 +197,12 @@ form.tab-form-demo .tab-pane {
     /*    left: 663px;*/
     top: 80%;
 }
-
 .tagline .tag button{
     border-color: #a55324;
     background-color:#4c0e11;
     color:#fde5cd;
 }
+
 .location-sidebar{
     height : 320px;
 }
@@ -385,9 +210,11 @@ form.tab-form-demo .tab-pane {
 .label-text {
     padding-top: 5px;
 }
+
 .compulsory_field{
     color:#ff0000;
 }
+
 .typeahead-demo .custom-popup-wrapper {
     position: absolute;
     top: 100%;
@@ -396,13 +223,11 @@ form.tab-form-demo .tab-pane {
     display: none;
     background-color: #f9f9f9;
 }
-
 .typeahead-demo .custom-popup-wrapper > .message {
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
     color: #868686;
 }
-
 .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
     position: static;
     float: none;
@@ -419,6 +244,10 @@ form.tab-form-demo .tab-pane {
     overflow-y: auto;
 }
 
+.thumbnail-border{
+    border-color: #204d74;
+}
+
 .tabs-left {
     border-bottom: none;
     padding-top: 2px;
@@ -426,7 +255,6 @@ form.tab-form-demo .tab-pane {
 .tabs-left {
     border-right: 1px solid #ddd;
 }
-
 .tabs-left>li{
     float: none;
     margin-bottom: 2px;
@@ -434,31 +262,33 @@ form.tab-form-demo .tab-pane {
 .tabs-left>li {
     margin-right: -1px;
 }
-
 .tabs-left>li.active>a,
 .tabs-left>li.active>a:hover,
 .tabs-left>li.active>a:focus {
     border-bottom-color: #ddd;
     border-right-color: transparent;
 }
-
 .tabs-left>li>a {
     border-radius: 4px 0 0 4px;
     margin-right: 0;
     display:block;
 }
+
 .pagination{
     position: absolute;
     top: 0px;
     right: 30px
 }
+
 .input{
     height:28px;
     padding: 4px 8px;
 }
+
 .gender input[type="radio"]{
     margin-top: 2px;
 }
+
 .bullet-point i{
     font-size:7px;
 }
@@ -487,19 +317,281 @@ form.tab-form-demo .tab-pane {
 #calc-nav {
     margin-bottom: 50px;
 }
-/*.custom-background {
-    background-color: white;
-    border : 1px solid #D3D3D3;
-}*/
+
 .custom_hr{    
     margin: 0px 10px;
     padding: 4px 0px 3px;
     border-top: 1px dotted #ccc;
 }
+
+.custom-btn{
+    background-color: #00b0f0;
+    color: #fff;
+    border-color: #2e6da4;
+}
+
 .video{
     width:100%;
     height:450px
 }
+
+.quote {
+    color: rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.co_site{
+    background-color: #fff;
+}
+
+/*read more read less*/
+.content {
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    line-height: 18px;
+}
+.less {
+    max-height: 54px;
+}
+
+.hovereffect {
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+.hovereffect .overlay {
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    padding: 1em;
+    height: 4.75em;
+    background: #000;
+    color: #fff;
+    opacity: 0.4;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+}
+.hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+}
+.hovereffect:hover img {
+    -webkit-transform: translate3d(0,-10%,0);
+    transform: translate3d(0,-10%,0);
+}
+.hovereffect:hover .overlay{
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+/*************************** City Special ********************************/
+
+#city_logo{
+    padding: 10px;
+}
+
+#city_nav{
+    margin-top: 30px;
+}
+
+.page-wrap {
+    -ms-touch-action: pan-y;
+    -ms-overflow-style: none !important;
+    width: 1262px; 
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.bg-city-spcl{
+    /*    background: url("../images/noise-texture-background.png") fixed;*/
+    background-color: #EBF6FC;
+    overflow: hidden;
+    /*    min-height: 680px;*/
+}
+
+/*----city special navbar-----*/
+#myNavbar ul {
+    margin-top: 30px;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    #myNavbar ul {
+        margin-top: 8px;
+        height: 168px;
+    }
+    #myNavbar ul li{
+        border-bottom: 1px solid #cdcdcd;
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+    .toggle{
+        margin-top: 30px;
+    }
+}
+#navbar-default{
+    background-color: #fff;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    #adminNavbar ul {
+        height: 80px;
+        margin-top: 20px;
+    }
+}
+
+/*----city special navbar-----*/
+.horizontal-slide {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.horizontal-slide .tile {
+    display: inline-block;
+    float: none;
+}
+
+.tile { 
+    width: 210px;
+    height: 220px;
+    margin: 20px;
+    display: inline-block;
+}
+.tile.selected {
+    background-color: red !important;
+}
+
+.rightBottomBox, .rightBottomBoxBtn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    z-index: 990;
+}
+.rightBottomList {
+    position: fixed;
+    background: #fff;
+    border-radius: 5px;
+    bottom: 0px;
+    right: 0;
+}
+.rightBottomList .headingBlock {
+    width: 300px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    padding: 15px 19px 10px 14px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
+}
+.rightBottomList .headingText {
+    float: left
+}
+.rightBottomList .closeChat {
+    height: 11px;
+    width: 11px;
+    display: block;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.overflow{
+    overflow-x: auto;
+}
+
+.badge-success { 
+    background-color: #82af6f!important 
+}
+
+.overview_list{
+    list-style-position: inside;
+}
+
+/*--Locations--*/
+.black_color{
+color: #000;    
+}
+.location_list{
+    margin-top: 49px;   
+}
+#location_tabs{
+    height: 42px;
+}
+.locations_nav{
+    min-height: 0px;
+    margin-bottom: 0px;
+}
+.main_locations{
+   padding: 0px 6px 10px 0px;
+    margin: 0px;
+    position: absolute;
+    left: 10px;
+    top: 160px;
+    z-index: 9;
+    width: 220px;
+    max-height: 300px;
+    /* opacity: 0.5; */
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    overflow: auto;
+}
+.sub_locations{
+    padding: 0px 6px 10px 0px;
+    margin: 0px;
+    position: absolute;
+    left: 10px;
+    top: 300px;
+    z-index: 9;
+    width: 220px;
+    max-height: 300px;
+    /* opacity: 0.5; */
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    overflow: auto;
+}
+
+/*************************** City Special ********************************/
+
+
+/*body{
+    font-size: 14px;
+}*/
+
+/*header{
+    background-image: url("../images/noise-texture-background.png");
+    width: 100%; 
+    padding:5px 0;
+
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 0;
+    height:82px
+}*/
+/*.top-bar{
+    height:82px
+}
+.top-bar ul li{
+    float:left;
+    padding: 5px 10px;
+    margin-top:10px
+
+}*/
+/*.custom-background {
+    background-color: white;
+    border : 1px solid #D3D3D3;
+}*/
+
 /*navbar transition*/
 /*#nav li a{
     font-size:14px;
@@ -583,17 +675,7 @@ form.tab-form-demo .tab-pane {
     margin-top:15px;
     margin-bottom:15px;
 }*/
-/*-------------------------------*/
-/*-------------------------------*/
-.quote {
-    color: rgba(0,0,0,.1);
-    text-align: center;
-    margin-bottom: 30px;
-}
 
-.co_site{
-    background-color: #fff;
-}
 /*.site{
     background-color: #fff;
     background: #f8f8f8;
@@ -604,17 +686,7 @@ form.tab-form-demo .tab-pane {
     -o-transition: all .5s; -moz-transition: all .5s; -webkit-transition: all .5s; -ms-transition: all .5s; transition: all .5s;
 
 }*/
-.site-logo{
-    padding:5px;
-}
-#footer{
-    background-color: #235d9e;
-    color:#fff
-}
-#footer a{
-    color:#fff;
-    text-decoration: none; 
-}
+
 /****** Slider ******/
 /*Social slider*/
 /*.social {
@@ -682,9 +754,6 @@ form.tab-form-demo .tab-pane {
 .social ul li.youtube{ background: #dd4b39; }
 .social ul li.google{ background: #dd4b39; }*/
 /*Social slider*/
-.admin{
-    margin-top: 65px;
-}
 
 /*thumbnail slider*/
 /*#thumbnail-preview-indicators {
@@ -774,7 +843,7 @@ form.tab-form-demo .tab-pane {
 
 /*tcb-testimonial-carousel*/
 /*@brand-color: #b20000;*/
-#tcb-testimonial-carousel  a{       
+/*#tcb-testimonial-carousel  a{       
     color: #b20000;
 }
 #tcb-testimonial-carousel    .text-brand{
@@ -814,17 +883,13 @@ form.tab-form-demo .tab-pane {
 #tcb-testimonial-carousel    .media-object {
     margin: auto;
 }
-/*tcb-testimonial-carousel*/
-custom-btn{
-    background-color: #00b0f0;
-    color: #fff;
-    border-color: #2e6da4;
-}
+tcb-testimonial-carousel*/
+
 /*--------------- */
 
-#carousel-custom {
+/*#carousel-custom {
     margin: 5px auto;
-    /*    width: 400px;*/
+        width: 400px;
 }
 #carousel-custom .carousel-indicators {
     margin: 10px 0 0;
@@ -858,61 +923,4 @@ custom-btn{
 }
 .carousel-ht{
     height:450px;
-}
-/*read more read less*/
-.content {
-    overflow: hidden;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    line-height: 18px;
-}
-.less {
-    max-height: 54px;
-}
-
-.hovereffect {
-    height: 100%;
-    float: left;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    cursor: default;
-}
-.hovereffect .overlay {
-    width: 100%;
-    position: absolute;
-    overflow: hidden;
-    left: 0;
-    top: auto;
-    bottom: 0;
-    padding: 1em;
-    height: 4.75em;
-    background: #000;
-    color: #fff;
-    opacity: 0.4;
-    -webkit-transition: -webkit-transform 0.35s;
-    transition: transform 0.35s;
-    -webkit-transform: translate3d(0,100%,0);
-    transform: translate3d(0,100%,0);
-}
-
-.hovereffect img {
-    display: block;
-    position: relative;
-    -webkit-transition: -webkit-transform 0.35s;
-    transition: transform 0.35s;
-}
-
-.hovereffect:hover img {
-    -webkit-transform: translate3d(0,-10%,0);
-    transform: translate3d(0,-10%,0);
-}
-
-.hovereffect:hover .overlay{
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
-.thumbnail-border{
-    border-color: #204d74;
-}
-
+}*/
