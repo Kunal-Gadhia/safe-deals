@@ -90,6 +90,8 @@
         <script src="${pageContext.request.contextPath}/js/filters.js"></script>
         <script src="${pageContext.request.contextPath}/js/directives/datetime_picker.js"></script>
         <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
+        <!-- Directive -->
+        <script src="${pageContext.request.contextPath}/js/directives/bank_add.js"></script>
         <!--states-->
         <script src="${pageContext.request.contextPath}/js/states.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/admin.js"></script>

@@ -86,8 +86,12 @@ angular.module("safedeals.states.location", [])
                 } else if ($stateParams.propertyDetails === "2000") {
                     $scope.propertySize = 4;
                 }
-                var minBudget = $("#minBudget").val();
-                var maxBudget = $("#maxBudget").val();
+//                var minBudget = $("#minBudget").val();
+//                var maxBudget = $("#maxBudget").val();
+                console.log("Min Budget :%O", $scope.minBudget);
+                console.log("Max Budget :%O", $scope.maxBudget);
+                var minBudget = $scope.minBudget;
+                var maxBudget = $scope.maxBudget;
 
                 $state.go('main.property', {
                     cityId: $scope.cityId,
@@ -370,12 +374,14 @@ angular.module("safedeals.states.location", [])
                     center: new google.maps.LatLng(location.latitude, location.longitude),
                     radius: 5000,
                     strokeColor: "#87C4C2",
-                    strokeOpacity: 0.2,
+                    strokeOpacity: 0.8,
                     strokeWeight: 2,
                     fillColor: "#C1E6E5",
-                    fillOpacity: 0.8,
+                    // fillColor: "#FF69B4",
+                    fillOpacity: '0.2',
                     zoom: 13
                 });
+//                myCity.setOpacity(0.2);
                 myCity.setMap(map);
                 map.fitBounds(myCity.getBounds());
             };
@@ -436,8 +442,8 @@ angular.module("safedeals.states.location", [])
                         console.log("Results For Schools :%O", results);
                         angular.forEach(results, function (result) {
                             console.log("Result in Loop :%O", result);
-//                            $scope.createAmenityMarker(result, $scope.location, map);
-                            drawAmenityMarker(result.geometry.location, result.name, map);
+                            $scope.createAmenityMarker(result, $scope.location, map);
+//                            drawAmenityMarker(result.geometry.location, result.name, map);
 //                            var marker = new google.maps.Marker({
 //                                map: map,
 //                                position: result.geometry.location,

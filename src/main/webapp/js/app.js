@@ -60,6 +60,8 @@ angular.module("safedeals", [
     'safedeals.services.mail',
     'safedeals.services.image',
     'safedeals.services.price_range',
+    // directive services
+    'safedeals.services.bank_addition',
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',

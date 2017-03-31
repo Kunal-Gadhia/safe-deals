@@ -22,17 +22,26 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Bank Name</label>
-                                <input class="form-control"
-                                       placeholder="Select Bank"
-                                       uib-typeahead="bank.id as bank.name for bank in searchBanks($viewValue)"
-                                       typeahead-on-select="setBank($item)"
-                                       typeahead-editable="false"
-                                       typeahead-loading="loadingBanks" 
-                                       typeahead-no-results="noBanksFound"                                       
-                                       ng-model="editableBranch.bank.name" required />
+                                <!--<div class="input-group">-->
+                                    <input class="form-control"
+                                           placeholder="Select Bank"
+                                           uib-typeahead="bank.id as bank.name for bank in searchBanks($viewValue)"
+                                           typeahead-on-select="setBank($item)"
+                                           typeahead-editable="false"
+                                           typeahead-loading="loadingBanks" 
+                                           typeahead-no-results="noBanksFound"                                       
+                                           ng-model="editableBranch.bank.name" required />
+<!--                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" ng-click="showBankWidget = !showBankWidget">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>-->
+                                <!--</div>-->
+<!--                                <div data-add-bank="" data-show-widget="showBankWidget">
+                                </div>-->
                                 <p ng-show="noBanksFound" class="help-block text-muted">No Banks found</p>
                                 <p ng-show="loadingBanks" class="help-block text-muted">loading...</p>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
 
