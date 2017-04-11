@@ -25,4 +25,3 @@ angular.module("safedeals.states.admin", [])
                 });
             };
         });
-;
