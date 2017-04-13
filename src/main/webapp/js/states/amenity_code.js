@@ -41,6 +41,18 @@ angular.module("safedeals.states.amenity_code", [])
             $scope.amenityCodes = AmenityCodeService.query({
                 'offset': $scope.currentOffset
             });
+            
+            $scope.nextPage = function () {
+                $scope.currentOffset += paginationLimit;
+                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
+            $scope.previousPage = function () {
+                if ($scope.currentOffset <= 0) {
+                    return;
+                }
+                $scope.currentOffset -= paginationLimit;
+                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
         })
         .controller('AmenityCodeAddController', function (AmenityCodeService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableAmenityCode = {};

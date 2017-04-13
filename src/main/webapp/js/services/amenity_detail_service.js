@@ -10,6 +10,10 @@ angular.module("safedeals.services.amenity_detail")
                     },
                     'isArray': true
                 },
+                'saveExcelData': {
+                    'method': 'POST',
+                    'url': restRoot + '/amenitydetail/save_excel'
+                },
                 'exportAllLocations': {
                     'method': 'POST',
                     'url': restRoot + '/amenitydetail/export'

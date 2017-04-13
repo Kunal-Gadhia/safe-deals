@@ -78,8 +78,7 @@ angular.module("safedeals.states.bank", [])
                 }).then(function (bank) {
                     if (bank.name !== null) {
                         $scope.editableBank.repeatName = true;
-                    }
-                    ;
+                    };
                 });
             });
         })

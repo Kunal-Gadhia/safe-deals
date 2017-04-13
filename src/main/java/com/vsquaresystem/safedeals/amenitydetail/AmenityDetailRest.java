@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/amenitydetail")
@@ -94,5 +95,20 @@ public class AmenityDetailRest {
     public Boolean exportExcelData() throws IOException {
         logger.info("exportExcelData EXCEL DATA {}");
         return amenitydetailservice.exportExcel();
+    }
+    
+    @RequestMapping(value = "/attachment", method = RequestMethod.POST)
+    public Boolean uploadAttachment(@RequestParam MultipartFile attachment) throws IOException {
+        logger.info("attachment in rest line56 {}", attachment);
+        return amenitydetailservice.insertAttachments(attachment);
+    }
+
+    @RequestMapping(value = "/save_excel")
+    public Boolean saveExcelData() throws IOException {
+        logger.info("SAVE EXCEL DATA {line78}");
+        System.out.println("REST SAVE EXCEL");
+        amenitydetailservice.saveExcelToDatabase();
+        return true;
+
     }
 }

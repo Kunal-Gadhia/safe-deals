@@ -25,6 +25,11 @@ angular.module("safedeals.states.amenity_detail", [])
                 'templateUrl': templateRoot + '/masters/amenitydetail/import.html',
                 'controller': 'AmenityDetailImportController'
             });
+            $stateProvider.state('admin.masters_amenity_detail.import_excel', {
+                'url': '/import/excel',
+                'templateUrl': templateRoot + '/masters/amenitydetail/import_excel.html',
+                'controller': 'AmenityDetailExcelImportController'
+            });
         })
         .controller('AmenityDetailListController', function (AmenityDetailService, WorkplaceCategoryService, LocationService, AmenityService, CityService, $scope, $stateParams, $state, paginationLimit) {
 
@@ -396,5 +401,48 @@ angular.module("safedeals.states.amenity_detail", [])
 //                });
 //            };
             showMap();
+        })
+        .controller('AmenityDetailExcelImportController', function (FileUploader, $timeout, restRoot, AmenityDetailService, $scope, $stateParams, $state, paginationLimit) {
+//            console.log("showDetails", $scope.showDetails);
+            var uploader = $scope.fileUploader = new FileUploader({
+                url: restRoot + '/location/attachment',
+                autoUpload: true,
+                alias: 'attachment'
+            });
+
+            $scope.amenityDetailExport = function () {
+                console.log("amenityDetailExport");
+                AmenityDetailService.exportAllLocations(function (a) {
+                    alert("Downloaded successfully");
+                });
+            };
+
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.uploadInProgress = true;
+                console.log("before upload item:", item);
+                console.log("uploader", uploader);
+            };
+            uploader.onErrorItem = function (fileItem, response, status, headers) {
+                $scope.uploadFailed = true;
+                $timeout(function () {
+                    $scope.uploadFailed = false;
+                }, 2000);
+                console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+            };
+            uploader.onCompleteItem = function (fileItem, response, status, headers) {
+                $scope.uploadInProgress = true;
+                $timeout(function () {
+                    $scope.uploadInProgress = false;
+                }, 2000);
+//                $scope.refreshRawMarketPrice();
+                console.log("upload completion", fileItem);
+
+            };
+            $scope.saveExcelAttachment = function (fileUploader) {
+                AmenityDetailService.saveExcelData(fileUploader, function () {
+                    $state.go('admin.masters_amenity_detail', null, {'reload': true});
+                });
+            };
         });
         
