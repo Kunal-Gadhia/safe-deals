@@ -28,6 +28,54 @@
     border: none;
 }
 
+/*----brown color-----*/
+.panel-primary {
+    border-color: #70330C;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #70330C;
+    border-color: #CCA650;
+}
+
+.btn-primary:hover, .btn-primary:active:focus {
+    color: #fff;
+    background-color: #CCA650;
+    border-color: #70330C;
+}
+
+.btn-primary.active, .btn-primary:active{
+    color: #fff;
+    background-color: #CCA650;
+    border-color: #70330C;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #70330c; 
+    border-radius: 0;
+}
+
+.btn-link:focus, .btn-link:hover {
+    color: #CCA650;
+}
+
+/* admin panel */
+.navbar-default {
+    background-color: #fff;
+    border-color: #e7e7e7;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #fff;
+    border-color: #ddd;
+}
+/* admin panel */
+
+/*----brown color-----*/
+
 .vertical-line{
     border-right: 1px solid #e0e0e0;
 }
@@ -245,7 +293,7 @@ form.tab-form-demo .tab-pane {
 }
 
 .thumbnail-border{
-    border-color: #204d74;
+    border-color: #70330C;
 }
 
 .tabs-left {
@@ -418,7 +466,7 @@ form.tab-form-demo .tab-pane {
 
 .bg-city-spcl{
     /*    background: url("../images/noise-texture-background.png") fixed;*/
-    background-color: #EBF6FC;
+    background-color: #F4ECD9;
     overflow: hidden;
     /*    min-height: 680px;*/
 }
@@ -521,7 +569,7 @@ form.tab-form-demo .tab-pane {
 
 /*--Locations--*/
 .black_color{
-color: #000;    
+    color: #000;    
 }
 .location_list{
     margin-top: 49px;   
@@ -534,7 +582,7 @@ color: #000;
     margin-bottom: 0px;
 }
 .main_locations{
-   padding: 0px 6px 10px 0px;
+    padding: 0px 6px 10px 0px;
     margin: 0px;
     position: absolute;
     left: 10px;
