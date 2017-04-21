@@ -578,27 +578,31 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 $scope.galleryModal = true;
             };
 
-            var map;
-            var map1;
-            var map2;
-            var map3;
+            $scope.map;
+            $scope.map1;
+            $scope.map2;
+            $scope.map3;
             var mapContainer = document.getElementById("propertyDetailMapContainer");
+            $scope.infowindow = new google.maps.InfoWindow();
+            $scope.directionsService = new google.maps.DirectionsService();
+            $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+            $scope.distanceService = new google.maps.DistanceMatrixService();
             console.log("$stateparams ID::::::", $stateParams.propertyId);
             var drawMap = function (mapProperty) {
                 console.log("Coming To Draw Map %O", mapContainer);
-                map = new google.maps.Map(mapContainer, mapProperty);
+                $scope.map = new google.maps.Map(mapContainer, mapProperty);
             };
             var drawMap1 = function (mapProperty, mapContainer1) {
                 console.log("Coming To Draw Map 1 :" + mapContainer1);
-                map1 = new google.maps.Map(mapContainer1, mapProperty);
+                $scope.map1 = new google.maps.Map(mapContainer1, mapProperty);
             };
             var drawMap2 = function (mapProperty, mapContainer2) {
                 console.log("Coming To Draw Map 2 :" + mapContainer2);
-                map2 = new google.maps.Map(mapContainer2, mapProperty);
+                $scope.map2 = new google.maps.Map(mapContainer2, mapProperty);
             };
             var drawMap3 = function (mapProperty, mapContainer3) {
                 console.log("Coming To Draw Map 3 :" + mapContainer3);
-                map3 = new google.maps.Map(mapContainer3, mapProperty);
+                $scope.map3 = new google.maps.Map(mapContainer3, mapProperty);
             };
             var drawMarker = function (position, title, map) {
                 console.log("Position :%O", position);
@@ -611,18 +615,138 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             };
             var drawAmenityMarker = function (position, title, map) {
                 console.log("Position :%O", position);
-                new google.maps.Marker({
-                    map: map,
+                var marker = new google.maps.Marker({
+                    map: $scope.map,
                     position: position,
                     title: title
                 });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    $scope.infowindow.setContent(title);
+                    $scope.infowindow.open(map, this);
+                });
+                google.maps.event.addListener(marker, 'mouseover', function (event) {
+                    console.log("Detecting Hover Event :%O", event);
+                    console.log("Place.Geometry.Location :%O", position);
+                    console.log("property :%O", $scope.property);
+                    var request = {
+                        origin: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        destination: position,
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    console.log("What is request :%O", request);
+                    $scope.directionsService.route(request, function (response, status) {
+                        console.log("Response :%O", response);
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            console.log("Status is OK");
+                            $scope.directionsDisplay.setDirections(response);
+                            $scope.directionsDisplay.setMap(map);
+                        }
+                    });
+                    var distanceRequest = {
+                        origins: [new google.maps.LatLng($scope.property.latitude, $scope.property.longitude)],
+                        destinations: [position],
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    $scope.distanceService.getDistanceMatrix(distanceRequest, function (response, status) {
+                        console.log("Response in distance :%O", response);
+                        console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
+//                        $scope.distanceBox(title, response.rows[0].elements[0].distance.text);
+                    });
+
+                });
             };
-            var drawWorkplaceMarker = function (position, title, map) {
+            $scope.createAmenityMarker = function (place, location, map) {
+                console.log("Place in marker :%O", place);
+                console.log("Location :%O", location);
+                console.log("Map :%O", map);
+                var placeLoc = place.geometry.location;
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    title: place.name
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    $scope.infowindow.setContent(place.name);
+                    $scope.infowindow.open(map, this);
+                });
+                google.maps.event.addListener(marker, 'mouseover', function (event) {
+                    console.log("Detecting Hover Event :%O", event);
+                    console.log("Place.Geometry.Location :%O", place.geometry.location);
+                    var request = {
+                        origin: new google.maps.LatLng(location.latitude, location.longitude),
+                        destination: place.geometry.location,
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    $scope.directionsService.route(request, function (response, status) {
+                        console.log("Response :%O", response);
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            console.log("Status is OK");
+                            $scope.directionsDisplay.setDirections(response);
+                            $scope.directionsDisplay.setMap(map);
+                        }
+                    });
+                    var distanceRequest = {
+                        origins: [new google.maps.LatLng(location.latitude, location.longitude)],
+                        destinations: [place.geometry.location],
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    $scope.distanceService.getDistanceMatrix(distanceRequest, function (response, status) {
+                        console.log("Response :%O", response);
+                        console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
+                    });
+                });
+                drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
+                new google.maps.Circle({
+                    center: new google.maps.LatLng(location.latitude, location.longitude),
+                    radius: 5000,
+                    strokeColor: "#87C4C2",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "#C1E6E5",
+                    // fillColor: "#FF69B4",
+                    fillOpacity: '0.2',
+                    zoom: 13
+                });
+            };
+            var drawWorkplaceMarker = function (position, title, propertyLocation, map) {
                 console.log("Position 1 :%O", position);
-                new google.maps.Marker({
-                    map: map1,
+                var marker = new google.maps.Marker({
+                    map: $scope.map1,
                     position: position,
                     title: title
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    $scope.infowindow.setContent(title);
+                    $scope.infowindow.open($scope.map1, this);
+                });
+                google.maps.event.addListener(marker, 'mouseover', function (event) {
+                    console.log("Detecting Hover Event :%O", event);
+                    console.log("Place.Geometry.Location Main Location:%O", position);
+                    console.log(" Property Object :%O", $scope.property);
+                    var request = {
+                        origin: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        destination: position,
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    $scope.directionsService.route(request, function (response, status) {
+                        console.log("Response :%O", response);
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            console.log("Status is OK");
+                            $scope.directionsDisplay.setDirections(response);
+                            $scope.directionsDisplay.setMap($scope.map1);
+                        }
+                    });
+                    var distanceRequest = {
+                        origins: [new google.maps.LatLng(propertyLocation.latitude, propertyLocation.longitude)],
+                        destinations: [position],
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+                    $scope.distanceService.getDistanceMatrix(distanceRequest, function (response, status) {
+                        console.log("Response :%O", response);
+                        console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
+                        $scope.amenityDistance = response.rows[0].elements[0].distance.text;
+                    });
                 });
             };
 //            LocationService.get({
@@ -728,7 +852,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 drawMap(mapProp);
-                drawMarker({lat: property.latitude, lng: property.longitude}, property.name, map);
+                drawMarker({lat: property.latitude, lng: property.longitude}, property.name, $scope.map);
                 var myCity = new google.maps.Circle({
                     center: new google.maps.LatLng(property.latitude, property.longitude),
                     radius: 5000,
@@ -739,10 +863,246 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     fillOpacity: 0.2,
                     zoom: 13
                 });
-                myCity.setMap(map);
-                map.fitBounds(myCity.getBounds());
+                myCity.setMap($scope.map);
+                $scope.map.fitBounds(myCity.getBounds());
             });
             $scope.getAmenityDetailByAmenity = function (amenityDetail) {
+                console.log("Property Object :%O", $scope.property);
+                $scope.requiredAmenities = [];
+                if (amenityDetail.name === "Daily Needs") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['convenience_store', 'department_store']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Public Transport") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['taxi_stand', 'transit_station']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Hospital") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['hospital']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Park") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['park']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Bank") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['bank']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "ATM") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['atm']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "School") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['school']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "College") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['school']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Petrol Pump") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['gas_station']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Restaurant") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['restaurant']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Bakery") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['bakery']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                else if (amenityDetail.name === "Club") {
+                    console.log("In School If");
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['night_club']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.property.cityId
@@ -754,7 +1114,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }, function (amenityDetailObject) {
                     $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
-                        drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, map);
+                        drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.map);
 //                        var infoWindow = new google.maps.InfoWindow({
 //                            'content': amenityDetail.name
 //                        });
@@ -774,7 +1134,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }, function (amenityDetailObject) {
                     $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
-                        drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, map);
+                        drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.property, $scope.map);
                     });
                 });
             };
@@ -859,7 +1219,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         };
                         drawMap1(mapProp, mapContainer1);
                         var drawMarker1 = new google.maps.Marker({
-                            map: map1,
+                            map: $scope.map1,
                             position: propertyCoordinate,
                             title: property.name,
                             icon: 'images/icons_svg/dot.png'
@@ -874,9 +1234,9 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                             fillOpacity: 0.2,
                             zoom: 13
                         });
-                        myCity1.setMap(map1);
-                        drawMarker1.setMap(map1);
-                        map1.fitBounds(myCity1.getBounds());
+                        myCity1.setMap($scope.map1);
+                        drawMarker1.setMap($scope.map1);
+                        $scope.map1.fitBounds(myCity1.getBounds());
                     });
                 }
                 else if (propertyStep === "Projects") {
