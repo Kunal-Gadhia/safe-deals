@@ -137,6 +137,8 @@ public class AmenityDetailService {
     public Vector read() throws IOException {
 //        logger.info("are we in the vector read?");
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.AMENITY_DETAIL);
+        logger.info("Excel FIle Kunal :" + excelFile);
+        logger.info("Excel File List Kunal :" + excelFile.listFiles());
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
         logger.info("fileeeeeeeeeee" + fileName);
@@ -210,7 +212,7 @@ public class AmenityDetailService {
         String latitude = "";
         String longitude = "";
         String cityId = "";
-
+        logger.info("Line SOP " + dataHolder);
         System.out.println("line1785SAVE sop" + dataHolder);
         DataFormatter formatter = new DataFormatter();
         for (Iterator iterator = dataHolder.iterator(); iterator.hasNext();) {

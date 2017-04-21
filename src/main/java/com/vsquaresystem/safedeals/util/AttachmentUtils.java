@@ -42,7 +42,7 @@ public class AttachmentUtils {
     private static final String TEAM_ATTACHMENT_DIR_NAME = "team";
     private static final String EVENT_ATTACHMENT_DIR_NAME = "event";
     private static final String AMENITY_NAME = "amenity_name";
-    private static final String AMENITY_DETAIL_NAME = "amenity_detail_name";
+    private static final String AMENITY_DETAIL_NAME = "amenity_detail";
     private static final String IMAGE_ATTACHMENT_DIR_NAME = "image";
     private static final String PROPERTY_ATTACHMENT_DIR_NAME = "property";
     private static final String PROJECT_ATTACHMENT_DIR_NAME = "project";
