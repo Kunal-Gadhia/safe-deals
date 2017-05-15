@@ -40,6 +40,16 @@ public class VideoRest {
     public Video findById(@PathVariable("id") Integer id) {
         return videoDal.findById(id);
     }
+    
+    @RequestMapping(value = "/find/projectId", method = RequestMethod.GET)
+    public List<Video> findByProjectId(@RequestParam("projectId") Integer projectId) {
+        return videoDal.findByProjectId(projectId);
+    }
+
+    @RequestMapping(value = "/find/propertyId", method = RequestMethod.GET)
+    public List<Video> findByPropertyId(@RequestParam("propertyId") Integer propertyId) {
+        return videoDal.findByPropertyId(propertyId);
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public Video insert(@RequestBody Video video) throws JsonProcessingException {
