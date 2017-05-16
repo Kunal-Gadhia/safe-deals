@@ -555,28 +555,13 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
 
         })
-        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams, ImageService) {
-            $scope.galleryModal = true;
+        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams, ImageService, VideoService) {
+       
             $scope.images = ImageService.findByPropertyId({
                 'propertyId': $stateParams.propertyId
             }, function (images) {
                 console.log("Images :%O", images);
             });
-            $scope.openLightboxModal = function (image) {
-                $scope.galleryModal = false;
-                $scope.tempImageId = image.id;
-                $scope.arrayImage = [];
-                console.log("What is image :" + image);
-                angular.forEach($scope.images, function (image) {
-                    $scope.arrayImage.push(image.id);
-                });
-                console.log("Array :%O", $scope.arrayImage);
-//                Lightbox.openModal($scope.images, index);
-            };
-
-            $scope.closeLightboxModal = function () {
-                $scope.galleryModal = true;
-            };
 
             $scope.map;
             $scope.map1;
@@ -1144,8 +1129,8 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             $scope.propertySteps = [
                 'Amenities',
                 'Work Places',
-                'Projects',
-                'Overview'
+                'Projects'
+//                'Overview'
             ];
             $scope.selection = $scope.propertySteps[0];
             console.log("What is Selection :%O", $scope.selection);
@@ -1320,6 +1305,30 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     $scope.myProperties = false;
                 }
             };
+            
+                //           image Gallery
+//            $scope.galleryModal = true;
+//            $scope.images = ImageService.findByPropertyId({
+//                'propertyId': $stateParams.propertyId
+//            }, function (images) {
+//                console.log("Images :%O", images);
+//            });
+//            $scope.openLightboxModal = function (image) {
+//                $scope.galleryModal = false;
+//                $scope.tempImageId = image.id;
+//                $scope.arrayImage = [];
+//                console.log("What is image :" + image);
+//                angular.forEach($scope.images, function (image) {
+//                    $scope.arrayImage.push(image.id);
+//                });
+//                console.log("Array :%O", $scope.arrayImage);
+////                Lightbox.openModal($scope.images, index);
+//            };
+//
+//            $scope.closeLightboxModal = function () {
+//                $scope.galleryModal = true;
+//            };
+           //           image Gallery
         });
 //
 ////angular.module("safedeals.states.property", [])

@@ -10,6 +10,22 @@ angular.module("safedeals.services.video")
                 'findIntroVideo': {
                     'method': 'GET',
                     'url': restRoot + '/video/find_intro_video'
+                },
+                'findByProjectId': {
+                    'method': 'GET',
+                    'url': restRoot + '/video/find/projectId',
+                    'params': {
+                        'projectId': '@projectId'
+                    },
+                    'isArray': true
+                },
+                'findByPropertyId': {
+                    'method': 'GET',
+                    'url': restRoot + '/video/find/propertyId',
+                    'params': {
+                        'propertyId': '@propertyId'
+                    },
+                    'isArray': true
                 }
             });
         });

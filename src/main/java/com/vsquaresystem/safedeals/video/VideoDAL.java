@@ -66,6 +66,17 @@ public class VideoDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Video.class));
     }
+    
+     public List<Video> findByProjectId(Integer projectId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROJECT_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{projectId}, new BeanPropertyRowMapper<>(Video.class));
+    }
+
+    
+    public List<Video> findByPropertyId(Integer propertyId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROPERTY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{propertyId}, new BeanPropertyRowMapper<>(Video.class));
+    }
 
     public Video insert(Video video) throws JsonProcessingException {
         Map<String, Object> parameters = new HashMap<>();
