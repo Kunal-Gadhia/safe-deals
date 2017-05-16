@@ -30,10 +30,11 @@ public class PropertyDAL {
         public static final String SIZE = "size";
         public static final String PRICE_RANGE = "price_range";
         public static final String BUILDING_AGE = "age_of_building";
+        public static final String FLOOR_NUMBER = "floor_number";
         public static final String TOTAL_FLOORS = "total_floors";
         public static final String ENTRY_FACING = "entry_facing";
 
-        public static final String BUILDING_CONDITION = "building_condition";
+//        public static final String BUILDING_CONDITION = "building_condition";
         public static final String PROJECT_ID = "project_id";
         public static final String MAJOR_APPROACH_ROAD = "major_approach_road";
         public static final String PUBLIC_TRANSPORT = "public_transport";
@@ -41,6 +42,7 @@ public class PropertyDAL {
         public static final String DISCOUNT = "discount";
         public static final String OFFER_VALID_TILL = "offer_valid_till";
         public static final String PAYMENT_SCHEDULE = "payment_schedule";
+        public static final String DOWNPAYMENT = "downpayment";
         public static final String WORKPLACES = "workplaces";
         public static final String PROJECTS_NEARBY = "projects_nearby";
         public static final String BASIC_AMENITIES = "basic_amenities";
@@ -84,9 +86,10 @@ public class PropertyDAL {
                         Columns.SIZE,
                         Columns.PRICE_RANGE,
                         Columns.BUILDING_AGE,
+                        Columns.FLOOR_NUMBER,
                         Columns.TOTAL_FLOORS,
                         Columns.ENTRY_FACING,
-                        Columns.BUILDING_CONDITION,
+                        //                        Columns.BUILDING_CONDITION,
                         Columns.PROJECT_ID,
                         Columns.MAJOR_APPROACH_ROAD,
                         Columns.PUBLIC_TRANSPORT,
@@ -94,6 +97,7 @@ public class PropertyDAL {
                         Columns.DISCOUNT,
                         Columns.OFFER_VALID_TILL,
                         Columns.PAYMENT_SCHEDULE,
+                        Columns.DOWNPAYMENT,
                         Columns.WORKPLACES,
                         Columns.PROJECTS_NEARBY,
                         Columns.BASIC_AMENITIES,
@@ -135,9 +139,10 @@ public class PropertyDAL {
         parameters.put(Columns.SIZE, property.getSize());
         parameters.put(Columns.PRICE_RANGE, property.getPriceRange());
         parameters.put(Columns.BUILDING_AGE, property.getBuildingAge());
+        parameters.put(Columns.FLOOR_NUMBER, property.getFloorNumber());
         parameters.put(Columns.TOTAL_FLOORS, property.getTotalFloors());
         parameters.put(Columns.ENTRY_FACING, property.getEntryFacing().name());
-        parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition().name());
+//        parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition().name() == "" ? null : mapper.writeValueAsString("null"));        
         parameters.put(Columns.PROJECT_ID, property.getProjectId());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, property.getMajorApproachRoad());
         parameters.put(Columns.PUBLIC_TRANSPORT, property.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(property.getPublicTransport()));
@@ -145,6 +150,7 @@ public class PropertyDAL {
         parameters.put(Columns.DISCOUNT, property.getDiscount());
         parameters.put(Columns.OFFER_VALID_TILL, property.getOfferValidTill());
         parameters.put(Columns.PAYMENT_SCHEDULE, property.getPaymentSchedule());
+        parameters.put(Columns.DOWNPAYMENT, property.getDownpayment());
         parameters.put(Columns.WORKPLACES, property.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(property.getWorkplaces()));
         parameters.put(Columns.PROJECTS_NEARBY, property.getProjectsNearby() == null ? "[]" : mapper.writeValueAsString(property.getProjectsNearby()));
         parameters.put(Columns.BASIC_AMENITIES, property.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(property.getBasicAmenities()));
@@ -208,9 +214,10 @@ public class PropertyDAL {
                 + Columns.SIZE + " =?,"
                 + Columns.PRICE_RANGE + " =?,"
                 + Columns.BUILDING_AGE + " =?,"
+                + Columns.FLOOR_NUMBER + " =?,"
                 + Columns.TOTAL_FLOORS + " =?,"
                 + Columns.ENTRY_FACING + " =?,"
-                + Columns.BUILDING_CONDITION + " =?,"
+                //                + Columns.BUILDING_CONDITION + " =?,"
                 + Columns.PROJECT_ID + " =?,"
                 + Columns.MAJOR_APPROACH_ROAD + " =?,"
                 + Columns.PUBLIC_TRANSPORT + " =?,"
@@ -218,6 +225,7 @@ public class PropertyDAL {
                 + Columns.DISCOUNT + " =?,"
                 + Columns.OFFER_VALID_TILL + " =?,"
                 + Columns.PAYMENT_SCHEDULE + " =?,"
+                + Columns.DOWNPAYMENT + " =?,"
                 + Columns.WORKPLACES + " =?,"
                 + Columns.PROJECTS_NEARBY + " =?,"
                 + Columns.BASIC_AMENITIES + " =?,"
@@ -246,9 +254,10 @@ public class PropertyDAL {
             property.getSize(),
             property.getPriceRange(),
             property.getBuildingAge(),
+            property.getFloorNumber(),
             property.getTotalFloors(),
             property.getEntryFacing().name(),
-            property.getBuildingCondition().name(),
+            //            property.getBuildingCondition().name(),
             property.getProjectId(),
             property.getMajorApproachRoad(),
             property.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(property.getPublicTransport()),
@@ -256,6 +265,7 @@ public class PropertyDAL {
             property.getDiscount(),
             property.getOfferValidTill(),
             property.getPaymentSchedule(),
+            property.getDownpayment(),
             property.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(property.getWorkplaces()),
             property.getProjectsNearby() == null ? "[]" : mapper.writeValueAsString(property.getProjectsNearby()),
             property.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(property.getBasicAmenities()),
@@ -329,16 +339,17 @@ public class PropertyDAL {
 
             property.setBuildingAge(rs.getDate(Columns.BUILDING_AGE));
 
+            property.setFloorNumber(rs.getInt(Columns.FLOOR_NUMBER));
+
             property.setTotalFloors(rs.getInt(Columns.TOTAL_FLOORS));
 
             if (rs.getString(Columns.ENTRY_FACING) != null) {
                 property.setEntryFacing(EntryFacing.valueOf(rs.getString(Columns.ENTRY_FACING)));
             }
 
-            if (rs.getString(Columns.BUILDING_CONDITION) != null) {
-                property.setBuildingCondition(BuildingCondition.valueOf(rs.getString(Columns.BUILDING_CONDITION)));
-            }
-
+//            if (rs.getString(Columns.BUILDING_CONDITION) != null) {
+//                property.setBuildingCondition(BuildingCondition.valueOf(rs.getString(Columns.BUILDING_CONDITION)));
+//            }
             property.setProjectId(rs.getInt(Columns.PROJECT_ID));
             if (rs.wasNull()) {
                 property.setProjectId(null);
@@ -367,6 +378,7 @@ public class PropertyDAL {
             property.setDiscount(rs.getDouble(Columns.DISCOUNT));
             property.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
             property.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
+            property.setDownpayment(rs.getInt(Columns.DOWNPAYMENT));
             String workplacesList = rs.getString(Columns.WORKPLACES);
             try {
                 ObjectMapper mapper = new ObjectMapper();

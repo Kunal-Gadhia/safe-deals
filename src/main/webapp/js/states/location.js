@@ -38,8 +38,16 @@ angular.module("safedeals.states.location", [])
                         $scope.stateId = stateObject.id;
                         $scope.state = stateObject;
                     });
-                    $scope.minBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
-                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
+
+                    var minimumBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
+                    var maximumBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
+
+                    console.log("Min Budget :%O", minimumBudget);
+                    console.log("Max Budget :%O", maximumBudget);
+                    $scope.minBudget = minimumBudget;
+                    $scope.maxBudget = maximumBudget;
+//                    $scope.minBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
+//                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
                     console.log("Min Budget Kunal:%O", $scope.minBudget);
                     console.log("Max Budget Kunal :%O", $scope.maxBudget);
 //                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
@@ -429,9 +437,11 @@ angular.module("safedeals.states.location", [])
                     };
                     $scope.directionsService.route(request, function (response, status) {
                         console.log("Response :%O", response);
+                        console.log("Response Legs :%O", response.routes[0].legs[0].distance.text);
                         if (status == google.maps.DirectionsStatus.OK) {
                             console.log("Status is OK");
                             $scope.directionsDisplay.setDirections(response);
+//                            $scope.directionsDisplay.setTitle(response.routes[0].legs[0].distance.text);
                             $scope.directionsDisplay.setMap(map);
                         }
                     });
@@ -443,6 +453,7 @@ angular.module("safedeals.states.location", [])
                     $scope.distanceService.getDistanceMatrix(distanceRequest, function (response, status) {
                         console.log("Response :%O", response);
                         console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
+
                     });
                 });
                 drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
