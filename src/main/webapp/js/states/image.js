@@ -235,6 +235,14 @@ angular.module("safedeals.states.image", [])
                         $scope.editableImage.property = property;
                     });
                 }
+                if ($scope.editableImage.locationId !== null) {
+                    LocationService.get({
+                        'id': $scope.editableImage.locationId
+                    }, function (location) {
+                        console.log("location :%O", location);
+                        $scope.editableImage.location = location;
+                    });
+                }
 
             });
             console.log("Ediatble Image Object :%O", $scope.editableImage);

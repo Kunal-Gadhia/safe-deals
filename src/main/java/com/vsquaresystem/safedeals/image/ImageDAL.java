@@ -100,8 +100,8 @@ public class ImageDAL {
                 + Columns.NAME + " = ? ,"
                 + Columns.PROJECT_ID + " = ? ,"
                 + Columns.PROPERTY_ID + " = ? ,"
-                + Columns.LOCATION_ID + "=?,"
-                + Columns.DOCUMENT_NAME + "=?,"
+                + Columns.LOCATION_ID + " = ? , "
+                + Columns.DOCUMENT_NAME + " = ? ,"
                 + Columns.PHOTO_PATH + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             image.getName(),
