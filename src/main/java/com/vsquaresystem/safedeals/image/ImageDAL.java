@@ -32,6 +32,8 @@ public class ImageDAL {
         public static final String NAME = "name";
         public static final String PROJECT_ID = "project_id";
         public static final String PROPERTY_ID = "property_id";
+        public static final String LOCATION_ID = "location_id";
+        public static final String DOCUMENT_NAME = "document_name";
         private static final String PHOTO_PATH = "photo_path";
     };
 
@@ -43,7 +45,9 @@ public class ImageDAL {
                 .usingColumns(
                         Columns.NAME,
                         Columns.PROJECT_ID,
-                        Columns.PROPERTY_ID
+                        Columns.PROPERTY_ID,
+                        Columns.LOCATION_ID,
+                        Columns.DOCUMENT_NAME
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -63,6 +67,11 @@ public class ImageDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{propertyId}, new BeanPropertyRowMapper<>(Image.class));
     }
 
+    public List<Image> findByLocationId(Integer locationId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(Image.class));
+    }
+
     public Image findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Image.class));
@@ -78,7 +87,8 @@ public class ImageDAL {
         parameters.put(Columns.NAME, image.getName());
         parameters.put(Columns.PROJECT_ID, image.getProjectId());
         parameters.put(Columns.PROPERTY_ID, image.getPropertyId());
-
+        parameters.put(Columns.LOCATION_ID, image.getLocationId());
+        parameters.put(Columns.DOCUMENT_NAME, image.getDocumentName().name());
         Number newId = insertImage.executeAndReturnKey(parameters);
         image = findById(newId.intValue());
         return image;
@@ -90,11 +100,15 @@ public class ImageDAL {
                 + Columns.NAME + " = ? ,"
                 + Columns.PROJECT_ID + " = ? ,"
                 + Columns.PROPERTY_ID + " = ? ,"
+                + Columns.LOCATION_ID + "=?,"
+                + Columns.DOCUMENT_NAME + "=?,"
                 + Columns.PHOTO_PATH + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             image.getName(),
             image.getProjectId(),
             image.getPropertyId(),
+            image.getLocationId(),
+            image.getDocumentName().name(),
             image.getId()});
         image = findById(image.getId());
         return image;

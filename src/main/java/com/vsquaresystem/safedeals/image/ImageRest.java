@@ -34,7 +34,7 @@ public class ImageRest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
-    private ImageDAL imageDal;
+    private ImageDAL imageDAL;
 
     @Autowired
     private ImageService imageService;
@@ -42,42 +42,47 @@ public class ImageRest {
     @RequestMapping(method = RequestMethod.GET)
     public List<Image> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        return imageDal.findAll(offset);
+        return imageDAL.findAll(offset);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Image findById(@PathVariable("id") Integer id) {
-        return imageDal.findById(id);
+        return imageDAL.findById(id);
     }
 
     @RequestMapping(value = "/find/projectId", method = RequestMethod.GET)
     public List<Image> findByProjectId(@RequestParam("projectId") Integer projectId) {
-        return imageDal.findByProjectId(projectId);
+        return imageDAL.findByProjectId(projectId);
     }
 
     @RequestMapping(value = "/find/propertyId", method = RequestMethod.GET)
     public List<Image> findByPropertyId(@RequestParam("propertyId") Integer propertyId) {
-        return imageDal.findByPropertyId(propertyId);
+        return imageDAL.findByPropertyId(propertyId);
+    }
+
+    @RequestMapping(value = "/find/locationId", method = RequestMethod.GET)
+    public List<Image> findByLocationId(@RequestParam("locationId") Integer locationId) {
+        return imageDAL.findByLocationId(locationId);
     }
 
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public Image findByName(@RequestParam("name") String name) {
-        return imageDal.findByName(name);
+        return imageDAL.findByName(name);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Image insert(@RequestBody Image image) {
-        return imageDal.insert(image);
+        return imageDAL.insert(image);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Image update(@RequestBody Image image) {
-        return imageDal.update(image);
+        return imageDAL.update(image);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        imageDal.delete(id);
+        imageDAL.delete(id);
     }
 
     @RequestMapping(value = "/{id}/attachment", method = RequestMethod.POST)

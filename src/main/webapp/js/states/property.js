@@ -727,7 +727,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     var request = {
                         origin: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
                         destination: position,
-                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                        travelModNe: google.maps.DirectionsTravelMode.DRIVING
                     };
                     $scope.directionsService.route(request, function (response, status) {
                         console.log("Response :%O", response);

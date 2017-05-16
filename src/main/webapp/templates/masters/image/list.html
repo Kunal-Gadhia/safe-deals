@@ -25,6 +25,8 @@
                 <th>Name</th>
                 <th>Project</th>
                 <th>Property</th>
+                <th>Location</th>
+                <th>Uploaded Document Name</th>
                 <th>Image</th>
                 <th class="text-right">
                     Actions
@@ -37,6 +39,8 @@
                 <td>{{ image.name}}</td>   
                 <td>{{ image.project.name}}</td> 
                 <td>{{ image.property.name}}</td> 
+                <td>{{ image.location.name}}</td>
+                <td>{{ image.documentName}}</td>
                 <!--<td><a data-ui-sref="admin.masters_image.view({imageId: image.id})">{{ image.photoPath.toString()}}</a></td>-->
                 <td><a data-ui-sref="admin.masters_image.view({imageId: image.id})">{{ image.photoPath.toString()}}</a></td>
                 <td class="text-right">

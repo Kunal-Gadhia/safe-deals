@@ -94,7 +94,7 @@ angular.module("safedeals.states.image", [])
                 console.log("upload completion", response);
             };
         })
-        .controller('ImageListController', function (ImageService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ImageListController', function (ImageService, ProjectService, LocationService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -128,6 +128,12 @@ angular.module("safedeals.states.image", [])
                             'id': images.propertyId
                         });
                     }
+                    if (images.locationId !== null) {
+                        console.log("Location Id Null");
+                        images.location = LocationService.get({
+                            'id': images.locationId
+                        });
+                    }
 
                 });
             });
@@ -146,7 +152,7 @@ angular.module("safedeals.states.image", [])
             };
 
         })
-        .controller('ImageAddController', function (ImageService, $scope, PropertyService, ProjectService, $stateParams, $state, paginationLimit) {
+        .controller('ImageAddController', function (ImageService, $scope, PropertyService, LocationService, ProjectService, $stateParams, $state, paginationLimit) {
             $scope.editableImage = {};
             $scope.setProject = function (project) {
                 $scope.editableImage.projectId = project.id;
@@ -166,6 +172,17 @@ angular.module("safedeals.states.image", [])
             $scope.searchProperties = function (searchTerm) {
                 console.log("searchTerm", searchTerm);
                 return PropertyService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setLocation = function (location) {
+                $scope.editableImage.locationId = location.id;
+                $scope.editableImage.location = location;
+            };
+            $scope.searchLocations = function (searchTerm) {
+                console.log("searchTerm", searchTerm);
+                return LocationService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
@@ -201,7 +218,7 @@ angular.module("safedeals.states.image", [])
                 });
             });
         })
-        .controller('ImageEditController', function (ImageService, ProjectService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ImageEditController', function (ImageService, ProjectService, LocationService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableImage = ImageService.get({'id': $stateParams.imageId}, function () {
                 if ($scope.editableImage.projectId !== null) {
                     ProjectService.get({
@@ -242,6 +259,18 @@ angular.module("safedeals.states.image", [])
                     'name': searchTerm
                 }).$promise;
             };
+
+            $scope.setLocation = function (location) {
+                $scope.editableImage.locationId = location.id;
+                $scope.editableImage.location = location;
+            };
+            $scope.searchLocations = function (searchTerm) {
+                console.log("searchTerm", searchTerm);
+                return LocationService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
 
             $scope.datePicker = {
                 opened: false,

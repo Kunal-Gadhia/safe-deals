@@ -18,6 +18,8 @@ public class Image {
     private String name;
     private Integer projectId;
     private Integer propertyId;
+    private Integer locationId;
+    private Document documentName;
     private List<String> photoPath;
 
     public Integer getId() {
@@ -52,6 +54,22 @@ public class Image {
         this.propertyId = propertyId;
     }
 
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
+    }
+
+    public Document getDocumentName() {
+        return documentName;
+    }
+
+    public void setDocumentName(Document documentName) {
+        this.documentName = documentName;
+    }
+
     public List<String> getPhotoPath() {
         return photoPath;
     }
@@ -61,13 +79,20 @@ public class Image {
     }
 
     @Override
+    public String toString() {
+        return "Image{" + "id=" + id + ", name=" + name + ", projectId=" + projectId + ", propertyId=" + propertyId + ", locationId=" + locationId + ", documentName=" + documentName + ", photoPath=" + photoPath + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.projectId);
-        hash = 37 * hash + Objects.hashCode(this.propertyId);
-        hash = 37 * hash + Objects.hashCode(this.photoPath);
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.name);
+        hash = 19 * hash + Objects.hashCode(this.projectId);
+        hash = 19 * hash + Objects.hashCode(this.propertyId);
+        hash = 19 * hash + Objects.hashCode(this.locationId);
+        hash = 19 * hash + Objects.hashCode(this.documentName);
+        hash = 19 * hash + Objects.hashCode(this.photoPath);
         return hash;
     }
 
@@ -92,15 +117,16 @@ public class Image {
         if (!Objects.equals(this.propertyId, other.propertyId)) {
             return false;
         }
+        if (!Objects.equals(this.locationId, other.locationId)) {
+            return false;
+        }
+        if (this.documentName != other.documentName) {
+            return false;
+        }
         if (!Objects.equals(this.photoPath, other.photoPath)) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Image{" + "id=" + id + ", name=" + name + ", projectId=" + projectId + ", propertyId=" + propertyId + ", photoPath=" + photoPath + '}';
     }
 
 }

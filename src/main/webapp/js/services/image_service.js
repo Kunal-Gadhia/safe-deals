@@ -31,6 +31,14 @@ angular.module("safedeals.services.image")
                         'propertyId': '@propertyId'
                     },
                     'isArray': true
+                },
+                'findByLocationId': {
+                    'method': 'GET',
+                    'url': restRoot + '/image/find/locationId',
+                    'params': {
+                        'locationId': '@locationId'
+                    },
+                    'isArray': true
                 }
             });
         });

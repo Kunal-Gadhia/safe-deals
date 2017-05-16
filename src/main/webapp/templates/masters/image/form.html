@@ -55,6 +55,47 @@
                             </div>
                         </div>
 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location</label>                   
+                                <input class="form-control"
+                                       placeholder="Select Location"
+                                       uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
+                                       typeahead-on-select="setLocation($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingLocations" 
+                                       typeahead-no-results="noLocationsFound"                                       
+                                       ng-model="editableImage.location.name" />
+                                <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
+                                <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>                                    
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <!--                        <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Uploaded Document Name</label>
+                                                        <input class="form-control" placeholder="Uploaded Document name" ng-model="editableImage.document"/>
+                                                    </div>
+                                                </div>
+                        -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Uploaded Document Name</label>
+                                <select class="form-control" ng-model="editableImage.documentName">
+                                    <option value="">Choose Uploaded Document Name</option>
+                                    <option value="LAND_CONVERSION_ORDER">Land Conversion Order</option>
+                                    <option value="LAYOUT_SANCTION">Layout Sanction</option>
+                                    <option value="BUILDING_SANCTION">Building Sanction</option>
+                                    <option value="COMPLETION_CERTIFICATE">Completion Certificate</option>
+                                    <option value="OCCUPANCY_CERTIFICATE">Occupancy Certificate</option>
+                                    <option value="TAX_RECEIPT">Tax Receipt</option>
+
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
