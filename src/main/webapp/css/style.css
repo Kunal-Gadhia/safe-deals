@@ -600,7 +600,7 @@ form.tab-form-demo .tab-pane {
     margin: 0px;
     position: absolute;
     left: 10px;
-    top: 300px;
+    margin-top: 50px;
     z-index: 9;
     width: 220px;
     max-height: 300px;
