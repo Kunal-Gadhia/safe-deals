@@ -13,8 +13,22 @@
             </button>
         </div>
     </div>
-    <div class="modal-body">
-        <div class="" ng-hide="galleryModal">
+    <div class="modal-body">        
+            <uib-carousel  active="active" interval="myInterval">
+                <uib-slide ng-repeat="image in images" index="$index">
+                    <img ng-src="./rest/image/{{image.id}}/attachment" style="height: 500px; margin: auto" class="img-responsive"/>
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index + 1}}</h4>
+                    </div>
+                </uib-slide>
+<!--                <uib-slide ng-repeat="slide in slides" index="$index">
+                    <img ng-src="{{slide.image}}" style="margin:auto;" />
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index + 1}}</h4>
+                    </div>
+                </uib-slide>-->
+            </uib-carousel>
+<!--        <div class="" ng-hide="galleryModal">
             <div class="modal modal-safedeals">
                 <div class="modal-backdrop fade in">
                     <button type="button" class="pull-right btn btn-link" ng-click="closeLightboxModal()">
@@ -45,7 +59,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="">
             <div class="row">
                 <ul class="nav nav-tabs" id="location_tabs">
