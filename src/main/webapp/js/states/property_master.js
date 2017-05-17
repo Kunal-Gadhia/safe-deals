@@ -239,6 +239,8 @@ angular.module("safedeals.states.property_master", [])
             $scope.editableProperty.approvedBanks = [];
             $scope.amenitiesWithinProjectDisplay = [];
             $scope.editableProperty.privateAmenities = [];
+            $scope.possessionDateBox = false;
+            $scope.yearOfConstructionBox = false;
             $scope.locationSteps = [
                 'Basic Details',
                 'Connectivity',
@@ -249,6 +251,22 @@ angular.module("safedeals.states.property_master", [])
                 'Unit Details',
                 'Seller Commision Agreement'
             ];
+
+            $scope.$watch('editableProperty.constructionStage', function (data) {
+                console.log("Construction Stage :%O", data);
+                if (data === "UNDER_CONSTRUCTION") {
+                    $scope.possessionDateBox = true;
+                    $scope.yearOfConstructionBox = false;
+                }
+                if (data === "READY_TO_MOVE") {
+                    $scope.possessionDateBox = false;
+                    $scope.yearOfConstructionBox = true;
+                }
+                if (data === "") {
+                    $scope.possessionDateBox = false;
+                    $scope.yearOfConstructionBox = false;
+                }
+            });
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
             $scope.datePicker = {
@@ -264,6 +282,18 @@ angular.module("safedeals.states.property_master", [])
                 }
             };
             $scope.offerValidTill = {
+                opened: false,
+                toggle: function () {
+                    this.opened = !this.opened;
+                }
+            };
+            $scope.possessionDate = {
+                opened: false,
+                toggle: function () {
+                    this.opened = !this.opened;
+                }
+            };
+            $scope.yearOfConstruction = {
                 opened: false,
                 toggle: function () {
                     this.opened = !this.opened;
@@ -650,6 +680,14 @@ angular.module("safedeals.states.property_master", [])
                 var offerValidTill = new Date($scope.editableProperty.offerValidTill);
                 var offerValidTillLong = offerValidTill * 1;
                 $scope.editableProperty.offerValidTill = offerValidTillLong;
+                
+                var possessionDate = new Date($scope.editableProperty.possessionDate);
+                var possessionDateLong = possessionDate * 1;
+                $scope.editableProperty.possessionDate =possessionDateLong;
+                
+                var yearOfConstruction = new Date($scope.editableProperty.yearOfConstruction);
+                var yearOfConstructionLong = yearOfConstruction * 1;
+                $scope.editableProperty.yearOfConstruction =yearOfConstructionLong;
 
                 $scope.publicTransportDisplay = [];
                 angular.forEach($scope.editableProperty.publicTransport, function (publicTransport) {
@@ -724,6 +762,21 @@ angular.module("safedeals.states.property_master", [])
             $scope.editableProperty.approvedBanks = [];
 //            $scope.amenitiesWithinProjectDisplay = [];
             $scope.editableProperty.privateAmenities = [];
+            $scope.$watch('editableProperty.constructionStage', function (data) {
+                console.log("Construction Stage :%O", data);
+                if (data === "UNDER_CONSTRUCTION") {
+                    $scope.possessionDateBox = true;
+                    $scope.yearOfConstructionBox = false;
+                }
+                if (data === "READY_TO_MOVE") {
+                    $scope.possessionDateBox = false;
+                    $scope.yearOfConstructionBox = true;
+                }
+                if (data === "") {
+                    $scope.possessionDateBox = false;
+                    $scope.yearOfConstructionBox = false;
+                }
+            });
             $scope.locationSteps = [
                 'Basic Details',
                 'Connectivity',
@@ -749,6 +802,18 @@ angular.module("safedeals.states.property_master", [])
                 }
             };
             $scope.offerValidTill = {
+                opened: false,
+                toggle: function () {
+                    this.opened = !this.opened;
+                }
+            };
+            $scope.possessionDate = {
+                opened: false,
+                toggle: function () {
+                    this.opened = !this.opened;
+                }
+            };
+            $scope.yearOfConstruction = {
                 opened: false,
                 toggle: function () {
                     this.opened = !this.opened;

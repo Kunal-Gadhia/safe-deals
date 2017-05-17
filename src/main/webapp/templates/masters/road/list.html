@@ -25,6 +25,7 @@
                 <th>Name</th>
                 <th>Size</th>
                 <th>Condition</th>
+                <th>Road Type</th>
 
                 <th class="text-right">
                     Actions
@@ -36,7 +37,8 @@
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
                 <td>{{ road.name}}</td>   
                 <td>{{ road.size}}</td>             
-                <td>{{ road.roadCondition}}</td>             
+                <td>{{ road.roadCondition}}</td>
+                <td>{{ road.roadType}}</td>
                 <td class="text-right">
                     <a data-ui-sref="admin.masters_road.edit({ roadId: road.id })"
                        class="btn btn-primary">					

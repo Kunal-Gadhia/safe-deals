@@ -126,43 +126,63 @@
                             </div>                            
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Age Of Building</label>
+                                    <div class="form-group">                                       
+                                        <label>Construction Stage</label>
+                                        <select class="form-control" ng-model="editableProperty.constructionStage">
+                                            <option value="">Select Construction Stage</option>
+                                            <option value="UNDER_CONSTRUCTION">Under Construction</option>
+                                            <option value="READY_TO_MOVE">Ready To Move</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div ng-show="possessionDateBox">
+                                        <label>Possession Date</label>
                                         <p class="input-group">
-                                            <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProperty.buildingAge"
-                                                   popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" >
+                                            <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProperty.possessionDate"
+                                                   popup-placement="bottom"   is-open="possessionDate.opened" datepicker-options="dateOptions" close-text="Close" >
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default" ng-click="datePicker.toggle()">
+                                                <button type="button" class="btn btn-default" ng-click="possessionDate.toggle()">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div ng-show="yearOfConstructionBox">
+                                        <label>Year Of Construction</label>
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProperty.yearOfConstruction"
+                                                   popup-placement="bottom"   is-open="yearOfConstruction.opened" datepicker-options="dateOptions" close-text="Close" >
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="yearOfConstruction.toggle()">
                                                     <i class="fa fa-calendar"></i>
                                                 </button>
                                             </span>
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Floor Number</label>
                                         <input type="number" min="0" class="form-control" placeholder="Enter Floor Number" ng-model="editableProperty.floorNumber" />
                                     </div>
+                                    <!--                                    <div class="form-group">
+                                                                            <label>Total Floors</label>
+                                                                            <input type="number" min="0" class="form-control" placeholder="Enter Total Floors" ng-model="editableProperty.totalFloors" />
+                                                                        </div>-->
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Total Floors</label>
                                         <input type="number" min="0" class="form-control" placeholder="Enter Total Floors" ng-model="editableProperty.totalFloors" />
-                                    </div>
+                                    </div>                                    
                                 </div>
-                                <div class="col-sm-6">
-                                    <!--                                    <div class="form-group">
-                                                                            <label>Condition Of Building</label>
-                                                                            <select class="form-control" ng-model="editableProperty.buildingCondition">
-                                                                                <option value="">Select Condition Of Building</option>
-                                                                                <option value="GOOD">Good</option>
-                                                                                <option value="AVERAGE">Average</option>
-                                                                                <option value="BAD">Bad</option>                                                        
-                                                                            </select>
-                                                                        </div>-->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
                                     <div class="form-group">
                                         <label>Entry Facing</label>                                                    
                                         <select class="form-control" ng-model="editableProperty.entryFacing">
@@ -174,14 +194,7 @@
                                         </select>
                                     </div>                                    
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 form-group">
-                                    <!--                                                                                    <div class="form-group">
-                                                                                                                            <label>Total Floors</label>                                                    
-                                                                                                                            <input class="form-control" type="number" ng-model="editableProperty.totalFloors">                                                    
-                                                                                                                        </div>-->
+                                <div class="col-sm-6">                                    
                                     <label>Project</label>
                                     <input class="form-control"
                                            placeholder="Select Project"
@@ -193,12 +206,6 @@
                                            ng-model="editableProperty.project.name" />
                                     <p ng-show="noProjectsFound" class="help-block text-muted">No Projects found</p>
                                     <p ng-show="loadingProjects" class="help-block text-muted">loading...</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <!--                                                                                    <div class="form-group">
-                                                                                                                            <label>Total Units</label>
-                                                                                                                            <input class="form-control" type="number" ng-model="editableProperty.totalUnits">
-                                                                                                                        </div>-->
                                 </div>                                            
                             </div>
                         </div>

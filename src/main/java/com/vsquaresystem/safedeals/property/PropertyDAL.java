@@ -29,7 +29,9 @@ public class PropertyDAL {
         public static final String PROPERTY_SIZE = "size_of_property";
         public static final String SIZE = "size";
         public static final String PRICE_RANGE = "price_range";
-        public static final String BUILDING_AGE = "age_of_building";
+        public static final String CONSTRUCTION_STAGE = "construction_stage";
+        public static final String POSSESSION_DATE = "possession_date";
+        public static final String YEAR_OF_CONSTRUCTION = "year_of_construction";
         public static final String FLOOR_NUMBER = "floor_number";
         public static final String TOTAL_FLOORS = "total_floors";
         public static final String ENTRY_FACING = "entry_facing";
@@ -85,7 +87,9 @@ public class PropertyDAL {
                         Columns.PROPERTY_SIZE,
                         Columns.SIZE,
                         Columns.PRICE_RANGE,
-                        Columns.BUILDING_AGE,
+                        Columns.CONSTRUCTION_STAGE,
+                        Columns.POSSESSION_DATE,
+                        Columns.YEAR_OF_CONSTRUCTION,
                         Columns.FLOOR_NUMBER,
                         Columns.TOTAL_FLOORS,
                         Columns.ENTRY_FACING,
@@ -138,7 +142,9 @@ public class PropertyDAL {
         parameters.put(Columns.PROPERTY_SIZE, property.getPropertySize());
         parameters.put(Columns.SIZE, property.getSize());
         parameters.put(Columns.PRICE_RANGE, property.getPriceRange());
-        parameters.put(Columns.BUILDING_AGE, property.getBuildingAge());
+        parameters.put(Columns.CONSTRUCTION_STAGE, property.getConstructionStage().name());
+        parameters.put(Columns.POSSESSION_DATE, property.getPossessionDate());
+        parameters.put(Columns.YEAR_OF_CONSTRUCTION, property.getYearOfConstruction());
         parameters.put(Columns.FLOOR_NUMBER, property.getFloorNumber());
         parameters.put(Columns.TOTAL_FLOORS, property.getTotalFloors());
         parameters.put(Columns.ENTRY_FACING, property.getEntryFacing().name());
@@ -213,7 +219,9 @@ public class PropertyDAL {
                 + Columns.PROPERTY_SIZE + " =?,"
                 + Columns.SIZE + " =?,"
                 + Columns.PRICE_RANGE + " =?,"
-                + Columns.BUILDING_AGE + " =?,"
+                + Columns.CONSTRUCTION_STAGE + " =?,"
+                + Columns.POSSESSION_DATE + " =?,"
+                + Columns.YEAR_OF_CONSTRUCTION + " =?,"
                 + Columns.FLOOR_NUMBER + " =?,"
                 + Columns.TOTAL_FLOORS + " =?,"
                 + Columns.ENTRY_FACING + " =?,"
@@ -253,7 +261,9 @@ public class PropertyDAL {
             property.getPropertySize(),
             property.getSize(),
             property.getPriceRange(),
-            property.getBuildingAge(),
+            property.getConstructionStage().name(),
+            property.getPossessionDate(),
+            property.getYearOfConstruction(),
             property.getFloorNumber(),
             property.getTotalFloors(),
             property.getEntryFacing().name(),
@@ -336,8 +346,14 @@ public class PropertyDAL {
             property.setSize(rs.getDouble(Columns.SIZE));
 
             property.setPriceRange(rs.getDouble(Columns.PRICE_RANGE));
-
-            property.setBuildingAge(rs.getDate(Columns.BUILDING_AGE));
+            
+            if (rs.getString(Columns.CONSTRUCTION_STAGE) != null) {
+                property.setConstructionStage(ConstructionStage.valueOf(rs.getString(Columns.CONSTRUCTION_STAGE)));
+            }
+            
+            property.setPossessionDate(rs.getDate(Columns.POSSESSION_DATE));
+            
+            property.setYearOfConstruction(rs.getDate(Columns.YEAR_OF_CONSTRUCTION));
 
             property.setFloorNumber(rs.getInt(Columns.FLOOR_NUMBER));
 

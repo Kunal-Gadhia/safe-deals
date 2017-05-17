@@ -16,6 +16,7 @@ public class Road {
     private String name;
     private Integer size;
     private RoadCondition roadCondition;
+    private RoadType roadType;
 
     public Integer getId() {
         return id;
@@ -49,13 +50,22 @@ public class Road {
         this.roadCondition = roadCondition;
     }
 
+    public RoadType getRoadType() {
+        return roadType;
+    }
+
+    public void setRoadType(RoadType roadType) {
+        this.roadType = roadType;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.size);
-        hash = 43 * hash + Objects.hashCode(this.roadCondition);
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.name);
+        hash = 73 * hash + Objects.hashCode(this.size);
+        hash = 73 * hash + Objects.hashCode(this.roadCondition);
+        hash = 73 * hash + Objects.hashCode(this.roadType);
         return hash;
     }
 
@@ -80,13 +90,15 @@ public class Road {
         if (this.roadCondition != other.roadCondition) {
             return false;
         }
+        if (this.roadType != other.roadType) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Road{" + "id=" + id + ", name=" + name + ", size=" + size + ", roadCondition=" + roadCondition + '}';
+        return "Road{" + "id=" + id + ", name=" + name + ", size=" + size + ", roadCondition=" + roadCondition + ", roadType=" + roadType + '}';
     }
-
     
 }

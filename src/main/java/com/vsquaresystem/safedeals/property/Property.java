@@ -23,7 +23,9 @@ public class Property {
     private Integer propertySize;
     private double size;
     private double priceRange;
-    private Date buildingAge;
+    private ConstructionStage constructionStage;
+    private Date possessionDate;
+    private Date yearOfConstruction;
     private Integer floorNumber;
     private Integer totalFloors;
     private EntryFacing entryFacing;
@@ -119,12 +121,28 @@ public class Property {
         this.priceRange = priceRange;
     }
 
-    public Date getBuildingAge() {
-        return buildingAge;
+    public ConstructionStage getConstructionStage() {
+        return constructionStage;
     }
 
-    public void setBuildingAge(Date buildingAge) {
-        this.buildingAge = buildingAge;
+    public void setConstructionStage(ConstructionStage constructionStage) {
+        this.constructionStage = constructionStage;
+    }
+
+    public Date getPossessionDate() {
+        return possessionDate;
+    }
+
+    public void setPossessionDate(Date possesionDate) {
+        this.possessionDate = possesionDate;
+    }
+
+    public Date getYearOfConstruction() {
+        return yearOfConstruction;
+    }
+
+    public void setYearOfConstruction(Date yearOfConstruction) {
+        this.yearOfConstruction = yearOfConstruction;
     }
 
     public Integer getFloorNumber() {
@@ -361,45 +379,47 @@ public class Property {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.cityId);
-        hash = 97 * hash + Objects.hashCode(this.locationId);
-        hash = 97 * hash + Objects.hashCode(this.propertyType);
-        hash = 97 * hash + Objects.hashCode(this.propertySize);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.buildingAge);
-        hash = 97 * hash + Objects.hashCode(this.floorNumber);
-        hash = 97 * hash + Objects.hashCode(this.totalFloors);
-        hash = 97 * hash + Objects.hashCode(this.entryFacing);
-        hash = 97 * hash + Objects.hashCode(this.projectId);
-        hash = 97 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 97 * hash + Objects.hashCode(this.publicTransport);
-        hash = 97 * hash + Objects.hashCode(this.offeredPrice);
-        hash = 97 * hash + Objects.hashCode(this.discount);
-        hash = 97 * hash + Objects.hashCode(this.offerValidTill);
-        hash = 97 * hash + Objects.hashCode(this.paymentSchedule);
-        hash = 97 * hash + Objects.hashCode(this.downpayment);
-        hash = 97 * hash + Objects.hashCode(this.workplaces);
-        hash = 97 * hash + Objects.hashCode(this.projectsNearby);
-        hash = 97 * hash + Objects.hashCode(this.basicAmenities);
-        hash = 97 * hash + Objects.hashCode(this.luxuryAmenities);
-        hash = 97 * hash + Objects.hashCode(this.ownershipProof);
-        hash = 97 * hash + Objects.hashCode(this.approvedBanks);
-        hash = 97 * hash + Objects.hashCode(this.sdVerified);
-        hash = 97 * hash + Objects.hashCode(this.privateAmenities);
-        hash = 97 * hash + Objects.hashCode(this.sellerCommisionAgreement);
-        hash = 97 * hash + Objects.hashCode(this.salableArea);
-        hash = 97 * hash + Objects.hashCode(this.carpetArea);
-        hash = 97 * hash + Objects.hashCode(this.buildUpArea);
-        hash = 97 * hash + Objects.hashCode(this.balconyCount);
-        hash = 97 * hash + Objects.hashCode(this.toiletCount);
-        hash = 97 * hash + Objects.hashCode(this.openTerrace);
-        hash = 97 * hash + Objects.hashCode(this.openLand);
-        hash = 97 * hash + Objects.hashCode(this.latitude);
-        hash = 97 * hash + Objects.hashCode(this.longitude);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Objects.hashCode(this.cityId);
+        hash = 29 * hash + Objects.hashCode(this.locationId);
+        hash = 29 * hash + Objects.hashCode(this.propertyType);
+        hash = 29 * hash + Objects.hashCode(this.propertySize);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.constructionStage);
+        hash = 29 * hash + Objects.hashCode(this.possessionDate);
+        hash = 29 * hash + Objects.hashCode(this.yearOfConstruction);
+        hash = 29 * hash + Objects.hashCode(this.floorNumber);
+        hash = 29 * hash + Objects.hashCode(this.totalFloors);
+        hash = 29 * hash + Objects.hashCode(this.entryFacing);
+        hash = 29 * hash + Objects.hashCode(this.projectId);
+        hash = 29 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 29 * hash + Objects.hashCode(this.publicTransport);
+        hash = 29 * hash + Objects.hashCode(this.offeredPrice);
+        hash = 29 * hash + Objects.hashCode(this.discount);
+        hash = 29 * hash + Objects.hashCode(this.offerValidTill);
+        hash = 29 * hash + Objects.hashCode(this.paymentSchedule);
+        hash = 29 * hash + Objects.hashCode(this.downpayment);
+        hash = 29 * hash + Objects.hashCode(this.workplaces);
+        hash = 29 * hash + Objects.hashCode(this.projectsNearby);
+        hash = 29 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 29 * hash + Objects.hashCode(this.luxuryAmenities);
+        hash = 29 * hash + Objects.hashCode(this.ownershipProof);
+        hash = 29 * hash + Objects.hashCode(this.approvedBanks);
+        hash = 29 * hash + Objects.hashCode(this.sdVerified);
+        hash = 29 * hash + Objects.hashCode(this.privateAmenities);
+        hash = 29 * hash + Objects.hashCode(this.sellerCommisionAgreement);
+        hash = 29 * hash + Objects.hashCode(this.salableArea);
+        hash = 29 * hash + Objects.hashCode(this.carpetArea);
+        hash = 29 * hash + Objects.hashCode(this.buildUpArea);
+        hash = 29 * hash + Objects.hashCode(this.balconyCount);
+        hash = 29 * hash + Objects.hashCode(this.toiletCount);
+        hash = 29 * hash + Objects.hashCode(this.openTerrace);
+        hash = 29 * hash + Objects.hashCode(this.openLand);
+        hash = 29 * hash + Objects.hashCode(this.latitude);
+        hash = 29 * hash + Objects.hashCode(this.longitude);
         return hash;
     }
 
@@ -436,7 +456,13 @@ public class Property {
         if (Double.doubleToLongBits(this.priceRange) != Double.doubleToLongBits(other.priceRange)) {
             return false;
         }
-        if (!Objects.equals(this.buildingAge, other.buildingAge)) {
+        if (this.constructionStage != other.constructionStage) {
+            return false;
+        }
+        if (!Objects.equals(this.possessionDate, other.possessionDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.yearOfConstruction, other.yearOfConstruction)) {
             return false;
         }
         if (!Objects.equals(this.floorNumber, other.floorNumber)) {
@@ -531,8 +557,8 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Property{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", buildingAge=" + buildingAge + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + '}';
+        return "Property{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", constructionStage=" + constructionStage + ", possessionDate=" + possessionDate + ", yearOfConstruction=" + yearOfConstruction + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + '}';
     }
-    
+
     
 }
