@@ -555,12 +555,27 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
 
         })
+        
         .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams, ImageService, VideoService) {
-       
-            $scope.images = ImageService.findByPropertyId({
+            $scope.images = [];
+            $scope.videos = [];
+            $scope.myInterval = 3000;
+            ImageService.findByPropertyId({
                 'propertyId': $stateParams.propertyId
             }, function (images) {
-                console.log("Images :%O", images);
+                angular.forEach(images, function (image) {
+                    $scope.images.push(image);
+                });
+            });
+
+           VideoService.findByPropertyId({
+                'propertyId': $stateParams.propertyId
+            }, function (videos) {
+                console.log("Videos :%O", videos);
+                angular.forEach(videos, function(data){
+                $scope.video = data;
+                console.log(" $scope.video ",  $scope.video);
+                });
             });
 
             $scope.map;
@@ -1305,8 +1320,8 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     $scope.myProperties = false;
                 }
             };
-            
-                //           image Gallery
+
+            //           image Gallery
 //            $scope.galleryModal = true;
 //            $scope.images = ImageService.findByPropertyId({
 //                'propertyId': $stateParams.propertyId
@@ -1328,7 +1343,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 //            $scope.closeLightboxModal = function () {
 //                $scope.galleryModal = true;
 //            };
-           //           image Gallery
+            //           image Gallery
         });
 //
 ////angular.module("safedeals.states.property", [])

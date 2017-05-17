@@ -13,53 +13,22 @@
             </button>
         </div>
     </div>
-    <div class="modal-body">        
+    <div class="modal-body">   
+        <div class="row form-group">
             <uib-carousel  active="active" interval="myInterval">
                 <uib-slide ng-repeat="image in images" index="$index">
-                    <img ng-src="./rest/image/{{image.id}}/attachment" style="height: 500px; margin: auto" class="img-responsive"/>
-                    <div class="carousel-caption">
-                        <h4>Slide {{$index + 1}}</h4>
-                    </div>
+                    <img ng-src="./rest/image/{{image.id}}/attachment" style="width:100%; height: 500px; margin: auto" class="img-responsive"/>
+                    <!--                <div class="carousel-caption">
+                                        <h4>Slide {{$index + 1}}</h4>
+                                    </div>-->
                 </uib-slide>
-<!--                <uib-slide ng-repeat="slide in slides" index="$index">
-                    <img ng-src="{{slide.image}}" style="margin:auto;" />
-                    <div class="carousel-caption">
-                        <h4>Slide {{$index + 1}}</h4>
-                    </div>
-                </uib-slide>-->
             </uib-carousel>
-<!--        <div class="" ng-hide="galleryModal">
-            <div class="modal modal-safedeals">
-                <div class="modal-backdrop fade in">
-                    <button type="button" class="pull-right btn btn-link" ng-click="closeLightboxModal()">
-                        <i style="color: #778899" class="fa fa-times fa-2x"></i>
-                    </button>
-                </div>
-                <div class="modal-dialog">
-                    <uib-carousel  active="active">
-                        <uib-slide ng-repeat="image in arrayImage" index="$index">
-                            <img ng-src="./rest/image/{{image}}/attachment" width="600px" style="height: 500px;" class="admin"/>
-                            <div class="carousel-caption">
-                                <h4>Slide {{$index + 1}}</h4>
-                            </div>
-                        </uib-slide>
-                    </uib-carousel>
-                </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6 col-md-offset-6">
+                <iframe class="video" ng-src="{{video.videoUrl}}" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="row">
-            <div class="gallery gallery1">
-                <div ng-repeat="image in images">
-                    <div class="col-md-2 col-sm-2 padding">
-                        <div class="thumbnail" id="thumbnail">
-                            <a ng-click="openLightboxModal(image)">
-                                <img ng-src="./rest/image/{{image.id}}/attachment" width="380" class="img-responsive" style="height: 115px">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
         <div class="">
             <div class="row">
                 <ul class="nav nav-tabs" id="location_tabs">
@@ -363,6 +332,43 @@
         </div>
     </div>
 </div>
+
+
+<!--image gallery-->
+<!--        <div class="" ng-hide="galleryModal">
+            <div class="modal modal-safedeals">
+                <div class="modal-backdrop fade in">
+                    <button type="button" class="pull-right btn btn-link" ng-click="closeLightboxModal()">
+                        <i style="color: #778899" class="fa fa-times fa-2x"></i>
+                    </button>
+                </div>
+                <div class="modal-dialog">
+                    <uib-carousel  active="active">
+                        <uib-slide ng-repeat="image in arrayImage" index="$index">
+                            <img ng-src="./rest/image/{{image}}/attachment" width="600px" style="height: 500px;" class="admin"/>
+                            <div class="carousel-caption">
+                                <h4>Slide {{$index + 1}}</h4>
+                            </div>
+                        </uib-slide>
+                    </uib-carousel>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="gallery gallery1">
+                <div ng-repeat="image in images">
+                    <div class="col-md-2 col-sm-2 padding">
+                        <div class="thumbnail" id="thumbnail">
+                            <a ng-click="openLightboxModal(image)">
+                                <img ng-src="./rest/image/{{image.id}}/attachment" width="380" class="img-responsive" style="height: 115px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+<!--image gallery-->
+
 <!--<div class="pull-right">
     <button type="button" class="btn btn-link btn-sm" data-ui-sref="main.help">Generate Report</button>
 </div>
