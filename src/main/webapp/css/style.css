@@ -11,10 +11,6 @@
     margin-top: 65px;
 }
 
-.list{
-    list-style-type: none;
-}
-
 /*----icon height-----*/
 .icon_ht{
     height: 60px;
@@ -635,6 +631,11 @@ form.tab-form-demo .tab-pane {
     margin-top:10px
 
 }*/
+
+/*.list{
+    list-style-type: none;
+}*/
+
 /*.custom-background {
     background-color: white;
     border : 1px solid #D3D3D3;
