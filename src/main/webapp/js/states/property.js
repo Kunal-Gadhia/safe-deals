@@ -555,7 +555,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
 
         })
-        
+
         .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams, ImageService, VideoService) {
             $scope.images = [];
             $scope.videos = [];
@@ -568,13 +568,13 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 });
             });
 
-           VideoService.findByPropertyId({
+            VideoService.findByPropertyId({
                 'propertyId': $stateParams.propertyId
             }, function (videos) {
                 console.log("Videos :%O", videos);
-                angular.forEach(videos, function(data){
-                $scope.video = data;
-                console.log(" $scope.video ",  $scope.video);
+                angular.forEach(videos, function (data) {
+                    $scope.video = data;
+                    console.log(" $scope.video ", $scope.video);
                 });
             });
 
@@ -585,7 +585,10 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             var mapContainer = document.getElementById("propertyDetailMapContainer");
             $scope.infowindow = new google.maps.InfoWindow();
             $scope.directionsService = new google.maps.DirectionsService();
-            $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+            $scope.directionsDisplay = new google.maps.DirectionsRenderer({
+                'preserveViewport': true,
+                'suppressMarkers': true
+            });
             $scope.distanceService = new google.maps.DistanceMatrixService();
             console.log("$stateparams ID::::::", $stateParams.propertyId);
             var drawMap = function (mapProperty) {
@@ -727,7 +730,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     var request = {
                         origin: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
                         destination: position,
-                        travelModNe: google.maps.DirectionsTravelMode.DRIVING
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
                     };
                     $scope.directionsService.route(request, function (response, status) {
                         console.log("Response :%O", response);

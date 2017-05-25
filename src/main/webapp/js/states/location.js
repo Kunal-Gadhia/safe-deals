@@ -319,7 +319,10 @@ angular.module("safedeals.states.location", [])
             var mapContainer = document.getElementById("locationDetailMapContainer");
             $scope.infowindow = new google.maps.InfoWindow();
             $scope.directionsService = new google.maps.DirectionsService();
-            $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+            $scope.directionsDisplay = new google.maps.DirectionsRenderer({
+                'preserveViewport': true,
+                'suppressMarkers': true
+            });
             $scope.distanceService = new google.maps.DistanceMatrixService();
 //            $scope.displayDistance = false;
 //            var mapContainer1 = document.getElementById("locationDetailMapContainerWorkplaces");
@@ -355,7 +358,8 @@ angular.module("safedeals.states.location", [])
                 var marker = new google.maps.Marker({
                     map: map,
                     position: position,
-                    title: title
+                    title: title,
+                    icon: 'images/icons_svg/airport.png'
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {

@@ -85,6 +85,7 @@ angular.module("safedeals.states.agent", [])
             $scope.$watch('editableAgent.name', function (name) {
                 console.log("Name :" + name);
                 AgentService.findByName({'name': name}).$promise.catch(function (response) {
+                    console.log("Response :%O", response);
                     if (response.status === 500) {
                         $scope.editableAgent.repeatName = false;
                     } else if (response.status === 404) {
@@ -111,9 +112,6 @@ angular.module("safedeals.states.agent", [])
                 $scope.editableAgent.agency = AgencyService.get({
                     id: $scope.editableAgent.agencyId
                 });
-
-
-
             });
 
 
