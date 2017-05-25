@@ -47,6 +47,7 @@
         <script src="${pageContext.request.contextPath}/js/lib/jquery.flexslider-min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/scripts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/wow.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/lodash.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/angular-bootstrap-lightbox.js"></script>
         <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
         <!--<script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>-->
