@@ -18,6 +18,7 @@ public class TestimonialConfig {
     private String description;
     private String profession;
     private String designation;
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -59,19 +60,23 @@ public class TestimonialConfig {
         this.designation = designation;
     }
 
-    @Override
-    public String toString() {
-        return "TestimonialConfig{" + "id=" + id + ", name=" + name + ", description=" + description + ", profession=" + profession + ", designation=" + designation + '}';
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.description);
-        hash = 43 * hash + Objects.hashCode(this.profession);
-        hash = 43 * hash + Objects.hashCode(this.designation);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.profession);
+        hash = 89 * hash + Objects.hashCode(this.designation);
+        hash = 89 * hash + Objects.hashCode(this.category);
         return hash;
     }
 
@@ -99,7 +104,11 @@ public class TestimonialConfig {
         if (!Objects.equals(this.designation, other.designation)) {
             return false;
         }
+        if (this.category != other.category) {
+            return false;
+        }
         return true;
     }
 
+   
 }

@@ -26,6 +26,7 @@
                 <th>Description</th>
                 <th>Profession</th>
                 <th>Designation</th>
+                <th>Category</th>
                 <th>Image</th>
 
                 <th class="text-right">
@@ -40,6 +41,7 @@
                 <td>{{ testimonial.description}}</td>  
                 <td>{{ testimonial.profession}}</td>  
                 <td>{{ testimonial.designation}}</td>  
+                <td>{{ testimonial.category}}</td> 
                 <td><a data-ui-sref="admin.testimonial.view({testimonialId: testimonial.id})">{{ testimonial.attachment.toString()}}</a></td>
                 <td class="text-right">
                     <a data-ui-sref="admin.testimonial.photo({ testimonialId: testimonial.id })"
