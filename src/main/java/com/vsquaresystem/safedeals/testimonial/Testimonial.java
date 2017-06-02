@@ -19,6 +19,7 @@ public class Testimonial {
     private String description;
     private String profession;
     private String designation;
+    private Category category;
     private List<String> attachment;
 
     public Integer getId() {
@@ -61,6 +62,14 @@ public class Testimonial {
         this.designation = designation;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public List<String> getAttachment() {
         return attachment;
     }
@@ -71,18 +80,19 @@ public class Testimonial {
 
     @Override
     public String toString() {
-        return "Testimonial{" + "id=" + id + ", name=" + name + ", description=" + description + ", profession=" + profession + ", designation=" + designation + ", attachment=" + attachment + '}';
+        return "Testimonial{" + "id=" + id + ", name=" + name + ", description=" + description + ", profession=" + profession + ", designation=" + designation + ", category=" + category + ", attachment=" + attachment + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.description);
-        hash = 79 * hash + Objects.hashCode(this.profession);
-        hash = 79 * hash + Objects.hashCode(this.designation);
-        hash = 79 * hash + Objects.hashCode(this.attachment);
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + Objects.hashCode(this.description);
+        hash = 13 * hash + Objects.hashCode(this.profession);
+        hash = 13 * hash + Objects.hashCode(this.designation);
+        hash = 13 * hash + Objects.hashCode(this.category);
+        hash = 13 * hash + Objects.hashCode(this.attachment);
         return hash;
     }
 
@@ -108,6 +118,9 @@ public class Testimonial {
             return false;
         }
         if (!Objects.equals(this.designation, other.designation)) {
+            return false;
+        }
+        if (this.category != other.category) {
             return false;
         }
         if (!Objects.equals(this.attachment, other.attachment)) {

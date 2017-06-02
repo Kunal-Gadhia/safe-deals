@@ -33,6 +33,7 @@ public class TestimonialDAL {
         public static final String DESCRIPTION = "description";
         public static final String PROFFESION = "profession";
         public static final String DESIGNATION = "designation";
+        public static final String CATEGORY = "category";
         public static final String ATTACHMENT = "attachment";
     };
 
@@ -45,7 +46,8 @@ public class TestimonialDAL {
                         Columns.NAME,
                         Columns.DESCRIPTION,
                         Columns.PROFFESION,
-                        Columns.DESIGNATION)
+                        Columns.DESIGNATION,
+                        Columns.CATEGORY)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -70,6 +72,7 @@ public class TestimonialDAL {
         parameters.put(Columns.DESCRIPTION, testimonial.getDescription());
         parameters.put(Columns.PROFFESION, testimonial.getProfession());
         parameters.put(Columns.DESIGNATION, testimonial.getDesignation());
+        parameters.put(Columns.CATEGORY, testimonial.getCategory().name());
         Number newId = insertTestimonial.executeAndReturnKey(parameters);
         Testimonial t = findById(newId.intValue());
         return t;
@@ -82,6 +85,7 @@ public class TestimonialDAL {
                 + Columns.DESCRIPTION + " = ?, "
                 + Columns.PROFFESION + " = ?, "
                 + Columns.DESIGNATION + " = ?, "
+                + Columns.CATEGORY + " = ?, "
                 + Columns.ATTACHMENT + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         System.out.println("THIS IS TESTINOMIAL DAL" + path);
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
@@ -89,6 +93,7 @@ public class TestimonialDAL {
             testimonial.getDescription(),
             testimonial.getProfession(),
             testimonial.getDesignation(),
+            testimonial.getCategory().name(),
             testimonial.getId()}
         );
         testimonial = findById(testimonial.getId());

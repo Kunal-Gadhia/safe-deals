@@ -17,7 +17,7 @@
                                 <input required class="form-control" placeholder="Name"ng-model="editableTestimonial.name"/>
                             </div>
                         </div>
-                         <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Description</label>
                                 <input required class="form-control" placeholder="Description"ng-model="editableTestimonial.description"/>
@@ -36,13 +36,26 @@
                                 <input required class="form-control" placeholder="Profession"ng-model="editableTestimonial.profession"/>
                             </div>
                         </div>
-                         <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Designation</label>
                                 <input required class="form-control" placeholder="Designation"ng-model="editableTestimonial.designation"/>
                             </div>
                         </div>
-                    </div>                    
+                    </div>  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-control" ng-model="editableTestimonial.category">
+                                    <option value="">Choose Category</option>
+                                    <option value="CAREERS">Careers</option>
+                                    <option value="SERVICES">Services</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-lg btn-primary">
