@@ -24,6 +24,8 @@
                 <th class="text-right">#</th>
                 <th>Testimonial Name</th>
                 <th>Description</th>
+                <th>Profession</th>
+                <th>Designation</th>
                 <th>Image</th>
 
                 <th class="text-right">
@@ -35,23 +37,25 @@
             <tr ng-repeat="testimonial in testimonials">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
                 <td>{{ testimonial.name}}</td>              
-                <td>{{ testimonial.description}}</td>              
+                <td>{{ testimonial.description}}</td>  
+                <td>{{ testimonial.profession}}</td>  
+                <td>{{ testimonial.designation}}</td>  
                 <td><a data-ui-sref="admin.testimonial.view({testimonialId: testimonial.id})">{{ testimonial.attachment.toString()}}</a></td>
-        <td class="text-right">
-            <a data-ui-sref="admin.testimonial.photo({ testimonialId: testimonial.id })"
-               class="btn btn-primary">					
-                <i class="fa fa-upload"></i>
-            </a>
-            <a data-ui-sref="admin.testimonial.edit({ testimonialId: testimonial.id })"
-               class="btn btn-primary">					
-                <i class="fa fa-pencil"></i>
-            </a>
-            <a data-ui-sref="admin.testimonial.delete({ testimonialId: testimonial.id })"
-               class="btn btn-danger">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
-        </tr>
+                <td class="text-right">
+                    <a data-ui-sref="admin.testimonial.photo({ testimonialId: testimonial.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-upload"></i>
+                    </a>
+                    <a data-ui-sref="admin.testimonial.edit({ testimonialId: testimonial.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a data-ui-sref="admin.testimonial.delete({ testimonialId: testimonial.id })"
+                       class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
     <nav class="panel-footer">
@@ -65,7 +69,7 @@
                 </button>
             </li>
             <li>
-                 <button ng-click="nextPage()"
+                <button ng-click="nextPage()"
                         ng-disabled="testimonials.length < 5 || nextTestimonials.length === 0"
                         class="btn btn-default">
                     Next 

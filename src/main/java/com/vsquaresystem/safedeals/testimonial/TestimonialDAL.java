@@ -31,6 +31,8 @@ public class TestimonialDAL {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String DESCRIPTION = "description";
+        public static final String PROFFESION = "profession";
+        public static final String DESIGNATION = "designation";
         public static final String ATTACHMENT = "attachment";
     };
 
@@ -41,7 +43,9 @@ public class TestimonialDAL {
                 .withTableName(TABLE_NAME)
                 .usingColumns(
                         Columns.NAME,
-                        Columns.DESCRIPTION)
+                        Columns.DESCRIPTION,
+                        Columns.PROFFESION,
+                        Columns.DESIGNATION)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -54,7 +58,7 @@ public class TestimonialDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE DELETED = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Testimonial.class));
     }
-    
+
     public Testimonial findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Testimonial.class));
@@ -64,7 +68,9 @@ public class TestimonialDAL {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, testimonial.getName());
         parameters.put(Columns.DESCRIPTION, testimonial.getDescription());
-        Number newId = insertTestimonial.executeAndReturnKey(parameters);        
+        parameters.put(Columns.PROFFESION, testimonial.getProfession());
+        parameters.put(Columns.DESIGNATION, testimonial.getDesignation());
+        Number newId = insertTestimonial.executeAndReturnKey(parameters);
         Testimonial t = findById(newId.intValue());
         return t;
     }
@@ -74,11 +80,15 @@ public class TestimonialDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ?, "
                 + Columns.DESCRIPTION + " = ?, "
+                + Columns.PROFFESION + " = ?, "
+                + Columns.DESIGNATION + " = ?, "
                 + Columns.ATTACHMENT + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         System.out.println("THIS IS TESTINOMIAL DAL" + path);
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             testimonial.getName(),
             testimonial.getDescription(),
+            testimonial.getProfession(),
+            testimonial.getDesignation(),
             testimonial.getId()}
         );
         testimonial = findById(testimonial.getId());
