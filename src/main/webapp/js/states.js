@@ -5,6 +5,11 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 'templateUrl': templateRoot + '/login.html',
                 'controller': 'LoginController'
             });
+            $stateProvider.state('portalLogin', {
+                'url': '/portalLogin',
+                'templateUrl': templateRoot + '/login.html',
+                'controller': 'LoginController'
+            });
 //            $stateProvider.state('main.logout', {
 //                'url': '/logout',
 //                'templateUrl': templateRoot + '/logout.html',

@@ -68,6 +68,11 @@ public class EventDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " +Columns.DATE+ " >= NOW()";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Event.class));
     }
+    
+    public List<Event> findConcludedEvents(){
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " +Columns.DATE+ " <= NOW()";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Event.class));
+    }
 
     public Event insert(Event event) {
         Map<String, Object> parameters = new HashMap<>();

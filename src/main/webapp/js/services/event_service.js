@@ -14,6 +14,11 @@ angular.module("safedeals.services.event")
                     'method': 'GET',
                     'url': restRoot + '/event/find/date',
                     'isArray':true
+                },
+                'findConcludedEvents': {
+                    'method': 'GET',
+                    'url': restRoot + '/event/find/concluded',
+                    'isArray':true
                 }
             });
         });

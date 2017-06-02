@@ -59,6 +59,11 @@ public class EventRest {
     public List<Event> findByDate() {
         return eventDal.findByDate();
     }
+    
+    @RequestMapping(value = "/find/concluded", method = RequestMethod.GET)
+    public List<Event> findConcludedEvents() {
+        return eventDal.findConcludedEvents();
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public Event insert(@RequestBody Event event) {

@@ -255,9 +255,14 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
                 }
             });
         })
-        .controller('EventsController', function ($scope, EventService) {
+        .controller('EventsController', function ($scope, EventService, imageRoot) {
             console.log("EventController");
+            console.log("Image Root :%O", imageRoot);
+            $scope.imageRoot = imageRoot;
             $scope.events = EventService.findByDate();
+            console.log("What are EVents :%O", $scope.events);
+            $scope.concludedEvents = EventService.findConcludedEvents();
+            console.log("COncluded Events :%O", $scope.concludedEvents);
             console.log("$scope.events", $scope.events);
             $scope.myInterval = 2000;
             $scope.noWrapSlides = false;

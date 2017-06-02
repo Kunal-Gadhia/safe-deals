@@ -18,7 +18,8 @@
                 <div class="col-md-8 col-sm-8 col-md-offset-1">
                     <div class="" data-ui-sref="main.masters_account">
                         <div class="col-md-4">
-                            <img ng-src="./rest/event/{{event.id}}/attachment" width="300" class="event_img team_img img-responsive" style="height: 250px">
+                            <div ng-show="event.photoPath === null"><img src="/safe-deals/images/No_Image_Available.png" width="300" class="event_img team_img img-responsive" style="height: 250px"></div>
+                            <div ng-show="event.photoPath !== null"><img ng-src="./rest/event/{{event.id}}/attachment" width="300" class="event_img team_img img-responsive" style="height: 250px"></div>
                         </div>
                         <div class="col-md-8">
                             <div class="admin col-md-12">
@@ -63,6 +64,50 @@
                                 </div>
                             </div>
                         </div>-->
+        </div>
+        
+        <div ng-show="events.length === 0">
+            <h3 class="text-center">No Upcoming Events</h3>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="text-center"><b>Concluded Events</b></h2>
+    </div>
+    <div class="row">
+        <div class="">
+            <div ng-repeat="event in concludedEvents">
+                <div class="col-md-8 col-sm-8 col-md-offset-1">
+                    <div class="" data-ui-sref="main.masters_account">
+                        <div class="col-md-4">
+                            <img ng-src="./rest/event/{{event.id}}/attachment" width="300" class="event_img team_img img-responsive" style="height: 250px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="admin col-md-12">
+                                <p> 
+                                    <b class="col-md-3">EVENT NAME</b>
+                                    <span class="col-sm-1"><b>:</b></span> 
+                                    {{event.name}} 
+                                </p>
+                                <p>
+                                    <b class="col-md-3">DATE</b>
+                                    <span class="col-sm-1"><b>:</b></span> 
+                                    {{event.date| date:"MMM d, y"}} 
+                                </p>
+                                <p> 
+                                    <b class="col-md-3">VENUE</b>
+                                    <span class="col-sm-1"><b>:</b></span> 
+                                    {{event.venue}} 
+                                </p>
+                                <p>
+                                    <label class="col-md-3">DESCRIPTION</label>
+                                    <b class="col-md-1">:</b>
+                                    <span class="col-md-7 padding">{{event.description}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -82,6 +82,7 @@
                     .constant('contextPath', '${pageContext.request.contextPath}')
                     .constant('restRoot', '${pageContext.request.contextPath}/rest')
                     .constant('templateRoot', '${pageContext.request.contextPath}/templates')
+                    .constant('imageRoot', '${pageContext.request.contextPath}/images')
                     .constant('paginationLimit', 5);
         </script>
 

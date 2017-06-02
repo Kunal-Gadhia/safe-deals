@@ -12,7 +12,7 @@ angular.module("safedeals", [
     //  include constants
     'safedeals.constants',
     // include directives
-//    'safedeals.services.scroll',
+    //'safedeals.services.scroll',
     // include services
     'safedeals.services.branch',
     'safedeals.services.country',
@@ -138,6 +138,7 @@ angular.module("safedeals", [
 //                console.log("Switching To: ", toState.name);
 //            });
                 AuthFactory.registerUserChangeHandler(function (currentUser) {
+                    console.log("What is Current User :%O", currentUser);
                     $rootScope.currentUser = currentUser;
                 });
 
