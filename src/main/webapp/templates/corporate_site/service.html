@@ -79,7 +79,7 @@
                 <uib-carousel  active="active" interval="myInterval" hide-indicators="true">
                     <uib-slide ng-repeat="slide in slides" index="$index">
                         <div class="col-md-4 col-md-offset-1">
-                            <img class="img-circle" width="250" height="300" ng-src="{{slide.image}}"/>
+                            <img class="img-circle" width="250" height="300" ng-src="./rest/testimonial/{{slide.id}}/attachment"/>
                         </div>
                         <div class="col-md-6">      
                             <figcaption class="caption">
