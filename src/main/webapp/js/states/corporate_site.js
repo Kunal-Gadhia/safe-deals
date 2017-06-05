@@ -223,7 +223,9 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
         })
 
         .controller('PostQueryController', function (EnquiryService, $scope, $state) {
-            $scope.editableEnquiry = {};
+            $scope.editableEnquiry = {
+                'category': "PROPERTY_GUIDANCE"
+            };    
             $scope.saveEnquiry = function (enquiry) {
                 console.log("enquiry name:", enquiry);
                 $scope.sendSms(enquiry.mobileNo);

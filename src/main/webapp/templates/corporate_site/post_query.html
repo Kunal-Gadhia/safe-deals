@@ -57,7 +57,7 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label>Category</label><span class="text-danger">*</span>
                                 <select class="form-control" required="required" ng-model="editableEnquiry.category">
-                                    <option value="">Choose Category</option>
+                                    <!--<option value="">Choose Category</option>-->
                                     <option value="PROPERTY_GUIDANCE">Property Guidance</option>
                                     <option value="PROPERTY_SELLING">Property Selling</option>
                                     <option value="PROPERTY_BUYING">Property Buying</option>
@@ -66,16 +66,16 @@ and open the template in the editor.
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group" ng-show="propertyGuidance">
-                                <label>Property Guidance</label>
-                                <input class="form-control" placeholder="Property Guidance" ng-model="editableEnquiry.propertyGuidance"/>
+                                <label>Enter Your Query</label>
+                                <input class="form-control" placeholder="Query Regarding Property Guidance" ng-model="editableEnquiry.propertyGuidance"/>
                             </div>
                             <div class="form-group" ng-show="propertySelling">
-                                <label>Property Selling</label>
-                                <input class="form-control" placeholder="Property Selling" ng-model="editableEnquiry.propertySelling"/>
+                                <label>Enter Your Query</label>
+                                <input class="form-control" placeholder="Query Regarding Property Selling" ng-model="editableEnquiry.propertySelling"/>
                             </div>
                             <div class="form-group" ng-show="propertyBuying">
-                                <label>Property Buying</label>
-                                <input class="form-control" placeholder="Property Buying" ng-model="editableEnquiry.propertyBuying"/>
+                                <label>Enter Your Query</label>
+                                <input class="form-control" placeholder="Query Regarding Property Buying" ng-model="editableEnquiry.propertyBuying"/>
                             </div>
                         </div>
                     </div>
