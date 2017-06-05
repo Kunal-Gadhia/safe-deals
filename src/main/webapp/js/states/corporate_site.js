@@ -266,7 +266,7 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
             $scope.concludedEvents = EventService.findConcludedEvents();
             console.log("COncluded Events :%O", $scope.concludedEvents);
             console.log("$scope.events", $scope.events);
-            $scope.myInterval = 2000;
+            $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = [
@@ -320,7 +320,7 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. I
 
         .controller('HomeController', function ($scope) {
 
-            $scope.myInterval = 2000;
+            $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = [
