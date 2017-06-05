@@ -30,6 +30,11 @@ angular.module("safedeals.services.testimonial", [])
                     'params': {
                         'id': '@id'
                     }
+                },
+                'findByCategory': {
+                    'method': 'GET',
+                    'url': restRoot + '/testimonial/find/category',
+                    'isArray': true
                 }
             });
         })

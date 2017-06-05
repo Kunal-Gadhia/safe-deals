@@ -78,6 +78,12 @@ public class TestimonialDAL {
         return t;
     }
 
+    public List<Testimonial> findByCategory() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CATEGORY + " = 'MEMBERS' OR " + Columns.CATEGORY + "= 'EXPERTS_VIEW'";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Testimonial.class));
+    }
+
+    //select * from testimonial WHERE category="MEMBERS" OR category= "EXPERTS_VIEW";
     public Testimonial update(Testimonial testimonial) {
         String path = testimonial.getAttachment().get(0).toString().replace("\\", "\\\\");
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "

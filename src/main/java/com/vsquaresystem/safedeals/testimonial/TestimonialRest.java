@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.testimonial;
 
+import com.vsquaresystem.safedeals.amenity.Amenity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -50,10 +51,15 @@ public class TestimonialRest {
     public Testimonial findById(@RequestParam("id") Integer id) {
         return testimonialDAL.findById(id);
     }
-    
+
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public Testimonial findByName(@RequestParam("name") String name) {
         return testimonialDAL.findByName(name);
+    }
+
+    @RequestMapping(value = "/find/category", method = RequestMethod.GET)
+    public List<Testimonial> findByCategory() {
+        return testimonialDAL.findByCategory();
     }
 
     @RequestMapping(value = "/{id}/attachment", method = RequestMethod.POST)
@@ -75,7 +81,7 @@ public class TestimonialRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Testimonial insert(@RequestBody TestimonialConfig testinomialConfig) {        
+    public Testimonial insert(@RequestBody TestimonialConfig testinomialConfig) {
         return testimonialDAL.insert(testinomialConfig);
     }
 
