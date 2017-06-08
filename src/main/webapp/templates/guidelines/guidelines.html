@@ -167,7 +167,7 @@
                                     </form>
                                 </div>
                             </div>
-                             <nav aria-label="...">
+                            <nav aria-label="...">
                                 <ul class="pager">
                                     <li class="previous disabled" ng-click="decrementStep()" ng-class="{
                                                 disabled: !hasPreviousStep()
@@ -218,81 +218,81 @@
                                 <label></label>
                                 <h3>Type & Size of Property</h3>
                                 <hr>
-                                <form ng-submit="submitFamilyDetails(family)">
-                                    <div class=" col-md-6 vertical-line">
-                                        <div>
-                                            <h4 class="text-right">Number of Family Members</h4>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <label  for="input" class=" col-sm-6">Couple :</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family1.couple" class="form-control input"/>
-                                            </div>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <label  for="input" class=" col-sm-6">Kids :</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family1.kids" class="form-control input"/>
-                                            </div>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <label  for="input" class=" col-sm-6">Parents :</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family1.parents" class="form-control input"/>
-                                            </div>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <label  for="input" class=" col-sm-6">Guests :</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family1.guest" class="form-control input"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <h4>Number of Bedrooms</h4>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family.coupleNumberRooms" class="form-control input"/>
-                                            </div>
-                                            <label  for="input" class=" col-sm-6"></label>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family.kidsNumberRooms" class="form-control input"/>
-                                            </div>
-                                            <label  for="input" class=" col-sm-6"></label>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family.parentsNumberRooms" class="form-control input"/>
-                                            </div>
-                                            <label  for="input" class=" col-sm-6"></label>
-                                        </div>
-                                        <div class=" form-group">                                                       
-                                            <div class="col-sm-6">
-                                                <input type="number" ng-model="family.guestNumberRooms" class="form-control input"/>
-                                                <label  for="input" class=" col-sm-6"></label>
-                                            </div>
-                                        </div>
-                                        <!--                                <div class="form-group">
-                                                                            <div><h4 class="col-sm-6" > Total No. of Rooms :</h4></div>
+                                <!--                                <form ng-submit="submitFamilyDetails(family)">
+                                                                    <div class=" col-md-6 vertical-line">
+                                                                        <div>
+                                                                            <h4 class="text-right">Number of Family Members</h4>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <label  for="input" class=" col-sm-6">Couple :</label>
                                                                             <div class="col-sm-6">
-                                                                                <input type="number" class="form-control input"/>
-                                                                            </div>                               
-                                                                        </div>-->
-                                        <div class="form-group">
-                                            <!--                                    <div><h4 class="col-sm-6" > Total No. of Rooms :</h4></div>
-                                                                                <div class="col-sm-6">
-                                                                                    <input type="number" class="form-control input"/>
-                                                                                </div>                               -->
-                                            <div class="col-md-6">
-                                                <button class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                                                                <input type="number" ng-model="family1.couple" class="form-control input"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <label  for="input" class=" col-sm-6">Kids :</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family1.kids" class="form-control input"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <label  for="input" class=" col-sm-6">Parents :</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family1.parents" class="form-control input"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <label  for="input" class=" col-sm-6">Guests :</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family1.guest" class="form-control input"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div>
+                                                                            <h4>Number of Bedrooms</h4>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family.coupleNumberRooms" class="form-control input"/>
+                                                                            </div>
+                                                                            <label  for="input" class=" col-sm-6"></label>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family.kidsNumberRooms" class="form-control input"/>
+                                                                            </div>
+                                                                            <label  for="input" class=" col-sm-6"></label>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family.parentsNumberRooms" class="form-control input"/>
+                                                                            </div>
+                                                                            <label  for="input" class=" col-sm-6"></label>
+                                                                        </div>
+                                                                        <div class=" form-group">                                                       
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number" ng-model="family.guestNumberRooms" class="form-control input"/>
+                                                                                <label  for="input" class=" col-sm-6"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <div><h4 class="col-sm-6" > Total No. of Rooms :</h4></div>
+                                                                                                            <div class="col-sm-6">
+                                                                                                                <input type="number" class="form-control input"/>
+                                                                                                            </div>                               
+                                                                                                        </div>
+                                                                        <div class="form-group">
+                                                                                                                <div><h4 class="col-sm-6" > Total No. of Rooms :</h4></div>
+                                                                                                                <div class="col-sm-6">
+                                                                                                                    <input type="number" class="form-control input"/>
+                                                                                                                </div>                               
+                                                                            <div class="col-md-6">
+                                                                                <button class="btn btn-primary">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>-->
                             </div>
                             <nav aria-label="...">
                                 <ul class="pager">
@@ -1332,13 +1332,13 @@
                                             <div class="col-md-2">
                                                 <button class="btn btn-primary pull-right" ng-click="show()">Show</button>
                                             </div>
-                                            <div class="col-md-2">
-                                                <a data-ui-sref="main.guidelines.report_type({userDetails : primaryApplicant})"
-                                                   class="btn btn-primary">
-                                                    <i class="fa"></i>
-                                                    Generate Report
-                                                </a>
-                                            </div>
+                                            <!--                                            <div class="col-md-2">
+                                                                                            <a data-ui-sref="main.guidelines.report_type({userDetails : primaryApplicant})"
+                                                                                               class="btn btn-primary">
+                                                                                                <i class="fa"></i>
+                                                                                                Generate Report
+                                                                                            </a>
+                                                                                        </div>-->
                                         </div>
                                     </div>
                                     <div ng-show="show" class="col-md-12 form-group">   
@@ -1397,14 +1397,23 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>-->
+                                        <div class="row">
+                                            <div>
+                                                <a data-ui-sref="main.guidelines.report_type({userDetails : primaryApplicant})"
+                                                   class="btn btn-primary">
+                                                    <i class="fa"></i>
+                                                    Generate Report
+                                                </a>
+                                            </div>
+                                        </div>
                                         <div>                                            
                                             <h6>Select location by calculated budget ?</h6>                            
                                             <div class="btn-group">                             
-                                                <input placeholder="Select City" class="form-control" uib-typeahead="city.id as city.name for city in searchCities($viewValue)"                                           
+                                                <input placeholder="Select City" class="form-control" uib-typeahead="city.name as city.name for city in searchCities($viewValue)"
                                                        typeahead-on-select="selectCity($item)"                                           
                                                        typeahead-loading="loadingCities" 
                                                        typeahead-no-results="noCitiesFound"                                           
-                                                       ng-model="cityName"  required="required"/>
+                                                       ng-model="city.name"  required="required"/>
                                                 <p ng-show="noCitiesFound" class="help-block text-muted">No City found</p>
                                                 <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                                             </div>
@@ -1422,7 +1431,7 @@
                                                 <label>Choose loan tenure (in years):</label>
                                             </div>
                                             <div class="col-sm-4">                             
-                                                <input type="text" ng-model="selectedNewLoanTenure" class="form-control">
+                                                <input type="number" ng-model="selectedNewLoanTenure" class="form-control">
                                             </div>
                                             <div class="col-md-2">
                                                 <button class="btn btn-primary pull-right" ng-click="showLoanTenureChange(selectedNewLoanTenure)">Show</button>
@@ -1467,19 +1476,19 @@
                             </div>
                         </div>
                         <nav aria-label="...">
-                                <ul class="pager">
-                                    <li class="previous disabled" ng-click="decrementStep()" ng-class="{
+                            <ul class="pager">
+                                <li class="previous disabled" ng-click="decrementStep()" ng-class="{
                                                 disabled: !hasPreviousStep()
                                             }">
-                                        <a href="javascript:void(0);"><span aria-hidden="true">&larr;</span> Prev</a>
-                                    </li>
-                                    <li class="next" ng-click="incrementStep()" ng-class="{
+                                    <a href="javascript:void(0);"><span aria-hidden="true">&larr;</span> Prev</a>
+                                </li>
+                                <li class="next" ng-click="incrementStep()" ng-class="{
                                                 disabled: !hasNextStep()
                                             }">
-                                        <a href="javascript:void(0);">Next <span aria-hidden="true">&rarr;</span></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                                    <a href="javascript:void(0);">Next <span aria-hidden="true">&rarr;</span></a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -96,6 +96,7 @@ angular.module("safedeals.states.guidelines", [])
             };
             $scope.selectCity = function (city) {
                 //only change if not same as previously selected state
+                console.log("City Name KG:%O", city);
                 $scope.cityName = city.name;
                 $scope.cityId = city.id;
                 $scope.city = city;

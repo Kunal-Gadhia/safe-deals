@@ -226,7 +226,9 @@ angular.module("safedeals.states.corporate_site", [])
         })
 
         .controller('PostQueryController', function (EnquiryService, $scope, $state) {
-            $scope.editableEnquiry = {};
+            $scope.editableEnquiry = {
+                'category': "PROPERTY_GUIDANCE"
+            };    
             $scope.saveEnquiry = function (enquiry) {
                 console.log("enquiry name:", enquiry);
                 $scope.sendSms(enquiry.mobileNo);

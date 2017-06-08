@@ -6,7 +6,7 @@
 
 <div class="panel-body thumbnail">
     <div>
-        <h2>Location Selection</h2>
+        <h2>Location Within Budget</h2>
     </div>        
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -68,8 +68,11 @@
                     </div>
                 </form>
             </div>
-            <div class="form-group" ng-hide="hideDescription">
+<!--            <div class="form-group" ng-hide="hideDescription">
                 You Queried for a {{propertySize}} property in {{cityName}} city of {{stateName}} state with minimum budget of &#8377; {{minBudget}} and maximum budget of &#8377; {{maxBudget}}
+            </div>-->
+            <div class="form-group" ng-hide="hideDescription">
+                Following are the locations where you can find location matching to your search criteria
             </div>
             <div class="row form-group">
                 <div id="locationMapContainer" style="height:450px;"></div>
@@ -104,7 +107,7 @@
                                     <span><input type="checkbox" name="Add to compare" ng-model="location.flag"> Add to compare</span>
                                 </div>
                                 <div class="">
-                                    <button ng-click="selectLocation(location)">Select Location</button>
+                                    <button ng-click="selectLocation(location)">Find Property</button>
                                 </div>
                                 <div class="">
                                     <span class="pull-left">
