@@ -153,11 +153,12 @@ angular.module("safedeals", [
                         'password': 'guest'
                     }, function () {
                         console.log("Log in as a guest");
-                        $state.go("corporate_site.home", {reload: 'true'});
+                        $state.go("main.intro.intro_tagline", {reload: 'true'});
                     }, function () {
                         $rootScope.error = "Login Failed. Invalid Credentials.";
                     });
-                    $state.go("corporate_site.home", {reload: 'true'});
+                    //$state.go("main.intro.intro_tagline", {reload: 'true'});
+                    //$state.go("corporate_site.home", {reload: 'true'});
                 });
 //            $state.go('admin.masters');
             }]);
