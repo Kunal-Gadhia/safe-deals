@@ -101,6 +101,58 @@ angular.module("safedeals.states.guidelines", [])
                 $scope.cityId = city.id;
                 $scope.city = city;
             };
+            /////////////////////////GPS Control//////////////////////////////////////
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $scope.$apply(function () {
+                        $scope.position = position;
+                        console.log("What is position :%O", $scope.position);
+                        $scope.latlng = {
+                            'latitude': $scope.position.coords.latitude,
+                            'longitude': $scope.position.coords.longitude
+                        }
+                        console.log("What is Lat Lng :%O", $scope.latLng);
+                        //////////////////////Reverse Geocoding/////////////////////////
+                        new google.maps.Geocoder().geocode({'latLng': $scope.latlng}, function (results, status) {
+                            if (status === google.maps.GeocoderStatus.OK) {
+                                if (results[1]) {
+                                    $scope.address = results[1].address_components;
+
+                                    $scope.gps_data.address = $scope.address;
+                                    //your code here
+
+
+                                    // some example results parsing code
+                                    var i;
+                                    $scope.comune = undefined;
+                                    for (i = 0; i < $scope.gps_data.address.length; i += 1) {
+                                        if ($scope.gps_data.address[i].types.indexOf("administrative_area_level_3") > -1) {
+                                            $scope.comune = $scope.gps_data.address[i].short_name;
+                                            console.log($scope.comune);
+                                        }
+                                    }
+                                    if ($scope.comune === undefined) {
+                                        for (i = 0; i < $scope.gps_data.address.length; i += 1) {
+                                            if ($scope.gps_data.address[i].types.indexOf("locality") > -1) {
+                                                $scope.comune = $scope.gps_data.address[i].short_name;
+                                            }
+                                        }
+                                    }
+                                    console.log("Address :%O", $scope.address);
+
+                                } else {
+                                    console.log('Location not found');
+                                    $scope.firstExecution = false;
+                                }
+                            } else {
+                                console.log('Geocoder failed due to: ' + status);
+                                $scope.firstExecution = false;
+                            }
+                        });
+                        /////////////////////////////////////////////////////////////
+                    });
+                });
+            }
 
             $scope.getCurrentStepIndex = function () {
                 // Get the index of the current step given selection
@@ -282,32 +334,60 @@ angular.module("safedeals.states.guidelines", [])
                     default:
                 }
             };
-            $scope.submitFamilyDetails = function (family) {
-                console.log("family", family);
 
-                $scope.totalRooms = [];
+//            $scope.propertyTypesList = PropertyTypeService.findAllEntries();
+            PropertyTypeService.findAllEntries(function (propertyType) {
+                $scope.propertyTypesList = propertyType;
+                console.log("Property type List :%O", $scope.propertyTypesList);
+            });
+            $scope.family = {};
+            $scope.$watch('family.numberOfRooms', function (room) {
+                console.log("Change Detected:%O", room);
                 $scope.totalNoOfRooms = 0;
-
-                angular.forEach(family, function (room) {
-                    console.log("room", room);
-                    $scope.totalRooms.push(room);
-                });
-                $.each($scope.totalRooms, function () {
-                    $scope.totalNoOfRooms += this;
-                    console.log("total", $scope.totalNoOfRooms);
-                });
-                angular.forEach(family, function (a) {
-                    console.log("aaaaaaaaaaa::::::::", a);
-                });
-                if (family != null) {
-                    alert("Saved successfully");
+                if (room === "1 BHK") {
+                    $scope.totalNoOfRooms = 1;
+                } else if (room === "2 BHK") {
+                    $scope.totalNoOfRooms = 2;
+                } else if (room === "3 BHK") {
+                    $scope.totalNoOfRooms = 3;
+                } else if (room === "4 BHK") {
+                    $scope.totalNoOfRooms = 4;
+                } else if (room === "5 BHK") {
+                    $scope.totalNoOfRooms = 5;
+                } else if (room === "6 BHK") {
+                    $scope.totalNoOfRooms = 6;
                 } else {
-                    alert("Please fill the details");
+                    $scope.totalNoOfRooms = 0;
                 }
-                console.log("Total Number Of Rooms Kunal:%O", $scope.totalNoOfRooms);
+                console.log("What are total Number Of Rooms :%O", $scope.totalNoOfRooms);
+                $scope.submitFamilyDetails($scope.totalNoOfRooms);
+            });
+            $scope.submitFamilyDetails = function (totalRooms) {
+                console.log("family", totalRooms);
+
+//                $scope.totalRooms = [];
+//                $scope.totalNoOfRooms = 0;
+//
+//                angular.forEach(totalRooms, function (room) {
+//                    console.log("room", room);
+//                    $scope.totalRooms.push(room);
+//                });
+//                $.each($scope.totalRooms, function () {
+//                    $scope.totalNoOfRooms += this;
+//                    console.log("total", $scope.totalNoOfRooms);
+//                });
+//                angular.forEach(totalRooms, function (a) {
+//                    console.log("aaaaaaaaaaa::::::::", a);
+//                });
+//                if (totalRooms != null) {
+//                    alert("Saved successfully");
+//                } else {
+//                    alert("Please fill the details");
+//                }
+                console.log("Total Number Of Rooms Kunal:%O", totalRooms);
 
                 $scope.propertyType = PropertyTypeService.findByNumberOfBhkLike({
-                    'numberOfBhkLike': $scope.totalNoOfRooms
+                    'numberOfBhkLike': totalRooms
                 }, function (propertyType) {
                     angular.forEach(propertyType, function (propertyType1) {
                         $scope.propertyTypeArea = propertyType1;

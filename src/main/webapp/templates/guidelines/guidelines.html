@@ -218,6 +218,13 @@
                                 <label></label>
                                 <h3>Type & Size of Property</h3>
                                 <hr>
+                                
+                                <form>
+                                    <select class="form-control" ng-model="family.numberOfRooms">
+                                        <option value="">Select Property Size</option>
+                                        <option ng-repeat="propertyType in propertyTypesList">{{propertyType.numberOfBhk}}</option>
+                                    </select>
+                                </form>
                                 <!--                                <form ng-submit="submitFamilyDetails(family)">
                                                                     <div class=" col-md-6 vertical-line">
                                                                         <div>
