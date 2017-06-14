@@ -659,6 +659,31 @@ angular.module("safedeals.states.location", [])
                     }
                     ;
                 }
+                
+                
+                
+                else if (amenityDetail.name === "Places of Workship") {
+                    $scope.requiredAmenities.push(amenityDetail.name);
+                    console.log("Required Amenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.location.latitude, $scope.location.longitude),
+                        radius: 5000,
+                        types: ['hindu_temple','mosque','church']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.location, $scope.map);
+                        });
+                    }
+                    ;
+                }
+                
+                
+                
                 else if (amenityDetail.name === "School") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
