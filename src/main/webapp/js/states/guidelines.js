@@ -105,48 +105,23 @@ angular.module("safedeals.states.guidelines", [])
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     $scope.$apply(function () {
-                        $scope.position = position;
-                        console.log("What is position :%O", $scope.position);
-                        $scope.latlng = {
-                            'latitude': $scope.position.coords.latitude,
-                            'longitude': $scope.position.coords.longitude
-                        }
-                        console.log("What is Lat Lng :%O", $scope.latLng);
+                        $scope.position = position;                        
+                        var lat = $scope.position.coords.latitude;
+                        var long = $scope.position.coords.longitude;
+                        $scope.latLng = new google.maps.LatLng(lat, long);                        
                         //////////////////////Reverse Geocoding/////////////////////////
-                        new google.maps.Geocoder().geocode({'latLng': $scope.latlng}, function (results, status) {
-                            if (status === google.maps.GeocoderStatus.OK) {
-                                if (results[1]) {
-                                    $scope.address = results[1].address_components;
+                        new google.maps.Geocoder().geocode({'latLng': $scope.latLng}, function (results, status) {
 
-                                    $scope.gps_data.address = $scope.address;
-                                    //your code here
-
-
-                                    // some example results parsing code
-                                    var i;
-                                    $scope.comune = undefined;
-                                    for (i = 0; i < $scope.gps_data.address.length; i += 1) {
-                                        if ($scope.gps_data.address[i].types.indexOf("administrative_area_level_3") > -1) {
-                                            $scope.comune = $scope.gps_data.address[i].short_name;
-                                            console.log($scope.comune);
-                                        }
-                                    }
-                                    if ($scope.comune === undefined) {
-                                        for (i = 0; i < $scope.gps_data.address.length; i += 1) {
-                                            if ($scope.gps_data.address[i].types.indexOf("locality") > -1) {
-                                                $scope.comune = $scope.gps_data.address[i].short_name;
-                                            }
-                                        }
-                                    }
-                                    console.log("Address :%O", $scope.address);
-
-                                } else {
-                                    console.log('Location not found');
-                                    $scope.firstExecution = false;
-                                }
+                            console.log("Status :%O", status);
+                            if (status === google.maps.GeocoderStatus.OK) {                                
+                                $scope.gpsCityName = results[5].address_components[0].long_name;
+                                CityService.findByCityName({
+                                    'name': $scope.gpsCityName
+                                }, function (cityDate) {                                    
+                                    $scope.selectCity(cityDate);
+                                });
                             } else {
                                 console.log('Geocoder failed due to: ' + status);
-                                $scope.firstExecution = false;
                             }
                         });
                         /////////////////////////////////////////////////////////////

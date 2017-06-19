@@ -50,8 +50,8 @@ angular.module("safedeals.states.location", [])
 //                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
                     console.log("Min Budget Kunal:%O", $scope.minBudget);
                     console.log("Max Budget Kunal :%O", $scope.maxBudget);
-//                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
-//                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
+                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
+                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
                     $scope.searchPropertySize = $stateParams.propertyDetails;
                     if ($stateParams.propertyDetails === "600") {
                         $scope.propertySize = "1 BHK";
