@@ -16,6 +16,11 @@ angular.module("safedeals.services.property_type")
                         'numberOfBhkLike': '@numberOfBhkLike'
                     },
                     'isArray': true
+                },
+                'findAllEntries':{
+                    'method': 'GET',
+                    'url': restRoot + '/property_type/find/all_entries',                    
+                    'isArray': true
                 }
             });
         });

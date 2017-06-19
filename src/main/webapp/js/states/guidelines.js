@@ -101,6 +101,33 @@ angular.module("safedeals.states.guidelines", [])
                 $scope.cityId = city.id;
                 $scope.city = city;
             };
+            /////////////////////////GPS Control//////////////////////////////////////
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $scope.$apply(function () {
+                        $scope.position = position;                        
+                        var lat = $scope.position.coords.latitude;
+                        var long = $scope.position.coords.longitude;
+                        $scope.latLng = new google.maps.LatLng(lat, long);                        
+                        //////////////////////Reverse Geocoding/////////////////////////
+                        new google.maps.Geocoder().geocode({'latLng': $scope.latLng}, function (results, status) {
+
+                            console.log("Status :%O", status);
+                            if (status === google.maps.GeocoderStatus.OK) {                                
+                                $scope.gpsCityName = results[5].address_components[0].long_name;
+                                CityService.findByCityName({
+                                    'name': $scope.gpsCityName
+                                }, function (cityDate) {                                    
+                                    $scope.selectCity(cityDate);
+                                });
+                            } else {
+                                console.log('Geocoder failed due to: ' + status);
+                            }
+                        });
+                        /////////////////////////////////////////////////////////////
+                    });
+                });
+            }
 
             $scope.getCurrentStepIndex = function () {
                 // Get the index of the current step given selection
@@ -282,32 +309,60 @@ angular.module("safedeals.states.guidelines", [])
                     default:
                 }
             };
-            $scope.submitFamilyDetails = function (family) {
-                console.log("family", family);
 
-                $scope.totalRooms = [];
+//            $scope.propertyTypesList = PropertyTypeService.findAllEntries();
+            PropertyTypeService.findAllEntries(function (propertyType) {
+                $scope.propertyTypesList = propertyType;
+                console.log("Property type List :%O", $scope.propertyTypesList);
+            });
+            $scope.family = {};
+            $scope.$watch('family.numberOfRooms', function (room) {
+                console.log("Change Detected:%O", room);
                 $scope.totalNoOfRooms = 0;
-
-                angular.forEach(family, function (room) {
-                    console.log("room", room);
-                    $scope.totalRooms.push(room);
-                });
-                $.each($scope.totalRooms, function () {
-                    $scope.totalNoOfRooms += this;
-                    console.log("total", $scope.totalNoOfRooms);
-                });
-                angular.forEach(family, function (a) {
-                    console.log("aaaaaaaaaaa::::::::", a);
-                });
-                if (family != null) {
-                    alert("Saved successfully");
+                if (room === "1 BHK") {
+                    $scope.totalNoOfRooms = 1;
+                } else if (room === "2 BHK") {
+                    $scope.totalNoOfRooms = 2;
+                } else if (room === "3 BHK") {
+                    $scope.totalNoOfRooms = 3;
+                } else if (room === "4 BHK") {
+                    $scope.totalNoOfRooms = 4;
+                } else if (room === "5 BHK") {
+                    $scope.totalNoOfRooms = 5;
+                } else if (room === "6 BHK") {
+                    $scope.totalNoOfRooms = 6;
                 } else {
-                    alert("Please fill the details");
+                    $scope.totalNoOfRooms = 0;
                 }
-                console.log("Total Number Of Rooms Kunal:%O", $scope.totalNoOfRooms);
+                console.log("What are total Number Of Rooms :%O", $scope.totalNoOfRooms);
+                $scope.submitFamilyDetails($scope.totalNoOfRooms);
+            });
+            $scope.submitFamilyDetails = function (totalRooms) {
+                console.log("family", totalRooms);
+
+//                $scope.totalRooms = [];
+//                $scope.totalNoOfRooms = 0;
+//
+//                angular.forEach(totalRooms, function (room) {
+//                    console.log("room", room);
+//                    $scope.totalRooms.push(room);
+//                });
+//                $.each($scope.totalRooms, function () {
+//                    $scope.totalNoOfRooms += this;
+//                    console.log("total", $scope.totalNoOfRooms);
+//                });
+//                angular.forEach(totalRooms, function (a) {
+//                    console.log("aaaaaaaaaaa::::::::", a);
+//                });
+//                if (totalRooms != null) {
+//                    alert("Saved successfully");
+//                } else {
+//                    alert("Please fill the details");
+//                }
+                console.log("Total Number Of Rooms Kunal:%O", totalRooms);
 
                 $scope.propertyType = PropertyTypeService.findByNumberOfBhkLike({
-                    'numberOfBhkLike': $scope.totalNoOfRooms
+                    'numberOfBhkLike': totalRooms
                 }, function (propertyType) {
                     angular.forEach(propertyType, function (propertyType1) {
                         $scope.propertyTypeArea = propertyType1;

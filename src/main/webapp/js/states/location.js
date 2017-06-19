@@ -50,8 +50,8 @@ angular.module("safedeals.states.location", [])
 //                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
                     console.log("Min Budget Kunal:%O", $scope.minBudget);
                     console.log("Max Budget Kunal :%O", $scope.maxBudget);
-//                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
-//                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
+                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
+                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
                     $scope.searchPropertySize = $stateParams.propertyDetails;
                     if ($stateParams.propertyDetails === "600") {
                         $scope.propertySize = "1 BHK";
@@ -323,6 +323,11 @@ angular.module("safedeals.states.location", [])
                 'preserveViewport': true,
                 'suppressMarkers': true
             });
+//            $scope.clearMarkers = function () {
+//                console.log("Inside Clear Marker");
+//                setMapOnAll(null);
+//            };
+
             $scope.distanceService = new google.maps.DistanceMatrixService();
 //            $scope.displayDistance = false;
 //            var mapContainer1 = document.getElementById("locationDetailMapContainerWorkplaces");
@@ -343,15 +348,17 @@ angular.module("safedeals.states.location", [])
                 console.log("Coming To Draw Map 3 :" + mapContainer3);
                 $scope.map3 = new google.maps.Map(mapContainer3, mapProperty);
             };
+
             var drawMarker = function (position, title, map) {
-                console.log("Position in marking:%O", position);
-                new google.maps.Marker({
+                console.log("Position in marking 111:%O", position);                
+                var marker = new google.maps.Marker({
                     map: map,
                     position: position,
                     title: title,
                     icon: 'images/icons_svg/dot.png'
                 });
             };
+
             var drawAmenityMarker = function (position, title, location, map) {
                 console.log("Position :%O", position);
                 console.log("Map :%O", map);
@@ -359,7 +366,7 @@ angular.module("safedeals.states.location", [])
                     map: map,
                     position: position,
                     title: title,
-                    icon: 'images/icons_svg/airport.png'
+//                    icon: 'images/icons_svg/airport.png'
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {
