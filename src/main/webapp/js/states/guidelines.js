@@ -105,19 +105,19 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     $scope.$apply(function () {
-                        $scope.position = position;                        
+                        $scope.position = position;
                         var lat = $scope.position.coords.latitude;
                         var long = $scope.position.coords.longitude;
-                        $scope.latLng = new google.maps.LatLng(lat, long);                        
+                        $scope.latLng = new google.maps.LatLng(lat, long);
                         //////////////////////Reverse Geocoding/////////////////////////
                         new google.maps.Geocoder().geocode({'latLng': $scope.latLng}, function (results, status) {
-
+                            console.log("Results :%O", results);
                             console.log("Status :%O", status);
-                            if (status === google.maps.GeocoderStatus.OK) {                                
+                            if (status === google.maps.GeocoderStatus.OK) {
                                 $scope.gpsCityName = results[5].address_components[0].long_name;
                                 CityService.findByCityName({
                                     'name': $scope.gpsCityName
-                                }, function (cityDate) {                                    
+                                }, function (cityDate) {
                                     $scope.selectCity(cityDate);
                                 });
                             } else {

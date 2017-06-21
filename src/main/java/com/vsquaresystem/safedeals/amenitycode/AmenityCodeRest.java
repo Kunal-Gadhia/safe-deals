@@ -54,7 +54,7 @@ public class AmenityCodeRest {
 
     @RequestMapping(value = "/find_by_tab_name", method = RequestMethod.GET)
     public List<AmenityCode> findByTabName(@RequestParam("name") String name) {
-        return amenityCodeDAL.findByNameLike(name);
+        return amenityCodeDAL.findByTabName(name);
     }
     
     @RequestMapping(value = "/find_amenities", method = RequestMethod.GET)

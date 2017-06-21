@@ -39,19 +39,15 @@ angular.module("safedeals.states.location", [])
                         $scope.state = stateObject;
                     });
 
-                    var minimumBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
-                    var maximumBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
+                    var propertyDetails = parseInt($stateParams.propertyDetails, 10);
+                    console.log("Property Details in INT :%O", propertyDetails);
+
+                    var minimumBudget = parseInt($stateParams.locationMinBudget * propertyDetails);
+                    var maximumBudget = parseInt($stateParams.locationMaxBudget * propertyDetails);
 
                     console.log("Min Budget :%O", minimumBudget);
                     console.log("Max Budget :%O", maximumBudget);
-                    $scope.minBudget = minimumBudget;
-                    $scope.maxBudget = maximumBudget;
-//                    $scope.minBudget = $stateParams.locationMinBudget * $stateParams.propertyDetails;
-//                    $scope.maxBudget = $stateParams.locationMaxBudget * $stateParams.propertyDetails;
-                    console.log("Min Budget Kunal:%O", $scope.minBudget);
-                    console.log("Max Budget Kunal :%O", $scope.maxBudget);
-                    $("#minBudget").val($stateParams.locationMinBudget * $stateParams.propertyDetails);
-                    $("#maxBudget").val($stateParams.locationMaxBudget * $stateParams.propertyDetails);
+
                     $scope.searchPropertySize = $stateParams.propertyDetails;
                     if ($stateParams.propertyDetails === "600") {
                         $scope.propertySize = "1 BHK";
@@ -350,7 +346,7 @@ angular.module("safedeals.states.location", [])
             };
 
             var drawMarker = function (position, title, map) {
-                console.log("Position in marking 111:%O", position);                
+                console.log("Position in marking 111:%O", position);
                 var marker = new google.maps.Marker({
                     map: map,
                     position: position,
@@ -590,6 +586,7 @@ angular.module("safedeals.states.location", [])
                     }
                     ;
                 }
+
                 else if (amenityDetail.name === "Hospital") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -666,21 +663,21 @@ angular.module("safedeals.states.location", [])
                     }
                     ;
                 }
-                
-                
-                
-                else if (amenityDetail.name === "Places of Workship") {
+
+
+
+                else if (amenityDetail.name === "Places Of Workship") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required Amenities :%O", $scope.requiredAmenities);
                     var request = {
                         location: new google.maps.LatLng($scope.location.latitude, $scope.location.longitude),
                         radius: 5000,
-                        types: ['hindu_temple','mosque','church']
+                        types: ['hindu_temple', 'mosque', 'church']
                     };
                     var service = new google.maps.places.PlacesService($scope.map);
                     service.nearbySearch(request, callback);
                     function callback(results, status) {
-                        console.log("Results For Schools :%O", results);
+                        console.log("Results For Places Of Workship :%O", results);
                         angular.forEach(results, function (result) {
                             console.log("Result in Loop :%O", result);
                             $scope.createAmenityMarker(result, $scope.location, $scope.map);
@@ -688,9 +685,9 @@ angular.module("safedeals.states.location", [])
                     }
                     ;
                 }
-                
-                
-                
+
+
+
                 else if (amenityDetail.name === "School") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
@@ -880,6 +877,8 @@ angular.module("safedeals.states.location", [])
             });
             $scope.amenityCodes = AmenityCodeService.findByTabName({
                 'name': $scope.selection
+            }, function (result) {
+                console.log("What is the Result :%O", result);
             });
             $scope.locations = [];
             $scope.getCurrentStepIndex = function () {
@@ -914,6 +913,7 @@ angular.module("safedeals.states.location", [])
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
                 if (locationstep === "Amenities") {
+                    console.log("Inside Amenities Kunal");
 //                    $scope.amenityCodes = AmenityCodeService.findByTabName({
 //                       'name' : AMENITIES
 //                    });
