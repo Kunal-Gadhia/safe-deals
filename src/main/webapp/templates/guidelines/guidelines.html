@@ -71,7 +71,13 @@
                                         <div class='form-group'>
                                             <div class="col-md-4"><label>Date of Birth <span class="compulsory_field">*</span>:</label> </div> 
                                             <div class="col-md-8">
-                                                <p class="input-group">
+                                                <!--NEW DATEPICKER-->
+                                                    <p class="form-inline">
+                                                    <ng-combo-date-picker ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
+                                                    </p>
+
+                                                    <!--OLD DATEPICKER-->
+<!--                                               <p class="input-group">
                                                     <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)"
                                                            popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" required>
                                                     <span class="input-group-btn">
@@ -79,7 +85,7 @@
                                                             <i class="fa fa-calendar"></i>
                                                         </button>
                                                     </span>     
-                                                </p>
+                                                </p>-->
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -106,14 +112,20 @@
                                             <div class='form-group'>
                                                 <div class="col-md-4"><label>Date of Birth<span class="compulsory_field ">*</span>:</label></div>  
                                                 <div class="col-md-8">
-                                                    <p class="input-group">
-                                                        <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" is-open="datePicker1.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default input" ng-click="datePicker1.toggle()">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </button>
-                                                        </span>
+                                                    <!--NEW DATEPICKER-->
+                                                    <p class="form-inline">
+                                                    <ng-combo-date-picker ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
                                                     </p>
+
+                                                    <!--OLD DATEPICKER-->
+                                                    <!--                                                    <p class="input-group">
+                                                                                                            <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" is-open="datePicker1.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
+                                                                                                            <span class="input-group-btn">
+                                                                                                                <button type="button" class="btn btn-default input" ng-click="datePicker1.toggle()">
+                                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                                </button>
+                                                                                                            </span>
+                                                                                                        </p>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +153,13 @@
                                             <div class='form-group'>
                                                 <div class="col-md-4"><label>Date of Birth<span class="compulsory_field">*</span>:</label></div>
                                                 <div class="col-md-8">
-                                                    <p class="input-group">
+                                                    <!--NEW DATEPICKER-->
+                                                    <p class="form-inline">
+                                                    <ng-combo-date-picker ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
+                                                    </p>
+
+                                                    <!--OLD DATEPICKER-->
+<!--                                                    <p class="input-group">
                                                         <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)"
                                                                is-open="datePicker2.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
                                                         <span class="input-group-btn">
@@ -149,7 +167,7 @@
                                                                 <i class="fa fa-calendar"></i>
                                                             </button>
                                                         </span>
-                                                    </p>
+                                                    </p>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -218,7 +236,7 @@
                                 <label></label>
                                 <h3>Type & Size of Property</h3>
                                 <hr>
-                                
+
                                 <form>
                                     <select class="form-control" ng-model="family.numberOfRooms">
                                         <option value="">Select Property Size</option>
@@ -1426,7 +1444,7 @@
                                             </div>
                                             <a data-ui-sref="main.location({ locationMinBudget: eligibleMinSqFtArea , locationMaxBudget: eligibleMaxSqFtArea , propertyDetails: carpetArea , cityId: 78})"
                                                class="btn btn-primary">
-                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                                <i class="fa fa-arrow-right fa-1x"></i>
                                             </a>
                                         </div>
                                     </div>

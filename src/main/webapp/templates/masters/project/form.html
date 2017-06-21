@@ -150,30 +150,44 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <!--NEW DATEPICKER-->
                                             <label>Booking Start Date</label>
-                                            <p class="input-group">
-                                                <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.bookingStartDate"
-                                                       popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" required="">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default" ng-click="datePicker.toggle()">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </button>
-                                                </span>
+                                            <p class="form-inline">
+                                            <ng-combo-date-picker ng-model="editableProject.bookingStartDate" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                             </p>
+
+                                            <!--OLD DATEPICKER-->
+                                            <!--                                            <label>Booking Start Date</label>
+                                                                                        <p class="input-group">
+                                                                                            <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.bookingStartDate"
+                                                                                                   popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" required="">
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="datePicker.toggle()">
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </button>
+                                                                                            </span>
+                                                                                        </p>-->
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <!--NEW DATEPICKER-->
                                             <label>Completion Date</label>
-                                            <p class="input-group">
-                                                <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.completionDate"
-                                                       popup-placement="bottom"   is-open="completionDatePicker.opened" datepicker-options="dateOptions" close-text="Close" required="">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default" ng-click="completionDatePicker.toggle()">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </button>
-                                                </span>
+                                            <p class="form-inline">
+                                            <ng-combo-date-picker ng-model="editableProject.completionDate" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                             </p>
+                                            
+                                            <!--OLD DATEPICKER-->
+                                            <!--                                            <label>Completion Date</label>
+                                                                                        <p class="input-group">
+                                                                                            <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.completionDate"
+                                                                                                   popup-placement="bottom"   is-open="completionDatePicker.opened" datepicker-options="dateOptions" close-text="Close" required="">
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="completionDatePicker.toggle()">
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </button>
+                                                                                            </span>
+                                                                                        </p>-->
                                         </div>
                                     </div>
                                 </div>
@@ -276,16 +290,23 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
+                                                <!--NEW DATEPICKER-->
                                                 <label>Offer Valid Till</label>
-                                                <p class="input-group">
-                                                    <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.offerValidTill"
-                                                           popup-placement="bottom"   is-open="offerValidTill.opened" datepicker-options="dateOptions" close-text="Close" required>
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default" ng-click="offerValidTill.toggle()">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </button>
-                                                    </span>
+                                                <p class="form-inline">
+                                                <ng-combo-date-picker ng-model="editableProject.offerValidTill" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                                 </p>
+
+                                                <!--OLD DATEPICKER-->
+                                                <!--                                                <label>Offer Valid Till</label>
+                                                                                                <p class="input-group">
+                                                                                                    <input type="text" class="form-control" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="editableProject.offerValidTill"
+                                                                                                           popup-placement="bottom"   is-open="offerValidTill.opened" datepicker-options="dateOptions" close-text="Close" required>
+                                                                                                    <span class="input-group-btn">
+                                                                                                        <button type="button" class="btn btn-default" ng-click="offerValidTill.toggle()">
+                                                                                                            <i class="fa fa-calendar"></i>
+                                                                                                        </button>
+                                                                                                    </span>
+                                                                                                </p>-->
                                             </div>
                                         </div>
                                         <div class="col-sm-6">

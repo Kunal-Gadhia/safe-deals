@@ -1,4 +1,4 @@
-angular.module("safedeals.states.event", [])
+angular.module("safedeals.states.event", ['ngComboDatePicker'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('admin.masters_event', {
                 'url': '/event_master?offset',
@@ -125,12 +125,13 @@ angular.module("safedeals.states.event", [])
         .controller('EventAddController', function (EventService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableEvent = {};
 
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+//OLD DATEPICKER
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
 
             $scope.saveEvent = function (event) {
                 console.log("event name:", event);
@@ -159,12 +160,13 @@ angular.module("safedeals.states.event", [])
         .controller('EventEditController', function (EventService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableEvent = EventService.get({'id': $stateParams.eventId});
 
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+//OLD DATEPICKER
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
 
             $scope.saveEvent = function (event) {
                 event.$save(function () {
