@@ -1,4 +1,4 @@
-angular.module("safedeals.states.guidelines", [])
+angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('main.guidelines', {
                 'url': '/guidelines',
@@ -259,24 +259,27 @@ angular.module("safedeals.states.guidelines", [])
                     $scope.applicantTwo = false;
                 }
             };
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.datePicker1 = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.datePicker2 = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+            
+//OLD DATEPICKER            
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.datePicker1 = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.datePicker2 = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+
             $scope.personalInfo = function () {
                 console.log("selectedOption", $scope.selectedOption.id);
                 switch ($scope.selectedOption.id) {

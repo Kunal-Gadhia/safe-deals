@@ -1,4 +1,4 @@
-angular.module("safedeals.states.property_master", [])
+angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('admin.masters_property', {
                 'url': '/property_master?offset',
@@ -269,36 +269,39 @@ angular.module("safedeals.states.property_master", [])
             });
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.completionDatePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.offerValidTill = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.possessionDate = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.yearOfConstruction = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+            
+//OLD DATEPICKER             
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.completionDatePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.offerValidTill = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.possessionDate = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.yearOfConstruction = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+            
             $scope.saveProperty = function (property) {
                 console.log("Property :%O", property);
                 PropertyService.save(property, function () {

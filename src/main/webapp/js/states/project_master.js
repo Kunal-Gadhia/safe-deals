@@ -1,4 +1,4 @@
-angular.module("safedeals.states.project_master", [])
+angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('admin.masters_project', {
                 'url': '/project_master?offset',
@@ -112,24 +112,27 @@ angular.module("safedeals.states.project_master", [])
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.completionDatePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.offerValidTill = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+            
+//OLD DATEPICKER          
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.completionDatePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.offerValidTill = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+
             $scope.saveProject = function (project) {
                 console.log("Project :%O", project);
                 ProjectService.save(project, function () {
@@ -559,24 +562,27 @@ angular.module("safedeals.states.project_master", [])
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            $scope.datePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.completionDatePicker = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
-            $scope.offerValidTill = {
-                opened: false,
-                toggle: function () {
-                    this.opened = !this.opened;
-                }
-            };
+            
+//OLD DATEPICKER
+//            $scope.datePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.completionDatePicker = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+//            $scope.offerValidTill = {
+//                opened: false,
+//                toggle: function () {
+//                    this.opened = !this.opened;
+//                }
+//            };
+
             $scope.saveProject = function (project) {
                 console.log("Project :%O", project);
                 project.$save(project, function () {
