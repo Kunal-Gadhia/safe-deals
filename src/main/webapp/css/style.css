@@ -11,6 +11,10 @@
     margin-top: 65px;
 }
 
+.left_margin{
+    margin-left: 15px;
+}
+
 /*----icon height-----*/
 .icon_ht{
     height: 60px;

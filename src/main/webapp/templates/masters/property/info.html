@@ -14,204 +14,216 @@
                 </h3>
             </div>
             <div class="modal-body">
-                <h4> <u>Basic Details</u> : </h4>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Property Name</label> 
-                            <span> : {{editableProperty.name}}</span>
+                <div>
+                    <h4> <u>Basic Details</u> : </h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Name</label> 
+                                <span> : {{editableProperty.name}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <span> : {{editableProperty.city.name}}</span>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <span> : {{editableProperty.city.name}}</span>
+                            </div>
                         </div>
-                    </div>
-                </div> 
+                    </div> 
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Location</label>                                                    
-                            <span> : {{editableProperty.location.name}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location</label>                                                    
+                                <span> : {{editableProperty.location.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Type Of Property</label>                                                    
+                                <span> : {{editableProperty.propertyType}}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Type Of Property</label>                                                    
-                            <span> : {{editableProperty.propertyType}}</span>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Size</label>
+                                <span> : {{editableProperty.propertySize}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Size</label>
+                                <span> : {{editableProperty.size}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price Range</label>
+                                <span> : {{editableProperty.priceRange}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Building Age</label>
+                                <span> : {{editableProperty.buildingAge}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Floors</label>                                                    
+                                <span> : {{editableProperty.totalFloors}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Entry Facing</label>                                                    
+                                <span> : {{editableProperty.entryFacing}}</span>
+                            </div>
+                        </div>
+                    </div>    
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Building Condition</label>
+                                <span> : {{editableProperty.buildingCondition}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Name</label>                                                    
+                                <span> : {{editableProperty.project.name}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Property Size</label>
-                            <span> : {{editableProperty.propertySize}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label> Size</label>
-                            <span> : {{editableProperty.size}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Price Range</label>
-                            <span> : {{editableProperty.priceRange}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label> Building Age</label>
-                            <span> : {{editableProperty.buildingAge}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Total Floors</label>                                                    
-                            <span> : {{editableProperty.totalFloors}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Entry Facing</label>                                                    
-                            <span> : {{editableProperty.entryFacing}}</span>
-                        </div>
-                    </div>
-                </div>    
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Building Condition</label>
-                            <span> : {{editableProperty.buildingCondition}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Project Name</label>                                                    
-                            <span> : {{editableProperty.project.name}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
+                <div>
                     <h4> <u>Connectivity</u> : </h4>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Major Approach Road</label>
-                            <span> : {{editableProperty.road.name}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Major Approach Road</label>
+                                <span> : {{editableProperty.road.name}}</span>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Public Transport : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="publicTransportObject in editableProperty.publicTransportObjects">{{publicTransportObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div> 
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Public Transport : </label>                                                    
-                            <ul>
-                                <li ng-repeat="publicTransportObject in editableProperty.publicTransportObjects">{{publicTransportObject.name}}</li>
-                            </ul>
-                        </div>                 
-                    </div> 
                 </div>
 
-                <div class="row">
+                <div>
                     <h4> <u>Costing</u> : </h4>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Offered Price</label>
-                            <span> : {{editableProperty.offeredPrice}}</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Offered Price</label>
+                                <span> : {{editableProperty.offeredPrice}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Discount</label>
+                                <span> : {{editableProperty.discount}}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Discount</label>
-                            <span> : {{editableProperty.discount}}</span>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Offer Valid Till</label>
+                                <span> : {{editableProperty.offerValidTill}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Payment Schedule</label>
+                                <span> : {{editableProperty.paymentSchedule}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Offer Valid Till</label>
-                            <span> : {{editableProperty.offerValidTill}}</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Payment Schedule</label>
-                            <span> : {{editableProperty.paymentSchedule}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
+                <div>
                     <h4> <u>Demand for Rental/ Retail</u> : </h4>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Workplace : </label>                                                    
-                            <ul>
-                                <li ng-repeat="workplacesObject in editableProperty.workplacesObjects">{{workplacesObject.name}}</li>
-                            </ul>
-                        </div>                 
-                    </div> 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>projects Nearby : </label>                                                    
-                            <ul>
-                                <li ng-repeat="projectsNearbyObject in editableProperty.projectsNearbyObjects">{{projectsNearbyObject.name}}</li>
-                            </ul>
-                        </div>                 
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Workplace : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="workplacesObject in editableProperty.workplacesObjects">{{workplacesObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div> 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>projects Nearby : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="projectsNearbyObject in editableProperty.projectsNearbyObjects">{{projectsNearbyObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div> 
+                    </div>
                 </div>
 
-                <div class="row">
+                <div>
                     <h4> <u>Livability</u> : </h4>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Basic Amenities : </label>                                                    
-                            <ul>
-                                <li ng-repeat="basicAmenitiesObject in editableProperty.basicAmenitiesObjects">{{basicAmenitiesObject.name}}</li>
-                            </ul>
-                        </div>                 
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Luxury Amenities : </label>                                                    
-                            <ul>
-                                <li ng-repeat="luxuryAmenitiesObject in editableProperty.luxuryAmenitiesObjects">{{luxuryAmenitiesObject.name}}</li>
-                            </ul>
-                        </div>                 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Basic Amenities : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="basicAmenitiesObject in editableProperty.basicAmenitiesObjects">{{basicAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Luxury Amenities : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="luxuryAmenitiesObject in editableProperty.luxuryAmenitiesObjects">{{luxuryAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div>
                     <h4> <u>Marketability</u> : </h4>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Approved Banks : </label>                                                    
-                            <ul>
-                                <li ng-repeat="approvedBanksObject in editableProperty.approvedBanksObjects">{{approvedBanksObject.name}}</li>
-                            </ul>
-                        </div>                 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Approved Banks : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="approvedBanksObject in editableProperty.approvedBanksObjects">{{approvedBanksObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Amenities within Properties : </label>                                                    
+                                <ul class="left_margin">
+                                    <li ng-repeat="privateAmenitiesObject in editableProperty.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
+                                </ul>
+                            </div>                 
+                        </div> 
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label> Amenities within Properties : </label>                                                    
-                            <ul>
-                                <li ng-repeat="privateAmenitiesObject in editableProperty.privateAmenitiesObjects">{{privateAmenitiesObject.name}}</li>
-                            </ul>
-                        </div>                 
-                    </div> 
                 </div>
 
                 <div class="row">
@@ -224,8 +236,8 @@
                     </div>
                 </div>
 
+                <h4> <u>Unit Details</u> : </h4>
                 <div class="row">
-                    <h4> <u>Unit Details</u> : </h4>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Carpet Area</label>
