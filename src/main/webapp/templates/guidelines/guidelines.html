@@ -69,7 +69,7 @@
                                     </div>
                                     <div class='form-group'>
                                         <div class="col-md-4" style="width: 32.333333%;"><label>Date of Birth <span class="compulsory_field">*</span>:</label> </div> 
-                                        <div class="col-md-8">
+                                        <div class="col-md-8" style="padding-left: 19px;">
                                             <!--NEW DATEPICKER-->
                                             <p class="form-inline">
                                             <ng-combo-date-picker ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
@@ -1498,5 +1498,5 @@
             </div>
         </div>
     </form>
-    <div data-ui-view></div>    
 </div>
+<div data-ui-view></div>    
