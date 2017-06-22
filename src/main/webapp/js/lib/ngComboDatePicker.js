@@ -381,9 +381,9 @@ angular.module("ngComboDatePicker", [])
 
                     // Generate HTML code.
                     var html =
-                            '<select ng-disabled="ngDisabled === true || ngDisabled[0] === true" ng-model="date" ng-blur="touched()" ' + strAttrs[0] + ' ng-options="date.value as date.name disable when date.disabled for date in dates"></select>' +
-                            '<select ng-disabled="ngDisabled === true || ngDisabled[1] === true" ng-model="month" ng-blur="touched()" ' + strAttrs[1] + ' ng-options="month.value as month.name disable when month.disabled for month in months"></select>' +
-                            '<select ng-disabled="ngDisabled === true || ngDisabled[2] === true" ng-model="year" ng-blur="touched()" ' + strAttrs[2] + ' ng-options="year.value as year.name disable when year.disabled for year in years"></select>'
+                            '<select ng-disabled="ngDisabled === true || ngDisabled[2] === true" ng-model="year" ng-blur="touched()" ' + strAttrs[0] + ' ng-options="year.value as year.name disable when year.disabled for year in years"></select>' +
+                            '<select ng-disabled="ngDisabled === true || ngDisabled[1] === true" ng-model="month" ng-blur="touched()" ' + strAttrs[1] + ' ng-options="month.value as month.name disable when month.disabled for month in months"></select>' + 
+                            '<select ng-disabled="ngDisabled === true || ngDisabled[0] === true" ng-model="date" ng-blur="touched()" ' + strAttrs[2] + ' ng-options="date.value as date.name disable when date.disabled for date in dates"></select>' 
                             ;
 
                     return html;
