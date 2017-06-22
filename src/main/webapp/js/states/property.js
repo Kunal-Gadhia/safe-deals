@@ -794,7 +794,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'id': property.majorApproachRoad
                 });
                 property.propertySizeObject = PropertyTypeService.get({
-                   'id' : property.propertySize
+                    'id': property.propertySize
                 });
                 property.publicTransportObjects = [];
                 console.log("Public Transport :%O", property.publicTransport);
@@ -894,7 +894,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     }
                     ;
                 }
-                
+
                 else if (amenityDetail.name === "Public Transport") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1211,6 +1211,26 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'amenityCodeId': amenityCode.id
                 });
                 console.log("Amenities List :%O", $scope.amenitiesList);
+
+                if (amenityCode.name === "Landmark") {
+     
+                    console.log("Required AMenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
+                        radius: 5000,
+                        types: ['point_of_interest']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.property, $scope.map);
+                        });
+                    }
+                    ;
+                }
             };
             $scope.getWorkplaceByAmenityCode = function (amenityCode) {
                 console.log("Amenity COde :%O", amenityCode);

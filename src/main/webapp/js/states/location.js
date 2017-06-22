@@ -358,12 +358,30 @@ angular.module("safedeals.states.location", [])
             var drawAmenityMarker = function (position, title, location, map) {
                 console.log("Position :%O", position);
                 console.log("Map :%O", map);
+                var markers = [];
+                function setMapOnAll(map) {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(map);
+                    }
+                }
+//                setMapOnAll(null);
+                console.log("What Happenned, are markers cleared");
                 var marker = new google.maps.Marker({
                     map: map,
                     position: position,
                     title: title,
 //                    icon: 'images/icons_svg/airport.png'
                 });
+                markers.push(marker);
+                console.log("Markers Array :%O", markers);
+                function setMapOnAll(map) {
+                    console.log("Setting map null :%O", map);
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(map);
+                    }
+                }
+
+                setMapOnAll(null);
 
                 google.maps.event.addListener(marker, 'click', function () {
                     $scope.infowindow.setContent(title);
@@ -895,10 +913,36 @@ angular.module("safedeals.states.location", [])
 //            $scope.amenityCodes = AmenityCodeService.query();
             console.log("Amenity Codes :%O", $scope.amenityCodes);
             $scope.getAmenityByAmenityCode = function (amenityCode) {
-                console.log("Amenity COde :%O", amenityCode);
+                console.log("Amenity COoode :%O", amenityCode);
                 $scope.amenitiesList = AmenityService.findByAmenityCode({
                     'amenityCodeId': amenityCode.id
                 });
+
+                if (amenityCode.name === "Landmark") {
+                    console.log("Amenity COde Name :%O", amenityCode.name);
+//                    $scope.requiredAmenities.push(amenityCode.name);
+//                    console.log("Required Amenities :%O", $scope.requiredAmenities);
+                    var request = {
+                        location: new google.maps.LatLng($scope.location.latitude, $scope.location.longitude),
+                        radius: 5000,
+                        types: ['point_of_interest']
+                    };
+                    var service = new google.maps.places.PlacesService($scope.map);
+                    service.nearbySearch(request, callback);
+                    function callback(results, status) {
+                        console.log("Results For Schools :%O", results);
+                        angular.forEach(results, function (result) {
+                            console.log("Result in Loop :%O", result);
+                            $scope.createAmenityMarker(result, $scope.location, $scope.map);
+                        });
+                    }
+                    ;
+                }
+
+
+
+
+
                 console.log("Amenities List :%O", $scope.amenitiesList);
             };
             $scope.getWorkplaceByAmenityCode = function (amenityCode) {
