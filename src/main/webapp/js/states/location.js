@@ -358,12 +358,30 @@ angular.module("safedeals.states.location", [])
             var drawAmenityMarker = function (position, title, location, map) {
                 console.log("Position :%O", position);
                 console.log("Map :%O", map);
+                var markers = [];
+                function setMapOnAll(map) {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(map);
+                    }
+                }
+//                setMapOnAll(null);
+                console.log("What Happenned, are markers cleared");
                 var marker = new google.maps.Marker({
                     map: map,
                     position: position,
                     title: title,
 //                    icon: 'images/icons_svg/airport.png'
                 });
+                markers.push(marker);
+                console.log("Markers Array :%O", markers);
+                function setMapOnAll(map) {
+                    console.log("Setting map null :%O", map);
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(map);
+                    }
+                }
+
+                setMapOnAll(null);
 
                 google.maps.event.addListener(marker, 'click', function () {
                     $scope.infowindow.setContent(title);

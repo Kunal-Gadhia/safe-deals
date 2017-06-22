@@ -63,126 +63,120 @@
                             <div class="row">                        
                                 <div class="col-md-4 vertical-line"  ng-show="priApplicant">
                                     <h4>Primary Applicant</h4>
-                                    <form>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>Name <span class="compulsory_field"> * </span>:</label></div>
-                                            <div class="col-md-8"><input type="text" class="form-control input" placeholder="Name" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="primaryApplicant.name" required></div>
-                                        </div>
-                                        <div class='form-group'>
-                                            <div class="col-md-4"><label>Date of Birth <span class="compulsory_field">*</span>:</label> </div> 
-                                            <div class="col-md-8">
-                                                <!--NEW DATEPICKER-->
-                                                    <p class="form-inline">
-                                                    <ng-combo-date-picker ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
-                                                    </p>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>Name <span class="compulsory_field"> * </span>:</label></div>
+                                        <div class="col-md-8"><input type="text" class="form-control input" placeholder="Name" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="primaryApplicant.name" required></div>
+                                    </div>
+                                    <div class='form-group'>
+                                        <div class="col-md-4" style="width: 32.333333%;"><label>Date of Birth <span class="compulsory_field">*</span>:</label> </div> 
+                                        <div class="col-md-8" style="padding-left: 19px;">
+                                            <!--NEW DATEPICKER-->
+                                            <p class="form-inline">
+                                            <ng-combo-date-picker ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
+                                            </p>
 
-                                                    <!--OLD DATEPICKER-->
-<!--                                               <p class="input-group">
-                                                    <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)"
-                                                           popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" required>
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default input" ng-click="datePicker.toggle()">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </button>
-                                                    </span>     
-                                                </p>-->
-                                            </div>
+                                            <!--OLD DATEPICKER-->
+                                            <!--                                               <p class="input-group">
+                                                                                                <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="primaryApplicant.dob" ng-change="setAge(primaryApplicant, primaryApplicant.dob)"
+                                                                                                       popup-placement="bottom"   is-open="datePicker.opened" datepicker-options="dateOptions" close-text="Close" required>
+                                                                                                <span class="input-group-btn">
+                                                                                                    <button type="button" class="btn btn-default input" ng-click="datePicker.toggle()">
+                                                                                                        <i class="fa fa-calendar"></i>
+                                                                                                    </button>
+                                                                                                </span>     
+                                                                                            </p>-->
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>E-mail:</label></div>
-                                            <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="primaryApplicant.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>E-mail:</label></div>
+                                        <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="primaryApplicant.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field"> * </span>:</label></div>
+                                        <div class="col-md-8 gender">
+                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="primaryApplicant.gender" value="male" required>Male</label>
+                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="primaryApplicant.gender" value="female" required>Female</label>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field"> * </span>:</label></div>
-                                            <div class="col-md-8 gender">
-                                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="primaryApplicant.gender" value="male" required>Male</label>
-                                                <label class="radio-inline"><input type="radio" name="optradio" ng-model="primaryApplicant.gender" value="female" required>Female</label>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="col-md-4 vertical-line" ng-show="applicant">
                                     <h4>Co-Applicant 1</h4> 
-                                    <form>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>Name<span class="compulsory_field">*</span>:</label></div>
-                                            <div class="col-md-8"><input type="text" class="form-control input" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"ng-model="coApplicant1.name" placeholder="Name"></div>
-                                        </div>
-                                        <div class='col'>
-                                            <div class='form-group'>
-                                                <div class="col-md-4"><label>Date of Birth<span class="compulsory_field ">*</span>:</label></div>  
-                                                <div class="col-md-8">
-                                                    <!--NEW DATEPICKER-->
-                                                    <p class="form-inline">
-                                                    <ng-combo-date-picker ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
-                                                    </p>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>Name<span class="compulsory_field">*</span>:</label></div>
+                                        <div class="col-md-8"><input type="text" class="form-control input" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"ng-model="coApplicant1.name" placeholder="Name"></div>
+                                    </div>
+                                    <div class='col'>
+                                        <div class='form-group'>
+                                            <div class="col-md-4"><label>Date of Birth<span class="compulsory_field ">*</span>:</label></div>  
+                                            <div class="col-md-8">
+                                                <!--NEW DATEPICKER-->
+                                                <p class="form-inline">
+                                                <ng-combo-date-picker ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
+                                                </p>
 
-                                                    <!--OLD DATEPICKER-->
-                                                    <!--                                                    <p class="input-group">
-                                                                                                            <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" is-open="datePicker1.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
-                                                                                                            <span class="input-group-btn">
-                                                                                                                <button type="button" class="btn btn-default input" ng-click="datePicker1.toggle()">
-                                                                                                                    <i class="fa fa-calendar"></i>
-                                                                                                                </button>
-                                                                                                            </span>
-                                                                                                        </p>-->
-                                                </div>
+                                                <!--OLD DATEPICKER-->
+                                                <!--                                                    <p class="input-group">
+                                                                                                        <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant1.dob" ng-change="setAge(coApplicant1, coApplicant1.dob)" is-open="datePicker1.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
+                                                                                                        <span class="input-group-btn">
+                                                                                                            <button type="button" class="btn btn-default input" ng-click="datePicker1.toggle()">
+                                                                                                                <i class="fa fa-calendar"></i>
+                                                                                                            </button>
+                                                                                                        </span>
+                                                                                                    </p>-->
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>E-mail:</label></div>
-                                            <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"ng-model="coApplicant1.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>E-mail:</label></div>
+                                        <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"ng-model="coApplicant1.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field">*</span> :</label></div>
+                                        <div class="col-md-8 gender">
+                                            <label class="radio-inline"><input type="radio" name="coApplicant1Gender" ng-model="coApplicant1.gender" value="male">Male</label>
+                                            <label class="radio-inline"><input type="radio" name="coApplicant1Gender" ng-model="coApplicant1.gender" value="female">Female</label>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field">*</span> :</label></div>
-                                            <div class="col-md-8 gender">
-                                                <label class="radio-inline"><input type="radio" name="coApplicant1Gender" ng-model="coApplicant1.gender" value="male">Male</label>
-                                                <label class="radio-inline"><input type="radio" name="coApplicant1Gender" ng-model="coApplicant1.gender" value="female">Female</label>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="col-md-4" ng-show="applicantTwo">
                                     <h4>Co-Applicant 2</h4>
-                                    <form>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>Name<span class="compulsory_field">*</span>:</label></div>
-                                            <div class="col-md-8"><input type="name" class="form-control input" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="coApplicant2.name" placeholder="Name"></div>
-                                        </div>
-                                        <div class='col'>
-                                            <div class='form-group'>
-                                                <div class="col-md-4"><label>Date of Birth<span class="compulsory_field">*</span>:</label></div>
-                                                <div class="col-md-8">
-                                                    <!--NEW DATEPICKER-->
-                                                    <p class="form-inline">
-                                                    <ng-combo-date-picker ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
-                                                    </p>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>Name<span class="compulsory_field">*</span>:</label></div>
+                                        <div class="col-md-8"><input type="name" class="form-control input" uib-tooltip="Please enter your name" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="coApplicant2.name" placeholder="Name"></div>
+                                    </div>
+                                    <div class='col'>
+                                        <div class='form-group'>
+                                            <div class="col-md-4"><label>Date of Birth<span class="compulsory_field">*</span>:</label></div>
+                                            <div class="col-md-8">
+                                                <!--NEW DATEPICKER-->
+                                                <p class="form-inline">
+                                                <ng-combo-date-picker ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "date_picker"}' ng-attrs-month='{"class": "date_picker"}' ng-attrs-year='{"class": "date_picker"}' required></ng-combo-date-picker>
+                                                </p>
 
-                                                    <!--OLD DATEPICKER-->
-<!--                                                    <p class="input-group">
-                                                        <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)"
-                                                               is-open="datePicker2.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default input" ng-click="datePicker2.toggle()">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </button>
-                                                        </span>
-                                                    </p>-->
-                                                </div>
+                                                <!--OLD DATEPICKER-->
+                                                <!--                                                    <p class="input-group">
+                                                                                                        <input type="text" class="form-control input" placeholder="DD MMM YYYY" uib-datepicker-popup="dd MMM yyyy" ng-model="coApplicant2.dob" ng-change="setAge(coApplicant2, coApplicant2.dob)"
+                                                                                                               is-open="datePicker2.opened" popup-placement="bottom" datepicker-options="dateOptions" close-text="Close" required>
+                                                                                                        <span class="input-group-btn">
+                                                                                                            <button type="button" class="btn btn-default input" ng-click="datePicker2.toggle()">
+                                                                                                                <i class="fa fa-calendar"></i>
+                                                                                                            </button>
+                                                                                                        </span>
+                                                                                                    </p>-->
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label>E-mail:</label></div>
-                                            <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="coApplicant2.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label>E-mail:</label></div>
+                                        <div class="col-md-8"><input type="email" class="form-control input" uib-tooltip="Please enter your e-mail" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" ng-model="coApplicant2.email" placeholder="E-mail"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field">*</span> :</label></div>
+                                        <div class="col-md-8 gender">
+                                            <label class="radio-inline"><input type="radio"  ng-model="coApplicant2.gender" value="male">Male</label>
+                                            <label class="radio-inline"><input type="radio" ng-model="coApplicant2.gender" value="female">Female</label>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4"><label class="radio">Gender<span class="compulsory_field">*</span> :</label></div>
-                                            <div class="col-md-8 gender">
-                                                <label class="radio-inline"><input type="radio"  ng-model="coApplicant2.gender" value="male">Male</label>
-                                                <label class="radio-inline"><input type="radio" ng-model="coApplicant2.gender" value="female">Female</label>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                             <nav aria-label="...">
@@ -236,13 +230,10 @@
                                 <label></label>
                                 <h3>Type & Size of Property</h3>
                                 <hr>
-
-                                <form>
-                                    <select class="form-control" ng-model="family.numberOfRooms">
-                                        <option value="">Select Property Size</option>
-                                        <option ng-repeat="propertyType in propertyTypesList">{{propertyType.numberOfBhk}}</option>
-                                    </select>
-                                </form>
+                                <select class="form-control" ng-model="family.numberOfRooms">
+                                    <option value="">Select Property Size</option>
+                                    <option ng-repeat="propertyType in propertyTypesList">{{propertyType.numberOfBhk}}</option>
+                                </select>
                                 <!--                                <form ng-submit="submitFamilyDetails(family)">
                                                                     <div class=" col-md-6 vertical-line">
                                                                         <div>
@@ -385,135 +376,133 @@
                                 <div id="collapse1" class="panel-collapse collapse in">
                                     <div class="panel-body overflow">
                                         <div ng-if="priApplicant">
-                                            <form>
-                                                <div>
-
-                                                    <hr>
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                        <th>Primary Income Type</th>
-                                                        <th>Monthly/Annual Income</th>
-                                                        <th>Income</th>
-                                                        <th>Total</th>
-                                                        <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="form-group col-md-3">                                   
-                                                                    <select class="form-control input" value="salaried" ng-model="primaryApplicant.primaryIncome" ng-change="getPrimaryIncomePrimaryType(primaryApplicant.primaryIncome)" class="form-control">
-                                                                        <option value="salaried">Salaried</option>
-                                                                        <option value="business">Business</option>
-                                                                    </select>
-                                                                </td> 
-                                                                <td class=" col-md-3 form-group">  
-                                                                    <select ng-model="primaryApplicant.primaryIncomeVal" ng-change="getPrimaryIncomeType(primaryApplicant.primaryIncomeVal)" class="form-control input">
-                                                                        <option value="monthlyIncome">Monthly</option>
-                                                                        <option value="annualIncome">Annual</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td class="form-group col-md-3">
-                                                                    <input type="number" class="form-control input"  ng-model="primaryApplicant.priAppIncomeValue" ng-change="getPrimaryMonthlyIncomeValue(primaryApplicant.priAppIncomeValue)" uib-tooltip="Please enter your primary income. " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                </td>
-                                                                <td class="form-group col-md-3">
-                                                                    <input type="number" class="form-control input" value="{{primaryApplicant.PrimaryAppPrimaryIncome}}"  readonly />
-                                                                </td>
-                                                                <td></td>
-                                                                <!--                                                <div class="form-group" ng-switch="primaryApplicant.primaryIncome">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div ng-switch-when="salaried">
-                                                                                                                            <div class="row form-group">                                                       
-                                                                                                                                <label  for="input"   class=" control-label col-sm-4 " >Monthly Income <span class="compulsory_field"> * </span> :</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="month" ng-change="getPrimaryMonthlyIncome(primaryMonthlyIncome)" ng-model="primaryMonthlyIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{PrimaryMonthlyIncome}}" readonly/>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <div ng-switch-when="business">
-                                                                                                                            <div class="row form-group"> 
-                                                                                                                                <label for="input" class=" control-label col-sm-4">Annual Income <span class="compulsory_field"> * </span> :</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number"  class="form-control input" value="annual" ng-change="getPrimaryAnnualIncome(primaryAnnualIncome)" ng-model="primaryAnnualIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{PrimaryMonthlyIncome}}"  readonly />
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>-->
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>                            
+                                            <div>
 
                                                 <hr>
                                                 <table class="table table-striped table-hover">
                                                     <thead>
-                                                    <th>Additional Income Type</th>
-                                                    <th>Additional Income</th>
+                                                    <th>Primary Income Type</th>
+                                                    <th>Monthly/Annual Income</th>
                                                     <th>Income</th>
                                                     <th>Total</th>
                                                     <th></th>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng:repeat="details in primaryincomeDetailsArray.primaryIncomeDetails">
-                                                            <td class="col-md-3">
-                                                                <select class="form-control input" ng-model="details.incomeType" required>
-                                                                    <option value="">Choose type </option>
-                                                                    <option value='rental'>Rental </option>
-                                                                    <option value='agriculture'>Agriculture </option>
-                                                                    <option value='other'>Other </option>
+                                                        <tr>
+                                                            <td class="form-group col-md-3">                                   
+                                                                <select class="form-control input" value="salaried" ng-model="primaryApplicant.primaryIncome" ng-change="getPrimaryIncomePrimaryType(primaryApplicant.primaryIncome)" class="form-control">
+                                                                    <option value="salaried">Salaried</option>
+                                                                    <option value="business">Business</option>
                                                                 </select>
-                                                            </td>           
-                                                            <td class=" col-md-3 form-group">                                             
-                                                                <!--                                            <label class="radio-inline"><input type="radio"  ng-model="details.additionalIncomeType" value="monthlyIncome"/>Monthly</label>
-                                                                                                            <label class="radio-inline"><input type="radio" ng-model="details.additionalIncomeType" value="annualIncome"/>Annual</label>-->
-
-                                                                <select ng-model="details.additionalIncomeType" class="form-control input">
+                                                            </td> 
+                                                            <td class=" col-md-3 form-group">  
+                                                                <select ng-model="primaryApplicant.primaryIncomeVal" ng-change="getPrimaryIncomeType(primaryApplicant.primaryIncomeVal)" class="form-control input">
                                                                     <option value="monthlyIncome">Monthly</option>
                                                                     <option value="annualIncome">Annual</option>
                                                                 </select>
                                                             </td>
-                                                            <td ng-init="details.additionalIncomeType == 'monthlyIncome'" ng-show="details.additionalIncomeType == 'monthlyIncome'" class="col-md-3">
-                                                                <input type="number" class="form-control input" ng-model="primaryApplicantMonthlyValue" ng-change="updatePrimaryApplicantDetailIncome(primaryApplicantMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-
-
-                                                            </td>                                        <!--<td><input type="number" class="form-control" ng-model="details.income" ng:required class="input-mini"></td>-->
-                                                            <td ng-init="details.additionalIncomeType == 'annualIncome'" ng-show="details.additionalIncomeType == 'annualIncome'" class="col-md-3">
-
-                                                                <input  type="number" class="form-control input" ng-model="primaryApplicantAnnualValue" ng-change="updatePrimaryApplicantDetailIncome(primaryApplicantAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-
-                                                            </td>                                        <!--<td><input type="number" class="form-control" ng-model="details.income" ng:required class="input-mini"></td>-->
-                                                            <td ng-init="details.additionalIncomeType == 'monthlyIncome'" ng-show="details.additionalIncomeType == 'monthlyIncome'" class="col-md-3">
-                                                                <div>
-                                                                    <input type="number" class="form-control input" value="{{details.income}}" readonly />
-                                                                </div>
-
+                                                            <td class="form-group col-md-3">
+                                                                <input type="number" class="form-control input"  ng-model="primaryApplicant.priAppIncomeValue" ng-change="getPrimaryMonthlyIncomeValue(primaryApplicant.priAppIncomeValue)" uib-tooltip="Please enter your primary income. " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
                                                             </td>
-                                                            <td ng-init="details.additionalIncomeType == 'annualIncome'" ng-show="details.additionalIncomeType == 'annualIncome'" class="col-md-3">
-
-                                                                <div>
-                                                                    <input type="number" class="form-control input" value="{{details.income}}"readonly />
-                                                                </div>
+                                                            <td class="form-group col-md-3">
+                                                                <input type="number" class="form-control input" value="{{primaryApplicant.PrimaryAppPrimaryIncome}}"  readonly />
                                                             </td>
-                                                            <td>
-                                                                <a ng-click="removePrimaryItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href ng-click="savePrimaryIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
                                                             <td></td>
-                                                            <td></td>
-                                                            <td>Primary Applicant's Income: {{primaryApplicantTotal(primaryincomeDetailsArray.primaryIncomeDetails) | currency
-                                                                        :'₹'}}</td>
-                                                            <td></td>
+                                                            <!--                                                <div class="form-group" ng-switch="primaryApplicant.primaryIncome">
+                                                                                                                <div class="col-md-6">
+                                                                                                                    <div ng-switch-when="salaried">
+                                                                                                                        <div class="row form-group">                                                       
+                                                                                                                            <label  for="input"   class=" control-label col-sm-4 " >Monthly Income <span class="compulsory_field"> * </span> :</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="month" ng-change="getPrimaryMonthlyIncome(primaryMonthlyIncome)" ng-model="primaryMonthlyIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{PrimaryMonthlyIncome}}" readonly/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div ng-switch-when="business">
+                                                                                                                        <div class="row form-group"> 
+                                                                                                                            <label for="input" class=" control-label col-sm-4">Annual Income <span class="compulsory_field"> * </span> :</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number"  class="form-control input" value="annual" ng-change="getPrimaryAnnualIncome(primaryAnnualIncome)" ng-model="primaryAnnualIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{PrimaryMonthlyIncome}}"  readonly />
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>-->
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </form>
+                                            </div>                            
+
+                                            <hr>
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                <th>Additional Income Type</th>
+                                                <th>Additional Income</th>
+                                                <th>Income</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng:repeat="details in primaryincomeDetailsArray.primaryIncomeDetails">
+                                                        <td class="col-md-3">
+                                                            <select class="form-control input" ng-model="details.incomeType" required>
+                                                                <option value="">Choose type </option>
+                                                                <option value='rental'>Rental </option>
+                                                                <option value='agriculture'>Agriculture </option>
+                                                                <option value='other'>Other </option>
+                                                            </select>
+                                                        </td>           
+                                                        <td class=" col-md-3 form-group">                                             
+                                                            <!--                                            <label class="radio-inline"><input type="radio"  ng-model="details.additionalIncomeType" value="monthlyIncome"/>Monthly</label>
+                                                                                                        <label class="radio-inline"><input type="radio" ng-model="details.additionalIncomeType" value="annualIncome"/>Annual</label>-->
+
+                                                            <select ng-model="details.additionalIncomeType" class="form-control input">
+                                                                <option value="monthlyIncome">Monthly</option>
+                                                                <option value="annualIncome">Annual</option>
+                                                            </select>
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'monthlyIncome'" ng-show="details.additionalIncomeType == 'monthlyIncome'" class="col-md-3">
+                                                            <input type="number" class="form-control input" ng-model="primaryApplicantMonthlyValue" ng-change="updatePrimaryApplicantDetailIncome(primaryApplicantMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+
+
+                                                        </td>                                        <!--<td><input type="number" class="form-control" ng-model="details.income" ng:required class="input-mini"></td>-->
+                                                        <td ng-init="details.additionalIncomeType == 'annualIncome'" ng-show="details.additionalIncomeType == 'annualIncome'" class="col-md-3">
+
+                                                            <input  type="number" class="form-control input" ng-model="primaryApplicantAnnualValue" ng-change="updatePrimaryApplicantDetailIncome(primaryApplicantAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+
+                                                        </td>                                        <!--<td><input type="number" class="form-control" ng-model="details.income" ng:required class="input-mini"></td>-->
+                                                        <td ng-init="details.additionalIncomeType == 'monthlyIncome'" ng-show="details.additionalIncomeType == 'monthlyIncome'" class="col-md-3">
+                                                            <div>
+                                                                <input type="number" class="form-control input" value="{{details.income}}" readonly />
+                                                            </div>
+
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'annualIncome'" ng-show="details.additionalIncomeType == 'annualIncome'" class="col-md-3">
+
+                                                            <div>
+                                                                <input type="number" class="form-control input" value="{{details.income}}"readonly />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <a ng-click="removePrimaryItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href ng-click="savePrimaryIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Primary Applicant's Income: {{primaryApplicantTotal(primaryincomeDetailsArray.primaryIncomeDetails) | currency
+                                                                    :'₹'}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -530,135 +519,133 @@
                                 <div id="collapse2" class="panel-collapse collapse">
                                     <div class="panel-body overflow">
                                         <div ng-if="applicant">
-                                            <form>
-                                                <div>
-                                                    <h4> Primary Income:</h4>
-                                                    <hr>
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                        <th>Primary Income Type</th>
-                                                        <th>Monthly/Annual Income</th>
-                                                        <th>Income</th>
-                                                        <th>Total</th>
-                                                        <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="col-sm-3 form-group">                                     
-                                                                    <select ng-model="coApplicant1.primaryIncome" ng-change="getPrimaryIncomeCoAppOneType(coApplicant1.primaryIncome)" class="form-control input">
-                                                                        <option value="salaried">Salaried</option>
-                                                                        <option value="business">Business</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td class=" col-md-3 form-group">   
-                                                                    <select ng-model="coApplicant1.primaryIncomeVal" ng-change="getCoAppPrimaryIncomeType(coApplicant1.primaryIncomeVal)" class="form-control input">
-                                                                        <option value="monthlyIncome">Monthly</option>
-                                                                        <option value="annualIncome">Annual</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input type="number" ng-model="coApplicant1.priAppIncomeValue" ng-change="getCoAppPrimaryIncomeValue(coApplicant1.priAppIncomeValue)"  class="form-control input" uib-tooltip="Please enter your primary income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                </td>
-                                                                <td>
-                                                                    <input type="number" value="{{coApplicant1.CoAppOnePrimaryIncome}}" class="form-control input" readonly />
-                                                                </td>
-                                                                <td></td>
-
-
-                                                                <!--                                                <div class="form-group" ng-switch="coApplicant1.primaryIncome">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div ng-switch-when="salaried">
-                                                                                                                            <div class="row form-group">
-                                                                                                                                <label for="input" class="col-sm-4 control-label">Monthly Income <span class="compulsory_field"> * </span>:</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input"  ng-change="getCoApplicantMonthlyIncome(coApplicantMonthlyIncome)" ng-model="coApplicantMonthlyIncome" uib-tooltip="Please enter your income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{CoApplicantMonthlyIncome}}" readonly/>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <div ng-switch-when="business">
-                                                                                                                            <div class="row form-group">
-                                                                                                                                <label for="input" class="col-sm-4 control-label">Annual Income <span class="compulsory_field"> * </span> :</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input"  ng-change="getCoApplicantAnnualIncome(coApplicantAnnualIncome)" ng-model="coApplicantAnnualIncome" uib-tooltip="Please enter your income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{CoApplicantMonthlyIncome}}" readonly/>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>-->
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <h4>Additional Income:</h4>
+                                            <div>
+                                                <h4> Primary Income:</h4>
                                                 <hr>
                                                 <table class="table table-striped table-hover">
                                                     <thead>
-                                                    <th>Additional Income Type</th>
-                                                    <th>Additional Income</th>
+                                                    <th>Primary Income Type</th>
+                                                    <th>Monthly/Annual Income</th>
                                                     <th>Income</th>
                                                     <th>Total</th>
                                                     <th></th>
                                                     </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="col-sm-3 form-group">                                     
+                                                                <select ng-model="coApplicant1.primaryIncome" ng-change="getPrimaryIncomeCoAppOneType(coApplicant1.primaryIncome)" class="form-control input">
+                                                                    <option value="salaried">Salaried</option>
+                                                                    <option value="business">Business</option>
+                                                                </select>
+                                                            </td>
+                                                            <td class=" col-md-3 form-group">   
+                                                                <select ng-model="coApplicant1.primaryIncomeVal" ng-change="getCoAppPrimaryIncomeType(coApplicant1.primaryIncomeVal)" class="form-control input">
+                                                                    <option value="monthlyIncome">Monthly</option>
+                                                                    <option value="annualIncome">Annual</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" ng-model="coApplicant1.priAppIncomeValue" ng-change="getCoAppPrimaryIncomeValue(coApplicant1.priAppIncomeValue)"  class="form-control input" uib-tooltip="Please enter your primary income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" value="{{coApplicant1.CoAppOnePrimaryIncome}}" class="form-control input" readonly />
+                                                            </td>
+                                                            <td></td>
 
-                                                    <tr ng:repeat="details in coAppincomeDetailsArray.coAppIncomeDetails">
-                                                        <td class="col-md-3">
-                                                            <select class="form-control input" ng-model="details.incomeType" required>
-                                                                <option value="">Choose type </option>
-                                                                <option value='rental'>Rental </option>
-                                                                <option value='agriculture'>Agriculture </option>
-                                                                <option value='other'>Other </option>
-                                                            </select>
-                                                        </td>           
-                                                        <td class="col-md-3 form-group">
-                                                            <!--                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantmonthlyIncome"/>Monthly</label>
-                                                                                                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantannualIncome"/>Annual</label>
-                                                            -->
-                                                            <select ng-model="details.additionalIncomeType" class="form-control input">
-                                                                <option value="coApplicantmonthlyIncome">Monthly</option>
-                                                                <option value="coApplicantannualIncome">Annual</option>
-                                                            </select>
-                                                        </td>
-                                                        <td ng-init="details.additionalIncomeType == 'coApplicantmonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantmonthlyIncome'" class="col-md-3">
-                                                            <input  type="number" class="form-control input" ng-model="coApplicantMonthlyValue" ng-change="updateCoApplicantDetailIncome(coApplicantMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
 
-                                                        </td>
-                                                        <td ng-init="details.additionalIncomeType == 'coApplicantannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantannualIncome'" class="col-md-3">
-
-                                                            <input  type="number" class="form-control input" ng-model="coApplicantAnnualValue" ng-change="updateCoApplicantDetailIncome(coApplicantAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                        </td>
-                                                        <td ng-init="details.additionalIncomeType == 'coApplicantmonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantmonthlyIncome'" class="col-md-3">
-                                                            <div>
-                                                                <input type="number" class="form-control input" value="{{details.income}}" readonly />
-                                                            </div>
-
-                                                        </td>
-                                                        <td ng-init="details.additionalIncomeType == 'coApplicantannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantannualIncome'" class="col-md-3">
-
-                                                            <div>
-                                                                <input type="number" class="form-control input" value="{{details.income}}" readonly />
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <a ng-click="removeCoAppItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href ng-click="saveCoAppIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>Co-Applicant 1's Total Income: {{coAppTotal(coAppincomeDetailsArray.coAppIncomeDetails) | currency
-                                                                    :'₹'}}</td>
-                                                        <td></td>
-                                                    </tr>
+                                                            <!--                                                <div class="form-group" ng-switch="coApplicant1.primaryIncome">
+                                                                                                                <div class="col-md-6">
+                                                                                                                    <div ng-switch-when="salaried">
+                                                                                                                        <div class="row form-group">
+                                                                                                                            <label for="input" class="col-sm-4 control-label">Monthly Income <span class="compulsory_field"> * </span>:</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input"  ng-change="getCoApplicantMonthlyIncome(coApplicantMonthlyIncome)" ng-model="coApplicantMonthlyIncome" uib-tooltip="Please enter your income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{CoApplicantMonthlyIncome}}" readonly/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div ng-switch-when="business">
+                                                                                                                        <div class="row form-group">
+                                                                                                                            <label for="input" class="col-sm-4 control-label">Annual Income <span class="compulsory_field"> * </span> :</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input"  ng-change="getCoApplicantAnnualIncome(coApplicantAnnualIncome)" ng-model="coApplicantAnnualIncome" uib-tooltip="Please enter your income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{CoApplicantMonthlyIncome}}" readonly/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>-->
+                                                        </tr>
                                                     </tbody>
                                                 </table>
-                                            </form>
+                                            </div>
+                                            <h4>Additional Income:</h4>
+                                            <hr>
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                <th>Additional Income Type</th>
+                                                <th>Additional Income</th>
+                                                <th>Income</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                                </thead>
+
+                                                <tr ng:repeat="details in coAppincomeDetailsArray.coAppIncomeDetails">
+                                                    <td class="col-md-3">
+                                                        <select class="form-control input" ng-model="details.incomeType" required>
+                                                            <option value="">Choose type </option>
+                                                            <option value='rental'>Rental </option>
+                                                            <option value='agriculture'>Agriculture </option>
+                                                            <option value='other'>Other </option>
+                                                        </select>
+                                                    </td>           
+                                                    <td class="col-md-3 form-group">
+                                                        <!--                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantmonthlyIncome"/>Monthly</label>
+                                                                                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantannualIncome"/>Annual</label>
+                                                        -->
+                                                        <select ng-model="details.additionalIncomeType" class="form-control input">
+                                                            <option value="coApplicantmonthlyIncome">Monthly</option>
+                                                            <option value="coApplicantannualIncome">Annual</option>
+                                                        </select>
+                                                    </td>
+                                                    <td ng-init="details.additionalIncomeType == 'coApplicantmonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantmonthlyIncome'" class="col-md-3">
+                                                        <input  type="number" class="form-control input" ng-model="coApplicantMonthlyValue" ng-change="updateCoApplicantDetailIncome(coApplicantMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+
+                                                    </td>
+                                                    <td ng-init="details.additionalIncomeType == 'coApplicantannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantannualIncome'" class="col-md-3">
+
+                                                        <input  type="number" class="form-control input" ng-model="coApplicantAnnualValue" ng-change="updateCoApplicantDetailIncome(coApplicantAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                    </td>
+                                                    <td ng-init="details.additionalIncomeType == 'coApplicantmonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantmonthlyIncome'" class="col-md-3">
+                                                        <div>
+                                                            <input type="number" class="form-control input" value="{{details.income}}" readonly />
+                                                        </div>
+
+                                                    </td>
+                                                    <td ng-init="details.additionalIncomeType == 'coApplicantannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantannualIncome'" class="col-md-3">
+
+                                                        <div>
+                                                            <input type="number" class="form-control input" value="{{details.income}}" readonly />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a ng-click="removeCoAppItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href ng-click="saveCoAppIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Co-Applicant 1's Total Income: {{coAppTotal(coAppincomeDetailsArray.coAppIncomeDetails) | currency
+                                                                :'₹'}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -675,134 +662,132 @@
                                 <div id="collapse3" class="panel-collapse collapse">
                                     <div class="panel-body overflow">
                                         <div ng-if="applicantTwo">
-                                            <form>
-                                                <div>
-                                                    <h4> Primary Income:</h4>
-                                                    <hr>
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                        <th>Primary Income Type</th>
-                                                        <th>Monthly/Annual Income</th>
-                                                        <th>Income</th>
-                                                        <th>Total</th>
-                                                        <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="col-sm-3">                                     
-                                                                    <select ng-model="coApplicant2.primaryIncome" ng-change="getPrimaryIncomeCoAppTwoType(coApplicant2.primaryIncome)" class="form-control input">
-                                                                        <option value="salaried">Salaried</option>
-                                                                        <option value="business">Business</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td class=" col-md-3 form-group">   
-                                                                    <select ng-model="coApplicant2.primaryIncomeVal" ng-change="getCoAppTwoPrimaryIncomeType(coApplicant2.primaryIncomeVal)" class="form-control input">
-                                                                        <option value="monthlyIncome">Monthly</option>
-                                                                        <option value="annualIncome">Annual</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input type="number" ng-model="coApplicant2.priAppIncomeValue" ng-change="getCoAppTwoPrimaryIncomeValue(coApplicant2.priAppIncomeValue)" class="form-control input" uib-tooltip="Please enter your Primary income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                </td>
-                                                                <td>
-                                                                    <input type="number" value="{{coApplicant2.CoAppTwoPrimaryIncome}}" class="form-control input" readonly />
-                                                                </td>
-                                                                <td></td>
-
-                                                                <!--                                                <div class="form-group" ng-switch="coApplicant2.primaryIncome">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div ng-switch-when="salaried">
-                                                                                                                            <div class="row form-group">
-                                                                                                                                <label for="input" class="col-sm-4 control-label">Monthly Income <span class="compulsory_field"> * </span>:</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input"  ng-change="getCoApplicantTwoMonthlyIncome(coApplicantTwoMonthlyIncome)" ng-model="coApplicantTwoMonthlyIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{CoApplicantTwoMonthlyIncome}}" readonly/>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <div ng-switch-when="business">
-                                                                                                                            <div class="row form-group">
-                                                                                                                                <label for="input" class="col-sm-4 control-label">Annual Income <span class="compulsory_field"> * </span> :</label>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input"  ng-change="getCoApplicantTwoAnnualIncome(coApplicantTwoAnnualIncome)" ng-model="coApplicantTwoAnnualIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-sm-4">
-                                                                                                                                    <input type="number" class="form-control input" value="{{CoApplicantTwoMonthlyIncome}}" readonly/>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>-->
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <h4>Additional Income:</h4>
+                                            <div>
+                                                <h4> Primary Income:</h4>
                                                 <hr>
                                                 <table class="table table-striped table-hover">
                                                     <thead>
-                                                    <th>Additional Income Type</th>
-                                                    <th>Additional Income</th>
+                                                    <th>Primary Income Type</th>
+                                                    <th>Monthly/Annual Income</th>
                                                     <th>Income</th>
                                                     <th>Total</th>
                                                     <th></th>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng:repeat="details in coAppTwoincomeDetailsArray.coAppTwoIncomeDetails">
-                                                            <td class="col-md-3">
-                                                                <select class="form-control input" ng-model="details.incomeType" required>
-                                                                    <option value="">Choose type </option>
-                                                                    <option value='rental'>Rental </option>
-                                                                    <option value='agriculture'>Agriculture </option>
-                                                                    <option value='other'>Other </option>
-                                                                </select>
-                                                            </td>           
-                                                            <td class="col-md-3 form-group">
-                                                                <!--                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantTwomonthlyIncome"/>Monthly</label>
-                                                                                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantTwoannualIncome"/>Annual</label>-->
-
-                                                                <select ng-model="details.additionalIncomeType" class="form-control input">
-                                                                    <option value="coApplicantTwomonthlyIncome">Monthly</option>
-                                                                    <option value="coApplicantTwoannualIncome">Annual</option>
+                                                        <tr>
+                                                            <td class="col-sm-3">                                     
+                                                                <select ng-model="coApplicant2.primaryIncome" ng-change="getPrimaryIncomeCoAppTwoType(coApplicant2.primaryIncome)" class="form-control input">
+                                                                    <option value="salaried">Salaried</option>
+                                                                    <option value="business">Business</option>
                                                                 </select>
                                                             </td>
-                                                            <td ng-init="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" class="col-md-3">
-                                                                <input  type="number" class="form-control input" ng-model="coApplicantTwoMonthlyValue" ng-change="updateCoApplicantTwoDetailIncome(coApplicantTwoMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-
-                                                            </td>
-                                                            <td ng-init="details.additionalIncomeType == 'coApplicantTwoannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwoannualIncome'" class="col-md-3">
-
-                                                                <input  type="number" class="form-control input" ng-model="coApplicantTwoAnnualValue" ng-change="updateCoApplicantTwoDetailIncome(coApplicantTwoAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
-                                                            </td>
-                                                            <td ng-init="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" class="col-md-3">
-                                                                <div>
-                                                                    <input type="number" class="form-control input" value="{{details.income}}" readonly />
-                                                                </div>
-
-                                                            </td>
-                                                            <td ng-init="details.additionalIncomeType == 'coApplicantTwoannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwoannualIncome'" class="col-md-3">
-
-                                                                <div>
-                                                                    <input type="number" class="form-control input" value="{{details.income}}" readonly />
-                                                                </div>
+                                                            <td class=" col-md-3 form-group">   
+                                                                <select ng-model="coApplicant2.primaryIncomeVal" ng-change="getCoAppTwoPrimaryIncomeType(coApplicant2.primaryIncomeVal)" class="form-control input">
+                                                                    <option value="monthlyIncome">Monthly</option>
+                                                                    <option value="annualIncome">Annual</option>
+                                                                </select>
                                                             </td>
                                                             <td>
-                                                                <a  ng-click="removeCoAppTwoItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                                <input type="number" ng-model="coApplicant2.priAppIncomeValue" ng-change="getCoAppTwoPrimaryIncomeValue(coApplicant2.priAppIncomeValue)" class="form-control input" uib-tooltip="Please enter your Primary income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
                                                             </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href ng-click="saveCoAppTwoIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
+                                                            <td>
+                                                                <input type="number" value="{{coApplicant2.CoAppTwoPrimaryIncome}}" class="form-control input" readonly />
+                                                            </td>
                                                             <td></td>
-                                                            <td></td>
-                                                            <td>Co-Applicant 2's Total Income: {{coAppTwoTotal(coAppTwoincomeDetailsArray.coAppTwoIncomeDetails) | currency
-                                                                        :'₹'}}</td>
-                                                            <td></td>
+
+                                                            <!--                                                <div class="form-group" ng-switch="coApplicant2.primaryIncome">
+                                                                                                                <div class="col-md-6">
+                                                                                                                    <div ng-switch-when="salaried">
+                                                                                                                        <div class="row form-group">
+                                                                                                                            <label for="input" class="col-sm-4 control-label">Monthly Income <span class="compulsory_field"> * </span>:</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input"  ng-change="getCoApplicantTwoMonthlyIncome(coApplicantTwoMonthlyIncome)" ng-model="coApplicantTwoMonthlyIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{CoApplicantTwoMonthlyIncome}}" readonly/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div ng-switch-when="business">
+                                                                                                                        <div class="row form-group">
+                                                                                                                            <label for="input" class="col-sm-4 control-label">Annual Income <span class="compulsory_field"> * </span> :</label>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input"  ng-change="getCoApplicantTwoAnnualIncome(coApplicantTwoAnnualIncome)" ng-model="coApplicantTwoAnnualIncome" uib-tooltip="Please enter your income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-4">
+                                                                                                                                <input type="number" class="form-control input" value="{{CoApplicantTwoMonthlyIncome}}" readonly/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>-->
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </form>
+                                            </div>
+                                            <h4>Additional Income:</h4>
+                                            <hr>
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                <th>Additional Income Type</th>
+                                                <th>Additional Income</th>
+                                                <th>Income</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng:repeat="details in coAppTwoincomeDetailsArray.coAppTwoIncomeDetails">
+                                                        <td class="col-md-3">
+                                                            <select class="form-control input" ng-model="details.incomeType" required>
+                                                                <option value="">Choose type </option>
+                                                                <option value='rental'>Rental </option>
+                                                                <option value='agriculture'>Agriculture </option>
+                                                                <option value='other'>Other </option>
+                                                            </select>
+                                                        </td>           
+                                                        <td class="col-md-3 form-group">
+                                                            <!--                                            <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantTwomonthlyIncome"/>Monthly</label>
+                                                                                                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="details.additionalIncomeType" value="coApplicantTwoannualIncome"/>Annual</label>-->
+
+                                                            <select ng-model="details.additionalIncomeType" class="form-control input">
+                                                                <option value="coApplicantTwomonthlyIncome">Monthly</option>
+                                                                <option value="coApplicantTwoannualIncome">Annual</option>
+                                                            </select>
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" class="col-md-3">
+                                                            <input  type="number" class="form-control input" ng-model="coApplicantTwoMonthlyValue" ng-change="updateCoApplicantTwoDetailIncome(coApplicantTwoMonthlyValue * 12, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'coApplicantTwoannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwoannualIncome'" class="col-md-3">
+
+                                                            <input  type="number" class="form-control input" ng-model="coApplicantTwoAnnualValue" ng-change="updateCoApplicantTwoDetailIncome(coApplicantTwoAnnualValue, $index)" ng:required class="input-mini" uib-tooltip="Please enter your additional income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom" required/>
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwomonthlyIncome'" class="col-md-3">
+                                                            <div>
+                                                                <input type="number" class="form-control input" value="{{details.income}}" readonly />
+                                                            </div>
+
+                                                        </td>
+                                                        <td ng-init="details.additionalIncomeType == 'coApplicantTwoannualIncome'" ng-show="details.additionalIncomeType == 'coApplicantTwoannualIncome'" class="col-md-3">
+
+                                                            <div>
+                                                                <input type="number" class="form-control input" value="{{details.income}}" readonly />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <a  ng-click="removeCoAppTwoItem($index)" class="pull-right" title="Remove" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href ng-click="saveCoAppTwoIncomeDetails()" class="btn btn-small btn-primary">Add Next</a></td>                                           
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Co-Applicant 2's Total Income: {{coAppTwoTotal(coAppTwoincomeDetailsArray.coAppTwoIncomeDetails) | currency
+                                                                    :'₹'}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -965,38 +950,36 @@
                                             <div class="">
                                                 <h3>Assets : </h3> 
                                                 <hr>
-                                                <form>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantAssetsSavings(primaryApplicantSavings)" ng-model="primaryApplicantSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Liquidable Investments</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantLiquidableInvestment(primaryApplicantLiquidableInvestment)" ng-model="primaryApplicantLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantAssetsSavings(primaryApplicantSavings)" ng-model="primaryApplicantSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Liquidable Investments</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantLiquidableInvestment(primaryApplicantLiquidableInvestment)" ng-model="primaryApplicantLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Other Planned income</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantOtherPlannedIncome(primaryApplicantOtherPlannedIncome)" ng-model="primaryApplicantOtherPlannedIncome" uib-tooltip="Please enter your other planned income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Other Planned income</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getPrimaryApplicantOtherPlannedIncome(primaryApplicantOtherPlannedIncome)" ng-model="primaryApplicantOtherPlannedIncome" uib-tooltip="Please enter your other planned income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <!--<div><h4 class="col-sm-5" ng-click="showPrimaryApplicantAssetsTotalIncome()"> Total Assets :</h4></div>-->
-                                                            <div class="col-sm-5"><button class="btn btn-primary" ng-click="showPrimaryApplicantAssetsTotalIncome()">Total Assets :</button> </div>
-                                                            <div class="col-sm-7" ng-show="AssestsValue"> 
-                                                                <div> <h2>{{ totalPrimaryAssetsIncomeValue | currency :'₹'}}</h2></div>
-                                                            </div>     
-                                                        </div>
-                                                        <div class="form-group row" ng-show="AssestsValues">
-                                                            <div class="col-sm-5">
-                                                                <h3>Cash in Hand : </h3> 
-                                                            </div>     
-                                                            <div class="col-sm-7"> <h2>{{ primarycashInHandDetails | currency :'₹'}}</h2></div>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <!--<div><h4 class="col-sm-5" ng-click="showPrimaryApplicantAssetsTotalIncome()"> Total Assets :</h4></div>-->
+                                                        <div class="col-sm-5"><button class="btn btn-primary" ng-click="showPrimaryApplicantAssetsTotalIncome()">Total Assets :</button> </div>
+                                                        <div class="col-sm-7" ng-show="AssestsValue"> 
+                                                            <div> <h2>{{ totalPrimaryAssetsIncomeValue | currency :'₹'}}</h2></div>
+                                                        </div>     
                                                     </div>
-                                                </form>
+                                                    <div class="form-group row" ng-show="AssestsValues">
+                                                        <div class="col-sm-5">
+                                                            <h3>Cash in Hand : </h3> 
+                                                        </div>     
+                                                        <div class="col-sm-7"> <h2>{{ primarycashInHandDetails | currency :'₹'}}</h2></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1065,38 +1048,36 @@
                                             <div class="">
                                                 <h3>Assets :</h3> 
                                                 <hr>
-                                                <form>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneAssetsSavings(coApplicantOneSavings)" ng-model="coApplicantOneSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Liquidable Investments</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneLiquidableInvestment(coApplicantOneLiquidableInvestment)" ng-model="coApplicantOneLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneAssetsSavings(coApplicantOneSavings)" ng-model="coApplicantOneSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Liquidable Investments</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneLiquidableInvestment(coApplicantOneLiquidableInvestment)" ng-model="coApplicantOneLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Other Planned income</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneOtherPlannedIncome(coApplicantOneOtherPlannedIncome)" ng-model="coApplicantOneOtherPlannedIncome" uib-tooltip="Please enter your other planned income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Other Planned income</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantOneOtherPlannedIncome(coApplicantOneOtherPlannedIncome)" ng-model="coApplicantOneOtherPlannedIncome" uib-tooltip="Please enter your other planned income" uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <!--<div><h4 class="col-sm-5" ng-click="showCoApplicantOneAssetsTotalIncome()"> Total Assets :</h4></div>-->
-                                                            <div class="col-sm-5"><button class="btn btn-primary" ng-click="showCoApplicantOneAssetsTotalIncome()">Total Assets :</button> </div>
-                                                            <div class="col-sm-7" ng-show="AssestsValueTwo"> 
-                                                                <div> <h2>{{ totalCoAppOneAssetsIncomeValue | currency :'₹'}}</h2></div>
-                                                            </div>     
-                                                        </div>
-                                                        <div class="form-group row" ng-show="AssestsValuesTwo">
-                                                            <div class="col-sm-5">
-                                                                <h3>Cash in Hand :</h3>
-                                                            </div>     
-                                                            <div class="col-sm-7"> <h2>{{ CoAppOnecashInHandDetails | currency :'₹'}}</h2></div>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <!--<div><h4 class="col-sm-5" ng-click="showCoApplicantOneAssetsTotalIncome()"> Total Assets :</h4></div>-->
+                                                        <div class="col-sm-5"><button class="btn btn-primary" ng-click="showCoApplicantOneAssetsTotalIncome()">Total Assets :</button> </div>
+                                                        <div class="col-sm-7" ng-show="AssestsValueTwo"> 
+                                                            <div> <h2>{{ totalCoAppOneAssetsIncomeValue | currency :'₹'}}</h2></div>
+                                                        </div>     
                                                     </div>
-                                                </form>
+                                                    <div class="form-group row" ng-show="AssestsValuesTwo">
+                                                        <div class="col-sm-5">
+                                                            <h3>Cash in Hand :</h3>
+                                                        </div>     
+                                                        <div class="col-sm-7"> <h2>{{ CoAppOnecashInHandDetails | currency :'₹'}}</h2></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1166,38 +1147,36 @@
                                             <div class="">
                                                 <h3>Assets </h3> 
                                                 <hr>
-                                                <form>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoAssetsSavings(coApplicantTwoSavings)" ng-model="coApplicantTwoSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Liquidable Investments</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoLiquidableInvestment(coApplicantTwoLiquidableInvestment)" ng-model="coApplicantTwoLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Savings (PF/FDR/Mutual Fund)</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoAssetsSavings(coApplicantTwoSavings)" ng-model="coApplicantTwoSavings" uib-tooltip="Please enter your savings " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Liquidable Investments</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoLiquidableInvestment(coApplicantTwoLiquidableInvestment)" ng-model="coApplicantTwoLiquidableInvestment" uib-tooltip="Please enter your liquidable investment " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
+                                                    </div>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-5"><label>Other Planned income</label></div>
+                                                        <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoOtherPlannedIncome(coApplicantTwoOtherPlannedIncome)" ng-model="coApplicantTwoOtherPlannedIncome" uib-tooltip="Please enter your other planned income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-5"><label>Other Planned income</label></div>
-                                                            <div class="col-sm-7"><input type="number" class="form-control input" ng-change="getCoApplicantTwoOtherPlannedIncome(coApplicantTwoOtherPlannedIncome)" ng-model="coApplicantTwoOtherPlannedIncome" uib-tooltip="Please enter your other planned income " uib-tooltip-trigger="focus" uib-tooltip-placement="bottom"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <!--<div><h4 class="col-sm-5" ng-click="showCoApplicantTwoAssetsTotalIncome()"> Total Assets :</h4></div>-->
-                                                            <div class="col-sm-5"><button class="btn btn-primary" ng-click="showCoApplicantTwoAssetsTotalIncome()">Total Assets :</button></div>
-                                                            <div class="col-sm-7" ng-show="AssestsValueThree"> 
-                                                                <div> <h2>{{ totalCoAppTwoAssetsIncomeValue | currency :'₹'}}</h2></div>
-                                                            </div>     
-                                                        </div>
-                                                        <div class="form-group row" ng-show="AssestsValueThree">
-                                                            <div class="col-sm-5">
-                                                                <h3>Cash in Hand :</h3>
-                                                            </div>     
-                                                            <div class="col-sm-7"> <h2>{{ CoAppTwocashInHandDetails | currency :'₹'}}</h2></div>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <!--<div><h4 class="col-sm-5" ng-click="showCoApplicantTwoAssetsTotalIncome()"> Total Assets :</h4></div>-->
+                                                        <div class="col-sm-5"><button class="btn btn-primary" ng-click="showCoApplicantTwoAssetsTotalIncome()">Total Assets :</button></div>
+                                                        <div class="col-sm-7" ng-show="AssestsValueThree"> 
+                                                            <div> <h2>{{ totalCoAppTwoAssetsIncomeValue | currency :'₹'}}</h2></div>
+                                                        </div>     
                                                     </div>
-                                                </form>
+                                                    <div class="form-group row" ng-show="AssestsValueThree">
+                                                        <div class="col-sm-5">
+                                                            <h3>Cash in Hand :</h3>
+                                                        </div>     
+                                                        <div class="col-sm-7"> <h2>{{ CoAppTwocashInHandDetails | currency :'₹'}}</h2></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1517,7 +1496,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 </div>
-<div ui-view></div>    
-</div>
+<div data-ui-view></div>    
