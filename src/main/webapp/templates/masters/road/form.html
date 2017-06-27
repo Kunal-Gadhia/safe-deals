@@ -30,27 +30,32 @@
                         </div>
                         <div class="col-sm-6"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Condition</label>                                
-                                <select class="form-control" ng-model="editableRoad.roadCondition">
-                                        <option value="">Select Condition</option>
-                                        <option value="GOOD">Good</option>
-                                        <option value="AVERAGE">Average</option>
-                                        <option value="BAD">Bad</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="row">                     
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Type</label>                                
                                 <select class="form-control" ng-model="editableRoad.roadType">
-                                        <option value="">Select Road Type</option>
-                                        <option value="CEMENT_ROAD">Cement Road</option>
-                                        <option value="TAR_ROAD">Tar Road</option>
-                                        <option value="KACCHA_ROAD">Kaccha Road</option>
+                                    <option value="">Select Road Type</option>
+                                    <option value="CEMENT_ROAD">Cement Road</option>
+                                    <option value="TAR_ROAD">Tar Road</option>
+                                    <option value="KACCHA_ROAD">Kaccha Road</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>                   
+                                <input class="form-control"
+                                       placeholder="Select City"
+                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                       typeahead-on-select="setCity($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingCities" 
+                                       typeahead-no-results="noCitiesFound"                                       
+                                       ng-model="editableRoad.city.name" required />
+                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>                                    
                             </div>
                         </div>
                     </div>                    

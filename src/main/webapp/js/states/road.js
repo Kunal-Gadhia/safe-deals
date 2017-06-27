@@ -21,7 +21,7 @@ angular.module("safedeals.states.road", [])
                 'controller': 'RoadDeleteController'
             });
         })
-        .controller('RoadListController', function (RoadService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('RoadListController', function (RoadService, CityService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -40,6 +40,13 @@ angular.module("safedeals.states.road", [])
 
             $scope.roads = RoadService.query({
                 'offset': $scope.currentOffset
+            }, function (roads) {
+                angular.forEach(roads, function (road) {
+                    console.log("road:%O", road);
+                    road.cityObject = CityService.get({
+                        'id': road.cityId
+                    });
+                });
             });
             console.log("Roads :%O", $scope.roads);
 
@@ -55,8 +62,21 @@ angular.module("safedeals.states.road", [])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('RoadAddController', function (RoadService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('RoadAddController', function (RoadService, CityService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableRoad = {};
+
+            $scope.setCity = function (city) {
+                console.log("set city", city);
+                $scope.editableRoad.cityId = city.id;
+                $scope.editableRoad.city = city;
+            };
+
+            $scope.searchCities = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
 
             $scope.saveRoad = function (road) {
                 console.log("Road :%O", road);
@@ -86,9 +106,25 @@ angular.module("safedeals.states.road", [])
                 });
             });
         })
-        .controller('RoadEditController', function (RoadService, $scope, $stateParams, $state, paginationLimit) {
-            $scope.editableRoad = RoadService.get({'id': $stateParams.roadId});
+        .controller('RoadEditController', function (RoadService, CityService, $scope, $stateParams, $state, paginationLimit) {
+            $scope.editableRoad = RoadService.get({'id': $stateParams.roadId}, function (cityObject) {
+                $scope.editableRoad.city = CityService.get({
+                    'id': $scope.editableRoad.cityId
+                });
+            });
 
+            $scope.setCity = function (city) {
+                console.log("set city", city);
+                $scope.editableRoad.cityId = city.id;
+                $scope.editableRoad.city = city;
+            };
+
+            $scope.searchCities = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
             $scope.saveRoad = function (road) {
                 road.$save(function () {
                     $state.go('admin.masters_road', null, {'reload': true});

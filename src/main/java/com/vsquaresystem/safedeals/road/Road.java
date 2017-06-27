@@ -12,10 +12,11 @@ import java.util.Objects;
  * @author hp2
  */
 public class Road {
+
     private Integer id;
     private String name;
+    private Integer cityId;
     private Integer size;
-    private RoadCondition roadCondition;
     private RoadType roadType;
 
     public Integer getId() {
@@ -34,20 +35,20 @@ public class Road {
         this.name = name;
     }
 
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
+
     public Integer getSize() {
         return size;
     }
 
     public void setSize(Integer size) {
         this.size = size;
-    }
-
-    public RoadCondition getRoadCondition() {
-        return roadCondition;
-    }
-
-    public void setRoadCondition(RoadCondition roadCondition) {
-        this.roadCondition = roadCondition;
     }
 
     public RoadType getRoadType() {
@@ -59,13 +60,18 @@ public class Road {
     }
 
     @Override
+    public String toString() {
+        return "Road{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", size=" + size + ", roadType=" + roadType + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.id);
-        hash = 73 * hash + Objects.hashCode(this.name);
-        hash = 73 * hash + Objects.hashCode(this.size);
-        hash = 73 * hash + Objects.hashCode(this.roadCondition);
-        hash = 73 * hash + Objects.hashCode(this.roadType);
+        int hash = 3;
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.cityId);
+        hash = 43 * hash + Objects.hashCode(this.size);
+        hash = 43 * hash + Objects.hashCode(this.roadType);
         return hash;
     }
 
@@ -84,10 +90,10 @@ public class Road {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.size, other.size)) {
+        if (!Objects.equals(this.cityId, other.cityId)) {
             return false;
         }
-        if (this.roadCondition != other.roadCondition) {
+        if (!Objects.equals(this.size, other.size)) {
             return false;
         }
         if (this.roadType != other.roadType) {
@@ -96,9 +102,5 @@ public class Road {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Road{" + "id=" + id + ", name=" + name + ", size=" + size + ", roadCondition=" + roadCondition + ", roadType=" + roadType + '}';
-    }
-    
+   
 }

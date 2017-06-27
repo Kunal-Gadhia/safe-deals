@@ -23,6 +23,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class RoadDAL {
+
     public static final String TABLE_NAME = "road_master";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertRoad;
@@ -33,7 +34,7 @@ public class RoadDAL {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String SIZE = "size";
-        public static final String ROAD_CONDITION = "road_condition";
+        public static final String CITY_ID = "city_id";
         public static final String ROAD_TYPE = "road_type";
     };
 
@@ -45,7 +46,7 @@ public class RoadDAL {
                 .usingColumns(
                         Columns.NAME,
                         Columns.SIZE,
-                        Columns.ROAD_CONDITION,
+                        Columns.CITY_ID,
                         Columns.ROAD_TYPE)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -60,7 +61,7 @@ public class RoadDAL {
         String nameLike = "%" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Road.class));
     }
-    
+
     public Road findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Road.class));
@@ -75,7 +76,7 @@ public class RoadDAL {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, road.getName());
         parameters.put(Columns.SIZE, road.getSize());
-        parameters.put(Columns.ROAD_CONDITION, road.getRoadCondition().name());
+        parameters.put(Columns.CITY_ID, road.getCityId());
         parameters.put(Columns.ROAD_TYPE, road.getRoadType().name());
 //        parameters.put(Columns.AMENITY_DETAIL_TAB, road.getAmenityDetailTab().name());
         Number newId = insertRoad.executeAndReturnKey(parameters);
@@ -88,12 +89,12 @@ public class RoadDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ?,"
                 + Columns.SIZE + " = ?,"
-                + Columns.ROAD_CONDITION + " = ?,"
+                + Columns.CITY_ID + " = ?,"
                 + Columns.ROAD_TYPE + "=? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             road.getName(),
             road.getSize(),
-            road.getRoadCondition().name(),
+            road.getCityId(),
             road.getRoadType().name(),
             road.getId()});
         road = findById(road.getId());
