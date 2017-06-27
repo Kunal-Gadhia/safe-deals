@@ -39,7 +39,7 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 $anchorScroll();
             };
         })
-        .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService) {
+        .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService, AuthFactory) {
             $scope.username = $stateParams.username;
             $scope.message = $stateParams.message;
             $scope.error = $stateParams.error;
@@ -50,12 +50,30 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 UserService.login({
                     'username': username,
                     'password': password
-                }, function () {
-                    if (username === "guest" && password === "guest") {
-                        $state.go("corporate_site.home", {reload: 'true'});
-                    } else {
-                        $state.go("admin.masters");
-                    }
+                }, function (data) {
+                    console.log("Data :%O", data);
+                    AuthFactory.refresh();
+                    UserService.findByUsername({
+                        'username': data.username
+                    }, function (data) {
+                        if (data.userType === "UT_GUEST") {
+                            $state.go("main.intro.intro_tagline", {reload: 'true'});
+                        }else if(data.userType === "UT_SUPER_ADMIN"){
+                            $state.go("admin.masters", {reload: 'true'});
+                        }else if(data.userType === "UT_AGENT"){
+                            $state.go("admin.masters", {reload: 'true'});
+                        }else if(data.userType === "UT_BANK"){
+                            $state.go("admin.masters", {reload: 'true'});
+                        }else if(data.userType === "UT_DEALER"){
+                            $state.go("admin.masters", {reload: 'true'});
+                        }                        
+                        
+                    });
+//                    if (data.username === "guest") {
+//                        $state.go("main.intro.intro_tagline", {reload: 'true'});
+//                    } else {
+//                        $state.go("admin.masters", {reload: 'true'});
+//                    }
                 }, function () {
                     $scope.error = "Login Failed. Invalid Credentials.";
                 });
@@ -67,7 +85,8 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
             function googleTranslateElementInit() {
                 console.log("Into Translator");
                 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-            };
+            }
+            ;
         });
 //        .controller('LogoutController', function (UserService, $scope, $state) {
 //            $scope.logout = function () {
