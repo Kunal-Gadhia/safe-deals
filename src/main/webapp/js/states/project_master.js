@@ -277,14 +277,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     'name': searchTerm
                 }).$promise;
             };
-            $scope.searchPropertyType = function (searchTerm) {
-                console.log("Hello");
+            $scope.searchPropertyType = function (searchTerm) {                
                 return PropertyTypeService.findByNumberOfBhkLike({
                     'numberOfBhkLike': searchTerm
                 }).$promise;
             };
-            $scope.searchRoad = function (searchTerm) {
-                console.log("Hello");
+            $scope.searchRoad = function (searchTerm) {                
                 return RoadService.findByNameLike({
                     'name': searchTerm
                 }).$promise;

@@ -109,7 +109,7 @@ angular.module("safedeals.states.location_master", [])
 
             };
         })
-        .controller('LocationAddController', function (CityService, LocationTypeService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
+        .controller('LocationAddController', function (CityService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
             $scope.editableLocation = {};
             $scope.cities = CityService.findAllCities();
             $scope.safedealZones = SafedealZoneService.query();
@@ -140,7 +140,15 @@ angular.module("safedeals.states.location_master", [])
                     $scope.editableLocation.locationCategoriesObjects.push(locationCategory);
                 });
             };
-
+            $scope.setRoad = function (road) {
+                $scope.editableLocation.majorApproachRoad = road.id;
+                $scope.editableLocation.road = road;
+            };
+            $scope.searchRoad = function (searchTerm) {
+                return RoadService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return CityService.findByNameLike({
@@ -176,7 +184,7 @@ angular.module("safedeals.states.location_master", [])
                 });
             };
         })
-        .controller('LocationEditController', function (CityService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
+        .controller('LocationEditController', function (CityService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
 
             $scope.cities = CityService.findAllCities();
             $scope.safedealZones = SafedealZoneService.query();
@@ -186,7 +194,9 @@ angular.module("safedeals.states.location_master", [])
                 $scope.locationCategories = LocationCategoryService.query();
                 console.log("locationCategories", $scope.locationCategories);
                 console.log("$scope.editableLocation.locationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
-
+                $scope.editableLocation.road = RoadService.get({
+                    id: $scope.editableLocation.majorApproachRoad
+                });
 
                 CityService.get({id: $scope.editableLocation.cityId}, function (city) {
                     //location.city = city.name;
@@ -251,6 +261,15 @@ angular.module("safedeals.states.location_master", [])
             $scope.setCity = function (city) {
                 $scope.editableLocation.cityId = city.id;
                 $scope.editableLocation.city = city;
+            };
+            $scope.setRoad = function (road) {
+                $scope.editableLocation.majorApproachRoad = road.id;
+                $scope.editableLocation.road = road;
+            };
+            $scope.searchRoad = function (searchTerm) {
+                return RoadService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
             };
             $scope.setLocationCategories = function (locationCategories) {
                 //console.log("Array me locationCategory mila kya?", locationCategories);

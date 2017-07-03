@@ -95,7 +95,17 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Major approach road</label>
-                                <input class="form-control" placeholder="Major approach road" ng-model="editableLocation.majorApproachRoad"> 
+                                <input class="form-control"
+                                       placeholder="Select Major Approach Road"
+                                       uib-typeahead="road.id as road.name for road in searchRoad($viewValue)"
+                                       typeahead-on-select="setRoad($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingRoad" 
+                                       typeahead-no-results="noRoadFound"                                       
+                                       ng-model="editableLocation.road.name" required=""/>
+                                <p ng-show="noRoadFound" class="help-block text-muted">No Road Found</p>
+                                <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
+                                <!--<input class="form-control" placeholder="Major approach road" ng-model="editableLocation.majorApproachRoad">--> 
                             </div>
                         </div>
                     </div>
@@ -152,15 +162,10 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Distance From Centre Of City</label>
-                                <input type="number" class="form-control" placeholder="Distance From Centre Of City" ng-model="editableLocation.distanceFromCentreOfCity"> 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
+                            <!--                            <div class="form-group">
+                                                            <label>Distance From Centre Of City</label>
+                                                            <input type="number" class="form-control" placeholder="Distance From Centre Of City" ng-model="editableLocation.distanceFromCentreOfCity"> 
+                                                        </div>-->
                             <div class="form-group">
                                 <label>Source Of Water</label>
                                 <select class="form-control" ng-model="editableLocation.sourceOfWater">
@@ -171,6 +176,9 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Public Transport </label>
@@ -182,15 +190,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+
+                        </div>
                     </div>
-                    <div class="row">
+<!--                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Image Url</label>
                                 <input class="form-control" placeholder="Image Url" ng-model="editableLocation.imageUrl"> 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
                 <div class="modal-footer">
