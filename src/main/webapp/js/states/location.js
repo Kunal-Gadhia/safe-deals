@@ -667,8 +667,7 @@ angular.module("safedeals.states.location", [])
                             console.log("Result in Loop :%O", result);
                             $scope.createAmenityMarker(result, $scope.location, $scope.map);
                         });
-                    }
-                    ;
+                    };
                 }
 
                 else if (amenityDetail.name === "Hospital") {
