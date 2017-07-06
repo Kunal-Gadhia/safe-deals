@@ -110,6 +110,27 @@ angular.module("safedeals.states.location_master", [])
             };
         })
         .controller('LocationAddController', function (CityService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
+            $scope.locationSteps = [
+                'Basic Details',
+                'Risk Factors'
+            ];
+            $scope.selection = $scope.locationSteps[0];
+            $scope.myValue = true;
+            $scope.getLocationStep = function (locationstep) {
+                console.log("Location Step :%O", locationstep);
+                $scope.selection = locationstep;
+                if (locationstep === "Basic Details") {                    
+                    $scope.myValue = true;
+                } else if (locationstep === "Risk Factors") {                                        
+                    $scope.myValue = false;
+                    $scope.riskFactors = true;
+                }
+                else {
+                    console.log("Nothing");
+                    $scope.riskFactors = false;
+                    $scope.myValue = false;                    
+                }
+            };
             $scope.editableLocation = {};
             $scope.cities = CityService.findAllCities();
             $scope.safedealZones = SafedealZoneService.query();
@@ -131,14 +152,27 @@ angular.module("safedeals.states.location_master", [])
                 $scope.editableLocation.safedealZoneId = safedealZone.id;
                 $scope.editableLocation.safedealZone = safedealZone;
             };
-
+            $scope.locationCategoriesDisplay = [];
+            $scope.editableLocation.locationCategories = [];
             $scope.setLocationCategories = function (locationCategories) {
-                $scope.editableLocation.locationCategoriesObjects = [];
-                $scope.editableLocation.locationCategories = [];
-                angular.forEach(locationCategories, function (locationCategory) {
-                    $scope.editableLocation.locationCategories.push(locationCategory.id);
-                    $scope.editableLocation.locationCategoriesObjects.push(locationCategory);
-                });
+//                $scope.editableLocation.locationCategoriesObjects = [];
+//                $scope.editableLocation.locationCategories = [];
+//                angular.forEach(locationCategories, function (locationCategory) {
+//                    $scope.editableLocation.locationCategories.push(locationCategory.id);
+//                    $scope.editableLocation.locationCategoriesObjects.push(locationCategory);
+//                });
+                $scope.locationCategoriesDisplay.push(locationCategories);
+                $scope.locationCategory = "";
+                $scope.editableLocation.locationCategories.push(locationCategories.id);
+            };
+            $scope.removeLocationCategory = function (locationCategory) {
+                console.log("Getting the thing :%O", locationCategory);
+                var index = $scope.locationCategoriesDisplay.indexOf(locationCategory);
+                var index1 = $scope.editableLocation.locationCategories.indexOf(locationCategory.id);
+                $scope.locationCategoriesDisplay.splice(index, 1);
+                $scope.editableLocation.locationCategories.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
+                console.log("Updated %O", $scope.editableLocation.locationCategories);
             };
             $scope.setRoad = function (road) {
                 $scope.editableLocation.majorApproachRoad = road.id;
@@ -162,6 +196,13 @@ angular.module("safedeals.states.location_master", [])
                     'name': searchTerm
                 }).$promise;
             };
+            LocationTypeService.query(function (locationTypes) {
+                console.log("Location Types :%O", locationTypes);
+                $scope.locationTypesList = locationTypes;
+            });
+            SafedealZoneService.query(function (sdZone) {
+                $scope.safedealsZoneList = sdZone;
+            });
 
             $scope.searchLocationCategories = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
