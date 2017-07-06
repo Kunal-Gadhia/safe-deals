@@ -113,7 +113,7 @@ angular.module("safedeals.states.road", [])
                 });
             });
 
-            $scope.setCity = function (city) {
+                        $scope.setCity = function (city) {
                 console.log("set city", city);
                 $scope.editableRoad.cityId = city.id;
                 $scope.editableRoad.city = city;
