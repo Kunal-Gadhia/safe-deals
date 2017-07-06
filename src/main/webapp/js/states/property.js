@@ -921,7 +921,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     var request = {
                         location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
                         radius: 5000,
-                        types: ['cafe']
+                        types: ['cafe' ]
                     };
                     var service = new google.maps.places.PlacesService($scope.map);
                     service.nearbySearch(request, callback);
