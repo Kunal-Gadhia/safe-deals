@@ -922,6 +922,7 @@ angular.module("safedeals.states.location", [])
             };
             $scope.getAmenityDetailByAmenityWorkplaces = function (amenityDetail) {
                 console.log("Amenity Detail Final:%O", amenityDetail);
+                var amenityDetailsList = [];
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.location.cityId
@@ -933,12 +934,15 @@ angular.module("safedeals.states.location", [])
                 }, function (amenityDetailObject) {
 //                    $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
+                        console.log("Amenity Detail?? :%O", amenityDetail);
                         var d = $scope.getDistanceFromLatLonInKm($scope.location.latitude, $scope.location.longitude, amenityDetail.latitude, amenityDetail.longitude);
+                        console.log("Val of d = " + d);
                         if (d <= "5") {
-                            $scope.amenityDetailsList.push(amenityDetail);
+                            console.log("Amenity Detail inside If :%O", amenityDetail);
+                            amenityDetailsList.push(amenityDetail);
                         }
                     });
-                    angular.forEach($scope.amenityDetailsList, function (amenityDetail) {
+                    angular.forEach(amenityDetailsList, function (amenityDetail) {
                         drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.location, $scope.map1);
 //                        var amenityCoordinates = new google.maps.LatLng(amenityDetail.latitude, amenityDetail.longitude);
 //                        var workplaceMarker = new google.maps.Marker({
