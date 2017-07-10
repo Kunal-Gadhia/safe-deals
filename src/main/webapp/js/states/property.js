@@ -659,14 +659,16 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
                 });
             };
-            $scope.createAmenityMarker = function (place, location, map) {
+
+            //** changed from lcation to property **//
+            $scope.createAmenityMarker = function (place, property, map) {
                 console.log("Place in marker :%O", place);
-                console.log("Location :%O", location);
+                console.log("Location :%O", property);
                 console.log("Map :%O", map);
-                var placeLoc = place.geometry.location;
+                var placeLoc = place.geometry.property;
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: place.geometry.location,
+                    position: place.geometry.property,
                     title: place.name
                 });
                 google.maps.event.addListener(marker, 'click', function () {
@@ -677,7 +679,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     console.log("Detecting Hover Event :%O", event);
                     console.log("Place.Geometry.Location :%O", place.geometry.location);
                     var request = {
-                        origin: new google.maps.LatLng(location.latitude, location.longitude),
+                        origin: new google.maps.LatLng(property.latitude, property.longitude),
                         destination: place.geometry.location,
                         travelMode: google.maps.DirectionsTravelMode.DRIVING
                     };
@@ -690,7 +692,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         }
                     });
                     var distanceRequest = {
-                        origins: [new google.maps.LatLng(location.latitude, location.longitude)],
+                        origins: [new google.maps.LatLng(property.latitude, property.longitude)],
                         destinations: [place.geometry.location],
                         travelMode: google.maps.DirectionsTravelMode.DRIVING
                     };
@@ -699,9 +701,9 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
                     });
                 });
-                drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
+                drawMarker({lat: property.latitude, lng: property.longitude}, property.name, map);
                 new google.maps.Circle({
-                    center: new google.maps.LatLng(location.latitude, location.longitude),
+                    center: new google.maps.LatLng(property.latitude, property.longitude),
                     radius: 5000,
                     strokeColor: "#87C4C2",
                     strokeOpacity: 0.8,
@@ -872,6 +874,32 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 myCity.setMap($scope.map);
                 $scope.map.fitBounds(myCity.getBounds());
             });
+
+            //////////////////////Distance Calculator Manual////////////////////
+            $scope.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
+                console.log("Lat 1 :%O", lat1);
+                console.log("Lat 2 :%O", lat2);
+                console.log("Long 1 :%O", lon1);
+                console.log("Long 2 :%O", lon2);
+                var R = 6371; // Radius of the earth in km
+                var dLat = $scope.deg2rad(lat2 - lat1);  // deg2rad below
+                var dLon = $scope.deg2rad(lon2 - lon1);
+                var a =
+                        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos($scope.deg2rad(lat1)) * Math.cos($scope.deg2rad(lat2)) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2)
+                        ;
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var d = R * c; // Distance in km
+                return d;
+            };
+
+            $scope.deg2rad = function (deg) {
+                return deg * (Math.PI / 180);
+            };
+            ////////////////////////////////////////////////////////////////////
+
+
             $scope.getAmenityDetailByAmenity = function (amenityDetail) {
                 console.log("Property Object :%O", $scope.property);
                 $scope.requiredAmenities = [];
@@ -921,7 +949,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     var request = {
                         location: new google.maps.LatLng($scope.property.latitude, $scope.property.longitude),
                         radius: 5000,
-                        types: ['cafe' ]
+                        types: ['cafe']
                     };
                     var service = new google.maps.places.PlacesService($scope.map);
                     service.nearbySearch(request, callback);
@@ -1150,6 +1178,9 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     }
                     ;
                 }
+
+
+
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.property.cityId
@@ -1159,8 +1190,14 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.property.cityId
                 }, function (amenityDetailObject) {
-                    $scope.amenityDetailsList = amenityDetailObject;
+                    $scope.amenityDetailsList = [];
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
+                        var d = $scope.getDistanceFromLatLonInKm($scope.property.latitude, $scope.property.longitude, amenityDetail.latitude, amenityDetail.longitude);
+                        if (d <= "5") {
+                            console.log("Amenity Detail :%O", amenityDetail);
+                            $scope.amenityDetailsList.push(amenityDetail)
+                        }
+                        
                         drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.map);
 //                        var infoWindow = new google.maps.InfoWindow({
 //                            'content': amenityDetail.name
@@ -1170,6 +1207,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 });
             };
             $scope.getAmenityDetailByAmenityWorkplaces = function (amenityDetail) {
+                var amenityDetailsList = [];
                 $scope.amenityDetailCityFilter = {
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.property.cityId
@@ -1181,7 +1219,17 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }, function (amenityDetailObject) {
                     $scope.amenityDetailsList = amenityDetailObject;
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
-                        drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.property, $scope.map);
+                        var d = $scope.getDistanceFromLatLonInKm($scope.property.latitude, $scope.property.longitude, amenityDetail.latitude, amenityDetail.longitude);
+                        console.log("Val of d = " + d);
+                        if (d <= "5") {
+                            console.log("Amenity Detail inside If :%O", amenityDetail);
+                            amenityDetailsList.push(amenityDetail);
+                        }
+                        angular.forEach(amenityDetailsList, function (amenityDetail) {
+                            drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.location, $scope.map1);
+
+                        });
+//                          drawWorkplaceMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.property, $scope.map1);
                     });
                 });
             };
