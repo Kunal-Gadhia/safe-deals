@@ -1197,8 +1197,11 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                             console.log("Amenity Detail :%O", amenityDetail);
                             $scope.amenityDetailsList.push(amenityDetail)
                         }
-                        
-                        drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.map);
+                        console.log("Amenity Details List :%O", $scope.amenityDetailsList);
+                        angular.forEach($scope.amenityDetailsList, function (amenityDetail) {
+                            drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.map);
+                        })
+//                        drawAmenityMarker({lat: amenityDetail.latitude, lng: amenityDetail.longitude}, amenityDetail.name, $scope.map);
 //                        var infoWindow = new google.maps.InfoWindow({
 //                            'content': amenityDetail.name
 //                        });
