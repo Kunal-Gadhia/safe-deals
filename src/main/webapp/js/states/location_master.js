@@ -119,16 +119,16 @@ angular.module("safedeals.states.location_master", [])
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
-                if (locationstep === "Basic Details") {                    
+                if (locationstep === "Basic Details") {
                     $scope.myValue = true;
-                } else if (locationstep === "Risk Factors") {                                        
+                } else if (locationstep === "Risk Factors") {
                     $scope.myValue = false;
                     $scope.riskFactors = true;
                 }
                 else {
                     console.log("Nothing");
                     $scope.riskFactors = false;
-                    $scope.myValue = false;                    
+                    $scope.myValue = false;
                 }
             };
             $scope.editableLocation = {};
@@ -155,12 +155,6 @@ angular.module("safedeals.states.location_master", [])
             $scope.locationCategoriesDisplay = [];
             $scope.editableLocation.locationCategories = [];
             $scope.setLocationCategories = function (locationCategories) {
-//                $scope.editableLocation.locationCategoriesObjects = [];
-//                $scope.editableLocation.locationCategories = [];
-//                angular.forEach(locationCategories, function (locationCategory) {
-//                    $scope.editableLocation.locationCategories.push(locationCategory.id);
-//                    $scope.editableLocation.locationCategoriesObjects.push(locationCategory);
-//                });
                 $scope.locationCategoriesDisplay.push(locationCategories);
                 $scope.locationCategory = "";
                 $scope.editableLocation.locationCategories.push(locationCategories.id);
@@ -226,82 +220,90 @@ angular.module("safedeals.states.location_master", [])
             };
         })
         .controller('LocationEditController', function (CityService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
-
-            $scope.cities = CityService.findAllCities();
-            $scope.safedealZones = SafedealZoneService.query();
-            $scope.locationTypes = LocationTypeService.query();
-            console.log("$scope.locationTypes", $scope.locationTypes);
-            $scope.editableLocation = LocationService.get({'id': $stateParams.locationId}, function (location) {
-                $scope.locationCategories = LocationCategoryService.query();
-                console.log("locationCategories", $scope.locationCategories);
-                console.log("$scope.editableLocation.locationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
+            $scope.editableLocation = LocationService.get({
+                'id': $stateParams.locationId
+            }, function () {
+                $scope.locationCategoriesDisplay = [];
+                angular.forEach($scope.editableLocation.locationCategories, function (locationCategory) {
+                    LocationCategoryService.get({
+                        'id': locationCategory
+                    }, function (data) {
+                        $scope.locationCategoriesDisplay.push(data);
+                    });
+                });
                 $scope.editableLocation.road = RoadService.get({
                     id: $scope.editableLocation.majorApproachRoad
                 });
-
-                CityService.get({id: $scope.editableLocation.cityId}, function (city) {
-                    //location.city = city.name;
-
-                    var cities = $scope.cities;
-                    var idvalue = city.id;
-                    var item = $filter('filter')(cities, {id: idvalue}, true)[0];
-                    var indexInArray = cities.indexOf(item);
-                    location.city = $scope.cities[indexInArray];
-
-
-                    // console.log("location.selectedcity index", indexInArray);
-
+                $scope.editableLocation.city = CityService.get({
+                    id: $scope.editableLocation.cityId
                 });
-                LocationTypeService.get({id: $scope.editableLocation.locationTypeId}, function (locationType) {
-//                    var a = $scope.locationTypes.indexOf(locationType.id);
-//                    location.locationType = $scope.locationTypes[a];
-                    var locationTypes = $scope.locationTypes;
-                    //search value
-                    var idvalue = locationType.id;
-                    //filter the array
-                    var item = $filter('filter')(locationTypes, {id: idvalue}, true)[0];
-                    //get the index
-                    var indexInArray = locationTypes.indexOf(item);
-                    location.locationType = $scope.locationTypes[indexInArray];
-                    //console.log("location.selectedLocationType index", indexInArray);
+                LocationTypeService.get({
+                    id: $scope.editableLocation.locationTypeId
+                }, function (locationType) {
+                    $("#locationType").val(locationType.id);
                 });
-                SafedealZoneService.get({id: $scope.editableLocation.safedealZoneId}, function (safedealZone) {
-//                    location.safedealZone = safedealZone.name;
-
-                    var safedealZones = $scope.safedealZones;
-                    //search value
-                    var idsafedealZonevalue = safedealZone.id;
-                    //filter the array
-                    var item = $filter('filter')(safedealZones, {id: idsafedealZonevalue}, true)[0];
-                    //get the index
-                    var indexInArray = safedealZones.indexOf(item);
-                    location.safedealZone = $scope.safedealZones[indexInArray];
-                    console.log("location.selectedLocationType index", indexInArray);
+                SafedealZoneService.get({
+                    id: $scope.editableLocation.safedealZoneId
+                }, function (sdZoneData) {
+                    $("#sdZone").val(sdZoneData.id);
                 });
-                console.log("$scope.editableLocation mila kya", $scope.editableLocation);
             });
-            $scope.preSelected = [];
-//            $scope.preSelected2 = [];
-            $scope.editableLocation.$promise.then(function (data) {
+            $scope.locationSteps = [
+                'Basic Details',
+                'Risk Factors'
+            ];
+            $scope.selection = $scope.locationSteps[0];
+            $scope.myValue = true;
+            $scope.getLocationStep = function (locationstep) {
+                console.log("Location Step :%O", locationstep);
+                $scope.selection = locationstep;
+                if (locationstep === "Basic Details") {
+                    $scope.myValue = true;
+                } else if (locationstep === "Risk Factors") {
+                    $scope.myValue = false;
+                    $scope.riskFactors = true;
+                }
+                else {
+                    console.log("Nothing");
+                    $scope.riskFactors = false;
+                    $scope.myValue = false;
+                }
+            };
+            $scope.cities = CityService.findAllCities();
+            $scope.safedealZones = SafedealZoneService.query();
+            $scope.locationTypes = LocationTypeService.query();
 
-                $scope.editableLocation.locationCategoriesObjects = [];
-                console.log("data", data);
-                console.log("$scope.editableLocation.locationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
-//                $scope.editableLocation.optionalAttendiesObjects = [];
-                angular.forEach(data.locationCategories, function (locationId) {
-                    console.log("data.locationCategories", data.locationCategories);
-                    console.log("data : locationId", locationId);
-                    $scope.editableLocation.locationCategoriesObjects.push(LocationCategoryService.get({
-                        'id': locationId
-                    }));
-                });
-                $scope.preSelected = $scope.editableLocation.locationCategoriesObjects;
-                console.log("$scope.preSelected", $scope.preSelected);
-                console.log("$scope.editableLocationlocationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
-            });
             $scope.setCity = function (city) {
+                console.log("selected city ", city);
                 $scope.editableLocation.cityId = city.id;
                 $scope.editableLocation.city = city;
+            };
+
+            $scope.setLocationType = function (locationType) {
+                console.log("editableLocation.locationType", locationType);
+                $scope.editableLocation.locationTypeId = locationType.id;
+                $scope.editableLocation.locationType = locationType;
+            };
+            $scope.setSafedealZone = function (safedealZone) {
+                console.log("selected safedealZone ", safedealZone);
+                $scope.editableLocation.safedealZoneId = safedealZone.id;
+                $scope.editableLocation.safedealZone = safedealZone;
+            };
+            $scope.locationCategoriesDisplay = [];
+            $scope.editableLocation.locationCategories = [];
+            $scope.setLocationCategories = function (locationCategories) {
+                $scope.locationCategoriesDisplay.push(locationCategories);
+                $scope.locationCategory = "";
+                $scope.editableLocation.locationCategories.push(locationCategories.id);
+            };
+            $scope.removeLocationCategory = function (locationCategory) {
+                console.log("Getting the thing :%O", locationCategory);
+                var index = $scope.locationCategoriesDisplay.indexOf(locationCategory);
+                var index1 = $scope.editableLocation.locationCategories.indexOf(locationCategory.id);
+                $scope.locationCategoriesDisplay.splice(index, 1);
+                $scope.editableLocation.locationCategories.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
+                console.log("Updated %O", $scope.editableLocation.locationCategories);
             };
             $scope.setRoad = function (road) {
                 $scope.editableLocation.majorApproachRoad = road.id;
@@ -312,25 +314,130 @@ angular.module("safedeals.states.location_master", [])
                     'name': searchTerm
                 }).$promise;
             };
-            $scope.setLocationCategories = function (locationCategories) {
-                //console.log("Array me locationCategory mila kya?", locationCategories);
-//                $scope.editableLocation.locationCategoryId = locationCategory.id;
-//                $scope.editableLocation.locationCategory = locationCategory;
-
-                $scope.editableLocation.locationCategoriesObjects = [];
-                $scope.editableLocation.locationCategories = [];
-                angular.forEach(locationCategories, function (locationCategory) {
-                    $scope.editableLocation.locationCategories.push(locationCategory.id);
-                });
-
+            $scope.searchCities = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
             };
-            $scope.setLocationType = function (locationType) {
-                console.log("editableLocation.locationType", locationType);
-                $scope.editableLocation.locationTypeId = locationType.id;
-                $scope.editableLocation.locationType = locationType;
+
+            $scope.searchLocationTypes = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return LocationTypeService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
             };
+            LocationTypeService.query(function (locationTypes) {
+                console.log("Location Types :%O", locationTypes);
+                $scope.locationTypesList = locationTypes;
+            });
+            SafedealZoneService.query(function (sdZone) {
+                $scope.safedealsZoneList = sdZone;
+            });
+
+            $scope.searchLocationCategories = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return LocationCategoryService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.searchSafedealZones = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return SafedealZoneService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+//            $scope.cities = CityService.findAllCities();
+////            $scope.safedealZones = SafedealZoneService.query();
+////            $scope.locationTypes = LocationTypeService.query();
+//            console.log("$scope.locationTypes", $scope.locationTypes);
+//            $scope.editableLocation = LocationService.get({'id': $stateParams.locationId}, function (location) {
+//
+//            });
+//            LocationTypeService.query(function (locationTypes) {
+//                console.log("Location Types :%O", locationTypes);
+//                $scope.locationTypesList = locationTypes;
+//            });
+//            SafedealZoneService.query(function (sdZone) {
+//                $scope.safedealsZoneList = sdZone;
+//            });
+//
+////            $scope.preSelected2 = [];
+////            $scope.editableLocation.$promise.then(function (data) {
+////
+////                $scope.editableLocation.locationCategoriesObjects = [];
+////                console.log("data", data);
+////                console.log("$scope.editableLocation.locationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
+//////                $scope.editableLocation.optionalAttendiesObjects = [];
+////                angular.forEach(data.locationCategories, function (locationId) {
+////                    console.log("data.locationCategories", data.locationCategories);
+////                    console.log("data : locationId", locationId);
+////                    $scope.editableLocation.locationCategoriesObjects.push(LocationCategoryService.get({
+////                        'id': locationId
+////                    }));
+////                });
+////                $scope.preSelected = $scope.editableLocation.locationCategoriesObjects;
+////                console.log("$scope.preSelected", $scope.preSelected);
+////                console.log("$scope.editableLocationlocationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
+////            });
+//
+//            $scope.searchLocationCategories = function (searchTerm) {
+//                console.log("Search Term :%O", searchTerm);
+//                return LocationCategoryService.findByNameLike({
+//                    'name': searchTerm
+//                }).$promise;
+//            };
+//            $scope.locationCategoriesDisplay = [];
+//            $scope.editableLocation.locationCategories = [];
+//            
+//            $scope.setLocationCategories = function (locationCategories) {
+//                $scope.locationCategoriesDisplay.push(locationCategories);
+//                console.log("Location Categories Display :%O", $scope.locationCategoriesDisplay);
+//                $scope.locationCategory = "";
+//                $scope.editableLocation.locationCategories.push(locationCategories.id);
+//            };
+//            $scope.removeLocationCategory = function (locationCategory) {
+//                console.log("Getting the thing :%O", locationCategory);
+//                var index = $scope.locationCategoriesDisplay.indexOf(locationCategory);
+//                var index1 = $scope.editableLocation.locationCategories.indexOf(locationCategory.id);
+//                $scope.locationCategoriesDisplay.splice(index, 1);
+//                $scope.editableLocation.locationCategories.splice(index1, 1);
+//                console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
+//                console.log("Updated %O", $scope.editableLocation.locationCategories);
+//            };
+//            $scope.setCity = function (city) {
+//                $scope.editableLocation.cityId = city.id;
+//                $scope.editableLocation.city = city;
+//            };
+//            $scope.setRoad = function (road) {
+//                $scope.editableLocation.majorApproachRoad = road.id;
+//                $scope.editableLocation.road = road;
+//            };
+//            $scope.searchRoad = function (searchTerm) {
+//                return RoadService.findByNameLike({
+//                    'name': searchTerm
+//                }).$promise;
+//            };
+//            $scope.setLocationCategories = function (locationCategories) {
+//                //console.log("Array me locationCategory mila kya?", locationCategories);
+////                $scope.editableLocation.locationCategoryId = locationCategory.id;
+////                $scope.editableLocation.locationCategory = locationCategory;
+//
+//                $scope.editableLocation.locationCategoriesObjects = [];
+//                $scope.editableLocation.locationCategories = [];
+//                angular.forEach(locationCategories, function (locationCategory) {
+//                    $scope.editableLocation.locationCategories.push(locationCategory.id);
+//                });
+//
+//            };
+//            $scope.setLocationType = function (locationType) {
+//                console.log("editableLocation.locationType", locationType);
+//                $scope.editableLocation.locationTypeId = locationType.id;
+//                $scope.editableLocation.locationType = locationType;
+//            };
             $scope.saveLocation = function (location) {
-                console.log("edit location", location);
+                console.log("edit location :%O", location);
                 location.$save(function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
@@ -338,7 +445,9 @@ angular.module("safedeals.states.location_master", [])
         })
         .controller('LocationDeleteController', function (LocationService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableLocation = LocationService.get({'id': $stateParams.locationId});
+
             $scope.deleteLocation = function (location) {
+                console.log("Delete Object :%O", location);
                 location.$delete(function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });

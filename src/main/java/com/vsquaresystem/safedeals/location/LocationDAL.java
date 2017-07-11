@@ -44,6 +44,14 @@ public class LocationDAL {
         public static final String DISTANCE_FROM_CENTRE_OF_CITY = "distance_from_centre_of_city";
         public static final String IS_COMMERCIAL_CENTER = "is_commercial_center";
         public static final String DISTANCE_FROM_COMMERCIAL_CENTER = "distance_from_commercial_center";
+        public static final String DEMAND_POTENTIAL = "demand_potential";
+        public static final String POWER_PLANT = "power_plant";
+        public static final String MEDICINE_INDUSTRY = "medicine_industry";
+        public static final String STEEL_INDUSTRY = "steel_industry";
+        public static final String FILTHY_LAKE = "filthy_lake";
+        public static final String LOW_LYING_AREA = "low_lying_area";
+        public static final String DUMP_YARD = "dump_yard";
+        public static final String STP = "stp";
         public static final String IMAGE_URL = "image_url";
 
     }
@@ -78,6 +86,14 @@ public class LocationDAL {
                         Columns.DISTANCE_FROM_CENTRE_OF_CITY,
                         Columns.IS_COMMERCIAL_CENTER,
                         Columns.DISTANCE_FROM_COMMERCIAL_CENTER,
+                        Columns.DEMAND_POTENTIAL,
+                        Columns.POWER_PLANT,
+                        Columns.MEDICINE_INDUSTRY,
+                        Columns.STEEL_INDUSTRY,
+                        Columns.FILTHY_LAKE,
+                        Columns.LOW_LYING_AREA,
+                        Columns.DUMP_YARD,
+                        Columns.STP,
                         Columns.IMAGE_URL
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
@@ -114,7 +130,7 @@ public class LocationDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE city_id = " + Columns.CITY_ID + " deleted = FALSE AND " + "is_commercial_center = true" + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{cityId}, locationRowMapper);
     }
-    
+
     public List<Location> findByNameAndCityId(String name, Integer cityId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CITY_ID + " = ? AND LOWER(name) LIKE ?";
         String nameLike = "" + name.toLowerCase() + "%";
@@ -142,6 +158,14 @@ public class LocationDAL {
         parameters.put(Columns.DISTANCE_FROM_CENTRE_OF_CITY, location.getDistanceFromCentreOfCity());
         parameters.put(Columns.IS_COMMERCIAL_CENTER, location.getIsCommercialCenter());
         parameters.put(Columns.DISTANCE_FROM_COMMERCIAL_CENTER, location.getDistanceFromCommercialCenter());
+        parameters.put(Columns.DEMAND_POTENTIAL, location.getDemandPotential());
+        parameters.put(Columns.POWER_PLANT, location.getPowerPlant());
+        parameters.put(Columns.MEDICINE_INDUSTRY, location.getMedicineIndustry());
+        parameters.put(Columns.STEEL_INDUSTRY, location.getSteelIndustry());
+        parameters.put(Columns.FILTHY_LAKE, location.getFilthyLake());
+        parameters.put(Columns.LOW_LYING_AREA, location.getLowLyingArea());
+        parameters.put(Columns.DUMP_YARD, location.getDumpYard());
+        parameters.put(Columns.STP, location.getStp());
         parameters.put(Columns.IMAGE_URL, location.getImageUrl());
 
         System.out.println("param" + parameters);
@@ -175,6 +199,14 @@ public class LocationDAL {
                 + Columns.DISTANCE_FROM_CENTRE_OF_CITY + "=?, "
                 + Columns.IS_COMMERCIAL_CENTER + "=?, "
                 + Columns.DISTANCE_FROM_COMMERCIAL_CENTER + "=?, "
+                + Columns.DEMAND_POTENTIAL + "=?, "
+                + Columns.POWER_PLANT + "=?, "
+                + Columns.MEDICINE_INDUSTRY + "=?, "
+                + Columns.STEEL_INDUSTRY + "=?, "
+                + Columns.FILTHY_LAKE + "=?, "
+                + Columns.LOW_LYING_AREA + "=?, "
+                + Columns.DUMP_YARD + "=?, "
+                + Columns.STP + "=?, "
                 + Columns.IMAGE_URL + "=?  WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery,
                 new Object[]{
@@ -196,6 +228,14 @@ public class LocationDAL {
                     location.getDistanceFromCentreOfCity(),
                     location.getIsCommercialCenter(),
                     location.getDistanceFromCommercialCenter(),
+                    location.getDemandPotential().name(),
+                    location.getPowerPlant(),
+                    location.getMedicineIndustry(),
+                    location.getSteelIndustry(),
+                    location.getFilthyLake(),
+                    location.getLowLyingArea(),
+                    location.getDumpYard(),
+                    location.getStp(),
                     location.getImageUrl(),
                     location.getId()
                 }
@@ -253,6 +293,16 @@ public class LocationDAL {
             location.setDistanceFromCentreOfCity(rs.getDouble(Columns.DISTANCE_FROM_CENTRE_OF_CITY));
             location.setIsCommercialCenter(rs.getBoolean(Columns.IS_COMMERCIAL_CENTER));
             location.setDistanceFromCommercialCenter(rs.getDouble(Columns.DISTANCE_FROM_COMMERCIAL_CENTER));
+            if (rs.getString(Columns.DEMAND_POTENTIAL) != null) {
+                location.setDemandPotential(DemandPotential.valueOf(rs.getString(Columns.DEMAND_POTENTIAL)));
+            }
+            location.setPowerPlant(rs.getBoolean(Columns.POWER_PLANT));
+            location.setMedicineIndustry(rs.getBoolean(Columns.MEDICINE_INDUSTRY));
+            location.setSteelIndustry(rs.getBoolean(Columns.STEEL_INDUSTRY));
+            location.setFilthyLake(rs.getBoolean(Columns.FILTHY_LAKE));
+            location.setLowLyingArea(rs.getBoolean(Columns.LOW_LYING_AREA));
+            location.setDumpYard(rs.getBoolean(Columns.DUMP_YARD));
+            location.setStp(rs.getBoolean(Columns.STP));
             location.setImageUrl(rs.getString(Columns.IMAGE_URL));
 
             return location;

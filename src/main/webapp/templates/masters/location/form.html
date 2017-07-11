@@ -4,14 +4,15 @@
         <form role="form" ng-submit="saveLocation(editableLocation)">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button"
-                            onclick='window.history.back()'
-                            class=" pull-right btn btn-link">
-                        <i class="fa fa-times"></i>
-                    </button>
+
                     <h3 class="modal-title">
                         <i class="fa fa-location-arrow" aria-hidden="true"></i>
                         Location Form
+                        <button type="button"
+                                onclick='window.history.back()'
+                                class=" pull-right btn btn-link">
+                            <i class="fa fa-times"></i>
+                        </button>
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -65,7 +66,7 @@
                                                                             <p ng-show="noLocationTypes" class="help-block text-muted">No Result found</p>
                                                                             <p ng-show="loadingLocationTypes" class="help-block text-muted">loading...</p>
                                                                         </div>-->
-                                        <select class="form-control" ng-model="editableLocation.locationTypeId" required="required">
+                                        <select class="form-control" ng-model="editableLocation.locationTypeId" id="locationType" required="required">
                                             <option value="">Location Type</option>
                                             <option ng-repeat="locationType in locationTypesList" value="{{locationType.id}}" >{{locationType.name}}</option>
                                         </select>
@@ -82,7 +83,7 @@
                                                    typeahead-editable="false"
                                                    typeahead-loading="loadingLocationCategories"
                                                    typeahead-no-results="noLocationCategories"
-                                                   ng-model="locationCategory" required /> 
+                                                   ng-model="locationCategory"/> 
                                             <p ng-show="noLocationCategories" class="help-block text-muted">No Result found</p>
                                             <p ng-show="loadingLocationCategories" class="help-block text-muted">loading...</p>      
                                         </div>
@@ -121,7 +122,7 @@
                                                                             <p ng-show="noSafedealZones" class="help-block text-muted">No Result found</p>
                                                                             <p ng-show="loadingSafedealZones" class="help-block text-muted">loading...</p>
                                                                         </div>-->
-                                        <select class="form-control" ng-model="editableLocation.safedealZoneId" required="required">
+                                        <select class="form-control" ng-model="editableLocation.safedealZoneId" id="sdZone" required="required">
                                             <option value="">Select Safedeal Zone</option>
                                             <option ng-repeat="sdZone in safedealsZoneList" value="{{sdZone.id}}" >{{sdZone.name}}</option>
                                         </select>
@@ -254,13 +255,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Latitude</label>
-                                        <input type="number" class="form-control" placeholder="Latitude" ng-model="editableLocation.latitude"> 
+                                        <input type="number" step="any" class="form-control" placeholder="Latitude" ng-model="editableLocation.latitude"> 
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Longitude</label>
-                                        <input type="number" class="form-control" placeholder="Longitude" ng-model="editableLocation.longitude"> 
+                                        <input type="number" step="any" class="form-control" placeholder="Longitude" ng-model="editableLocation.longitude"> 
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +299,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="checkbox" ng-model="editableLocation.steelCementIndustry">
+                                            <input type="checkbox" ng-model="editableLocation.steelIndustry">
                                             &nbsp;&nbsp;
                                             <label>Steel / Cement Industry</label>
                                         </div>
@@ -321,7 +322,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="checkbox" ng-model="editableLocation.dumYard">
+                                            <input type="checkbox" ng-model="editableLocation.dumpYard">
                                             &nbsp;&nbsp;
                                             <label>Dump Yard</label>
                                         </div>
