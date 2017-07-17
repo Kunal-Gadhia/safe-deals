@@ -141,7 +141,7 @@
                                     <div class="col-sm-6">                                                
                                     </div>
                                     <div class="col-sm-6">
-                                        <ul ng-repeat="propertyType in propertiesTypeDisplay">
+                                        <ul ng-repeat="propertyType in propertiesTypeDisplay" class="left_margin">
                                             <li>{{propertyType.numberOfBhk}} <button type="button" ng-click="removePropertyType(propertyType)">Remove</button></li>
                                         </ul>
                                     </div>                                            
@@ -264,7 +264,7 @@
                                         <div class="col-sm-6">
                                         </div>
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" >
+                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
                                                 <li>{{basicAmenities.name}} <button type="button" ng-click="removeTransportation(basicAmenities)">Remove</button></li>
                                             </ul>
                                         </div>
@@ -354,14 +354,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="workplaces in workplacesDisplay">
+                                            <ul ng-repeat="workplaces in workplacesDisplay" class="left_margin">
                                                 <li>{{workplaces.name}}                                                     
                                                     <button type="button" ng-click="removeWorkplaces(workplaces)">Remove</button>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="basicAmenities in basicAmenitiesDisplay">
+                                            <ul ng-repeat="basicAmenities in basicAmenitiesDisplay" class="left_margin">
                                                 <li>{{basicAmenities.name}} 
                                                     <button type="button" ng-click="removeBasicAmenities(basicAmenities)">Remove</button>
                                                 </li>
@@ -390,7 +390,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="luxuryAmenities in luxuryAmenitiesDisplay">
+                                            <ul ng-repeat="luxuryAmenities in luxuryAmenitiesDisplay" class="left_margin">
                                                 <li>{{luxuryAmenities.name}}                                                     
                                                     <button type="button" ng-click="removeLuxuryAmenities(luxuryAmenities)">Remove</button>
                                                 </li>
@@ -433,7 +433,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="amenitiesWithinProject in approvedBanksDisplay">
+                                            <ul ng-repeat="amenitiesWithinProject in approvedBanksDisplay" class="left_margin">
                                                 <li>{{amenitiesWithinProject.name}}                                                     
                                                     <button type="button" ng-click="removeApprovedBanks(amenitiesWithinProject)">Remove</button>
                                                 </li>
@@ -470,7 +470,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <ul ng-repeat="amenitiesWithinProject in amenitiesWithinProjectDisplay">
+                                            <ul ng-repeat="amenitiesWithinProject in amenitiesWithinProjectDisplay" class="left_margin">
                                                 <li>{{amenitiesWithinProject.name}}
                                                     <button type="button" ng-click="removeAmenitiesWithinProject(amenitiesWithinProject)">Remove</button>
                                                 </li>
