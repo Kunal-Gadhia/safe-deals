@@ -3,6 +3,11 @@ package com.vsquaresystem.safedeals.project;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vsquaresystem.safedeals.city.City;
+import com.vsquaresystem.safedeals.city.CityDAL;
+import com.vsquaresystem.safedeals.property.Property;
+import com.vsquaresystem.safedeals.property.PropertyDAL;
+import static com.vsquaresystem.safedeals.property.PropertyDAL.TABLE_NAME;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +18,7 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -20,6 +26,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProjectDAL {
+
+    @Autowired
+    private CityDAL cityDAL;
+
+    private static Integer srNumber = 0;
 
     public static final String TABLE_NAME = "project";
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -30,6 +41,7 @@ public class ProjectDAL {
     public static final class Columns {
 
         public static final String ID = "id";
+        public static final String PROJECT_ID = "project_id";
         public static final String NAME = "name";
         public static final String STATE_ID = "state_id";
         public static final String CITY_ID = "city_id";
@@ -77,6 +89,7 @@ public class ProjectDAL {
                 .withTableName(TABLE_NAME)
                 .usingColumns(
                         Columns.NAME,
+                        Columns.PROJECT_ID,
                         Columns.STATE_ID,
                         Columns.CITY_ID,
                         Columns.LOCATION_ID,
@@ -128,6 +141,12 @@ public class ProjectDAL {
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, projectRowMapper);
     }
 
+    public List findSerialNo(String letter) {
+        String sqlQuery = "SELECT " + Columns.PROJECT_ID + " FROM " + TABLE_NAME + " WHERE deleted= FALSE AND " + Columns.PROJECT_ID + " LIKE ? ";
+        String letterLike = letter + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{letterLike}, new BeanPropertyRowMapper<>(Project.class));
+    }
+
     public Project insert(Project project) throws JsonProcessingException {
         logger.info("Project :{}", project);
         System.out.println("Kunal" + project);
@@ -168,6 +187,19 @@ public class ProjectDAL {
         parameters.put(Columns.OPEN_LAND, project.getOpenLand());
         parameters.put(Columns.LATITUDE, project.getLatitude());
         parameters.put(Columns.LONGITUDE, project.getLongitude());
+
+        City c = cityDAL.findById(project.getCityId());
+        String cityName = c.getName();
+
+        List cityN = findSerialNo(String.valueOf(cityName).substring(0, 3));
+        if (cityN.size() <= 0) {
+            srNumber = 1;
+        } else {
+            srNumber = cityN.size() + 1;
+        }
+        String projectId = String.valueOf(cityName).substring(0, 3) +String.valueOf(project.getSubLocation()).substring(0, 3)+ srNumber;
+        parameters.put(PropertyDAL.Columns.PROJECT_ID, projectId);
+
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());
         return project;
@@ -185,6 +217,7 @@ public class ProjectDAL {
     public Project update(Project project) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " =?,"
+                + Columns.PROJECT_ID + " =?,"
                 + Columns.STATE_ID + " =?,"
                 + Columns.CITY_ID + " =?,"
                 + Columns.LOCATION_ID + " =?,"
@@ -224,6 +257,7 @@ public class ProjectDAL {
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
+            project.getProjectId(),
             project.getStateId(),
             project.getCityId(),
             project.getLocationId(),
@@ -282,6 +316,7 @@ public class ProjectDAL {
         public Project mapRow(ResultSet rs, int i) throws SQLException {
             Project project = new Project();
             project.setId(rs.getInt(Columns.ID));
+            project.setProjectId(rs.getString(Columns.PROJECT_ID));
             project.setName(rs.getString(Columns.NAME));
             project.setStateId(rs.getInt(Columns.STATE_ID));
             if (rs.wasNull()) {
@@ -311,7 +346,7 @@ public class ProjectDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing propertiesTypeList: '" + propertiesTypeList + "' ", ex);
             }
-            project.setBookingStartDate(rs.getDate(Columns.BOOKING_START_DATE));            
+            project.setBookingStartDate(rs.getDate(Columns.BOOKING_START_DATE));
             if (rs.getString(Columns.CONSTRUCTION_STAGE) != null) {
                 project.setConstructionStage(ConstructionStage.valueOf(rs.getString(Columns.CONSTRUCTION_STAGE)));
             }
