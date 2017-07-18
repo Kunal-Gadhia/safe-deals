@@ -3,6 +3,8 @@ package com.vsquaresystem.safedeals.property;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vsquaresystem.safedeals.city.City;
+import com.vsquaresystem.safedeals.city.CityDAL;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -19,9 +22,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PropertyDAL {
 
+    @Autowired
+    private CityDAL cityDAL;
+
+    private static Integer srNumber = 0;
+
     public static final class Columns {
 
         public static final String ID = "id";
+        public static final String PROPERTY_ID = "property_id";
         public static final String NAME = "name";
         public static final String CITY_ID = "city_id";
         public static final String LOCATION_ID = "location_id";
@@ -81,6 +90,7 @@ public class PropertyDAL {
                 .withTableName(TABLE_NAME)
                 .usingColumns(
                         Columns.NAME,
+                        Columns.PROPERTY_ID,
                         Columns.CITY_ID,
                         Columns.LOCATION_ID,
                         Columns.PROPERTY_TYPE,
@@ -133,9 +143,16 @@ public class PropertyDAL {
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, propertyRowMapper);
     }
 
+    public List findSerialNo(String letter) {
+        String sqlQuery = "SELECT " + Columns.PROPERTY_ID + " FROM " + TABLE_NAME + " WHERE deleted= FALSE AND " + Columns.PROPERTY_ID + " LIKE ? ";
+        String letterLike = letter + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{letterLike}, new BeanPropertyRowMapper<>(Property.class));
+    }
+
     public Property insert(Property property) throws JsonProcessingException {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, property.getName());
+        //parameters.put(Columns.PROPERTY_ID, property.getPropertyId());
         parameters.put(Columns.CITY_ID, property.getCityId());
         parameters.put(Columns.LOCATION_ID, property.getLocationId());
         parameters.put(Columns.PROPERTY_TYPE, property.getPropertyType().name());
@@ -174,6 +191,19 @@ public class PropertyDAL {
         parameters.put(Columns.OPEN_LAND, property.getOpenLand());
         parameters.put(Columns.LATITUDE, property.getLatitude());
         parameters.put(Columns.LONGITUDE, property.getLongitude());
+
+        City c = cityDAL.findById(property.getCityId());
+        String cityName = c.getName();
+
+        List cityN = findSerialNo(String.valueOf(cityName).substring(0, 3));
+        if (cityN.size() <= 0) {
+            srNumber = 1;
+        } else {
+            srNumber = cityN.size() + 1;
+        }
+        String propertyId = String.valueOf(cityName).substring(0, 3) + srNumber;
+        parameters.put(Columns.PROPERTY_ID, propertyId);
+
         Number newId = insertProperty.executeAndReturnKey(parameters);
         property = findById(newId.intValue());
         return property;
@@ -213,6 +243,7 @@ public class PropertyDAL {
     public Property update(Property property) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " =?,"
+                + Columns.PROPERTY_ID + " =?,"
                 + Columns.CITY_ID + " =?,"
                 + Columns.LOCATION_ID + " =?,"
                 + Columns.PROPERTY_TYPE + " =?,"
@@ -255,6 +286,7 @@ public class PropertyDAL {
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             property.getName(),
+            property.getPropertyId(),
             property.getCityId(),
             property.getLocationId(),
             property.getPropertyType().name(),
@@ -321,6 +353,7 @@ public class PropertyDAL {
         public Property mapRow(ResultSet rs, int i) throws SQLException {
             Property property = new Property();
             property.setId(rs.getInt(Columns.ID));
+            property.setPropertyId(rs.getString(Columns.PROPERTY_ID));
 
             property.setName(rs.getString(Columns.NAME));
 
@@ -328,6 +361,7 @@ public class PropertyDAL {
             if (rs.wasNull()) {
                 property.setCityId(null);
             }
+
             property.setLocationId(rs.getInt(Columns.LOCATION_ID));
             if (rs.wasNull()) {
                 property.setLocationId(null);
@@ -346,13 +380,13 @@ public class PropertyDAL {
             property.setSize(rs.getDouble(Columns.SIZE));
 
             property.setPriceRange(rs.getDouble(Columns.PRICE_RANGE));
-            
+
             if (rs.getString(Columns.CONSTRUCTION_STAGE) != null) {
                 property.setConstructionStage(ConstructionStage.valueOf(rs.getString(Columns.CONSTRUCTION_STAGE)));
             }
-            
+
             property.setPossessionDate(rs.getDate(Columns.POSSESSION_DATE));
-            
+
             property.setYearOfConstruction(rs.getDate(Columns.YEAR_OF_CONSTRUCTION));
 
             property.setFloorNumber(rs.getInt(Columns.FLOOR_NUMBER));

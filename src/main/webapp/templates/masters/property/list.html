@@ -22,7 +22,8 @@
         <thead>
             <tr>
                 <th class="text-right">#</th>
-                <th>Property Name</th>               
+                <th>Property Name</th> 
+                <th>Property Id</th>
                 <th>City</th>
                 <th>Location</th>
                 <th>Offered Price</th>
@@ -40,7 +41,8 @@
         <tbody>
             <tr ng-repeat="property in properties">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ property.name}}</td>              
+                <td>{{ property.name}}</td>   
+                <td>{{ property.propertyId}}</td>
                 <td>{{ property.city.name}}</td>              
                 <td>{{ property.location.name}}</td>
                 <td>&#8377; {{ property.offeredPrice}}</td>
