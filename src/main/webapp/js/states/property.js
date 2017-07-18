@@ -22,7 +22,12 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             });
         })
 
-        .controller('PropertyController', function ($scope, $state, $filter, PriceRangeService, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('PropertyController', function ($scope, $location, $state, $filter, PriceRangeService, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+            $scope.gotoTop = function () {
+                $location.hash('top');
+                $anchorScroll();
+            };
+            
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
             $scope.hideSutaibleProperty = true;
@@ -82,8 +87,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         minBudget: null,
                         maxBudget: null
                     });
-                }
-                else if (cityId === undefined & locationId === undefined & propertySize !== undefined & minBudget !== undefined & maxBudget !== undefined) {
+                } else if (cityId === undefined & locationId === undefined & propertySize !== undefined & minBudget !== undefined & maxBudget !== undefined) {
                     console.log("Filter By Budget");
                     var difference = maxBudget - minBudget;
                     console.log("Difference :" + difference);
@@ -99,8 +103,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                             maxBudget: maxBudget
                         });
                     }
-                }
-                else {
+                } else {
                     console.log("All Parameters Present");
                     var difference = maxBudget - minBudget;
                     console.log("Difference :" + difference);
@@ -319,8 +322,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 //                        console.log("Coming to compare??");
 //                    };
 //                });
-            }
-            else if ($stateParams.cityId === null & $stateParams.locationId === null & $stateParams.propertySize !== null & $stateParams.minBudget !== null & $stateParams.maxBudget !== null) {
+            } else if ($stateParams.cityId === null & $stateParams.locationId === null & $stateParams.propertySize !== null & $stateParams.minBudget !== null & $stateParams.maxBudget !== null) {
                 console.log("Coming to budget main thing");
                 PropertyService.findByMinAndMaxBudget({
                     'propertySize': $stateParams.propertySize,
@@ -385,8 +387,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     });
                 });
-            }
-            else {
+            } else {
                 console.log("Coming to else??");
                 $scope.$watch('state', function (state) {
                     map.setCenter({
@@ -960,9 +961,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-
-                else if (amenityDetail.name === "Public Transport") {
+                } else if (amenityDetail.name === "Public Transport") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -980,9 +979,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-
-                else if (amenityDetail.name === "Cafe") {
+                } else if (amenityDetail.name === "Cafe") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1000,9 +997,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-
-                else if (amenityDetail.name === "Hospital") {
+                } else if (amenityDetail.name === "Hospital") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1020,8 +1015,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Places Of Workship") {
+                } else if (amenityDetail.name === "Places Of Workship") {
                     console.log("Inside Places of workship");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required Amenities :%O", $scope.requiredAmenities);
@@ -1040,8 +1034,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Park") {
+                } else if (amenityDetail.name === "Park") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1059,8 +1052,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Bank") {
+                } else if (amenityDetail.name === "Bank") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1078,8 +1070,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "ATM") {
+                } else if (amenityDetail.name === "ATM") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1097,8 +1088,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "School") {
+                } else if (amenityDetail.name === "School") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1117,8 +1107,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "College") {
+                } else if (amenityDetail.name === "College") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1137,8 +1126,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Petrol Pump") {
+                } else if (amenityDetail.name === "Petrol Pump") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1157,8 +1145,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Restaurant") {
+                } else if (amenityDetail.name === "Restaurant") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1177,8 +1164,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Bakery") {
+                } else if (amenityDetail.name === "Bakery") {
                     console.log("In School If");
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
@@ -1197,8 +1183,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         });
                     }
                     ;
-                }
-                else if (amenityDetail.name === "Club") {
+                } else if (amenityDetail.name === "Club") {
                     $scope.requiredAmenities.push(amenityDetail.name);
                     console.log("Required AMenities :%O", $scope.requiredAmenities);
                     var request = {
@@ -1383,8 +1368,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         drawMarker1.setMap($scope.map1);
                         $scope.map1.fitBounds(myCity1.getBounds());
                     });
-                }
-                else if (propertyStep === "Projects") {
+                } else if (propertyStep === "Projects") {
                     $scope.myProjects = true;
                     $scope.myWorkplaces = false;
                     $scope.myProperties = false;
