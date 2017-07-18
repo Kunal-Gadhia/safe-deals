@@ -478,7 +478,7 @@ angular.module("safedeals.states.location", [])
 //                myCity.setMap(map);
             };
 
-            $scope.createAmenityMarker = function (place, location, map) {              
+            $scope.createAmenityMarker = function (place, location, map) {
                 var placeLoc = place.geometry.location;
                 var marker = new google.maps.Marker({
                     map: map,
@@ -1045,10 +1045,6 @@ angular.module("safedeals.states.location", [])
                     }
                     ;
                 }
-
-
-
-
 
                 console.log("Amenities List :%O", $scope.amenitiesList);
             };

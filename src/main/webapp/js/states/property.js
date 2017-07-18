@@ -556,16 +556,42 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
         })
 
-        .controller('PropertyDetailController', function ($scope, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, PropertyTypeService, ProjectService, $stateParams, ImageService, VideoService) {
+        .controller('PropertyDetailController', function ($scope, $q, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, PropertyTypeService, ProjectService, $stateParams, ImageService, VideoService) {
             $scope.images = [];
             $scope.videos = [];
             $scope.myInterval = 3000;
-            ImageService.findByPropertyId({
-                'propertyId': $stateParams.propertyId
-            }, function (images) {
-                angular.forEach(images, function (image) {
-                    $scope.images.push(image);
+
+//            ImageService.findByPropertyId({
+//                'propertyId': $stateParams.propertyId
+//            }, function (images) {
+//                $scope.images = images;
+//                angular.forEach(images, function(image){
+//                    
+//                });
+//            });
+
+            var fetchImages = function () {
+
+                var defered = $q.defer();
+                ImageService.findByPropertyId({
+                    'propertyId': $stateParams.propertyId
+                }, function (images) {
+//                    angular.forEach(images, function (image) {
+//                        $scope.images.push(image);
+//                    });
+                    defered.resolve(images);
+
                 });
+                console.log("What is Deferred Promise :%O", defered.promise);
+                return defered.promise;
+            };
+
+            fetchImages().then(function (images) {
+                console.log("Images List :%O", images);
+//                angular.forEach(images, function (image) {
+//                    $scope.images.push(image);
+//                });
+                $scope.images = images;
             });
 
             VideoService.findByPropertyId({
