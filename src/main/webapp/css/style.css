@@ -15,6 +15,14 @@
     margin-left: 15px;
 }
 
+.top_margin{
+    margin-top: 25px;
+}
+
+.top_padding{
+    padding-top: 2px;
+}
+
 /*----icon height-----*/
 .icon_ht{
     height: 60px;

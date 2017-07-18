@@ -555,8 +555,8 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 'Demand For Rental/Resale',
                 'Marketability',
                 'Project Highlights',
-                'Sellers Credability',
-                'Unit Details'
+                'Unit Details',
+                'Sellers Credability'
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;

@@ -787,8 +787,8 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 'Demand For Rental/Resale',
                 'Livability',
                 'Marketability',
-                'Seller Commision Agreement',
-                'Unit Details'
+                'Unit Details',
+                'Seller Commision Agreement'
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;

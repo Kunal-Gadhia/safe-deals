@@ -9,7 +9,7 @@
                         Project Form
                         <button type="button"
                                 onclick="window.history.back()"
-                                class=" pull-right btn btn-link">
+                                class="pull-right btn btn-link">
                             <i class="fa fa-times"></i>
                         </button>
                     </h3>
@@ -142,7 +142,14 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <ul ng-repeat="propertyType in propertiesTypeDisplay" class="left_margin">
-                                            <li>{{propertyType.numberOfBhk}} <button type="button" ng-click="removePropertyType(propertyType)">Remove</button></li>
+                                            <li class="col-md-8">
+                                                {{propertyType.numberOfBhk}} 
+                                            </li>
+                                            <li class="col-md-4 list-unstyled">
+                                                <button type="button" ng-click="removePropertyType(propertyType)" class="btn btn-link top_padding">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </li>
                                         </ul>
                                     </div>                                            
                                 </div>
@@ -152,7 +159,7 @@
                                         <div class="form-group">
                                             <!--NEW DATEPICKER-->
                                             <label>Booking Start Date</label>
-                                            <p class="form-inline">
+                                            <p class="form-inline text-center">
                                             <ng-combo-date-picker ng-model="editableProject.bookingStartDate" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                             </p>
 
@@ -173,10 +180,10 @@
                                         <div class="form-group">
                                             <!--NEW DATEPICKER-->
                                             <label>Completion Date</label>
-                                            <p class="form-inline">
+                                            <p class="form-inline text-center">
                                             <ng-combo-date-picker ng-model="editableProject.completionDate" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                             </p>
-                                            
+
                                             <!--OLD DATEPICKER-->
                                             <!--                                            <label>Completion Date</label>
                                                                                         <p class="input-group">
@@ -265,7 +272,14 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
-                                                <li>{{basicAmenities.name}} <button type="button" ng-click="removeTransportation(basicAmenities)">Remove</button></li>
+                                                <li class="col-md-8">
+                                                    {{basicAmenities.name}} 
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>                                        
@@ -292,7 +306,7 @@
                                             <div class="form-group">
                                                 <!--NEW DATEPICKER-->
                                                 <label>Offer Valid Till</label>
-                                                <p class="form-inline">
+                                                <p class="form-inline text-center">
                                                 <ng-combo-date-picker ng-model="editableProject.offerValidTill" ng-placeholder="Year,Month,Date" ng-attrs-date='{"class": "form-control"}' ng-attrs-month='{"class": "form-control"}' ng-attrs-year='{"class": "form-control"}'></ng-combo-date-picker>
                                                 </p>
 
@@ -355,15 +369,25 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul ng-repeat="workplaces in workplacesDisplay" class="left_margin">
-                                                <li>{{workplaces.name}}                                                     
-                                                    <button type="button" ng-click="removeWorkplaces(workplaces)">Remove</button>
+                                                <li class="col-md-8">
+                                                    {{workplaces.name}} 
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeWorkplaces(workplaces)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6">
                                             <ul ng-repeat="basicAmenities in basicAmenitiesDisplay" class="left_margin">
-                                                <li>{{basicAmenities.name}} 
-                                                    <button type="button" ng-click="removeBasicAmenities(basicAmenities)">Remove</button>
+                                                <li class="col-md-8">
+                                                    {{basicAmenities.name}} 
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeBasicAmenities(basicAmenities)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -391,8 +415,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul ng-repeat="luxuryAmenities in luxuryAmenitiesDisplay" class="left_margin">
-                                                <li>{{luxuryAmenities.name}}                                                     
-                                                    <button type="button" ng-click="removeLuxuryAmenities(luxuryAmenities)">Remove</button>
+                                                <li class="col-md-8">
+                                                    {{luxuryAmenities.name}}
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeLuxuryAmenities(luxuryAmenities)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -421,7 +450,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 locations">
-                                            <div class="form-group">
+                                            <div class="form-group top_margin">
                                                 <!--                                                <label>SD Verified</label>
                                                                                                                                                 <input class="form-control" type="checkbox" ng-model="editableProject.discount">
                                                                                                 <input class="form-control" type="checkbox" ng-model="editableProject.sdVerified">-->
@@ -434,8 +463,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul ng-repeat="amenitiesWithinProject in approvedBanksDisplay" class="left_margin">
-                                                <li>{{amenitiesWithinProject.name}}                                                     
-                                                    <button type="button" ng-click="removeApprovedBanks(amenitiesWithinProject)">Remove</button>
+                                                <li class="col-md-8">
+                                                    {{amenitiesWithinProject.name}}
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeApprovedBanks(amenitiesWithinProject)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -471,8 +505,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul ng-repeat="amenitiesWithinProject in amenitiesWithinProjectDisplay" class="left_margin">
-                                                <li>{{amenitiesWithinProject.name}}
-                                                    <button type="button" ng-click="removeAmenitiesWithinProject(amenitiesWithinProject)">Remove</button>
+                                                <li class="col-md-8">
+                                                    {{amenitiesWithinProject.name}}
+                                                </li>
+                                                <li class="col-md-4 list-unstyled">
+                                                    <button type="button" ng-click="removeAmenitiesWithinProject(amenitiesWithinProject)" class="btn btn-link top_padding">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -536,12 +575,18 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 locations">
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" ng-model="editableProject.openTerrace" required=""><b>Open Terrace</b>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" ng-model="editableProject.openLand" required=""><b>Open Land</b>
-                                            </label>
+                                            <div class="form-group top_margin">
+                                                <div class="col-md-6">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" ng-model="editableProject.openTerrace" required=""><b>Open Terrace</b>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" ng-model="editableProject.openLand" required=""><b>Open Land</b>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--                                    <div class="row">
