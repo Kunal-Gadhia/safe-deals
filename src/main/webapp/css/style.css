@@ -152,10 +152,10 @@ p.form-title{
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
-.panel-login>.panel-heading {
+.panel-login>.heading {
     text-align:center;
 }
-.panel-login>.panel-heading a{
+.panel-login>.heading a{
     text-decoration: none;
     font-weight: bold;
     font-size: 26px;
@@ -163,10 +163,10 @@ p.form-title{
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-.panel-login>.panel-heading a.active{
+.panel-login>.heading a.active{
     font-size: 32px;
 }
-.panel-login>.panel-heading hr{
+.panel-login>.heading hr{
     margin-top: 10px;
     margin-bottom: 0px;
     clear: both;
@@ -200,7 +200,7 @@ p.form-title{
     border-color: #53A3CD;
 }
 
-.panel-heading a{
+.heading a{
     font-size: 48px;
     color: rgb(6, 106, 117);
     padding: 2px 0 10px 0;
@@ -210,7 +210,7 @@ p.form-title{
     padding-bottom: 30px;
 }
 
-.panel-heading a{
+.heading a{
     background: -webkit-repeating-linear-gradient(-45deg, rgba(249,184,128,1) , 
         rgba(249,184,128,1) 20px, 
         rgb(227, 165, 125) 20px,
