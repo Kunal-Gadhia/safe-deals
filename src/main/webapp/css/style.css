@@ -103,11 +103,19 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/*************************** Login Page ********************************/
+/*************************** Login & Signup Page ********************************/
 .loginpage{
     background: url("../images/2.jpg") fixed;
     background-size: cover;
     height:683px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .loginpage{
+        background: url("../images/2.jpg") fixed;
+        background-size: cover;
+        overflow-x: auto
+    }
 }
 
 .wrap{
@@ -127,7 +135,93 @@ p.form-title{
     letter-spacing: 5px;
 }
 
-.loginpage form{
+.signup{
+    padding-top: 20px 
+}
+
+.signup_panel{
+    padding-top: 0px;
+    padding-bottom: 1px;
+    
+}
+
+.panel-login {
+    border-color: #FECF92;
+    background-color: #FFFFB7;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+    text-align:center;
+}
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 26px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+    font-size: 32px;
+}
+.panel-login>.panel-heading hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #198da8;
+    border-color: #53A3CD;
+}
+
+.panel-heading a{
+    font-size: 48px;
+    color: rgb(6, 106, 117);
+    padding: 2px 0 10px 0;
+    font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.panel-heading a{
+    background: -webkit-repeating-linear-gradient(-45deg, rgba(249,184,128,1) , 
+        rgba(249,184,128,1) 20px, 
+        rgb(227, 165, 125) 20px,
+        rgba(227,165,125,1) 40px, 
+        rgba(249,184,128,1) 40px);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+
+/*.loginpage form{
     width: 300px;
 }
 .loginpage form.login input[type="text"], form.login input[type="password"]
@@ -187,7 +281,9 @@ form.login .forgot-pass-content
 .loginpage form.login a:hover
 {
     color: #2ecc71;
-}
+}*/
+
+/*************************** Login & Signup Page ********************************/   
 
 #pac-input {
     background-color: #fff;
