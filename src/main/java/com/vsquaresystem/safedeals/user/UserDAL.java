@@ -28,6 +28,12 @@ public class UserDAL {
         public static final String USERNAME = "username";
         public static final String PASSWORD = "password";
         public static final String USER_TYPE = "user_type";
+        public static final String NAME = "name";
+        public static final String NAME_OF_COMPANY = "name_of_comapny";
+        public static final String ADDRESS = "address";
+        public static final String MOBILE_NO = "mobile_no";
+        public static final String CITY_ID = "city_id";
+        public static final String APPROVED = "approved";
     }
 
     public static final String TABLE_NAME = "user";
@@ -35,8 +41,6 @@ public class UserDAL {
     private final SimpleJdbcInsert insertUser;
     private final JdbcTemplate jdbcTemplate;
 
-//    @Autowired
-//    private EmployeeDAL employeeDAL;
     @Autowired
     public UserDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -45,7 +49,13 @@ public class UserDAL {
                 .usingColumns(
                         Columns.USERNAME,
                         Columns.PASSWORD,
-                        Columns.USER_TYPE
+                        Columns.USER_TYPE,
+                        Columns.NAME,
+                        Columns.NAME_OF_COMPANY,
+                        Columns.ADDRESS,
+                        Columns.MOBILE_NO,
+                        Columns.CITY_ID,
+                        Columns.APPROVED
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -72,12 +82,18 @@ public class UserDAL {
         String userNameLike = "%" + username.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{userNameLike}, new BeanPropertyRowMapper<>(User.class));
     }
-    
+
     public User insert(User user) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.USERNAME, user.getUsername());
         parameters.put(Columns.PASSWORD, user.getPassword());
         parameters.put(Columns.USER_TYPE, user.getUserType().name());
+        parameters.put(Columns.NAME, user.getUsername());
+        parameters.put(Columns.NAME_OF_COMPANY, user.getPassword());
+        parameters.put(Columns.ADDRESS, user.getUsername());
+        parameters.put(Columns.MOBILE_NO, user.getPassword());
+        parameters.put(Columns.CITY_ID, user.getCityId());
+        parameters.put(Columns.APPROVED, user.getApproved());
         Number newId = insertUser.executeAndReturnKey(parameters);
         user = findById(newId.intValue());
         return user;
@@ -92,12 +108,24 @@ public class UserDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.USERNAME + " = ?,"
                 + Columns.PASSWORD + " = ?, "
-                + Columns.USER_TYPE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.USER_TYPE + " = ?,"
+                + Columns.NAME + " = ?, "
+                + Columns.NAME_OF_COMPANY + " = ?,"
+                + Columns.ADDRESS + " = ?, "
+                + Columns.MOBILE_NO + " = ?,"
+                + Columns.CITY_ID + " = ?, "
+                + Columns.APPROVED + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     user.getUsername(),
                     user.getPassword(),
                     user.getUserType().name(),
+                    user.getName(),
+                    user.getNameOfCompany(),
+                    user.getAddress(),
+                    user.getMobileNo(),
+                    user.getCityId(),
+                    user.getApproved(),
                     user.getId()
                 });
         user = findById(user.getId());

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsquaresystem.safedeals.city.City;
 import com.vsquaresystem.safedeals.city.CityDAL;
-import com.vsquaresystem.safedeals.property.Property;
 import com.vsquaresystem.safedeals.property.PropertyDAL;
-import static com.vsquaresystem.safedeals.property.PropertyDAL.TABLE_NAME;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,6 +77,7 @@ public class ProjectDAL {
         public static final String OPEN_LAND = "open_land";
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
+        public static final String FEATURED_PROJECT = "featured_project";
 
     }
 
@@ -124,7 +123,8 @@ public class ProjectDAL {
                         Columns.OPEN_TERRACE,
                         Columns.OPEN_LAND,
                         Columns.LATITUDE,
-                        Columns.LONGITUDE
+                        Columns.LONGITUDE,
+                        Columns.FEATURED_PROJECT
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -187,6 +187,7 @@ public class ProjectDAL {
         parameters.put(Columns.OPEN_LAND, project.getOpenLand());
         parameters.put(Columns.LATITUDE, project.getLatitude());
         parameters.put(Columns.LONGITUDE, project.getLongitude());
+        parameters.put(Columns.FEATURED_PROJECT, project.getFeaturedProject());
 
         City c = cityDAL.findById(project.getCityId());
         String cityName = c.getName();
@@ -197,7 +198,7 @@ public class ProjectDAL {
         } else {
             srNumber = cityN.size() + 1;
         }
-        String projectId = String.valueOf(cityName).substring(0, 3) +String.valueOf(project.getSubLocation()).substring(0, 3)+ srNumber;
+        String projectId = String.valueOf(cityName).substring(0, 3) + String.valueOf(project.getSubLocation()).substring(0, 3) + srNumber;
         parameters.put(PropertyDAL.Columns.PROJECT_ID, projectId);
 
         Number newId = insertProject.executeAndReturnKey(parameters);
@@ -253,7 +254,8 @@ public class ProjectDAL {
                 + Columns.OPEN_TERRACE + " =?,"
                 + Columns.OPEN_LAND + " =?,"
                 + Columns.LATITUDE + " =?,"
-                + Columns.LONGITUDE + " =? WHERE "
+                + Columns.LONGITUDE + " =?,"
+                + Columns.FEATURED_PROJECT + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -294,6 +296,7 @@ public class ProjectDAL {
             project.getOpenLand(),
             project.getLatitude(),
             project.getLongitude(),
+            project.getFeaturedProject(),
             project.getId()});
         project = findById(project.getId());
         return project;
@@ -436,6 +439,7 @@ public class ProjectDAL {
             project.setOpenLand(rs.getBoolean(Columns.OPEN_LAND));
             project.setLatitude(rs.getDouble(Columns.LATITUDE));
             project.setLongitude(rs.getDouble(Columns.LONGITUDE));
+            project.setFeaturedProject(rs.getBoolean(Columns.FEATURED_PROJECT));
 
             return project;
         }
