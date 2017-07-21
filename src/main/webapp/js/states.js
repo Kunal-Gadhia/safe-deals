@@ -58,16 +58,16 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                     }, function (data) {
                         if (data.userType === "UT_GUEST") {
                             $state.go("main.intro.intro_tagline", {reload: 'true'});
-                        }else if(data.userType === "UT_SUPER_ADMIN"){
+                        } else if (data.userType === "UT_SUPER_ADMIN") {
                             $state.go("admin.masters", {reload: 'true'});
-                        }else if(data.userType === "UT_AGENT"){
+                        } else if (data.userType === "UT_AGENT") {
                             $state.go("admin.masters", {reload: 'true'});
-                        }else if(data.userType === "UT_BANK"){
+                        } else if (data.userType === "UT_BANK") {
                             $state.go("admin.masters", {reload: 'true'});
-                        }else if(data.userType === "UT_DEALER"){
+                        } else if (data.userType === "UT_DEALER") {
                             $state.go("admin.masters", {reload: 'true'});
-                        }                        
-                        
+                        }
+
                     });
 //                    if (data.username === "guest") {
 //                        $state.go("main.intro.intro_tagline", {reload: 'true'});
@@ -81,6 +81,15 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
             $scope.guestLogin = function () {
                 $scope.login("guest", "guest");
             };
+
+            $scope.newUser = {};
+            $scope.saveNewUser = function (newUserInfo) {
+                console.log("new user info :%O", newUserInfo);
+            };
+
+//            $scope.$watch('$scope.userType', function (userType) {
+//                console.log("Detecting Change with value :%O", userType);
+//            });
 
             function googleTranslateElementInit() {
                 console.log("Into Translator");
