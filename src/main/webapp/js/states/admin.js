@@ -14,6 +14,11 @@ angular.module("safedeals.states.admin", [])
                 'templateUrl': templateRoot + '/logout.html',
                 'controller': 'LogoutController'
             });
+            $stateProvider.state('admin.alert', {
+                'url': '/alert',
+                'templateUrl': templateRoot + '/alert.html',
+//                'controller': 'AlertController'
+            });
         })
         .controller('LogoutController', function (UserService, $scope, $state) {
             console.log("Coming to logout Controller??");

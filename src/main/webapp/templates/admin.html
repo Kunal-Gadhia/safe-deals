@@ -12,8 +12,12 @@
         </div>
         <div class="collapse navbar-collapse" id="adminNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{currentUser.username}}</a></li>
-                <li><a data-ui-sref="admin.logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="#"><span><i class="fa fa-user" aria-hidden="true"></i>
+                        </span> {{currentUser.username}}</a></li>
+                <li><a data-ui-sref="admin.logout"><span> <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </span> Logout</a></li>
+                <li><a data-ui-sref="admin.alert"><span> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        </span> Alerts</a></li>
             </ul>
         </div>
     </div>
