@@ -45,6 +45,7 @@ public class Project {
     private Boolean openLand;
     private Double latitude;
     private Double longitude;
+    private Boolean featuredProject;
 
     public Integer getId() {
         return id;
@@ -358,53 +359,62 @@ public class Project {
         this.longitude = longitude;
     }
 
+    public Boolean getFeaturedProject() {
+        return featuredProject;
+    }
+
+    public void setFeaturedProject(Boolean featuredProject) {
+        this.featuredProject = featuredProject;
+    }
+
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + '}';
+        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProject=" + featuredProject + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.projectId);
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.stateId);
-        hash = 41 * hash + Objects.hashCode(this.cityId);
-        hash = 41 * hash + Objects.hashCode(this.locationId);
-        hash = 41 * hash + Objects.hashCode(this.subLocation);
-        hash = 41 * hash + Objects.hashCode(this.projectType);
-        hash = 41 * hash + Objects.hashCode(this.projectScale);
-        hash = 41 * hash + Objects.hashCode(this.propertiesType);
-        hash = 41 * hash + Objects.hashCode(this.bookingStartDate);
-        hash = 41 * hash + Objects.hashCode(this.constructionStage);
-        hash = 41 * hash + Objects.hashCode(this.completionDate);
-        hash = 41 * hash + Objects.hashCode(this.totalBuildings);
-        hash = 41 * hash + Objects.hashCode(this.totalFloors);
-        hash = 41 * hash + Objects.hashCode(this.totalUnits);
-        hash = 41 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 41 * hash + Objects.hashCode(this.publicTransport);
-        hash = 41 * hash + Objects.hashCode(this.offeredPrice);
-        hash = 41 * hash + Objects.hashCode(this.discount);
-        hash = 41 * hash + Objects.hashCode(this.offerValidTill);
-        hash = 41 * hash + Objects.hashCode(this.paymentSchedule);
-        hash = 41 * hash + Objects.hashCode(this.workplaces);
-        hash = 41 * hash + Objects.hashCode(this.basicAmenities);
-        hash = 41 * hash + Objects.hashCode(this.luxuryAmenities);
-        hash = 41 * hash + Objects.hashCode(this.ownershipProof);
-        hash = 41 * hash + Objects.hashCode(this.approvedBanks);
-        hash = 41 * hash + Objects.hashCode(this.sdVerified);
-        hash = 41 * hash + Objects.hashCode(this.privateAmenities);
-        hash = 41 * hash + Objects.hashCode(this.projectTestimonial);
-        hash = 41 * hash + Objects.hashCode(this.salableArea);
-        hash = 41 * hash + Objects.hashCode(this.carpetArea);
-        hash = 41 * hash + Objects.hashCode(this.buildUpArea);
-        hash = 41 * hash + Objects.hashCode(this.balconyCount);
-        hash = 41 * hash + Objects.hashCode(this.toiletCount);
-        hash = 41 * hash + Objects.hashCode(this.openTerrace);
-        hash = 41 * hash + Objects.hashCode(this.openLand);
-        hash = 41 * hash + Objects.hashCode(this.latitude);
-        hash = 41 * hash + Objects.hashCode(this.longitude);
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.projectId);
+        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 37 * hash + Objects.hashCode(this.stateId);
+        hash = 37 * hash + Objects.hashCode(this.cityId);
+        hash = 37 * hash + Objects.hashCode(this.locationId);
+        hash = 37 * hash + Objects.hashCode(this.subLocation);
+        hash = 37 * hash + Objects.hashCode(this.projectType);
+        hash = 37 * hash + Objects.hashCode(this.projectScale);
+        hash = 37 * hash + Objects.hashCode(this.propertiesType);
+        hash = 37 * hash + Objects.hashCode(this.bookingStartDate);
+        hash = 37 * hash + Objects.hashCode(this.constructionStage);
+        hash = 37 * hash + Objects.hashCode(this.completionDate);
+        hash = 37 * hash + Objects.hashCode(this.totalBuildings);
+        hash = 37 * hash + Objects.hashCode(this.totalFloors);
+        hash = 37 * hash + Objects.hashCode(this.totalUnits);
+        hash = 37 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 37 * hash + Objects.hashCode(this.publicTransport);
+        hash = 37 * hash + Objects.hashCode(this.offeredPrice);
+        hash = 37 * hash + Objects.hashCode(this.discount);
+        hash = 37 * hash + Objects.hashCode(this.offerValidTill);
+        hash = 37 * hash + Objects.hashCode(this.paymentSchedule);
+        hash = 37 * hash + Objects.hashCode(this.workplaces);
+        hash = 37 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 37 * hash + Objects.hashCode(this.luxuryAmenities);
+        hash = 37 * hash + Objects.hashCode(this.ownershipProof);
+        hash = 37 * hash + Objects.hashCode(this.approvedBanks);
+        hash = 37 * hash + Objects.hashCode(this.sdVerified);
+        hash = 37 * hash + Objects.hashCode(this.privateAmenities);
+        hash = 37 * hash + Objects.hashCode(this.projectTestimonial);
+        hash = 37 * hash + Objects.hashCode(this.salableArea);
+        hash = 37 * hash + Objects.hashCode(this.carpetArea);
+        hash = 37 * hash + Objects.hashCode(this.buildUpArea);
+        hash = 37 * hash + Objects.hashCode(this.balconyCount);
+        hash = 37 * hash + Objects.hashCode(this.toiletCount);
+        hash = 37 * hash + Objects.hashCode(this.openTerrace);
+        hash = 37 * hash + Objects.hashCode(this.openLand);
+        hash = 37 * hash + Objects.hashCode(this.latitude);
+        hash = 37 * hash + Objects.hashCode(this.longitude);
+        hash = 37 * hash + Objects.hashCode(this.featuredProject);
         return hash;
     }
 
@@ -532,6 +542,9 @@ public class Project {
             return false;
         }
         if (!Objects.equals(this.longitude, other.longitude)) {
+            return false;
+        }
+        if (!Objects.equals(this.featuredProject, other.featuredProject)) {
             return false;
         }
         return true;

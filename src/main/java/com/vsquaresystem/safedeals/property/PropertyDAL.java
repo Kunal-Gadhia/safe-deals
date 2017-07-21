@@ -74,6 +74,7 @@ public class PropertyDAL {
         public static final String OPEN_LAND = "open_land";
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
+        public static final String FEATURED_PROPERTY = "featured_property";
 
     }
 
@@ -128,7 +129,8 @@ public class PropertyDAL {
                         Columns.OPEN_TERRACE,
                         Columns.OPEN_LAND,
                         Columns.LATITUDE,
-                        Columns.LONGITUDE
+                        Columns.LONGITUDE,
+                        Columns.FEATURED_PROPERTY
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -191,6 +193,7 @@ public class PropertyDAL {
         parameters.put(Columns.OPEN_LAND, property.getOpenLand());
         parameters.put(Columns.LATITUDE, property.getLatitude());
         parameters.put(Columns.LONGITUDE, property.getLongitude());
+        parameters.put(Columns.FEATURED_PROPERTY, property.getFeaturedProperty());
 
         City c = cityDAL.findById(property.getCityId());
         String cityName = c.getName();
@@ -282,7 +285,8 @@ public class PropertyDAL {
                 + Columns.OPEN_TERRACE + " =?,"
                 + Columns.OPEN_LAND + " =?,"
                 + Columns.LATITUDE + " =?,"
-                + Columns.LONGITUDE + " =? WHERE "
+                + Columns.LONGITUDE + " =?,"
+                + Columns.FEATURED_PROPERTY + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             property.getName(),
@@ -326,6 +330,7 @@ public class PropertyDAL {
             property.getOpenLand(),
             property.getLatitude(),
             property.getLongitude(),
+            property.getFeaturedProperty(),
             property.getId()});
         property = findById(property.getId());
         return property;
@@ -506,6 +511,7 @@ public class PropertyDAL {
             property.setOpenLand(rs.getBoolean(Columns.OPEN_LAND));
             property.setLatitude(rs.getDouble(Columns.LATITUDE));
             property.setLongitude(rs.getDouble(Columns.LONGITUDE));
+            property.setFeaturedProperty(rs.getBoolean(Columns.FEATURED_PROPERTY));
 
             return property;
         }
