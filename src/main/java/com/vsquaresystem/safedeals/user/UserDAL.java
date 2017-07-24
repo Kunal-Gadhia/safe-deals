@@ -73,7 +73,7 @@ public class UserDAL {
 
     public User findByUsername(String username) {
 
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.USERNAME + " = ?";
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND approved = TRUE AND " + Columns.USERNAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
     }
 
