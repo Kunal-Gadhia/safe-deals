@@ -39,7 +39,7 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 $anchorScroll();
             };
         })
-        .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService, AuthFactory,CityService) {
+        .controller('LoginController', function ($scope, $state, $stateParams, $timeout, UserService, AuthFactory, CityService) {
             $scope.username = $stateParams.username;
             $scope.message = $stateParams.message;
             $scope.error = $stateParams.error;
@@ -79,25 +79,39 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                 }, function () {
                     $scope.error = "Login Failed. Invalid Credentials.";
                 });
-            };                     
+            };
             $scope.guestLogin = function () {
                 $scope.login("guest", "guest");
             };
-            
+
             $scope.newUser = {};
-            
-            $scope.searchCities = function (searchTerm) {                
+            $scope.confirmPassword;
+            $scope.$watch('confirmPassword', function (confirmPassword) {
+                console.log("confirmPassword ", confirmPassword);
+                if ($scope.newUser.password === confirmPassword) {
+                    $scope.errorMsg = false;
+                } else
+                {
+                    $scope.errorMsg = true;
+                }
+
+            });
+
+            $scope.searchCities = function (searchTerm) {
                 return CityService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
-            
-            $scope.setCity = function (city) {                
+
+            $scope.setCity = function (city) {
                 $scope.newUser.cityId = city.id;
                 $scope.newUser.city = city;
             };
-            
+
             $scope.saveNewUser = function (newUserInfo) {
+                UserService.save(newUserInfo, function () {
+                    $state.go('login', null, {'reload': true});
+                });
                 console.log("new user info :%O", newUserInfo);
             };
 

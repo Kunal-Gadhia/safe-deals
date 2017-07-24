@@ -140,26 +140,32 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile">Mobile No.</label>
-                                            <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Mobile No.">
+                                            <input type="number" ng-model="newUser.mobileNo" name="mobile" id="mobile" class="form-control" placeholder="Mobile No.">
                                         </div>
                                         <div class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" name="username" id="username1" class="form-control" placeholder="Username" value="">
+                                            <input type="text" ng-model="newUser.username" name="username" id="username1" class="form-control" placeholder="Username" value="">
                                         </div>
                                         <div class="">
                                             <div class="col-md-6 form-group padding">
                                                 <label for="password">Password</label>
-                                                <input type="password" name="password" id="password1" class="form-control" placeholder="Password" value="">
+                                                <input type="password" ng-model="newUser.password" name="password" id="password1" class="form-control" placeholder="Password" value="">
                                             </div>
                                             <div class="col-md-6 form-group padding">
                                                 <label for="confirm-password">Confirm password</label>
-                                                <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                                <input type="password" ng-model="confirmPassword" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required/>
                                             </div>
                                         </div>
+                                        <div ng-show="errorMsg">
+                                            <span>
+                                                Entered password does not match, kindly re-enter.
+                                            </span>
+                                        </div>
+
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" name="register-submit" id="register-submit" class="form-control btn btn-success" value="Register">
+                                                    <input type="submit" name="register-submit" ng-disabled="errorMsg" id="register-submit" class="form-control btn btn-success" value="Register">
                                                 </div>
                                             </div>
                                         </div>

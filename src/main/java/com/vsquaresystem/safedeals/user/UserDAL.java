@@ -29,7 +29,7 @@ public class UserDAL {
         public static final String PASSWORD = "password";
         public static final String USER_TYPE = "user_type";
         public static final String NAME = "name";
-        public static final String NAME_OF_COMPANY = "name_of_comapny";
+        public static final String NAME_OF_COMPANY = "name_of_company";
         public static final String ADDRESS = "address";
         public static final String MOBILE_NO = "mobile_no";
         public static final String CITY_ID = "city_id";
@@ -91,7 +91,7 @@ public class UserDAL {
         parameters.put(Columns.NAME, user.getUsername());
         parameters.put(Columns.NAME_OF_COMPANY, user.getPassword());
         parameters.put(Columns.ADDRESS, user.getUsername());
-        parameters.put(Columns.MOBILE_NO, user.getPassword());
+        parameters.put(Columns.MOBILE_NO, user.getMobileNo());
         parameters.put(Columns.CITY_ID, user.getCityId());
         parameters.put(Columns.APPROVED, user.getApproved());
         Number newId = insertUser.executeAndReturnKey(parameters);
