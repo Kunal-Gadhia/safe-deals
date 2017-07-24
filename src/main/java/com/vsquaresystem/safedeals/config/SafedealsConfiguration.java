@@ -32,10 +32,10 @@ public class SafedealsConfiguration {
     public static RoleHierarchy roleHierarchy() {
 
         String roleHierarchyStringRepresentation
-                = UserType.UT_SUPER_ADMIN + " > " + UserType.UT_ROLE_ADMIN + "\n"
-                + UserType.UT_ROLE_ADMIN + " > " + UserType.UT_BANK + "\n"
-                + UserType.UT_BANK + " > " + UserType.UT_DEALER + "\n"
-                + UserType.UT_DEALER + " > " + UserType.UT_AGENT;
+                = UserType.UT_SUPER_ADMIN + " > " + UserType.UT_BUILDER + "\n"
+                + UserType.UT_BUILDER + " = " + UserType.UT_BANK + "\n"
+                + UserType.UT_BANK + " = " + UserType.UT_BUSINESS_ASSOCIATE + "\n"
+                + UserType.UT_BUSINESS_ASSOCIATE + " = " + UserType.UT_FRANCHISE;
 
         //logger.info("Registered Role Hierarchy: \n{}", roleHierarchyStringRepresentation);
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();

@@ -1,4 +1,4 @@
-angular.module("safedeals.states.location_master", [])
+angular.module("safedeals.states.location_master", ['angularjs-dropdown-multiselect'])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('admin.masters_location', {
                 'url': '/location_master?offset',
@@ -214,10 +214,32 @@ angular.module("safedeals.states.location_master", [])
 
             $scope.saveLocation = function (location) {
                 console.log("Saved location", location);
+                $scope.locArray = [];
+                angular.forEach(location.locationCategoriesObject, function (locationCategoryData) {
+                    $scope.locArray.push(locationCategoryData.id);
+//                    location.locationCategories.push(locationCategoryData.id);
+                });
+                location.locationCategories = _.uniq($scope.locArray);
                 LocationService.save(location, function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
             };
+            ///////////////////////////////////////////Multiselect
+            $scope.editableLocation.locationCategoriesObject = [];
+            $scope.example14settings = {
+                scrollableHeight: '200px',
+                scrollable: true,
+                enableSearch: true
+            };
+            LocationCategoryService.query(function (locationCategory) {
+                $scope.example14data = locationCategory;
+            });
+            $scope.example2settings = {
+                displayProp: 'name'
+            };
+            ///////////////////////////////////////////
+
+
         })
         .controller('LocationEditController', function (CityService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
             $scope.editableLocation = LocationService.get({
@@ -231,6 +253,7 @@ angular.module("safedeals.states.location_master", [])
                         $scope.locationCategoriesDisplay.push(data);
                     });
                 });
+                $scope.editableLocation.locationCategoriesObject = $scope.editableLocation.locationCategories;
                 $scope.editableLocation.road = RoadService.get({
                     id: $scope.editableLocation.majorApproachRoad
                 });
@@ -442,6 +465,20 @@ angular.module("safedeals.states.location_master", [])
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
             };
+            ///////////////////////////////////////////Multiselect
+//            $scope.editableLocation.locationCategoriesObject = [];
+            $scope.example14settings = {
+                scrollableHeight: '200px',
+                scrollable: true,
+                enableSearch: true
+            };
+            LocationCategoryService.query(function (locationCategory) {
+                $scope.example14data = locationCategory;
+            });
+            $scope.example2settings = {
+                displayProp: 'name'
+            };
+            ///////////////////////////////////////////
         })
         .controller('LocationDeleteController', function (LocationService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableLocation = LocationService.get({'id': $stateParams.locationId});

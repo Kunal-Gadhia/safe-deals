@@ -48,6 +48,7 @@
         <script src="${pageContext.request.contextPath}/js/lib/scripts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/wow.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/lodash.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>-->
         <script src="${pageContext.request.contextPath}/js/lib/angular-bootstrap-lightbox.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.js"></script>
@@ -96,6 +97,7 @@
         <!--<script src="${pageContext.request.contextPath}/js/directives/scroll.js"></script>-->
         <!-- Directive -->
         <script src="${pageContext.request.contextPath}/js/directives/bank_add.js"></script>
+        <script src="${pageContext.request.contextPath}/js/directives/location_category_multiselect.js"></script>
         <!--states-->
         <script src="${pageContext.request.contextPath}/js/states.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/admin.js"></script>

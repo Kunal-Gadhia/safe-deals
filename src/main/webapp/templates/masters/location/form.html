@@ -75,28 +75,35 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Location categories </label>
-                                        <div class="typeahead-demo">
-                                            <input class="form-control"
-                                                   placeholder="Type Location Category" 
-                                                   uib-typeahead="locationCategory.name for locationCategory in searchLocationCategories($viewValue)"
-                                                   typeahead-on-select="setLocationCategories($item)"
-                                                   typeahead-editable="false"
-                                                   typeahead-loading="loadingLocationCategories"
-                                                   typeahead-no-results="noLocationCategories"
-                                                   ng-model="locationCategory"/> 
-                                            <p ng-show="noLocationCategories" class="help-block text-muted">No Result found</p>
-                                            <p ng-show="loadingLocationCategories" class="help-block text-muted">loading...</p>      
-                                        </div>
+                                        <!--                                        <div class="typeahead-demo">
+                                                                                    <input class="form-control"
+                                                                                           placeholder="Type Location Category" 
+                                                                                           uib-typeahead="locationCategory.name for locationCategory in searchLocationCategories($viewValue)"
+                                                                                           typeahead-on-select="setLocationCategories($item)"
+                                                                                           typeahead-editable="false"
+                                                                                           typeahead-loading="loadingLocationCategories"
+                                                                                           typeahead-no-results="noLocationCategories"
+                                                                                           ng-model="locationCategory"/> 
+                                                                                    <p ng-show="noLocationCategories" class="help-block text-muted">No Result found</p>
+                                                                                    <p ng-show="loadingLocationCategories" class="help-block text-muted">loading...</p>      
+                                                                                </div>-->
+                                        <div ng-dropdown-multiselect="" options="example14data" selected-model="editableLocation.locationCategoriesObject" checkboxes="true" extra-settings="example14settings"></div> 
+                                        <!--<pre>Selected Model: {{example14model}}</pre>-->
+<!--                                        <div>
+                                            <ul>
+                                                <li ng-repeat="data in editableLocation.locationCategoriesObject">{{data}}</li>
+                                            </ul>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+<!--                            <div class="row">
                                 <div class="col-sm-6">
-                                    <!--                                            <ul ng-repeat="workplaces in workplacesDisplay">
+                                                                                <ul ng-repeat="workplaces in workplacesDisplay">
                                                                                     <li>{{workplaces.name}}                                                     
                                                                                         <button type="button" ng-click="removeWorkplaces(workplaces)">Remove</button>
                                                                                     </li>
-                                                                                </ul>-->
+                                                                                </ul>
                                 </div>
                                 <div class="col-sm-6">
                                     <ul ng-repeat="locationCategories in locationCategoriesDisplay">
@@ -105,7 +112,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">

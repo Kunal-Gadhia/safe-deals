@@ -12,6 +12,7 @@ angular.module("safedeals", [
     //  include constants
     'safedeals.constants',
     // include directives
+    'angularjs-dropdown-multiselect',
     //'safedeals.services.scroll',
     // include services
     'safedeals.services.branch',

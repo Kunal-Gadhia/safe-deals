@@ -2,10 +2,10 @@ package com.vsquaresystem.safedeals.user;
 
 public enum UserType {
 
-    UT_AGENT,
-    UT_DEALER,
+    UT_BUILDER,
+    UT_BUSINESS_ASSOCIATE,
     UT_BANK,
-    UT_ROLE_ADMIN,
+    UT_FRANCHISE,
     UT_GUEST,
     UT_SUPER_ADMIN;
 }

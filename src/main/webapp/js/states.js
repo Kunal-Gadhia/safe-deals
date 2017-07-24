@@ -60,11 +60,13 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                             $state.go("main.intro.intro_tagline", {reload: 'true'});
                         } else if (data.userType === "UT_SUPER_ADMIN") {
                             $state.go("admin.masters", {reload: 'true'});
-                        } else if (data.userType === "UT_AGENT") {
+                        } else if (data.userType === "UT_BUILDER") {
+                            $state.go("admin.masters", {reload: 'true'});
+                        } else if (data.userType === "UT_BUSINESS_ASSOCIATE") {
                             $state.go("admin.masters", {reload: 'true'});
                         } else if (data.userType === "UT_BANK") {
                             $state.go("admin.masters", {reload: 'true'});
-                        } else if (data.userType === "UT_DEALER") {
+                        } else if (data.userType === "UT_FRANCHISE") {
                             $state.go("admin.masters", {reload: 'true'});
                         }
 
