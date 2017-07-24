@@ -302,8 +302,7 @@ angular.module('angularjs-dropdown-multiselect', [])
                                 $scope.open = false;
                         };
 
-                        $scope.isChecked = function (id) {
-                            console.log("Getting This ID :%O", id);
+                        $scope.isChecked = function (id) {                            
                             if ($scope.singleSelection) {
                                 return $scope.selectedModel !== null && angular.isDefined($scope.selectedModel[$scope.settings.idProp]) && $scope.selectedModel[$scope.settings.idProp] === getFindObj(id)[$scope.settings.idProp];
                             }
