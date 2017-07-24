@@ -85,13 +85,13 @@
                                         <div class="row">
                                             <div class="col-md-8 col-xs-8 form-group">
                                                 <label class="radio-inline">
-                                                    <input ng-model="newUser.userType" value="Builder" type="radio" name="radio">
+                                                    <input ng-model="newUser.userType" value="UT_BUILDER" type="radio" name="radio">
                                                     As Builder And Developers
                                                 </label>
                                             </div>
                                             <div class="col-md-4 col-xs-4 form-group padding">
                                                 <label class="radio-inline">
-                                                    <input ng-model="newUser.userType" value="Bank" type="radio" name="radio">
+                                                    <input ng-model="newUser.userType" value="UT_BANK" type="radio" name="radio">
                                                     As Bank
                                                 </label>
                                             </div>
@@ -99,33 +99,43 @@
                                         <div class="row">
                                             <div class="col-md-8 col-xs-8 form-group">
                                                 <label class="radio-inline">
-                                                    <input ng-model="newUser.userType" value="Business_Associate" type="radio" name="radio">
+                                                    <input ng-model="newUser.userType" value="UT_BUSINESS_ASSOCIATE" type="radio" name="radio">
                                                     As Business Associate
                                                 </label>
                                             </div>
                                             <div class="col-md-4 col-xs-4 form-group padding">
                                                 <label class="radio-inline">
-                                                    <input ng-model="newUser.userType" value="Franchise" type="radio" name="radio">
+                                                    <input ng-model="newUser.userType" value="UT_FRANCHISE" type="radio" name="radio">
                                                     As Franchise
                                                 </label>
                                             </div>                                            
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Full Name</label>
-                                            <input ng-model="newUser.fullname" type="text" name="Name" id="name" class="form-control" placeholder="Full Name" value="">
+                                            <input ng-model="newUser.name" type="text" name="Name" id="name" class="form-control" placeholder="Full Name" value="">
                                         </div>
                                         <div class="form-group">
                                             <label for="company">Name of Company</label>
-                                            <input type="text" name="company" id="company" class="form-control" placeholder="Name Of Company" value="">
+                                            <input ng-model="newUser.nameOfCompany" type="text" name="company" id="company" class="form-control" placeholder="Name Of Company" value="">
                                         </div>
                                         <div class="">
                                             <div class="col-md-6 form-group padding">
                                                 <label for="address">Address</label>
-                                                <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+                                                <input ng-model="newUser.address" type="text" name="address" id="address" class="form-control" placeholder="Address">
                                             </div>
                                             <div class="col-md-6 form-group padding">
                                                 <label for="city">City</label>
-                                                <input type="text" name="city" id="city" class="form-control" placeholder="City">
+                                                <!--<input type="text" name="city" id="city" class="form-control" placeholder="City">-->
+                                                <input class="form-control"
+                                                       placeholder="Select City"
+                                                       uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
+                                                       typeahead-on-select="setCity($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingCities" 
+                                                       typeahead-no-results="noCitiesFound"                                       
+                                                       ng-model="newUser.city.name" required />
+                                                <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
+                                                <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
