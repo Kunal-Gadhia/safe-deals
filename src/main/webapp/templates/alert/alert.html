@@ -17,18 +17,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>Username</td>   
-                <td>Company Name</td>   
-                <td>User Type</td>               
-                <td>Contact Number</td>       
+            <tr ng-repeat="user in unapprovedUserList">
+                <td class="text-right">{{$index + 1}}</td>
+                <td>{{user.name}}</td>   
+                <td>{{user.nameOfCompany}}</td>   
+                <td>{{user.userType}}</td>               
+                <td>{{user.mobileNo}}</td>       
                 <td class="text-center">
-                    <a data-ui-sref=""
+                    <a data-ui-sref="admin.alerts.approved({ userId: user.id})"
                        class="btn btn-primary">					
                         <i class="fa fa-check"></i>
                     </a>
-                    <a data-ui-sref=""
+                    <a data-ui-sref="admin.alerts.disapproved({ userId: user.id})"
                        class="btn btn-danger">
                         <i class="fa fa-times"></i>
                     </a>                    

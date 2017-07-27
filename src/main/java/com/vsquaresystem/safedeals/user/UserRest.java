@@ -33,7 +33,6 @@ public class UserRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-
     public User findById(@PathVariable("id") Integer id) throws SQLException {
 
         return userDAL.findById(id);
@@ -68,9 +67,15 @@ public class UserRest {
     public List<User> findByNameLike(@RequestParam("username") String username) {
         return userDAL.findByNameLike(username);
     }
+    
+    @RequestMapping(value = "/find/unapproved_user", method = RequestMethod.GET)
+    public List<User> findUnapprovedUser() {
+        return userDAL.findUnapprovedUser();
+    }
+    
+    @RequestMapping(value = "/count/unapproved_user", method = RequestMethod.GET)
+    public Integer countUnapprovedUser() {
+        return userDAL.countUnapprovedUser();
+    }
 
-//    @RequestMapping(value = "/roles", method = RequestMethod.GET)
-//    public Role[] getRoles() {
-//        return userService.getRoles();
-//    }
 }
