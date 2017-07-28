@@ -9,10 +9,23 @@ angular.module("safedeals.services.mail", []);
 angular.module("safedeals.services.mail")
         .factory('MailService', function ($resource, restRoot) {
             return $resource(restRoot + '/mail_service/:id', {'id': '@id'}, {
-                
                 'sendEmail': {
                     'method': 'POST',
                     'url': restRoot + '/mail_service/send_mail',
+                    'params': {
+                        'mailId': '@mailId'
+                    }
+                },
+                'sendApprovedMail': {
+                    'method': 'POST',
+                    'url': restRoot + '/mail_service/send_approved_mail',
+                    'params': {
+                        'mailId': '@mailId'
+                    }
+                },
+                'sendRejectionMail': {
+                    'method': 'POST',
+                    'url': restRoot + '/mail_service/send_rejection_mail',
                     'params': {
                         'mailId': '@mailId'
                     }

@@ -17,7 +17,7 @@ angular.module("safedeals.states.alerts", [])
             });
         })
 
-        .controller('AlertsListController', function (UserService, $scope) {            
+        .controller('AlertsListController', function (UserService, $scope) {
             $scope.unapprovedUserList = [];
             UserService.findUnapprovedUser(function (data) {
                 angular.forEach(data, function (user) {
@@ -28,7 +28,7 @@ angular.module("safedeals.states.alerts", [])
             });
         })
 
-        .controller('AlertsApprovedController', function (UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('AlertsApprovedController', function (UserService, MailService, $scope, $stateParams, $state, paginationLimit) {
             console.log("User Id in approved :%O", $stateParams.userId);
             UserService.get({
                 'id': $stateParams.userId
@@ -40,12 +40,15 @@ angular.module("safedeals.states.alerts", [])
                 console.log("User ID :%O", user);
                 user.approved = true;
                 user.$save(function () {
+                    MailService.sendApprovedMail({
+                        'mailId': user.username
+                    });
                     $state.go("admin.alerts", null, {'reload': true});
                 });
             };
         })
 
-        .controller('AlertsDisapprovedController', function (UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('AlertsDisapprovedController', function (UserService, MailService, $scope, $stateParams, $state, paginationLimit) {
             console.log("User Id in disapproved :%O", $stateParams.userId);
             UserService.get({
                 'id': $stateParams.userId
@@ -56,6 +59,9 @@ angular.module("safedeals.states.alerts", [])
             $scope.disapproveUser = function (user) {
                 console.log("User ID :%O", user);
                 user.$delete(function () {
+                    MailService.sendRejectionMail({
+                        'mailId': user.username
+                    });
                     $state.go("admin.alerts", null, {'reload': true});
                 });
             };
