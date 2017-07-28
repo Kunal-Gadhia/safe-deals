@@ -119,7 +119,10 @@ angular.module("safedeals", [
     'safedeals.states.road',
     'safedeals.states.image',
     'safedeals.states.price_range',
-    'safedeals.states.auth'
+    'safedeals.states.auth',
+    //portal states
+    'safedeals.states.bank_portal',
+    'safedeals.states.franchise_portal'
 ])
 
         .run(['$state', '$rootScope', 'AuthFactory', '$location', 'UserService', function ($state, $rootScope, AuthFactory, $location, UserService) {

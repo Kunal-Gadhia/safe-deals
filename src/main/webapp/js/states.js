@@ -61,13 +61,13 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                         } else if (data.userType === "UT_SUPER_ADMIN") {
                             $state.go("admin.masters", {reload: 'true'});
                         } else if (data.userType === "UT_BUILDER") {
-                            $state.go("admin.masters", {reload: 'true'});
+                            $state.go("admin.builder_portal", {reload: 'true'});
                         } else if (data.userType === "UT_BUSINESS_ASSOCIATE") {
-                            $state.go("admin.masters", {reload: 'true'});
+                            $state.go("admin.business_portal", {reload: 'true'});
                         } else if (data.userType === "UT_BANK") {
-                            $state.go("admin.masters", {reload: 'true'});
+                            $state.go("admin.bank_portal", {reload: 'true'});
                         } else if (data.userType === "UT_FRANCHISE") {
-                            $state.go("admin.masters", {reload: 'true'});
+                            $state.go("admin.franchise_portal", {reload: 'true'});
                         }
 
                     });
