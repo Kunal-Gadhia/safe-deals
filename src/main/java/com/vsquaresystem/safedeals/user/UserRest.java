@@ -64,6 +64,11 @@ public class UserRest {
 
     }
     
+    @RequestMapping(value = "/find/unapproved", method = RequestMethod.GET)
+    public List<User> findUnapprovedUser() throws Exception {
+        return userDAL.findUnapprovedUser();
+    }
+    
     @RequestMapping(value = "/find/user_like", method = RequestMethod.GET)
     public List<User> findByNameLike(@RequestParam("username") String username) {
         return userDAL.findByNameLike(username);

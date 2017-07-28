@@ -31,6 +31,11 @@ angular.module("safedeals.services.user")
                         'username': '@username'
                     },
                     'isArray': false
+                },
+                'findUnapprovedUser': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/unapproved',                    
+                    'isArray': false
                 }
             });
         });

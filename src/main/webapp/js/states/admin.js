@@ -17,7 +17,7 @@ angular.module("safedeals.states.admin", [])
             $stateProvider.state('admin.alert', {
                 'url': '/alert',
                 'templateUrl': templateRoot + '/alert.html',
-//                'controller': 'AlertController'
+                'controller': 'AlertController'
             });
         })
         .controller('LogoutController', function (UserService, $scope, $state) {
@@ -29,4 +29,7 @@ angular.module("safedeals.states.admin", [])
                     });
                 });
             };
+        })
+        .controller('AlertController', function (UserService, $scope, $state) {
+            console.log("Alert COntroller ");
         });
