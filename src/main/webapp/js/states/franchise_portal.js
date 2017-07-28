@@ -6,6 +6,8 @@ angular.module("safedeals.states.franchise_portal", [])
                         'templateUrl': templateRoot + '/franchise/franchise_menu.html',
                         'controller': 'FranchisePortalController'
                     });
+        })
+
+        .controller('FranchisePortalController', function () {
+
         });
-
-

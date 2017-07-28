@@ -6,6 +6,10 @@ angular.module("safedeals.states.bank_portal", [])
                         'templateUrl': templateRoot + '/bank/bank_menu.html',
                         'controller': 'BankPortalController'
                     });
+        })
+        
+        .controller('BankPortalController', function () {
+
         });
 
 
