@@ -14,18 +14,21 @@ angular.module('safedeals.states.auth', ['safedeals.constants'])
                     });
                     return isRolePresent;
                 };
-                User.prototype.isAgent = function () {
-                    return this.hasRole("UT_AGENT");
+                User.prototype.isBuilder = function () {
+                    return this.hasRole("UT_BUILDER");
                 };
-                User.prototype.isDealer = function () {
-                    return this.hasRole("UT_DEALER");
+                User.prototype.isBusinessAssociate = function () {
+                    return this.hasRole("UT_BUSINESS_ASSOCIATE");
                 };
-                User.prototype.isBank = function () {
+                User.prototype.isBank = function () {                    
                     return this.hasRole("UT_BANK");
                 };
-                User.prototype.isAdmin = function () {
-                    return this.hasRole("UT_ROLE_ADMIN");
+                User.prototype.isFranchise = function () {
+                    return this.hasRole("UT_FRANCHISE");
                 };
+//                User.prototype.isGuest = function () {
+//                    return this.hasRole("UT_ROLE_ADMIN");
+//                };
                 User.prototype.isSuperAdmin = function () {
                     return this.hasRole("UT_SUPER_ADMIN");
                 };

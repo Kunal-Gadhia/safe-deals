@@ -14,17 +14,6 @@ angular.module("safedeals.states.admin", [])
                 'templateUrl': templateRoot + '/logout.html',
                 'controller': 'LogoutController'
             });
-//<<<<<<< HEAD
-//            $stateProvider.state('admin.alert', {
-//                'url': '/alert',
-//                'templateUrl': templateRoot + '/alert.html',
-//                'controller': 'AlertController'
-//=======
-//            $stateProvider.state('admin.alert', {
-//                'url': '/alert',
-//                'templateUrl': templateRoot + '/alert.html',
-//                'controller': 'AlertController'
-//            });
         })
         .controller('AdminController', function ($scope, UserService) {
             $scope.unapprovedUser = [];
@@ -34,13 +23,6 @@ angular.module("safedeals.states.admin", [])
                 });
                 $scope.countOfUser = $scope.unapprovedUser.length;
             });
-
-//            $scope.countUnapprovedUser = UserService.countUnapprovedUser();
-//            console.log(" $scope.countUnapprovedUser", $scope.countUnapprovedUser);
-
-//            $scope.unapprovedUserList = UserService.findUnapprovedUser();
-//            console.log(" $scope.countUnapprovedUser", $scope.unapprovedUserList);
-
         })
         .controller('LogoutController', function (UserService, $scope, $state) {
             console.log("Coming to logout Controller??");
@@ -51,13 +33,4 @@ angular.module("safedeals.states.admin", [])
                     });
                 });
             };
-        })
-//        .controller('AlertController', function (UserService, $scope, $state) {
-//            console.log("Alert COntroller ");
-//        });
-////        .controller('AlertController', function (UserService, $scope, $state) {
-////            UserService.findUnapprovedUser(function (data) {
-////                $scope.unapprovedUserList = data;
-////            });
-//////            $scope.unapprovedUserList = UserService.findUnapprovedUser();
-////        });
+        });
