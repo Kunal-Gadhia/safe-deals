@@ -66,6 +66,7 @@ angular.module("safedeals", [
     // include controllers and states
     'safedeals.states',
     'safedeals.states.admin',
+    'safedeals.states.alerts',
     'safedeals.states.corporate_site',
     'safedeals.states.portal',
     'safedeals.states.guidelines',

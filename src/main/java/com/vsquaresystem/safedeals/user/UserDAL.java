@@ -67,8 +67,13 @@ public class UserDAL {
     }
 
     public List<User> findUnapprovedUser() {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND APPROVED = FALSE";
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND approved = FALSE ";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(User.class));
+    }
+
+    public Integer countUnapprovedUser() {
+        String sqlQuery = "SELECT count(*) FROM " + TABLE_NAME + " WHERE deleted = FALSE AND approved = FALSE ";
+        return jdbcTemplate.queryForInt(sqlQuery);
     }
 
     public User findById(Integer id) {

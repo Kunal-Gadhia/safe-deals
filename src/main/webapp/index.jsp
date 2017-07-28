@@ -101,6 +101,7 @@
         <!--states-->
         <script src="${pageContext.request.contextPath}/js/states.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/admin.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/alerts.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/corporate_site.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/portal.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/guidelines.js"></script>
