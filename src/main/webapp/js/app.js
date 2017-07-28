@@ -122,7 +122,9 @@ angular.module("safedeals", [
     'safedeals.states.auth',
     //portal states
     'safedeals.states.bank_portal',
-    'safedeals.states.franchise_portal'
+    'safedeals.states.franchise_portal',
+    'safedeals.states.builder_portal',
+    'safedeals.states.business_portal'
 ])
 
         .run(['$state', '$rootScope', 'AuthFactory', '$location', 'UserService', function ($state, $rootScope, AuthFactory, $location, UserService) {
