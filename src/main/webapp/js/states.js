@@ -97,6 +97,24 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
 
             });
 
+            $scope.$watch('newUser.username', function (username) {
+                console.log("User Name :%O", username);
+                UserService.findByUsername({'username': username}).$promise.catch(function (response) {
+                    if (response.status === 500) {
+                        $scope.repeatEmail = false;
+                    } else if (response.status === 404) {
+                        $scope.repeatEmail = false;
+                    } else if (response.status === 400) {
+                        $scope.repeatEmail = false;
+                    }
+                }).then(function (user) {
+                    if (user.username !== null) {
+                        $scope.repeatEmail = true;
+                    }
+                    ;
+                });
+            });
+
             $scope.searchCities = function (searchTerm) {
                 return CityService.findByNameLike({
                     'name': searchTerm
