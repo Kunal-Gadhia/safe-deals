@@ -98,9 +98,9 @@ public class UserDAL {
         parameters.put(Columns.USERNAME, user.getUsername());
         parameters.put(Columns.PASSWORD, user.getPassword());
         parameters.put(Columns.USER_TYPE, user.getUserType().name());
-        parameters.put(Columns.NAME, user.getUsername());
-        parameters.put(Columns.NAME_OF_COMPANY, user.getPassword());
-        parameters.put(Columns.ADDRESS, user.getUsername());
+        parameters.put(Columns.NAME, user.getName());
+        parameters.put(Columns.NAME_OF_COMPANY, user.getNameOfCompany());
+        parameters.put(Columns.ADDRESS, user.getAddress());
         parameters.put(Columns.MOBILE_NO, user.getMobileNo());
         parameters.put(Columns.CITY_ID, user.getCityId());
         parameters.put(Columns.APPROVED, user.getApproved());
