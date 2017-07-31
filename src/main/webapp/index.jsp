@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/modal-override.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/corporate_site.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/angular-bootstrap-lightbox.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css"/>
         <!--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flexslider.css"/>-->
 
         <!--Libraries-->
