@@ -17,17 +17,20 @@ angular.module("safedeals.states.alerts", [])
             });
         })
 
-        .controller('AlertsListController', function (UserService, $scope) {
+        .controller('AlertsListController', function (UserService, CityService, $scope) {
             $scope.unapprovedUserList = [];
             UserService.findUnapprovedUser(function (data) {
                 angular.forEach(data, function (user) {
                     $scope.unapprovedUserList.push(user);
+
+                    user.city = CityService.get({
+                        'id': user.cityId
+                    });
                 });
 //                var count = $scope.unapprovedUserList.length;
 //                console.log("Count :%O", count);
             });
         })
-
         .controller('AlertsApprovedController', function (UserService, MailService, $scope, $stateParams, $state, paginationLimit) {
             console.log("User Id in approved :%O", $stateParams.userId);
             UserService.get({

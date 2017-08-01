@@ -17,6 +17,8 @@
                 <th class="text-right">#</th>
                 <th>Username</th>
                 <th>Company Name</th>
+                <th>Address</th>
+                <th>City</th>
                 <th>User Type</th>
                 <th>Contact Number</th>
                 <th class="text-center">Add</th>
@@ -27,6 +29,8 @@
                 <td class="text-right">{{$index + 1}}</td>
                 <td>{{user.name}}</td>   
                 <td>{{user.nameOfCompany}}</td>   
+                <td>{{user.address}}</td>
+                <td>{{user.city.name}}</td>
                 <td>{{user.userType}}</td>               
                 <td>{{user.mobileNo}}</td>       
                 <td class="text-center">
