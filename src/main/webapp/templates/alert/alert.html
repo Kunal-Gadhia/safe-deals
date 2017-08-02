@@ -8,13 +8,14 @@
             </a>
         </div>
         <div class="text-center">
-            <h4>Unapproved Users</h4>
+            <h4>New User Request</h4>
         </div>
     </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th class="text-right">#</th>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Company Name</th>
                 <th>Address</th>
@@ -28,6 +29,7 @@
             <tr ng-repeat="user in unapprovedUserList">
                 <td class="text-right">{{$index + 1}}</td>
                 <td>{{user.name}}</td>   
+                <td>{{user.username}}</td>
                 <td>{{user.nameOfCompany}}</td>   
                 <td>{{user.address}}</td>
                 <td>{{user.city.name}}</td>
