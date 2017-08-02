@@ -22,5 +22,25 @@ angular.module("safedeals.states.portal", [])
                         'url': '/my_properties',
                         'templateUrl': templateRoot + '/portal/my_properties.html'
                     });
+
+            $stateProvider.state('portal_bank', {
+                'url': '/portal_bank',
+                'templateUrl': templateRoot + '/portal/portal_bank.html'
+            });
+
+            $stateProvider.state('portal_franchise', {
+                'url': '/portal_franchise',
+                'templateUrl': templateRoot + '/portal/portal_franchise.html'
+            });
+
+            $stateProvider.state('portal_businessassociate', {
+                'url': '/portal_businessassocFiate',
+                'templateUrl': templateRoot + '/portal/portal_businessassociate.html'
+            });
+
+            $stateProvider.state('portal_builderanddeveloper', {
+                'url': '/portal_builderanddeveloper',
+                'templateUrl': templateRoot + '/portal/portal_builderanddeveloper.html'
+            });
         });
 
