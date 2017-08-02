@@ -26,7 +26,7 @@ public class EnquiryService {
 
     public static final String ACCOUNT_SID = "AC96ce189faa1c77694353b230987c8d82";
     public static final String AUTH_TOKEN = "e9bf1ef76e1ec2c780d665c045fac01e";
-    public static final String TWILIO_NUMBER = "+15097745141";
+    public static final String TWILIO_NUMBER = "+12672142839";
 
     public static void sendSms() {
         System.out.println("Coming to service");

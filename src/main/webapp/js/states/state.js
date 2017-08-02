@@ -21,8 +21,7 @@ angular.module("safedeals.states.state", [])
                 'controller': 'CityListController'
             });
         })
-        .controller('StateAddController', function (StateService, CountryService, $state, $scope, $stateParams) {
-            console.log("ala ka");
+        .controller('StateAddController', function (StateService, CountryService, $state, $scope, $stateParams) {            
             $scope.editableState = {
                 'countryId': $stateParams.countryId
             };
