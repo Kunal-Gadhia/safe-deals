@@ -7,9 +7,9 @@ angular.module("safedeals.states.builder_portal", [])
             });
         })
 
-        .controller('BuilderPortalController', function ($scope, $stateparams) {
+        .controller('BuilderPortalController', function ($scope, $stateParams) {
             console.log("Hello Into builder Portal");
-            console.log("Are we getting stateparams here?? :%O", $stateparams);
+            console.log("Are we getting stateparams here?? :%O", $stateParams);
         });
 
 

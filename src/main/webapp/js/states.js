@@ -56,6 +56,7 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                     UserService.findByUsername({
                         'username': data.username
                     }, function (data) {
+                        console.log("Data :%O", data);
                         if (data.userType === "UT_GUEST") {
                             $state.go("main.intro.intro_tagline", {reload: 'true'});
                         } else if (data.userType === "UT_SUPER_ADMIN") {
@@ -66,7 +67,6 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                                 companyName: data.nameOfCompany,
                                 reload: 'true'
                             });
-//                            $state.go("admin.builder_portal", {reload: 'true'});
                         } else if (data.userType === "UT_BUSINESS_ASSOCIATE") {
                             $state.go("admin.business_portal", {reload: 'true'});
                         } else if (data.userType === "UT_BANK") {
