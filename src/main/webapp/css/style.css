@@ -575,15 +575,15 @@ form.tab-form-demo .tab-pane {
 }
 
 /*----city special navbar-----*/
-#myNavbar ul {
+#cityNavbar ul {
     margin-top: 30px;
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-    #myNavbar ul {
+    #cityNavbar ul {
         margin-top: 8px;
         height: 168px;
     }
-    #myNavbar ul li{
+    #cityNavbar ul li{
         border-bottom: 1px solid #cdcdcd;
         margin-right: 8px;
         margin-left: 8px;
@@ -740,6 +740,21 @@ form.tab-form-demo .tab-pane {
     }
 }
 /*************************** Date Picker ********************************/
+
+/*************************** Portal ********************************/
+    .portal_carousel{
+        left: -12px;
+    height: 40px;
+    width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 174px;
+    }
+    .portal_carousel.right {
+        right: -12px;
+    }
+/*************************** Portal ********************************/
 
 
 /*body{

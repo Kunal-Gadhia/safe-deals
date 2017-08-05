@@ -170,7 +170,7 @@ a:focus, a:hover{
     }
     .navbar.navbar-lower .navbar-nav {
         margin-left: 8px;
-        height: 220px;
+        height: 185px;
     }
     #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
@@ -201,7 +201,7 @@ a:focus, a:hover{
     .navbar-nav {
         float: none!important;
         margin-top: 7.5px;
-        height: 300px;
+        height: auto;
     }
     #navbar ul li {
         border-bottom: 1px solid #cdcdcd;
@@ -262,7 +262,8 @@ a:focus, a:hover{
     background-color: #fff;
     opacity: 0.4;
     font-size:52px;
-    padding: 15px;}
+    padding: 15px;
+}
 
 /*************carousel-overlay css************/
 
