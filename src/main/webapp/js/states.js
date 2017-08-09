@@ -68,11 +68,23 @@ angular.module("safedeals.states", ['ngAnimate', 'ui.bootstrap'])
                                 reload: 'true'
                             });
                         } else if (data.userType === "UT_BUSINESS_ASSOCIATE") {
-                            $state.go("admin.business_portal", {reload: 'true'});
+                            $state.go("admin.business_portal", {
+                                userId: data.id,
+                                companyName: data.nameOfCompany,
+                                reload: 'true'
+                            });
                         } else if (data.userType === "UT_BANK") {
-                            $state.go("admin.bank_portal", {reload: 'true'});
+                            $state.go("admin.bank_portal", {
+                                userId: data.id,
+                                companyName: data.nameOfCompany,
+                                reload: 'true'
+                            });
                         } else if (data.userType === "UT_FRANCHISE") {
-                            $state.go("admin.franchise_portal", {reload: 'true'});
+                            $state.go("admin.franchise_portal", {
+                                userId: data.id,
+                                companyName: data.nameOfCompany,
+                                reload: 'true'
+                            });
                         }
 
                     });
