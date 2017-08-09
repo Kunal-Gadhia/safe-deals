@@ -1,11 +1,51 @@
 <!-- Navbar (sit on top) -->
-<div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card-2" id="myNavbar">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>            
+            <img alt="Brand" style="margin-top: -10px;" src="images/final_logo.png" class="" width="200" height="80" data-ui-sref="">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/#about" class="w3-bar-item w3-button">About Us</a>
+                </li>
+                <li>
+                    <a href="#/#products" class="w3-bar-item w3-button">Products</a>
+                </li>
+                <li>
+                    <a href="#/#projects" class="w3-bar-item w3-button">Approved Projects</a>
+                </li>
+                <li>
+                    <a href="#/#search" class="w3-bar-item w3-button">Search</a>
+                </li>
+                <li>
+                    <a href="#/#reguide" class="w3-bar-item w3-button">RE Guide</a>
+                </li>
+                <li>
+                    <a href="#/#contact" class="w3-bar-item w3-button">Contact Us</a>
+                </li>
+                <li>
+                    <a href="#" class="w3-bar-item w3-button">Post Your Query</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--<div class="w3-top">-->
+<!--    <div class="w3-bar w3-white w3-wide w3-padding w3-card-2" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
         <a href="#portal" class="w3-bar-item w3-button"><b>Safe</b> Deals</a>
-        <!--         Float links to the right. Hide them on small screens -->
+        <a class="" href="#portal_bank">
+            <img alt="Brand" src="images/final_logo.png" class="" width="145" height="80" data-ui-sref="">
+        </a>
+                 Float links to the right. Hide them on small screens 
         <div class="w3-right w3-hide-small">
             <a href="#/#about" class="w3-bar-item w3-button">About Us</a>
             <a href="#/#products" class="w3-bar-item w3-button">Products</a>
@@ -17,7 +57,7 @@
         </div>
     </div>
 
-    <!--Navbar on small screens--> 
+    Navbar on small screens 
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
         <a href="#/#about" class="w3-bar-item w3-button" onclick="toggleFunction()">About Us</a>
         <a href="#/#products" class="w3-bar-item w3-button" onclick="toggleFunction()">Products</a>
@@ -27,9 +67,9 @@
         <a href="#/#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">Contact Us</a>
         <a href="#" class="w3-bar-item w3-button" onclick="toggleFunction()">Post Your Query</a>
     </div>
-</div>
+</div>-->
 
-<script>
+<!--<script>
 
 // Used to toggle the menu on small screens when clicking on the menu button
     function toggleFunction() {
@@ -40,7 +80,7 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
-</script>
+</script>-->
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">

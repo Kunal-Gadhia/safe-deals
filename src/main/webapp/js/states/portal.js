@@ -34,7 +34,7 @@ angular.module("safedeals.states.portal", [])
             });
 
             $stateProvider.state('portal_businessassociate', {
-                'url': '/portal_businessassocFiate',
+                'url': '/portal_businessassociate',
                 'templateUrl': templateRoot + '/portal/portal_businessassociate.html'
             });
 
