@@ -401,11 +401,11 @@ a:focus, a:hover{
 /*************#contactUs form css************/
 
 /*************#footer css************/
-#footer{
+.footer{
     background-color: #70330C;
     color:#fff
 }
-#footer a{
+.footer a{
     color:#fff;
     text-decoration: none; 
 }
