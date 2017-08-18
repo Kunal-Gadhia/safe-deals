@@ -38,8 +38,6 @@ public class LocationDAL {
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
         public static final String DESCRIPTION = "description";
-        public static final String SOURCE_OF_WATER = "source_of_water";
-        public static final String PUBLIC_TRANSPORT = "public_transport";
         public static final String MIGRATION_RATE_PER_ANNUM = "migration_rate_per_annum";
         public static final String DISTANCE_FROM_CENTRE_OF_CITY = "distance_from_centre_of_city";
         public static final String IS_COMMERCIAL_CENTER = "is_commercial_center";
@@ -53,6 +51,15 @@ public class LocationDAL {
         public static final String DUMP_YARD = "dump_yard";
         public static final String STP = "stp";
         public static final String IMAGE_URL = "image_url";
+        public static final String BUS = "bus";
+        public static final String AUTO = "auto";
+        public static final String TAXI = "taxi";
+        public static final String METRO = "metro";
+        public static final String CORPORATIN_SUPPLY = "corporation_supply";
+        public static final String BOREWELL = "borewell";
+        public static final String OPEN_WELL = "oepn_well";
+        public static final String DISTANCE = "distance";
+        public static final String UNIT = "unit";
 
     }
 
@@ -80,8 +87,6 @@ public class LocationDAL {
                         Columns.LATITUDE,
                         Columns.LONGITUDE,
                         Columns.DESCRIPTION,
-                        Columns.SOURCE_OF_WATER,
-                        Columns.PUBLIC_TRANSPORT,
                         Columns.MIGRATION_RATE_PER_ANNUM,
                         Columns.DISTANCE_FROM_CENTRE_OF_CITY,
                         Columns.IS_COMMERCIAL_CENTER,
@@ -94,7 +99,16 @@ public class LocationDAL {
                         Columns.LOW_LYING_AREA,
                         Columns.DUMP_YARD,
                         Columns.STP,
-                        Columns.IMAGE_URL
+                        Columns.IMAGE_URL,
+                        Columns.BUS,
+                        Columns.AUTO,
+                        Columns.TAXI,
+                        Columns.METRO,
+                        Columns.CORPORATIN_SUPPLY,
+                        Columns.BOREWELL,
+                        Columns.OPEN_WELL,
+                        Columns.DISTANCE,
+                        Columns.UNIT
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -152,9 +166,7 @@ public class LocationDAL {
         parameters.put(Columns.LATITUDE, location.getLatitude());
         parameters.put(Columns.LONGITUDE, location.getLongitude());
         parameters.put(Columns.DESCRIPTION, location.getDescription());
-        parameters.put(Columns.SOURCE_OF_WATER, location.getSourceOfWater());
-        parameters.put(Columns.PUBLIC_TRANSPORT, location.getPublicTransport());
-        parameters.put(Columns.MIGRATION_RATE_PER_ANNUM, location.getMigrationRatePerAnnum());
+        parameters.put(Columns.MIGRATION_RATE_PER_ANNUM, location.getMigrationRatePerAnnum().name());
         parameters.put(Columns.DISTANCE_FROM_CENTRE_OF_CITY, location.getDistanceFromCentreOfCity());
         parameters.put(Columns.IS_COMMERCIAL_CENTER, location.getIsCommercialCenter());
         parameters.put(Columns.DISTANCE_FROM_COMMERCIAL_CENTER, location.getDistanceFromCommercialCenter());
@@ -167,6 +179,15 @@ public class LocationDAL {
         parameters.put(Columns.DUMP_YARD, location.getDumpYard());
         parameters.put(Columns.STP, location.getStp());
         parameters.put(Columns.IMAGE_URL, location.getImageUrl());
+        parameters.put(Columns.BUS, location.getBus());
+        parameters.put(Columns.AUTO, location.getAuto());
+        parameters.put(Columns.TAXI, location.getTaxi());
+        parameters.put(Columns.METRO, location.getMetro());
+        parameters.put(Columns.CORPORATIN_SUPPLY, location.getCorporationSupply());
+        parameters.put(Columns.BOREWELL, location.getBorewell());
+        parameters.put(Columns.OPEN_WELL, location.getOpenWell());
+        parameters.put(Columns.DISTANCE, location.getDistance());
+        parameters.put(Columns.UNIT, location.getUnit());
 
         System.out.println("param" + parameters);
         Number newId = insertLocation.executeAndReturnKey(parameters);
@@ -193,8 +214,6 @@ public class LocationDAL {
                 + Columns.LATITUDE + "=?, "
                 + Columns.LONGITUDE + "=?, "
                 + Columns.DESCRIPTION + "=?, "
-                + Columns.SOURCE_OF_WATER + "=?, "
-                + Columns.PUBLIC_TRANSPORT + "=?, "
                 + Columns.MIGRATION_RATE_PER_ANNUM + "=?, "
                 + Columns.DISTANCE_FROM_CENTRE_OF_CITY + "=?, "
                 + Columns.IS_COMMERCIAL_CENTER + "=?, "
@@ -207,7 +226,16 @@ public class LocationDAL {
                 + Columns.LOW_LYING_AREA + "=?, "
                 + Columns.DUMP_YARD + "=?, "
                 + Columns.STP + "=?, "
-                + Columns.IMAGE_URL + "=?  WHERE " + Columns.ID + " = ?";
+                + Columns.IMAGE_URL + "=?, "
+                + Columns.BUS + "=?, "
+                + Columns.AUTO + "=?, "
+                + Columns.TAXI + "=?, "
+                + Columns.METRO + "=?, "
+                + Columns.CORPORATIN_SUPPLY + "=?, "
+                + Columns.BOREWELL + "=?, "
+                + Columns.OPEN_WELL + "=?, "
+                + Columns.DISTANCE + "=?, "
+                + Columns.UNIT + "=?  WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     location.getName(),
@@ -222,9 +250,7 @@ public class LocationDAL {
                     location.getLatitude(),
                     location.getLongitude(),
                     location.getDescription(),
-                    location.getSourceOfWater().name(),
-                    location.getPublicTransport().name(),
-                    location.getMigrationRatePerAnnum(),
+                    location.getMigrationRatePerAnnum().name(),
                     location.getDistanceFromCentreOfCity(),
                     location.getIsCommercialCenter(),
                     location.getDistanceFromCommercialCenter(),
@@ -237,6 +263,15 @@ public class LocationDAL {
                     location.getDumpYard(),
                     location.getStp(),
                     location.getImageUrl(),
+                    location.getBus(),
+                    location.getAuto(),
+                    location.getTaxi(),
+                    location.getMetro(),
+                    location.getCorporationSupply(),
+                    location.getBorewell(),
+                    location.getOpenWell(),
+                    location.getDistance(),
+                    location.getUnit(),
                     location.getId()
                 }
         );
@@ -283,13 +318,9 @@ public class LocationDAL {
             location.setPopulation(rs.getInt(Columns.POPULATION));
             location.setLatitude(rs.getDouble(Columns.LATITUDE));
             location.setLongitude(rs.getDouble(Columns.LONGITUDE));
-            if (rs.getString(Columns.SOURCE_OF_WATER) != null) {
-                location.setSourceOfWater(SourceOfWater.valueOf(rs.getString(Columns.SOURCE_OF_WATER)));
+            if (rs.getString(Columns.MIGRATION_RATE_PER_ANNUM) != null) {
+                location.setMigrationRatePerAnnum(MigrationRatePerAnum.valueOf(rs.getString(Columns.MIGRATION_RATE_PER_ANNUM)));
             }
-            if (rs.getString(Columns.PUBLIC_TRANSPORT) != null) {
-                location.setPublicTransport(PublicTransport.valueOf(rs.getString(Columns.PUBLIC_TRANSPORT)));
-            }
-            location.setMigrationRatePerAnnum(rs.getDouble(Columns.MIGRATION_RATE_PER_ANNUM));
             location.setDistanceFromCentreOfCity(rs.getDouble(Columns.DISTANCE_FROM_CENTRE_OF_CITY));
             location.setIsCommercialCenter(rs.getBoolean(Columns.IS_COMMERCIAL_CENTER));
             location.setDistanceFromCommercialCenter(rs.getDouble(Columns.DISTANCE_FROM_COMMERCIAL_CENTER));
@@ -304,6 +335,21 @@ public class LocationDAL {
             location.setDumpYard(rs.getBoolean(Columns.DUMP_YARD));
             location.setStp(rs.getBoolean(Columns.STP));
             location.setImageUrl(rs.getString(Columns.IMAGE_URL));
+            location.setBus(rs.getBoolean(Columns.BUS));
+            location.setAuto(rs.getBoolean(Columns.AUTO));
+            location.setTaxi(rs.getBoolean(Columns.TAXI));
+            location.setMetro(rs.getBoolean(Columns.METRO));
+            location.setCorporationSupply(rs.getBoolean(Columns.CORPORATIN_SUPPLY));
+            location.setBorewell(rs.getBoolean(Columns.BOREWELL));
+            location.setOpenWell(rs.getBoolean(Columns.OPEN_WELL));
+            location.setDistance(rs.getInt(Columns.DISTANCE));
+            if (rs.wasNull()) {
+                location.setDistance(null);
+            }
+            location.setUnit(rs.getInt(Columns.UNIT));
+            if (rs.wasNull()) {
+                location.setUnit(null);
+            }
 
             return location;
         }

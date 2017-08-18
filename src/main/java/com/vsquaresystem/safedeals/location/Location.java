@@ -18,9 +18,7 @@ public class Location {
     private Integer population;
     private Double latitude;
     private Double longitude;
-    private SourceOfWater sourceOfWater;
-    private PublicTransport publicTransport;
-    private Double migrationRatePerAnnum;
+    private MigrationRatePerAnum migrationRatePerAnnum;
     private Double distanceFromCentreOfCity;
     private Boolean isCommercialCenter;
     private Double distanceFromCommercialCenter;
@@ -33,6 +31,15 @@ public class Location {
     private Boolean dumpYard;
     private Boolean stp;
     private String imageUrl;
+    private Boolean bus;
+    private Boolean auto;
+    private Boolean taxi;
+    private Boolean metro;
+    private Boolean corporationSupply;
+    private Boolean borewell;
+    private Boolean openWell;
+    private Integer distance;
+    private Integer unit;
 
     public Integer getId() {
         return id;
@@ -138,27 +145,11 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public SourceOfWater getSourceOfWater() {
-        return sourceOfWater;
-    }
-
-    public void setSourceOfWater(SourceOfWater sourceOfWater) {
-        this.sourceOfWater = sourceOfWater;
-    }
-
-    public PublicTransport getPublicTransport() {
-        return publicTransport;
-    }
-
-    public void setPublicTransport(PublicTransport publicTransport) {
-        this.publicTransport = publicTransport;
-    }
-
-    public Double getMigrationRatePerAnnum() {
+    public MigrationRatePerAnum getMigrationRatePerAnnum() {
         return migrationRatePerAnnum;
     }
 
-    public void setMigrationRatePerAnnum(Double migrationRatePerAnnum) {
+    public void setMigrationRatePerAnnum(MigrationRatePerAnum migrationRatePerAnnum) {
         this.migrationRatePerAnnum = migrationRatePerAnnum;
     }
 
@@ -258,37 +249,121 @@ public class Location {
         this.imageUrl = imageUrl;
     }
 
+    public Boolean getBus() {
+        return bus;
+    }
+
+    public void setBus(Boolean bus) {
+        this.bus = bus;
+    }
+
+    public Boolean getAuto() {
+        return auto;
+    }
+
+    public void setAuto(Boolean auto) {
+        this.auto = auto;
+    }
+
+    public Boolean getTaxi() {
+        return taxi;
+    }
+
+    public void setTaxi(Boolean taxi) {
+        this.taxi = taxi;
+    }
+
+    public Boolean getMetro() {
+        return metro;
+    }
+
+    public void setMetro(Boolean metro) {
+        this.metro = metro;
+    }
+
+    public Boolean getCorporationSupply() {
+        return corporationSupply;
+    }
+
+    public void setCorporationSupply(Boolean corporationSupply) {
+        this.corporationSupply = corporationSupply;
+    }
+
+    public Boolean getBorewell() {
+        return borewell;
+    }
+
+    public void setBorewell(Boolean borewell) {
+        this.borewell = borewell;
+    }
+
+    public Boolean getOpenWell() {
+        return openWell;
+    }
+
+    public void setOpenWell(Boolean openWell) {
+        this.openWell = openWell;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
+    public Integer getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Integer unit) {
+        this.unit = unit;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" + "id=" + id + ", name=" + name + ", description=" + description + ", cityId=" + cityId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", safedealZoneId=" + safedealZoneId + ", majorApproachRoad=" + majorApproachRoad + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", latitude=" + latitude + ", longitude=" + longitude + ", migrationRatePerAnnum=" + migrationRatePerAnnum + ", distanceFromCentreOfCity=" + distanceFromCentreOfCity + ", isCommercialCenter=" + isCommercialCenter + ", distanceFromCommercialCenter=" + distanceFromCommercialCenter + ", demandPotential=" + demandPotential + ", powerPlant=" + powerPlant + ", medicineIndustry=" + medicineIndustry + ", steelIndustry=" + steelIndustry + ", filthyLake=" + filthyLake + ", lowLyingArea=" + lowLyingArea + ", dumpYard=" + dumpYard + ", stp=" + stp + ", imageUrl=" + imageUrl + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", corporationSupply=" + corporationSupply + ", borewell=" + borewell + ", openWell=" + openWell + ", distance=" + distance + ", unit=" + unit + '}';
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 13 * hash + Objects.hashCode(this.id);
-        hash = 13 * hash + Objects.hashCode(this.name);
-        hash = 13 * hash + Objects.hashCode(this.description);
-        hash = 13 * hash + Objects.hashCode(this.cityId);
-        hash = 13 * hash + Objects.hashCode(this.locationTypeId);
-        hash = 13 * hash + Objects.hashCode(this.locationCategories);
-        hash = 13 * hash + Objects.hashCode(this.safedealZoneId);
-        hash = 13 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 13 * hash + Objects.hashCode(this.advantage);
-        hash = 13 * hash + Objects.hashCode(this.disadvantage);
-        hash = 13 * hash + Objects.hashCode(this.population);
-        hash = 13 * hash + Objects.hashCode(this.latitude);
-        hash = 13 * hash + Objects.hashCode(this.longitude);
-        hash = 13 * hash + Objects.hashCode(this.sourceOfWater);
-        hash = 13 * hash + Objects.hashCode(this.publicTransport);
-        hash = 13 * hash + Objects.hashCode(this.migrationRatePerAnnum);
-        hash = 13 * hash + Objects.hashCode(this.distanceFromCentreOfCity);
-        hash = 13 * hash + Objects.hashCode(this.isCommercialCenter);
-        hash = 13 * hash + Objects.hashCode(this.distanceFromCommercialCenter);
-        hash = 13 * hash + Objects.hashCode(this.demandPotential);
-        hash = 13 * hash + Objects.hashCode(this.powerPlant);
-        hash = 13 * hash + Objects.hashCode(this.medicineIndustry);
-        hash = 13 * hash + Objects.hashCode(this.steelIndustry);
-        hash = 13 * hash + Objects.hashCode(this.filthyLake);
-        hash = 13 * hash + Objects.hashCode(this.lowLyingArea);
-        hash = 13 * hash + Objects.hashCode(this.dumpYard);
-        hash = 13 * hash + Objects.hashCode(this.stp);
-        hash = 13 * hash + Objects.hashCode(this.imageUrl);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.name);
+        hash = 19 * hash + Objects.hashCode(this.description);
+        hash = 19 * hash + Objects.hashCode(this.cityId);
+        hash = 19 * hash + Objects.hashCode(this.locationTypeId);
+        hash = 19 * hash + Objects.hashCode(this.locationCategories);
+        hash = 19 * hash + Objects.hashCode(this.safedealZoneId);
+        hash = 19 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 19 * hash + Objects.hashCode(this.advantage);
+        hash = 19 * hash + Objects.hashCode(this.disadvantage);
+        hash = 19 * hash + Objects.hashCode(this.population);
+        hash = 19 * hash + Objects.hashCode(this.latitude);
+        hash = 19 * hash + Objects.hashCode(this.longitude);
+        hash = 19 * hash + Objects.hashCode(this.migrationRatePerAnnum);
+        hash = 19 * hash + Objects.hashCode(this.distanceFromCentreOfCity);
+        hash = 19 * hash + Objects.hashCode(this.isCommercialCenter);
+        hash = 19 * hash + Objects.hashCode(this.distanceFromCommercialCenter);
+        hash = 19 * hash + Objects.hashCode(this.demandPotential);
+        hash = 19 * hash + Objects.hashCode(this.powerPlant);
+        hash = 19 * hash + Objects.hashCode(this.medicineIndustry);
+        hash = 19 * hash + Objects.hashCode(this.steelIndustry);
+        hash = 19 * hash + Objects.hashCode(this.filthyLake);
+        hash = 19 * hash + Objects.hashCode(this.lowLyingArea);
+        hash = 19 * hash + Objects.hashCode(this.dumpYard);
+        hash = 19 * hash + Objects.hashCode(this.stp);
+        hash = 19 * hash + Objects.hashCode(this.imageUrl);
+        hash = 19 * hash + Objects.hashCode(this.bus);
+        hash = 19 * hash + Objects.hashCode(this.auto);
+        hash = 19 * hash + Objects.hashCode(this.taxi);
+        hash = 19 * hash + Objects.hashCode(this.metro);
+        hash = 19 * hash + Objects.hashCode(this.corporationSupply);
+        hash = 19 * hash + Objects.hashCode(this.borewell);
+        hash = 19 * hash + Objects.hashCode(this.openWell);
+        hash = 19 * hash + Objects.hashCode(this.distance);
+        hash = 19 * hash + Objects.hashCode(this.unit);
         return hash;
     }
 
@@ -340,13 +415,7 @@ public class Location {
         if (!Objects.equals(this.longitude, other.longitude)) {
             return false;
         }
-        if (this.sourceOfWater != other.sourceOfWater) {
-            return false;
-        }
-        if (this.publicTransport != other.publicTransport) {
-            return false;
-        }
-        if (!Objects.equals(this.migrationRatePerAnnum, other.migrationRatePerAnnum)) {
+        if (this.migrationRatePerAnnum != other.migrationRatePerAnnum) {
             return false;
         }
         if (!Objects.equals(this.distanceFromCentreOfCity, other.distanceFromCentreOfCity)) {
@@ -385,12 +454,34 @@ public class Location {
         if (!Objects.equals(this.imageUrl, other.imageUrl)) {
             return false;
         }
+        if (!Objects.equals(this.bus, other.bus)) {
+            return false;
+        }
+        if (!Objects.equals(this.auto, other.auto)) {
+            return false;
+        }
+        if (!Objects.equals(this.taxi, other.taxi)) {
+            return false;
+        }
+        if (!Objects.equals(this.metro, other.metro)) {
+            return false;
+        }
+        if (!Objects.equals(this.corporationSupply, other.corporationSupply)) {
+            return false;
+        }
+        if (!Objects.equals(this.borewell, other.borewell)) {
+            return false;
+        }
+        if (!Objects.equals(this.openWell, other.openWell)) {
+            return false;
+        }
+        if (!Objects.equals(this.distance, other.distance)) {
+            return false;
+        }
+        if (!Objects.equals(this.unit, other.unit)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Location{" + "id=" + id + ", name=" + name + ", description=" + description + ", cityId=" + cityId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", safedealZoneId=" + safedealZoneId + ", majorApproachRoad=" + majorApproachRoad + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", latitude=" + latitude + ", longitude=" + longitude + ", sourceOfWater=" + sourceOfWater + ", publicTransport=" + publicTransport + ", migrationRatePerAnnum=" + migrationRatePerAnnum + ", distanceFromCentreOfCity=" + distanceFromCentreOfCity + ", isCommercialCenter=" + isCommercialCenter + ", distanceFromCommercialCenter=" + distanceFromCommercialCenter + ", demandPotential=" + demandPotential + ", powerPlant=" + powerPlant + ", medicineIndustry=" + medicineIndustry + ", steelIndustry=" + steelIndustry + ", filthyLake=" + filthyLake + ", lowLyingArea=" + lowLyingArea + ", dumpYard=" + dumpYard + ", stp=" + stp + ", imageUrl=" + imageUrl + '}';
-    }
-    
 }

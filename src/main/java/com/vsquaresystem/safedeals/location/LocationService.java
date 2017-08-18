@@ -39,10 +39,10 @@ public class LocationService {
 
     @Autowired
     private LocationDAL locationDAL;
-    
+
     @Autowired
     private AttachmentUtils attachmentUtils;
-    
+
     @Transactional(readOnly = false)
     public Boolean insertAttachments(MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         logger.info("attachmentMultipartFile in service Line31{}", attachmentMultipartFile);
@@ -53,7 +53,9 @@ public class LocationService {
                 AttachmentUtils.AttachmentType.LOCATION
         );
         return outputFile.exists();
-    };
+    }
+
+    ;
 
     private void writeBook(Location alocation, Row row) {
         Cell cell = row.createCell(1);
@@ -65,8 +67,6 @@ public class LocationService {
         cell = row.createCell(3);
         cell.setCellValue(alocation.getCityId());
     }
-
-    
 
     public Boolean exportExcel() throws IOException {
         logger.info("getExportExcel method is working");
@@ -104,8 +104,8 @@ public class LocationService {
 
         return true;
     }
-    
-     public Vector read() throws IOException {
+
+    public Vector read() throws IOException {
 //        logger.info("are we in the vector read?");
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.LOCATION);
         File[] listofFiles = excelFile.listFiles();
@@ -166,8 +166,8 @@ public class LocationService {
         return cellVectorHolder;
 
     }
-    
-     public boolean saveExcelToDatabase() throws IOException {
+
+    public boolean saveExcelToDatabase() throws IOException {
         Vector dataHolder = read();
         dataHolder.remove(0);
         Location location = new Location();
@@ -191,7 +191,7 @@ public class LocationService {
         String isCommercialCenter = "";
         String distanceCommercialCenter = "";
         String imageUrl = "";
-        
+
         System.out.println("line1785SAVE sop" + dataHolder);
         DataFormatter formatter = new DataFormatter();
         for (Iterator iterator = dataHolder.iterator(); iterator.hasNext();) {
@@ -235,14 +235,12 @@ public class LocationService {
                 location.setPopulation(Integer.parseInt(population));
                 location.setLatitude(Double.parseDouble(latitude));
                 location.setLongitude(Double.parseDouble(longitude));
-                location.setSourceOfWater(SourceOfWater.valueOf(sourceOfWater));
-                location.setPublicTransport(PublicTransport.valueOf(publicTransport));
-                location.setMigrationRatePerAnnum(Double.parseDouble(migrationRate));
+                location.setMigrationRatePerAnnum(MigrationRatePerAnum.valueOf(migrationRate));
                 location.setDistanceFromCentreOfCity(Double.parseDouble(distanceCenterCity));
                 location.setDistanceFromCommercialCenter(Double.parseDouble(distanceCommercialCenter));
                 location.setIsCommercialCenter(Boolean.valueOf(isCommercialCenter));
                 location.setImageUrl(imageUrl);
-                
+
                 System.out.println("location line167 CHECKcheck" + location);
                 System.out.println("numberList" + numberList);
                 locationDAL.insert(location);

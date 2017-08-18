@@ -15,7 +15,7 @@ public class Unit {
 
     private Integer id;
     private String name;
-    private String abbrivation;
+    private String abbreviation;
 
     public Integer getId() {
         return id;
@@ -33,25 +33,25 @@ public class Unit {
         this.name = name;
     }
 
-    public String getAbbrivation() {
-        return abbrivation;
+    public String getAbbreviation() {
+        return abbreviation;
     }
 
-    public void setAbbrivation(String abbrivation) {
-        this.abbrivation = abbrivation;
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     @Override
     public String toString() {
-        return "Unit{" + "id=" + id + ", name=" + name + ", abbrivation=" + abbrivation + '}';
+        return "Unit{" + "id=" + id + ", name=" + name + ", abbreviation=" + abbreviation + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + Objects.hashCode(this.abbrivation);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.abbreviation);
         return hash;
     }
 
@@ -70,7 +70,7 @@ public class Unit {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.abbrivation, other.abbrivation)) {
+        if (!Objects.equals(this.abbreviation, other.abbreviation)) {
             return false;
         }
         return true;

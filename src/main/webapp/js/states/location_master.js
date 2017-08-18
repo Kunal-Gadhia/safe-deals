@@ -36,7 +36,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 'controller': 'LocationExcelImportController'
             });
         })
-        .controller('LocationListController', function (CityService, LocationService, LocationTypeService, SafedealZoneService, LocationCategoryService, StateService, LocationService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('LocationListController', function (CityService, UnitService, LocationService, LocationTypeService, SafedealZoneService, LocationCategoryService, StateService, LocationService, $scope, $stateParams, $state, paginationLimit) {
             console.log("check location");
             if (
                     $stateParams.offset === undefined ||
@@ -76,6 +76,11 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                         });
                     }
 
+                    if (location.unit !== null) {
+                        location.unit = UnitService.get({
+                            'id': location.unitId
+                        });
+                    }
                     location.locationCategoryObjects = [];
                     angular.forEach(location.locationCategories, function (locationCategoryId) {
                         location.locationCategoryObjects.push(
@@ -109,7 +114,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             };
         })
-        .controller('LocationAddController', function (CityService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
+        .controller('LocationAddController', function (CityService, UnitService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
             $scope.locationSteps = [
                 'Basic Details',
                 'Risk Factors'
@@ -177,6 +182,17 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     'name': searchTerm
                 }).$promise;
             };
+
+            $scope.setUnit = function (unit) {
+                $scope.editableLocation.unit = unit.id;
+                $scope.editableLocation.unit = unit;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return CityService.findByNameLike({
@@ -241,7 +257,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
 
         })
-        .controller('LocationEditController', function (CityService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
+        .controller('LocationEditController', function (CityService, UnitService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
             $scope.editableLocation = LocationService.get({
                 'id': $stateParams.locationId
             }, function () {
@@ -259,6 +275,9 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 });
                 $scope.editableLocation.city = CityService.get({
                     id: $scope.editableLocation.cityId
+                });
+                $scope.editableLocation.unit = UnitService.get({
+                    id: $scope.editableLocation.unitId
                 });
                 LocationTypeService.get({
                     id: $scope.editableLocation.locationTypeId
@@ -340,6 +359,16 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setUnit = function (unit) {
+                $scope.editableLocation.unit = unit.id;
+                $scope.editableLocation.unit = unit;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };

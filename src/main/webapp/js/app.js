@@ -60,6 +60,7 @@ angular.module("safedeals", [
     'safedeals.services.road',
     'safedeals.services.mail',
     'safedeals.services.image',
+    'safedeals.services.unit',
     'safedeals.services.price_range',
     // directive services
     'safedeals.services.bank_addition',
@@ -118,6 +119,7 @@ angular.module("safedeals", [
     'safedeals.states.user',
     'safedeals.states.road',
     'safedeals.states.image',
+    'safedeals.states.unit',
     'safedeals.states.price_range',
     'safedeals.states.auth',
     //portal states

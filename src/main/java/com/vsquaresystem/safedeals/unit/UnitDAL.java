@@ -5,6 +5,8 @@
  */
 package com.vsquaresystem.safedeals.unit;
 
+import com.vsquaresystem.safedeals.road.Road;
+import static com.vsquaresystem.safedeals.road.RoadDAL.TABLE_NAME;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,7 @@ public class UnitDAL {
 
         public static final String ID = "id";
         public static final String NAME = "name";
-        public static final String ABBRIVATION = "abbrivation";
+        public static final String ABBREVIATION = "abbreviation";
     };
 
     @Autowired
@@ -39,7 +41,7 @@ public class UnitDAL {
         insertUnit = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName(TABLE_NAME)
                 .usingColumns(UnitDAL.Columns.NAME,
-                        Columns.ABBRIVATION
+                        Columns.ABBREVIATION
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -59,10 +61,16 @@ public class UnitDAL {
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Unit.class));
     }
 
+    public List<Unit> findByNameLike(String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+        String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Unit.class));
+    }
+
     public Unit insert(Unit unit) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, unit.getName());
-        parameters.put(Columns.ABBRIVATION, unit.getAbbrivation());
+        parameters.put(Columns.ABBREVIATION, unit.getAbbreviation());
 
         Number newId = insertUnit.executeAndReturnKey(parameters);
         unit = findById(newId.intValue());
@@ -72,10 +80,10 @@ public class UnitDAL {
     public Unit update(Unit unit) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ? ,"
-                + Columns.ABBRIVATION + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.ABBREVIATION + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             unit.getName(),
-            unit.getAbbrivation(),
+            unit.getAbbreviation(),
             unit.getId()
         });
         unit = findById(unit.getId());

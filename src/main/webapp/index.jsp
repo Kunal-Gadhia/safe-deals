@@ -157,6 +157,7 @@
         <script src="${pageContext.request.contextPath}/js/states/franchise_portal.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/builder_portal.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/business_portal.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/unit.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/branch_service.js"></script>
@@ -205,6 +206,7 @@
         <script src="${pageContext.request.contextPath}/js/services/road_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/mail_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/image_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/unit_service.js"></script>
 
     </head>
     <body>

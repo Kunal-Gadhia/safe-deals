@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.unit;
 
+import com.vsquaresystem.safedeals.road.Road;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,11 @@ public class UnitRest {
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public Unit findByName(@RequestParam("name") String name) {
         return unitDAL.findByName(name);
+    }
+
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
+    public List<Unit> findByNameLike(@RequestParam("name") String name) {
+        return unitDAL.findByNameLike(name);
     }
 
     @RequestMapping(method = RequestMethod.POST)
