@@ -228,6 +228,26 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }).$promise;
             };
 
+//            $scope.$watch('editableLocation.name', function (name) {
+//                console.log("Name :" + name);
+//                LocationService.findByName({'name': name}).$promise.catch(function (response) {
+//                    if (response.status === 500) {
+//                        $scope.editableLocation.repeatName = false;
+//                    }
+//                    else if (response.status === 404) {
+//                        $scope.editableLocation.repeatName = false;
+//                    }
+//                    else if (response.status === 400) {
+//                        $scope.editableLocation.repeatName = false;
+//                    }
+//                }).then(function (location) {
+//                    if (location.name !== null) {
+//                        $scope.editableLocation.repeatName = true;
+//                    }
+//                    ;
+//                });
+//            });
+
             $scope.saveLocation = function (location) {
                 console.log("Saved location", location);
                 $scope.locArray = [];
@@ -272,6 +292,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 displayProp: 'name'
             };
             ///////////////////////////////////////////
+
 
 
         })
@@ -418,7 +439,6 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     'name': searchTerm
                 }).$promise;
             };
-
 
             $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
                 console.log("locationTypeId %O", locationTypeId);

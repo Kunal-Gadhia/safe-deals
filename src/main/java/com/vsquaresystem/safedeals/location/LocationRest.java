@@ -68,11 +68,10 @@ public class LocationRest {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Location findById(@PathVariable("id") Integer id) throws SQLException {
-
         return locationDAL.findById(id);
 
     }
-    
+
     @RequestMapping(value = "/find/name", method = RequestMethod.GET)
     public List<Location> findByNameAndCityId(
             @RequestParam("name") String name,
@@ -88,7 +87,6 @@ public class LocationRest {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Location update(@RequestBody Location location) throws Exception {
-
         return locationDAL.update(location);
     }
 
@@ -99,11 +97,8 @@ public class LocationRest {
     }
 
     @RequestMapping(value = "/find/location", method = RequestMethod.GET)
-
     public Location findByName(@RequestParam("location") String location) throws Exception {
-
         return locationDAL.findByName(location);
-
     }
 
     @RequestMapping(value = "/attachment", method = RequestMethod.POST)
@@ -118,7 +113,6 @@ public class LocationRest {
         System.out.println("REST SAVE EXCEL");
         locationservice.saveExcelToDatabase();
         return true;
-
     }
 
 }

@@ -191,7 +191,7 @@
                                                 <label>Unit</label>
                                                 <input class="form-control"
                                                        placeholder="Select Unit"
-                                                       uib-typeahead="unit.id as unit.abbreviation for unit in searchUnit($viewValue)"
+                                                       uib-typeahead="unit.id  as unit.abbreviation for unit in searchUnit($viewValue)"
                                                        typeahead-on-select="setUnit($item)"
                                                        typeahead-editable="false"
                                                        typeahead-loading="loadingUnit" 

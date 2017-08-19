@@ -1,21 +1,29 @@
 angular.module("safedeals.services.location", []);
 angular.module("safedeals.services.location")
         .factory('LocationService', function ($resource, restRoot) {
-            return $resource(restRoot + '/location/:id', {'id': '@id'},{
-                'findAllLocations':{
+            return $resource(restRoot + '/location/:id', {'id': '@id'}, {
+                'findAllLocations': {
                     'method': 'GET',
                     'url': restRoot + '/location/locations',
                     'isArray': true
                 },
-                 'saveExcelData': {
+                'saveExcelData': {
                     'method': 'POST',
                     'url': restRoot + '/location/save_excel'
-                    
+
                 },
-                'exportAllLocations':{
+                'exportAllLocations': {
                     'method': 'POST',
-                    'url': restRoot + '/location/export'                  
+                    'url': restRoot + '/location/export'
                 },
+//                'findByName': {
+//                    'method': 'GET',
+//                    'url': restRoot + '/location/find/location',
+//                    'params': {
+//                        'name': '@name'
+//                    },
+//                    'isArray': true
+//                },
                 'findByNameLike': {
                     'method': 'GET',
                     'url': restRoot + '/location/find/location_like',
@@ -64,7 +72,7 @@ angular.module("safedeals.services.location")
                         scope.currentOffset -= paginationLimit;
                         refreshPage();
                     };
-                    
+
                     scope.select = function (selectedLocation) {
                         scope.close();
                         console.log("Value of selected selectedLocation: " + selectedLocation);
