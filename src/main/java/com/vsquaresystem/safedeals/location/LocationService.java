@@ -235,7 +235,7 @@ public class LocationService {
                 location.setPopulation(Integer.parseInt(population));
                 location.setLatitude(Double.parseDouble(latitude));
                 location.setLongitude(Double.parseDouble(longitude));
-                location.setMigrationRatePerAnnum(MigrationRatePerAnum.valueOf(migrationRate));
+                location.setMigrationRatePerAnnum(MigrationRatePerAnnum.valueOf(migrationRate));
                 location.setDistanceFromCentreOfCity(Double.parseDouble(distanceCenterCity));
                 location.setDistanceFromCommercialCenter(Double.parseDouble(distanceCommercialCenter));
                 location.setIsCommercialCenter(Boolean.valueOf(isCommercialCenter));

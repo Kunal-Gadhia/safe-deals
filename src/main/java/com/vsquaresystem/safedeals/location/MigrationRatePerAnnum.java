@@ -9,7 +9,7 @@ package com.vsquaresystem.safedeals.location;
  *
  * @author hp
  */
-public enum MigrationRatePerAnum {
+public enum MigrationRatePerAnnum {
 
     LOW,
     MODERATE,

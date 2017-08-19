@@ -184,8 +184,8 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             };
 
             $scope.setUnit = function (unit) {
+                $scope.editableLocation.unitObject = unit;
                 $scope.editableLocation.unit = unit.id;
-                $scope.editableLocation.unit = unit;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
@@ -240,6 +240,24 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
             };
+
+            $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
+                console.log("locationTypeId %O", locationTypeId);
+                LocationTypeService.get({
+                    'id': locationTypeId
+                }, function (locationTypeObject) {
+                    if (locationTypeObject.name === "WITHIN_CITY") {
+                        $scope.editableLocation.auto = true;
+                        $scope.editableLocation.bus = true;
+                        $scope.editableLocation.taxi = true;
+                        $scope.editableLocation.metro = true;
+                        $scope.editableLocation.corporationSupply = true;
+                        $scope.editableLocation.borewell = true;
+                        $scope.editableLocation.openWell = true;
+                    }
+                });
+            });
+
             ///////////////////////////////////////////Multiselect
             $scope.editableLocation.locationCategoriesObject = [];
             $scope.example14settings = {
@@ -276,8 +294,8 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 $scope.editableLocation.city = CityService.get({
                     id: $scope.editableLocation.cityId
                 });
-                $scope.editableLocation.unit = UnitService.get({
-                    id: $scope.editableLocation.unitId
+                $scope.editableLocation.unitObject = UnitService.get({
+                    id: $scope.editableLocation.unit
                 });
                 LocationTypeService.get({
                     id: $scope.editableLocation.locationTypeId
@@ -364,8 +382,8 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             };
 
             $scope.setUnit = function (unit) {
+                $scope.editableLocation.unitObject = unit;
                 $scope.editableLocation.unit = unit.id;
-                $scope.editableLocation.unit = unit;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
@@ -400,6 +418,28 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     'name': searchTerm
                 }).$promise;
             };
+
+
+            $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
+                console.log("locationTypeId %O", locationTypeId);
+                LocationTypeService.get({
+                    'id': locationTypeId
+                }, function (locationTypeObject) {
+                    if (locationTypeObject.name === "WITHIN_CITY") {
+                        $scope.editableLocation.auto = true;
+                        $scope.editableLocation.bus = true;
+                        $scope.editableLocation.taxi = true;
+                        $scope.editableLocation.metro = true;
+                        $scope.editableLocation.corporationSupply = true;
+                        $scope.editableLocation.borewell = true;
+                        $scope.editableLocation.openWell = true;
+                    }
+
+                });
+
+
+            });
+
 //            $scope.cities = CityService.findAllCities();
 ////            $scope.safedealZones = SafedealZoneService.query();
 ////            $scope.locationTypes = LocationTypeService.query();

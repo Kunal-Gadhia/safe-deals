@@ -135,10 +135,22 @@
                                         </select>
                                     </div>
                                 </div>                                                               
+                                <!--                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Migration Rate Per Annum</label>
+                                                                        <input type="number" class="form-control" placeholder="Migration Rate Per Annum" ng-model="editableLocation.migrationRatePerAnnum"> 
+                                                                    </div>
+                                                                </div>-->
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Migration Rate Per Annum</label>
-                                        <input type="number" class="form-control" placeholder="Migration Rate Per Annum" ng-model="editableLocation.migrationRatePerAnnum"> 
+                                        <select class="form-control" ng-model="editableLocation.migrationRatePerAnnum">
+                                            <option value="">Select Migration Rate Per Annum</option>
+                                            <option value="LOW">LOW</option>
+                                            <option value="MODERATE">MODERATE</option>
+                                            <option value="HIGH">HIGH</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>                            
@@ -163,16 +175,33 @@
                                     <div class="form-group">
                                         <div class="col-sm-8">
                                             <label>Distance</label>   
-                                            <input class="form-control" placeholder="Distance" ng-model="editableLocation.distance"/> 
+                                            <input class="form-control" type="number" placeholder="Distance" ng-model="editableLocation.distance"/> 
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Units</label>
-                                            <select class="form-control" ng-model="" id="" required="required">
-                                                <option value="">Units</option>
-                                                <option value="">KMS</option>
-                                                <option value="">METRE</option>
-                                            </select> 
+                                        <!--                                        <div class="col-md-4">
+                                                                                    <label>Units</label>
+                                                                                    <select class="form-control" ng-model="" id="" required="required">
+                                                                                        <option value="">Units</option>
+                                                                                        <option value="">KMS</option>
+                                                                                        <option value="">METRE</option>
+                                                                                    </select> 
+                                                                                </div>-->
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Unit</label>
+                                                <input class="form-control"
+                                                       placeholder="Select Unit"
+                                                       uib-typeahead="unit.id as unit.abbreviation for unit in searchUnit($viewValue)"
+                                                       typeahead-on-select="setUnit($item)"
+                                                       typeahead-editable="false"
+                                                       typeahead-loading="loadingUnit" 
+                                                       typeahead-no-results="noUnitFound"                                       
+                                                       ng-model="editableLocation.unit" required=""/>
+                                                <p ng-show="noUnitFound" class="help-block text-muted">No Unit Found</p>
+                                                <p ng-show="loadingUnit" class="help-block text-muted">Loading...</p>
+                                            </div>
                                         </div>
+
                                     </div> 
                                 </div>
                             </div>
@@ -224,7 +253,7 @@
                                         <label>Corporation Supply</label>
                                     </div>
                                     <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.sourceOfWater">&nbsp;&nbsp;
+                                        <input type="checkbox" ng-model="editableLocation.borewell">&nbsp;&nbsp;
                                         <label>Bore well</label>
                                     </div>
                                     <div class="form-group">                                  

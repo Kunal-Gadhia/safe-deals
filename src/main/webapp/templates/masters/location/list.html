@@ -55,10 +55,10 @@
                     <th>Lat</th>
                     <th>Long</th>
                     <!--<th>Desc</th>-->
-                    <th>Source Of Water</th>
-                    <th>Public Transport</th><!--
-                    <th>Migration Rate</th>
-                    <th>Distance</th>-->
+                    <!--                    <th>Source Of Water</th>
+                                        <th>Public Transport</th>
+                    -->                    <th>Migration Rate</th><!--
+                                        <th>Distance</th>-->
                     <!--<th>Image Url</th>-->
 
                     <th class="text-right">
@@ -92,11 +92,11 @@
                     <td>{{ location.latitude}}</td>              
                     <td>{{ location.longitude}}</td>
                     <!--<td>{{ location.description}}</td>-->             
-                    <td>{{ location.sourceOfWater}}</td>              
-                    <td>{{ location.publicTransport}}</td>              
-                    <!--                <td>{{ location.migrationRatePerAnnum}}</td>
-                                    <td>{{ location.distanceFromCentreOfCity}}</td>
-                                    <td>{{ location.imageUrl}}</td>-->
+                    <!--                    <td>{{ location.sourceOfWater}}</td>              
+                                        <td>{{ location.publicTransport}}</td>              -->
+                    <td>{{ location.migrationRatePerAnnum}}</td><!--
+                    <td>{{ location.distanceFromCentreOfCity}}</td>
+                    <td>{{ location.imageUrl}}</td>-->
                     <td class="col-md-4 text-right">
                         <a data-ui-sref="admin.masters_location.edit({ locationId: location.id })"
                            class="btn btn-primary">					

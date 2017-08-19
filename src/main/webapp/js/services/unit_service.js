@@ -14,6 +14,14 @@ angular.module("safedeals.services.unit")
                         'name': '@name'
                     },
                     'isArray': false
+                },
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/unit/find/name_like',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
                 }
             });
         });

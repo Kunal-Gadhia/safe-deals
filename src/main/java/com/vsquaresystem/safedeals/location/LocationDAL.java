@@ -57,7 +57,7 @@ public class LocationDAL {
         public static final String METRO = "metro";
         public static final String CORPORATIN_SUPPLY = "corporation_supply";
         public static final String BOREWELL = "borewell";
-        public static final String OPEN_WELL = "oepn_well";
+        public static final String OPEN_WELL = "open_well";
         public static final String DISTANCE = "distance";
         public static final String UNIT = "unit";
 
@@ -67,7 +67,7 @@ public class LocationDAL {
 
     private final SimpleJdbcInsert insertLocation;
     private final JdbcTemplate jdbcTemplate;
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper    mapper = new ObjectMapper();
 
     @Autowired
     public LocationDAL(DataSource dataSource) {
@@ -170,22 +170,93 @@ public class LocationDAL {
         parameters.put(Columns.DISTANCE_FROM_CENTRE_OF_CITY, location.getDistanceFromCentreOfCity());
         parameters.put(Columns.IS_COMMERCIAL_CENTER, location.getIsCommercialCenter());
         parameters.put(Columns.DISTANCE_FROM_COMMERCIAL_CENTER, location.getDistanceFromCommercialCenter());
-        parameters.put(Columns.DEMAND_POTENTIAL, location.getDemandPotential());
-        parameters.put(Columns.POWER_PLANT, location.getPowerPlant());
-        parameters.put(Columns.MEDICINE_INDUSTRY, location.getMedicineIndustry());
-        parameters.put(Columns.STEEL_INDUSTRY, location.getSteelIndustry());
-        parameters.put(Columns.FILTHY_LAKE, location.getFilthyLake());
-        parameters.put(Columns.LOW_LYING_AREA, location.getLowLyingArea());
-        parameters.put(Columns.DUMP_YARD, location.getDumpYard());
-        parameters.put(Columns.STP, location.getStp());
+        parameters.put(Columns.DEMAND_POTENTIAL, location.getDemandPotential().name());
+        if (location.getPowerPlant() == null) {
+            parameters.put(Columns.POWER_PLANT, 0);
+        } else {
+            parameters.put(Columns.POWER_PLANT, location.getPowerPlant());
+        }
+
+        if (location.getMedicineIndustry() == null) {
+            parameters.put(Columns.MEDICINE_INDUSTRY, 0);
+        } else {
+            parameters.put(Columns.MEDICINE_INDUSTRY, location.getMedicineIndustry());
+        }
+
+        if (location.getSteelIndustry() == null) {
+            parameters.put(Columns.STEEL_INDUSTRY, 0);
+        } else {
+            parameters.put(Columns.STEEL_INDUSTRY, location.getSteelIndustry());
+        }
+
+        if (location.getFilthyLake() == null) {
+            parameters.put(Columns.FILTHY_LAKE, 0);
+        } else {
+            parameters.put(Columns.FILTHY_LAKE, location.getFilthyLake());
+        }
+
+        if (location.getLowLyingArea() == null) {
+            parameters.put(Columns.LOW_LYING_AREA, 0);
+        } else {
+            parameters.put(Columns.LOW_LYING_AREA, location.getLowLyingArea());
+        }
+
+        if (location.getDumpYard() == null) {
+            parameters.put(Columns.DUMP_YARD, 0);
+        } else {
+            parameters.put(Columns.DUMP_YARD, location.getDumpYard());
+        }
+
+        if (location.getStp() == null) {
+            parameters.put(Columns.STP, 0);
+        } else {
+            parameters.put(Columns.STP, location.getStp());
+        }
+
         parameters.put(Columns.IMAGE_URL, location.getImageUrl());
-        parameters.put(Columns.BUS, location.getBus());
-        parameters.put(Columns.AUTO, location.getAuto());
-        parameters.put(Columns.TAXI, location.getTaxi());
-        parameters.put(Columns.METRO, location.getMetro());
-        parameters.put(Columns.CORPORATIN_SUPPLY, location.getCorporationSupply());
-        parameters.put(Columns.BOREWELL, location.getBorewell());
-        parameters.put(Columns.OPEN_WELL, location.getOpenWell());
+
+        if (location.getBus() == null) {
+            parameters.put(Columns.BUS, 0);
+        } else {
+            parameters.put(Columns.BUS, location.getBus());
+        }
+
+        if (location.getAuto() == null) {
+            parameters.put(Columns.AUTO, 0);
+        } else {
+            parameters.put(Columns.AUTO, location.getAuto());
+        }
+
+        if (location.getTaxi() == null) {
+            parameters.put(Columns.TAXI, 0);
+        } else {
+            parameters.put(Columns.TAXI, location.getTaxi());
+        }
+
+        if (location.getMetro() == null) {
+            parameters.put(Columns.METRO, 0);
+        } else {
+            parameters.put(Columns.METRO, location.getMetro());
+        }
+
+        if (location.getCorporationSupply() == null) {
+            parameters.put(Columns.CORPORATIN_SUPPLY, 0);
+        } else {
+            parameters.put(Columns.CORPORATIN_SUPPLY, location.getCorporationSupply());
+        }
+
+        if (location.getBorewell() == null) {
+            parameters.put(Columns.BOREWELL, 0);
+        } else {
+            parameters.put(Columns.BOREWELL, location.getBorewell());
+        }
+
+        if (location.getOpenWell() == null) {
+            parameters.put(Columns.OPEN_WELL, 0);
+        } else {
+            parameters.put(Columns.OPEN_WELL, location.getOpenWell());
+        }
+
         parameters.put(Columns.DISTANCE, location.getDistance());
         parameters.put(Columns.UNIT, location.getUnit());
 
@@ -255,6 +326,11 @@ public class LocationDAL {
                     location.getIsCommercialCenter(),
                     location.getDistanceFromCommercialCenter(),
                     location.getDemandPotential().name(),
+                    //                     if (location.getCorporationSupply() == null) {
+                    //            parameters.put(Columns.CORPORATIN_SUPPLY, 0);
+                    //        } else {
+                    //            parameters.put(Columns.CORPORATIN_SUPPLY, location.getCorporationSupply());
+                    //        }                    
                     location.getPowerPlant(),
                     location.getMedicineIndustry(),
                     location.getSteelIndustry(),
@@ -319,7 +395,7 @@ public class LocationDAL {
             location.setLatitude(rs.getDouble(Columns.LATITUDE));
             location.setLongitude(rs.getDouble(Columns.LONGITUDE));
             if (rs.getString(Columns.MIGRATION_RATE_PER_ANNUM) != null) {
-                location.setMigrationRatePerAnnum(MigrationRatePerAnum.valueOf(rs.getString(Columns.MIGRATION_RATE_PER_ANNUM)));
+                location.setMigrationRatePerAnnum(MigrationRatePerAnnum.valueOf(rs.getString(Columns.MIGRATION_RATE_PER_ANNUM)));
             }
             location.setDistanceFromCentreOfCity(rs.getDouble(Columns.DISTANCE_FROM_CENTRE_OF_CITY));
             location.setIsCommercialCenter(rs.getBoolean(Columns.IS_COMMERCIAL_CENTER));
@@ -343,9 +419,6 @@ public class LocationDAL {
             location.setBorewell(rs.getBoolean(Columns.BOREWELL));
             location.setOpenWell(rs.getBoolean(Columns.OPEN_WELL));
             location.setDistance(rs.getInt(Columns.DISTANCE));
-            if (rs.wasNull()) {
-                location.setDistance(null);
-            }
             location.setUnit(rs.getInt(Columns.UNIT));
             if (rs.wasNull()) {
                 location.setUnit(null);
