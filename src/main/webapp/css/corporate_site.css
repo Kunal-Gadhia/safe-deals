@@ -41,16 +41,12 @@
 .social-icons .fa-youtube-play,.social-icons .fa-youtube-square:hover{background-color:#C52F30;}
 .social-icons .fa-rss:hover{background-color:#F7931A;}
 
-/*.grow:hover
-{
-     box-shadow: inset 0 0 0 25px #53a7ea;
-}*/
-
-.grow
+/*IMAGE TRANSITION*/
+.img_opacity
 {
         opacity:0.5;
 }
-.grow:hover
+.img_opacity:hover
 {
         opacity:1;
 }
