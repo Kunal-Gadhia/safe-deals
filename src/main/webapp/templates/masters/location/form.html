@@ -87,7 +87,7 @@
                                                                                                                             <p ng-show="noLocationCategories" class="help-block text-muted">No Result found</p>
                                                                                                                             <p ng-show="loadingLocationCategories" class="help-block text-muted">loading...</p>      
                                                                                                                         </div>-->
-                                        <div ng-dropdown-multiselect="" options="example14data" selected-model="editableLocation.locationCategoriesObject" checkboxes="true" extra-settings="example14settings"></div> 
+                                        <div ng-dropdown-multiselect="" options="example14data" selected-model="editableLocation.locationCategoriesObject" checkboxes="true" extra-settings="example14settings" style="width: 500px;"></div> 
                                         <!--<pre>Selected Model: {{example14model}}</pre>-->
                                         <!--                                        <div>
                                                                                     <ul>
@@ -173,20 +173,11 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-7 padding">
                                             <label>Distance</label>   
                                             <input class="form-control" placeholder="Distance" ng-model="editableLocation.distance"/> 
                                         </div>
-                                        <!--                                        <div class="col-md-4">
-                                                                                    <label>Units</label>
-                                                                                    <select class="form-control" ng-model="" id="" required="required">
-                                                                                        <option value="">Units</option>
-                                                                                        <option value="">KMS</option>
-                                                                                        <option value="">METRE</option>
-                                                                                    </select> 
-                                                                                </div>-->
-
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <div class="form-group">
                                                 <label>Unit</label>
                                                 <input class="form-control"
