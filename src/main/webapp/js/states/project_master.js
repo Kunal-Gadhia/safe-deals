@@ -361,7 +361,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.connectivity = true;
                     $scope.myValue = false;
                     $scope.costing = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
@@ -376,15 +376,15 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.costing = true;
                     $scope.connectivity = false;
                     $scope.myValue = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
                 }
-                else if (locationstep === "Demand For Rental/Resale") {
+                else if (locationstep === "Neighbourhood") {
                     console.log("Hello demand for rental");
-                    $scope.demandForRentalResale = true;
+                    $scope.neighbourhood = true;
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
@@ -399,7 +399,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
@@ -410,7 +410,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
@@ -421,7 +421,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.unitDetails = false;
@@ -432,7 +432,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.projectHighlights = false;
@@ -443,7 +443,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
@@ -811,7 +811,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.connectivity = true;
                     $scope.myValue = false;
                     $scope.costing = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
@@ -826,7 +826,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.costing = true;
                     $scope.connectivity = false;
                     $scope.myValue = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
@@ -834,7 +834,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }
                 else if (locationstep === "Demand For Rental/Resale") {
                     console.log("Hello demand for rental");
-                    $scope.demandForRentalResale = true;
+                    $scope.neighbourhood = true;
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
@@ -849,7 +849,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
@@ -860,7 +860,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
@@ -871,7 +871,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.projectHighlights = false;
                     $scope.unitDetails = false;
@@ -882,7 +882,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.projectHighlights = false;
@@ -893,7 +893,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
