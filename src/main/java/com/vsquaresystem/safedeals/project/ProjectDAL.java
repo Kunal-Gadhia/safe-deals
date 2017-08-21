@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsquaresystem.safedeals.city.City;
 import com.vsquaresystem.safedeals.city.CityDAL;
+import com.vsquaresystem.safedeals.location.LocationDAL;
 import com.vsquaresystem.safedeals.property.PropertyDAL;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -55,7 +56,6 @@ public class ProjectDAL {
         public static final String TOTAL_FLOORS = "total_floors";
         public static final String TOTAL_UNITS = "total_units";
         public static final String MAJOR_APPROACH_ROAD = "major_approach_road";
-        public static final String PUBLIC_TRANSPORT = "public_transport";
         public static final String OFFERED_PRICE = "offered_price";
         public static final String DISCOUNT = "discount";
         public static final String OFFER_VALID_TILL = "offer_valid_till";
@@ -78,6 +78,13 @@ public class ProjectDAL {
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
         public static final String FEATURED_PROJECT = "featured_project";
+        public static final String BUS = "bus";
+        public static final String AUTO = "auto";
+        public static final String TAXI = "taxi";
+        public static final String METRO = "metro";
+        public static final String DISTANCE = "distance";
+        public static final String UNIT = "unit";
+        public static final String TOTAL_AREA = "total_area";
 
     }
 
@@ -103,7 +110,6 @@ public class ProjectDAL {
                         Columns.TOTAL_FLOORS,
                         Columns.TOTAL_UNITS,
                         Columns.MAJOR_APPROACH_ROAD,
-                        Columns.PUBLIC_TRANSPORT,
                         Columns.OFFERED_PRICE,
                         Columns.DISCOUNT,
                         Columns.OFFER_VALID_TILL,
@@ -124,7 +130,14 @@ public class ProjectDAL {
                         Columns.OPEN_LAND,
                         Columns.LATITUDE,
                         Columns.LONGITUDE,
-                        Columns.FEATURED_PROJECT
+                        Columns.FEATURED_PROJECT,
+                        Columns.BUS,
+                        Columns.AUTO,
+                        Columns.TAXI,
+                        Columns.METRO,
+                        Columns.DISTANCE,
+                        Columns.UNIT,
+                        Columns.TOTAL_AREA
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -166,7 +179,6 @@ public class ProjectDAL {
         parameters.put(Columns.TOTAL_FLOORS, project.getTotalFloors());
         parameters.put(Columns.TOTAL_UNITS, project.getTotalUnits());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, project.getMajorApproachRoad());
-        parameters.put(Columns.PUBLIC_TRANSPORT, project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()));
         parameters.put(Columns.OFFERED_PRICE, project.getOfferedPrice());
         parameters.put(Columns.DISCOUNT, project.getDiscount());
         parameters.put(Columns.OFFER_VALID_TILL, project.getOfferValidTill());
@@ -188,6 +200,33 @@ public class ProjectDAL {
         parameters.put(Columns.LATITUDE, project.getLatitude());
         parameters.put(Columns.LONGITUDE, project.getLongitude());
         parameters.put(Columns.FEATURED_PROJECT, project.getFeaturedProject());
+        if (project.getBus() == null) {
+            parameters.put(LocationDAL.Columns.BUS, 0);
+        } else {
+            parameters.put(LocationDAL.Columns.BUS, project.getBus());
+        }
+
+        if (project.getAuto() == null) {
+            parameters.put(LocationDAL.Columns.AUTO, 0);
+        } else {
+            parameters.put(LocationDAL.Columns.AUTO, project.getAuto());
+        }
+
+        if (project.getTaxi() == null) {
+            parameters.put(LocationDAL.Columns.TAXI, 0);
+        } else {
+            parameters.put(LocationDAL.Columns.TAXI, project.getTaxi());
+        }
+
+        if (project.getMetro() == null) {
+            parameters.put(LocationDAL.Columns.METRO, 0);
+        } else {
+            parameters.put(LocationDAL.Columns.METRO, project.getMetro());
+        }
+
+        parameters.put(Columns.DISTANCE, project.getDistance());
+        parameters.put(Columns.UNIT, project.getUnit());
+        parameters.put(Columns.TOTAL_AREA, project.getTotalArea());
 
         City c = cityDAL.findById(project.getCityId());
         String cityName = c.getName();
@@ -233,7 +272,6 @@ public class ProjectDAL {
                 + Columns.TOTAL_FLOORS + " =?,"
                 + Columns.TOTAL_UNITS + " =?,"
                 + Columns.MAJOR_APPROACH_ROAD + " =?,"
-                + Columns.PUBLIC_TRANSPORT + " =?,"
                 + Columns.OFFERED_PRICE + " =?,"
                 + Columns.DISCOUNT + " =?,"
                 + Columns.OFFER_VALID_TILL + " =?,"
@@ -255,7 +293,14 @@ public class ProjectDAL {
                 + Columns.OPEN_LAND + " =?,"
                 + Columns.LATITUDE + " =?,"
                 + Columns.LONGITUDE + " =?,"
-                + Columns.FEATURED_PROJECT + " =? WHERE "
+                + Columns.FEATURED_PROJECT + " =?,"
+                + Columns.BUS + " =?,"
+                + Columns.AUTO + " =?,"
+                + Columns.TAXI + " =?,"
+                + Columns.METRO + " =?,"
+                + Columns.DISTANCE + " =?,"
+                + Columns.UNIT + " =?,"
+                + Columns.TOTAL_AREA + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -274,7 +319,6 @@ public class ProjectDAL {
             project.getTotalFloors(),
             project.getTotalUnits(),
             project.getMajorApproachRoad(),
-            project.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(project.getPublicTransport()),
             project.getOfferedPrice(),
             project.getDiscount(),
             project.getOfferValidTill(),
@@ -297,6 +341,13 @@ public class ProjectDAL {
             project.getLatitude(),
             project.getLongitude(),
             project.getFeaturedProject(),
+            project.getBus(),
+            project.getAuto(),
+            project.getTaxi(),
+            project.getMetro(),
+            project.getDistance(),
+            project.getUnit(),
+            project.getTotalArea(),
             project.getId()});
         project = findById(project.getId());
         return project;
@@ -361,15 +412,15 @@ public class ProjectDAL {
             if (rs.wasNull()) {
                 project.setMajorApproachRoad(null);
             }
-            String publicTransportList = rs.getString(Columns.PUBLIC_TRANSPORT);
-            try {
-                ObjectMapper mapper = new ObjectMapper();
-                List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
-                });
-                project.setPublicTransport(publicTransport);
-            } catch (IOException ex) {
-                throw new RuntimeException("Error parsing publicTransportList: '" + publicTransportList + "' ", ex);
-            }
+//            String publicTransportList = rs.getString(Columns.PUBLIC_TRANSPORT);
+//            try {
+//                ObjectMapper mapper = new ObjectMapper();
+//                List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
+//                });
+//                project.setPublicTransport(publicTransport);
+//            } catch (IOException ex) {
+//                throw new RuntimeException("Error parsing publicTransportList: '" + publicTransportList + "' ", ex);
+//            }
             project.setOfferedPrice(rs.getDouble(Columns.OFFERED_PRICE));
             project.setDiscount(rs.getDouble(Columns.DISCOUNT));
             project.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
@@ -440,6 +491,13 @@ public class ProjectDAL {
             project.setLatitude(rs.getDouble(Columns.LATITUDE));
             project.setLongitude(rs.getDouble(Columns.LONGITUDE));
             project.setFeaturedProject(rs.getBoolean(Columns.FEATURED_PROJECT));
+            project.setBus(rs.getBoolean(Columns.BUS));
+            project.setAuto(rs.getBoolean(Columns.AUTO));
+            project.setTaxi(rs.getBoolean(Columns.TAXI));
+            project.setMetro(rs.getBoolean(Columns.METRO));
+            project.setDistance(rs.getDouble(Columns.DISTANCE));
+            project.setUnit(rs.getInt(Columns.UNIT));
+            project.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
 
             return project;
         }
