@@ -103,7 +103,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 'Basic Details',
                 'Connectivity',
                 'Costing',
-                'Demand For Rental/Resale',
+                'Neighbourhood',
                 'Marketability',
                 'Project Highlights',
                 'Unit Details',
