@@ -83,7 +83,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('ProjectAddController', function (ProjectService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectAddController', function (ProjectService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = {};
             $scope.propertiesTypeDisplay = [];
             $scope.editableProject.propertiesType = [];
@@ -346,6 +346,15 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         'cityId': $scope.editableProject.cityId
                     }).$promise;
                 }
+            };
+            $scope.setUnit = function (unit) {
+                $scope.editableProject.unitObject = unit;
+                $scope.editableProject.unit = unit.id;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
             };
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
