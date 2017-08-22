@@ -691,7 +691,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 }
             };
         })
-        .controller('PropertyEditController', function (ProjectService,LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('PropertyEditController', function (ProjectService, UnitService,LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProperty = PropertyService.get({
                 'id': $stateParams.propertyId
             }, function () {
