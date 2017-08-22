@@ -34,7 +34,7 @@ public class Property {
 //    private BuildingCondition buildingCondition;
     private Integer projectId;
     private Integer majorApproachRoad;
-    private List<Integer> publicTransport;
+    // private List<Integer> publicTransport;
     private Double discount;
     private Double offeredPrice;
     private Date offerValidTill;
@@ -208,14 +208,6 @@ public class Property {
 
     public void setMajorApproachRoad(Integer majorApproachRoad) {
         this.majorApproachRoad = majorApproachRoad;
-    }
-
-    public List<Integer> getPublicTransport() {
-        return publicTransport;
-    }
-
-    public void setPublicTransport(List<Integer> publicTransport) {
-        this.publicTransport = publicTransport;
     }
 
     public Double getDiscount() {
@@ -452,7 +444,7 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Property{" + "id=" + id + ", propertyId=" + propertyId + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", constructionStage=" + constructionStage + ", possessionDate=" + possessionDate + ", yearOfConstruction=" + yearOfConstruction + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProperty=" + featuredProperty + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + '}';
+        return "Property{" + "id=" + id + ", propertyId=" + propertyId + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", constructionStage=" + constructionStage + ", possessionDate=" + possessionDate + ", yearOfConstruction=" + yearOfConstruction + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", discount=" + discount + ", offeredPrice=" + offeredPrice + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProperty=" + featuredProperty + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + '}';
     }
 
     @Override
@@ -475,7 +467,7 @@ public class Property {
         hash = 89 * hash + Objects.hashCode(this.entryFacing);
         hash = 89 * hash + Objects.hashCode(this.projectId);
         hash = 89 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 89 * hash + Objects.hashCode(this.publicTransport);
+//        hash = 89 * hash + Objects.hashCode(this.publicTransport);
         hash = 89 * hash + Objects.hashCode(this.discount);
         hash = 89 * hash + Objects.hashCode(this.offerValidTill);
         hash = 89 * hash + Objects.hashCode(this.paymentSchedule);
@@ -569,9 +561,7 @@ public class Property {
         if (!Objects.equals(this.majorApproachRoad, other.majorApproachRoad)) {
             return false;
         }
-        if (!Objects.equals(this.publicTransport, other.publicTransport)) {
-            return false;
-        }
+      
         if (!Objects.equals(this.discount, other.discount)) {
             return false;
         }

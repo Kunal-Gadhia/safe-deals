@@ -223,7 +223,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('PropertyAddController', function (ProjectService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('PropertyAddController', function (ProjectService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProperty = {};
             $scope.projectsNearbyDisplay = [];
             $scope.editableProperty.projectsNearby = [];
@@ -269,7 +269,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
             });
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            
+
 //OLD DATEPICKER             
 //            $scope.datePicker = {
 //                opened: false,
@@ -301,7 +301,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
 //                    this.opened = !this.opened;
 //                }
 //            };
-            
+
             $scope.saveProperty = function (property) {
                 console.log("Property :%O", property);
                 PropertyService.save(property, function () {
@@ -552,14 +552,42 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
             };
             $scope.setUnit = function (unit) {
                 $scope.editableProperty.unitObject = unit;
-                $scope.editableProperty.unit = unit.abbreviation ;
+                $scope.editableProperty.unit = unit.id;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
-            
+
+
+            $scope.$watch('editableProperty.locationId', function (locationId) {
+                console.log("locationId %O", locationId);
+                LocationService.get({
+                    'id': locationId
+                }, function (locationObject) {
+                    console.log("locationObject locationTypeId %O", locationObject.locationTypeId);
+                    LocationTypeService.get({
+                        'id': locationObject.locationTypeId
+                    }, function (locationTypeObject) {
+                        if (locationTypeObject.name === "WITHIN_CITY") {
+                            $scope.editableProperty.bus = true;
+                            $scope.editableProperty.auto = true;
+                            $scope.editableProperty.taxi = true;
+                            $scope.editableProperty.metro = true;
+                        }
+                        else {
+                            $scope.editableProperty.bus = false;
+                            $scope.editableProperty.auto = false;
+                            $scope.editableProperty.taxi = false;
+                            $scope.editableProperty.metro = false;
+                        }
+                    });
+                });
+
+            });
+
+
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
@@ -663,7 +691,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 }
             };
         })
-        .controller('PropertyEditController', function (ProjectService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('PropertyEditController', function (ProjectService,LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProperty = PropertyService.get({
                 'id': $stateParams.propertyId
             }, function () {
@@ -693,14 +721,14 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 var offerValidTill = new Date($scope.editableProperty.offerValidTill);
                 var offerValidTillLong = offerValidTill * 1;
                 $scope.editableProperty.offerValidTill = offerValidTillLong;
-                
+
                 var possessionDate = new Date($scope.editableProperty.possessionDate);
                 var possessionDateLong = possessionDate * 1;
-                $scope.editableProperty.possessionDate =possessionDateLong;
-                
+                $scope.editableProperty.possessionDate = possessionDateLong;
+
                 var yearOfConstruction = new Date($scope.editableProperty.yearOfConstruction);
                 var yearOfConstructionLong = yearOfConstruction * 1;
-                $scope.editableProperty.yearOfConstruction =yearOfConstructionLong;
+                $scope.editableProperty.yearOfConstruction = yearOfConstructionLong;
 
                 $scope.publicTransportDisplay = [];
                 angular.forEach($scope.editableProperty.publicTransport, function (publicTransport) {
@@ -1061,6 +1089,33 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+
+            $scope.$watch('editableProperty.locationId', function (locationId) {
+                console.log("locationId %O", locationId);
+                LocationService.get({
+                    'id': locationId
+                }, function (locationObject) {
+                    console.log("locationObject locationTypeId %O", locationObject.locationTypeId);
+                    LocationTypeService.get({
+                        'id': locationObject.locationTypeId
+                    }, function (locationTypeObject) {
+                        if (locationTypeObject.name === "WITHIN_CITY") {
+                            $scope.editableProperty.bus = true;
+                            $scope.editableProperty.auto = true;
+                            $scope.editableProperty.taxi = true;
+                            $scope.editableProperty.metro = true;
+                        }
+                        else {
+                            $scope.editableProperty.bus = false;
+                            $scope.editableProperty.auto = false;
+                            $scope.editableProperty.taxi = false;
+                            $scope.editableProperty.metro = false;
+                        }
+                    });
+                });
+
+            });
+
             $scope.searchLocations = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 console.log("City Id :%O", $scope.editableProperty.cityId);
