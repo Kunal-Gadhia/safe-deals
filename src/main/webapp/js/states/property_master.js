@@ -794,7 +794,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 'Basic Details',
                 'Connectivity',
                 'Costing',
-                'Demand For Rental/Resale',
+                'Neighbourhood',
                 'Livability',
                 'Marketability',
                 'Unit Details',
@@ -1091,7 +1091,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.connectivity = true;
                     $scope.myValue = false;
                     $scope.costing = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
@@ -1106,15 +1106,15 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.costing = true;
                     $scope.connectivity = false;
                     $scope.myValue = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
                 }
-                else if (locationstep === "Demand For Rental/Resale") {
+                else if (locationstep === "Neighbourhood") {
                     console.log("Hello demand for rental");
-                    $scope.demandForRentalResale = true;
+                    $scope.neighbourhood = true;
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
@@ -1130,7 +1130,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.costing = false;
                     $scope.connectivity = false;
                     $scope.marketability = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
                 }
@@ -1140,7 +1140,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
@@ -1151,7 +1151,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.unitDetails = false;
@@ -1162,7 +1162,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
@@ -1173,7 +1173,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
