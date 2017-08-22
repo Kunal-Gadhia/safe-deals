@@ -67,7 +67,7 @@ public class LocationDAL {
 
     private final SimpleJdbcInsert insertLocation;
     private final JdbcTemplate jdbcTemplate;
-    private static final ObjectMapper    mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     public LocationDAL(DataSource dataSource) {
@@ -418,7 +418,7 @@ public class LocationDAL {
             location.setCorporationSupply(rs.getBoolean(Columns.CORPORATIN_SUPPLY));
             location.setBorewell(rs.getBoolean(Columns.BOREWELL));
             location.setOpenWell(rs.getBoolean(Columns.OPEN_WELL));
-            location.setDistance(rs.getInt(Columns.DISTANCE));
+            location.setDistance(rs.getDouble(Columns.DISTANCE));
             location.setUnit(rs.getInt(Columns.UNIT));
             if (rs.wasNull()) {
                 location.setUnit(null);

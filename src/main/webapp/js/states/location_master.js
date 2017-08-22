@@ -275,6 +275,15 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                         $scope.editableLocation.borewell = true;
                         $scope.editableLocation.openWell = true;
                     }
+                    else {
+                        $scope.editableLocation.auto = false;
+                        $scope.editableLocation.bus = false;
+                        $scope.editableLocation.taxi = false;
+                        $scope.editableLocation.metro = false;
+                        $scope.editableLocation.corporationSupply = false;
+                        $scope.editableLocation.borewell = false;
+                        $scope.editableLocation.openWell = false;
+                    }
                 });
             });
 
@@ -454,7 +463,15 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                         $scope.editableLocation.borewell = true;
                         $scope.editableLocation.openWell = true;
                     }
-
+                    else {
+                        $scope.editableLocation.auto = false;
+                        $scope.editableLocation.bus = false;
+                        $scope.editableLocation.taxi = false;
+                        $scope.editableLocation.metro = false;
+                        $scope.editableLocation.corporationSupply = false;
+                        $scope.editableLocation.borewell = false;
+                        $scope.editableLocation.openWell = false;
+                    }
                 });
 
 

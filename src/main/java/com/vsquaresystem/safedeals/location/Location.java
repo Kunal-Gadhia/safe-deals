@@ -38,7 +38,7 @@ public class Location {
     private Boolean corporationSupply;
     private Boolean borewell;
     private Boolean openWell;
-    private Integer distance;
+    private Double distance;
     private Integer unit;
 
     public Integer getId() {
@@ -305,11 +305,11 @@ public class Location {
         this.openWell = openWell;
     }
 
-    public Integer getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 

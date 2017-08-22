@@ -20,6 +20,7 @@ public class Property {
     private String name;
     private Integer cityId;
     private Integer locationId;
+    private String subLocation;
     private PropertyType propertyType;
     private Integer propertySize;
     private double size;
@@ -33,9 +34,9 @@ public class Property {
 //    private BuildingCondition buildingCondition;
     private Integer projectId;
     private Integer majorApproachRoad;
-    private List<Integer> publicTransport;
-    private Double offeredPrice;
+    // private List<Integer> publicTransport;
     private Double discount;
+    private Double offeredPrice;
     private Date offerValidTill;
     private String paymentSchedule;
     private Integer downpayment;
@@ -58,6 +59,12 @@ public class Property {
     private Double latitude;
     private Double longitude;
     private Boolean featuredProperty;
+    private Boolean bus;
+    private Boolean auto;
+    private Boolean taxi;
+    private Boolean metro;
+    private Double distance;
+    private Integer unit;
 
     public Integer getId() {
         return id;
@@ -97,6 +104,14 @@ public class Property {
 
     public void setLocationId(Integer locationId) {
         this.locationId = locationId;
+    }
+
+    public String getSubLocation() {
+        return subLocation;
+    }
+
+    public void setSubLocation(String subLocation) {
+        this.subLocation = subLocation;
     }
 
     public PropertyType getPropertyType() {
@@ -193,22 +208,6 @@ public class Property {
 
     public void setMajorApproachRoad(Integer majorApproachRoad) {
         this.majorApproachRoad = majorApproachRoad;
-    }
-
-    public List<Integer> getPublicTransport() {
-        return publicTransport;
-    }
-
-    public void setPublicTransport(List<Integer> publicTransport) {
-        this.publicTransport = publicTransport;
-    }
-
-    public Double getOfferedPrice() {
-        return offeredPrice;
-    }
-
-    public void setOfferedPrice(Double offeredPrice) {
-        this.offeredPrice = offeredPrice;
     }
 
     public Double getDiscount() {
@@ -395,50 +394,110 @@ public class Property {
         this.featuredProperty = featuredProperty;
     }
 
+    public Boolean getBus() {
+        return bus;
+    }
+
+    public void setBus(Boolean bus) {
+        this.bus = bus;
+    }
+
+    public Boolean getAuto() {
+        return auto;
+    }
+
+    public void setAuto(Boolean auto) {
+        this.auto = auto;
+    }
+
+    public Boolean getTaxi() {
+        return taxi;
+    }
+
+    public void setTaxi(Boolean taxi) {
+        this.taxi = taxi;
+    }
+
+    public Boolean getMetro() {
+        return metro;
+    }
+
+    public void setMetro(Boolean metro) {
+        this.metro = metro;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+
+    public Integer getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Integer unit) {
+        this.unit = unit;
+    }
+
     @Override
     public String toString() {
-        return "Property{" + "id=" + id + ", propertyId=" + propertyId + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", constructionStage=" + constructionStage + ", possessionDate=" + possessionDate + ", yearOfConstruction=" + yearOfConstruction + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", publicTransport=" + publicTransport + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProperty=" + featuredProperty + '}';
+        return "Property{" + "id=" + id + ", propertyId=" + propertyId + ", name=" + name + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", propertyType=" + propertyType + ", propertySize=" + propertySize + ", size=" + size + ", priceRange=" + priceRange + ", constructionStage=" + constructionStage + ", possessionDate=" + possessionDate + ", yearOfConstruction=" + yearOfConstruction + ", floorNumber=" + floorNumber + ", totalFloors=" + totalFloors + ", entryFacing=" + entryFacing + ", projectId=" + projectId + ", majorApproachRoad=" + majorApproachRoad + ", discount=" + discount + ", offeredPrice=" + offeredPrice + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", downpayment=" + downpayment + ", workplaces=" + workplaces + ", projectsNearby=" + projectsNearby + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", ownershipProof=" + ownershipProof + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", sellerCommisionAgreement=" + sellerCommisionAgreement + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProperty=" + featuredProperty + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.propertyId);
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.cityId);
-        hash = 37 * hash + Objects.hashCode(this.locationId);
-        hash = 37 * hash + Objects.hashCode(this.propertyType);
-        hash = 37 * hash + Objects.hashCode(this.propertySize);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.constructionStage);
-        hash = 37 * hash + Objects.hashCode(this.possessionDate);
-        hash = 37 * hash + Objects.hashCode(this.yearOfConstruction);
-        hash = 37 * hash + Objects.hashCode(this.floorNumber);
-        hash = 37 * hash + Objects.hashCode(this.totalFloors);
-        hash = 37 * hash + Objects.hashCode(this.entryFacing);
-        hash = 37 * hash + Objects.hashCode(this.projectId);
-        hash = 37 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 37 * hash + Objects.hashCode(this.publicTransport);
-        hash = 37 * hash + Objects.hashCode(this.offeredPrice);
-        hash = 37 * hash + Objects.hashCode(this.discount);
-        hash = 37 * hash + Objects.hashCode(this.offerValidTill);
-        hash = 37 * hash + Objects.hashCode(this.paymentSchedule);
-        hash = 37 * hash + Objects.hashCode(this.downpayment);
-        hash = 37 * hash + Objects.hashCode(this.workplaces);
-        hash = 37 * hash + Objects.hashCode(this.projectsNearby);
-        hash = 37 * hash + Objects.hashCode(this.basicAmenities);
-        hash = 37 * hash + Objects.hashCode(this.luxuryAmenities);
-        hash = 37 * hash + Objects.hashCode(this.ownershipProof);
-        hash = 37 * hash + Objects.hashCode(this.approvedBanks);
-        hash = 37 * hash + Objects.hashCode(this.sdVerified);
-        hash = 37 * hash + Objects.hashCode(this.privateAmenities);
-        hash = 37 * hash + Objects.hashCode(this.sellerCommisionAgreement);
-        hash = 37 * hash + Objects.hashCode(this.salableArea);
-        hash = 37 * hash + Objects.hashCode(this.carpetArea);
-        hash = 37 * hash + Objects.hashCode(this.buildUpArea);
-        hash = 37 * hash + Objects.hashCode(this.balconyCount);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.propertyId);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.cityId);
+        hash = 89 * hash + Objects.hashCode(this.locationId);
+        hash = 89 * hash + Objects.hashCode(this.propertyType);
+        hash = 89 * hash + Objects.hashCode(this.propertySize);
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.size) ^ (Double.doubleToLongBits(this.size) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.priceRange) ^ (Double.doubleToLongBits(this.priceRange) >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.constructionStage);
+        hash = 89 * hash + Objects.hashCode(this.possessionDate);
+        hash = 89 * hash + Objects.hashCode(this.yearOfConstruction);
+        hash = 89 * hash + Objects.hashCode(this.floorNumber);
+        hash = 89 * hash + Objects.hashCode(this.totalFloors);
+        hash = 89 * hash + Objects.hashCode(this.entryFacing);
+        hash = 89 * hash + Objects.hashCode(this.projectId);
+        hash = 89 * hash + Objects.hashCode(this.majorApproachRoad);
+//        hash = 89 * hash + Objects.hashCode(this.publicTransport);
+        hash = 89 * hash + Objects.hashCode(this.discount);
+        hash = 89 * hash + Objects.hashCode(this.offerValidTill);
+        hash = 89 * hash + Objects.hashCode(this.paymentSchedule);
+        hash = 89 * hash + Objects.hashCode(this.downpayment);
+        hash = 89 * hash + Objects.hashCode(this.workplaces);
+        hash = 89 * hash + Objects.hashCode(this.projectsNearby);
+        hash = 89 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 89 * hash + Objects.hashCode(this.luxuryAmenities);
+        hash = 89 * hash + Objects.hashCode(this.ownershipProof);
+        hash = 89 * hash + Objects.hashCode(this.approvedBanks);
+        hash = 89 * hash + Objects.hashCode(this.sdVerified);
+        hash = 89 * hash + Objects.hashCode(this.privateAmenities);
+        hash = 89 * hash + Objects.hashCode(this.sellerCommisionAgreement);
+        hash = 89 * hash + Objects.hashCode(this.salableArea);
+        hash = 89 * hash + Objects.hashCode(this.carpetArea);
+        hash = 89 * hash + Objects.hashCode(this.buildUpArea);
+        hash = 89 * hash + Objects.hashCode(this.balconyCount);
+        hash = 89 * hash + Objects.hashCode(this.toiletCount);
+        hash = 89 * hash + Objects.hashCode(this.openTerrace);
+        hash = 89 * hash + Objects.hashCode(this.openLand);
+        hash = 89 * hash + Objects.hashCode(this.latitude);
+        hash = 89 * hash + Objects.hashCode(this.longitude);
+        hash = 89 * hash + Objects.hashCode(this.featuredProperty);
+        hash = 89 * hash + Objects.hashCode(this.bus);
+        hash = 89 * hash + Objects.hashCode(this.auto);
+        hash = 89 * hash + Objects.hashCode(this.taxi);
+        hash = 89 * hash + Objects.hashCode(this.metro);
+        hash = 89 * hash + Objects.hashCode(this.distance);
+        hash = 89 * hash + Objects.hashCode(this.unit);
+//        hash = 89 * hash + Objects.hashCode(this.totalArea);
         return hash;
     }
 
@@ -502,12 +561,7 @@ public class Property {
         if (!Objects.equals(this.majorApproachRoad, other.majorApproachRoad)) {
             return false;
         }
-        if (!Objects.equals(this.publicTransport, other.publicTransport)) {
-            return false;
-        }
-        if (!Objects.equals(this.offeredPrice, other.offeredPrice)) {
-            return false;
-        }
+      
         if (!Objects.equals(this.discount, other.discount)) {
             return false;
         }
@@ -577,7 +631,34 @@ public class Property {
         if (!Objects.equals(this.featuredProperty, other.featuredProperty)) {
             return false;
         }
+        if (!Objects.equals(this.bus, other.bus)) {
+            return false;
+        }
+        if (!Objects.equals(this.auto, other.auto)) {
+            return false;
+        }
+        if (!Objects.equals(this.taxi, other.taxi)) {
+            return false;
+        }
+        if (!Objects.equals(this.metro, other.metro)) {
+            return false;
+        }
+        if (!Objects.equals(this.distance, other.distance)) {
+            return false;
+        }
+        if (!Objects.equals(this.unit, other.unit)) {
+            return false;
+        }
+
         return true;
+    }
+
+    public Double getOfferedPrice() {
+        return offeredPrice;
+    }
+
+    public void setOfferedPrice(Double offeredPrice) {
+        this.offeredPrice = offeredPrice;
     }
 
 }
