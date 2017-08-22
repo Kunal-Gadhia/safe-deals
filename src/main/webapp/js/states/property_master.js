@@ -223,7 +223,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('PropertyAddController', function (ProjectService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('PropertyAddController', function (ProjectService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProperty = {};
             $scope.projectsNearbyDisplay = [];
             $scope.editableProperty.projectsNearby = [];
@@ -245,7 +245,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                 'Basic Details',
                 'Connectivity',
                 'Costing',
-                'Demand For Rental/Resale',
+                'Neighbourhood',
                 'Livability',
                 'Marketability',
                 'Unit Details',
@@ -550,6 +550,16 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+            $scope.setUnit = function (unit) {
+                $scope.editableProperty.unitObject = unit;
+                $scope.editableProperty.unit = unit.abbreviation ;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+            
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
@@ -564,7 +574,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.connectivity = true;
                     $scope.myValue = false;
                     $scope.costing = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
@@ -579,15 +589,15 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.costing = true;
                     $scope.connectivity = false;
                     $scope.myValue = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
                 }
-                else if (locationstep === "Demand For Rental/Resale") {
-                    console.log("Hello demand for rental");
-                    $scope.demandForRentalResale = true;
+                else if (locationstep === "Neighbourhood") {
+                    console.log("Hello neighbourhood for rental");
+                    $scope.neighbourhood = true;
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
@@ -603,7 +613,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.costing = false;
                     $scope.connectivity = false;
                     $scope.marketability = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
                 }
@@ -613,7 +623,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;
@@ -624,7 +634,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.unitDetails = false;
@@ -635,7 +645,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.livability = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
@@ -646,7 +656,7 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     $scope.myValue = false;
                     $scope.costing = false;
                     $scope.connectivity = false;
-                    $scope.demandForRentalResale = false;
+                    $scope.neighbourhood = false;
                     $scope.marketability = false;
                     $scope.sellerCommisionAgreement = false;
                     $scope.unitDetails = false;

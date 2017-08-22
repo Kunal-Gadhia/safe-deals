@@ -185,7 +185,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             $scope.setUnit = function (unit) {
                 $scope.editableLocation.unitObject = unit;
-                $scope.editableLocation.unit = unit.id;
+                $scope.editableLocation.unit = unit.abbreviation;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
