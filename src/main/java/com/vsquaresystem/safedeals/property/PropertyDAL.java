@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsquaresystem.safedeals.city.City;
 import com.vsquaresystem.safedeals.city.CityDAL;
+import com.vsquaresystem.safedeals.project.ProjectDAL;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +35,7 @@ public class PropertyDAL {
         public static final String NAME = "name";
         public static final String CITY_ID = "city_id";
         public static final String LOCATION_ID = "location_id";
+        public static final String SUB_LOCATION = "sub_location";
         public static final String PROPERTY_TYPE = "type_of_property";
         public static final String PROPERTY_SIZE = "size_of_property";
         public static final String SIZE = "size";
@@ -44,14 +46,13 @@ public class PropertyDAL {
         public static final String FLOOR_NUMBER = "floor_number";
         public static final String TOTAL_FLOORS = "total_floors";
         public static final String ENTRY_FACING = "entry_facing";
-
-//        public static final String BUILDING_CONDITION = "building_condition";
+//      public static final String BUILDING_CONDITION = "building_condition";
         public static final String PROJECT_ID = "project_id";
         public static final String MAJOR_APPROACH_ROAD = "major_approach_road";
         public static final String PUBLIC_TRANSPORT = "public_transport";
-        public static final String OFFERED_PRICE = "offered_price";
         public static final String DISCOUNT = "discount";
         public static final String OFFER_VALID_TILL = "offer_valid_till";
+        public static final String OFFERED_PRICE = "offered_price";
         public static final String PAYMENT_SCHEDULE = "payment_schedule";
         public static final String DOWNPAYMENT = "downpayment";
         public static final String WORKPLACES = "workplaces";
@@ -64,7 +65,6 @@ public class PropertyDAL {
         public static final String PRIVATE_AMENITIES = "private_amenities";
         //commission spelling
         public static final String SELLER_COMMISION_AGREEMENT = "seller_commision_agreement";
-
         public static final String SALABLE_AREA = "salable_area";
         public static final String CARPET_AREA = "carpet_area";
         public static final String BUILD_UP_AREA = "build_up_area";
@@ -75,6 +75,12 @@ public class PropertyDAL {
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
         public static final String FEATURED_PROPERTY = "featured_property";
+        public static final String BUS = "bus";
+        public static final String AUTO = "auto";
+        public static final String TAXI = "taxi";
+        public static final String METRO = "metro";
+        public static final String DISTANCE = "distance";
+        public static final String UNIT = "unit";
 
     }
 
@@ -94,6 +100,7 @@ public class PropertyDAL {
                         Columns.PROPERTY_ID,
                         Columns.CITY_ID,
                         Columns.LOCATION_ID,
+                        Columns.SUB_LOCATION,
                         Columns.PROPERTY_TYPE,
                         Columns.PROPERTY_SIZE,
                         Columns.SIZE,
@@ -108,8 +115,8 @@ public class PropertyDAL {
                         Columns.PROJECT_ID,
                         Columns.MAJOR_APPROACH_ROAD,
                         Columns.PUBLIC_TRANSPORT,
-                        Columns.OFFERED_PRICE,
                         Columns.DISCOUNT,
+                        Columns.OFFERED_PRICE,
                         Columns.OFFER_VALID_TILL,
                         Columns.PAYMENT_SCHEDULE,
                         Columns.DOWNPAYMENT,
@@ -130,7 +137,13 @@ public class PropertyDAL {
                         Columns.OPEN_LAND,
                         Columns.LATITUDE,
                         Columns.LONGITUDE,
-                        Columns.FEATURED_PROPERTY
+                        Columns.FEATURED_PROPERTY,
+                        Columns.BUS,
+                        Columns.AUTO,
+                        Columns.TAXI,
+                        Columns.METRO,
+                        Columns.DISTANCE,
+                        Columns.UNIT
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -157,6 +170,7 @@ public class PropertyDAL {
         //parameters.put(Columns.PROPERTY_ID, property.getPropertyId());
         parameters.put(Columns.CITY_ID, property.getCityId());
         parameters.put(Columns.LOCATION_ID, property.getLocationId());
+        parameters.put(Columns.SUB_LOCATION, property.getSubLocation());
         parameters.put(Columns.PROPERTY_TYPE, property.getPropertyType().name());
         parameters.put(Columns.PROPERTY_SIZE, property.getPropertySize());
         parameters.put(Columns.SIZE, property.getSize());
@@ -167,12 +181,12 @@ public class PropertyDAL {
         parameters.put(Columns.FLOOR_NUMBER, property.getFloorNumber());
         parameters.put(Columns.TOTAL_FLOORS, property.getTotalFloors());
         parameters.put(Columns.ENTRY_FACING, property.getEntryFacing().name());
-//        parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition().name() == "" ? null : mapper.writeValueAsString("null"));        
+//      parameters.put(Columns.BUILDING_CONDITION, property.getBuildingCondition().name() == "" ? null : mapper.writeValueAsString("null"));        
         parameters.put(Columns.PROJECT_ID, property.getProjectId());
         parameters.put(Columns.MAJOR_APPROACH_ROAD, property.getMajorApproachRoad());
         parameters.put(Columns.PUBLIC_TRANSPORT, property.getPublicTransport() == null ? "[]" : mapper.writeValueAsString(property.getPublicTransport()));
-        parameters.put(Columns.OFFERED_PRICE, property.getOfferedPrice());
         parameters.put(Columns.DISCOUNT, property.getDiscount());
+        parameters.put(Columns.OFFERED_PRICE, property.getOfferedPrice());
         parameters.put(Columns.OFFER_VALID_TILL, property.getOfferValidTill());
         parameters.put(Columns.PAYMENT_SCHEDULE, property.getPaymentSchedule());
         parameters.put(Columns.DOWNPAYMENT, property.getDownpayment());
@@ -194,6 +208,33 @@ public class PropertyDAL {
         parameters.put(Columns.LATITUDE, property.getLatitude());
         parameters.put(Columns.LONGITUDE, property.getLongitude());
         parameters.put(Columns.FEATURED_PROPERTY, property.getFeaturedProperty());
+
+        if (property.getBus() == null) {
+            parameters.put(Columns.BUS, 0);
+        } else {
+            parameters.put(Columns.BUS, property.getBus());
+        }
+
+        if (property.getAuto() == null) {
+            parameters.put(Columns.AUTO, 0);
+        } else {
+            parameters.put(Columns.AUTO, property.getAuto());
+        }
+
+        if (property.getTaxi() == null) {
+            parameters.put(Columns.TAXI, 0);
+        } else {
+            parameters.put(Columns.TAXI, property.getTaxi());
+        }
+
+        if (property.getMetro() == null) {
+            parameters.put(Columns.METRO, 0);
+        } else {
+            parameters.put(Columns.METRO, property.getMetro());
+        }
+
+        parameters.put(Columns.DISTANCE, property.getDistance());
+        parameters.put(Columns.UNIT, property.getUnit());
 
         City c = cityDAL.findById(property.getCityId());
         String cityName = c.getName();
@@ -249,6 +290,7 @@ public class PropertyDAL {
                 + Columns.PROPERTY_ID + " =?,"
                 + Columns.CITY_ID + " =?,"
                 + Columns.LOCATION_ID + " =?,"
+                + Columns.SUB_LOCATION + " =?,"
                 + Columns.PROPERTY_TYPE + " =?,"
                 + Columns.PROPERTY_SIZE + " =?,"
                 + Columns.SIZE + " =?,"
@@ -286,13 +328,20 @@ public class PropertyDAL {
                 + Columns.OPEN_LAND + " =?,"
                 + Columns.LATITUDE + " =?,"
                 + Columns.LONGITUDE + " =?,"
-                + Columns.FEATURED_PROPERTY + " =? WHERE "
+                + Columns.FEATURED_PROPERTY + " =?,"
+                + Columns.BUS + " =?,"
+                + Columns.AUTO + " =?,"
+                + Columns.TAXI + " =?,"
+                + Columns.METRO + " =?,"
+                + Columns.DISTANCE + " =?,"
+                + Columns.UNIT + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             property.getName(),
             property.getPropertyId(),
             property.getCityId(),
             property.getLocationId(),
+            property.getSubLocation(),
             property.getPropertyType().name(),
             property.getPropertySize(),
             property.getSize(),
@@ -331,6 +380,12 @@ public class PropertyDAL {
             property.getLatitude(),
             property.getLongitude(),
             property.getFeaturedProperty(),
+            property.getBus(),
+            property.getAuto(),
+            property.getTaxi(),
+            property.getMetro(),
+            property.getDistance(),
+            property.getUnit(),
             property.getId()});
         property = findById(property.getId());
         return property;
@@ -361,7 +416,7 @@ public class PropertyDAL {
             property.setPropertyId(rs.getString(Columns.PROPERTY_ID));
 
             property.setName(rs.getString(Columns.NAME));
-
+            property.setSubLocation(rs.getString(Columns.SUB_LOCATION));
             property.setCityId(rs.getInt(Columns.CITY_ID));
             if (rs.wasNull()) {
                 property.setCityId(null);
@@ -512,6 +567,13 @@ public class PropertyDAL {
             property.setLatitude(rs.getDouble(Columns.LATITUDE));
             property.setLongitude(rs.getDouble(Columns.LONGITUDE));
             property.setFeaturedProperty(rs.getBoolean(Columns.FEATURED_PROPERTY));
+            property.setBus(rs.getBoolean(Columns.BUS));
+            property.setAuto(rs.getBoolean(Columns.AUTO));
+            property.setTaxi(rs.getBoolean(Columns.TAXI));
+            property.setMetro(rs.getBoolean(Columns.METRO));
+            property.setDistance(rs.getDouble(Columns.DISTANCE));
+            property.setUnit(rs.getInt(Columns.UNIT));
+            //  property.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
 
             return property;
         }

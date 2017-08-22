@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsquaresystem.safedeals.city.City;
 import com.vsquaresystem.safedeals.city.CityDAL;
-import com.vsquaresystem.safedeals.location.LocationDAL;
 import com.vsquaresystem.safedeals.property.PropertyDAL;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -201,27 +200,27 @@ public class ProjectDAL {
         parameters.put(Columns.LONGITUDE, project.getLongitude());
         parameters.put(Columns.FEATURED_PROJECT, project.getFeaturedProject());
         if (project.getBus() == null) {
-            parameters.put(LocationDAL.Columns.BUS, 0);
+            parameters.put(Columns.BUS, 0);
         } else {
-            parameters.put(LocationDAL.Columns.BUS, project.getBus());
+            parameters.put(Columns.BUS, project.getBus());
         }
 
         if (project.getAuto() == null) {
-            parameters.put(LocationDAL.Columns.AUTO, 0);
+            parameters.put(Columns.AUTO, 0);
         } else {
-            parameters.put(LocationDAL.Columns.AUTO, project.getAuto());
+            parameters.put(Columns.AUTO, project.getAuto());
         }
 
         if (project.getTaxi() == null) {
-            parameters.put(LocationDAL.Columns.TAXI, 0);
+            parameters.put(Columns.TAXI, 0);
         } else {
-            parameters.put(LocationDAL.Columns.TAXI, project.getTaxi());
+            parameters.put(Columns.TAXI, project.getTaxi());
         }
 
         if (project.getMetro() == null) {
-            parameters.put(LocationDAL.Columns.METRO, 0);
+            parameters.put(Columns.METRO, 0);
         } else {
-            parameters.put(LocationDAL.Columns.METRO, project.getMetro());
+            parameters.put(Columns.METRO, project.getMetro());
         }
 
         parameters.put(Columns.DISTANCE, project.getDistance());

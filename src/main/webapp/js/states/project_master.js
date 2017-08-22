@@ -83,7 +83,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('ProjectAddController', function (ProjectService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectAddController', function (ProjectService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = {};
             $scope.propertiesTypeDisplay = [];
             $scope.editableProject.propertiesType = [];
@@ -108,11 +108,11 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 'Project Highlights',
                 'Unit Details',
                 'Sellers Credability'
-                
+
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            
+
 //OLD DATEPICKER          
 //            $scope.datePicker = {
 //                opened: false,
@@ -277,12 +277,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     'name': searchTerm
                 }).$promise;
             };
-            $scope.searchPropertyType = function (searchTerm) {                
+            $scope.searchPropertyType = function (searchTerm) {
                 return PropertyTypeService.findByNumberOfBhkLike({
                     'numberOfBhkLike': searchTerm
                 }).$promise;
             };
-            $scope.searchRoad = function (searchTerm) {                
+            $scope.searchRoad = function (searchTerm) {
                 return RoadService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
@@ -347,6 +347,35 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+
+
+
+            $scope.$watch('editableProject.locationId', function (locationId) {
+                console.log("locationId %O", locationId);
+                LocationService.get({
+                    'id': locationId
+                }, function (locationObject) {
+                    console.log("locationObject locationTypeId %O", locationObject.locationTypeId);
+                    LocationTypeService.get({
+                        'id': locationObject.locationTypeId
+                    }, function (locationTypeObject) {
+                        if (locationTypeObject.name === "WITHIN_CITY") {
+                            $scope.editableProject.bus = true;
+                            $scope.editableProject.auto = true;
+                            $scope.editableProject.taxi = true;
+                            $scope.editableProject.metro = true;
+                        }
+                        else {
+                            $scope.editableProject.bus = false;
+                            $scope.editableProject.auto = false;
+                            $scope.editableProject.taxi = false;
+                            $scope.editableProject.metro = false;
+                        }
+                    });
+                });
+
+            });
+
             $scope.setUnit = function (unit) {
                 $scope.editableProject.unitObject = unit;
                 $scope.editableProject.unit = unit.id;
@@ -459,7 +488,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }
             };
         })
-        .controller('ProjectEditController', function (LocationService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectEditController', function (LocationService, LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = ProjectService.get({
                 'id': $stateParams.projectId
             }, function () {
@@ -569,7 +598,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-            
+
 //OLD DATEPICKER
 //            $scope.datePicker = {
 //                opened: false,
@@ -806,6 +835,33 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+
+            $scope.$watch('editableProject.locationId', function (locationId) {
+                console.log("locationId %O", locationId);
+                LocationService.get({
+                    'id': locationId
+                }, function (locationObject) {
+                    console.log("locationObject locationTypeId %O", locationObject.locationTypeId);
+                    LocationTypeService.get({
+                        'id': locationObject.locationTypeId
+                    }, function (locationTypeObject) {
+                        if (locationTypeObject.name === "WITHIN_CITY") {
+                            $scope.editableProject.bus = true;
+                            $scope.editableProject.auto = true;
+                            $scope.editableProject.taxi = true;
+                            $scope.editableProject.metro = true;
+                        }
+                        else {
+                            $scope.editableProject.bus = false;
+                            $scope.editableProject.auto = false;
+                            $scope.editableProject.taxi = false;
+                            $scope.editableProject.metro = false;
+                        }
+
+                    });
+                });
+
+            });
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
@@ -991,7 +1047,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     project.publicTransportObjects.push(TransportationService.get({
                         'id': publicTransport
                     }));
-            });
+                });
                 project.workplacesObjects = [];
                 angular.forEach(project.workplaces, function (workplace) {
                     project.workplacesObjects.push(AmenityDetailService.get({
