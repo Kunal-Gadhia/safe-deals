@@ -349,7 +349,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
             $scope.setUnit = function (unit) {
                 $scope.editableProject.unitObject = unit;
-                $scope.editableProject.unit = unit.id;
+                $scope.editableProject.unit = unit.abbreviation;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
