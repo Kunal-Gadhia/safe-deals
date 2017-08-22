@@ -1077,6 +1077,15 @@ angular.module("safedeals.states.property_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+             $scope.setUnit = function (unit) {
+                $scope.editableProperty.unitObject = unit;
+                $scope.editableProperty.unit = unit.id;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;

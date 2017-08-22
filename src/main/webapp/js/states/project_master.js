@@ -459,7 +459,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }
             };
         })
-        .controller('ProjectEditController', function (LocationService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectEditController', function (LocationService,UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = ProjectService.get({
                 'id': $stateParams.projectId
             }, function () {
@@ -561,7 +561,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 'Basic Details',
                 'Connectivity',
                 'Costing',
-                'Demand For Rental/Resale',
+                'Neighbourhood',
                 'Marketability',
                 'Project Highlights',
                 'Unit Details',
@@ -806,6 +806,15 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     }).$promise;
                 }
             };
+            $scope.setUnit = function (unit) {
+                $scope.editableProject.unitObject = unit;
+                $scope.editableProject.unit = unit.id;
+            };
+            $scope.searchUnit = function (searchTerm) {
+                return UnitService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
             $scope.getLocationStep = function (locationstep) {
                 console.log("Location Step :%O", locationstep);
                 $scope.selection = locationstep;
@@ -841,7 +850,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
                 }
-                else if (locationstep === "Demand For Rental/Resale") {
+                else if (locationstep === "Neighbourhood") {
                     console.log("Hello demand for rental");
                     $scope.neighbourhood = true;
                     $scope.myValue = false;
