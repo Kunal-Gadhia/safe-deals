@@ -81,7 +81,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">                                           
+                            <div class="row">     
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Sub Location</label>                                                    
+                                        <input class="form-control" placeholder="Enter Sub Location" ng-model="editableProperty.subLocation" required=""/>
+                                    </div>
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Property Category</label>                                                    
@@ -93,6 +99,8 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Number Of Bedroom</label>                                                    
@@ -109,8 +117,6 @@
                                         <p ng-show="loadingPropertyType" class="help-block text-muted">Loading...</p>
                                     </div>                 
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Size (in Sq.Ft)</label>
