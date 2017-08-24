@@ -62,7 +62,6 @@ public class ProjectDAL {
         public static final String WORKPLACES = "workplaces";
         public static final String BASIC_AMENITIES = "basic_amenities";
         public static final String LUXURY_AMENITIES = "luxury_amenities";
-        public static final String OWNERSHIP_PROOF = "ownership_proof";
         public static final String APPROVED_BANKS = "approved_banks";
         public static final String SD_VERIFIED = "sd_verified";
         public static final String PRIVATE_AMENITIES = "private_amenities";
@@ -84,6 +83,22 @@ public class ProjectDAL {
         public static final String DISTANCE = "distance";
         public static final String UNIT = "unit";
         public static final String TOTAL_AREA = "total_area";
+
+        public static final String MUTATION_COPY = "mutation_copy";
+        public static final String SALE_DEED = "sale_deed";
+        public static final String DEVELOPMENT_AGREEMENT = "development_agreement";
+        public static final String POWER_OF_AUTHORITY = "power_of_authority";
+        public static final String TAX_RECEIPT = "tax_receipt";
+        public static final String LAYOUT_SANCTION = "layout_sanction";
+        public static final String DEVELOPMENT_PLAN = "development_plan";
+        public static final String RELEASE_LETTER = "release_letter";
+        public static final String BUILDING_SANCTION = "building_sanction";
+        public static final String COMPLETION_CERTIFICATE = "completion_certificate";
+        public static final String OCCUPANCY_CERTIFICATE = "occupancy_certificate";
+        public static final String BIRD_EYE_VIEW = "bird_eye_view";
+        public static final String ELEVATION = "elevation";
+        public static final String FLOOR_PLANS = "floor_plans";
+        public static final String OTHER_IMAGES = "other_images";
 
     }
 
@@ -136,7 +151,22 @@ public class ProjectDAL {
                         Columns.METRO,
                         Columns.DISTANCE,
                         Columns.UNIT,
-                        Columns.TOTAL_AREA
+                        Columns.TOTAL_AREA,
+                        Columns.MUTATION_COPY,
+                        Columns.SALE_DEED,
+                        Columns.DEVELOPMENT_AGREEMENT,
+                        Columns.POWER_OF_AUTHORITY,
+                        Columns.TAX_RECEIPT,
+                        Columns.LAYOUT_SANCTION,
+                        Columns.DEVELOPMENT_PLAN,
+                        Columns.RELEASE_LETTER,
+                        Columns.BUILDING_SANCTION,
+                        Columns.COMPLETION_CERTIFICATE,
+                        Columns.OCCUPANCY_CERTIFICATE,
+                        Columns.BIRD_EYE_VIEW,
+                        Columns.ELEVATION,
+                        Columns.FLOOR_PLANS,
+                        Columns.OTHER_IMAGES
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -278,7 +308,6 @@ public class ProjectDAL {
                 + Columns.WORKPLACES + " =?,"
                 + Columns.BASIC_AMENITIES + " =?,"
                 + Columns.LUXURY_AMENITIES + " =?,"
-                + Columns.OWNERSHIP_PROOF + " =?,"
                 + Columns.APPROVED_BANKS + " =?,"
                 + Columns.SD_VERIFIED + " =?,"
                 + Columns.PRIVATE_AMENITIES + " =?,"
@@ -299,7 +328,22 @@ public class ProjectDAL {
                 + Columns.METRO + " =?,"
                 + Columns.DISTANCE + " =?,"
                 + Columns.UNIT + " =?,"
-                + Columns.TOTAL_AREA + " =? WHERE "
+                + Columns.TOTAL_AREA + " =?,"
+                + Columns.MUTATION_COPY + " =?,"
+                + Columns.SALE_DEED + " =?,"
+                + Columns.DEVELOPMENT_AGREEMENT + " =?,"
+                + Columns.POWER_OF_AUTHORITY + " =?,"
+                + Columns.TAX_RECEIPT + " =?,"
+                + Columns.LAYOUT_SANCTION + " =?,"
+                + Columns.DEVELOPMENT_PLAN + " =?,"
+                + Columns.RELEASE_LETTER + " =?,"
+                + Columns.BUILDING_SANCTION + " =?,"
+                + Columns.COMPLETION_CERTIFICATE + " =?,"
+                + Columns.OCCUPANCY_CERTIFICATE + " =?,"
+                + Columns.BIRD_EYE_VIEW + " =?,"
+                + Columns.ELEVATION + " =?,"
+                + Columns.FLOOR_PLANS + " =?,"
+                + Columns.OTHER_IMAGES + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -325,7 +369,7 @@ public class ProjectDAL {
             project.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(project.getWorkplaces()),
             project.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(project.getBasicAmenities()),
             project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()),
-            project.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(project.getOwnershipProof()),
+            //      project.getOwnershipProof() == null ? "[]" : mapper.writeValueAsString(project.getOwnershipProof()),
             project.getApprovedBanks() == null ? "[]" : mapper.writeValueAsString(project.getApprovedBanks()),
             project.getSdVerified(),
             project.getPrivateAmenities() == null ? "[]" : mapper.writeValueAsString(project.getPrivateAmenities()),
@@ -347,6 +391,21 @@ public class ProjectDAL {
             project.getDistance(),
             project.getUnit(),
             project.getTotalArea(),
+            project.getMutationCopy() == null ? "[]" : mapper.writeValueAsString(project.getMutationCopy()),
+            project.getSaleDeed() == null ? "[]" : mapper.writeValueAsString(project.getSaleDeed()),
+            project.getDevelopmentAgreement() == null ? "[]" : mapper.writeValueAsString(project.getDevelopmentAgreement()),
+            project.getPowerOfAuthority() == null ? "[]" : mapper.writeValueAsString(project.getPowerOfAuthority()),
+            project.getTaxReceipt() == null ? "[]" : mapper.writeValueAsString(project.getTaxReceipt()),
+            project.getLayoutSanction() == null ? "[]" : mapper.writeValueAsString(project.getLayoutSanction()),
+            project.getDevelopmentAgreement() == null ? "[]" : mapper.writeValueAsString(project.getDevelopmentAgreement()),
+            project.getReleaseLetter() == null ? "[]" : mapper.writeValueAsString(project.getReleaseLetter()),
+            project.getBuildingSanction() == null ? "[]" : mapper.writeValueAsString(project.getBuildingSanction()),
+            project.getCompletionCertificate() == null ? "[]" : mapper.writeValueAsString(project.getCompletionCertificate()),
+            project.getOccupancyCertificate() == null ? "[]" : mapper.writeValueAsString(project.getOccupancyCertificate()),
+            project.getBirdEyeView() == null ? "[]" : mapper.writeValueAsString(project.getBirdEyeView()),
+            project.getElevation() == null ? "[]" : mapper.writeValueAsString(project.getElevation()),
+            project.getFloorPlans() == null ? "[]" : mapper.writeValueAsString(project.getFloorPlans()),
+            project.getOtherImages() == null ? "[]" : mapper.writeValueAsString(project.getOtherImages()),
             project.getId()});
         project = findById(project.getId());
         return project;
@@ -451,15 +510,15 @@ public class ProjectDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
             }
-            String ownershipProofList = rs.getString(Columns.OWNERSHIP_PROOF);
-            try {
-                ObjectMapper mapper = new ObjectMapper();
-                List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
-                });
-                project.setOwnershipProof(ownershipProof);
-            } catch (IOException ex) {
-                throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
-            }
+//            String ownershipProofList = rs.getString(Columns.OWNERSHIP_PROOF);
+//            try {
+//                ObjectMapper mapper = new ObjectMapper();
+//                List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
+//                });
+//                project.setOwnershipProof(ownershipProof);
+//            } catch (IOException ex) {
+//                throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
+//            }
             String approvedBanksList = rs.getString(Columns.APPROVED_BANKS);
             try {
                 ObjectMapper mapper = new ObjectMapper();
@@ -498,6 +557,155 @@ public class ProjectDAL {
             project.setUnit(rs.getInt(Columns.UNIT));
             project.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
 
+            String mutationCopyList = rs.getString(Columns.MUTATION_COPY);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> mutationCopy = mapper.readValue(mutationCopyList, new TypeReference<List<String>>() {
+                });
+                project.setMutationCopy(mutationCopy);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing ownershipProofList: '" + mutationCopyList + "' ", ex);
+            }
+
+            String saleDeedList = rs.getString(Columns.SALE_DEED);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> saleDeed = mapper.readValue(saleDeedList, new TypeReference<List<String>>() {
+                });
+                project.setSaleDeed(saleDeed);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing saleDeedList: '" + saleDeedList + "' ", ex);
+            }
+
+            String developmentAgreementList = rs.getString(Columns.DEVELOPMENT_AGREEMENT);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> developmentAgreement = mapper.readValue(developmentAgreementList, new TypeReference<List<String>>() {
+                });
+                project.setDevelopmentAgreement(developmentAgreement);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing developmentAgreementList: '" + developmentAgreementList + "' ", ex);
+            }
+
+            String powerOfAuthorityList = rs.getString(Columns.POWER_OF_AUTHORITY);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> powerOfAuthority = mapper.readValue(powerOfAuthorityList, new TypeReference<List<String>>() {
+                });
+                project.setPowerOfAuthority(powerOfAuthority);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing powerOfAuthorityList: '" + powerOfAuthorityList + "' ", ex);
+            }
+
+            String taxReceiptList = rs.getString(Columns.TAX_RECEIPT);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> taxReceipt = mapper.readValue(taxReceiptList, new TypeReference<List<String>>() {
+                });
+                project.setTaxReceipt(taxReceipt);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing taxReceiptList: '" + taxReceiptList + "' ", ex);
+            }
+
+            String layoutSanctionList = rs.getString(Columns.LAYOUT_SANCTION);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> layoutSanction = mapper.readValue(layoutSanctionList, new TypeReference<List<String>>() {
+                });
+                project.setLayoutSanction(layoutSanction);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing layoutSanctiontList: '" + layoutSanctionList + "' ", ex);
+            }
+
+            String developmentPlanList = rs.getString(Columns.DEVELOPMENT_PLAN);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> developmentPlan = mapper.readValue(developmentPlanList, new TypeReference<List<String>>() {
+                });
+                project.setDevelopmentPlan(developmentPlan);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing developmentPlanList: '" + developmentPlanList + "' ", ex);
+            }
+
+            String releaseLetterList = rs.getString(Columns.RELEASE_LETTER);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> releaseLetter = mapper.readValue(releaseLetterList, new TypeReference<List<String>>() {
+                });
+                project.setReleaseLetter(releaseLetter);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing releaseLetterList: '" + releaseLetterList + "' ", ex);
+            }
+
+            String buildingSanctionList = rs.getString(Columns.BUILDING_SANCTION);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> buildingSanction = mapper.readValue(buildingSanctionList, new TypeReference<List<String>>() {
+                });
+                project.setBuildingSanction(buildingSanction);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing buildingSanctionList: '" + buildingSanctionList + "' ", ex);
+            }
+
+            String completionCertificateList = rs.getString(Columns.COMPLETION_CERTIFICATE);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> completionCertificate = mapper.readValue(completionCertificateList, new TypeReference<List<String>>() {
+                });
+                project.setCompletionCertificate(completionCertificate);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing completionCertificateList: '" + completionCertificateList + "' ", ex);
+            }
+
+            String occupancyCertificateList = rs.getString(Columns.OCCUPANCY_CERTIFICATE);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> occupancyCertificate = mapper.readValue(occupancyCertificateList, new TypeReference<List<String>>() {
+                });
+                project.setOccupancyCertificate(occupancyCertificate);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing occupancyCertificateList: '" + occupancyCertificateList + "' ", ex);
+            }
+
+            String birdEyeViewList = rs.getString(Columns.BIRD_EYE_VIEW);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> birdEyeView = mapper.readValue(birdEyeViewList, new TypeReference<List<String>>() {
+                });
+                project.setBirdEyeView(birdEyeView);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing birdEyeViewList: '" + birdEyeViewList + "' ", ex);
+            }
+
+            String elevationList = rs.getString(Columns.ELEVATION);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> elevation = mapper.readValue(elevationList, new TypeReference<List<String>>() {
+                });
+                project.setElevation(elevation);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing elevationList: '" + elevationList + "' ", ex);
+            }
+
+            String floorPlansList = rs.getString(Columns.FLOOR_PLANS);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> floorPlans = mapper.readValue(floorPlansList, new TypeReference<List<String>>() {
+                });
+                project.setFloorPlans(floorPlans);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing floorPlansList: '" + floorPlansList + "' ", ex);
+            }
+
+//            String otherImagesList = rs.getString(Columns.OTHER_IMAGES);
+//            try {
+//                ObjectMapper mapper = new ObjectMapper();
+//                List<String> otherImages = mapper.readValue(otherImagesList, new TypeReference<List<String>>() {
+//                });
+//                project.setOtherImages(otherImages);
+//            } catch (IOException ex) {
+//                throw new RuntimeException("Error parsing otherImagesList: '" + otherImagesList + "' ", ex);
+//            }
             return project;
         }
 //

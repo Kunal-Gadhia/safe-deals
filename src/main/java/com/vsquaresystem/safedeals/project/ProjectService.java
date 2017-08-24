@@ -44,14 +44,14 @@ public class ProjectService {
         File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
                 attachmentMultipartFile.getOriginalFilename(),
                 attachmentMultipartFile.getInputStream(),
-                AttachmentUtils.AttachmentType.PROJECT_OWNERSHIP_PROOF,
+                AttachmentUtils.AttachmentType.PROJECT_MUTATION_COPY,
                 project.getId(),
                 isView
         );
         System.out.println("THIS IS OUTPUTFILE==================" + outputFile.toString());
         List<String> attachments = new ArrayList<>();
         attachments.add(outputFile.getName().toString());
-        project.setOwnershipProof(attachments);
+        project.setMutationCopy(attachments);
 //
         projectDAL.update(project);
         return project;
@@ -63,8 +63,8 @@ public class ProjectService {
     }
 
     public File getImage(Project project) throws IOException {
-        if (project.getOwnershipProof().size() != 0) {
-            String PHOTO_FILE_NAME = project.getOwnershipProof().get(0).toString();
+        if (project.getMutationCopy().size() != 0) {
+            String PHOTO_FILE_NAME = project.getMutationCopy().get(0).toString();
             File photoFile = photoUtils.getProjectOwnershipPhoto(project);
             return photoFile;
         } else {

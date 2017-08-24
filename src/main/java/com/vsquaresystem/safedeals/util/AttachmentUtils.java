@@ -63,7 +63,8 @@ public class AttachmentUtils {
         EVENT,
         IMAGE,
         PROPERTY,
-        PROJECT_OWNERSHIP_PROOF,
+        PROJECT_MUTATION_COPY,
+        
     }
 
     public File getRootDirectory() {
@@ -236,7 +237,7 @@ public class AttachmentUtils {
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;
 
-            case PROJECT_OWNERSHIP_PROOF:
+            case PROJECT_MUTATION_COPY:
                 attachmentDir = new File(getAttachmentRootDirectory(), PROJECT_ATTACHMENT_DIR_NAME);
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;

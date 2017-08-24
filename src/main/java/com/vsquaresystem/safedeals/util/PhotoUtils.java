@@ -144,8 +144,8 @@ public class PhotoUtils {
     ///////////////////////////////////////////////
 
     public File getProjectOwnershipPhoto(Project project) throws FileNotFoundException, IOException {
-        if (project.getOwnershipProof() != null) {
-            PHOTO_FILE_NAME = project.getOwnershipProof().get(0).toString();
+        if (project.getMutationCopy()!= null) {
+            PHOTO_FILE_NAME = project.getMutationCopy().get(0).toString();
         }
         File photoFile = getProjectOwnershipPhotoFile(project);
         return photoFile;
@@ -162,8 +162,8 @@ public class PhotoUtils {
     }
 
     public File getProjectOwnershipPhotoFile(Project project) throws IOException {
-        File projectOwnershipDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_OWNERSHIP_PROOF, project.getId(), true);
-        return new File(projectOwnershipDir, PHOTO_FILE_NAME);
+        File projectMutationCopyDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_MUTATION_COPY, project.getId(), true);
+        return new File(projectMutationCopyDir, PHOTO_FILE_NAME);
     }
 
     ///////////////////////////////////////////////
