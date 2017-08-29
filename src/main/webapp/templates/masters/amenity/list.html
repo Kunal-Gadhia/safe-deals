@@ -32,6 +32,7 @@
                 <th>Description</th>
                 <th>Amenity Code</th>
                 <th>Amenity Type</th>
+                <th>Icon</th>
                 <th class="text-right">
                     Actions
                 </th>
@@ -43,7 +44,8 @@
                 <td>{{ amenity.name}}</td>   
                 <td>{{ amenity.description}}</td> 
                 <td>{{ amenity.amenityCodeObject.name}}</td> 
-                <td>{{ amenity.amenityType}}</td>              
+                <td>{{ amenity.amenityType}}</td> 
+                <td><i class="{{amenity.icon}}"></i></td> 
                 <td class="text-right">
                     <a data-ui-sref="admin.masters_amenity.edit({ amenityId: amenity.id })"
                        class="btn btn-primary">					
