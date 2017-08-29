@@ -27,6 +27,7 @@ public class AmenityDAL {
         public static final String DESCRIPTION = "description";
         public static final String AMENITY_CODE_ID = "amenity_code_id";
         public static final String AMENITY_TYPE = "amenity_type";
+        public static final String ICON = "icon";
     };
 
     @Autowired
@@ -37,7 +38,9 @@ public class AmenityDAL {
                 .usingColumns(Columns.NAME,
                         Columns.DESCRIPTION,
                         Columns.AMENITY_CODE_ID,
-                        Columns.AMENITY_TYPE)
+                        Columns.AMENITY_TYPE,
+                        Columns.ICON
+                )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -79,6 +82,7 @@ public class AmenityDAL {
         parameters.put(Columns.DESCRIPTION, amenity.getDescription());
         parameters.put(Columns.AMENITY_CODE_ID, amenity.getAmenityCodeId());
         parameters.put(Columns.AMENITY_TYPE, amenity.getAmenityType().name());
+        parameters.put(Columns.ICON, amenity.getIcon());
         Number newId = insertAmenity.executeAndReturnKey(parameters);
         amenity = findById(newId.intValue());
         return amenity;
@@ -94,12 +98,14 @@ public class AmenityDAL {
                 + Columns.NAME + " = ?,"
                 + Columns.DESCRIPTION + " = ?,"
                 + Columns.AMENITY_CODE_ID + " = ?,"
-                + Columns.AMENITY_TYPE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.AMENITY_TYPE + " = ?,"
+                + Columns.ICON + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             amenity.getName(),
             amenity.getDescription(),
             amenity.getAmenityCodeId(),
             amenity.getAmenityType().name(),
+            amenity.getIcon(),
             amenity.getId()
         });
         amenity = findById(amenity.getId());
