@@ -17,7 +17,7 @@ public class AgentDAL {
     public static final String TABLE_NAME = "agent";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertAgent;
-    
+    //Agent Master Not in Use
     public static final class Columns {
 
         public static final String ID = "id";
