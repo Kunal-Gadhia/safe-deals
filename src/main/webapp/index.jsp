@@ -30,7 +30,6 @@
         <meta name="msapplication-TileColor" content="#000">
         <meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#000">
-        <!--favicon icon-->
         <title>Safe Deals</title>
 
         <!--Stylesheet-->
