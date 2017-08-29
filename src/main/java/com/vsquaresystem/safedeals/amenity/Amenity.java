@@ -6,9 +6,10 @@ public class Amenity {
 
     private Integer id;
     private String name;
-    private String description;    
+    private String description;
     private Integer amenityCodeId;
-    private AmenityType amenityType;  
+    private AmenityType amenityType;
+    private String icon;
 
     public Integer getId() {
         return id;
@@ -41,7 +42,7 @@ public class Amenity {
     public void setAmenityCodeId(Integer amenityCodeId) {
         this.amenityCodeId = amenityCodeId;
     }
-    
+
     public AmenityType getAmenityType() {
         return amenityType;
     }
@@ -50,14 +51,23 @@ public class Amenity {
         this.amenityType = amenityType;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.amenityCodeId);
-        hash = 59 * hash + Objects.hashCode(this.amenityType);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.amenityCodeId);
+        hash = 89 * hash + Objects.hashCode(this.amenityType);
+        hash = 89 * hash + Objects.hashCode(this.icon);
         return hash;
     }
 
@@ -85,13 +95,15 @@ public class Amenity {
         if (this.amenityType != other.amenityType) {
             return false;
         }
+        if (!Objects.equals(this.icon, other.icon)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Amenity{" + "id=" + id + ", name=" + name + ", description=" + description + ", amenityCodeId=" + amenityCodeId + ", amenityType=" + amenityType + '}';
+        return "Amenity{" + "id=" + id + ", name=" + name + ", description=" + description + ", amenityCodeId=" + amenityCodeId + ", amenityType=" + amenityType + ", icon=" + icon + '}';
     }
 
-    
 }
