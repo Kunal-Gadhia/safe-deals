@@ -18,7 +18,7 @@ angular.module("safedeals.states.intro", [])
 
         })
 
-        .controller('IntroSidebarController', function (VideoService, $scope, $stateParams) {
+        .controller('IntroSidebarController', function (VideoService, $scope, $location) {
             console.log("In Intro Side Bar video");
 //            $scope.videos = [];
             VideoService.findAllVideos(function (videos) {
@@ -31,7 +31,10 @@ angular.module("safedeals.states.intro", [])
                 $scope.videos = videos;
                 console.log("videos list", $scope.videos);
             });
-
+            $scope.gotoTop = function () {
+                $location.hash('top');
+                $anchorScroll();
+            };
 
         })
         .controller('IntroContentController', function (VideoService, $scope, $stateParams) {
