@@ -143,25 +143,25 @@ public class PhotoUtils {
     }
     ///////////////////////////////////////////////
 
-    public File getProjectOwnershipPhoto(Project project) throws FileNotFoundException, IOException {
+    public File getProjectMutationCopyPhoto(Project project) throws FileNotFoundException, IOException {
         if (project.getMutationCopy()!= null) {
             PHOTO_FILE_NAME = project.getMutationCopy().get(0).toString();
         }
-        File photoFile = getProjectOwnershipPhotoFile(project);
+        File photoFile = getProjectMutationCopyPhoto(project);
         return photoFile;
     }
 
-    public File setProjectOwnershipPhoto(
+    public File setProjectMutationCopyPhoto(
             InputStream inputStream,
             Project project)
             throws IOException {
 
-        File photoFile = getProjectOwnershipPhotoFile(project);
+        File photoFile = getProjectMutationCopyPhotoFile(project);
         FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
         return photoFile;
     }
 
-    public File getProjectOwnershipPhotoFile(Project project) throws IOException {
+    public File getProjectMutationCopyPhotoFile(Project project) throws IOException {
         File projectMutationCopyDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_MUTATION_COPY, project.getId(), true);
         return new File(projectMutationCopyDir, PHOTO_FILE_NAME);
     }

@@ -60,35 +60,35 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 console.log("$scope.locations", $scope.locations);
                 angular.forEach($scope.locations, function (location) {
 
-                    if (location.locationType !== null) {
-                        location.locationType = LocationTypeService.get({
-                            'id': location.locationTypeId
-                        });
-                    }
-                    if (location.safedealZone !== null) {
-                        location.safedealZone = SafedealZoneService.get({
-                            'id': location.safedealZoneId
-                        });
-                    }
-                    if (location.city !== null) {
-                        location.city = CityService.get({
-                            'id': location.cityId
-                        });
-                    }
-
-                    if (location.unit !== null) {
-                        location.unit = UnitService.get({
-                            'id': location.unitId
-                        });
-                    }
-                    location.locationCategoryObjects = [];
-                    angular.forEach(location.locationCategories, function (locationCategoryId) {
-                        location.locationCategoryObjects.push(
-                                LocationCategoryService.get({
-                                    'id': locationCategoryId
-                                })
-                                );
-                    });
+//                    if (location.locationType !== null) {
+//                        location.locationType = LocationTypeService.get({
+//                            'id': location.locationTypeId
+//                        });
+//                    }
+//                    if (location.safedealZone !== null) {
+//                        location.safedealZone = SafedealZoneService.get({
+//                            'id': location.safedealZoneId
+//                        });
+//                    }
+//                    if (location.city !== null) {
+//                        location.city = CityService.get({
+//                            'id': location.cityId
+//                        });
+//                    }
+//
+//                    if (location.unit !== null) {
+//                        location.unit = UnitService.get({
+//                            'id': location.unitId
+//                        });
+//                    }
+//                    location.locationCategoryObjects = [];
+//                    angular.forEach(location.locationCategories, function (locationCategoryId) {
+//                        location.locationCategoryObjects.push(
+//                                LocationCategoryService.get({
+//                                    'id': locationCategoryId
+//                                })
+//                                );
+//                    });
 
 
                 });
@@ -185,7 +185,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             $scope.setUnit = function (unit) {
                 $scope.editableLocation.unitObject = unit;
-                $scope.editableLocation.unit = unit.abbreviation;
+                $scope.editableLocation.unit = unit.id;
             };
             $scope.searchUnit = function (searchTerm) {
                 return UnitService.findByNameLike({
@@ -449,33 +449,33 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }).$promise;
             };
 
-            $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
-                console.log("locationTypeId %O", locationTypeId);
-                LocationTypeService.get({
-                    'id': locationTypeId
-                }, function (locationTypeObject) {
-                    if (locationTypeObject.name === "WITHIN_CITY") {
-                        $scope.editableLocation.auto = true;
-                        $scope.editableLocation.bus = true;
-                        $scope.editableLocation.taxi = true;
-                        $scope.editableLocation.metro = true;
-                        $scope.editableLocation.corporationSupply = true;
-                        $scope.editableLocation.borewell = true;
-                        $scope.editableLocation.openWell = true;
-                    }
-                    else {
-                        $scope.editableLocation.auto = false;
-                        $scope.editableLocation.bus = false;
-                        $scope.editableLocation.taxi = false;
-                        $scope.editableLocation.metro = false;
-                        $scope.editableLocation.corporationSupply = false;
-                        $scope.editableLocation.borewell = false;
-                        $scope.editableLocation.openWell = false;
-                    }
-                });
-
-
-            });
+//            $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
+//                console.log("locationTypeId %O", locationTypeId);
+//                LocationTypeService.get({
+//                    'id': locationTypeId
+//                }, function (locationTypeObject) {
+//                    if (locationTypeObject.name === "WITHIN_CITY") {
+//                        $scope.editableLocation.auto = true;
+//                        $scope.editableLocation.bus = true;
+//                        $scope.editableLocation.taxi = true;
+//                        $scope.editableLocation.metro = true;
+//                        $scope.editableLocation.corporationSupply = true;
+//                        $scope.editableLocation.borewell = true;
+//                        $scope.editableLocation.openWell = true;
+//                    }
+//                    else {
+//                        $scope.editableLocation.auto = false;
+//                        $scope.editableLocation.bus = false;
+//                        $scope.editableLocation.taxi = false;
+//                        $scope.editableLocation.metro = false;
+//                        $scope.editableLocation.corporationSupply = false;
+//                        $scope.editableLocation.borewell = false;
+//                        $scope.editableLocation.openWell = false;
+//                    }
+//                });
+//
+//
+//            });
 
 //            $scope.cities = CityService.findAllCities();
 ////            $scope.safedealZones = SafedealZoneService.query();

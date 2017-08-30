@@ -59,13 +59,13 @@ public class ProjectService {
 
     public File getPhoto(Integer projectId) throws FileNotFoundException, IOException {
         Project project = projectDAL.findById(projectId);
-        return photoUtils.getProjectOwnershipPhoto(project);
+        return photoUtils.getProjectMutationCopyPhoto(project);
     }
 
     public File getImage(Project project) throws IOException {
         if (project.getMutationCopy().size() != 0) {
             String PHOTO_FILE_NAME = project.getMutationCopy().get(0).toString();
-            File photoFile = photoUtils.getProjectOwnershipPhoto(project);
+            File photoFile = photoUtils.getProjectMutationCopyPhoto(project);
             return photoFile;
         } else {
             File photoFiles = new File(getClass().getResource("images/default.png").getFile());

@@ -38,7 +38,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>State</label>                                                    
-                                        <input placeholder="Select State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"
+                                        <input placeholder="Enter State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"
                                                typeahead-on-select="setState($item)"                                           
                                                typeahead-loading="loadingStates" 
                                                typeahead-no-results="noStatesFound"                                           
@@ -58,12 +58,13 @@
                                     <div class="form-group">
                                         <label>City</label>
                                         <input class="form-control"
-                                               placeholder="Select City"
+                                               placeholder="Enter City"
                                                uib-typeahead="city.id as city.name for city in searchCities($viewValue)"
                                                typeahead-on-select="setCity($item)"
                                                typeahead-editable="false"
                                                typeahead-loading="loadingCities" 
-                                               typeahead-no-results="noCitiesFound"                                       
+                                               typeahead-no-results="noCitiesFound" 
+                                               ng-disabled="!editableProject.stateId"
                                                ng-model="editableProject.city.name" required=""/>
                                         <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
                                         <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
@@ -73,12 +74,13 @@
                                     <div class="form-group">
                                         <label>Location</label>                                                    
                                         <input class="form-control"
-                                               placeholder="Select Location"
+                                               placeholder="Enter Location"
                                                uib-typeahead="location.id as location.name for location in searchLocations($viewValue)"
                                                typeahead-on-select="setLocation($item)"
                                                typeahead-editable="false"
                                                typeahead-loading="loadingLocations" 
-                                               typeahead-no-results="noLocationsFound"                                       
+                                               typeahead-no-results="noLocationsFound"   
+                                               ng-disabled="!editableProject.cityId"
                                                ng-model="editableProject.location.name" required=""/>
                                         <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
                                         <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
@@ -89,7 +91,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Sub Location</label>                                                    
-                                        <input class="form-control" placeholder="Enter Sub Location" ng-model="editableProject.subLocation" required=""/>
+                                        <input class="form-control" placeholder="Enter Sub Location" ng-disabled="!editableProject.locationId"ng-model="editableProject.subLocation" required=""/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -315,33 +317,33 @@
                                             <label>Metro</label>
                                         </div>
                                     </div>
-<!--                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Public Transport</label>                                                    
-                                            <input class="form-control"
-                                                   placeholder="Select Public Transport"
-                                                   uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
-                                                   typeahead-on-select="setTransportation($item)"
-                                                   typeahead-editable="false"
-                                                   typeahead-loading="loadingTransportation" 
-                                                   typeahead-no-results="noTransportationFound"                                       
-                                                   ng-model="basicAmenities" />
-                                            <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
-                                            <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
-                                            <li class="col-md-8">
-                                                {{basicAmenities.name}} 
-                                            </li>
-                                            <li class="col-md-4 list-unstyled">
-                                                <button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>-->
+                                    <!--                                    <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label>Public Transport</label>                                                    
+                                                                                <input class="form-control"
+                                                                                       placeholder="Select Public Transport"
+                                                                                       uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
+                                                                                       typeahead-on-select="setTransportation($item)"
+                                                                                       typeahead-editable="false"
+                                                                                       typeahead-loading="loadingTransportation" 
+                                                                                       typeahead-no-results="noTransportationFound"                                       
+                                                                                       ng-model="basicAmenities" />
+                                                                                <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
+                                                                                <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
+                                                                                <li class="col-md-8">
+                                                                                    {{basicAmenities.name}} 
+                                                                                </li>
+                                                                                <li class="col-md-4 list-unstyled">
+                                                                                    <button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                    </button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>-->
                                 </div>                                        
                             </div>
                         </div>

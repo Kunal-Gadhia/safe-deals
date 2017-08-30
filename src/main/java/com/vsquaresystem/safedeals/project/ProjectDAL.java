@@ -697,15 +697,15 @@ public class ProjectDAL {
                 throw new RuntimeException("Error parsing floorPlansList: '" + floorPlansList + "' ", ex);
             }
 
-//            String otherImagesList = rs.getString(Columns.OTHER_IMAGES);
-//            try {
-//                ObjectMapper mapper = new ObjectMapper();
-//                List<String> otherImages = mapper.readValue(otherImagesList, new TypeReference<List<String>>() {
-//                });
-//                project.setOtherImages(otherImages);
-//            } catch (IOException ex) {
-//                throw new RuntimeException("Error parsing otherImagesList: '" + otherImagesList + "' ", ex);
-//            }
+            String otherImagesList = rs.getString(Columns.OTHER_IMAGES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<String> otherImages = mapper.readValue(otherImagesList, new TypeReference<List<String>>() {
+                });
+                project.setOtherImages(otherImages);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing otherImagesList: '" + otherImagesList + "' ", ex);
+            }
             return project;
         }
 //
