@@ -25,7 +25,8 @@ angular.module("safedeals.states.portal", [])
 
             $stateProvider.state('portal_bank', {
                 'url': '/portal_bank',
-                'templateUrl': templateRoot + '/portal/portal_bank.html'
+                'templateUrl': templateRoot + '/portal/portal_bank.html',
+                'controller':'PortalBankController'
             });
 
             $stateProvider.state('portal_franchise', {
@@ -42,5 +43,12 @@ angular.module("safedeals.states.portal", [])
                 'url': '/portal_builderanddeveloper',
                 'templateUrl': templateRoot + '/portal/portal_builderanddeveloper.html'
             });
+        })
+
+        .controller('PortalBankController', function ($scope, $location, $anchorScroll) {
+            $scope.gotoTop = function () {
+                $location.hash('top');
+                $anchorScroll();
+            };
         });
 
