@@ -26,6 +26,14 @@ angular.module("safedeals.services.video")
                         'propertyId': '@propertyId'
                     },
                     'isArray': true
+                },
+                'findByVideoName': {
+                    'method': 'GET',
+                    'url': restRoot + '/video/find/video_name',
+                    'params': {
+                        'name': '@name'
+                    },
+                    'isArray': false
                 }
             });
         });

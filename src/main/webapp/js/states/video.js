@@ -74,6 +74,26 @@ angular.module("safedeals.states.video", [])
 
             $scope.editableVideo = {};
 
+            $scope.$watch('editableVideo.name', function (name) {
+                    console.log("Video  Name :" + name);
+                VideoService.findByVideoName({'name': name}).$promise.catch(function (response) {
+                    if (response.status === 500) {
+                        $scope.editableVideo.repeatVideo = false;
+                    }
+                    else if (response.status === 404) {
+                        $scope.editableVideo.repeatVideo = false;
+                    }
+                    else if (response.status === 400) {
+                        $scope.editableVideo.repeatVideo = false;
+                    }
+                }).then(function (video) {
+                    if (video.name !== null) {
+                        $scope.editableVideo.repeatVideo = true;
+                    }
+                    ;
+                });
+            });
+
             $scope.setProject = function (project) {
                 console.log("setproject", project);
                 $scope.editableVideo.projectId = project.id;

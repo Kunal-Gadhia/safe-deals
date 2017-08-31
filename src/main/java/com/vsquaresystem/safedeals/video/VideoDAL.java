@@ -66,13 +66,12 @@ public class VideoDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Video.class));
     }
-    
-     public List<Video> findByProjectId(Integer projectId) {
+
+    public List<Video> findByProjectId(Integer projectId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROJECT_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{projectId}, new BeanPropertyRowMapper<>(Video.class));
     }
 
-    
     public List<Video> findByPropertyId(Integer propertyId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PROPERTY_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{propertyId}, new BeanPropertyRowMapper<>(Video.class));
@@ -136,6 +135,11 @@ public class VideoDAL {
     public void delete(Integer id) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    }
+
+    public Video findByVideoName(String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Video.class));
     }
 
 }
