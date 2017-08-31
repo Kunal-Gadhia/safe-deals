@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/video")
 public class VideoRest {
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private VideoDAL videoDal;
-    
+
 //    @Autowired
 //    private VideoService videoService;
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Video> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        logger.info("video object for find all {}", videoDal.findAll(offset) );
+        logger.info("video object for find all {}", videoDal.findAll(offset));
         return videoDal.findAll(offset);
 
     }
@@ -40,7 +40,7 @@ public class VideoRest {
     public Video findById(@PathVariable("id") Integer id) {
         return videoDal.findById(id);
     }
-    
+
     @RequestMapping(value = "/find/projectId", method = RequestMethod.GET)
     public List<Video> findByProjectId(@RequestParam("projectId") Integer projectId) {
         return videoDal.findByProjectId(projectId);
@@ -72,7 +72,12 @@ public class VideoRest {
         System.out.println("are we in rest");
         return videoDal.update(video);
     }
-    
+
+    @RequestMapping(value = "/find/video_name", method = RequestMethod.GET)
+    public Video findByVideoName(@RequestParam("name") String name) {
+        return videoDal.findByVideoName(name);
+    }
+
 //    @RequestMapping(value = "/{id}/setPhoto", method = RequestMethod.POST)
 //    public void setPhoto(@PathVariable Integer id, @RequestParam MultipartFile photo) throws IOException {
 //        System.out.println("are we in set photo");

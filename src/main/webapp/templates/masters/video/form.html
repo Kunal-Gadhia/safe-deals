@@ -16,6 +16,9 @@
                                 <label>Name</label>
                                 <input class="form-control" placeholder="Video Name" ng-model="editableVideo.name"/>
                             </div>
+                            <div ng-show="editableVideo.repeatVideo">
+                                <div class="text-danger">Found Records For Above Entered Name</div>
+                            </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -23,7 +26,7 @@
                                 <textarea class="form-control" ng-model="editableVideo.description"> </textarea>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
