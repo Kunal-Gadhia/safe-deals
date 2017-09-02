@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.amenitycode;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,8 @@ public class AmenityCode {
     private Integer id;
     private String name;
     private AmenityDetailTab amenityDetailTab;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -41,40 +44,20 @@ public class AmenityCode {
         this.amenityDetailTab = amenityDetailTab;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.amenityDetailTab);
-        return hash;
+    public Integer getUserId() {
+        return userId;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AmenityCode other = (AmenityCode) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (this.amenityDetailTab != other.amenityDetailTab) {
-            return false;
-        }
-        return true;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "AmenityCode{" + "id=" + id + ", name=" + name + ", amenityDetailTab=" + amenityDetailTab + '}';
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
     }
 
-    
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
 }

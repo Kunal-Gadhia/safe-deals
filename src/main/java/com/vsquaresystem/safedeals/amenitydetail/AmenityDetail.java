@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.amenitydetail;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class AmenityDetail {
@@ -14,6 +15,8 @@ public class AmenityDetail {
     private Double latitude;
     private Double longitude;
     private Integer cityId;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -95,27 +98,42 @@ public class AmenityDetail {
         this.cityId = cityId;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + Objects.hashCode(this.address);
-        hash = 89 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 89 * hash + Objects.hashCode(this.mobileNumber);
-        hash = 89 * hash + Objects.hashCode(this.locationId);
-        hash = 89 * hash + Objects.hashCode(this.amenityId);
-        hash = 89 * hash + Objects.hashCode(this.latitude);
-        hash = 89 * hash + Objects.hashCode(this.longitude);
-        hash = 89 * hash + Objects.hashCode(this.cityId);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.address);
+        hash = 53 * hash + Objects.hashCode(this.phoneNumber);
+        hash = 53 * hash + Objects.hashCode(this.mobileNumber);
+        hash = 53 * hash + Objects.hashCode(this.locationId);
+        hash = 53 * hash + Objects.hashCode(this.amenityId);
+        hash = 53 * hash + Objects.hashCode(this.latitude);
+        hash = 53 * hash + Objects.hashCode(this.longitude);
+        hash = 53 * hash + Objects.hashCode(this.cityId);
+        hash = 53 * hash + Objects.hashCode(this.userId);
+        hash = 53 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -123,6 +141,9 @@ public class AmenityDetail {
             return false;
         }
         final AmenityDetail other = (AmenityDetail) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -133,9 +154,6 @@ public class AmenityDetail {
             return false;
         }
         if (!Objects.equals(this.mobileNumber, other.mobileNumber)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.locationId, other.locationId)) {
@@ -153,12 +171,18 @@ public class AmenityDetail {
         if (!Objects.equals(this.cityId, other.cityId)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "AmenityDetail{" + "id=" + id + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", mobileNumber=" + mobileNumber + ", locationId=" + locationId + ", amenityId=" + amenityId + ", latitude=" + latitude + ", longitude=" + longitude + ", cityId=" + cityId + '}';
+        return "AmenityDetail{" + "id=" + id + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", mobileNumber=" + mobileNumber + ", locationId=" + locationId + ", amenityId=" + amenityId + ", latitude=" + latitude + ", longitude=" + longitude + ", cityId=" + cityId + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.businessassociate;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class BusinessAssociate {
@@ -13,6 +14,8 @@ public class BusinessAssociate {
     private String phoneNumber1;
     private String phoneNumber2;
     private String fax;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -86,31 +89,41 @@ public class BusinessAssociate {
         this.fax = fax;
     }
 
-    @Override
-    public String toString() {
-        return "BusinessAssociate{" + "id=" + id + ", name=" + name + ", address=" + address + ", cityId=" + cityId + ", locationId=" + locationId + ", email=" + email + ", phoneNumber1=" + phoneNumber1 + ", phoneNumber2=" + phoneNumber2 + ", fax=" + fax + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.address);
-        hash = 43 * hash + Objects.hashCode(this.cityId);
-        hash = 43 * hash + Objects.hashCode(this.locationId);
-        hash = 43 * hash + Objects.hashCode(this.email);
-        hash = 43 * hash + Objects.hashCode(this.phoneNumber1);
-        hash = 43 * hash + Objects.hashCode(this.phoneNumber2);
-        hash = 43 * hash + Objects.hashCode(this.fax);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.address);
+        hash = 97 * hash + Objects.hashCode(this.cityId);
+        hash = 97 * hash + Objects.hashCode(this.locationId);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.phoneNumber1);
+        hash = 97 * hash + Objects.hashCode(this.phoneNumber2);
+        hash = 97 * hash + Objects.hashCode(this.fax);
+        hash = 97 * hash + Objects.hashCode(this.userId);
+        hash = 97 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -118,10 +131,19 @@ public class BusinessAssociate {
             return false;
         }
         final BusinessAssociate other = (BusinessAssociate) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        if (!Objects.equals(this.cityId, other.cityId)) {
+            return false;
+        }
+        if (!Objects.equals(this.locationId, other.locationId)) {
             return false;
         }
         if (!Objects.equals(this.email, other.email)) {
@@ -136,12 +158,18 @@ public class BusinessAssociate {
         if (!Objects.equals(this.fax, other.fax)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.userId, other.userId)) {
             return false;
         }
-        if (!Objects.equals(this.cityId, other.cityId)) {
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
             return false;
         }
-        return Objects.equals(this.locationId, other.locationId);
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "BusinessAssociate{" + "id=" + id + ", name=" + name + ", address=" + address + ", cityId=" + cityId + ", locationId=" + locationId + ", email=" + email + ", phoneNumber1=" + phoneNumber1 + ", phoneNumber2=" + phoneNumber2 + ", fax=" + fax + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
+
 }

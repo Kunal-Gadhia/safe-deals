@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.builder;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BuilderDAL {
-    
+
     public static final String TABLE_NAME = "builder";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertBuilder;
-    
+
     public static final class Columns {
 
         public static final String ID = "id";
@@ -27,9 +28,11 @@ public class BuilderDAL {
         public static final String PHONE_NUMBER = "phone_number";
         public static final String PROJECT_NAME = "project_name";
         public static final String PROPERTY_NAME = "property_name";
-        
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
+
     };
-    
+
     @Autowired
     public BuilderDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -42,27 +45,28 @@ public class BuilderDAL {
                         Columns.CITY_ID,
                         Columns.PHONE_NUMBER,
                         Columns.PROJECT_NAME,
-                        Columns.PROPERTY_NAME
+                        Columns.PROPERTY_NAME,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
-                        
                 .usingGeneratedKeyColumns(Columns.ID);
     }
-    
+
     public List<Builder> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Builder.class));
     }
-    
+
     public List<Builder> findAllBuilders() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Builder.class));
     }
-    
+
     public Builder findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Builder.class));
     }
-    
+
     public Builder insert(Builder builder) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, builder.getName());
@@ -72,11 +76,8 @@ public class BuilderDAL {
         parameters.put(Columns.PHONE_NUMBER, builder.getPhoneNumber());
         parameters.put(Columns.PROJECT_NAME, builder.getProjectName());
         parameters.put(Columns.PROPERTY_NAME, builder.getPropertyName());
-
-
-        
-
-
+        parameters.put(Columns.USER_ID, builder.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertBuilder.executeAndReturnKey(parameters);
         builder = findById(newId.intValue());
         return builder;
@@ -86,34 +87,38 @@ public class BuilderDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(Builder.class));
     }
-    
+
     public Builder update(Builder builder) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.NAME + " = ? ," 
-                + Columns.DESCRIPTION + " = ? ," 
-                + Columns.ADDRESS + " = ? ," 
-                + Columns.PHONE_NUMBER + " = ? ," 
-                + Columns.PROJECT_NAME + " = ? ," 
-                + Columns.PROPERTY_NAME + " = ? ," 
-                + Columns.CITY_ID + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.NAME + " = ? ,"
+                + Columns.DESCRIPTION + " = ? ,"
+                + Columns.ADDRESS + " = ? ,"
+                + Columns.PHONE_NUMBER + " = ? ,"
+                + Columns.PROJECT_NAME + " = ? ,"
+                + Columns.PROPERTY_NAME + " = ? ,"
+                + Columns.CITY_ID + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             builder.getName(),
             builder.getDescription(),
             builder.getAddress(),
-           
             builder.getPhoneNumber(),
             builder.getProjectName(),
             builder.getPropertyName(),
-             builder.getCityId(),
+            builder.getCityId(),
+            builder.getUserId(),
+            new Date(),
             builder.getId()});
         builder = findById(builder.getId());
         return builder;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }
-
-

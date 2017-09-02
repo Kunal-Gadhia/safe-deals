@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.branch;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @author hp2
  */
 public class Branch {
-    
+
     private Integer id;
     private String name;
     private String bankId;
@@ -24,6 +25,8 @@ public class Branch {
     private Integer locationId;
     private String address;
     private Integer cityId;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -113,20 +116,38 @@ public class Branch {
         this.cityId = cityId;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.bankId);
-        hash = 59 * hash + Objects.hashCode(this.ifscCode);
-        hash = 59 * hash + Objects.hashCode(this.micrCode);
-        hash = 59 * hash + Objects.hashCode(this.phoneNo);
-        hash = 59 * hash + Objects.hashCode(this.fax);
-        hash = 59 * hash + Objects.hashCode(this.email);
-        hash = 59 * hash + Objects.hashCode(this.locationId);
-        hash = 59 * hash + Objects.hashCode(this.address);
-        hash = 59 * hash + Objects.hashCode(this.cityId);
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.name);
+        hash = 41 * hash + Objects.hashCode(this.bankId);
+        hash = 41 * hash + Objects.hashCode(this.ifscCode);
+        hash = 41 * hash + Objects.hashCode(this.micrCode);
+        hash = 41 * hash + Objects.hashCode(this.phoneNo);
+        hash = 41 * hash + Objects.hashCode(this.fax);
+        hash = 41 * hash + Objects.hashCode(this.email);
+        hash = 41 * hash + Objects.hashCode(this.locationId);
+        hash = 41 * hash + Objects.hashCode(this.address);
+        hash = 41 * hash + Objects.hashCode(this.cityId);
+        hash = 41 * hash + Objects.hashCode(this.userId);
+        hash = 41 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -172,14 +193,18 @@ public class Branch {
         if (!Objects.equals(this.cityId, other.cityId)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Branch{" + "id=" + id + ", name=" + name + ", bankId=" + bankId + ", ifscCode=" + ifscCode + ", micrCode=" + micrCode + ", phoneNo=" + phoneNo + ", fax=" + fax + ", email=" + email + ", locationId=" + locationId + ", address=" + address + ", cityId=" + cityId + '}';
+        return "Branch{" + "id=" + id + ", name=" + name + ", bankId=" + bankId + ", ifscCode=" + ifscCode + ", micrCode=" + micrCode + ", phoneNo=" + phoneNo + ", fax=" + fax + ", email=" + email + ", locationId=" + locationId + ", address=" + address + ", cityId=" + cityId + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
-    
 }
-

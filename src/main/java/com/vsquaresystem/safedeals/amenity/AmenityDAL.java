@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.amenity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ public class AmenityDAL {
         public static final String AMENITY_CODE_ID = "amenity_code_id";
         public static final String AMENITY_TYPE = "amenity_type";
         public static final String ICON = "icon";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -39,7 +42,9 @@ public class AmenityDAL {
                         Columns.DESCRIPTION,
                         Columns.AMENITY_CODE_ID,
                         Columns.AMENITY_TYPE,
-                        Columns.ICON
+                        Columns.ICON,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -83,6 +88,8 @@ public class AmenityDAL {
         parameters.put(Columns.AMENITY_CODE_ID, amenity.getAmenityCodeId());
         parameters.put(Columns.AMENITY_TYPE, amenity.getAmenityType().name());
         parameters.put(Columns.ICON, amenity.getIcon());
+        parameters.put(Columns.USER_ID, amenity.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertAmenity.executeAndReturnKey(parameters);
         amenity = findById(newId.intValue());
         return amenity;
@@ -99,22 +106,29 @@ public class AmenityDAL {
                 + Columns.DESCRIPTION + " = ?,"
                 + Columns.AMENITY_CODE_ID + " = ?,"
                 + Columns.AMENITY_TYPE + " = ?,"
-                + Columns.ICON + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.ICON + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             amenity.getName(),
             amenity.getDescription(),
             amenity.getAmenityCodeId(),
             amenity.getAmenityType().name(),
             amenity.getIcon(),
+            amenity.getUserId(),
+            new Date(),
             amenity.getId()
         });
         amenity = findById(amenity.getId());
         return amenity;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 
 }

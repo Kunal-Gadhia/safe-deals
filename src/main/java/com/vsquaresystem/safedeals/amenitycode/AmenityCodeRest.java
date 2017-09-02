@@ -5,10 +5,14 @@
  */
 package com.vsquaresystem.safedeals.amenitycode;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +30,9 @@ public class AmenityCodeRest {
 
     @Autowired
     private AmenityCodeDAL amenityCodeDAL;
+
+    @Autowired
+    private UserDAL userDAL;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -56,39 +63,48 @@ public class AmenityCodeRest {
     public List<AmenityCode> findByTabName(@RequestParam("name") String name) {
         return amenityCodeDAL.findByTabName(name);
     }
-    
+
     @RequestMapping(value = "/find_amenities", method = RequestMethod.GET)
     public List<AmenityCode> findAmenities() {
         return amenityCodeDAL.findAmenities();
     }
-    
+
     @RequestMapping(value = "/find_workplaces", method = RequestMethod.GET)
     public List<AmenityCode> findWorkplaces() {
         return amenityCodeDAL.findWorkplaces();
     }
-    
+
     @RequestMapping(value = "/find_projects", method = RequestMethod.GET)
     public List<AmenityCode> findProjects() {
         return amenityCodeDAL.findProjects();
     }
-    
+
     @RequestMapping(value = "/find_properties", method = RequestMethod.GET)
     public List<AmenityCode> findProperties() {
         return amenityCodeDAL.findProperties();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public AmenityCode insert(@RequestBody AmenityCode amenityCode) {
+    public AmenityCode insert(@RequestBody AmenityCode amenityCode,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenityCode.setUserId(user.getId());
         return amenityCodeDAL.insert(amenityCode);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        amenityCodeDAL.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenityCodeDAL.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public AmenityCode update(@RequestBody AmenityCode amenityCode) {
+    public AmenityCode update(@RequestBody AmenityCode amenityCode,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenityCode.setUserId(user.getId());
         return amenityCodeDAL.update(amenityCode);
     }
+
 }

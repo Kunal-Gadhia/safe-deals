@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.builder;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -12,15 +13,17 @@ import java.util.Objects;
  * @author Pratik
  */
 public class Builder {
-    
+
     private Integer id;
     private String name;
     private Integer cityId;
-    private String description; 
+    private String description;
     private String address;
     private String phoneNumber;
     private String projectName;
     private String propertyName;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -86,17 +89,35 @@ public class Builder {
         this.propertyName = propertyName;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.cityId);
-        hash = 29 * hash + Objects.hashCode(this.description);
-        hash = 29 * hash + Objects.hashCode(this.address);
-        hash = 29 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 29 * hash + Objects.hashCode(this.projectName);
-        hash = 29 * hash + Objects.hashCode(this.propertyName);
+        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + Objects.hashCode(this.cityId);
+        hash = 11 * hash + Objects.hashCode(this.description);
+        hash = 11 * hash + Objects.hashCode(this.address);
+        hash = 11 * hash + Objects.hashCode(this.phoneNumber);
+        hash = 11 * hash + Objects.hashCode(this.projectName);
+        hash = 11 * hash + Objects.hashCode(this.propertyName);
+        hash = 11 * hash + Objects.hashCode(this.userId);
+        hash = 11 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -133,15 +154,18 @@ public class Builder {
         if (!Objects.equals(this.propertyName, other.propertyName)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Builder{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", description=" + description + ", address=" + address + ", phoneNumber=" + phoneNumber + ", projectName=" + projectName + ", propertyName=" + propertyName + '}';
+        return "Builder{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", description=" + description + ", address=" + address + ", phoneNumber=" + phoneNumber + ", projectName=" + projectName + ", propertyName=" + propertyName + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
-    
-    
 
-    
 }

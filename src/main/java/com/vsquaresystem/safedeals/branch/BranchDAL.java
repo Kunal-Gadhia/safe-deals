@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.branch;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ public class BranchDAL {
         private static final String LOCATION_ID = "location_id";
         private static final String ADDRESS = "address";
         private static final String CITY_ID = "city_id";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -56,7 +59,9 @@ public class BranchDAL {
                         Columns.EMAIL,
                         Columns.LOCATION_ID,
                         Columns.ADDRESS,
-                        Columns.CITY_ID)
+                        Columns.CITY_ID,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -87,6 +92,8 @@ public class BranchDAL {
         parameters.put(Columns.LOCATION_ID, branch.getLocationId());
         parameters.put(Columns.ADDRESS, branch.getAddress());
         parameters.put(Columns.CITY_ID, branch.getCityId());
+        parameters.put(Columns.USER_ID, branch.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
 
         Number newId = insertBranch.executeAndReturnKey(parameters);
         branch = findById(newId.intValue());
@@ -104,7 +111,10 @@ public class BranchDAL {
                 + Columns.EMAIL + " = ? ,"
                 + Columns.LOCATION_ID + " = ? ,"
                 + Columns.ADDRESS + " = ? ,"
-                + Columns.CITY_ID + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.CITY_ID + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             branch.getName(),
             branch.getBankId(),
@@ -116,13 +126,17 @@ public class BranchDAL {
             branch.getLocationId(),
             branch.getAddress(),
             branch.getCityId(),
+            branch.getUserId(),
+            new Date(),
             branch.getId()});
         branch = findById(branch.getId());
         return branch;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }
