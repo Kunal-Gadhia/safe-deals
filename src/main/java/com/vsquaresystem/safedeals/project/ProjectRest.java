@@ -78,15 +78,34 @@ public class ProjectRest {
             @RequestParam MultipartFile attachment
     ) throws IOException {
         System.out.println("MULTIPART ATTACHMENT LOGGER+++++++++++++++++" + attachment.getName());
-        return projectService.insertAttachments(id, attachment);
+        return projectService.insertMutationCopyAttachments(id, attachment);
     }
 
     @RequestMapping(value = "/{id}/attachment", method = RequestMethod.GET)
     public void getAttachment(@PathVariable Integer id, HttpServletResponse response) throws IOException {
-        File photoFile = projectService.getPhoto(id);
+        File photoFile = projectService.getMutationCopyPhoto(id);
         response.setContentType(Files.probeContentType(Paths.get(photoFile.getAbsolutePath())));
         response.setContentLengthLong(photoFile.length());
         logger.debug("filename: {}, size: {}", photoFile.getAbsoluteFile(), photoFile.length());
         FileCopyUtils.copy(new FileInputStream(photoFile), response.getOutputStream());
     }
+
+//    //// Sale Deed
+//    @RequestMapping(value = "/{id}/sale/attachment", method = RequestMethod.POST)
+//    public Project uploadSaleDeedAttachment(
+//            @PathVariable Integer id,
+//            @RequestParam MultipartFile attachment
+//    ) throws IOException {
+//        System.out.println("MULTIPART ATTACHMENT LOGGER+++++++++++++++++" + attachment.getName());
+//        return projectService.insertSaleDeedAttachments(id, attachment);
+//    }
+//
+//    @RequestMapping(value = "/{id}/sale/attachment", method = RequestMethod.GET)
+//    public void getSaleDeedAttachment(@PathVariable Integer id, HttpServletResponse response) throws IOException {
+//        File photoFile = projectService.getSaleDeedPhoto(id);
+//        response.setContentType(Files.probeContentType(Paths.get(photoFile.getAbsolutePath())));
+//        response.setContentLengthLong(photoFile.length());
+//        logger.debug("filename: {}, size: {}", photoFile.getAbsoluteFile(), photoFile.length());
+//        FileCopyUtils.copy(new FileInputStream(photoFile), response.getOutputStream());
+//    }
 }

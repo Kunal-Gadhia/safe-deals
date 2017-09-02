@@ -60,35 +60,35 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 console.log("$scope.locations", $scope.locations);
                 angular.forEach($scope.locations, function (location) {
 
-//                    if (location.locationType !== null) {
-//                        location.locationType = LocationTypeService.get({
-//                            'id': location.locationTypeId
-//                        });
-//                    }
-//                    if (location.safedealZone !== null) {
-//                        location.safedealZone = SafedealZoneService.get({
-//                            'id': location.safedealZoneId
-//                        });
-//                    }
-//                    if (location.city !== null) {
-//                        location.city = CityService.get({
-//                            'id': location.cityId
-//                        });
-//                    }
-//
-//                    if (location.unit !== null) {
-//                        location.unit = UnitService.get({
-//                            'id': location.unitId
-//                        });
-//                    }
-//                    location.locationCategoryObjects = [];
-//                    angular.forEach(location.locationCategories, function (locationCategoryId) {
-//                        location.locationCategoryObjects.push(
-//                                LocationCategoryService.get({
-//                                    'id': locationCategoryId
-//                                })
-//                                );
-//                    });
+                    if (location.locationType !== null) {
+                        location.locationType = LocationTypeService.get({
+                            'id': location.locationTypeId
+                        });
+                    }
+                    if (location.safedealZone !== null) {
+                        location.safedealZone = SafedealZoneService.get({
+                            'id': location.safedealZoneId
+                        });
+                    }
+                    if (location.city !== null) {
+                        location.city = CityService.get({
+                            'id': location.cityId
+                        });
+                    }
+
+                    if (location.unit !== null) {
+                        location.unit = UnitService.get({
+                            'id': location.unitId
+                        });
+                    }
+                    location.locationCategoryObjects = [];
+                    angular.forEach(location.locationCategories, function (locationCategoryId) {
+                        location.locationCategoryObjects.push(
+                                LocationCategoryService.get({
+                                    'id': locationCategoryId
+                                })
+                                );
+                    });
 
 
                 });

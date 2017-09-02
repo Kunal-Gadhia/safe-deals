@@ -38,7 +38,7 @@ public class ProjectService {
     @Autowired
     ProjectDAL projectDAL;
 
-    public Project insertAttachments(Integer projectId, MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
+    public Project insertMutationCopyAttachments(Integer projectId, MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         Project project = projectDAL.findById(projectId);
         Boolean isView = false;
         File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
@@ -57,15 +57,51 @@ public class ProjectService {
         return project;
     }
 
-    public File getPhoto(Integer projectId) throws FileNotFoundException, IOException {
+    public File getMutationCopyPhoto(Integer projectId) throws FileNotFoundException, IOException {
         Project project = projectDAL.findById(projectId);
         return photoUtils.getProjectMutationCopyPhoto(project);
     }
 
-    public File getImage(Project project) throws IOException {
+    public File getMutationCopyImage(Project project) throws IOException {
         if (project.getMutationCopy().size() != 0) {
             String PHOTO_FILE_NAME = project.getMutationCopy().get(0).toString();
             File photoFile = photoUtils.getProjectMutationCopyPhoto(project);
+            return photoFile;
+        } else {
+            File photoFiles = new File(getClass().getResource("images/default.png").getFile());
+            return photoFiles;
+        }
+    }
+
+    /////sale deed/////
+    public Project insertSaleDeedAttachments(Integer projectId, MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
+        Project project = projectDAL.findById(projectId);
+        Boolean isView = false;
+        File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
+                attachmentMultipartFile.getOriginalFilename(),
+                attachmentMultipartFile.getInputStream(),
+                AttachmentUtils.AttachmentType.PROJECT_SALE_DEED,
+                project.getId(),
+                isView
+        );
+        System.out.println("THIS IS OUTPUTFILE==================" + outputFile.toString());
+        List<String> attachments = new ArrayList<>();
+        attachments.add(outputFile.getName().toString());
+        project.setSaleDeed(attachments);
+//
+        projectDAL.update(project);
+        return project;
+    }
+
+    public File getSaleDeedPhoto(Integer projectId) throws FileNotFoundException, IOException {
+        Project project = projectDAL.findById(projectId);
+        return photoUtils.getProjectSaleDeedPhoto(project);
+    }
+
+    public File getSaleDeedImage(Project project) throws IOException {
+        if (project.getSaleDeed().size() != 0) {
+            String PHOTO_FILE_NAME = project.getSaleDeed().get(0).toString();
+            File photoFile = photoUtils.getProjectSaleDeedPhoto(project);
             return photoFile;
         } else {
             File photoFiles = new File(getClass().getResource("images/default.png").getFile());

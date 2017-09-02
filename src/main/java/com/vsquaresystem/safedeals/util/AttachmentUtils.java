@@ -46,6 +46,7 @@ public class AttachmentUtils {
     private static final String IMAGE_ATTACHMENT_DIR_NAME = "image";
     private static final String PROPERTY_ATTACHMENT_DIR_NAME = "property";
     private static final String PROJECT_ATTACHMENT_DIR_NAME = "project";
+    private static final String PROJECT_ATTACHMENT_NAME = "project";
 
     public static enum AttachmentType {
 
@@ -64,7 +65,8 @@ public class AttachmentUtils {
         IMAGE,
         PROPERTY,
         PROJECT_MUTATION_COPY,
-        
+        PROJECT_SALE_DEED
+
     }
 
     public File getRootDirectory() {
@@ -239,6 +241,13 @@ public class AttachmentUtils {
 
             case PROJECT_MUTATION_COPY:
                 attachmentDir = new File(getAttachmentRootDirectory(), PROJECT_ATTACHMENT_DIR_NAME);
+                logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
+                break;
+                
+                //sale deed
+
+            case PROJECT_SALE_DEED:
+                attachmentDir = new File(getAttachmentRootDirectory(), PROJECT_ATTACHMENT_NAME);
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;
 
