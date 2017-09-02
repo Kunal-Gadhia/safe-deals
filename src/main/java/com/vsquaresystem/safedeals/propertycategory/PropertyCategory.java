@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.projectcategory;
+package com.vsquaresystem.safedeals.propertycategory;
 
 import java.util.Objects;
 
@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author hp
  */
-public class ProjectCategory {
+public class PropertyCategory {
 
     private Integer id;
     private String category;
@@ -63,7 +63,7 @@ public class ProjectCategory {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ProjectCategory other = (ProjectCategory) obj;
+        final PropertyCategory other = (PropertyCategory) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

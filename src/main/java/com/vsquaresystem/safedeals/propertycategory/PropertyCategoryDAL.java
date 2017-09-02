@@ -1,9 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in Property Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.projectcategory;
+package com.vsquaresystem.safedeals.propertycategory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,12 +22,12 @@ import org.springframework.stereotype.Repository;
  * @author hp
  */
 @Repository
-public class ProjectCategoryDAL {
+public class PropertyCategoryDAL {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    public static final String TABLE_NAME = "project_category";
+    public static final String TABLE_NAME = "property_category";
     private final JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert insertProjectCategory;
+    private final SimpleJdbcInsert insertPropertyCategory;
 
     public static final class Columns {
 
@@ -37,9 +37,9 @@ public class ProjectCategoryDAL {
     };
 
     @Autowired
-    public ProjectCategoryDAL(DataSource dataSource) {
+    public PropertyCategoryDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        insertProjectCategory = new SimpleJdbcInsert(jdbcTemplate)
+        insertPropertyCategory = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName(TABLE_NAME)
                 .usingColumns(Columns.CATEGORY,
                         Columns.DESCRIPTION
@@ -47,43 +47,43 @@ public class ProjectCategoryDAL {
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
-    public List<ProjectCategory> findAll(Integer offset) {
+    public List<PropertyCategory> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(ProjectCategory.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(PropertyCategory.class));
     }
 
-    public List<ProjectCategory> findByProjectCategoryLike(String category) {
+    public List<PropertyCategory> findByPropertyCategoryLike(String category) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(category) LIKE?";
         String categoryLike = "%" + category.toLowerCase() + "%";
-        return jdbcTemplate.query(sqlQuery, new Object[]{categoryLike}, new BeanPropertyRowMapper<>(ProjectCategory.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{categoryLike}, new BeanPropertyRowMapper<>(PropertyCategory.class));
     }
 
-    public ProjectCategory findById(Integer id) {
+    public PropertyCategory findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(ProjectCategory.class));
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(PropertyCategory.class));
     }
 
-    public ProjectCategory insert(ProjectCategory projectCategory) {
-        logger.info("ProjectCategory Object DAL :{}", projectCategory);
+    public PropertyCategory insert(PropertyCategory propertyCategory) {
+        logger.info("PropertyCategory Object DAL :{}", propertyCategory);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Columns.CATEGORY, projectCategory.getCategory());
-        parameters.put(Columns.DESCRIPTION, projectCategory.getDescription());
-        Number newId = insertProjectCategory.executeAndReturnKey(parameters);
-        projectCategory = findById(newId.intValue());
-        return projectCategory;
+        parameters.put(Columns.CATEGORY, propertyCategory.getCategory());
+        parameters.put(Columns.DESCRIPTION, propertyCategory.getDescription());
+        Number newId = insertPropertyCategory.executeAndReturnKey(parameters);
+        propertyCategory = findById(newId.intValue());
+        return propertyCategory;
     }
 
-    public ProjectCategory update(ProjectCategory projectCategory) {
+    public PropertyCategory update(PropertyCategory propertyCategory) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.CATEGORY + " = ?,"
                 + Columns.DESCRIPTION + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
-            projectCategory.getCategory(),
-            projectCategory.getDescription(),
-            projectCategory.getId()
+            propertyCategory.getCategory(),
+            propertyCategory.getDescription(),
+            propertyCategory.getId()
         });
-        projectCategory = findById(projectCategory.getId());
-        return projectCategory;
+        propertyCategory = findById(propertyCategory.getId());
+        return propertyCategory;
     }
 
     public void delete(Integer id) {

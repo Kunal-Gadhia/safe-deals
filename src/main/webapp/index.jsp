@@ -176,7 +176,7 @@
         <script src="${pageContext.request.contextPath}/js/states/builder_portal.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/business_portal.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/unit.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/project_category.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/property_category.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/branch_service.js"></script>
@@ -226,7 +226,7 @@
         <script src="${pageContext.request.contextPath}/js/services/mail_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/image_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/unit_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/project_category_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/property_category_service.js"></script>
 
     </head>
     <body>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
+To change this license header, choose License Headers in Property Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="modal modal-safedeals">
     <div class="modal-backdrop fade in"></div>
     <div class="modal-dialog">
-        <form role="form" ng-submit="saveProjectCategory(editableProjectCategory)">
+        <form role="form" ng-submit="savePropertyCategory(editablePropertyCategory)">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Project Category Form
+                        Property Category Form
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -20,13 +20,13 @@ and open the template in the editor.
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Category</label>
-                                <input class="form-control" placeholder="Project Category" ng-model="editableProjectCategory.category"/>
+                                <input class="form-control" placeholder="Property Category" ng-model="editablePropertyCategory.category"/>
                             </div>
                         </div> 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Description</label>
-                                <input class="form-control" placeholder="Description" ng-model="editableProjectCategory.description"/>
+                                <input class="form-control" placeholder="Description" ng-model="editablePropertyCategory.description"/>
                             </div>
                         </div> 
                     </div>
