@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.inventory;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class InventoryDAL {
-    
-    
+
     public static final String TABLE_NAME = "inventory";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert insertInventory;
@@ -34,11 +34,11 @@ public class InventoryDAL {
         public static final String NO_OF_BALCONY = "no_of_balcony";
         public static final String NO_OF_WASHROOM = "no_of_washroom";
         public static final String OPEN_TERRACE = "open_terrace";
-        public static final String IS_AVILABLE = "is_available";
+        public static final String IS_AVAILABLE = "is_available";
         public static final String IS_RESERVED = "is_reserved";
         public static final String IS_SOLD = "is_sold";
 
-    }
+    };
 
     @Autowired
     public InventoryDAL(DataSource dataSource) {
@@ -59,7 +59,7 @@ public class InventoryDAL {
                         Columns.NO_OF_BALCONY,
                         Columns.NO_OF_WASHROOM,
                         Columns.OPEN_TERRACE,
-                        Columns.IS_AVILABLE,
+                        Columns.IS_AVAILABLE,
                         Columns.IS_RESERVED,
                         Columns.IS_SOLD
                 )
@@ -90,50 +90,111 @@ public class InventoryDAL {
         parameters.put(Columns.OFFERED_PRICE, inventory.getOfferedPrice());
         parameters.put(Columns.NO_OF_BALCONY, inventory.getNoOfBalcony());
         parameters.put(Columns.NO_OF_WASHROOM, inventory.getNoOfWashroom());
-        parameters.put(Columns.OPEN_TERRACE, inventory.getOpenTerrace());
-        parameters.put(Columns.IS_AVILABLE, inventory.getIsAvailable());
-        parameters.put(Columns.IS_RESERVED, inventory.getIsReserved());
-        parameters.put(Columns.IS_SOLD, inventory.getIsSold());
+        if (inventory.getOpenTerrace() == null) {
+            parameters.put(Columns.OPEN_TERRACE, 0);
+        } else {
+            parameters.put(Columns.OPEN_TERRACE, inventory.getOpenTerrace());
+        }
+        if (inventory.getIsAvailable() == null) {
+            parameters.put(Columns.IS_AVAILABLE, 0);
+        } else {
+            parameters.put(Columns.IS_AVAILABLE, inventory.getIsAvailable());
+        }
+        if (inventory.getIsReserved() == null) {
+            parameters.put(Columns.IS_RESERVED, 0);
+        } else {
+            parameters.put(Columns.IS_RESERVED, inventory.getIsReserved());
+        }
+        if (inventory.getIsSold() == null) {
+            parameters.put(Columns.IS_SOLD, 0);
+        } else {
+            parameters.put(Columns.IS_SOLD, inventory.getIsSold());
+        }
         Number newId = insertInventory.executeAndReturnKey(parameters);
         inventory = findById(newId.intValue());
         return inventory;
     }
 
-    public Inventory update(Inventory inventory) {
+//    public Inventory update(Inventory inventory) {
+//        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
+//                + Columns.PROJECT_ID + " = ?, "
+//                + Columns.NO_OF_BHK + " = ?, "
+//                + Columns.PROPERTY_TYPE_ID + " = ?, "
+//                + Columns.TOTAL_UNITS + " = ?, "
+//                + Columns.UNIT_NO + " = ?, "
+//                + Columns.FLOOR_NO + " = ?, "
+//                + Columns.BUILDING_NAME + " = ?, "
+//                + Columns.PRICE_PER_SQFT + " = ?, "
+//                + Columns.TOTAL_AREA + " = ?, "
+//                + Columns.OFFERED_PRICE + " = ?, "
+//                + Columns.NO_OF_BALCONY + " = ?, "
+//                + Columns.NO_OF_WASHROOM + " = ?, "
+//                + Columns.OPEN_TERRACE + " = ?, "
+//                + Columns.IS_AVAILABLE + " = ?, "
+//                + Columns.IS_RESERVED + " = ?, "
+//                + Columns.IS_SOLD + " = ? WHERE " 
+//                + Columns.ID + " = ?";
+//        jdbcTemplate.update(sqlQuery, new Object[]{
+//            inventory.getProjectId(),
+//            inventory.getNoOfBhk(),
+//            inventory.getPropertyTypeId(),
+//            inventory.getTotalUnits(),
+//            inventory.getUnitNo(),
+//            inventory.getFloorNo(),
+//            inventory.getBuildingName(),
+//            inventory.getPricePerSqft(),
+//            inventory.getTotalArea(),
+//            inventory.getOfferedPrice(),
+//            inventory.getNoOfBalcony(),
+//            inventory.getNoOfWashroom(),
+//            inventory.getOpenTerrace(),
+//            inventory.getIsAvailable(),
+//            inventory.getIsReserved(),
+//            inventory.getIsSold()
+//        });
+//        inventory = findById(inventory.getId());
+//        return inventory;
+//    }
+    public Inventory update(Inventory inventory) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.PROJECT_ID + " = ?, "
-                + Columns.NO_OF_BHK + " = ?, "
-                + Columns.PROPERTY_TYPE_ID + " = ?, "
-                + Columns.TOTAL_UNITS + " = ?, "
-                + Columns.UNIT_NO + " = ?, "
-                + Columns.FLOOR_NO + " = ?, "
-                + Columns.BUILDING_NAME + " = ?, "
-                + Columns.PRICE_PER_SQFT + " = ?, "
-                + Columns.TOTAL_AREA + " = ?, "
-                + Columns.OFFERED_PRICE + " = ?, "
-                + Columns.NO_OF_BALCONY + " = ?, "
-                + Columns.NO_OF_WASHROOM + " = ?, "
-                + Columns.OPEN_TERRACE + " = ?, "
-                + Columns.IS_AVILABLE + " = ?, "
-                + Columns.IS_RESERVED + " = ?, "
-                + Columns.IS_SOLD + " = ? WHERE " + Columns.ID + " = ?";
-        Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
-            inventory.getProjectId(),
-            inventory.getNoOfBhk(),
-            inventory.getPropertyTypeId(),
-            inventory.getTotalUnits(),
-            inventory.getFloorNo(),
-            inventory.getBuildingName(),
-            inventory.getPricePerSqft(),
-            inventory.getTotalArea(),
-            inventory.getOfferedPrice(),
-            inventory.getNoOfBalcony(),
-            inventory.getNoOfWashroom(),
-            inventory.getOpenTerrace(),
-            inventory.getIsAvailable(),
-            inventory.getIsReserved(),
-            inventory.getIsSold()
-        });
+                + Columns.PROJECT_ID + "=?, "
+                + Columns.NO_OF_BHK + "=?, "
+                + Columns.PROPERTY_TYPE_ID + "=?, "
+                + Columns.TOTAL_UNITS + "=?, "
+                + Columns.UNIT_NO + "=?, "
+                + Columns.FLOOR_NO + "=?, "
+                + Columns.BUILDING_NAME + "=?, "
+                + Columns.PRICE_PER_SQFT + "=?, "
+                + Columns.TOTAL_AREA + "=?, "
+                + Columns.OFFERED_PRICE + "=?, "
+                + Columns.NO_OF_BALCONY + "=?, "
+                + Columns.NO_OF_WASHROOM + "=?, "
+                + Columns.OPEN_TERRACE + "=?, "
+                + Columns.IS_AVAILABLE + "=?, "
+                + Columns.IS_RESERVED + "=?, "
+                + Columns.IS_SOLD + "=?  WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery,
+                new Object[]{
+                    inventory.getProjectId(),
+                    inventory.getNoOfBhk(),
+                    inventory.getPropertyTypeId(),
+                    // Inventory.getLocationCategories() == null ? "[]" : mapper.writeValueAsString(Inventory.getLocationCategories()),
+                    inventory.getTotalUnits(),
+                    inventory.getUnitNo(),
+                    inventory.getFloorNo(),
+                    inventory.getBuildingName(),
+                    inventory.getPricePerSqft(),
+                    inventory.getTotalArea(),
+                    inventory.getOfferedPrice(),
+                    inventory.getNoOfBalcony(),
+                    inventory.getNoOfWashroom(),
+                    inventory.getOpenTerrace(),
+                    inventory.getIsAvailable(),
+                    inventory.getIsReserved(),
+                    inventory.getIsSold(),
+                    inventory.getId()
+                }
+        );
         inventory = findById(inventory.getId());
         return inventory;
     }
