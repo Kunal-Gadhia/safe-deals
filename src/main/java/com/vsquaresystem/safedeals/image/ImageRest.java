@@ -5,6 +5,9 @@
  */
 package com.vsquaresystem.safedeals.image;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +39,9 @@ public class ImageRest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private ImageDAL imageDAL;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @Autowired
     private ImageService imageService;
@@ -71,18 +78,26 @@ public class ImageRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Image insert(@RequestBody Image image) {
+    public Image insert(@RequestBody Image image,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        image.setUserId(user.getId());
         return imageDAL.insert(image);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Image update(@RequestBody Image image) {
+    public Image update(@RequestBody Image image,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        image.setUserId(user.getId());
         return imageDAL.update(image);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        imageDAL.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        imageDAL.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}/attachment", method = RequestMethod.POST)

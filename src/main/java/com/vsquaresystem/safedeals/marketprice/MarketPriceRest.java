@@ -1,10 +1,14 @@
 package com.vsquaresystem.safedeals.marketprice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.io.IOException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,9 @@ public class MarketPriceRest {
 
     @Autowired
     private MarketPriceService marketpriceservice;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<MarketPrice> findAll(
@@ -64,17 +71,25 @@ public class MarketPriceRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public MarketPrice insert(@RequestBody MarketPrice marketprice) {
+    public MarketPrice insert(@RequestBody MarketPrice marketprice,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        marketprice.setUserId(user.getId());
         return marketpriceDal.insert(marketprice);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        marketpriceDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        marketpriceDal.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public MarketPrice update(@RequestBody MarketPrice marketprice) {
+    public MarketPrice update(@RequestBody MarketPrice marketprice,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        marketprice.setUserId(user.getId());
         return marketpriceDal.update(marketprice);
     }
 

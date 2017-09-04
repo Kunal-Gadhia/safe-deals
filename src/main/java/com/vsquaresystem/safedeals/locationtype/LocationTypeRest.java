@@ -5,8 +5,12 @@
  */
 package com.vsquaresystem.safedeals.locationtype;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,9 @@ public class LocationTypeRest {
 
     @Autowired
     private LocationTypeDAL locationTypeDAL;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<LocationType> findAll(
@@ -53,18 +60,26 @@ public class LocationTypeRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public LocationType insert(@RequestBody LocationType locationType) {
+    public LocationType insert(@RequestBody LocationType locationType,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        locationType.setUserId(user.getId());
         return locationTypeDAL.insert(locationType);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public LocationType update(@RequestBody LocationType locationType) {
+    public LocationType update(@RequestBody LocationType locationType,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        locationType.setUserId(user.getId());
         return locationTypeDAL.update(locationType);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        locationTypeDAL.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        locationTypeDAL.delete(id, user.getId());
     }
 
 }

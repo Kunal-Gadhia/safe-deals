@@ -1,6 +1,7 @@
 package com.vsquaresystem.safedeals.marketprice;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,8 @@ public class MarketPriceDAL {
         public static final String MP_COMMERCIAL_LOWEST = "mp_commercial_lowest";
         public static final String MP_COMMERCIAL_HIGHEST = "mp_commercial_highest";
         public static final String MP_COMMERCIAL_AVERAGE = "mp_commercial_average";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
 
     };
 
@@ -64,7 +67,9 @@ public class MarketPriceDAL {
                         Columns.MP_RESIDENTIAL_AVERAGE,
                         Columns.MP_COMMERCIAL_LOWEST,
                         Columns.MP_COMMERCIAL_HIGHEST,
-                        Columns.MP_COMMERCIAL_AVERAGE
+                        Columns.MP_COMMERCIAL_AVERAGE,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -134,6 +139,8 @@ public class MarketPriceDAL {
         parameters.put(Columns.MP_COMMERCIAL_LOWEST, marketprice.getMpCommercialLowest());
         parameters.put(Columns.MP_COMMERCIAL_HIGHEST, marketprice.getMpCommercialHighest());
         parameters.put(Columns.MP_COMMERCIAL_AVERAGE, (marketprice.getMpCommercialHighest() + marketprice.getMpCommercialLowest()) / 2);
+        parameters.put(Columns.USER_ID, marketprice.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
 //        System.out.println("insert param" + parameters);
         Number newId = insertMarketPrice.executeAndReturnKey(parameters);
         marketprice = findById(newId.intValue());
@@ -157,7 +164,10 @@ public class MarketPriceDAL {
                 + Columns.MP_RESIDENTIAL_AVERAGE + " = ?, "
                 + Columns.MP_COMMERCIAL_LOWEST + " = ?, "
                 + Columns.MP_COMMERCIAL_HIGHEST + " = ?, "
-                + Columns.MP_COMMERCIAL_AVERAGE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.MP_COMMERCIAL_AVERAGE + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             marketprice.getLocationId(),
             marketprice.getCityId(),
@@ -175,14 +185,18 @@ public class MarketPriceDAL {
             marketprice.getMpCommercialLowest(),
             marketprice.getMpCommercialHighest(),
             (marketprice.getMpCommercialHighest() + marketprice.getMpCommercialLowest()) / 2,
+            marketprice.getUserId(),
+            new Date(),
             marketprice.getId()});
         marketprice = findById(marketprice.getId());
         return marketprice;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 
 }

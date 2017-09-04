@@ -1,8 +1,12 @@
 package com.vsquaresystem.safedeals.hospital;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vsquaresystem.safedeals.branch.Branch;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,9 @@ public class HospitalRest {
     @Autowired
     private HospitalDAL hospitalDal;
 
+    @Autowired
+    private UserDAL userDAL;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Hospital> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
@@ -29,7 +36,10 @@ public class HospitalRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Hospital insert(@RequestBody Hospital hospital) {
+    public Hospital insert(@RequestBody Hospital hospital,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        hospital.setUserId(user.getId());
         return hospitalDal.insert(hospital);
     }
 
@@ -39,12 +49,17 @@ public class HospitalRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        hospitalDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        hospitalDal.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Hospital update(@RequestBody Hospital hospital) {
+    public Hospital update(@RequestBody Hospital hospital,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        hospital.setUserId(user.getId());
         return hospitalDal.update(hospital);
     }
 }

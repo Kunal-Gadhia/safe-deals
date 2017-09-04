@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.image;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,8 @@ public class Image {
     private Integer locationId;
     private Document documentName;
     private List<String> photoPath;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -78,9 +81,20 @@ public class Image {
         this.photoPath = photoPath;
     }
 
-    @Override
-    public String toString() {
-        return "Image{" + "id=" + id + ", name=" + name + ", projectId=" + projectId + ", propertyId=" + propertyId + ", locationId=" + locationId + ", documentName=" + documentName + ", photoPath=" + photoPath + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
@@ -93,6 +107,8 @@ public class Image {
         hash = 19 * hash + Objects.hashCode(this.locationId);
         hash = 19 * hash + Objects.hashCode(this.documentName);
         hash = 19 * hash + Objects.hashCode(this.photoPath);
+        hash = 19 * hash + Objects.hashCode(this.userId);
+        hash = 19 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -126,7 +142,18 @@ public class Image {
         if (!Objects.equals(this.photoPath, other.photoPath)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" + "id=" + id + ", name=" + name + ", projectId=" + projectId + ", propertyId=" + propertyId + ", locationId=" + locationId + ", documentName=" + documentName + ", photoPath=" + photoPath + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

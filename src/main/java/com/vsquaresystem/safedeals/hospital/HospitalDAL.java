@@ -1,5 +1,7 @@
 package com.vsquaresystem.safedeals.hospital;
 
+import com.vsquaresystem.safedeals.amenitycode.AmenityCodeDAL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,9 @@ public class HospitalDAL {
         public static final String SPECIALITY = "speciality";
         public static final String SERVICE = "service";
         public static final String LOCATION_ID = "location_id";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
+
     };
 
     @Autowired
@@ -35,7 +40,9 @@ public class HospitalDAL {
                         Columns.NAME,
                         Columns.SPECIALITY,
                         Columns.SERVICE,
-                        Columns.LOCATION_ID)
+                        Columns.LOCATION_ID,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -60,6 +67,8 @@ public class HospitalDAL {
         parameters.put(Columns.SPECIALITY, hospital.getSpeciality());
         parameters.put(Columns.SERVICE, hospital.getService());
         parameters.put(Columns.LOCATION_ID, hospital.getLocationId());
+        parameters.put(Columns.USER_ID, hospital.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertHospital.executeAndReturnKey(parameters);
         hospital = findById(newId.intValue());
         return hospital;
@@ -70,19 +79,27 @@ public class HospitalDAL {
                 + Columns.NAME + " = ? ,"
                 + Columns.SPECIALITY + " = ? ,"
                 + Columns.SERVICE + " = ? ,"
-                + Columns.LOCATION_ID + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.LOCATION_ID + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             hospital.getName(),
             hospital.getSpeciality(),
             hospital.getService(),
             hospital.getLocationId(),
+            hospital.getUserId(),
+            new Date(),
             hospital.getId()});
         hospital = findById(hospital.getId());
         return hospital;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
+
 }

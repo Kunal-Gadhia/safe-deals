@@ -1,14 +1,17 @@
 package com.vsquaresystem.safedeals.hospital;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Hospital {
-    
+
     private Integer id;
     private String name;
     private String speciality;
     private String service;
     private Integer locationId;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -50,9 +53,20 @@ public class Hospital {
         this.locationId = locationId;
     }
 
-    @Override
-    public String toString() {
-        return "Hospital{" + "id=" + id + ", name=" + name + ", speciality=" + speciality + ", service=" + service + ", locationId=" + locationId + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
@@ -63,14 +77,13 @@ public class Hospital {
         hash = 31 * hash + Objects.hashCode(this.speciality);
         hash = 31 * hash + Objects.hashCode(this.service);
         hash = 31 * hash + Objects.hashCode(this.locationId);
+        hash = 31 * hash + Objects.hashCode(this.userId);
+        hash = 31 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -78,6 +91,9 @@ public class Hospital {
             return false;
         }
         final Hospital other = (Hospital) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -87,13 +103,21 @@ public class Hospital {
         if (!Objects.equals(this.service, other.service)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.locationId, other.locationId)) {
             return false;
         }
-        if (!Objects.equals(this.locationId, other.locationId)) {
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
             return false;
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Hospital{" + "id=" + id + ", name=" + name + ", speciality=" + speciality + ", service=" + service + ", locationId=" + locationId + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.marketprice;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class MarketPrice {
@@ -21,6 +22,8 @@ public class MarketPrice {
     private double mpCommercialLowest;
     private double mpCommercialHighest;
     private double mpCommercialAverage;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -158,32 +161,44 @@ public class MarketPrice {
         this.mpCommercialAverage = mpCommercialAverage;
     }
 
-    @Override
-    public String toString() {
-        return "MarketPrice{" + "id=" + id + ", locationId=" + locationId + ", cityId=" + cityId + ", year=" + year + ", month=" + month + ", mpAgriLandLowest=" + mpAgriLandLowest + ", mpAgriLandHighest=" + mpAgriLandHighest + ", mpAgriLandAverage=" + mpAgriLandAverage + ", mpPlotLowest=" + mpPlotLowest + ", mpPlotHighest=" + mpPlotHighest + ", mpPlotAverage=" + mpPlotAverage + ", mpResidentialLowest=" + mpResidentialLowest + ", mpResidentialHighest=" + mpResidentialHighest + ", mpResidentialAverage=" + mpResidentialAverage + ", mpCommercialLowest=" + mpCommercialLowest + ", mpCommercialHighest=" + mpCommercialHighest + ", mpCommercialAverage=" + mpCommercialAverage + '}';
+    public Integer getUserId() {
+        return userId;
     }
 
-    
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.locationId);
-        hash = 79 * hash + Objects.hashCode(this.cityId);
-        hash = 79 * hash + Objects.hashCode(this.year);
-        hash = 79 * hash + Objects.hashCode(this.month);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandLowest) ^ (Double.doubleToLongBits(this.mpAgriLandLowest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandHighest) ^ (Double.doubleToLongBits(this.mpAgriLandHighest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandAverage) ^ (Double.doubleToLongBits(this.mpAgriLandAverage) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpPlotLowest) ^ (Double.doubleToLongBits(this.mpPlotLowest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpPlotHighest) ^ (Double.doubleToLongBits(this.mpPlotHighest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpPlotAverage) ^ (Double.doubleToLongBits(this.mpPlotAverage) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpResidentialLowest) ^ (Double.doubleToLongBits(this.mpResidentialLowest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpResidentialHighest) ^ (Double.doubleToLongBits(this.mpResidentialHighest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpResidentialAverage) ^ (Double.doubleToLongBits(this.mpResidentialAverage) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpCommercialLowest) ^ (Double.doubleToLongBits(this.mpCommercialLowest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpCommercialHighest) ^ (Double.doubleToLongBits(this.mpCommercialHighest) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.mpCommercialAverage) ^ (Double.doubleToLongBits(this.mpCommercialAverage) >>> 32));
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.locationId);
+        hash = 17 * hash + Objects.hashCode(this.cityId);
+        hash = 17 * hash + Objects.hashCode(this.year);
+        hash = 17 * hash + Objects.hashCode(this.month);
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandLowest) ^ (Double.doubleToLongBits(this.mpAgriLandLowest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandHighest) ^ (Double.doubleToLongBits(this.mpAgriLandHighest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpAgriLandAverage) ^ (Double.doubleToLongBits(this.mpAgriLandAverage) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpPlotLowest) ^ (Double.doubleToLongBits(this.mpPlotLowest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpPlotHighest) ^ (Double.doubleToLongBits(this.mpPlotHighest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpPlotAverage) ^ (Double.doubleToLongBits(this.mpPlotAverage) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpResidentialLowest) ^ (Double.doubleToLongBits(this.mpResidentialLowest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpResidentialHighest) ^ (Double.doubleToLongBits(this.mpResidentialHighest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpResidentialAverage) ^ (Double.doubleToLongBits(this.mpResidentialAverage) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpCommercialLowest) ^ (Double.doubleToLongBits(this.mpCommercialLowest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpCommercialHighest) ^ (Double.doubleToLongBits(this.mpCommercialHighest) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.mpCommercialAverage) ^ (Double.doubleToLongBits(this.mpCommercialAverage) >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.userId);
+        hash = 17 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -247,8 +262,18 @@ public class MarketPrice {
         if (Double.doubleToLongBits(this.mpCommercialAverage) != Double.doubleToLongBits(other.mpCommercialAverage)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "MarketPrice{" + "id=" + id + ", locationId=" + locationId + ", cityId=" + cityId + ", year=" + year + ", month=" + month + ", mpAgriLandLowest=" + mpAgriLandLowest + ", mpAgriLandHighest=" + mpAgriLandHighest + ", mpAgriLandAverage=" + mpAgriLandAverage + ", mpPlotLowest=" + mpPlotLowest + ", mpPlotHighest=" + mpPlotHighest + ", mpPlotAverage=" + mpPlotAverage + ", mpResidentialLowest=" + mpResidentialLowest + ", mpResidentialHighest=" + mpResidentialHighest + ", mpResidentialAverage=" + mpResidentialAverage + ", mpCommercialLowest=" + mpCommercialLowest + ", mpCommercialHighest=" + mpCommercialHighest + ", mpCommercialAverage=" + mpCommercialAverage + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
+
 }
