@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.bank;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Bank {
@@ -11,6 +12,8 @@ public class Bank {
     private Integer maxAgeForSalaried;
     private Integer maxAgeForBusinessman;
     private Integer maxLoanTenure;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -68,16 +71,34 @@ public class Bank {
         this.maxLoanTenure = maxLoanTenure;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.loanInterestRateForMale);
-        hash = 43 * hash + Objects.hashCode(this.loanInterestRateForFemale);
-        hash = 43 * hash + Objects.hashCode(this.maxAgeForSalaried);
-        hash = 43 * hash + Objects.hashCode(this.maxAgeForBusinessman);
-        hash = 43 * hash + Objects.hashCode(this.maxLoanTenure);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.loanInterestRateForMale);
+        hash = 97 * hash + Objects.hashCode(this.loanInterestRateForFemale);
+        hash = 97 * hash + Objects.hashCode(this.maxAgeForSalaried);
+        hash = 97 * hash + Objects.hashCode(this.maxAgeForBusinessman);
+        hash = 97 * hash + Objects.hashCode(this.maxLoanTenure);
+        hash = 97 * hash + Objects.hashCode(this.userId);
+        hash = 97 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -111,12 +132,18 @@ public class Bank {
         if (!Objects.equals(this.maxLoanTenure, other.maxLoanTenure)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Bank{" + "id=" + id + ", name=" + name + ", loanInterestRateForMale=" + loanInterestRateForMale + ", loanInterestRateForFemale=" + loanInterestRateForFemale + ", maxAgeForSalaried=" + maxAgeForSalaried + ", maxAgeForBusinessman=" + maxAgeForBusinessman + ", maxLoanTenure=" + maxLoanTenure + '}';
+        return "Bank{" + "id=" + id + ", name=" + name + ", loanInterestRateForMale=" + loanInterestRateForMale + ", loanInterestRateForFemale=" + loanInterestRateForFemale + ", maxAgeForSalaried=" + maxAgeForSalaried + ", maxAgeForBusinessman=" + maxAgeForBusinessman + ", maxLoanTenure=" + maxLoanTenure + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

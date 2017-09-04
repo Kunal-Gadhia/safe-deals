@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.amenity;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Amenity {
@@ -10,6 +11,8 @@ public class Amenity {
     private Integer amenityCodeId;
     private AmenityType amenityType;
     private String icon;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -59,15 +62,33 @@ public class Amenity {
         this.icon = icon;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + Objects.hashCode(this.description);
-        hash = 89 * hash + Objects.hashCode(this.amenityCodeId);
-        hash = 89 * hash + Objects.hashCode(this.amenityType);
-        hash = 89 * hash + Objects.hashCode(this.icon);
+        int hash = 3;
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.description);
+        hash = 43 * hash + Objects.hashCode(this.amenityCodeId);
+        hash = 43 * hash + Objects.hashCode(this.amenityType);
+        hash = 43 * hash + Objects.hashCode(this.icon);
+        hash = 43 * hash + Objects.hashCode(this.userId);
+        hash = 43 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -98,12 +119,18 @@ public class Amenity {
         if (!Objects.equals(this.icon, other.icon)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Amenity{" + "id=" + id + ", name=" + name + ", description=" + description + ", amenityCodeId=" + amenityCodeId + ", amenityType=" + amenityType + ", icon=" + icon + '}';
+        return "Amenity{" + "id=" + id + ", name=" + name + ", description=" + description + ", amenityCodeId=" + amenityCodeId + ", amenityType=" + amenityType + ", icon=" + icon + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

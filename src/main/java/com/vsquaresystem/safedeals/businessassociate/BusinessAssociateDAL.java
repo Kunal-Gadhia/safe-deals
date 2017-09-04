@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.businessassociate;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ public class BusinessAssociateDAL {
         public static final String PHONE_NUMBER1 = "phone_number1";
         public static final String PHONE_NUMBER2 = "phone_number2";
         public static final String FAX = "fax";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
 
     };
 
@@ -44,7 +47,9 @@ public class BusinessAssociateDAL {
                         Columns.EMAIL,
                         Columns.PHONE_NUMBER1,
                         Columns.PHONE_NUMBER2,
-                        Columns.FAX)
+                        Columns.FAX,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -57,12 +62,12 @@ public class BusinessAssociateDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(BusinessAssociate.class));
     }
-    
+
     public BusinessAssociate findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(BusinessAssociate.class));
     }
-    
+
     public List<BusinessAssociate> findAllCities() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(BusinessAssociate.class));
@@ -78,6 +83,8 @@ public class BusinessAssociateDAL {
         parameters.put(Columns.PHONE_NUMBER1, businessAssociate.getPhoneNumber1());
         parameters.put(Columns.PHONE_NUMBER2, businessAssociate.getPhoneNumber2());
         parameters.put(Columns.FAX, businessAssociate.getFax());
+        parameters.put(Columns.USER_ID, businessAssociate.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertBusinessAssociate.executeAndReturnKey(parameters);
         return findById(newId.intValue());
     }
@@ -91,7 +98,10 @@ public class BusinessAssociateDAL {
                 + Columns.EMAIL + " = ?,"
                 + Columns.PHONE_NUMBER1 + " = ?,"
                 + Columns.PHONE_NUMBER2 + " = ?,"
-                + Columns.FAX + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.FAX + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             businessAssociate.getName(),
             businessAssociate.getAddress(),
@@ -101,15 +111,18 @@ public class BusinessAssociateDAL {
             businessAssociate.getPhoneNumber1(),
             businessAssociate.getPhoneNumber2(),
             businessAssociate.getFax(),
+            businessAssociate.getUserId(),
+            new Date(),
             businessAssociate.getId()
         });
         businessAssociate = findById(businessAssociate.getId());
         return businessAssociate;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
-
 }

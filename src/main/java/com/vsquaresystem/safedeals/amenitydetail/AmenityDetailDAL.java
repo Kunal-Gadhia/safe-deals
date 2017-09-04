@@ -1,6 +1,7 @@
 package com.vsquaresystem.safedeals.amenitydetail;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,8 @@ public class AmenityDetailDAL {
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
         private static final String CITY_ID = "city_id";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -49,7 +52,9 @@ public class AmenityDetailDAL {
                         Columns.AMENITY_ID,
                         Columns.LATITUDE,
                         Columns.LONGITUDE,
-                        Columns.CITY_ID)
+                        Columns.CITY_ID,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -100,6 +105,8 @@ public class AmenityDetailDAL {
         parameters.put(Columns.LATITUDE, amenitydetail.getLatitude());
         parameters.put(Columns.LONGITUDE, amenitydetail.getLongitude());
         parameters.put(Columns.CITY_ID, amenitydetail.getCityId());
+        parameters.put(Columns.USER_ID, amenitydetail.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertAmenityDetail.executeAndReturnKey(parameters);
         amenitydetail = findById(newId.intValue());
         return amenitydetail;
@@ -147,7 +154,9 @@ public class AmenityDetailDAL {
                 + Columns.AMENITY_ID + " = ?,"
                 + Columns.LATITUDE + " = ?,"
                 + Columns.LONGITUDE + " = ?,"
-                + Columns.CITY_ID + "=? WHERE " + Columns.ID + " = ?";
+                + Columns.CITY_ID + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP + "=? WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     amenitydetail.getName(),
@@ -159,6 +168,8 @@ public class AmenityDetailDAL {
                     amenitydetail.getLatitude(),
                     amenitydetail.getLongitude(),
                     amenitydetail.getCityId(),
+                    amenitydetail.getUserId(),
+                    new Date(),
                     amenitydetail.getId()
                 }
         );
@@ -166,9 +177,10 @@ public class AmenityDetailDAL {
         return amenitydetail;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
-
 }

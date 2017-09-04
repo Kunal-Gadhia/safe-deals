@@ -5,10 +5,14 @@
  */
 package com.vsquaresystem.safedeals.bank;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +32,9 @@ public class BankRest {
 
     @Autowired
     private BankDAL bankDal;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Bank> findAll(
@@ -51,7 +58,10 @@ public class BankRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Bank insert(@RequestBody Bank bank) {
+    public Bank insert(@RequestBody Bank bank,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        bank.setUserId(user.getId());
         return bankDal.insert(bank);
     }
 
@@ -62,12 +72,17 @@ public class BankRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        bankDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        bankDal.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Bank update(@RequestBody Bank bank) {
+    public Bank update(@RequestBody Bank bank,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        bank.setUserId(user.getId());
         return bankDal.update(bank);
     }
 }

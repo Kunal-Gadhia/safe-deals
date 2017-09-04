@@ -63,6 +63,7 @@ angular.module("safedeals", [
     'safedeals.services.unit',
     'safedeals.services.price_range',
     'safedeals.services.inventory',
+    'safedeals.services.property_category',
     // directive services
     'safedeals.services.bank_addition',
     // include controllers and states
@@ -122,6 +123,7 @@ angular.module("safedeals", [
     'safedeals.states.image',
     'safedeals.states.unit',
     'safedeals.states.price_range',
+    'safedeals.states.property_category',
     'safedeals.states.auth',
     'safedeals.states.inventory',
     //portal states

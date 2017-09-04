@@ -1,10 +1,14 @@
 package com.vsquaresystem.safedeals.amenity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.io.IOException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +23,10 @@ public class AmenityRest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private AmenityDAL amenityDal;
-    
+
+    @Autowired
+    private UserDAL userDAL;
+
     @Autowired
     private AmenityService amenityService;
 
@@ -56,8 +63,11 @@ public class AmenityRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Amenity insert(@RequestBody Amenity amenity) {
-        logger.info("Amenity Object REST :{}", amenity);
+    public Amenity insert(@RequestBody Amenity amenity,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenity.setUserId(user.getId());
+        logger.info("Amenity  REST :{}", amenity);
         return amenityDal.insert(amenity);
     }
 
@@ -67,15 +77,20 @@ public class AmenityRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        amenityDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenityDal.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Amenity update(@RequestBody Amenity amenity) {
+    public Amenity update(@RequestBody Amenity amenity,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        amenity.setUserId(user.getId());
         return amenityDal.update(amenity);
     }
-    
+
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public Boolean exportAllAmenities() throws IOException {
         logger.info("exportExcelData EXCEL DATA {}");
