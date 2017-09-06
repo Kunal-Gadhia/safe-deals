@@ -5,9 +5,13 @@
  */
 package com.vsquaresystem.safedeals.unit;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vsquaresystem.safedeals.road.Road;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,9 @@ public class UnitRest {
 
     @Autowired
     private UnitDAL unitDAL;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Unit> findAll(
@@ -49,17 +56,26 @@ public class UnitRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Unit insert(@RequestBody Unit unit) {
+    public Unit insert(@RequestBody Unit unit,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        unit.setUserId(user.getId());
         return unitDAL.insert(unit);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        unitDAL.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        unitDAL.delete(id, user.getId());
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Unit update(@RequestBody Unit unit) {
+    public Unit update(@RequestBody Unit unit,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        unit.setUserId(user.getId());
         return unitDAL.update(unit);
     }
 }

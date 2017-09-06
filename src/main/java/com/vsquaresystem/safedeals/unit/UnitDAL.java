@@ -7,6 +7,7 @@ package com.vsquaresystem.safedeals.unit;
 
 import com.vsquaresystem.safedeals.road.Road;
 import static com.vsquaresystem.safedeals.road.RoadDAL.TABLE_NAME;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class UnitDAL {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String ABBREVIATION = "abbreviation";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -41,7 +44,9 @@ public class UnitDAL {
         insertUnit = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName(TABLE_NAME)
                 .usingColumns(UnitDAL.Columns.NAME,
-                        Columns.ABBREVIATION
+                        Columns.ABBREVIATION,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -71,6 +76,8 @@ public class UnitDAL {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, unit.getName());
         parameters.put(Columns.ABBREVIATION, unit.getAbbreviation());
+        parameters.put(Columns.USER_ID, unit.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
 
         Number newId = insertUnit.executeAndReturnKey(parameters);
         unit = findById(newId.intValue());
@@ -80,18 +87,25 @@ public class UnitDAL {
     public Unit update(Unit unit) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ? ,"
-                + Columns.ABBREVIATION + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.ABBREVIATION + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             unit.getName(),
             unit.getAbbreviation(),
+            unit.getUserId(),
+            new Date(),
             unit.getId()
         });
         unit = findById(unit.getId());
         return unit;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }

@@ -5,10 +5,14 @@
  */
 package com.vsquaresystem.safedeals.pricerange;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +32,15 @@ public class PriceRangeRest {
     @Autowired
     private PriceRangeDAL priceRangeDal;
 
+    @Autowired
+    private UserDAL userDAL;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<PriceRange> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         return priceRangeDal.findAll(offset);
     }
-    
+
     @RequestMapping(value = "/find_all", method = RequestMethod.GET)
     public List<PriceRange> findAllList() {
         return priceRangeDal.findAllList();
@@ -50,18 +57,26 @@ public class PriceRangeRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public PriceRange insert(@RequestBody PriceRange priceRange) {
+    public PriceRange insert(@RequestBody PriceRange priceRange,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        priceRange.setUserId(user.getId());
         return priceRangeDal.insert(priceRange);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public PriceRange update(@RequestBody PriceRange priceRange) {
+    public PriceRange update(@RequestBody PriceRange priceRange,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        priceRange.setUserId(user.getId());
         return priceRangeDal.update(priceRange);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        priceRangeDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        priceRangeDal.delete(id, user.getId());
     }
 
 }

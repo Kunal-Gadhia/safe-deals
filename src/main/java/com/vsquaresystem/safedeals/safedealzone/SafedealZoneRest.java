@@ -1,7 +1,11 @@
 package com.vsquaresystem.safedeals.safedealzone;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,9 @@ public class SafedealZoneRest {
 
     @Autowired
     private SafedealZoneDAL safedealZoneDal;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<SafedealZone> findAll(
@@ -38,7 +45,10 @@ public class SafedealZoneRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public SafedealZone insert(@RequestBody SafedealZone safedealZone) {
+    public SafedealZone insert(@RequestBody SafedealZone safedealZone,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        safedealZone.setUserId(user.getId());
         return safedealZoneDal.insert(safedealZone);
     }
 
@@ -48,12 +58,18 @@ public class SafedealZoneRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public SafedealZone update(@RequestBody SafedealZone safedealZone) {
+    public SafedealZone update(@RequestBody SafedealZone safedealZone,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        safedealZone.setUserId(user.getId());
         return safedealZoneDal.update(safedealZone);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        safedealZoneDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        safedealZoneDal.delete(id, user.getId());
+
     }
 }

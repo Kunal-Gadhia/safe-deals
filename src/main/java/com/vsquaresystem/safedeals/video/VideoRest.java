@@ -1,10 +1,13 @@
 package com.vsquaresystem.safedeals.video;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,9 @@ public class VideoRest {
 
     @Autowired
     private VideoDAL videoDal;
+
+    @Autowired
+    private UserDAL userDAL;
 
 //    @Autowired
 //    private VideoService videoService;
@@ -52,7 +58,10 @@ public class VideoRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Video insert(@RequestBody Video video) throws JsonProcessingException {
+    public Video insert(@RequestBody Video video,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        video.setUserId(user.getId());
         logger.info("video object {}", video);
         return videoDal.insert(video);
     }
@@ -63,12 +72,18 @@ public class VideoRest {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        videoDal.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        videoDal.delete(id, user.getId());
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Video update(@RequestBody Video video) throws JsonProcessingException {
+    public Video update(@RequestBody Video video,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        video.setUserId(user.getId());
         System.out.println("are we in rest");
         return videoDal.update(video);
     }

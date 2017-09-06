@@ -6,12 +6,14 @@
 package com.vsquaresystem.safedeals.rawmarketprice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vsquaresystem.safedeals.user.User;
+import com.vsquaresystem.safedeals.user.UserDAL;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,9 @@ public class RawMarketPriceRest {
 
     @Autowired
     private RawMarketPriceDAL rawmarketpriceDAL;
+
+    @Autowired
+    private UserDAL userDAL;
 
     @Autowired
     private RawMarketPriceService rawmarketpriceservice;
@@ -58,17 +63,25 @@ public class RawMarketPriceRest {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public RawMarketPrice insert(@RequestBody RawMarketPrice rawMarketPrice) throws JsonProcessingException, ParseException {
+    public RawMarketPrice insert(@RequestBody RawMarketPrice rawMarketPrice,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        rawMarketPrice.setUserId(user.getId());
         return rawmarketpriceDAL.insert(rawMarketPrice);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Integer id) {
-        rawmarketpriceDAL.delete(id);
+    public void delete(@PathVariable("id") Integer id,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        rawmarketpriceDAL.delete(id, user.getId());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public RawMarketPrice update(@RequestBody RawMarketPrice rawMarketPrice) throws JsonProcessingException {
+    public RawMarketPrice update(@RequestBody RawMarketPrice rawMarketPrice,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User currentUser) throws JsonProcessingException {
+        User user = userDAL.findByUsername(currentUser.getUsername());
+        rawMarketPrice.setUserId(user.getId());
         return rawmarketpriceDAL.update(rawMarketPrice);
     }
 

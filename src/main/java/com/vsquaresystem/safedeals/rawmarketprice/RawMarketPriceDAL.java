@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,8 @@ public class RawMarketPriceDAL {
         public static final String DISADVANTAGE = "disadvantage";
         public static final String POPULATION = "population";
         public static final String MIGRATION_RATE = "migration_rate";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
 
     };
 
@@ -98,7 +101,9 @@ public class RawMarketPriceDAL {
                         Columns.ADVANTAGE,
                         Columns.DISADVANTAGE,
                         Columns.POPULATION,
-                        Columns.MIGRATION_RATE
+                        Columns.MIGRATION_RATE,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -265,9 +270,11 @@ public class RawMarketPriceDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{cityId}, distinctLocationsMapper);
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 
     public RawMarketPrice update(RawMarketPrice rawmarketPrice) throws JsonProcessingException {
@@ -296,7 +303,10 @@ public class RawMarketPriceDAL {
                 + Columns.ADVANTAGE + " = ?, "
                 + Columns.DISADVANTAGE + " = ?, "
                 + Columns.POPULATION + " = ?, "
-                + Columns.MIGRATION_RATE + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.MIGRATION_RATE + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             rawmarketPrice.getCityId(),
             rawmarketPrice.getLocationName(),
@@ -322,6 +332,8 @@ public class RawMarketPriceDAL {
             rawmarketPrice.getDisadvantage(),
             rawmarketPrice.getPopulation(),
             rawmarketPrice.getMigrationRate(),
+            rawmarketPrice.getUserId(),
+            new Date(),
             rawmarketPrice.getId()});
         rawmarketPrice = findById(rawmarketPrice.getId());
         return rawmarketPrice;
@@ -354,6 +366,8 @@ public class RawMarketPriceDAL {
         parameters.put(Columns.DISADVANTAGE, rawmarketPrice.getDisadvantage());
         parameters.put(Columns.POPULATION, rawmarketPrice.getPopulation());
         parameters.put(Columns.MIGRATION_RATE, rawmarketPrice.getMigrationRate());
+        parameters.put(Columns.USER_ID, rawmarketPrice.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
 
         Number newId = insertRawMarketPrice.executeAndReturnKey(parameters);
         rawmarketPrice = findById(newId.intValue());
@@ -390,6 +404,7 @@ public class RawMarketPriceDAL {
             if (rs.wasNull()) {
                 distinctLocations.setSafedealZoneId(null);
             }
+
             distinctLocations.setLocationName(rs.getString(RawMarketPriceDAL.Columns.LOCATION_NAME));
             distinctLocations.setAdvantage(rs.getString(RawMarketPriceDAL.Columns.ADVANTAGE));
             distinctLocations.setDisadvantage(rs.getString(RawMarketPriceDAL.Columns.DISADVANTAGE));
@@ -454,6 +469,13 @@ public class RawMarketPriceDAL {
             rawMarketPrice.setDisadvantage(rs.getString(RawMarketPriceDAL.Columns.DISADVANTAGE));
             rawMarketPrice.setPopulation(rs.getInt(RawMarketPriceDAL.Columns.POPULATION));
             rawMarketPrice.setMigrationRate(rs.getInt(RawMarketPriceDAL.Columns.MIGRATION_RATE));
+
+            rawMarketPrice.setUserId(rs.getInt(RawMarketPriceDAL.Columns.USER_ID));
+            if (rs.wasNull()) {
+                rawMarketPrice.setUserId(null);
+            }
+
+            rawMarketPrice.setLastUpdatedTimeStamp(rs.getTimestamp(Columns.LAST_UPDATED_TIME_STAMP));
 
             return rawMarketPrice;
         }

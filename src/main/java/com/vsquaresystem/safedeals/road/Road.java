@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.road;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -18,6 +19,8 @@ public class Road {
     private Integer cityId;
     private Integer size;
     private RoadType roadType;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -59,19 +62,32 @@ public class Road {
         this.roadType = roadType;
     }
 
-    @Override
-    public String toString() {
-        return "Road{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", size=" + size + ", roadType=" + roadType + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.cityId);
-        hash = 43 * hash + Objects.hashCode(this.size);
-        hash = 43 * hash + Objects.hashCode(this.roadType);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Objects.hashCode(this.cityId);
+        hash = 29 * hash + Objects.hashCode(this.size);
+        hash = 29 * hash + Objects.hashCode(this.roadType);
+        hash = 29 * hash + Objects.hashCode(this.userId);
+        hash = 29 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -99,8 +115,18 @@ public class Road {
         if (this.roadType != other.roadType) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
-   
+    @Override
+    public String toString() {
+        return "Road{" + "id=" + id + ", name=" + name + ", cityId=" + cityId + ", size=" + size + ", roadType=" + roadType + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
+
 }

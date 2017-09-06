@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,8 @@ public class VideoDAL {
         public static final String IS_INTRO_VIDEO = "is_intro_video";
         public static final String PROJECT_ID = "project_id";
         public static final String PROPERTY_ID = "property_id";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -48,7 +51,9 @@ public class VideoDAL {
                         Columns.VIDEO_URL,
                         Columns.IS_INTRO_VIDEO,
                         Columns.PROJECT_ID,
-                        Columns.PROPERTY_ID)
+                        Columns.PROPERTY_ID,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -85,6 +90,8 @@ public class VideoDAL {
         parameters.put(Columns.IS_INTRO_VIDEO, video.getIsIntroVideo());
         parameters.put(Columns.PROJECT_ID, video.getProjectId());
         parameters.put(Columns.PROPERTY_ID, video.getPropertyId());
+        parameters.put(Columns.USER_ID, video.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertVideo.executeAndReturnKey(parameters);
         video = findById(newId.intValue());
         return video;
@@ -102,7 +109,10 @@ public class VideoDAL {
                 + Columns.VIDEO_URL + " = ?  , "
                 + Columns.IS_INTRO_VIDEO + " = ?  , "
                 + Columns.PROJECT_ID + " = ?  , "
-                + Columns.PROPERTY_ID + " = ?  WHERE "
+                + Columns.PROPERTY_ID + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ?  WHERE "
                 + Columns.ID + " = ?";
         ObjectMapper mapper = new ObjectMapper();
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
@@ -112,6 +122,8 @@ public class VideoDAL {
             video.getIsIntroVideo(),
             video.getProjectId(),
             video.getPropertyId(),
+            video.getUserId(),
+            new Date(),
             video.getId()});
         video = findById(video.getId());
         return video;
@@ -128,13 +140,18 @@ public class VideoDAL {
             video.setIsIntroVideo(rs.getBoolean(Columns.IS_INTRO_VIDEO));
             video.setProjectId(rs.getInt(Columns.PROJECT_ID));
             video.setPropertyId(rs.getInt(Columns.PROPERTY_ID));
+            video.setUserId(rs.getInt(Columns.USER_ID));
+            video.setLastUpdatedTimeStamp(rs.getTimestamp(Columns.LAST_UPDATED_TIME_STAMP));
+
             return video;
         }
     };
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 
     public Video findByVideoName(String name) {

@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.rawmarketprice;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,6 +40,8 @@ public class RawMarketPrice {
     private String disadvantage;
     private Integer population;
     private Integer migrationRate;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -240,47 +243,57 @@ public class RawMarketPrice {
         this.migrationRate = migrationRate;
     }
 
-    @Override
-    public String toString() {
-        return "RawMarketPrice{" + "id=" + id + ", cityId=" + cityId + ", locationName=" + locationName + ", safedealZoneId=" + safedealZoneId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", description=" + description + ", year=" + year + ", month=" + month + ", mpAgriLandLowest=" + mpAgriLandLowest + ", mpAgriLandHighest=" + mpAgriLandHighest + ", mpPlotLowest=" + mpPlotLowest + ", mpPlotHighest=" + mpPlotHighest + ", mpResidentialLowest=" + mpResidentialLowest + ", mpResidentialHighest=" + mpResidentialHighest + ", mpCommercialLowest=" + mpCommercialLowest + ", mpCommercialHighest=" + mpCommercialHighest + ", isCommercialCenter=" + isCommercialCenter + ", majorApproachRoad=" + majorApproachRoad + ", sourceOfWater=" + sourceOfWater + ", publicTransport=" + publicTransport + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", migrationRate=" + migrationRate + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.cityId);
-        hash = 23 * hash + Objects.hashCode(this.locationName);
-        hash = 23 * hash + Objects.hashCode(this.safedealZoneId);
-        hash = 23 * hash + Objects.hashCode(this.locationTypeId);
-        hash = 23 * hash + Objects.hashCode(this.locationCategories);
-        hash = 23 * hash + Objects.hashCode(this.description);
-        hash = 23 * hash + Objects.hashCode(this.year);
-        hash = 23 * hash + Objects.hashCode(this.month);
-        hash = 23 * hash + Objects.hashCode(this.mpAgriLandLowest);
-        hash = 23 * hash + Objects.hashCode(this.mpAgriLandHighest);
-        hash = 23 * hash + Objects.hashCode(this.mpPlotLowest);
-        hash = 23 * hash + Objects.hashCode(this.mpPlotHighest);
-        hash = 23 * hash + Objects.hashCode(this.mpResidentialLowest);
-        hash = 23 * hash + Objects.hashCode(this.mpResidentialHighest);
-        hash = 23 * hash + Objects.hashCode(this.mpCommercialLowest);
-        hash = 23 * hash + Objects.hashCode(this.mpCommercialHighest);
-        hash = 23 * hash + Objects.hashCode(this.isCommercialCenter);
-        hash = 23 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 23 * hash + Objects.hashCode(this.sourceOfWater);
-        hash = 23 * hash + Objects.hashCode(this.publicTransport);
-        hash = 23 * hash + Objects.hashCode(this.advantage);
-        hash = 23 * hash + Objects.hashCode(this.disadvantage);
-        hash = 23 * hash + Objects.hashCode(this.population);
-        hash = 23 * hash + Objects.hashCode(this.migrationRate);
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.cityId);
+        hash = 53 * hash + Objects.hashCode(this.locationName);
+        hash = 53 * hash + Objects.hashCode(this.safedealZoneId);
+        hash = 53 * hash + Objects.hashCode(this.locationTypeId);
+        hash = 53 * hash + Objects.hashCode(this.locationCategories);
+        hash = 53 * hash + Objects.hashCode(this.description);
+        hash = 53 * hash + Objects.hashCode(this.year);
+        hash = 53 * hash + Objects.hashCode(this.month);
+        hash = 53 * hash + Objects.hashCode(this.mpAgriLandLowest);
+        hash = 53 * hash + Objects.hashCode(this.mpAgriLandHighest);
+        hash = 53 * hash + Objects.hashCode(this.mpPlotLowest);
+        hash = 53 * hash + Objects.hashCode(this.mpPlotHighest);
+        hash = 53 * hash + Objects.hashCode(this.mpResidentialLowest);
+        hash = 53 * hash + Objects.hashCode(this.mpResidentialHighest);
+        hash = 53 * hash + Objects.hashCode(this.mpCommercialLowest);
+        hash = 53 * hash + Objects.hashCode(this.mpCommercialHighest);
+        hash = 53 * hash + Objects.hashCode(this.isCommercialCenter);
+        hash = 53 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 53 * hash + Objects.hashCode(this.sourceOfWater);
+        hash = 53 * hash + Objects.hashCode(this.publicTransport);
+        hash = 53 * hash + Objects.hashCode(this.advantage);
+        hash = 53 * hash + Objects.hashCode(this.disadvantage);
+        hash = 53 * hash + Objects.hashCode(this.population);
+        hash = 53 * hash + Objects.hashCode(this.migrationRate);
+        hash = 53 * hash + Objects.hashCode(this.userId);
+        hash = 53 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -288,34 +301,13 @@ public class RawMarketPrice {
             return false;
         }
         final RawMarketPrice other = (RawMarketPrice) obj;
-        if (!Objects.equals(this.locationName, other.locationName)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.majorApproachRoad, other.majorApproachRoad)) {
-            return false;
-        }
-        if (!Objects.equals(this.sourceOfWater, other.sourceOfWater)) {
-            return false;
-        }
-        if (!Objects.equals(this.publicTransport, other.publicTransport)) {
-            return false;
-        }
-        if (!Objects.equals(this.advantage, other.advantage)) {
-            return false;
-        }
-        if (!Objects.equals(this.disadvantage, other.disadvantage)) {
-            return false;
-        }
-        if (!Objects.equals(this.migrationRate, other.migrationRate)) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.cityId, other.cityId)) {
+            return false;
+        }
+        if (!Objects.equals(this.locationName, other.locationName)) {
             return false;
         }
         if (!Objects.equals(this.safedealZoneId, other.safedealZoneId)) {
@@ -325,6 +317,9 @@ public class RawMarketPrice {
             return false;
         }
         if (!Objects.equals(this.locationCategories, other.locationCategories)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         if (!Objects.equals(this.year, other.year)) {
@@ -360,12 +355,39 @@ public class RawMarketPrice {
         if (!Objects.equals(this.isCommercialCenter, other.isCommercialCenter)) {
             return false;
         }
+        if (!Objects.equals(this.majorApproachRoad, other.majorApproachRoad)) {
+            return false;
+        }
+        if (!Objects.equals(this.sourceOfWater, other.sourceOfWater)) {
+            return false;
+        }
+        if (!Objects.equals(this.publicTransport, other.publicTransport)) {
+            return false;
+        }
+        if (!Objects.equals(this.advantage, other.advantage)) {
+            return false;
+        }
+        if (!Objects.equals(this.disadvantage, other.disadvantage)) {
+            return false;
+        }
         if (!Objects.equals(this.population, other.population)) {
+            return false;
+        }
+        if (!Objects.equals(this.migrationRate, other.migrationRate)) {
+            return false;
+        }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
             return false;
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "RawMarketPrice{" + "id=" + id + ", cityId=" + cityId + ", locationName=" + locationName + ", safedealZoneId=" + safedealZoneId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", description=" + description + ", year=" + year + ", month=" + month + ", mpAgriLandLowest=" + mpAgriLandLowest + ", mpAgriLandHighest=" + mpAgriLandHighest + ", mpPlotLowest=" + mpPlotLowest + ", mpPlotHighest=" + mpPlotHighest + ", mpResidentialLowest=" + mpResidentialLowest + ", mpResidentialHighest=" + mpResidentialHighest + ", mpCommercialLowest=" + mpCommercialLowest + ", mpCommercialHighest=" + mpCommercialHighest + ", isCommercialCenter=" + isCommercialCenter + ", majorApproachRoad=" + majorApproachRoad + ", sourceOfWater=" + sourceOfWater + ", publicTransport=" + publicTransport + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", migrationRate=" + migrationRate + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.propertycategory;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,8 @@ public class PropertyCategory {
     private Integer id;
     private String category;
     private String description;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -41,17 +44,30 @@ public class PropertyCategory {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "ProjectCategory{" + "id=" + id + ", category=" + category + ", description=" + description + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.category);
-        hash = 59 * hash + Objects.hashCode(this.description);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.category);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.userId);
+        hash = 41 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -73,7 +89,18 @@ public class PropertyCategory {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyCategory{" + "id=" + id + ", category=" + category + ", description=" + description + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

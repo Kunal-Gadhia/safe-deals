@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.safedealzone;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ public class SafedealZoneDAL {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String DESCRIPTION = "description";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -31,7 +34,9 @@ public class SafedealZoneDAL {
                 .withTableName(TABLE_NAME)
                 .usingColumns(
                         Columns.NAME,
-                        Columns.DESCRIPTION)
+                        Columns.DESCRIPTION,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -44,7 +49,7 @@ public class SafedealZoneDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(SafedealZone.class));
     }
-    
+
     public List<SafedealZone> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
@@ -56,15 +61,17 @@ public class SafedealZoneDAL {
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(SafedealZone.class));
     }
 
-
     public SafedealZone insert(SafedealZone safedealZone) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, safedealZone.getName());
         parameters.put(Columns.DESCRIPTION, safedealZone.getDescription());
+        parameters.put(Columns.USER_ID, safedealZone.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertSafedealZone.executeAndReturnKey(parameters);
+
         return findById(newId.intValue());
     }
-    
+
     public SafedealZone findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.NAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{name}, new BeanPropertyRowMapper<>(SafedealZone.class));
@@ -73,18 +80,25 @@ public class SafedealZoneDAL {
     public SafedealZone update(SafedealZone safedealZone) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.NAME + " = ?,"
-                + Columns.DESCRIPTION + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.DESCRIPTION + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             safedealZone.getName(),
             safedealZone.getDescription(),
+            safedealZone.getUserId(),
+            new Date(),
             safedealZone.getId()
         });
         safedealZone = findById(safedealZone.getId());
         return safedealZone;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }

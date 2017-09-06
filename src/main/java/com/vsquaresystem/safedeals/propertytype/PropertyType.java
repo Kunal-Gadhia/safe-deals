@@ -1,12 +1,16 @@
 package com.vsquaresystem.safedeals.propertytype;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class PropertyType {
+
     private Integer id;
     private String numberOfBhk;
     private Integer carpetArea;
     private String priceRange;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -40,13 +44,31 @@ public class PropertyType {
         this.priceRange = priceRange;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.numberOfBhk);
-        hash = 47 * hash + Objects.hashCode(this.carpetArea);
-        hash = 47 * hash + Objects.hashCode(this.priceRange);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.numberOfBhk);
+        hash = 37 * hash + Objects.hashCode(this.carpetArea);
+        hash = 37 * hash + Objects.hashCode(this.priceRange);
+        hash = 37 * hash + Objects.hashCode(this.userId);
+        hash = 37 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -71,14 +93,18 @@ public class PropertyType {
         if (!Objects.equals(this.priceRange, other.priceRange)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "PropertyType{" + "id=" + id + ", numberOfBhk=" + numberOfBhk + ", carpetArea=" + carpetArea + ", priceRange=" + priceRange + '}';
+        return "PropertyType{" + "id=" + id + ", numberOfBhk=" + numberOfBhk + ", carpetArea=" + carpetArea + ", priceRange=" + priceRange + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
-    
-    
-    
+
 }

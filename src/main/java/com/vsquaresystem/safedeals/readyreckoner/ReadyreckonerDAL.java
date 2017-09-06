@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.readyreckoner;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class ReadyreckonerDAL {
         public static final String RR_RATE_LAND = "rr_rate_land";
         public static final String RR_RATE_PLOT = "rr_rate_plot";
         public static final String RR_RATE_APARTMENT = "rr_rate_apartment";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
 
     };
 
@@ -38,7 +41,9 @@ public class ReadyreckonerDAL {
                         Columns.RR_YEAR,
                         Columns.RR_RATE_LAND,
                         Columns.RR_RATE_PLOT,
-                        Columns.RR_RATE_APARTMENT
+                        Columns.RR_RATE_APARTMENT,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -66,10 +71,12 @@ public class ReadyreckonerDAL {
     public Readyreckoner insert(Readyreckoner readyreckoner) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.LOCATION_ID, readyreckoner.getLocationId());
-       parameters.put(Columns.RR_YEAR, readyreckoner.getRrYear());
+        parameters.put(Columns.RR_YEAR, readyreckoner.getRrYear());
         parameters.put(Columns.RR_RATE_LAND, readyreckoner.getRrRateLand());
         parameters.put(Columns.RR_RATE_PLOT, readyreckoner.getRrRatePlot());
         parameters.put(Columns.RR_RATE_APARTMENT, readyreckoner.getRrRateApartment());
+        parameters.put(Columns.USER_ID, readyreckoner.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
 
         Number newId = insertReadyreckoner.executeAndReturnKey(parameters);
         readyreckoner = findById(newId.intValue());
@@ -83,12 +90,15 @@ public class ReadyreckonerDAL {
     }
 
     public Readyreckoner update(Readyreckoner readyreckoner) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET " 
-                + Columns.LOCATION_ID + " = ?, " 
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
+                + Columns.LOCATION_ID + " = ?, "
                 + Columns.RR_YEAR + " = ?, "
                 + Columns.RR_RATE_LAND + " = ?, "
                 + Columns.RR_RATE_PLOT + " = ?, "
-                + Columns.RR_RATE_APARTMENT + " = ? WHERE "
+                + Columns.RR_RATE_APARTMENT + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE "
                 + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             readyreckoner.getLocationId(),
@@ -96,15 +106,19 @@ public class ReadyreckonerDAL {
             readyreckoner.getRrRateLand(),
             readyreckoner.getRrRatePlot(),
             readyreckoner.getRrRateApartment(),
+            readyreckoner.getUserId(),
+            new Date(),
             readyreckoner.getId()
         });
         readyreckoner = findById(readyreckoner.getId());
         return readyreckoner;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 
 }

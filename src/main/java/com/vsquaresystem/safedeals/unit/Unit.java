@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.unit;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,8 @@ public class Unit {
     private Integer id;
     private String name;
     private String abbreviation;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -41,17 +44,30 @@ public class Unit {
         this.abbreviation = abbreviation;
     }
 
-    @Override
-    public String toString() {
-        return "Unit{" + "id=" + id + ", name=" + name + ", abbreviation=" + abbreviation + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.abbreviation);
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.abbreviation);
+        hash = 79 * hash + Objects.hashCode(this.userId);
+        hash = 79 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -73,7 +89,18 @@ public class Unit {
         if (!Objects.equals(this.abbreviation, other.abbreviation)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit{" + "id=" + id + ", name=" + name + ", abbreviation=" + abbreviation + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

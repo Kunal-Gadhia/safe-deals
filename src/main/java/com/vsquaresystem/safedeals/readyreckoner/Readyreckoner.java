@@ -1,15 +1,18 @@
-
 package com.vsquaresystem.safedeals.readyreckoner;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Readyreckoner {
+
     private Integer id;
     private Integer locationId;
     private Double rrYear;
     private Double rrRateLand;
     private Double rrRatePlot;
     private Double rrRateApartment;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -59,20 +62,33 @@ public class Readyreckoner {
         this.rrRateApartment = rrRateApartment;
     }
 
-    @Override
-    public String toString() {
-        return "Readyreckoner{" + "id=" + id + ", locationId=" + locationId + ", rrYear=" + rrYear + ", rrRateLand=" + rrRateLand + ", rrRatePlot=" + rrRatePlot + ", rrRateApartment=" + rrRateApartment + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.locationId);
-        hash = 67 * hash + Objects.hashCode(this.rrYear);
-        hash = 67 * hash + Objects.hashCode(this.rrRateLand);
-        hash = 67 * hash + Objects.hashCode(this.rrRatePlot);
-        hash = 67 * hash + Objects.hashCode(this.rrRateApartment);
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.locationId);
+        hash = 17 * hash + Objects.hashCode(this.rrYear);
+        hash = 17 * hash + Objects.hashCode(this.rrRateLand);
+        hash = 17 * hash + Objects.hashCode(this.rrRatePlot);
+        hash = 17 * hash + Objects.hashCode(this.rrRateApartment);
+        hash = 17 * hash + Objects.hashCode(this.userId);
+        hash = 17 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -103,9 +119,18 @@ public class Readyreckoner {
         if (!Objects.equals(this.rrRateApartment, other.rrRateApartment)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Readyreckoner{" + "id=" + id + ", locationId=" + locationId + ", rrYear=" + rrYear + ", rrRateLand=" + rrRateLand + ", rrRatePlot=" + rrRatePlot + ", rrRateApartment=" + rrRateApartment + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
+
 }

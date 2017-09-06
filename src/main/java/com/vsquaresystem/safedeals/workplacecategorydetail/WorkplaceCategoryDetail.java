@@ -1,14 +1,18 @@
 package com.vsquaresystem.safedeals.workplacecategorydetail;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class WorkplaceCategoryDetail {
+
     private Integer id;
     private Integer workplaceCategoryId;
     private Integer salaryRangeId;
     private Integer numberOfEmployee;
     private Integer numberOfStudent;
     private Integer numberOfBed;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -58,28 +62,38 @@ public class WorkplaceCategoryDetail {
         this.numberOfBed = numberOfBed;
     }
 
-    @Override
-    public String toString() {
-        return "WorkplaceCategoryDetail{" + "id=" + id + ", workplaceCategoryId=" + workplaceCategoryId + ", salaryRangeId=" + salaryRangeId + ", numberOfEmployee=" + numberOfEmployee + ", numberOfStudent=" + numberOfStudent + ", numberOfBed=" + numberOfBed + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.workplaceCategoryId);
-        hash = 41 * hash + Objects.hashCode(this.salaryRangeId);
-        hash = 41 * hash + Objects.hashCode(this.numberOfEmployee);
-        hash = 41 * hash + Objects.hashCode(this.numberOfStudent);
-        hash = 41 * hash + Objects.hashCode(this.numberOfBed);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.workplaceCategoryId);
+        hash = 89 * hash + Objects.hashCode(this.salaryRangeId);
+        hash = 89 * hash + Objects.hashCode(this.numberOfEmployee);
+        hash = 89 * hash + Objects.hashCode(this.numberOfStudent);
+        hash = 89 * hash + Objects.hashCode(this.numberOfBed);
+        hash = 89 * hash + Objects.hashCode(this.userId);
+        hash = 89 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -105,7 +119,18 @@ public class WorkplaceCategoryDetail {
         if (!Objects.equals(this.numberOfBed, other.numberOfBed)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
-    }      
+    }
+
+    @Override
+    public String toString() {
+        return "WorkplaceCategoryDetail{" + "id=" + id + ", workplaceCategoryId=" + workplaceCategoryId + ", salaryRangeId=" + salaryRangeId + ", numberOfEmployee=" + numberOfEmployee + ", numberOfStudent=" + numberOfStudent + ", numberOfBed=" + numberOfBed + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
+    }
 
 }

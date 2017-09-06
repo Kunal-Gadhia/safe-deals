@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.testimonial;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,8 @@ public class Testimonial {
     private String designation;
     private Category category;
     private List<String> attachment;
+    private Integer userId;
+    private Date lastUpdatedTimeStamp;
 
     public Integer getId() {
         return id;
@@ -78,21 +81,34 @@ public class Testimonial {
         this.attachment = attachment;
     }
 
-    @Override
-    public String toString() {
-        return "Testimonial{" + "id=" + id + ", name=" + name + ", description=" + description + ", profession=" + profession + ", designation=" + designation + ", category=" + category + ", attachment=" + attachment + '}';
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getLastUpdatedTimeStamp() {
+        return lastUpdatedTimeStamp;
+    }
+
+    public void setLastUpdatedTimeStamp(Date lastUpdatedTimeStamp) {
+        this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 13 * hash + Objects.hashCode(this.id);
-        hash = 13 * hash + Objects.hashCode(this.name);
-        hash = 13 * hash + Objects.hashCode(this.description);
-        hash = 13 * hash + Objects.hashCode(this.profession);
-        hash = 13 * hash + Objects.hashCode(this.designation);
-        hash = 13 * hash + Objects.hashCode(this.category);
-        hash = 13 * hash + Objects.hashCode(this.attachment);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.description);
+        hash = 43 * hash + Objects.hashCode(this.profession);
+        hash = 43 * hash + Objects.hashCode(this.designation);
+        hash = 43 * hash + Objects.hashCode(this.category);
+        hash = 43 * hash + Objects.hashCode(this.attachment);
+        hash = 43 * hash + Objects.hashCode(this.userId);
+        hash = 43 * hash + Objects.hashCode(this.lastUpdatedTimeStamp);
         return hash;
     }
 
@@ -126,7 +142,18 @@ public class Testimonial {
         if (!Objects.equals(this.attachment, other.attachment)) {
             return false;
         }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastUpdatedTimeStamp, other.lastUpdatedTimeStamp)) {
+            return false;
+        }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Testimonial{" + "id=" + id + ", name=" + name + ", description=" + description + ", profession=" + profession + ", designation=" + designation + ", category=" + category + ", attachment=" + attachment + ", userId=" + userId + ", lastUpdatedTimeStamp=" + lastUpdatedTimeStamp + '}';
     }
 
 }

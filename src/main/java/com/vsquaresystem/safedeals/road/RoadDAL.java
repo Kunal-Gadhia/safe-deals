@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.road;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,8 @@ public class RoadDAL {
         public static final String SIZE = "size";
         public static final String CITY_ID = "city_id";
         public static final String ROAD_TYPE = "road_type";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -47,7 +50,9 @@ public class RoadDAL {
                         Columns.NAME,
                         Columns.SIZE,
                         Columns.CITY_ID,
-                        Columns.ROAD_TYPE)
+                        Columns.ROAD_TYPE,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -79,6 +84,8 @@ public class RoadDAL {
         parameters.put(Columns.CITY_ID, road.getCityId());
         parameters.put(Columns.ROAD_TYPE, road.getRoadType().name());
 //        parameters.put(Columns.AMENITY_DETAIL_TAB, road.getAmenityDetailTab().name());
+        parameters.put(Columns.USER_ID, road.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertRoad.executeAndReturnKey(parameters);
         road = findById(newId.intValue());
         return road;
@@ -90,19 +97,26 @@ public class RoadDAL {
                 + Columns.NAME + " = ?,"
                 + Columns.SIZE + " = ?,"
                 + Columns.CITY_ID + " = ?,"
-                + Columns.ROAD_TYPE + "=? WHERE " + Columns.ID + " = ?";
+                + Columns.ROAD_TYPE + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + "=? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             road.getName(),
             road.getSize(),
             road.getCityId(),
             road.getRoadType().name(),
+            road.getUserId(),
+            new Date(),
             road.getId()});
         road = findById(road.getId());
         return road;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }

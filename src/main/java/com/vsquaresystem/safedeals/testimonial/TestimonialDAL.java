@@ -5,6 +5,7 @@
  */
 package com.vsquaresystem.safedeals.testimonial;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,9 @@ public class TestimonialDAL {
         public static final String DESIGNATION = "designation";
         public static final String CATEGORY = "category";
         public static final String ATTACHMENT = "attachment";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
+
     };
 
     @Autowired
@@ -47,7 +51,9 @@ public class TestimonialDAL {
                         Columns.DESCRIPTION,
                         Columns.PROFFESION,
                         Columns.DESIGNATION,
-                        Columns.CATEGORY)
+                        Columns.CATEGORY,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -73,6 +79,8 @@ public class TestimonialDAL {
         parameters.put(Columns.PROFFESION, testimonial.getProfession());
         parameters.put(Columns.DESIGNATION, testimonial.getDesignation());
         parameters.put(Columns.CATEGORY, testimonial.getCategory().name());
+        parameters.put(Columns.USER_ID, testimonial.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertTestimonial.executeAndReturnKey(parameters);
         Testimonial t = findById(newId.intValue());
         return t;
@@ -92,6 +100,8 @@ public class TestimonialDAL {
                 + Columns.PROFFESION + " = ?, "
                 + Columns.DESIGNATION + " = ?, "
                 + Columns.CATEGORY + " = ?, "
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ?,"
                 + Columns.ATTACHMENT + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         System.out.println("THIS IS TESTINOMIAL DAL" + path);
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
@@ -100,14 +110,18 @@ public class TestimonialDAL {
             testimonial.getProfession(),
             testimonial.getDesignation(),
             testimonial.getCategory().name(),
+            testimonial.getUserId(),
+            new Date(),
             testimonial.getId()}
         );
         testimonial = findById(testimonial.getId());
         return testimonial;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }

@@ -1,5 +1,6 @@
 package com.vsquaresystem.safedeals.salaryrange;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ public class SalaryRangeDAL {
         public static final String MIN_SALARY = "min_salary";
         public static final String MAX_SALARY = "max_salary";
         public static final String DESCRIPTION = "description";
+        public static final String USER_ID = "user_id";
+        public static final String LAST_UPDATED_TIME_STAMP = "last_updated_time_stamp";
     };
 
     @Autowired
@@ -33,7 +36,9 @@ public class SalaryRangeDAL {
                 .usingColumns(
                         Columns.MIN_SALARY,
                         Columns.MAX_SALARY,
-                        Columns.DESCRIPTION)
+                        Columns.DESCRIPTION,
+                        Columns.USER_ID,
+                        Columns.LAST_UPDATED_TIME_STAMP)
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
@@ -58,6 +63,8 @@ public class SalaryRangeDAL {
         parameters.put(Columns.MIN_SALARY, salaryrange.getMinSalary());
         parameters.put(Columns.MAX_SALARY, salaryrange.getMaxSalary());
         parameters.put(Columns.DESCRIPTION, salaryrange.getDescription());
+        parameters.put(Columns.USER_ID, salaryrange.getUserId());
+        parameters.put(Columns.LAST_UPDATED_TIME_STAMP, new Date());
         Number newId = insertSalaryRange.executeAndReturnKey(parameters);
         return findById(newId.intValue());
     }
@@ -66,19 +73,26 @@ public class SalaryRangeDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.MIN_SALARY + " = ?,"
                 + Columns.MAX_SALARY + " = ?,"
-                + Columns.DESCRIPTION + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.DESCRIPTION + " = ?,"
+                + Columns.USER_ID + " = ?,"
+                + Columns.LAST_UPDATED_TIME_STAMP
+                + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
             salaryrange.getMinSalary(),
             salaryrange.getMaxSalary(),
             salaryrange.getDescription(),
+            salaryrange.getUserId(),
+            new Date(),
             salaryrange.getId()
         });
         salaryrange = findById(salaryrange.getId());
         return salaryrange;
     }
 
-    public void delete(Integer id) {
-        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? WHERE " + Columns.ID + " = ?";
-        jdbcTemplate.update(sqlQuery, new Object[]{true, id});
+    public void delete(Integer id, Integer userId) {
+        String sqlQuery = "UPDATE " + TABLE_NAME + " SET deleted = ? ,"
+                + Columns.USER_ID + " = ? ,"
+                + Columns.LAST_UPDATED_TIME_STAMP + " = ? WHERE " + Columns.ID + " = ?";
+        jdbcTemplate.update(sqlQuery, new Object[]{true, userId, new Date(), id});
     }
 }
