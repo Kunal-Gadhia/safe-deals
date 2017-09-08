@@ -858,7 +858,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }).$promise;
             };
             $scope.searchRoad = function (searchTerm) {
-                console.log("Hello");
                 return RoadService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
@@ -1071,53 +1070,843 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
         })
         .controller('ProjectPhotoController', function (restRoot, FileUploader, $scope, $stateParams, $state) {
-            $scope.enableSaveButton = false;
+//            $scope.enableSaveButton = false;
             $scope.goBack = function () {
                 $state.go('admin.masters_project', {}, {'reload': true});
             };
-            var uploader = $scope.fileUploader = new FileUploader({
-                url: restRoot + '/project/' + $stateParams.projectId + '/attachment',
-                autoUpload: true,
-                alias: 'attachment'
-            });
-            uploader.onBeforeUploadItem = function (item) {
-                $scope.uploadInProgress = true;
-                $scope.uploadSuccess = false;
-                console.log("before upload item:", item);
-                console.log("uploader", uploader);
-            };
-            uploader.onErrorItem = function ($scope) {
-                $scope.uploadFailed = true;
-                $scope.uploadInProgress = false;
-                $scope.uploadSuccess = false;
+            $scope.selectView = function (document) {
+                console.log("Document View :%O", document);
+                if (document === "MUTATION_COPY") {
+                    console.log("Inside Mutation Copy");
+                    $scope.showMutation = true;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    ///////////////////////////////////
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
 //                    $state.go('.', {}, {'reload': true});
-                console.log("upload error");
+                        console.log("upload error");
 //                $scope.refreshRawMarketPrice();
-            };
-            uploader.onCompleteItem = function ($scope, response, status) {
-                console.log("Status :%O", status);
-                if (status === 200) {
-                    console.log("Coming to 200 ??");
-                    $scope.uploadInProgress = false;
-                    $scope.uploadFailed = false;
-                    $scope.uploadSuccess = true;
-                    $scope.enableSaveButton = true;
-                    console.log("In Progress :" + $scope.uploadInProgress);
-                    console.log("Failed :" + $scope.uploadFailed);
-                    console.log("Success :" + $scope.uploadSuccess);
-                    console.log("Save Button :" + $scope.enableSaveButton);
-                } else if (status === 500)
-                {
-                    $scope.uploadInProgress = false;
-                    $scope.uploadFailed = false;
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
 //                    $scope.uploadWarning = true;
-                } else {
-                    console.log("Coming to else??");
-                    $scope.uploadInProgress = false;
-                    $scope.uploadFailed = true;
-                }
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                    ///////////////////////////////////
+                } else if (document === "SALE_DEED") {
+                    console.log("Inside Sale Deed");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = true;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/sale_deed/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "DEVELOPMENT_AGREEMENT") {
+                    console.log("Inside Develpment AGreement");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = true;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/development_agreement/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
 
-                console.log("upload completion", response);
+                } else if (document === "POWER_OF_AUTHORITY") {
+                    console.log("Inside Power Of Authority");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = true;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/power_of_authority/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "TAX_RECEIPT") {
+                    console.log("Inside Tax Receipt");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = true;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/tax_receipt/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "LAYOUT_SANCTION") {
+                    console.log("Inside Layout Sanction");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = true;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/layout_sanction/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "DEVELOPMENT_PLAN") {
+                    console.log("Inside Development Plan");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = true;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/development_plan/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "RELEASE_LETTER") {
+                    console.log("Inside Release Lette");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = true;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/release_letter/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "BUILDING_SANCTION") {
+                    console.log("Inside Building Sanction");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = true;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/building_sanction/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "COMPLETION_CERTIFICATE") {
+                    console.log("Inside Completion Certificate");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = true;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/completion_certificate/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                    
+                } else if (document === "OCCUPANCY_CERTIFICATE") {
+                    console.log("Inside Occupancy Certificate");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = true;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/occupancy_certificate/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "BIRD_EYE_VIEW") {
+                    console.log("Inside Bird Eye View");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = true;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/bird_eye_view/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "ELEVATION") {
+                    console.log("Inside Elevation");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = true;
+                    $scope.showFloorPlan = false;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/elevation/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                } else if (document === "FLOOR_PLAN") {
+                    console.log("Inside Floor Plan");
+                    $scope.showMutation = false;
+                    $scope.showSaleDeed = false;
+                    $scope.showDevelopmentAgreement = false;
+                    $scope.showPowerOfAuthority = false;
+                    $scope.showTaxReceipt = false;
+                    $scope.showLayoutSanction = false;
+                    $scope.showDevelopmentPlan = false;
+                    $scope.showReleaseLetter = false;
+                    $scope.showBuildingSanction = false;
+                    $scope.showCompletionCertificate = false;
+                    $scope.showOccupancyCertificate = false;
+                    $scope.showBirdEyeView = false;
+                    $scope.showElevation = false;
+                    $scope.showFloorPlan = true;
+                    var uploader = $scope.fileUploader = new FileUploader({
+                        url: restRoot + '/project/' + $stateParams.projectId + '/floor_plan/attachment',
+                        autoUpload: true,
+                        alias: 'attachment'
+                    });
+                    uploader.onBeforeUploadItem = function (item) {
+                        $scope.uploadInProgress = true;
+                        $scope.uploadSuccess = false;
+                        console.log("before upload item:", item);
+                        console.log("uploader", uploader);
+                    };
+                    uploader.onErrorItem = function ($scope) {
+                        $scope.uploadFailed = true;
+                        $scope.uploadInProgress = false;
+                        $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                        console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+                    };
+                    uploader.onCompleteItem = function ($scope, response, status) {
+                        console.log("Status :%O", status);
+                        if (status === 200) {
+                            console.log("Coming to 200 ??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+                            $scope.uploadSuccess = true;
+                            $scope.enableSaveButton = true;
+                            console.log("In Progress :" + $scope.uploadInProgress);
+                            console.log("Failed :" + $scope.uploadFailed);
+                            console.log("Success :" + $scope.uploadSuccess);
+                            console.log("Save Button :" + $scope.enableSaveButton);
+                        } else if (status === 500)
+                        {
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                        } else {
+                            console.log("Coming to else??");
+                            $scope.uploadInProgress = false;
+                            $scope.uploadFailed = true;
+                        }
+                        console.log("upload completion", response);
+                    };
+                }
             };
         })
         .controller('ProjectInfoController', function (LocationService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, ProjectService, CityService, StateService, $scope, $stateParams, $state) {
@@ -1181,7 +1970,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
         })
         .controller('ProjectDeleteController', function (ProjectService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = ProjectService.get({'id': $stateParams.projectId});
-
             $scope.deleteProject = function (project) {
                 project.$delete(function () {
                     $state.go('admin.masters_project', null, {'reload': true});

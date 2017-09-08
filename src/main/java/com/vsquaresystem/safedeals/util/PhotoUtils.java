@@ -162,34 +162,34 @@ public class PhotoUtils {
     }
 
     public File getProjectMutationCopyPhotoFile(Project project) throws IOException {
-        File projectMutationCopyDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_MUTATION_COPY, project.getId(), true);
+        File projectMutationCopyDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT, project.getId(), true);
         return new File(projectMutationCopyDir, PHOTO_FILE_NAME);
     }
 
     /////////////////////////////////////////////// sale deed
     
-    public File getProjectSaleDeedPhoto(Project project) throws FileNotFoundException, IOException {
-        if (project.getSaleDeed() != null) {
-            PHOTO_FILE_NAME = project.getSaleDeed().get(0).toString();
-        }
-        File photoFile = getProjectSaleDeedPhoto(project);
-        return photoFile;
-    }
-
-    public File setProjectSaleDeedPhoto(
-            InputStream inputStream,
-            Project project)
-            throws IOException {
-
-        File photoFile = getProjectSaleDeedPhotoFile(project);
-        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
-        return photoFile;
-    }
-
-    public File getProjectSaleDeedPhotoFile(Project project) throws IOException {
-        File projectSaleDeedDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_SALE_DEED, project.getId(), true);
-        return new File(projectSaleDeedDir, PHOTO_FILE_NAME);
-    }
+//    public File getProjectSaleDeedPhoto(Project project) throws FileNotFoundException, IOException {
+//        if (project.getSaleDeed() != null) {
+//            PHOTO_FILE_NAME = project.getSaleDeed().get(0).toString();
+//        }
+//        File photoFile = getProjectSaleDeedPhoto(project);
+//        return photoFile;
+//    }
+//
+//    public File setProjectSaleDeedPhoto(
+//            InputStream inputStream,
+//            Project project)
+//            throws IOException {
+//
+//        File photoFile = getProjectSaleDeedPhotoFile(project);
+//        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
+//        return photoFile;
+//    }
+//
+//    public File getProjectSaleDeedPhotoFile(Project project) throws IOException {
+//        File projectSaleDeedDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_SALE_DEED, project.getId(), true);
+//        return new File(projectSaleDeedDir, PHOTO_FILE_NAME);
+//    }
 
     ///////////////////////////////////////////////
     public File getImagePhoto(Image image) throws FileNotFoundException, IOException {

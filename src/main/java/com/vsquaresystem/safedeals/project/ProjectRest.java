@@ -81,6 +81,123 @@ public class ProjectRest {
         return projectService.insertMutationCopyAttachments(id, attachment);
     }
 
+    @RequestMapping(value = "/{id}/sale_deed/attachment", method = RequestMethod.POST)
+    public Project uploadSaleDeedAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertSaledeedAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/development_agreement/attachment", method = RequestMethod.POST)
+    public Project uploadDevelopmentAgreementAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertDevelopmentAgreementAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/power_of_authority/attachment", method = RequestMethod.POST)
+    public Project uploadPowerOfAuthorityAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertPowerOfAuthorityAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/tax_receipt/attachment", method = RequestMethod.POST)
+    public Project uploadTaxReceiptAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertTaxReceiptAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/layout_sanction/attachment", method = RequestMethod.POST)
+    public Project uploadLayoutSanctionAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertLayoutSanctionAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/development_plan/attachment", method = RequestMethod.POST)
+    public Project uploadDevelopmentPlanAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertDevelopmentPlanAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/release_letter/attachment", method = RequestMethod.POST)
+    public Project uploadReleaseLetterAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertReleaseLetterAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/building_sanction/attachment", method = RequestMethod.POST)
+    public Project uploadBuildingSanctionAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertBuildingSanctionAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/completion_certificate/attachment", method = RequestMethod.POST)
+    public Project uploadCompletionCertificateAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertCompletionCertificateAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/occupancy_certificate/attachment", method = RequestMethod.POST)
+    public Project uploadOccupancyCertificateAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertOccupancyCertificateAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/bird_eye_view/attachment", method = RequestMethod.POST)
+    public Project uploadBirdEyeViewAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertBirdEyeViewAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/elevation/attachment", method = RequestMethod.POST)
+    public Project uploadElevationAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertElevationAttachments(id, attachment);
+    }
+
+    @RequestMapping(value = "/{id}/floor_plan/attachment", method = RequestMethod.POST)
+    public Project uploadFloorPlanAttachment(
+            @PathVariable Integer id,
+            @RequestParam MultipartFile attachment
+    ) throws IOException {
+        System.out.println("MULTIPART ATTACHMENT LOGGER in Sale Deed+++++++++++++++++" + attachment.getName());
+        return projectService.insertFloorPlanAttachments(id, attachment);
+    }
+
     @RequestMapping(value = "/{id}/attachment", method = RequestMethod.GET)
     public void getAttachment(@PathVariable Integer id, HttpServletResponse response) throws IOException {
         File photoFile = projectService.getMutationCopyPhoto(id);
