@@ -47,6 +47,20 @@ public class AttachmentUtils {
     private static final String PROPERTY_ATTACHMENT_DIR_NAME = "property";
     private static final String PROJECT_ATTACHMENT_DIR_NAME = "project";
     private static final String PROJECT_ATTACHMENT_NAME = "project";
+    private static final String MUTATION_ATTACHMENT_DIR_NAME = "mutation";
+    private static final String SALEDEED_ATTACHMENT_DIR_NAME = "sale_deed";
+    private static final String DEVELOPMENT_AGREEMENT_ATTACHMENT_DIR_NAME = "development_agreement";
+    private static final String POWER_OF_AUTHORITY_ATTACHMENT_DIR_NAME = "power_of_authority";
+    private static final String TAX_RECEIPT_ATTACHMENT_DIR_NAME = "tax_receipt";
+    private static final String LAYOUT_SANCTION_ATTACHMENT_DIR_NAME = "layout_sanction";
+    private static final String DEVELOPMENT_PLAN_ATTACHMENT_DIR_NAME = "development_plan";
+    private static final String RELEASE_LETTER_ATTACHMENT_DIR_NAME = "release_letter";
+    private static final String BUILDING_SANCTION_ATTACHMENT_DIR_NAME = "building_sanction";
+    private static final String COMPLETION_CERTIFICATE_ATTACHMENT_DIR_NAME = "completion_certificate";
+    private static final String OCCUPANCY_CERTIFICATE_ATTACHMENT_DIR_NAME = "occupancy_certificate";
+    private static final String BIRD_EYE_VIEW_ATTACHMENT_DIR_NAME = "bird_eye_view";
+    private static final String ELEVATION_ATTACHMENT_DIR_NAME = "elevation";
+    private static final String FLOOR_PLANS_ATTACHMENT_DIR_NAME = "floor_plans";
 
     public static enum AttachmentType {
 
@@ -64,9 +78,27 @@ public class AttachmentUtils {
         EVENT,
         IMAGE,
         PROPERTY,
-        PROJECT_MUTATION_COPY,
-        PROJECT_SALE_DEED
+        PROJECT,
 
+    }
+
+    public static enum DocumentType {
+
+        MUTATION_COPY,
+        SALE_DEED,
+        DEVELOPMENT_AGREEMENT,
+        POWER_OF_AUTHORITY,
+        TAX_RECEIPT,
+        LAYOUT_SANCTION,
+        DEVELOPMENT_PLAN,
+        RELEASE_LETTER,
+        BUILDING_SANCTION,
+        COMPLETION_CERTIFICATE,
+        OCCUPANCY_CERTIFICATE,
+        BIRD_EYE_VIEW,
+        ELEVATION,
+        FLOOR_PLAN,
+        OTHERS
     }
 
     public File getRootDirectory() {
@@ -239,15 +271,8 @@ public class AttachmentUtils {
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;
 
-            case PROJECT_MUTATION_COPY:
+            case PROJECT:
                 attachmentDir = new File(getAttachmentRootDirectory(), PROJECT_ATTACHMENT_DIR_NAME);
-                logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
-                break;
-                
-                //sale deed
-
-            case PROJECT_SALE_DEED:
-                attachmentDir = new File(getAttachmentRootDirectory(), PROJECT_ATTACHMENT_NAME);
                 logger.info("ATTACHMENT_BY_TYPE" + attachmentType);
                 break;
 
@@ -388,6 +413,103 @@ public class AttachmentUtils {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    public File getDirectoryByAttachmentTypeAndEntityIdAndDocumentType(AttachmentType attachmentType, DocumentType documentType, Integer entityId, Boolean view) throws IOException {
+        File documentDir = null;
+//        System.out.println("attachmentType" + attachmentType);
+//        logger.info("attachmentType", attachmentType);
+
+        switch (documentType) {
+            case MUTATION_COPY:
+                documentDir = new File(MUTATION_ATTACHMENT_DIR_NAME);
+
+                break;
+            case SALE_DEED:
+                documentDir = new File(SALEDEED_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case DEVELOPMENT_AGREEMENT:
+                documentDir = new File(DEVELOPMENT_AGREEMENT_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case POWER_OF_AUTHORITY:
+                documentDir = new File(POWER_OF_AUTHORITY_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case TAX_RECEIPT:
+                documentDir = new File(TAX_RECEIPT_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case LAYOUT_SANCTION:
+                documentDir = new File(LAYOUT_SANCTION_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case DEVELOPMENT_PLAN:
+                documentDir = new File(DEVELOPMENT_PLAN_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case RELEASE_LETTER:
+                documentDir = new File(RELEASE_LETTER_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case BUILDING_SANCTION:
+                documentDir = new File(BUILDING_SANCTION_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case COMPLETION_CERTIFICATE:
+                documentDir = new File(COMPLETION_CERTIFICATE_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case OCCUPANCY_CERTIFICATE:
+                documentDir = new File(OCCUPANCY_CERTIFICATE_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case BIRD_EYE_VIEW:
+                documentDir = new File(BIRD_EYE_VIEW_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case ELEVATION:
+                documentDir = new File(ELEVATION_ATTACHMENT_DIR_NAME);
+
+                break;
+
+            case FLOOR_PLAN:
+                documentDir = new File(FLOOR_PLANS_ATTACHMENT_DIR_NAME);
+
+                break;
+
+        }
+
+        File entityDir = new File(getDirectoryByAttachmentTypeAndEntityId(attachmentType, entityId, view), documentDir.toString());
+        if (view == true) {
+            return entityDir;
+        } else {
+            if (!entityDir.exists()) {
+                entityDir.mkdirs();
+            } else {
+                String[] items = entityDir.list();
+                for (String s : items) {
+                    File currentFile = new File(entityDir.getPath(), s);
+                    currentFile.delete();
+                }
+                entityDir.mkdirs();
+            }
+            return entityDir;
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
     /**
      *
      * @param outputFilename
@@ -420,6 +542,32 @@ public class AttachmentUtils {
         }
         return outputFile;
     }
+
+    /////////////////////////////////////////////////////////////////////////////
+    public File storeAttachmentByAttachmentTypeAndEntityIdAndDocumentType(
+            String outputFilename,
+            InputStream inputStream,
+            AttachmentType attachmentType,
+            DocumentType documentType,
+            Integer entityId,
+            Boolean isView)
+            throws FileExistsException, IOException {
+
+        File parentDir = getDirectoryByAttachmentTypeAndEntityIdAndDocumentType(attachmentType, documentType, entityId, isView);
+        //TODO sanitize the filename before using it like this.
+        //TODO also make sure the file size is within limits here
+        File outputFile = new File(parentDir, outputFilename);
+        if (outputFile.exists()) {
+            outputFile.delete();
+            FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
+//            File outputFile = new File(parentDir, outputFilename);
+        } else {
+            FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
+//            File outputFile = new File(parentDir, outputFilename);
+        }
+        return outputFile;
+    }
+    /////////////////////////////////////////////////////////////////////////////
 
     public boolean deleteAttachmentByAttachmentTypeAndEntityId(
             String filename,

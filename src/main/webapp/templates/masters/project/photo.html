@@ -5,29 +5,218 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">
-                    Select File                    
+                    Select File                
                 </h3>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class='col-sm-6'>
                         <div class='form-group'>
-                            <label ng-hide="showDetails === 'false'">Add Mutation Copy</label>
-                            <div ng-hide="showDetails === 'false'">
+                            <!--<label ng-hide="showDetails === 'false'">Add Mutation Copy</label>-->
+                            <button ng-click="selectView('MUTATION_COPY')">Add Mutation Copy</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showMutation" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
 
-                                <input type="file" name="file" uploader="fileUploader" nv-file-select="">
-                            </div>					
                         </div>
                     </div>
                 </div>
-                 <div class="row">
+                <div class="row">
                     <div class='col-sm-6'>
                         <div class='form-group'>
-                            <label ng-hide="showDetails === 'false'">Add Sale Deed</label>
-                            <div ng-hide="showDetails === 'false'">
-
-                                <input type="file" name="file" uploader="fileUploader" nv-file-select="">
-                            </div>					
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('SALE_DEED')">Add Sale Deed</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showSaleDeed" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('DEVELOPMENT_AGREEMENT')">Add Development Agreement</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showDevelopmentAgreement" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('POWER_OF_AUTHORITY')">Add Power Of Authority</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showPowerOfAuthority" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('TAX_RECEIPT')">Add Tax Receipt</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showTaxReceipt" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('LAYOUT_SANCTION')">Add Layout Sanction</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showLayoutSanction" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('DEVELOPMENT_PLAN')">Add Development Plan</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showDevelopmentPlan" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('RELEASE_LETTER')">Add Release Letter</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showReleaseLetter" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('BUILDING_SANCTION')">Add Building Sanction</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showBuildingSanction" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('COMPLETION_CERTIFICATE')">Add Completion Certificate</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showCompletionCertificate" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('OCCUPANCY_CERTIFICATE')">Add Occupancy Certificate</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showOccupancyCertificate" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('BIRD_EYE_VIEW')">Add Bird Eye View</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showBirdEyeView" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('ELEVATION')">Add Elevation</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showElevation" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class='form-group'>
+                            <!--<label ng-hide="showDetails === 'false'">Add Sale Deed</label>-->
+                            <button ng-click="selectView('FLOOR_PLAN')">Add Floor Plan</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-hide="showDetails === 'false'">                            
+                            <span>
+                                <input ng-if="showFloorPlan" type="file" name="file" uploader="fileUploader" nv-file-select="">    
+                            </span>
                         </div>
                     </div>
                 </div>
