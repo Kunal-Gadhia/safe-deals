@@ -1,0 +1,165 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveInventory(editableInventory)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-inventory-o" aria-hidden="true"></i>
+                        Inventory Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project</label>    
+                                <input class="form-control"  ng-model="projectName" readonly=""/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>No of BHK</label>
+                                <select class="form-control" ng-model="editableInventory.noOfBhk">
+                                    <option value="">Select No of BHK</option>
+                                    <!--<option ng-repeat=""></option>--> 
+                                    <option ng-repeat="propertyType in propertyTypeList" value="{{propertyType.id}}" > {{propertyType.numberOfBhk}}</option>
+                                </select>
+
+
+                                <!--<input class="form-control" placeholder="No of BHK" ng-model="editableInventory.noOfBhk"/>-->
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Property Category</label>                                                    
+                                <!--<input class="form-control" ng-model="editableProject.propertiesType">-->
+                                <input class="form-control"
+                                       placeholder="Property Category"
+                                       uib-typeahead="propertyCategory.id as propertyCategory.category for propertyCategory in searchPropertyCategory($viewValue)"
+                                       typeahead-on-select="setPropertyCategory($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingPropertyCategory" 
+                                       typeahead-no-results="noPropertyCategoryFound"                                       
+                                       ng-model="editableInventory.propertyCategoryObject.category" />
+                                <p ng-show="noPropertyCategoryFound" class="help-block text-muted">No Category Type Found</p>
+                                <p ng-show="loadingPropertyCategory" class="help-block text-muted">Loading...</p>
+                            </div>                 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Units</label>
+                                <input class="form-control" placeholder="Total Units" ng-model="editableInventory.totalUnits"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Unit No</label>
+                                <input class="form-control" placeholder="Start Unit No" ng-model="editableInventory.startUnitNo"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>End Unit No</label>
+                                <input class="form-control" placeholder="End Unit No" ng-model="editableInventory.endUnitNo"readonly=""/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Floor No</label>
+                                <input class="form-control" placeholder="Floor No" ng-model="editableInventory.floorNo"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Building Name</label>
+                                <input class="form-control" placeholder="Building Name" ng-model="editableInventory.buildingName"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price Per Sq ft</label>
+                                <input class="form-control" placeholder="Price Per Sq ft" ng-model="editableInventory.pricePerSqft"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Area</label>
+                                <input class="form-control" placeholder="Total Area" ng-model="editableInventory.totalArea"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Offered Price</label>
+                                <input class="form-control" placeholder="Offered Price" ng-model="editableInventory.offeredPrice"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>No Of Balcony</label>
+                                <input class="form-control" placeholder="No Of Balcony" ng-model="editableInventory.noOfBalcony"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>No Of Washroom</label>
+                                <input class="form-control" placeholder="No Of Washroom" ng-model="editableInventory.noOfWashroom"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Property Status</label>
+                            <div class="form-group">                                  
+                                <input type="radio" ng-model="editableProperty.isAvailable">&nbsp;&nbsp;
+                                <label>Is Available</label>
+                            </div>
+                            <div class="form-group">                                  
+                                <input type="radio" ng-model="editableProperty.isReserved">&nbsp;&nbsp;                                        
+                                <label>Is Reserved</label> 
+                            </div>
+                            <div class="form-group">                                  
+                                <input type="radio" ng-model="editableProperty.isSold">&nbsp;&nbsp;
+                                <label>Is Sold</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">                                  
+                                    <input type="checkbox" ng-model="editableProperty.openTerrace">&nbsp;&nbsp;
+                                    <label>Open Terrace</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

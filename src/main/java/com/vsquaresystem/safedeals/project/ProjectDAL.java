@@ -228,7 +228,13 @@ public class ProjectDAL {
         parameters.put(Columns.OPEN_LAND, project.getOpenLand());
         parameters.put(Columns.LATITUDE, project.getLatitude());
         parameters.put(Columns.LONGITUDE, project.getLongitude());
-        parameters.put(Columns.FEATURED_PROJECT, project.getFeaturedProject());
+
+        if (project.getFeaturedProject() == null) {
+            parameters.put(Columns.FEATURED_PROJECT, 0);
+        } else {
+            parameters.put(Columns.FEATURED_PROJECT, project.getFeaturedProject());
+        }
+
         if (project.getBus() == null) {
             parameters.put(Columns.BUS, 0);
         } else {
@@ -268,6 +274,21 @@ public class ProjectDAL {
         }
         String projectId = String.valueOf(cityName).substring(0, 3) + String.valueOf(project.getSubLocation()).substring(0, 3) + srNumber;
         parameters.put(PropertyDAL.Columns.PROJECT_ID, projectId);
+        parameters.put(Columns.MUTATION_COPY, project.getMutationCopy() == null ? "[]" : mapper.writeValueAsString(project.getMutationCopy()));
+        parameters.put(Columns.SALE_DEED, project.getSaleDeed() == null ? "[]" : mapper.writeValueAsString(project.getSaleDeed()));
+        parameters.put(Columns.DEVELOPMENT_AGREEMENT, project.getDevelopmentAgreement() == null ? "[]" : mapper.writeValueAsString(project.getDevelopmentAgreement()));
+        parameters.put(Columns.POWER_OF_AUTHORITY, project.getPowerOfAuthority() == null ? "[]" : mapper.writeValueAsString(project.getPowerOfAuthority()));
+        parameters.put(Columns.TAX_RECEIPT, project.getTaxReceipt() == null ? "[]" : mapper.writeValueAsString(project.getTaxReceipt()));
+        parameters.put(Columns.LAYOUT_SANCTION, project.getLayoutSanction() == null ? "[]" : mapper.writeValueAsString(project.getLayoutSanction()));
+        parameters.put(Columns.DEVELOPMENT_PLAN, project.getDevelopmentPlan() == null ? "[]" : mapper.writeValueAsString(project.getDevelopmentPlan()));
+        parameters.put(Columns.RELEASE_LETTER, project.getReleaseLetter() == null ? "[]" : mapper.writeValueAsString(project.getReleaseLetter()));
+        parameters.put(Columns.BUILDING_SANCTION, project.getBuildingSanction() == null ? "[]" : mapper.writeValueAsString(project.getBuildingSanction()));
+        parameters.put(Columns.COMPLETION_CERTIFICATE, project.getCompletionCertificate() == null ? "[]" : mapper.writeValueAsString(project.getCompletionCertificate()));
+        parameters.put(Columns.OCCUPANCY_CERTIFICATE, project.getOccupancyCertificate() == null ? "[]" : mapper.writeValueAsString(project.getOccupancyCertificate()));
+        parameters.put(Columns.BIRD_EYE_VIEW, project.getBirdEyeView() == null ? "[]" : mapper.writeValueAsString(project.getBirdEyeView()));
+        parameters.put(Columns.ELEVATION, project.getElevation() == null ? "[]" : mapper.writeValueAsString(project.getElevation()));
+        parameters.put(Columns.FLOOR_PLANS, project.getFloorPlans() == null ? "[]" : mapper.writeValueAsString(project.getFloorPlans()));
+        parameters.put(Columns.OTHER_IMAGES, project.getOtherImages() == null ? "[]" : mapper.writeValueAsString(project.getOtherImages()));
 
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());

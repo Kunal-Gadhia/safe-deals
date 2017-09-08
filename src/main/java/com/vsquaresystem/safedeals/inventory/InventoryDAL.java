@@ -23,9 +23,9 @@ public class InventoryDAL {
         public static final String ID = "id";
         public static final String PROJECT_ID = "project_id";
         public static final String NO_OF_BHK = "no_of_bhk";
-        public static final String PROPERTY_TYPE_ID = "property_type_id";
-        public static final String TOTAL_UNITS = "total_units";
-        public static final String UNIT_NO = "unit_no";
+        public static final String PROPERTY_CATEGORY_ID = "property_category_id";
+
+        public static final String UNIT_NO = "unit_number";
         public static final String FLOOR_NO = "floor_no";
         public static final String BUILDING_NAME = "building_name";
         public static final String PRICE_PER_SQFT = "price_per_sqft";
@@ -48,8 +48,7 @@ public class InventoryDAL {
                 .usingColumns(
                         Columns.PROJECT_ID,
                         Columns.NO_OF_BHK,
-                        Columns.PROPERTY_TYPE_ID,
-                        Columns.TOTAL_UNITS,
+                        Columns.PROPERTY_CATEGORY_ID,
                         Columns.UNIT_NO,
                         Columns.FLOOR_NO,
                         Columns.BUILDING_NAME,
@@ -80,8 +79,8 @@ public class InventoryDAL {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.PROJECT_ID, inventory.getProjectId());
         parameters.put(Columns.NO_OF_BHK, inventory.getNoOfBhk());
-        parameters.put(Columns.PROPERTY_TYPE_ID, inventory.getPropertyTypeId());
-        parameters.put(Columns.TOTAL_UNITS, inventory.getTotalUnits());
+        parameters.put(Columns.PROPERTY_CATEGORY_ID, inventory.getPropertyCategoryId());
+
         parameters.put(Columns.UNIT_NO, inventory.getUnitNo());
         parameters.put(Columns.FLOOR_NO, inventory.getFloorNo());
         parameters.put(Columns.BUILDING_NAME, inventory.getBuildingName());
@@ -119,7 +118,7 @@ public class InventoryDAL {
 //        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
 //                + Columns.PROJECT_ID + " = ?, "
 //                + Columns.NO_OF_BHK + " = ?, "
-//                + Columns.PROPERTY_TYPE_ID + " = ?, "
+//                + Columns.PROPERTY_CATEGORY_ID + " = ?, "
 //                + Columns.TOTAL_UNITS + " = ?, "
 //                + Columns.UNIT_NO + " = ?, "
 //                + Columns.FLOOR_NO + " = ?, "
@@ -159,8 +158,7 @@ public class InventoryDAL {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.PROJECT_ID + "=?, "
                 + Columns.NO_OF_BHK + "=?, "
-                + Columns.PROPERTY_TYPE_ID + "=?, "
-                + Columns.TOTAL_UNITS + "=?, "
+                + Columns.PROPERTY_CATEGORY_ID + "=?, "
                 + Columns.UNIT_NO + "=?, "
                 + Columns.FLOOR_NO + "=?, "
                 + Columns.BUILDING_NAME + "=?, "
@@ -177,9 +175,7 @@ public class InventoryDAL {
                 new Object[]{
                     inventory.getProjectId(),
                     inventory.getNoOfBhk(),
-                    inventory.getPropertyTypeId(),
-                    // Inventory.getLocationCategories() == null ? "[]" : mapper.writeValueAsString(Inventory.getLocationCategories()),
-                    inventory.getTotalUnits(),
+                    inventory.getPropertyCategoryId(),
                     inventory.getUnitNo(),
                     inventory.getFloorNo(),
                     inventory.getBuildingName(),

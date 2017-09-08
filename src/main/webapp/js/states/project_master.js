@@ -35,6 +35,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 'templateUrl': templateRoot + '/masters/project/info.html',
                 'controller': 'ProjectInfoController'
             });
+
+            $stateProvider.state('admin.masters_project.inventory', {
+                'url': '/:projectId/inventory',
+                'templateUrl': templateRoot + '/masters/project/inventory.html',
+                'controller': 'ProjectInventoryController'
+            });
         })
         .controller('ProjectListController', function (CityService, LocationService, CountryService, StateService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
             if (
@@ -81,6 +87,80 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }
                 $scope.currentOffset -= paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
+        })
+        .controller('ProjectInventoryController', function (InventoryService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
+            $scope.editableInventory = {};
+            ProjectService.get({
+                'id': $stateParams.projectId
+            }, function (projectObject) {
+                $scope.editableInventory.projectId = projectObject.id;
+                $scope.projectName = projectObject.name;
+            });
+
+            $scope.setPropertyCategory = function (propertyCategory) {
+                $scope.editableInventory.propertyCategoryObject = propertyCategory;
+                $scope.editableInventory.propertyCategoryId = propertyCategory.id;
+
+            };
+            $scope.searchPropertyCategory = function (searchTerm) {
+                return PropertyCategoryService.findByPropertyCategoryLike({
+                    'category': searchTerm
+                }).$promise;
+            };
+
+            PropertyTypeService.query(function (propertyTypeList) {
+                console.log("propertyTypeList :%O", propertyTypeList)
+                $scope.propertyTypeList = propertyTypeList;
+            });
+
+            $scope.$watch('editableInventory.totalArea', function (totalArea) {
+                console.log("totalArea : " + totalArea);
+                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {
+                    console.log("pricePerSqft :" + pricePerSqft);
+                    var offeredPrice = (pricePerSqft * totalArea);
+                    console.log("offeredPrice :" + offeredPrice);
+                    $scope.editableInventory.offeredPrice = offeredPrice;
+                });
+            });
+
+            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
+                console.log("totalUnits :" + totalUnits);
+                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
+                    console.log("startUnitNo : " + startUnitNo);
+                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
+                    console.log("endUnitNo:", endUnitNo);
+                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
+                });
+            });
+
+
+
+//            $scope.setPropertyType = function (propertyType) {
+//                $scope.editableInventory.propertyTypeObject = propertyType;
+//                $scope.editableInventory.propertyType = propertyType.id;
+//            };
+//            $scope.searchPropertyType = function (searchTerm) {
+//                return PropertyTypeService.findByNumberOfBhkLike({
+//                    'numberOfBhk': searchTerm
+//                }).$promise;
+//            };
+
+            $scope.saveInventory = function (inventory) {
+                console.log("Save ??");                
+                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
+//                    for (var j = inventory.startUnitNo; j <= inventory.endUnitNo; j++) {
+                    console.log("i " + i);
+                    inventory.unitNo = i;
+                    console.log("inventory2 :%O", inventory);
+//                    }
+                    InventoryService.save(inventory, function () {
+                        inventory.unitNo = "";
+                        $state.go('admin.masters_project', null, {'reload': true});
+                    });
+
+                }
+//               
             };
         })
         .controller('ProjectAddController', function (ProjectService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
@@ -133,10 +213,16 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 //                }
 //            };
 
-            $scope.saveProject = function (project) {
+            $scope.saveProject = function (project, $stateParams) {
                 console.log("Project :%O", project);
-                ProjectService.save(project, function () {
-                    $state.go('admin.masters_project', null, {'reload': true});
+                ProjectService.save(project, function (projectId) {
+                    console.log("projectId :%O", projectId);
+
+                    $state.go('admin.masters_project.inventory',
+                            {
+                                'projectId': projectId.id,
+                                'reload': true
+                            });
                 });
             };
             $scope.setState = function (state) {

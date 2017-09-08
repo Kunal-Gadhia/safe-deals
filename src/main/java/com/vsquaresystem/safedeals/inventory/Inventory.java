@@ -3,12 +3,11 @@ package com.vsquaresystem.safedeals.inventory;
 import java.util.Objects;
 
 public class Inventory {
-    
+
     private Integer id;
     private Integer projectId;
-    private String noOfBhk;
-    private Integer propertyTypeId;
-    private Integer totalUnits;
+    private Integer noOfBhk;
+    private Integer propertyCategoryId;
     private Integer unitNo;
     private Integer floorNo;
     private String buildingName;
@@ -38,28 +37,20 @@ public class Inventory {
         this.projectId = projectId;
     }
 
-    public String getNoOfBhk() {
+    public Integer getNoOfBhk() {
         return noOfBhk;
     }
 
-    public void setNoOfBhk(String noOfBhk) {
+    public void setNoOfBhk(Integer noOfBhk) {
         this.noOfBhk = noOfBhk;
     }
 
-    public Integer getPropertyTypeId() {
-        return propertyTypeId;
+    public Integer getPropertyCategoryId() {
+        return propertyCategoryId;
     }
 
-    public void setPropertyTypeId(Integer propertyTypeId) {
-        this.propertyTypeId = propertyTypeId;
-    }
-
-    public Integer getTotalUnits() {
-        return totalUnits;
-    }
-
-    public void setTotalUnits(Integer totalUnits) {
-        this.totalUnits = totalUnits;
+    public void setPropertyCategoryId(Integer propertyCategoryId) {
+        this.propertyCategoryId = propertyCategoryId;
     }
 
     public Integer getUnitNo() {
@@ -160,7 +151,7 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" + "id=" + id + ", projectId=" + projectId + ", noOfBhk=" + noOfBhk + ", propertyTypeId=" + propertyTypeId + ", totalUnits=" + totalUnits + ", unitNo=" + unitNo + ", floorNo=" + floorNo + ", buildingName=" + buildingName + ", pricePerSqft=" + pricePerSqft + ", totalArea=" + totalArea + ", offeredPrice=" + offeredPrice + ", noOfBalcony=" + noOfBalcony + ", noOfWashroom=" + noOfWashroom + ", openTerrace=" + openTerrace + ", isAvailable=" + isAvailable + ", isReserved=" + isReserved + ", isSold=" + isSold + '}';
+        return "Inventory{" + "id=" + id + ", projectId=" + projectId + ", noOfBhk=" + noOfBhk + ", propertyCategoryId=" + propertyCategoryId + ", unitNo=" + unitNo + ", floorNo=" + floorNo + ", buildingName=" + buildingName + ", pricePerSqft=" + pricePerSqft + ", totalArea=" + totalArea + ", offeredPrice=" + offeredPrice + ", noOfBalcony=" + noOfBalcony + ", noOfWashroom=" + noOfWashroom + ", openTerrace=" + openTerrace + ", isAvailable=" + isAvailable + ", isReserved=" + isReserved + ", isSold=" + isSold + '}';
     }
 
     @Override
@@ -169,8 +160,7 @@ public class Inventory {
         hash = 11 * hash + Objects.hashCode(this.id);
         hash = 11 * hash + Objects.hashCode(this.projectId);
         hash = 11 * hash + Objects.hashCode(this.noOfBhk);
-        hash = 11 * hash + Objects.hashCode(this.propertyTypeId);
-        hash = 11 * hash + Objects.hashCode(this.totalUnits);
+        hash = 11 * hash + Objects.hashCode(this.propertyCategoryId);
         hash = 11 * hash + Objects.hashCode(this.unitNo);
         hash = 11 * hash + Objects.hashCode(this.floorNo);
         hash = 11 * hash + Objects.hashCode(this.buildingName);
@@ -210,12 +200,10 @@ public class Inventory {
         if (!Objects.equals(this.projectId, other.projectId)) {
             return false;
         }
-        if (!Objects.equals(this.propertyTypeId, other.propertyTypeId)) {
+        if (!Objects.equals(this.propertyCategoryId, other.propertyCategoryId)) {
             return false;
         }
-        if (!Objects.equals(this.totalUnits, other.totalUnits)) {
-            return false;
-        }
+
         if (!Objects.equals(this.unitNo, other.unitNo)) {
             return false;
         }
@@ -252,6 +240,4 @@ public class Inventory {
         return true;
     }
 
-   
-    
 }
