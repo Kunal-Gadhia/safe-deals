@@ -13,18 +13,18 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Project</label>    
-                                <input class="form-control" placeholder="Project name" ng-model="editableInventory.projectId"/>
-<!--                                <input class="form-control"
+                                <label>Project Name</label>    
+                                <!--<input class="form-control" placeholder="Project name" ng-model="editableInventory.projectId"/>-->
+                                <input class="form-control"
                                        placeholder="Select Project"
-                                       uib-typeahead="project.id as project.name for road in searchProject($viewValue)"
+                                       uib-typeahead="project.id as project.name for project in searchProject($viewValue)"
                                        typeahead-on-select="setProject($item)"
                                        typeahead-editable="false"
                                        typeahead-loading="loadingProject" 
                                        typeahead-no-results="noProjectFound"                                       
                                        ng-model="editableInventory.project.name" required=""/>
                                 <p ng-show="noProjectFound" class="help-block text-muted">No Project Found</p>
-                                <p ng-show="loadingProject" class="help-block text-muted">Loading...</p>-->
+                                <p ng-show="loadingProject" class="help-block text-muted">Loading...</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -35,9 +35,6 @@
                                     <option value="1 BHK">1 BHK</option>
                                     <option value="2 BHK">2 BHK</option>
                                     <option value="3 BHK">3 BHK</option>
-                                    <option value="4 BHK">4 BHK</option>
-                                    <option value="5 BHK">5 BHK</option>
-                                    <option value="6 BHK">6 BHK</option>
                                 </select>                                
                             </div>
                         </div>
@@ -45,14 +42,30 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
+                                <label>Property Type Category</label>
+                                <input class="form-control"
+                                       placeholder="Select Property Type"
+                                       uib-typeahead="propertyCategory.id as propertyCategory.category for propertyCategory in searchPropertyCategory($viewValue)"
+                                       typeahead-on-select="setPropertyCategory($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingPropertyCategory" 
+                                       typeahead-no-results="noPropertyCategoryFound"                                       
+                                       ng-model="editableInventory.propertyCategory.category" required=""/>
+                                <p ng-show="noPropertyCategoryFound" class="help-block text-muted">No Category Found</p>
+                                <p ng-show="loadingPropertyCategory" class="help-block text-muted">Loading...</p>
+                            </div>
+                        </div> 
+<!--                        <div class="col-sm-6">
+                            <div class="form-group">
                                 <label>Property Type Id</label>
                                 <input class="form-control" placeholder="Inventory name" ng-model="editableInventory.propertyTypeId"/>
+
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Total Units</label>
-                                <input class="form-control" placeholder="Speciality" ng-model="editableInventory.totalUnits"/>
+                                <input class="form-control" placeholder="Total Units" ng-model="editableInventory.totalUnits"/>
                             </div>
                         </div>
                     </div>
@@ -60,13 +73,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Unit No</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.unitNo"/>
+                                <input class="form-control" placeholder="Unit No" ng-model="editableInventory.unitNo"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Floor No</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.floorNo"/>
+                                <input class="form-control" placeholder="Floor No" ng-model="editableInventory.floorNo"/>
                             </div>
                         </div>
                     </div>
@@ -74,13 +87,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Building Name</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.buildingName"/>
+                                <input class="form-control" placeholder="Building Name" ng-model="editableInventory.buildingName"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Price Per Sqft</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.pricePerSqft"/>
+                                <input class="form-control" placeholder="Price Per Sqft" ng-model="editableInventory.pricePerSqft"/>
                             </div>
                         </div>
                     </div>
@@ -88,13 +101,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Total Area</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.totalArea"/>
+                                <input class="form-control" placeholder="Total Area" ng-model="editableInventory.totalArea"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Offered Price</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.offeredPrice"/>
+                                <input class="form-control" placeholder="Offered Price" ng-model="editableInventory.offeredPrice"/>
                             </div>
                         </div>
                     </div>
@@ -102,37 +115,29 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>No Of Balcony</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.noOfBalcony"/>
+                                <input class="form-control" placeholder="No Of Balcony" ng-model="editableInventory.noOfBalcony"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>No Of Washroom</label>
-                                <input class="form-control" placeholder="Services" ng-model="editableInventory.noOfWashroom"/>
+                                <input class="form-control" placeholder="No Of Washroom" ng-model="editableInventory.noOfWashroom"/>
                             </div>
                         </div>
                     </div>
-                    <!--                    <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Open Terrace</label>
-                                                    <input class="form-control" placeholder="Services" ng-model="editableInventory.openTerrace"/>
-                                                </div>
-                                            </div>
-                                        </div>-->
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Property Status</label>
                             <div class="form-group">                                  
-                                <input type="radio" ng-model="editableProperty.isAvailable">&nbsp;&nbsp;
+                                <input type="checkbox" ng-model="editableProperty.isAvailable">&nbsp;&nbsp;
                                 <label>Is Available</label>
                             </div>
                             <div class="form-group">                                  
-                                <input type="radio" ng-model="editableProperty.isReserved">&nbsp;&nbsp;                                        
+                                <input type="checkbox" ng-model="editableProperty.isReserved">&nbsp;&nbsp;                                        
                                 <label>Is Reserved</label> 
                             </div>
                             <div class="form-group">                                  
-                                <input type="radio" ng-model="editableProperty.isSold">&nbsp;&nbsp;
+                                <input type="checkbox" ng-model="editableProperty.isSold">&nbsp;&nbsp;
                                 <label>Is Sold</label>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ angular.module("safedeals.states.inventory", [])
                 'controller': 'InventoryDeleteController'
             });
         })
-        
+
         .controller('InventoryListController', function (InventoryService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
@@ -32,7 +32,7 @@ angular.module("safedeals.states.inventory", [])
             } else {
                 $scope.currentOffset = new Number($stateParams.offset);
             }
-            
+
             $scope.nextOffset = $scope.currentOffset + 5;
 
             $scope.nextInventorys = InventoryService.query({
@@ -56,8 +56,8 @@ angular.module("safedeals.states.inventory", [])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        
-         .controller('InventoryAddController', function (InventoryService, LocationService, $scope, $stateParams, $state, paginationLimit) {
+
+        .controller('InventoryAddController', function (InventoryService, PropertyCategoryService, ProjectService, $scope, $state) {
             $scope.editableInventory = {};
 
             $scope.saveInventory = function (inventory) {
@@ -66,10 +66,61 @@ angular.module("safedeals.states.inventory", [])
                     $state.go('admin.masters_inventory', null, {'reload': true});
                 });
             };
+            $scope.setProject = function (project) {
+                console.log("xyz", project);
+                $scope.editableInventory.projectId = project.id;
+                $scope.editableInventory.project = project;
+                console.log("$scope.editableInventory.project ", $scope.editableInventory.project);
+            };
+            $scope.searchProject = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                console.log("State Id :%O", $scope.editableInventory.projectId);
+                return ProjectService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setPropertyCategory = function (propertyCategory) {
+                $scope.editableInventory.propertyCategoryId = propertyCategory.id;
+                $scope.editableInventory.propertyCategory = propertyCategory;
+                console.log("$scope.editableInventory.category ", $scope.editableInventory.id);
+            };
+            $scope.searchPropertyCategory = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return PropertyCategoryService.findByPropertyCategoryLike({
+                    'category': searchTerm
+                }).$promise;
+            };
         })
-        .controller('InventoryEditController', function (InventoryService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('InventoryEditController', function (InventoryService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
             $scope.editableInventory = InventoryService.get({'id': $stateParams.inventoryId});
-            
+
+            $scope.setProject = function (project) {
+                console.log("xyz", project);
+                $scope.editableInventory.projectId = project.id;
+                $scope.editableInventory.project = project;
+                console.log("$scope.editableInventory.project ", $scope.editableInventory.project);
+            };
+            $scope.searchProject = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                console.log("State Id :%O", $scope.editableInventory.projectId);
+                return ProjectService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.setPropertyCategory = function (propertyCategory) {
+                $scope.editableInventory.propertyCategoryId = propertyCategory.id;
+                $scope.editableInventory.propertyCategory = propertyCategory;
+                console.log("$scope.editableInventory.category ", $scope.editableInventory.id);
+            };
+            $scope.searchPropertyCategory = function (searchTerm) {
+                console.log("Search Term :%O", searchTerm);
+                return PropertyCategoryService.findByPropertyCategoryLike({
+                    'category': searchTerm
+                }).$promise;
+            };
+
             $scope.saveInventory = function (inventory) {
                 console.log("Edit ??");
                 inventory.$save(function () {
