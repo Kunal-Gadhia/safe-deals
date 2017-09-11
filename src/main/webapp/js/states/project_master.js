@@ -109,27 +109,20 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }).$promise;
             };
 
-            PropertyTypeService.query(function (propertyTypeList) {
-                console.log("propertyTypeList :%O", propertyTypeList)
+            PropertyTypeService.query(function (propertyTypeList) {                
                 $scope.propertyTypeList = propertyTypeList;
             });
 
-            $scope.$watch('editableInventory.totalArea', function (totalArea) {
-                console.log("totalArea : " + totalArea);
-                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {
-                    console.log("pricePerSqft :" + pricePerSqft);
-                    var offeredPrice = (pricePerSqft * totalArea);
-                    console.log("offeredPrice :" + offeredPrice);
+            $scope.$watch('editableInventory.totalArea', function (totalArea) {                
+                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {                    
+                    var offeredPrice = (pricePerSqft * totalArea);                    
                     $scope.editableInventory.offeredPrice = offeredPrice;
                 });
             });
 
-            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
-                console.log("totalUnits :" + totalUnits);
-                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
-                    console.log("startUnitNo : " + startUnitNo);
-                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-                    console.log("endUnitNo:", endUnitNo);
+            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {                
+                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {                    
+                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));                    
                     $scope.editableInventory.endUnitNo = endUnitNo - 1;
                 });
             });
@@ -147,21 +140,33 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 //            };
 
             $scope.saveInventory = function (inventory) {
-                console.log("Save ??");                
+
                 for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
-//                    for (var j = inventory.startUnitNo; j <= inventory.endUnitNo; j++) {
-                    console.log("i " + i);
-                    inventory.unitNo = i;
-                    console.log("inventory2 :%O", inventory);
-//                    }
-                    InventoryService.save(inventory, function () {
-                        inventory.unitNo = "";
+                    var tempObject = {};
+                    tempObject.projectId = inventory.projectId;
+                    tempObject.noOfBhk = inventory.noOfBhk;
+                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
+                    tempObject.unitNo = i.toString();
+                    tempObject.floorNo = inventory.floorNo;
+                    tempObject.buildingName = inventory.buildingName;
+                    tempObject.pricePerSqft = inventory.pricePerSqft;
+                    tempObject.totalArea = inventory.totalArea;
+                    tempObject.offeredPrice = inventory.offeredPrice;
+                    tempObject.noOfBalcony = inventory.noOfBalcony;
+                    tempObject.noOfWashroom = inventory.noOfWashroom;
+                    tempObject.openTerrace = inventory.openTerrace;
+                    tempObject.isAvailable = true;
+                    tempObject.isReserved = false;
+                    tempObject.isSold = false;
+
+                    InventoryService.save(tempObject, function () {
                         $state.go('admin.masters_project', null, {'reload': true});
                     });
 
                 }
-//               
+
             };
+
         })
         .controller('ProjectAddController', function (ProjectService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = {};
@@ -1669,7 +1674,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         }
                         console.log("upload completion", response);
                     };
-                    
+
                 } else if (document === "OCCUPANCY_CERTIFICATE") {
                     console.log("Inside Occupancy Certificate");
                     $scope.showMutation = false;

@@ -22,7 +22,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             });
         })
 
-        .controller('PropertyController', function ($scope, $location, $state, $filter, PriceRangeService, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('PropertyController', function ($scope, $anchorScroll, $location, $state, $filter, PriceRangeService, LocationService, PropertyService, PropertyTypeService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             $scope.gotoTop = function () {
                 $location.hash('top');
                 $anchorScroll();
