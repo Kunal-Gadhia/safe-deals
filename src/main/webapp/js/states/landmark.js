@@ -22,7 +22,7 @@ angular.module("safedeals.states.landmark", [])
             });
         })
 
-        .controller('LandmarkListController', function (LandmarkService,LocationService,CityService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('LandmarkListController', function (LandmarkService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -42,15 +42,15 @@ angular.module("safedeals.states.landmark", [])
             $scope.landmarks = LandmarkService.query({
                 'offset': $scope.currentOffset
             }, function (landmark) {
-                angular.forEach($scope.landmarks, function(landmarks){
-                    if (landmarks.cityId !== null){
-                        landmarks.cityId = CityService.get({
+                angular.forEach($scope.landmarks, function (landmarks) {
+                    if (landmarks.cityId !== null) {
+                        landmarks.city = CityService.get({
                             'id': landmarks.cityId
                         });
                     }
-                    if (landmarks.locationId !== null){
+                    if (landmarks.locationId !== null) {
                         landmarks.location = LocationService.get({
-                            'id' : landmarks.locationId
+                            'id': landmarks.locationId
                         });
                     }
                 });
@@ -116,7 +116,16 @@ angular.module("safedeals.states.landmark", [])
 
         })
         .controller('LandmarkEditController', function (LandmarkService, CityService, LocationService, $scope, $stateParams, $state) {
-            $scope.editableLandmark = LandmarkService.get({'id': $stateParams.landmarkId});
+            $scope.editableLandmark = LandmarkService.get({
+                'id': $stateParams.landmarkId
+            }, function () {
+                $scope.editableLandmark.city = CityService.get({
+                    id: $scope.editableLandmark.cityId
+                });
+                $scope.editableLandmark.location = LocationService.get({
+                    id: $scope.editableLandmark.locationId
+                });
+            });
 
             $scope.saveLandmark = function (landmark) {
                 console.log("Edit ??");

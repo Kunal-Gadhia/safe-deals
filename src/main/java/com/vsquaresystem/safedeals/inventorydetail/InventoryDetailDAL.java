@@ -77,6 +77,11 @@ public class InventoryDetailDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ? ";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(InventoryDetail.class));
     }
+    
+    public List<InventoryDetail> findByInventoryHeadId(Integer inventoryHeadId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.INVENTORY_HEAD_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{inventoryHeadId}, new BeanPropertyRowMapper<>(InventoryDetail.class));
+    }
 
     public InventoryDetail findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
