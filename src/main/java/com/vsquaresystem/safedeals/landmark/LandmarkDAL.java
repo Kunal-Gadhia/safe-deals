@@ -73,7 +73,7 @@ public class LandmarkDAL {
                 + Columns.LATITUDE + "=?, "
                 + Columns.LONGITUDE + "=?, "
                 + Columns.ID + " = ?";
-        Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
+        jdbcTemplate.update(sqlQuery, new Object[]{
             landmark.getName(),
             landmark.getCityId(),
             landmark.getLocationId(),
