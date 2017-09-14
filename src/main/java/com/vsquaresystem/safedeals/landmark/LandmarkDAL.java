@@ -55,7 +55,7 @@ public class LandmarkDAL {
     public Landmark insert(Landmark landmark) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, landmark.getName());
-        parameters.put(Columns.CITY_ID, landmark.getLocationId());
+        parameters.put(Columns.CITY_ID, landmark.getCityId());
         parameters.put(Columns.LOCATION_ID, landmark.getLocationId());
         parameters.put(Columns.LATITUDE, landmark.getLatitude());
         parameters.put(Columns.LONGITUDE, landmark.getLongitude());
