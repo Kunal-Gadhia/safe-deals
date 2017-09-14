@@ -66,6 +66,7 @@ angular.module("safedeals", [
     'safedeals.services.inventory_head',
     'safedeals.services.inventory_detail',
     'safedeals.services.property_category',
+    'safedeals.services.landmark',
     // directive services
     'safedeals.services.bank_addition',
     // include controllers and states
@@ -128,6 +129,7 @@ angular.module("safedeals", [
     'safedeals.states.property_category',
     'safedeals.states.auth',
     'safedeals.states.inventory',
+    'safedeals.states.landmark',
     //portal states
     'safedeals.states.bank_portal',
     'safedeals.states.franchise_portal',
