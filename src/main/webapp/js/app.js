@@ -63,6 +63,8 @@ angular.module("safedeals", [
     'safedeals.services.unit',
     'safedeals.services.price_range',
     'safedeals.services.inventory',
+    'safedeals.services.inventory_head',
+    'safedeals.services.inventory_detail',
     'safedeals.services.property_category',
     // directive services
     'safedeals.services.bank_addition',

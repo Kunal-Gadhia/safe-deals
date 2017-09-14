@@ -6,7 +6,16 @@
 angular.module("safedeals.services.inventory_detail", []);
 angular.module("safedeals.services.inventory_detail")
         .factory('InventoryDetailService', function ($resource, restRoot) {
-            return $resource(restRoot + '/inventory_detail/:id', {'id': '@id'});
+            return $resource(restRoot + '/inventory_detail/:id', {'id': '@id'},{
+                'findByInventoryHeadId': {
+                    'method': 'GET',
+                    'url': restRoot + '/inventory_detail/find/inventoryHeadId',
+                    'params': {
+                        'inventoryHeadId': '@inventoryHeadId'
+                    },
+                    'isArray': true
+                }
+            });
         });
 
 

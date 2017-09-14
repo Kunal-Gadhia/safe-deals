@@ -32,6 +32,11 @@ public class InventoryDetailRest {
         return inventoryDetailDAL.findAll(offset);
     }
 
+    @RequestMapping(value = "/find/inventoryHeadId", method = RequestMethod.GET)
+    public List<InventoryDetail> findByInventoryHeadId(@RequestParam("inventoryHeadId") Integer inventoryHeadId) {
+        return inventoryDetailDAL.findByInventoryHeadId(inventoryHeadId);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public InventoryDetail findById(@PathVariable("id") Integer id) {
         return inventoryDetailDAL.findById(id);
