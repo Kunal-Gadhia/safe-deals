@@ -179,6 +179,7 @@
         <script src="${pageContext.request.contextPath}/js/states/inventory.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/property_category.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/landmark.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/society_maintainance.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/branch_service.js"></script>
@@ -231,6 +232,7 @@
         <script src="${pageContext.request.contextPath}/js/services/inventory.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/property_category_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/landmark_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/society_maintainance_service.js"></script>
 
     </head>
     <body>
