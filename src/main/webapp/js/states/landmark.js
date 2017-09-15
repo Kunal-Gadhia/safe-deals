@@ -11,7 +11,7 @@ angular.module("safedeals.states.landmark", [])
                 'controller': 'LandmarkAddController'
             });
             $stateProvider.state('admin.masters_landmark.edit', {
-                'url': '/landmarkId/edit',
+                'url': '/:landmarkId/edit',
                 'templateUrl': templateRoot + '/masters/landmark/form.html',
                 'controller': 'LandmarkEditController'
             });
@@ -69,7 +69,7 @@ angular.module("safedeals.states.landmark", [])
             };
         })
 
-        .controller('LandmarkAddController', function (LandmarkService, CityService, LocationService, $scope, $state) {
+        .controller('LandmarkAddController', function (LandmarkService, CityService, LocationService, $stateParams, $scope, $state) {
             $scope.editableLandmark = {};
 
             $scope.saveLandmark = function (landmark) {
@@ -80,7 +80,6 @@ angular.module("safedeals.states.landmark", [])
             };
 
             $scope.setCity = function (city) {
-                console.log("xyz", city);
                 $scope.editableLandmark.cityId = city.id;
                 $scope.editableLandmark.city = city;
                 console.log("$scope.editableLandmark.city ", $scope.editableLandmark.city);
@@ -98,8 +97,8 @@ angular.module("safedeals.states.landmark", [])
                 }).$promise;
             };
             $scope.searchLocations = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
-                console.log("City Id :%O", $scope.editableLandmark.cityId);
+//                console.log("Search Term :%O", searchTerm);
+//                console.log("City Id :%O", $scope.editableLandmark.cityId);
                 if ($scope.editableLandmark.cityId === undefined) {
                     console.log("Coming to if ??");
                     return LocationService.findByNameLike({
@@ -116,23 +115,28 @@ angular.module("safedeals.states.landmark", [])
 
         })
         .controller('LandmarkEditController', function (LandmarkService, CityService, LocationService, $scope, $stateParams, $state) {
+            console.log("are we here?");
             $scope.editableLandmark = LandmarkService.get({
                 'id': $stateParams.landmarkId
             }, function () {
-                $scope.editableLandmark.city = CityService.get({
-                    id: $scope.editableLandmark.cityId
-                });
-                $scope.editableLandmark.location = LocationService.get({
-                    id: $scope.editableLandmark.locationId
-                });
+                console.log("$scope.editableLandmark", $scope.editableLandmark);
+                if ($scope.editableLandmark.cityId !== null) {
+                    CityService.get({
+                        'id': $scope.editableLandmark.cityId
+                    }, function (city) {
+                        console.log("location :%O", city);
+                        $scope.editableLandmark.city = city;
+                    });
+                }
+                if ($scope.editableLandmark.locationId !== null) {
+                    LocationService.get({
+                        'id': $scope.editableLandmark.locationId
+                    }, function (location) {
+                        console.log("location :%O", location);
+                        $scope.editableLandmark.location = location;
+                    });
+                }
             });
-
-            $scope.saveLandmark = function (landmark) {
-                console.log("Edit ??");
-                landmark.$save(function () {
-                    $state.go('admin.masters_landmark', null, {'reload': true});
-                });
-            };
 
             $scope.setCity = function (city) {
                 console.log("xyz", city);
@@ -166,6 +170,14 @@ angular.module("safedeals.states.landmark", [])
                         'cityId': $scope.editableLandmark.cityId
                     }).$promise;
                 }
+            };
+
+            $scope.saveLandmark = function (landmark) {
+                console.log("Edit ??");
+                landmark.$save(landmark, function () {
+                    $state.go('admin.masters_landmark', null, {'reload': true});
+                    console.log("save ??");
+                });
             };
         })
         .controller('LandmarkDeleteController', function (LandmarkService, $scope, $stateParams, $state) {
