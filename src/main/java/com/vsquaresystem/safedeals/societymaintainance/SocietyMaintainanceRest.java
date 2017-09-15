@@ -38,6 +38,11 @@ public class SocietyMaintainanceRest {
         return societyMaintainanceDAL.findById(id);
     }
 
+    @RequestMapping(value = "/find/maintenance_name_like", method = RequestMethod.GET)
+    public List<SocietyMaintainance> findByNameLike(@RequestParam("maintainanceName") String maintainanceName) {
+        return societyMaintainanceDAL.findByNameLike(maintainanceName);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public SocietyMaintainance insert(@RequestBody SocietyMaintainance societyMaintainance) throws JsonProcessingException {
         return societyMaintainanceDAL.insert(societyMaintainance);

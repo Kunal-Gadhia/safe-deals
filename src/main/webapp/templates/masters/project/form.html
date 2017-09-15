@@ -265,7 +265,7 @@
                                     </div>
                                 </div>  
                                 <div class="form-group col-sm-4">   
-                                    
+
                                     <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
                                 </div>
                             </div>
@@ -674,37 +674,54 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="row">
-                                    
+                                <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Number Of Balcony</label>
-                                            <input type="number" class="form-control" ng-model="editableProject.balconyCount" required="">
+                                            <label>Society Maintenance</label>
+                                            <input class="form-control"
+                                                   placeholder="Select Society Maintenance"
+                                                   uib-typeahead="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
+                                                   typeahead-on-select="setWorkplaces($item)"
+                                                   typeahead-editable="false"
+                                                   typeahead-loading="loadingWorkplaces" 
+                                                   typeahead-no-results="noWorkplacesFound"                                       
+                                                   ng-model="workplaces" />
+                                            <p ng-show="noWorkplacesFound" class="help-block text-muted">No Workplaces Found</p>
+                                            <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-                                </div>-->
-<!--                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Number Of Toilets</label>
-                                            <input type="number" class="form-control" ng-model="editableProject.toiletCount" required="">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 locations">
-                                        <div class="form-group top_margin">
-                                            <div class="col-md-6">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" ng-model="editableProject.openTerrace" required=""><b>Open Terrace</b>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" ng-model="editableProject.openLand" required=""><b>Open Land</b>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
+                                </div>
+                                <!--                                <div class="row">
+                                                                    
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label>Number Of Balcony</label>
+                                                                            <input type="number" class="form-control" ng-model="editableProject.balconyCount" required="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+                                <!--                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label>Number Of Toilets</label>
+                                                                            <input type="number" class="form-control" ng-model="editableProject.toiletCount" required="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 locations">
+                                                                        <div class="form-group top_margin">
+                                                                            <div class="col-md-6">
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" ng-model="editableProject.openTerrace" required=""><b>Open Terrace</b>
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" ng-model="editableProject.openLand" required=""><b>Open Land</b>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
                                 <!--                                    <div class="row">
                                                                         <div class="col-sm-6">
                                                                             <div class="form-group">

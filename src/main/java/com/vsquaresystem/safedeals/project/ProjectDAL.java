@@ -107,6 +107,9 @@ public class ProjectDAL {
         public static final String BRICK_WORK = "brick_work";
         public static final String PLASTERING = "plastering";
         public static final String FINISHING_WORK = "finishing_work";
+        public static final String SOCIETY_MAINTENANCE = "society_maintenance";
+        public static final String SOCIETY_MAINTENANCE_AMOUNT = "society_maintenance_amount";
+        public static final String SOCIETY_MAINTENANCE_DURATION = "society_maintenance_duration";
     }
 
     @Autowired
@@ -180,7 +183,10 @@ public class ProjectDAL {
                         Columns.EACH_SLAB,
                         Columns.BRICK_WORK,
                         Columns.PLASTERING,
-                        Columns.FINISHING_WORK
+                        Columns.FINISHING_WORK,
+                        Columns.SOCIETY_MAINTENANCE,
+                        Columns.SOCIETY_MAINTENANCE_AMOUNT,
+                        Columns.SOCIETY_MAINTENANCE_DURATION
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -311,6 +317,9 @@ public class ProjectDAL {
         parameters.put(Columns.BRICK_WORK, project.getBrickWork());
         parameters.put(Columns.PLASTERING, project.getPlastering());
         parameters.put(Columns.FINISHING_WORK, project.getFinishingWork());
+        parameters.put(Columns.SOCIETY_MAINTENANCE, project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()));
+        parameters.put(Columns.SOCIETY_MAINTENANCE_AMOUNT, project.getSocietyMaintenanceAmount());
+        parameters.put(Columns.SOCIETY_MAINTENANCE_DURATION, project.getSocietyMaintenanceDuration());
 
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());
@@ -393,7 +402,10 @@ public class ProjectDAL {
                 + Columns.EACH_SLAB + " =?,"
                 + Columns.BRICK_WORK + " =?,"
                 + Columns.PLASTERING + " =?,"
-                + Columns.FINISHING_WORK + " =? WHERE "
+                + Columns.FINISHING_WORK + " =?,"
+                + Columns.SOCIETY_MAINTENANCE + " =?,"
+                + Columns.SOCIETY_MAINTENANCE_AMOUNT + " =?,"
+                + Columns.SOCIETY_MAINTENANCE_DURATION + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -463,7 +475,11 @@ public class ProjectDAL {
             project.getBrickWork(),
             project.getPlastering(),
             project.getFinishingWork(),
-            project.getId()});
+            project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()),
+            project.getSocietyMaintenanceAmount(),
+            project.getSocietyMaintenanceDuration(),
+            project.getId()}
+        );
         project = findById(project.getId());
         return project;
     }
@@ -771,6 +787,20 @@ public class ProjectDAL {
             project.setBrickWork(rs.getDouble(Columns.BRICK_WORK));
             project.setPlastering(rs.getDouble(Columns.PLASTERING));
             project.setFinishingWork(rs.getDouble(Columns.FINISHING_WORK));
+
+            String societyMaintenanceList = rs.getString(Columns.SOCIETY_MAINTENANCE);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> societyMaintenance = mapper.readValue(societyMaintenanceList, new TypeReference<List<Integer>>() {
+                });
+                project.setSocietyMaintenance(societyMaintenance);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing workplacesList: '" + societyMaintenanceList + "' ", ex);
+            }
+
+            project.setSocietyMaintenanceAmount(rs.getDouble(Columns.SOCIETY_MAINTENANCE_AMOUNT));
+            project.setSocietyMaintenanceDuration(rs.getDouble(Columns.SOCIETY_MAINTENANCE_DURATION));
+
             return project;
         }
 //
