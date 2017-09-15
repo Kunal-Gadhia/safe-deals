@@ -58,7 +58,7 @@ public class ProjectDAL {
         public static final String OFFERED_PRICE = "offered_price";
         public static final String DISCOUNT = "discount";
         public static final String OFFER_VALID_TILL = "offer_valid_till";
-        public static final String PAYMENT_SCHEDULE = "payment_schedule";
+        //       public static final String PAYMENT_SCHEDULE = "payment_schedule";
         public static final String WORKPLACES = "workplaces";
         public static final String BASIC_AMENITIES = "basic_amenities";
         public static final String LUXURY_AMENITIES = "luxury_amenities";
@@ -100,6 +100,16 @@ public class ProjectDAL {
         public static final String FLOOR_PLANS = "floor_plans";
         public static final String OTHER_IMAGES = "other_images";
 
+        public static final String BOOKING_AMOUNT = "booking_amount";
+        public static final String START_OF_CONSTRUCTION = "start_of_construction";
+        public static final String COMPLETION_OF_PLINTH = "completion_of_plinth";
+        public static final String EACH_SLAB = "each_slab";
+        public static final String BRICK_WORK = "brick_work";
+        public static final String PLASTERING = "plastering";
+        public static final String FINISHING_WORK = "finishing_work";
+        public static final String SOCIETY_MAINTENANCE = "society_maintenance";
+        public static final String SOCIETY_MAINTENANCE_AMOUNT = "society_maintenance_amount";
+        public static final String SOCIETY_MAINTENANCE_DURATION = "society_maintenance_duration";
     }
 
     @Autowired
@@ -127,7 +137,7 @@ public class ProjectDAL {
                         Columns.OFFERED_PRICE,
                         Columns.DISCOUNT,
                         Columns.OFFER_VALID_TILL,
-                        Columns.PAYMENT_SCHEDULE,
+                        //                        Columns.PAYMENT_SCHEDULE,
                         Columns.WORKPLACES,
                         Columns.BASIC_AMENITIES,
                         Columns.LUXURY_AMENITIES,
@@ -166,7 +176,17 @@ public class ProjectDAL {
                         Columns.BIRD_EYE_VIEW,
                         Columns.ELEVATION,
                         Columns.FLOOR_PLANS,
-                        Columns.OTHER_IMAGES
+                        Columns.OTHER_IMAGES,
+                        Columns.BOOKING_AMOUNT,
+                        Columns.START_OF_CONSTRUCTION,
+                        Columns.COMPLETION_OF_PLINTH,
+                        Columns.EACH_SLAB,
+                        Columns.BRICK_WORK,
+                        Columns.PLASTERING,
+                        Columns.FINISHING_WORK,
+                        Columns.SOCIETY_MAINTENANCE,
+                        Columns.SOCIETY_MAINTENANCE_AMOUNT,
+                        Columns.SOCIETY_MAINTENANCE_DURATION
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -211,7 +231,7 @@ public class ProjectDAL {
         parameters.put(Columns.OFFERED_PRICE, project.getOfferedPrice());
         parameters.put(Columns.DISCOUNT, project.getDiscount());
         parameters.put(Columns.OFFER_VALID_TILL, project.getOfferValidTill());
-        parameters.put(Columns.PAYMENT_SCHEDULE, project.getPaymentSchedule());
+//        parameters.put(Columns.PAYMENT_SCHEDULE, project.getPaymentSchedule());
         parameters.put(Columns.WORKPLACES, project.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(project.getWorkplaces()));
         parameters.put(Columns.BASIC_AMENITIES, project.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(project.getBasicAmenities()));
         parameters.put(Columns.LUXURY_AMENITIES, project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()));
@@ -290,6 +310,17 @@ public class ProjectDAL {
         parameters.put(Columns.FLOOR_PLANS, project.getFloorPlans() == null ? "[]" : mapper.writeValueAsString(project.getFloorPlans()));
         parameters.put(Columns.OTHER_IMAGES, project.getOtherImages() == null ? "[]" : mapper.writeValueAsString(project.getOtherImages()));
 
+        parameters.put(Columns.BOOKING_AMOUNT, project.getBookingAmount());
+        parameters.put(Columns.START_OF_CONSTRUCTION, project.getStartOfConstruction());
+        parameters.put(Columns.COMPLETION_OF_PLINTH, project.getCompletionOfPlinth());
+        parameters.put(Columns.EACH_SLAB, project.getEachSlab());
+        parameters.put(Columns.BRICK_WORK, project.getBrickWork());
+        parameters.put(Columns.PLASTERING, project.getPlastering());
+        parameters.put(Columns.FINISHING_WORK, project.getFinishingWork());
+        parameters.put(Columns.SOCIETY_MAINTENANCE, project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()));
+        parameters.put(Columns.SOCIETY_MAINTENANCE_AMOUNT, project.getSocietyMaintenanceAmount());
+        parameters.put(Columns.SOCIETY_MAINTENANCE_DURATION, project.getSocietyMaintenanceDuration());
+
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());
         return project;
@@ -325,7 +356,7 @@ public class ProjectDAL {
                 + Columns.OFFERED_PRICE + " =?,"
                 + Columns.DISCOUNT + " =?,"
                 + Columns.OFFER_VALID_TILL + " =?,"
-                + Columns.PAYMENT_SCHEDULE + " =?,"
+                //                + Columns.PAYMENT_SCHEDULE + " =?,"
                 + Columns.WORKPLACES + " =?,"
                 + Columns.BASIC_AMENITIES + " =?,"
                 + Columns.LUXURY_AMENITIES + " =?,"
@@ -364,7 +395,17 @@ public class ProjectDAL {
                 + Columns.BIRD_EYE_VIEW + " =?,"
                 + Columns.ELEVATION + " =?,"
                 + Columns.FLOOR_PLANS + " =?,"
-                + Columns.OTHER_IMAGES + " =? WHERE "
+                + Columns.OTHER_IMAGES + " =?,"
+                + Columns.BOOKING_AMOUNT + " =?,"
+                + Columns.START_OF_CONSTRUCTION + " =?,"
+                + Columns.COMPLETION_OF_PLINTH + " =?,"
+                + Columns.EACH_SLAB + " =?,"
+                + Columns.BRICK_WORK + " =?,"
+                + Columns.PLASTERING + " =?,"
+                + Columns.FINISHING_WORK + " =?,"
+                + Columns.SOCIETY_MAINTENANCE + " =?,"
+                + Columns.SOCIETY_MAINTENANCE_AMOUNT + " =?,"
+                + Columns.SOCIETY_MAINTENANCE_DURATION + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -386,7 +427,7 @@ public class ProjectDAL {
             project.getOfferedPrice(),
             project.getDiscount(),
             project.getOfferValidTill(),
-            project.getPaymentSchedule(),
+            //            project.getPaymentSchedule(),
             project.getWorkplaces() == null ? "[]" : mapper.writeValueAsString(project.getWorkplaces()),
             project.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(project.getBasicAmenities()),
             project.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(project.getLuxuryAmenities()),
@@ -427,7 +468,18 @@ public class ProjectDAL {
             project.getElevation() == null ? "[]" : mapper.writeValueAsString(project.getElevation()),
             project.getFloorPlans() == null ? "[]" : mapper.writeValueAsString(project.getFloorPlans()),
             project.getOtherImages() == null ? "[]" : mapper.writeValueAsString(project.getOtherImages()),
-            project.getId()});
+            project.getBookingAmount(),
+            project.getStartOfConstruction(),
+            project.getCompletionOfPlinth(),
+            project.getEachSlab(),
+            project.getBrickWork(),
+            project.getPlastering(),
+            project.getFinishingWork(),
+            project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()),
+            project.getSocietyMaintenanceAmount(),
+            project.getSocietyMaintenanceDuration(),
+            project.getId()}
+        );
         project = findById(project.getId());
         return project;
     }
@@ -503,7 +555,7 @@ public class ProjectDAL {
             project.setOfferedPrice(rs.getDouble(Columns.OFFERED_PRICE));
             project.setDiscount(rs.getDouble(Columns.DISCOUNT));
             project.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
-            project.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
+//            project.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
             String workplacesList = rs.getString(Columns.WORKPLACES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
@@ -727,6 +779,28 @@ public class ProjectDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing otherImagesList: '" + otherImagesList + "' ", ex);
             }
+
+            project.setBookingAmount(rs.getDouble(Columns.BOOKING_AMOUNT));
+            project.setStartOfConstruction(rs.getDouble(Columns.START_OF_CONSTRUCTION));
+            project.setCompletionOfPlinth(rs.getDouble(Columns.COMPLETION_OF_PLINTH));
+            project.setEachSlab(rs.getDouble(Columns.EACH_SLAB));
+            project.setBrickWork(rs.getDouble(Columns.BRICK_WORK));
+            project.setPlastering(rs.getDouble(Columns.PLASTERING));
+            project.setFinishingWork(rs.getDouble(Columns.FINISHING_WORK));
+
+            String societyMaintenanceList = rs.getString(Columns.SOCIETY_MAINTENANCE);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> societyMaintenance = mapper.readValue(societyMaintenanceList, new TypeReference<List<Integer>>() {
+                });
+                project.setSocietyMaintenance(societyMaintenance);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing workplacesList: '" + societyMaintenanceList + "' ", ex);
+            }
+
+            project.setSocietyMaintenanceAmount(rs.getDouble(Columns.SOCIETY_MAINTENANCE_AMOUNT));
+            project.setSocietyMaintenanceDuration(rs.getDouble(Columns.SOCIETY_MAINTENANCE_DURATION));
+
             return project;
         }
 //

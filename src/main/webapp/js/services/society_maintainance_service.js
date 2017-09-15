@@ -8,7 +8,16 @@
 angular.module("safedeals.services.society_maintainance", []);
 angular.module("safedeals.services.society_maintainance")
         .factory('SocietyMaintainanceService', function ($resource, restRoot) {
-            return $resource(restRoot + '/society_maintainance/:id', {'id': '@id'});
+            return $resource(restRoot + '/society_maintainance/:id', {'id': '@id'}, {
+                'findByNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/society_maintainance/find/maintenance_name_like',
+                    'params': {
+                        'maintainanceName': '@maintainanceName'
+                    },
+                    'isArray': true
+                }
+            });
         });
 
 

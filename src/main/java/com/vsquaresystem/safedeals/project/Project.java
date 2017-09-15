@@ -26,7 +26,7 @@ public class Project {
     private Double offeredPrice;
     private Double discount;
     private Date offerValidTill;
-    private String paymentSchedule;
+//    private String paymentSchedule;
     private List<Integer> workplaces;
     private List<Integer> basicAmenities;
     private List<Integer> luxuryAmenities;
@@ -66,6 +66,16 @@ public class Project {
     private List<String> elevation;
     private List<String> floorPlans;
     private List<String> otherImages;
+    private Double bookingAmount;
+    private Double startOfConstruction;
+    private Double completionOfPlinth;
+    private Double eachSlab;
+    private Double brickWork;
+    private Double plastering;
+    private Double finishingWork;
+    private List<Integer> societyMaintenance;
+    private Double societyMaintenanceAmount;
+    private Double societyMaintenanceDuration;
 
     public Integer getId() {
         return id;
@@ -225,14 +235,6 @@ public class Project {
 
     public void setOfferValidTill(Date offerValidTill) {
         this.offerValidTill = offerValidTill;
-    }
-
-    public String getPaymentSchedule() {
-        return paymentSchedule;
-    }
-
-    public void setPaymentSchedule(String paymentSchedule) {
-        this.paymentSchedule = paymentSchedule;
     }
 
     public List<Integer> getWorkplaces() {
@@ -547,69 +549,163 @@ public class Project {
         this.otherImages = otherImages;
     }
 
+    public Double getBookingAmount() {
+        return bookingAmount;
+    }
+
+    public void setBookingAmount(Double bookingAmount) {
+        this.bookingAmount = bookingAmount;
+    }
+
+    public Double getStartOfConstruction() {
+        return startOfConstruction;
+    }
+
+    public void setStartOfConstruction(Double startOfConstruction) {
+        this.startOfConstruction = startOfConstruction;
+    }
+
+    public Double getCompletionOfPlinth() {
+        return completionOfPlinth;
+    }
+
+    public void setCompletionOfPlinth(Double completionOfPlinth) {
+        this.completionOfPlinth = completionOfPlinth;
+    }
+
+    public Double getEachSlab() {
+        return eachSlab;
+    }
+
+    public void setEachSlab(Double eachSlab) {
+        this.eachSlab = eachSlab;
+    }
+
+    public Double getBrickWork() {
+        return brickWork;
+    }
+
+    public void setBrickWork(Double brickWork) {
+        this.brickWork = brickWork;
+    }
+
+    public Double getPlastering() {
+        return plastering;
+    }
+
+    public void setPlastering(Double plastering) {
+        this.plastering = plastering;
+    }
+
+    public Double getFinishingWork() {
+        return finishingWork;
+    }
+
+    public void setFinishingWork(Double finishingWork) {
+        this.finishingWork = finishingWork;
+    }
+
+    public List<Integer> getSocietyMaintenance() {
+        return societyMaintenance;
+    }
+
+    public void setSocietyMaintenance(List<Integer> societyMaintenance) {
+        this.societyMaintenance = societyMaintenance;
+    }
+
+    public Double getSocietyMaintenanceAmount() {
+        return societyMaintenanceAmount;
+    }
+
+    public void setSocietyMaintenanceAmount(Double societyMaintenanceAmount) {
+        this.societyMaintenanceAmount = societyMaintenanceAmount;
+    }
+
+    public Double getSocietyMaintenanceDuration() {
+        return societyMaintenanceDuration;
+    }
+
+    public void setSocietyMaintenanceDuration(Double societyMaintenanceDuration) {
+        this.societyMaintenanceDuration = societyMaintenanceDuration;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProject=" + featuredProject + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + ", totalArea=" + totalArea + ", mutationCopy=" + mutationCopy + ", saleDeed=" + saleDeed + ", developmentAgreement=" + developmentAgreement + ", powerOfAuthority=" + powerOfAuthority + ", taxReceipt=" + taxReceipt + ", layoutSanction=" + layoutSanction + ", developmentPlan=" + developmentPlan + ", releaseLetter=" + releaseLetter + ", buildingSanction=" + buildingSanction + ", completionCertificate=" + completionCertificate + ", occupancyCertificate=" + occupancyCertificate + ", birdEyeView=" + birdEyeView + ", elevation=" + elevation + ", floorPlans=" + floorPlans + ", otherImages=" + otherImages + ", bookingAmount=" + bookingAmount + ", startOfConstruction=" + startOfConstruction + ", completionOfPlinth=" + completionOfPlinth + ", eachSlab=" + eachSlab + ", brickWork=" + brickWork + ", plastering=" + plastering + ", finishingWork=" + finishingWork + ", societyMaintenance=" + societyMaintenance + ", societyMaintenanceAmount=" + societyMaintenanceAmount + ", societyMaintenanceDuration=" + societyMaintenanceDuration + '}';
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
-        hash = 13 * hash + Objects.hashCode(this.projectId);
-        hash = 13 * hash + Objects.hashCode(this.name);
-        hash = 13 * hash + Objects.hashCode(this.stateId);
-        hash = 13 * hash + Objects.hashCode(this.cityId);
-        hash = 13 * hash + Objects.hashCode(this.locationId);
-        hash = 13 * hash + Objects.hashCode(this.subLocation);
-        hash = 13 * hash + Objects.hashCode(this.projectType);
-        hash = 13 * hash + Objects.hashCode(this.projectScale);
-        hash = 13 * hash + Objects.hashCode(this.propertiesType);
-        hash = 13 * hash + Objects.hashCode(this.bookingStartDate);
-        hash = 13 * hash + Objects.hashCode(this.constructionStage);
-        hash = 13 * hash + Objects.hashCode(this.completionDate);
-        hash = 13 * hash + Objects.hashCode(this.totalBuildings);
-        hash = 13 * hash + Objects.hashCode(this.totalFloors);
-        hash = 13 * hash + Objects.hashCode(this.totalUnits);
-        hash = 13 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 13 * hash + Objects.hashCode(this.offeredPrice);
-        hash = 13 * hash + Objects.hashCode(this.discount);
-        hash = 13 * hash + Objects.hashCode(this.offerValidTill);
-        hash = 13 * hash + Objects.hashCode(this.paymentSchedule);
-        hash = 13 * hash + Objects.hashCode(this.workplaces);
-        hash = 13 * hash + Objects.hashCode(this.basicAmenities);
-        hash = 13 * hash + Objects.hashCode(this.luxuryAmenities);
-        hash = 13 * hash + Objects.hashCode(this.approvedBanks);
-        hash = 13 * hash + Objects.hashCode(this.sdVerified);
-        hash = 13 * hash + Objects.hashCode(this.privateAmenities);
-        hash = 13 * hash + Objects.hashCode(this.projectTestimonial);
-        hash = 13 * hash + Objects.hashCode(this.salableArea);
-        hash = 13 * hash + Objects.hashCode(this.carpetArea);
-        hash = 13 * hash + Objects.hashCode(this.buildUpArea);
-        hash = 13 * hash + Objects.hashCode(this.balconyCount);
-        hash = 13 * hash + Objects.hashCode(this.toiletCount);
-        hash = 13 * hash + Objects.hashCode(this.openTerrace);
-        hash = 13 * hash + Objects.hashCode(this.openLand);
-        hash = 13 * hash + Objects.hashCode(this.latitude);
-        hash = 13 * hash + Objects.hashCode(this.longitude);
-        hash = 13 * hash + Objects.hashCode(this.featuredProject);
-        hash = 13 * hash + Objects.hashCode(this.bus);
-        hash = 13 * hash + Objects.hashCode(this.auto);
-        hash = 13 * hash + Objects.hashCode(this.taxi);
-        hash = 13 * hash + Objects.hashCode(this.metro);
-        hash = 13 * hash + Objects.hashCode(this.distance);
-        hash = 13 * hash + Objects.hashCode(this.unit);
-        hash = 13 * hash + Objects.hashCode(this.totalArea);
-        hash = 13 * hash + Objects.hashCode(this.mutationCopy);
-        hash = 13 * hash + Objects.hashCode(this.saleDeed);
-        hash = 13 * hash + Objects.hashCode(this.developmentAgreement);
-        hash = 13 * hash + Objects.hashCode(this.powerOfAuthority);
-        hash = 13 * hash + Objects.hashCode(this.taxReceipt);
-        hash = 13 * hash + Objects.hashCode(this.layoutSanction);
-        hash = 13 * hash + Objects.hashCode(this.developmentPlan);
-        hash = 13 * hash + Objects.hashCode(this.releaseLetter);
-        hash = 13 * hash + Objects.hashCode(this.buildingSanction);
-        hash = 13 * hash + Objects.hashCode(this.completionCertificate);
-        hash = 13 * hash + Objects.hashCode(this.occupancyCertificate);
-        hash = 13 * hash + Objects.hashCode(this.birdEyeView);
-        hash = 13 * hash + Objects.hashCode(this.elevation);
-        hash = 13 * hash + Objects.hashCode(this.floorPlans);
-        hash = 13 * hash + Objects.hashCode(this.otherImages);
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.projectId);
+        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.stateId);
+        hash = 31 * hash + Objects.hashCode(this.cityId);
+        hash = 31 * hash + Objects.hashCode(this.locationId);
+        hash = 31 * hash + Objects.hashCode(this.subLocation);
+        hash = 31 * hash + Objects.hashCode(this.projectType);
+        hash = 31 * hash + Objects.hashCode(this.projectScale);
+        hash = 31 * hash + Objects.hashCode(this.propertiesType);
+        hash = 31 * hash + Objects.hashCode(this.bookingStartDate);
+        hash = 31 * hash + Objects.hashCode(this.constructionStage);
+        hash = 31 * hash + Objects.hashCode(this.completionDate);
+        hash = 31 * hash + Objects.hashCode(this.totalBuildings);
+        hash = 31 * hash + Objects.hashCode(this.totalFloors);
+        hash = 31 * hash + Objects.hashCode(this.totalUnits);
+        hash = 31 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 31 * hash + Objects.hashCode(this.offeredPrice);
+        hash = 31 * hash + Objects.hashCode(this.discount);
+        hash = 31 * hash + Objects.hashCode(this.offerValidTill);
+        hash = 31 * hash + Objects.hashCode(this.workplaces);
+        hash = 31 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 31 * hash + Objects.hashCode(this.luxuryAmenities);
+        hash = 31 * hash + Objects.hashCode(this.approvedBanks);
+        hash = 31 * hash + Objects.hashCode(this.sdVerified);
+        hash = 31 * hash + Objects.hashCode(this.privateAmenities);
+        hash = 31 * hash + Objects.hashCode(this.projectTestimonial);
+        hash = 31 * hash + Objects.hashCode(this.salableArea);
+        hash = 31 * hash + Objects.hashCode(this.carpetArea);
+        hash = 31 * hash + Objects.hashCode(this.buildUpArea);
+        hash = 31 * hash + Objects.hashCode(this.balconyCount);
+        hash = 31 * hash + Objects.hashCode(this.toiletCount);
+        hash = 31 * hash + Objects.hashCode(this.openTerrace);
+        hash = 31 * hash + Objects.hashCode(this.openLand);
+        hash = 31 * hash + Objects.hashCode(this.latitude);
+        hash = 31 * hash + Objects.hashCode(this.longitude);
+        hash = 31 * hash + Objects.hashCode(this.featuredProject);
+        hash = 31 * hash + Objects.hashCode(this.bus);
+        hash = 31 * hash + Objects.hashCode(this.auto);
+        hash = 31 * hash + Objects.hashCode(this.taxi);
+        hash = 31 * hash + Objects.hashCode(this.metro);
+        hash = 31 * hash + Objects.hashCode(this.distance);
+        hash = 31 * hash + Objects.hashCode(this.unit);
+        hash = 31 * hash + Objects.hashCode(this.totalArea);
+        hash = 31 * hash + Objects.hashCode(this.mutationCopy);
+        hash = 31 * hash + Objects.hashCode(this.saleDeed);
+        hash = 31 * hash + Objects.hashCode(this.developmentAgreement);
+        hash = 31 * hash + Objects.hashCode(this.powerOfAuthority);
+        hash = 31 * hash + Objects.hashCode(this.taxReceipt);
+        hash = 31 * hash + Objects.hashCode(this.layoutSanction);
+        hash = 31 * hash + Objects.hashCode(this.developmentPlan);
+        hash = 31 * hash + Objects.hashCode(this.releaseLetter);
+        hash = 31 * hash + Objects.hashCode(this.buildingSanction);
+        hash = 31 * hash + Objects.hashCode(this.completionCertificate);
+        hash = 31 * hash + Objects.hashCode(this.occupancyCertificate);
+        hash = 31 * hash + Objects.hashCode(this.birdEyeView);
+        hash = 31 * hash + Objects.hashCode(this.elevation);
+        hash = 31 * hash + Objects.hashCode(this.floorPlans);
+        hash = 31 * hash + Objects.hashCode(this.otherImages);
+        hash = 31 * hash + Objects.hashCode(this.bookingAmount);
+        hash = 31 * hash + Objects.hashCode(this.startOfConstruction);
+        hash = 31 * hash + Objects.hashCode(this.completionOfPlinth);
+        hash = 31 * hash + Objects.hashCode(this.eachSlab);
+        hash = 31 * hash + Objects.hashCode(this.brickWork);
+        hash = 31 * hash + Objects.hashCode(this.plastering);
+        hash = 31 * hash + Objects.hashCode(this.finishingWork);
+        hash = 31 * hash + Objects.hashCode(this.societyMaintenance);
+        hash = 31 * hash + Objects.hashCode(this.societyMaintenanceAmount);
+        hash = 31 * hash + Objects.hashCode(this.societyMaintenanceDuration);
         return hash;
     }
 
@@ -680,9 +776,6 @@ public class Project {
             return false;
         }
         if (!Objects.equals(this.offerValidTill, other.offerValidTill)) {
-            return false;
-        }
-        if (!Objects.equals(this.paymentSchedule, other.paymentSchedule)) {
             return false;
         }
         if (!Objects.equals(this.workplaces, other.workplaces)) {
@@ -802,13 +895,37 @@ public class Project {
         if (!Objects.equals(this.otherImages, other.otherImages)) {
             return false;
         }
+        if (!Objects.equals(this.bookingAmount, other.bookingAmount)) {
+            return false;
+        }
+        if (!Objects.equals(this.startOfConstruction, other.startOfConstruction)) {
+            return false;
+        }
+        if (!Objects.equals(this.completionOfPlinth, other.completionOfPlinth)) {
+            return false;
+        }
+        if (!Objects.equals(this.eachSlab, other.eachSlab)) {
+            return false;
+        }
+        if (!Objects.equals(this.brickWork, other.brickWork)) {
+            return false;
+        }
+        if (!Objects.equals(this.plastering, other.plastering)) {
+            return false;
+        }
+        if (!Objects.equals(this.finishingWork, other.finishingWork)) {
+            return false;
+        }
+        if (!Objects.equals(this.societyMaintenance, other.societyMaintenance)) {
+            return false;
+        }
+        if (!Objects.equals(this.societyMaintenanceAmount, other.societyMaintenanceAmount)) {
+            return false;
+        }
+        if (!Objects.equals(this.societyMaintenanceDuration, other.societyMaintenanceDuration)) {
+            return false;
+        }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", paymentSchedule=" + paymentSchedule + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProject=" + featuredProject + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + ", totalArea=" + totalArea + ", mutationCopy=" + mutationCopy + ", saleDeed=" + saleDeed + ", developmentAgreement=" + developmentAgreement + ", powerOfAuthority=" + powerOfAuthority + ", taxReceipt=" + taxReceipt + ", layoutSanction=" + layoutSanction + ", developmentPlan=" + developmentPlan + ", releaseLetter=" + releaseLetter + ", buildingSanction=" + buildingSanction + ", completionCertificate=" + completionCertificate + ", occupancyCertificate=" + occupancyCertificate + ", birdEyeView=" + birdEyeView + ", elevation=" + elevation + ", floorPlans=" + floorPlans + ", otherImages=" + otherImages + '}';
-    }
-
-    
+   
 }

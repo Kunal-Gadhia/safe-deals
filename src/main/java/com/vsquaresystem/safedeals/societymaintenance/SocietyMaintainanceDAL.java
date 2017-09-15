@@ -29,7 +29,7 @@ public class SocietyMaintainanceDAL {
     public static final class Columns {
 
         public static final String ID = "id";
-        public static final String MAINTAINANCE_NAME = "maintainance_name";
+        public static final String MAINTAINANCE_NAME = "maintenance_name";
         public static final String DESCRIPTION = "description";
 
     };
@@ -54,6 +54,12 @@ public class SocietyMaintainanceDAL {
     public SocietyMaintainance findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(SocietyMaintainance.class));
+    }
+
+    public List<SocietyMaintainance> findByNameLike(String maintainanceName) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(maintenance_name) LIKE?";
+        String nameLike = "%" + maintainanceName.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(SocietyMaintainance.class));
     }
 
     public SocietyMaintainance insert(SocietyMaintainance societyMaintainance) {
