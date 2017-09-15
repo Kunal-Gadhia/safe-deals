@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.societymaintainance;
+package com.vsquaresystem.safedeals.societymaintenance;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
@@ -20,41 +20,41 @@ import org.springframework.web.bind.annotation.RestController;
  * @author hp
  */
 @RestController
-@RequestMapping("/society_maintainance")
-public class SocietyMaintainanceRest {
+@RequestMapping("/society_maintenance")
+public class SocietyMaintenanceRest {
 
     @Autowired
-    private SocietyMaintainanceDAL societyMaintainanceDAL;
+    private SocietyMaintenanceDAL societyMaintenanceDAL;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<SocietyMaintainance> findAll(
+    public List<SocietyMaintenance> findAll(
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
-        return societyMaintainanceDAL.findAll(offset);
+        return societyMaintenanceDAL.findAll(offset);
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public SocietyMaintainance findById(@PathVariable("id") Integer id) {
-        return societyMaintainanceDAL.findById(id);
+    public SocietyMaintenance findById(@PathVariable("id") Integer id) {
+        return societyMaintenanceDAL.findById(id);
     }
 
     @RequestMapping(value = "/find/maintenance_name_like", method = RequestMethod.GET)
-    public List<SocietyMaintainance> findByNameLike(@RequestParam("maintainanceName") String maintainanceName) {
-        return societyMaintainanceDAL.findByNameLike(maintainanceName);
+    public List<SocietyMaintenance> findByNameLike(@RequestParam("maintenanceName") String maintenanceName) {
+        return societyMaintenanceDAL.findByNameLike(maintenanceName);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public SocietyMaintainance insert(@RequestBody SocietyMaintainance societyMaintainance) throws JsonProcessingException {
-        return societyMaintainanceDAL.insert(societyMaintainance);
+    public SocietyMaintenance insert(@RequestBody SocietyMaintenance societyMaintenance) throws JsonProcessingException {
+        return societyMaintenanceDAL.insert(societyMaintenance);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public SocietyMaintainance update(@RequestBody SocietyMaintainance societyMaintainance) throws JsonProcessingException {
-        return societyMaintainanceDAL.update(societyMaintainance);
+    public SocietyMaintenance update(@RequestBody SocietyMaintenance societyMaintenance) throws JsonProcessingException {
+        return societyMaintenanceDAL.update(societyMaintenance);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        societyMaintainanceDAL.delete(id);
+        societyMaintenanceDAL.delete(id);
     }
 }

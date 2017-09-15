@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.societymaintainance;
+package com.vsquaresystem.safedeals.societymaintenance;
 
 import java.util.Objects;
 
@@ -11,10 +11,10 @@ import java.util.Objects;
  *
  * @author hp
  */
-public class SocietyMaintainance {
+public class SocietyMaintenance {
 
     private Integer id;
-    private String maintainanceName;
+    private String maintenanceName;
     private String description;
 
     public Integer getId() {
@@ -25,12 +25,12 @@ public class SocietyMaintainance {
         this.id = id;
     }
 
-    public String getMaintainanceName() {
-        return maintainanceName;
+    public String getMaintenanceName() {
+        return maintenanceName;
     }
 
-    public void setMaintainanceName(String maintainanceName) {
-        this.maintainanceName = maintainanceName;
+    public void setMaintenanceName(String maintenanceName) {
+        this.maintenanceName = maintenanceName;
     }
 
     public String getDescription() {
@@ -43,10 +43,10 @@ public class SocietyMaintainance {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.maintainanceName);
-        hash = 31 * hash + Objects.hashCode(this.description);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.maintenanceName);
+        hash = 83 * hash + Objects.hashCode(this.description);
         return hash;
     }
 
@@ -58,11 +58,11 @@ public class SocietyMaintainance {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final SocietyMaintainance other = (SocietyMaintainance) obj;
+        final SocietyMaintenance other = (SocietyMaintenance) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.maintainanceName, other.maintainanceName)) {
+        if (!Objects.equals(this.maintenanceName, other.maintenanceName)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
@@ -73,7 +73,7 @@ public class SocietyMaintainance {
 
     @Override
     public String toString() {
-        return "SocietyMaintainance{" + "id=" + id + ", maintainanceName=" + maintainanceName + ", description=" + description + '}';
+        return "SocietyMaintenance{" + "id=" + id + ", maintenanceName=" + maintenanceName + ", description=" + description + '}';
     }
 
 }

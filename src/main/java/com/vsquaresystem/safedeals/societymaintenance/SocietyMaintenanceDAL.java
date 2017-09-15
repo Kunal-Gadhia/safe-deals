@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.societymaintainance;
+package com.vsquaresystem.safedeals.societymaintenance;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,68 +20,68 @@ import org.springframework.stereotype.Repository;
  * @author hp
  */
 @Repository
-public class SocietyMaintainanceDAL {
+public class SocietyMaintenanceDAL {
 
-    public static final String TABLE_NAME = "society_maintainance";
+    public static final String TABLE_NAME = "society_maintenance";
     private final JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert insertSocietyMaintainance;
+    private final SimpleJdbcInsert insertSocietyMaintenance;
 
     public static final class Columns {
 
         public static final String ID = "id";
-        public static final String MAINTAINANCE_NAME = "maintenance_name";
+        public static final String MAINTENANCE_NAME = "maintenance_name";
         public static final String DESCRIPTION = "description";
 
     };
 
     @Autowired
-    public SocietyMaintainanceDAL(DataSource dataSource) {
+    public SocietyMaintenanceDAL(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        insertSocietyMaintainance = new SimpleJdbcInsert(jdbcTemplate)
+        insertSocietyMaintenance = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName(TABLE_NAME)
                 .usingColumns(
-                        Columns.MAINTAINANCE_NAME,
+                        Columns.MAINTENANCE_NAME,
                         Columns.DESCRIPTION
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
-    public List<SocietyMaintainance> findAll(Integer offset) {
+    public List<SocietyMaintenance> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ?";
-        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(SocietyMaintainance.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(SocietyMaintenance.class));
     }
 
-    public SocietyMaintainance findById(Integer id) {
+    public SocietyMaintenance findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(SocietyMaintainance.class));
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(SocietyMaintenance.class));
     }
 
-    public List<SocietyMaintainance> findByNameLike(String maintainanceName) {
+    public List<SocietyMaintenance> findByNameLike(String maintenanceName) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(maintenance_name) LIKE?";
-        String nameLike = "%" + maintainanceName.toLowerCase() + "%";
-        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(SocietyMaintainance.class));
+        String nameLike = "%" + maintenanceName.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(SocietyMaintenance.class));
     }
 
-    public SocietyMaintainance insert(SocietyMaintainance societyMaintainance) {
+    public SocietyMaintenance insert(SocietyMaintenance societyMaintenance) {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Columns.MAINTAINANCE_NAME, societyMaintainance.getMaintainanceName());
-        parameters.put(Columns.DESCRIPTION, societyMaintainance.getDescription());
-        Number newId = insertSocietyMaintainance.executeAndReturnKey(parameters);
+        parameters.put(Columns.MAINTENANCE_NAME, societyMaintenance.getMaintenanceName());
+        parameters.put(Columns.DESCRIPTION, societyMaintenance.getDescription());
+        Number newId = insertSocietyMaintenance.executeAndReturnKey(parameters);
         return findById(newId.intValue());
     }
 
-    public SocietyMaintainance update(SocietyMaintainance societyMaintainance) {
+    public SocietyMaintenance update(SocietyMaintenance societyMaintenance) {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-                + Columns.MAINTAINANCE_NAME + " = ?,"
+                + Columns.MAINTENANCE_NAME + " = ?,"
                 + Columns.DESCRIPTION
                 + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery, new Object[]{
-            societyMaintainance.getMaintainanceName(),
-            societyMaintainance.getDescription(),
-            societyMaintainance.getId()
+            societyMaintenance.getMaintenanceName(),
+            societyMaintenance.getDescription(),
+            societyMaintenance.getId()
         });
-        societyMaintainance = findById(societyMaintainance.getId());
-        return societyMaintainance;
+        societyMaintenance = findById(societyMaintenance.getId());
+        return societyMaintenance;
     }
 
     public void delete(Integer id) {
