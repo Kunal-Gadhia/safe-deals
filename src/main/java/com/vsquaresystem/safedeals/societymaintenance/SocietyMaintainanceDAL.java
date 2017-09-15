@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vsquaresystem.safedeals.societymaintainance;
+package com.vsquaresystem.safedeals.societymaintenance;
 
 import java.util.HashMap;
 import java.util.List;
