@@ -8,36 +8,36 @@
             </a>
         </div>
         <div class="pull-right">
-            <a data-ui-sref="admin.masters_society_maintainance.add"
+            <a data-ui-sref="admin.masters_society_maintenance.add"
                class="btn btn-default">
                 <i class="fa fa-plus"></i>
-                Add  Society Maintainance
+                Add  Society Maintenance
             </a>
         </div>
         <div>
-            <h4> Society Maintainance Master</h4>
+            <h4> Society Maintenance Master</h4>
         </div>
     </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th class="text-right">#</th>
-                <th>Maintainance Name</th>
+                <th>Maintenance Name</th>
                 <th>Description</th>
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="societyMaintainance in societyMaintainances">
+            <tr ng-repeat="societyMaintenance in societyMaintenances">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ societyMaintainance.maintainanceName}}</td>   
-                <td>{{ societyMaintainance.description}}</td>             
+                <td>{{ societyMaintenance.maintenanceName}}</td>   
+                <td>{{ societyMaintenance.description}}</td>             
                 <td class="text-right">
-                    <a data-ui-sref="admin.masters_society_maintainance.edit({ societyMaintainanceId: societyMaintainance.id })"
+                    <a data-ui-sref="admin.masters_society_maintenance.edit({ societyMaintenanceId: societyMaintenance.id })"
                        class="btn btn-primary">					
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a data-ui-sref="admin.masters_society_maintainance.delete({ societyMaintainanceId: societyMaintainance.id })"
+                    <a data-ui-sref="admin.masters_society_maintenance.delete({ societyMaintenanceId: societyMaintenance.id })"
                        class="btn btn-danger">
                         <i class="fa fa-trash"></i>
                     </a>
@@ -57,7 +57,7 @@
             </li>
             <li>
                 <button ng-click="nextPage()"
-                        ng-disabled="societyMaintainances.length < 5 || nextSocietyMaintainances.length === 0"
+                        ng-disabled="societyMaintenances.length < 5 || nextSocietyMaintenances.length === 0"
                         class="btn btn-default">
                     Next 
                     <i class="fa fa-arrow-right"></i>

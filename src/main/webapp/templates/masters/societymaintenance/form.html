@@ -1,30 +1,30 @@
 <div class="modal modal-safedeals">
     <div class="modal-backdrop fade in"></div>
     <div class="modal-dialog">
-        <form role="form" ng-submit="saveSocietyMaintainance(editableSocietyMaintainance)">
+        <form role="form" ng-submit="saveSocietyMaintenance(editableSocietyMaintenance)">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">
                         <i class="fa fa-compass" aria-hidden="true"></i>
-                        Society Maintainance Form
+                        Society Maintenance Form
                     </h3>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label> Maintainance Name</label>
-                                <input class="form-control" placeholder="maintainance name" ng-model="editableSocietyMaintainance.maintainanceName"/>
+                                <label> Maintenance Name</label>
+                                <input class="form-control" placeholder="maintenance name" ng-model="editableSocietyMaintenance.maintenanceName"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Description</label>
-                                <input class="form-control" placeholder="description" ng-model="editableSocietyMaintainance.description"/>
+                                <input class="form-control" placeholder="description" ng-model="editableSocietyMaintenance.description"/>
                             </div>
                         </div>
                     </div>   
-                    <!--                    <div class="row" ng-show="editableSocietyMaintainance.repeatName">
+                    <!--                    <div class="row" ng-show="editableSocietyMaintenance.repeatName">
                                             <div class="col-sm-6 text-danger">
                                                 Found Records For Above Entered Name
                                             </div>
