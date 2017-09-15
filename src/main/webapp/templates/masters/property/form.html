@@ -25,13 +25,13 @@
                     <div ng-switch on="selection"> 
                         <div ng-show="myValue">  
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Name Of Building</label>
                                         <input class="form-control" placeholder="Property Name" ng-model="editableProperty.name"/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State</label>                                                    
                                         <input placeholder="Select State" class="form-control" uib-typeahead="state.id as state.name for state in searchStates($viewValue)"
@@ -43,14 +43,7 @@
                                         <p ng-show="loadingStates" class="help-block text-muted">loading...</p>                                                    
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" ng-show="editableProperty.repeatName">
-                                <div class="col-sm-6 text-danger">
-                                    Found Records For Above Entered Name
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
                                         <input class="form-control"
@@ -66,7 +59,15 @@
                                         <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                            </div>
+                            <div class="row" ng-show="editableProperty.repeatName">
+                                <div class="col-sm-4 text-danger">
+                                    Found Records For Above Entered Name
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Location</label>                                                    
                                         <input class="form-control"
@@ -76,25 +77,24 @@
                                                typeahead-editable="false"
                                                typeahead-loading="loadingLocations" 
                                                typeahead-no-results="noLocationsFound"  
-                                               ng-disabled="editableProperty.cityId"
+                                               ng-disabled="!editableProperty.cityId"
                                                ng-model="editableProperty.location.name" />
                                         <p ng-show="noLocationsFound" class="help-block text-muted">No Locations found</p>
                                         <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">     
-                                <div class="col-sm-6">
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Sub Location</label>                                                    
                                         <input class="form-control" placeholder="Enter Sub Location" ng-disabled="!editableProperty.locationId"ng-model="editableProperty.subLocation" required="required"/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Property Category</label>                                                    
                                         <select class="form-control" ng-model="editableProperty.propertyType">
-                                            <option value="">Type Of Property</option>
+                                            <option value="">Category Of Property</option>
                                             <option value="RESIDENTIAL">Residential</option>
                                             <option value="INDUSTRIAL">Industrial</option>
                                             <option value="COMMERCIAL">Commercial</option>
@@ -103,37 +103,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Number Of Bedroom</label>                                                    
-                                        <!--<input class="form-control" ng-model="editableProject.propertiesType">-->
-                                        <input class="form-control"
-                                               placeholder="Number Of Bedroom"
-                                               uib-typeahead="propertyType.id as propertyType.numberOfBhk for propertyType in searchPropertyType($viewValue)"
-                                               typeahead-on-select="setPropertyType($item)"
-                                               typeahead-editable="false"
-                                               typeahead-loading="loadingPropertyType" 
-                                               typeahead-no-results="noPropertyTypeFound"                                       
-                                               ng-model="editableProperty.propertySizeObject.numberOfBhk" />
-                                        <p ng-show="noPropertyTypeFound" class="help-block text-muted">No Property Type Found</p>
-                                        <p ng-show="loadingPropertyType" class="help-block text-muted">Loading...</p>
-                                    </div>                 
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Size (in Sq.Ft)</label>
-                                        <input type="number" min="0" step="any" class="form-control" placeholder="Enter Property Size" ng-model="editableProperty.size" />
-                                    </div>
-                                </div>
-                                <!--                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label>Expected Price</label>
-                                                                        <input type="number" min="0" step="any" class="form-control" placeholder=" Enter Expected Price" ng-model="editableProperty.priceRange" />
-                                                                    </div>
-                                                                </div>-->
-                            </div>                            
-                            <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">                                       
                                         <label>Construction Stage</label>
                                         <select class="form-control" ng-model="editableProperty.constructionStage">
@@ -143,7 +113,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div ng-show="possessionDateBox">
                                         <!--NEW DATEPICKER-->
                                         <label>Possession Date</label>
@@ -185,7 +155,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Number Of Bedroom</label>                                                    
+                                        <!--<input class="form-control" ng-model="editableProject.propertiesType">-->
+                                        <input class="form-control"
+                                               placeholder="Number Of Bedroom"
+                                               uib-typeahead="propertyType.id as propertyType.numberOfBhk for propertyType in searchPropertyType($viewValue)"
+                                               typeahead-on-select="setPropertyType($item)"
+                                               typeahead-editable="false"
+                                               typeahead-loading="loadingPropertyType" 
+                                               typeahead-no-results="noPropertyTypeFound"                                       
+                                               ng-model="editableProperty.propertySizeObject.numberOfBhk" />
+                                        <p ng-show="noPropertyTypeFound" class="help-block text-muted">No Property Type Found</p>
+                                        <p ng-show="loadingPropertyType" class="help-block text-muted">Loading...</p>
+                                    </div>                 
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Size (in Sq.Ft)</label>
+                                        <input type="number" min="0" step="any" class="form-control" placeholder="Enter Property Size" ng-model="editableProperty.size" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Floor Number</label>
                                         <input type="number" min="0" class="form-control" placeholder="Enter Floor Number" ng-model="editableProperty.floorNumber" />
@@ -195,16 +188,23 @@
                                                                             <input type="number" min="0" class="form-control" placeholder="Enter Total Floors" ng-model="editableProperty.totalFloors" />
                                                                         </div>-->
                                 </div>
-                                <div class="col-sm-6">
+                                <!--                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Expected Price</label>
+                                                                        <input type="number" min="0" step="any" class="form-control" placeholder=" Enter Expected Price" ng-model="editableProperty.priceRange" />
+                                                                    </div>
+                                                                </div>-->
+                            </div>                            
+
+                            <div class="row">
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Floors</label>
                                         <input type="number" min="0" class="form-control" placeholder="Enter Total Floors" ng-model="editableProperty.totalFloors" />
                                     </div>                                    
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 form-group">
+                                <div class="col-sm-4 form-group">
                                     <div class="form-group">
                                         <label>Entry Facing</label>                                                    
                                         <select class="form-control" ng-model="editableProperty.entryFacing">
@@ -216,7 +216,7 @@
                                         </select>
                                     </div>                                    
                                 </div>
-                                <div class="col-sm-6">                                    
+                                <div class="col-sm-4">                                    
                                     <label>Project</label>
                                     <input class="form-control"
                                            placeholder="Select Project"
@@ -325,21 +325,19 @@
                         <div ng-switch-when="Costing" class="locations">
                             <div ng-show="costing">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Offered Price</label>
                                             <input class="form-control" type="number" ng-model="editableProperty.offeredPrice">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Discounts</label>
                                             <input class="form-control" type="number" ng-model="editableProperty.discount">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <!--NEW DATEPICKER-->
                                             <label>Offer Valid Till</label>
@@ -360,15 +358,15 @@
                                                                                         </p>-->
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Payment Schedule</label>
                                             <input class="form-control" ng-model="editableProperty.paymentSchedule">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Down Payment</label>
                                             <input type="number" class="form-control" ng-model="editableProperty.downpayment">
@@ -380,7 +378,7 @@
                         <div ng-switch-when="Neighbourhood">
                             <div ng-show="neighbourhood">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Workplaces</label>
                                             <input class="form-control"
@@ -395,7 +393,7 @@
                                             <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>                                                                                                                    
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Nearby Projects</label>
                                             <input class="form-control"
@@ -412,7 +410,7 @@
                                     </div>
                                 </div>
                                 <div class="row"> 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <ul ng-repeat="workplaces in workplacesDisplay" class="left_margin">
                                             <li class="col-md-8">{{workplaces.name}}                                                     
                                             </li>
@@ -423,7 +421,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <ul ng-repeat="projectsNearby in projectsNearbyDisplay" class="left_margin">
                                             <li class="col-md-8">
                                                 {{projectsNearby.name}}                                                     
@@ -441,7 +439,7 @@
                         <div ng-switch-when="Livability">
                             <div ng-show="livability">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-5">
                                         <div class="form-group">
                                             <label>Basic Amenities</label>                                                    
                                             <input class="form-control"
@@ -456,7 +454,8 @@
                                             <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    
+                                    <div class="col-sm-5">
                                         <div class="form-group">
                                             <label>Luxury Amenities</label>
                                             <input class="form-control"
@@ -504,7 +503,7 @@
                         <div ng-switch-when="Marketability">
                             <div ng-show="marketability">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Approved Banks</label>
                                             <input class="form-control"
@@ -519,7 +518,7 @@
                                             <p ng-show="loadingApprovedBanks" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Amenities within Properties</label>
                                             <input class="form-control"
@@ -534,9 +533,19 @@
                                             <p ng-show="loadingAmenitiesWithinProject" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <!--                                                <label>SD Verified</label>
+                                                                                                                                            <input class="form-control" type="checkbox" ng-model="editableProject.discount">
+                                                                                            <input class="form-control" type="checkbox" ng-model="editableProperty.sdVerified">-->
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProperty.sdVerified"><b>SD Verified</b>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <ul ng-repeat="approvedBanks in approvedBanksDisplay" class="left_margin">
                                             <li class="col-md-8">
                                                 {{approvedBanks.name}}                                                     
@@ -548,7 +557,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <ul ng-repeat="amenitiesWithinProject in amenitiesWithinProjectDisplay" class="left_margin"> 
                                             <li class="col-md-8">
                                                 {{amenitiesWithinProject.name}}
@@ -560,19 +569,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <!--                                                <label>SD Verified</label>
-                                                                                                                                            <input class="form-control" type="checkbox" ng-model="editableProject.discount">
-                                                                                            <input class="form-control" type="checkbox" ng-model="editableProperty.sdVerified">-->
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" ng-model="editableProperty.sdVerified"><b>SD Verified</b>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6"></div>
                                 </div>
                             </div>
                         </div>
@@ -617,27 +613,26 @@
                         <div ng-switch-when="Unit Details">
                             <div ng-show="unitDetails">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Salable Area</label>
                                             <input type="number" step="any" class="form-control" ng-model="editableProperty.salableArea">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Carpet Area</label>
                                             <input type="number" step="any" class="form-control" ng-model="editableProperty.carpetArea">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
+
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Build Up Area</label>
                                             <input type="number" step="any" class="form-control" ng-model="editableProperty.buildUpArea">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Number Of Balcony</label>
                                             <input type="number" class="form-control" ng-model="editableProperty.balconyCount">
@@ -645,7 +640,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Number Of Toilets</label>
                                             <input type="number" class="form-control" ng-model="editableProperty.toiletCount">
@@ -690,13 +685,13 @@
                                                                         </div>
                                                                     </div>-->
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Latitude</label>
                                             <input class="form-control" type="number" step="any" ng-model="editableProperty.latitude" />
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Longitude</label>
                                             <input class="form-control" type="number" step="any" ng-model="editableProperty.longitude" />
