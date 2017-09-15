@@ -73,7 +73,7 @@ public class Project {
     private Double brickWork;
     private Double plastering;
     private Double finishingWork;
-    private List<Integer> societyMaintenance;
+    private List<Integer> societyMaintenances;
     private Double societyMaintenanceAmount;
     private Double societyMaintenanceDuration;
 
@@ -605,12 +605,12 @@ public class Project {
         this.finishingWork = finishingWork;
     }
 
-    public List<Integer> getSocietyMaintenance() {
-        return societyMaintenance;
+    public List<Integer> getSocietyMaintenances() {
+        return societyMaintenances;
     }
 
-    public void setSocietyMaintenance(List<Integer> societyMaintenance) {
-        this.societyMaintenance = societyMaintenance;
+    public void setSocietyMaintenances(List<Integer> societyMaintenances) {
+        this.societyMaintenances = societyMaintenances;
     }
 
     public Double getSocietyMaintenanceAmount() {
@@ -631,7 +631,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProject=" + featuredProject + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + ", totalArea=" + totalArea + ", mutationCopy=" + mutationCopy + ", saleDeed=" + saleDeed + ", developmentAgreement=" + developmentAgreement + ", powerOfAuthority=" + powerOfAuthority + ", taxReceipt=" + taxReceipt + ", layoutSanction=" + layoutSanction + ", developmentPlan=" + developmentPlan + ", releaseLetter=" + releaseLetter + ", buildingSanction=" + buildingSanction + ", completionCertificate=" + completionCertificate + ", occupancyCertificate=" + occupancyCertificate + ", birdEyeView=" + birdEyeView + ", elevation=" + elevation + ", floorPlans=" + floorPlans + ", otherImages=" + otherImages + ", bookingAmount=" + bookingAmount + ", startOfConstruction=" + startOfConstruction + ", completionOfPlinth=" + completionOfPlinth + ", eachSlab=" + eachSlab + ", brickWork=" + brickWork + ", plastering=" + plastering + ", finishingWork=" + finishingWork + ", societyMaintenance=" + societyMaintenance + ", societyMaintenanceAmount=" + societyMaintenanceAmount + ", societyMaintenanceDuration=" + societyMaintenanceDuration + '}';
+        return "Project{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", stateId=" + stateId + ", cityId=" + cityId + ", locationId=" + locationId + ", subLocation=" + subLocation + ", projectType=" + projectType + ", projectScale=" + projectScale + ", propertiesType=" + propertiesType + ", bookingStartDate=" + bookingStartDate + ", constructionStage=" + constructionStage + ", completionDate=" + completionDate + ", totalBuildings=" + totalBuildings + ", totalFloors=" + totalFloors + ", totalUnits=" + totalUnits + ", majorApproachRoad=" + majorApproachRoad + ", offeredPrice=" + offeredPrice + ", discount=" + discount + ", offerValidTill=" + offerValidTill + ", workplaces=" + workplaces + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + ", approvedBanks=" + approvedBanks + ", sdVerified=" + sdVerified + ", privateAmenities=" + privateAmenities + ", projectTestimonial=" + projectTestimonial + ", salableArea=" + salableArea + ", carpetArea=" + carpetArea + ", buildUpArea=" + buildUpArea + ", balconyCount=" + balconyCount + ", toiletCount=" + toiletCount + ", openTerrace=" + openTerrace + ", openLand=" + openLand + ", latitude=" + latitude + ", longitude=" + longitude + ", featuredProject=" + featuredProject + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", distance=" + distance + ", unit=" + unit + ", totalArea=" + totalArea + ", mutationCopy=" + mutationCopy + ", saleDeed=" + saleDeed + ", developmentAgreement=" + developmentAgreement + ", powerOfAuthority=" + powerOfAuthority + ", taxReceipt=" + taxReceipt + ", layoutSanction=" + layoutSanction + ", developmentPlan=" + developmentPlan + ", releaseLetter=" + releaseLetter + ", buildingSanction=" + buildingSanction + ", completionCertificate=" + completionCertificate + ", occupancyCertificate=" + occupancyCertificate + ", birdEyeView=" + birdEyeView + ", elevation=" + elevation + ", floorPlans=" + floorPlans + ", otherImages=" + otherImages + ", bookingAmount=" + bookingAmount + ", startOfConstruction=" + startOfConstruction + ", completionOfPlinth=" + completionOfPlinth + ", eachSlab=" + eachSlab + ", brickWork=" + brickWork + ", plastering=" + plastering + ", finishingWork=" + finishingWork + ", societyMaintenance=" + societyMaintenances + ", societyMaintenanceAmount=" + societyMaintenanceAmount + ", societyMaintenanceDuration=" + societyMaintenanceDuration + '}';
     }
 
     @Override
@@ -703,7 +703,7 @@ public class Project {
         hash = 31 * hash + Objects.hashCode(this.brickWork);
         hash = 31 * hash + Objects.hashCode(this.plastering);
         hash = 31 * hash + Objects.hashCode(this.finishingWork);
-        hash = 31 * hash + Objects.hashCode(this.societyMaintenance);
+        hash = 31 * hash + Objects.hashCode(this.societyMaintenances);
         hash = 31 * hash + Objects.hashCode(this.societyMaintenanceAmount);
         hash = 31 * hash + Objects.hashCode(this.societyMaintenanceDuration);
         return hash;
@@ -916,7 +916,7 @@ public class Project {
         if (!Objects.equals(this.finishingWork, other.finishingWork)) {
             return false;
         }
-        if (!Objects.equals(this.societyMaintenance, other.societyMaintenance)) {
+        if (!Objects.equals(this.societyMaintenances, other.societyMaintenances)) {
             return false;
         }
         if (!Objects.equals(this.societyMaintenanceAmount, other.societyMaintenanceAmount)) {

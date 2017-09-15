@@ -109,20 +109,20 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 }).$promise;
             };
 
-            PropertyTypeService.query(function (propertyTypeList) {                
+            PropertyTypeService.query(function (propertyTypeList) {
                 $scope.propertyTypeList = propertyTypeList;
             });
 
-            $scope.$watch('editableInventory.totalArea', function (totalArea) {                
-                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {                    
-                    var offeredPrice = (pricePerSqft * totalArea);                    
+            $scope.$watch('editableInventory.totalArea', function (totalArea) {
+                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {
+                    var offeredPrice = (pricePerSqft * totalArea);
                     $scope.editableInventory.offeredPrice = offeredPrice;
                 });
             });
 
-            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {                
-                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {                    
-                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));                    
+            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
+                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
+                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
                     $scope.editableInventory.endUnitNo = endUnitNo - 1;
                 });
             });
@@ -168,7 +168,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
 
         })
-        .controller('ProjectAddController', function (ProjectService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectAddController', function (ProjectService, SocietyMaintenanceService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = {};
             $scope.propertiesTypeDisplay = [];
             $scope.editableProject.propertiesType = [];
@@ -180,6 +180,10 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             $scope.editableProject.basicAmenities = [];
             $scope.luxuryAmenitiesDisplay = [];
             $scope.editableProject.luxuryAmenities = [];
+
+            $scope.societyMaintenancesDisplay = [];
+            $scope.editableProject.societyMaintenances = [];
+
             $scope.approvedBanksDisplay = [];
             $scope.editableProject.approvedBanks = [];
             $scope.amenitiesWithinProjectDisplay = [];
@@ -283,6 +287,25 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 console.log("Updated Type Display :%O", $scope.basicAmenitiesDisplay);
                 console.log("Updated %O", $scope.editableProject.basicAmenities);
             };
+
+            $scope.setSocietyMaintenances = function (societyMaintenances) {
+                console.log("xyz", societyMaintenances);
+                $scope.societyMaintenancesDisplay.push(societyMaintenances);
+                $scope.societyMaintenances = "";
+                $scope.editableProject.societyMaintenances.push(societyMaintenances.id);
+            };
+
+            $scope.removeSocietyMaintenances = function (societyMaintenances) {
+                console.log("Getting the thing :%O", societyMaintenances);
+                var index = $scope.societyMaintenancesDisplay.indexOf(societyMaintenances);
+                var index1 = $scope.editableProject.societyMaintenances.indexOf(societyMaintenances.id);
+                $scope.societyMaintenancesDisplay.splice(index, 1);
+                $scope.editableProject.societyMaintenances.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.societyMaintenancesDisplay);
+                console.log("Updated %O", $scope.editableProject.societyMaintenances);
+            };
+
+
             $scope.setLuxuryAmenities = function (luxuryAmenities) {
                 console.log("xyz", luxuryAmenities);
                 $scope.luxuryAmenitiesDisplay.push(luxuryAmenities);
@@ -387,6 +410,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             $scope.searchWorkplaces = function (searchTerm) {
                 return AmenityDetailService.findByNameLike({
                     'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.searchSocietyMaintenances = function (searchTerm) {
+                return SocietyMaintenanceService.findByNameLike({
+                    'maintenanceName': searchTerm
                 }).$promise;
             };
             $scope.searchBasicAmenities = function (searchTerm) {
@@ -580,7 +609,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
         })
 
-        .controller('ProjectEditController', function (LocationService, UnitService, LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('ProjectEditController', function (LocationService, SocietyMaintenanceService, UnitService, LocationTypeService, PrivateAmenitiesService, BankService, AmenityDetailService, PropertyTypeService, TransportationService, RoadService, CityService, StateService, CountryService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
 
             $scope.editableProject = ProjectService.get({
                 'id': $stateParams.projectId
@@ -630,6 +659,14 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         $scope.workplacesDisplay.push(data);
                     });
                 });
+                $scope.societyMaintenancesDisplay = [];
+                angular.forEach($scope.editableProject.societyMaintenances, function (societyMaintenances) {
+                    SocietyMaintenanceService.get({
+                        'id': societyMaintenances
+                    }, function (data) {
+                        $scope.societyMaintenancesDisplay.push(data);
+                    });
+                });
                 $scope.basicAmenitiesDisplay = [];
                 angular.forEach($scope.editableProject.basicAmenities, function (basicAmenities) {
                     AmenityDetailService.get({
@@ -675,6 +712,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             $scope.editableProject.basicAmenities = [];
 //            $scope.luxuryAmenitiesDisplay = [];
             $scope.editableProject.luxuryAmenities = [];
+            $scope.editableProject.societyMaintenances = [];
 //            $scope.approvedBanksDisplay = [];
             $scope.editableProject.approvedBanks = [];
 //            $scope.amenitiesWithinProjectDisplay = [];
@@ -771,6 +809,24 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 console.log("Updated Type Display :%O", $scope.basicAmenitiesDisplay);
                 console.log("Updated %O", $scope.editableProject.basicAmenities);
             };
+
+            $scope.setSocietyMaintenances = function (societyMaintenances) {
+                console.log("xyz", societyMaintenances);
+                $scope.societyMaintenancesDisplay.push(societyMaintenances);
+                $scope.societyMaintenances = "";
+                $scope.editableProject.societyMaintenances.push(societyMaintenances.id);
+            };
+
+            $scope.removeSocietyMaintenances = function (societyMaintenances) {
+                console.log("Getting the thing :%O", societyMaintenances);
+                var index = $scope.societyMaintenancesDisplay.indexOf(societyMaintenances);
+                var index1 = $scope.editableProject.societyMaintenances.indexOf(societyMaintenances.id);
+                $scope.societyMaintenancesDisplay.splice(index, 1);
+                $scope.editableProject.societyMaintenances.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.societyMaintenancesDisplay);
+                console.log("Updated %O", $scope.editableProject.societyMaintenances);
+            };
+
             $scope.setLuxuryAmenities = function (luxuryAmenities) {
                 console.log("xyz", luxuryAmenities);
                 $scope.luxuryAmenitiesDisplay.push(luxuryAmenities);
@@ -876,6 +932,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             $scope.searchWorkplaces = function (searchTerm) {
                 return AmenityDetailService.findByNameLike({
                     'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.searchSocietyMaintenances = function (searchTerm) {
+                return SocietyMaintenanceService.findByNameLike({
+                    'maintenanceName': searchTerm
                 }).$promise;
             };
             $scope.searchBasicAmenities = function (searchTerm) {

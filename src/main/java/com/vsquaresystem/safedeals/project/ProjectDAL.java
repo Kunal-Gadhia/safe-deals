@@ -317,7 +317,7 @@ public class ProjectDAL {
         parameters.put(Columns.BRICK_WORK, project.getBrickWork());
         parameters.put(Columns.PLASTERING, project.getPlastering());
         parameters.put(Columns.FINISHING_WORK, project.getFinishingWork());
-        parameters.put(Columns.SOCIETY_MAINTENANCE, project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()));
+        parameters.put(Columns.SOCIETY_MAINTENANCE, project.getSocietyMaintenances() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenances()));
         parameters.put(Columns.SOCIETY_MAINTENANCE_AMOUNT, project.getSocietyMaintenanceAmount());
         parameters.put(Columns.SOCIETY_MAINTENANCE_DURATION, project.getSocietyMaintenanceDuration());
 
@@ -475,7 +475,7 @@ public class ProjectDAL {
             project.getBrickWork(),
             project.getPlastering(),
             project.getFinishingWork(),
-            project.getSocietyMaintenance() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenance()),
+            project.getSocietyMaintenances() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenances()),
             project.getSocietyMaintenanceAmount(),
             project.getSocietyMaintenanceDuration(),
             project.getId()}
@@ -791,11 +791,11 @@ public class ProjectDAL {
             String societyMaintenanceList = rs.getString(Columns.SOCIETY_MAINTENANCE);
             try {
                 ObjectMapper mapper = new ObjectMapper();
-                List<Integer> societyMaintenance = mapper.readValue(societyMaintenanceList, new TypeReference<List<Integer>>() {
+                List<Integer> societyMaintenances = mapper.readValue(societyMaintenanceList, new TypeReference<List<Integer>>() {
                 });
-                project.setSocietyMaintenance(societyMaintenance);
+                project.setSocietyMaintenances(societyMaintenances);
             } catch (IOException ex) {
-                throw new RuntimeException("Error parsing workplacesList: '" + societyMaintenanceList + "' ", ex);
+                throw new RuntimeException("Error parsing societyMaintenanceList: '" + societyMaintenanceList + "' ", ex);
             }
 
             project.setSocietyMaintenanceAmount(rs.getDouble(Columns.SOCIETY_MAINTENANCE_AMOUNT));
