@@ -1,27 +1,27 @@
-angular.module("safedeals.states.society_maintainance", [])
+angular.module("safedeals.states.society_maintenance", [])
         .config(function ($stateProvider, templateRoot) {
-            $stateProvider.state('admin.masters_society_maintainance', {
-                'url': '/society_maintainance_master?offset',
-                'templateUrl': templateRoot + '/masters/societymaintainance/list.html',
-                'controller': 'SocietyMaintainanceListController'
+            $stateProvider.state('admin.masters_society_maintenance', {
+                'url': '/society_maintenance_master?offset',
+                'templateUrl': templateRoot + '/masters/societymaintenance/list.html',
+                'controller': 'SocietyMaintenanceListController'
             });
-            $stateProvider.state('admin.masters_society_maintainance.add', {
+            $stateProvider.state('admin.masters_society_maintenance.add', {
                 'url': '/add',
-                'templateUrl': templateRoot + '/masters/societymaintainance/form.html',
-                'controller': 'SocietyMaintainanceAddController'
+                'templateUrl': templateRoot + '/masters/societymaintenance/form.html',
+                'controller': 'SocietyMaintenanceAddController'
             });
-            $stateProvider.state('admin.masters_society_maintainance.edit', {
-                'url': '/:societyMaintainanceId/edit',
-                'templateUrl': templateRoot + '/masters/societymaintainance/form.html',
-                'controller': 'SocietyMaintainanceEditController'
+            $stateProvider.state('admin.masters_society_maintenance.edit', {
+                'url': '/:societyMaintenanceId/edit',
+                'templateUrl': templateRoot + '/masters/societymaintenance/form.html',
+                'controller': 'SocietyMaintenanceEditController'
             });
-            $stateProvider.state('admin.masters_society_maintainance.delete', {
-                'url': '/:societyMaintainanceId/delete',
-                'templateUrl': templateRoot + '/masters/societymaintainance/delete.html',
-                'controller': 'SocietyMaintainanceDeleteController'
+            $stateProvider.state('admin.masters_society_maintenance.delete', {
+                'url': '/:societyMaintenanceId/delete',
+                'templateUrl': templateRoot + '/masters/societymaintenance/delete.html',
+                'controller': 'SocietyMaintenanceDeleteController'
             });
         })
-        .controller('SocietyMaintainanceListController', function (SocietyMaintainanceService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('SocietyMaintenanceListController', function (SocietyMaintenanceService, $scope, $stateParams, $state, paginationLimit) {
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -34,14 +34,14 @@ angular.module("safedeals.states.society_maintainance", [])
 
             $scope.nextOffset = $scope.currentOffset + 5;
 
-            $scope.nextSocietyMaintainances = SocietyMaintainanceService.query({
+            $scope.nextSocietyMaintenances = SocietyMaintenanceService.query({
                 'offset': $scope.nextOffset
             });
 
-            $scope.societyMaintainances = SocietyMaintainanceService.query({
+            $scope.societyMaintenances = SocietyMaintenanceService.query({
                 'offset': $scope.currentOffset
             }, function (s) {
-                console.log("SocietyMaintainanceService ", s);
+                console.log("SocietyMaintenanceService ", s);
             });
 
             $scope.nextPage = function () {
@@ -56,32 +56,32 @@ angular.module("safedeals.states.society_maintainance", [])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('SocietyMaintainanceAddController', function (SocietyMaintainanceService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('SocietyMaintenanceAddController', function (SocietyMaintenanceService, $scope, $stateParams, $state, paginationLimit) {
 
-            $scope.editableSocietyMaintainance = {};
-            $scope.saveSocietyMaintainance = function (society_maintainance) {
-                console.log("society_maintainance", society_maintainance);
-                SocietyMaintainanceService.save(society_maintainance, function () {
-                    $state.go('admin.masters_society_maintainance', null, {'reload': true});
+            $scope.editableSocietyMaintenance = {};
+            $scope.saveSocietyMaintenance = function (society_maintenance) {
+                console.log("society_maintenance", society_maintenance);
+                SocietyMaintenanceService.save(society_maintenance, function () {
+                    $state.go('admin.masters_society_maintenance', null, {'reload': true});
                 });
             };
 
         })
-        .controller('SocietyMaintainanceEditController', function (SocietyMaintainanceService, $scope, $stateParams, $state, paginationLimit) {
-            $scope.editableSocietyMaintainance = SocietyMaintainanceService.get({'id': $stateParams.societyMaintainanceId});
+        .controller('SocietyMaintenanceEditController', function (SocietyMaintenanceService, $scope, $stateParams, $state, paginationLimit) {
+            $scope.editableSocietyMaintenance = SocietyMaintenanceService.get({'id': $stateParams.societyMaintenanceId});
 
-            $scope.saveSocietyMaintainance = function (society_maintainance) {
-                society_maintainance.$save(function () {
-                    $state.go('admin.masters_society_maintainance', null, {'reload': true});
+            $scope.saveSocietyMaintenance = function (society_maintenance) {
+                society_maintenance.$save(function () {
+                    $state.go('admin.masters_society_maintenance', null, {'reload': true});
                 });
             };
         })
-        .controller('SocietyMaintainanceDeleteController', function (SocietyMaintainanceService, $scope, $stateParams, $state, paginationLimit) {
-            $scope.editableSocietyMaintainance = SocietyMaintainanceService.get({'id': $stateParams.societyMaintainanceId});
+        .controller('SocietyMaintenanceDeleteController', function (SocietyMaintenanceService, $scope, $stateParams, $state, paginationLimit) {
+            $scope.editableSocietyMaintenance = SocietyMaintenanceService.get({'id': $stateParams.societyMaintenanceId});
             console.log("are we here?");
-            $scope.deleteSocietyMaintainance = function (society_maintainance) {
-                society_maintainance.$delete(function () {
-                    $state.go('admin.masters_society_maintainance', null, {'reload': true});
+            $scope.deleteSocietyMaintenance = function (society_maintenance) {
+                society_maintenance.$delete(function () {
+                    $state.go('admin.masters_society_maintenance', null, {'reload': true});
                 });
             };
         });
