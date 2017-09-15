@@ -71,8 +71,7 @@ public class LandmarkDAL {
                 + Columns.CITY_ID + "=?, "
                 + Columns.LOCATION_ID + "=?, "
                 + Columns.LATITUDE + "=?, "
-                + Columns.LONGITUDE + "=?, "
-                + Columns.ID + " = ?";
+                + Columns.LONGITUDE + "=?  WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             landmark.getName(),
             landmark.getCityId(),

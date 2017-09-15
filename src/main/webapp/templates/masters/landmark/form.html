@@ -17,8 +17,6 @@
                                 <input class="form-control" placeholder="Project Name" ng-model="editableLandmark.name" required=""/>
                             </div>
                         </div>
-                    </div>                    
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>City</label>
@@ -34,6 +32,8 @@
                                 <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
                             </div>
                         </div>
+                    </div>                    
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Location</label>                                                    
@@ -50,14 +50,14 @@
                                 <p ng-show="loadingLocations" class="help-block text-muted">loading...</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Latitude</label>
                                 <input class="form-control" type="number" step ="any" ng-model="editableLandmark.latitude" required=""/>
                             </div>                                            
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Longitude</label>
