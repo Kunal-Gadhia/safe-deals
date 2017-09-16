@@ -392,7 +392,20 @@
                                             <p ng-show="noWorkplacesFound" class="help-block text-muted">No Workplaces Found</p>
                                             <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
                                         </div>
-                                    </div>                                                                                                                    
+                                    </div>    
+
+
+
+                                    <!--                                    <div class="col-sm-4">
+                                                                            <div class="form-group">
+                                                                                <label>Workplaces</label>
+                                                                                <multiselect class="input-xlarge multiselect" ng-model="workplaces" options="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
+                                                                                             header="Select Stuff" selected-header="options selected" multiple="true" required complex-models="false" select-limit-use-filtered ="true"
+                                                                                             enable-filter="true" filter-placeholder="Filter stuff..">
+                                                                                </multiselect>
+                                                                            </div>
+                                                                        </div>--> 
+
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Nearby Projects</label>
@@ -454,7 +467,7 @@
                                             <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-sm-5">
                                         <div class="form-group">
                                             <label>Luxury Amenities</label>
