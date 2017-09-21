@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsquaresystem.safedeals.city.City;
 import com.vsquaresystem.safedeals.city.CityDAL;
-import com.vsquaresystem.safedeals.project.ProjectDAL;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,6 +80,13 @@ public class PropertyDAL {
         public static final String METRO = "metro";
         public static final String DISTANCE = "distance";
         public static final String UNIT = "unit";
+        public static final String BOOKING_AMOUNT = "booking_amount";
+        public static final String START_OF_CONSTRUCTION = "start_of_construction";
+        public static final String COMPLETION_OF_PLINTH = "completion_of_plinth";
+        public static final String EACH_SLAB = "each_slab";
+        public static final String BRICK_WORK = "brick_work";
+        public static final String PLASTERING = "plastering";
+        public static final String FINISHING_WORK = "finishing_work";
 
     }
 
@@ -143,7 +149,14 @@ public class PropertyDAL {
                         Columns.TAXI,
                         Columns.METRO,
                         Columns.DISTANCE,
-                        Columns.UNIT
+                        Columns.UNIT,
+                        Columns.BOOKING_AMOUNT,
+                        Columns.START_OF_CONSTRUCTION,
+                        Columns.COMPLETION_OF_PLINTH,
+                        Columns.EACH_SLAB,
+                        Columns.BRICK_WORK,
+                        Columns.PLASTERING,
+                        Columns.FINISHING_WORK
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -260,6 +273,14 @@ public class PropertyDAL {
         String propertyId = String.valueOf(cityName).substring(0, 3) + srNumber;
         parameters.put(Columns.PROPERTY_ID, propertyId);
 
+        parameters.put(Columns.BOOKING_AMOUNT, property.getBookingAmount());
+        parameters.put(Columns.START_OF_CONSTRUCTION, property.getStartOfConstruction());
+        parameters.put(Columns.COMPLETION_OF_PLINTH, property.getCompletionOfPlinth());
+        parameters.put(Columns.EACH_SLAB, property.getEachSlab());
+        parameters.put(Columns.BRICK_WORK, property.getBrickWork());
+        parameters.put(Columns.PLASTERING, property.getPlastering());
+        parameters.put(Columns.FINISHING_WORK, property.getFinishingWork());
+
         Number newId = insertProperty.executeAndReturnKey(parameters);
         property = findById(newId.intValue());
         return property;
@@ -346,7 +367,14 @@ public class PropertyDAL {
                 + Columns.TAXI + " =?,"
                 + Columns.METRO + " =?,"
                 + Columns.DISTANCE + " =?,"
-                + Columns.UNIT + " =? WHERE "
+                + Columns.UNIT + " =?,"
+                + Columns.BOOKING_AMOUNT + " =?,"
+                + Columns.START_OF_CONSTRUCTION + " =?,"
+                + Columns.COMPLETION_OF_PLINTH + " =?,"
+                + Columns.EACH_SLAB + " =?,"
+                + Columns.BRICK_WORK + " =?,"
+                + Columns.PLASTERING + " =?,"
+                + Columns.FINISHING_WORK + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             property.getName(),
@@ -398,6 +426,13 @@ public class PropertyDAL {
             property.getMetro(),
             property.getDistance(),
             property.getUnit(),
+            property.getBookingAmount(),
+            property.getStartOfConstruction(),
+            property.getCompletionOfPlinth(),
+            property.getEachSlab(),
+            property.getBrickWork(),
+            property.getPlastering(),
+            property.getFinishingWork(),
             property.getId()});
         property = findById(property.getId());
         return property;
@@ -584,8 +619,16 @@ public class PropertyDAL {
             property.setMetro(rs.getBoolean(Columns.METRO));
             property.setDistance(rs.getDouble(Columns.DISTANCE));
             property.setUnit(rs.getInt(Columns.UNIT));
-            //  property.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
 
+            property.setBookingAmount(rs.getDouble(Columns.BOOKING_AMOUNT));
+            property.setStartOfConstruction(rs.getDouble(Columns.START_OF_CONSTRUCTION));
+            property.setCompletionOfPlinth(rs.getDouble(Columns.COMPLETION_OF_PLINTH));
+            property.setEachSlab(rs.getDouble(Columns.EACH_SLAB));
+            property.setBrickWork(rs.getDouble(Columns.BRICK_WORK));
+            property.setPlastering(rs.getDouble(Columns.PLASTERING));
+            property.setFinishingWork(rs.getDouble(Columns.FINISHING_WORK));
+
+            //  property.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
             return property;
         }
 

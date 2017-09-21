@@ -360,16 +360,59 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Payment Schedule</label>
-                                            <input class="form-control" ng-model="editableProperty.paymentSchedule">
+                  
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Payment Schedule</label>
+                                            
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Schedule</th>
+                                                                <th>Percent</th>
+                                                                <th>Schedule</th>
+                                                                <th>Percent</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Booking Amount</td>
+                                                                <td><input type="number" ng-disabled="e" class="form-control" ng-model="editableProperty.bookingAmount"></td>
+                                                                <td>Start Of Construction</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.startOfConstruction"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>Completion Of Plinth</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.completionOfPlinth"></td>
+                                                                <td>Each Slab</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.eachSlab"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>Brick Work</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.brickWork"></td>
+                                                                <td>Plastering</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.plastering"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Finishing Work</td>
+                                                                <td><input type="number" class="form-control" ng-model="editableProperty.finishingWork"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Down Payment</label>
-                                            <input type="number" class="form-control" ng-model="editableProperty.downpayment">
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Down Payment</label>
+                                                <input type="number" class="form-control" ng-model="editableProperty.downpayment">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
