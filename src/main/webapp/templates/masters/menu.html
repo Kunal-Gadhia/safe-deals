@@ -1,12 +1,18 @@
 <div class="panel panel-default">
     <div class="modal-header text-center">
-        <h3 class="col-md-11">
+        <h3 class="col-md-10">
             Master Menu
         </h3>   
         <h4>
             <a data-ui-sref="admin.alerts">
-                <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                </span> Alerts<sup> <span class="badge">{{countOfUser}}</span></sup></a>            
+                <span>
+                    <img src="images/icons_svg/alerts.svg" height="25" >
+                    <!--<i class="fa fa-bell /*fa-exclamation-triangle*/" aria-hidden="true"></i>-->
+                </span>
+                <span class="text-danger">
+                    Alerts
+                </span>
+                <sup> <span style="background-color: #F00" class="badge">{{countOfUser}}</span></sup></a>            
         </h4>
     </div>
     <div class="panel-body">

@@ -202,7 +202,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Buildings</label>
-                                        <input class="form-control" type="number" ng-model="editableProject.totalBuildings" required="">
+                                        <input class="form-control" placeholder="Total Buildings" type="number" ng-model="editableProject.totalBuildings" required="">
                                     </div>
                                 </div>
 
@@ -230,46 +230,47 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Floors</label>                                                    
-                                        <input class="form-control" type="number" ng-model="editableProject.totalFloors" required="">                                                    
+                                        <input class="form-control" placeholder="Total Floors" type="number" ng-model="editableProject.totalFloors" required="">                                                    
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Units</label>
-                                        <input class="form-control" type="number" ng-model="editableProject.totalUnits" required="">
+                                        <input class="form-control" placeholder="Total Units" type="number" ng-model="editableProject.totalUnits" required="">
                                     </div>
                                 </div>   
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Area</label>                                                    
-                                        <input class="form-control" type="number" ng-model="editableProject.totalArea" required="">                                                    
+                                        <input class="form-control" placeholder="Total Area" type="number" ng-model="editableProject.totalArea" required="">                                                    
                                     </div>
                                 </div>  
                             </div>
-
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Latitude</label>
-                                        <input class="form-control" type="number" step="any" ng-model="editableProject.latitude" required=""/>
+                                        <input class="form-control" placeholder="Latitude" type="number" step="any" ng-model="editableProject.latitude" required=""/>
                                     </div>                                            
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Longitude</label>
-                                        <input class="form-control" type="number" step="any" ng-model="editableProject.longitude" required=""/>
+                                        <input class="form-control" placeholder="Longitude" type="number" step="any" ng-model="editableProject.longitude" required=""/>
                                     </div>
                                 </div>  
-                                <div class="form-group col-sm-4">   
-
-                                    <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
+                            </div>
+                            <div class="row">   
+                                <div class="col-sm-6">
+                                    <label>To get coordinates refer this link: 
+                                    </label> <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a>
                                 </div>
                             </div>
                         </div>
                         <div ng-switch-when="Connectivity" class="locations">
                             <div ng-show="connectivity">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Major Approach Road</label>
                                             <input class="form-control"
@@ -284,7 +285,7 @@
                                             <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>                                    
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <div class="col-sm-6 padding">
                                                 <label>Distance</label>   
@@ -307,24 +308,28 @@
                                             </div>
                                         </div> 
                                     </div>
-                                </div>
-                                <div class="row">   
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>Public Transport </label>
+                                    <div class="col-sm-4">
+                                        <div class="row">
+                                            <label class="col-md-8">Public Transport</label>
                                         </div>
-                                        <div class="form-group">   
-                                            <label>Bus</label>
-                                            <input type="checkbox" ng-model="editableProject.bus">&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label>Auto</label>
-                                            <input type="checkbox" ng-model="editableProject.auto">&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label>Taxi</label>
-                                            <input type="checkbox" ng-model="editableProject.taxi">&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label>Metro</label>
-                                            <input type="checkbox" ng-model="editableProject.metro">&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-group">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProject.bus">Bus
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProject.auto">Auto
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProject.taxi">Taxi
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProject.metro">Metro
+                                            </label>
                                         </div>
                                     </div>
-                                    <!--                                    <div class="col-sm-6">
+                                </div>
+<!--                                <div class="row">   
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
                                                                                 <label>Public Transport</label>                                                    
                                                                                 <input class="form-control"
@@ -350,8 +355,8 @@
                                                                                     </button>
                                                                                 </li>
                                                                             </ul>
-                                                                        </div>-->
-                                </div>                                        
+                                                                        </div>
+                                </div>                                        -->
                             </div>
                         </div>
                         <div ng-switch-when="Costing" class="locations">
@@ -360,13 +365,13 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Offered Price</label>
-                                            <input class="form-control" type="number" ng-model="editableProject.offeredPrice" required="">
+                                            <input class="form-control" placeholder="Offered Price" type="number" ng-model="editableProject.offeredPrice" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Discounts</label>
-                                            <input class="form-control" type="number" ng-model="editableProject.discount" required="">
+                                            <input class="form-control" placeholder="Discounts" type="number" ng-model="editableProject.discount" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -392,7 +397,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Payment Schedule</label>
@@ -414,14 +418,12 @@
                                                             <td>Start Of Construction</td>
                                                             <td><input type="number" class="form-control" ng-model="editableProject.startOfConstruction"></td>
                                                         </tr>
-
                                                         <tr>
                                                             <td>Completion Of Plinth</td>
                                                             <td><input type="number" class="form-control" ng-model="editableProject.completionOfPlinth"></td>
                                                             <td>Each Slab</td>
                                                             <td><input type="number" class="form-control" ng-model="editableProject.eachSlab"></td>
                                                         </tr>
-
                                                         <tr>
                                                             <td>Brick Work</td>
                                                             <td><input type="number" class="form-control" ng-model="editableProject.brickWork"></td>
@@ -549,9 +551,7 @@
                                     </div>
                                     <div class="col-sm-4 locations">
                                         <div class="form-group top_margin">
-                                            <!--                                                <label>SD Verified</label>
-                                                                                                                                            <input class="form-control" type="checkbox" ng-model="editableProject.discount">
-                                                                                            <input class="form-control" type="checkbox" ng-model="editableProject.sdVerified">-->
+                                            <!--<input class="form-control" type="checkbox" ng-model="editableProject.discount">-->
                                             <label class="checkbox-inline">
                                                 <input type="checkbox" ng-model="editableProject.sdVerified" required=""><b>SD Verified</b>
                                             </label>
@@ -577,18 +577,10 @@
                                 </div>                                        
                             </div>
                         </div>
-
-
-
-
-
-
-
-
                         <div ng-switch-when="Project Highlights" class="locations">
                             <div ng-show="projectHighlights">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Amenities within project</label>
                                             <input class="form-control"
@@ -649,19 +641,19 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Salable Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProject.salableArea" required="">
+                                            <input type="number" step="any" placeholder="Salable Area" class="form-control" ng-model="editableProject.salableArea" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Carpet Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProject.carpetArea" required="">
+                                            <input type="number" step="any" placeholder="Carpet Area" class="form-control" ng-model="editableProject.carpetArea" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Build Up Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProject.buildUpArea" required="">
+                                            <input type="number" step="any" placeholder="Build Up Area" class="form-control" ng-model="editableProject.buildUpArea" required="">
                                         </div>
                                     </div>
                                 </div>
@@ -684,18 +676,16 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Society Maintenance Amount</label>
-                                            <input class="form-control" type="number" ng-model="editableProject.societyMaintenanceAmount" required="">
+                                            <input class="form-control" placeholder="Society Maintenance Amount" type="number" ng-model="editableProject.societyMaintenanceAmount" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Society Maintenance Duration</label>
-                                            <input class="form-control" type="number" ng-model="editableProject.societyMaintenanceDuration" required="">
+                                            <input class="form-control" placeholder="Society Maintenance Duration" type="number" ng-model="editableProject.societyMaintenanceDuration" required="">
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <ul ng-repeat="societyMaintenances in societyMaintenancesDisplay" class="left_margin">

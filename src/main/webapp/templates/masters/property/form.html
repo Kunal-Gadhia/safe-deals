@@ -194,10 +194,8 @@
                                                                         <input type="number" min="0" step="any" class="form-control" placeholder=" Enter Expected Price" ng-model="editableProperty.priceRange" />
                                                                     </div>
                                                                 </div>-->
-                            </div>                            
-
+                            </div>   
                             <div class="row">
-
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Total Floors</label>
@@ -234,7 +232,7 @@
                         <div ng-switch-when="Connectivity">
                             <div ng-show="connectivity">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Major Approach Road</label>
                                             <input class="form-control"
@@ -249,7 +247,7 @@
                                             <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <div class="col-sm-6 padding">
                                                 <label>Distance</label>   
@@ -272,54 +270,52 @@
                                             </div>
                                         </div> 
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <div class="row">
+                                            <label class="col-md-8">Public Transport</label>
+                                        </div>
                                         <div class="form-group">
-                                            <label>Public Transport </label>
-                                        </div>
-                                        <div class="form-group">                                  
-                                            <input type="checkbox" ng-model="editableProperty.bus">&nbsp;&nbsp;
-                                            <label>Bus</label>
-                                        </div>
-                                        <div class="form-group">                                  
-                                            <input type="checkbox" ng-model="editableProperty.auto">&nbsp;&nbsp;
-                                            <label>Auto</label>
-                                        </div>
-                                        <div class="form-group">                                  
-                                            <input type="checkbox" ng-model="editableProperty.taxi">&nbsp;&nbsp;
-                                            <label>Taxi</label>
-                                        </div>
-                                        <div class="form-group">                                  
-                                            <input type="checkbox" ng-model="editableProperty.metro">&nbsp;&nbsp;
-                                            <label>Metro</label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProperty.bus">Bus
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProperty.auto">Auto
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProperty.taxi">Taxi
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="editableProperty.metro">Metro
+                                            </label>
                                         </div>
                                     </div>
-                                    <!--                                    <div class="col-sm-6">
-                                                                            <div class="form-group">
-                                                                                <label>Public Transport</label>                                                    
-                                                                                <input class="form-control"
-                                                                                       placeholder="Select Public Transport"
-                                                                                       uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
-                                                                                       typeahead-on-select="setTransportation($item)"
-                                                                                       typeahead-editable="false"
-                                                                                       typeahead-loading="loadingTransportation" 
-                                                                                       typeahead-no-results="noTransportationFound"                                       
-                                                                                       ng-model="basicAmenities" />
-                                                                                <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
-                                                                                <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
-                                                                            </div>
-                                                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin ">
-                                                                                <li class="col-md-8">
-                                                                                    {{basicAmenities.name}} 
-                                                                                </li>
-                                                                                <li class="col-md-4 list-unstyled"><button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
-                                                                                        <i class="fa fa-trash"></i>
-                                                                                    </button>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>-->
-                                </div>                                        
+                                </div>
+                                <!--                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label>Public Transport</label>                                                    
+                                                                            <input class="form-control"
+                                                                                   placeholder="Select Public Transport"
+                                                                                   uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
+                                                                                   typeahead-on-select="setTransportation($item)"
+                                                                                   typeahead-editable="false"
+                                                                                   typeahead-loading="loadingTransportation" 
+                                                                                   typeahead-no-results="noTransportationFound"                                       
+                                                                                   ng-model="basicAmenities" />
+                                                                            <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
+                                                                            <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
+                                                                        </div>
+                                                                        <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin ">
+                                                                            <li class="col-md-8">
+                                                                                {{basicAmenities.name}} 
+                                                                            </li>
+                                                                            <li class="col-md-4 list-unstyled"><button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
+                                                                                    <i class="fa fa-trash"></i>
+                                                                                </button>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>                                        -->
                             </div>
                         </div>
                         <div ng-switch-when="Costing" class="locations">
@@ -328,13 +324,13 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Offered Price</label>
-                                            <input class="form-control" type="number" ng-model="editableProperty.offeredPrice">
+                                            <input class="form-control" placeholder="Offered Price" type="number" ng-model="editableProperty.offeredPrice">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Discounts</label>
-                                            <input class="form-control" type="number" ng-model="editableProperty.discount">
+                                            <input class="form-control" placeholder="Discounts" type="number" ng-model="editableProperty.discount">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -413,6 +409,7 @@
                                                 <label>Down Payment</label>
                                                 <input type="number" class="form-control" ng-model="editableProperty.downpayment">
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -435,20 +432,16 @@
                                             <p ng-show="noWorkplacesFound" class="help-block text-muted">No Workplaces Found</p>
                                             <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
                                         </div>
-                                    </div>    
-
-
-
-                                    <!--                                    <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label>Workplaces</label>
-                                                                                <multiselect class="input-xlarge multiselect" ng-model="workplaces" options="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
-                                                                                             header="Select Stuff" selected-header="options selected" multiple="true" required complex-models="false" select-limit-use-filtered ="true"
-                                                                                             enable-filter="true" filter-placeholder="Filter stuff..">
-                                                                                </multiselect>
-                                                                            </div>
-                                                                        </div>--> 
-
+                                    </div>  
+<!--                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Workplaces</label>
+                                            <multiselect class="input-xlarge multiselect" ng-model="workplaces" options="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
+                                                         header="Select Stuff" selected-header="options selected" multiple="true" required complex-models="false" select-limit-use-filtered ="true"
+                                                         enable-filter="true" filter-placeholder="Filter stuff..">
+                                            </multiselect>
+                                        </div>
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Nearby Projects</label>
@@ -495,7 +488,7 @@
                         <div ng-switch-when="Livability">
                             <div ng-show="livability">
                                 <div class="row">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Basic Amenities</label>                                                    
                                             <input class="form-control"
@@ -510,8 +503,7 @@
                                             <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Luxury Amenities</label>
                                             <input class="form-control"
@@ -590,10 +582,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <!--                                                <label>SD Verified</label>
-                                                                                                                                            <input class="form-control" type="checkbox" ng-model="editableProject.discount">
-                                                                                            <input class="form-control" type="checkbox" ng-model="editableProperty.sdVerified">-->
+                                        <div class="form-group top_margin">
                                             <label class="checkbox-inline">
                                                 <input type="checkbox" ng-model="editableProperty.sdVerified"><b>SD Verified</b>
                                             </label>
@@ -669,49 +658,45 @@
                         <div ng-switch-when="Unit Details">
                             <div ng-show="unitDetails">
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Salable Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProperty.salableArea">
+                                            <input type="number" placeholder="Salable Area" class="form-control" ng-model="editableProperty.salableArea">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Carpet Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProperty.carpetArea">
+                                            <input type="number" placeholder="Carpet Area" class="form-control" ng-model="editableProperty.carpetArea">
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Build Up Area</label>
-                                            <input type="number" step="any" class="form-control" ng-model="editableProperty.buildUpArea">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Number Of Balcony</label>
-                                            <input type="number" class="form-control" ng-model="editableProperty.balconyCount">
+                                            <input type="number" placeholder="Build Up Area" class="form-control" ng-model="editableProperty.buildUpArea">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label>Number Of Toilets</label>
-                                            <input type="number" class="form-control" ng-model="editableProperty.toiletCount">
+                                            <label>Number Of Balcony</label>
+                                            <input type="number" placeholder="Number Of Balcony" class="form-control" ng-model="editableProperty.balconyCount">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 locations">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Number Of Toilets</label>
+                                            <input type="number" placeholder="Number Of Toilets " class="form-control" ng-model="editableProperty.toiletCount">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="form-group top_margin">
-                                            <!--                                                <label>Open Terrace</label>                                                
-                                                                                            <input class="form-control" type="checkbox" ng-model="editableProperty.openTerrace">-->
-                                            <div class="col-md-6">
+                                            <div class="">
                                                 <label class="checkbox-inline">
                                                     <input type="checkbox" ng-model="editableProperty.openTerrace"><b>Open Terrace</b>
                                                 </label>
-                                            </div>
-                                            <div class="col-md-6">
                                                 <label class="checkbox-inline">
                                                     <input type="checkbox" ng-model="editableProperty.openLand"><b>Open Land</b>
                                                 </label>
@@ -719,44 +704,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--                                    <div class="row">
-                                                                        <div class="col-sm-6">
-                                                                            <div class="form-group">
-                                                                                                                                <label>Open Terrace</label>                                                
-                                                                                                                                <input class="form-control" type="checkbox" ng-model="editableProperty.openTerrace">
-                                                                                <label class="checkbox-inline">
-                                                                                    <input type="checkbox" ng-model="editableProperty.openTerrace"><b>Open Terrace</b>
-                                                                                </label>
-                                                                                <label class="checkbox-inline">
-                                                                                    <input type="checkbox" ng-model="editableProperty.openLand"><b>Open Land</b>
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-6">
-                                                                            <div class="form-group">
-                                                                                                                                <label>Open Land</label>
-                                                                                                                                <input class="form-control" type="checkbox" ng-model="editableProperty.openLand">
-                                
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>-->
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Latitude</label>
-                                            <input class="form-control" type="number" step="any" ng-model="editableProperty.latitude" />
+                                            <input class="form-control" placeholder="Latitude" type="number" step="any" ng-model="editableProperty.latitude" />
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Longitude</label>
-                                            <input class="form-control" type="number" step="any" ng-model="editableProperty.longitude" />
+                                            <input class="form-control" placeholder="Longitude" type="number" step="any" ng-model="editableProperty.longitude" />
                                         </div>
                                     </div>                                        
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">                                            
-                                        <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
+                                        <label>To get coordinates refer this link:</label>
+                                        <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a>
                                     </div>
                                 </div>
                             </div>
