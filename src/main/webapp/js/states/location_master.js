@@ -127,6 +127,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 if (locationstep === "Basic Details") {
                     $scope.myValue = true;
                 } else if (locationstep === "Risk Factors") {
+                    console.log("Inside Risk Factors");
                     $scope.myValue = false;
                     $scope.riskFactors = true;
                 }
@@ -159,10 +160,21 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             };
             $scope.locationCategoriesDisplay = [];
             $scope.editableLocation.locationCategories = [];
+//            $scope.setLocationCategories = function (locationCategories) {
+//                $scope.locationCategoriesDisplay.push(locationCategories);
+//                $scope.locationCategory = "";
+//                $scope.editableLocation.locationCategories.push(locationCategories.id);
+//            };
             $scope.setLocationCategories = function (locationCategories) {
-                $scope.locationCategoriesDisplay.push(locationCategories);
-                $scope.locationCategory = "";
-                $scope.editableLocation.locationCategories.push(locationCategories.id);
+                console.log("Setting the values into controller :%O", locationCategories);
+                $scope.editableLocation.locationCategories = [];
+                $scope.editableLocation.locationCategoryNames = [];
+                angular.forEach(locationCategories, function (locationCategory) {
+                    console.log("Location Category :%O", locationCategory);
+                    $scope.editableLocation.locationCategories.push(locationCategory.id);
+                    $scope.editableLocation.locationCategoryNames.push(locationCategory);
+                });
+                console.log("Location Categories :%O", $scope.editableLocation.locationCategories);
             };
             $scope.removeLocationCategory = function (locationCategory) {
                 console.log("Getting the thing :%O", locationCategory);
@@ -250,12 +262,12 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             $scope.saveLocation = function (location) {
                 console.log("Saved location", location);
-                $scope.locArray = [];
-                angular.forEach(location.locationCategoriesObject, function (locationCategoryData) {
-                    $scope.locArray.push(locationCategoryData.id);
-//                    location.locationCategories.push(locationCategoryData.id);
-                });
-                location.locationCategories = _.uniq($scope.locArray);
+//                $scope.locArray = [];
+//                angular.forEach(location.locationCategoriesObject, function (locationCategoryData) {
+//                    $scope.locArray.push(locationCategoryData.id);
+////                    location.locationCategories.push(locationCategoryData.id);
+//                });
+//                location.locationCategories = _.uniq($scope.locArray);
                 LocationService.save(location, function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
@@ -288,18 +300,18 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             });
 
             ///////////////////////////////////////////Multiselect
-            $scope.editableLocation.locationCategoriesObject = [];
-            $scope.example14settings = {
-                scrollableHeight: '200px',
-                scrollable: true,
-                enableSearch: true
-            };
-            LocationCategoryService.query(function (locationCategory) {
-                $scope.example14data = locationCategory;
-            });
-            $scope.example2settings = {
-                displayProp: 'name'
-            };
+//            $scope.editableLocation.locationCategoriesObject = [];
+//            $scope.example14settings = {
+//                scrollableHeight: '200px',
+//                scrollable: true,
+//                enableSearch: true
+//            };
+//            LocationCategoryService.query(function (locationCategory) {
+//                $scope.example14data = locationCategory;
+//            });
+//            $scope.example2settings = {
+//                displayProp: 'name'
+//            };
             ///////////////////////////////////////////
 
 

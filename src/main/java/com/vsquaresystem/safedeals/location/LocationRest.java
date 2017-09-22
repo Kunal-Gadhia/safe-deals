@@ -90,7 +90,7 @@ public class LocationRest {
         return locationDAL.update(location);
     }
 
-    @RolesAllowed("ROLE_SUPER_ADMIN")
+//    @RolesAllowed("ROLE_SUPER_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) throws Exception {
         locationDAL.delete(id);
