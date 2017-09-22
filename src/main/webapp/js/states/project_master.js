@@ -38,8 +38,13 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 
             $stateProvider.state('admin.masters_project.inventory', {
                 'url': '/:projectId/inventory',
-                'templateUrl': templateRoot + '/masters/project/inventory.html',
+                'templateUrl': templateRoot + '/masters/project/inventory_head.html',
                 'controller': 'ProjectInventoryController'
+            });
+            $stateProvider.state('admin.masters_project.inventory_detail', {
+                'url': '/:inventoryHeadId/inventory_detail',
+                'templateUrl': templateRoot + '/masters/project/inventory_detail.html',
+                'controller': 'ProjectInventoryDetailController'
             });
         })
         .controller('ProjectListController', function (CityService, LocationService, CountryService, StateService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
@@ -89,7 +94,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('ProjectInventoryController', function (InventoryService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
+        .controller('ProjectInventoryController', function (InventoryHeadService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
             $scope.editableInventory = {};
             ProjectService.get({
                 'id': $stateParams.projectId
@@ -120,12 +125,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 });
             });
 
-            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
-                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
-                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
-                });
-            });
+//            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
+//                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
+//                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
+//                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
+//                });
+//            });
 
 
 
@@ -140,32 +145,194 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 //            };
 
             $scope.saveInventory = function (inventory) {
+                console.log("Inventory Head :%O", inventory);
+                InventoryHeadService.save(inventory, function () {
+                    console.log("Inventory Head Service Saved");
+                });
+//                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
+//                    var tempObject = {};
+//                    tempObject.projectId = inventory.projectId;
+//                    tempObject.noOfBhk = inventory.noOfBhk;
+//                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
+//                    tempObject.unitNo = i.toString();
+//                    tempObject.floorNo = inventory.floorNo;
+//                    tempObject.buildingName = inventory.buildingName;
+//                    tempObject.pricePerSqft = inventory.pricePerSqft;
+//                    tempObject.totalArea = inventory.totalArea;
+//                    tempObject.offeredPrice = inventory.offeredPrice;
+//                    tempObject.noOfBalcony = inventory.noOfBalcony;
+//                    tempObject.noOfWashroom = inventory.noOfWashroom;
+//                    tempObject.openTerrace = inventory.openTerrace;
+//                    tempObject.isAvailable = true;
+//                    tempObject.isReserved = false;
+//                    tempObject.isSold = false;
+//
+//                    InventoryService.save(tempObject, function () {
+//                        $state.go('admin.masters_project', null, {'reload': true});
+//                    });
+//
+//                }
 
-                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
+            };
+
+        })
+        .controller('ProjectInventoryDetailController', function (InventoryHeadService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
+            $scope.editableInventoryDetail = {};
+            $scope.totalUnits;
+
+            InventoryHeadService.get({
+                'id': $stateParams.inventoryHeadId
+            }, function (inventoryHead) {
+                $scope.inventoryHead = inventoryHead;
+                $scope.totalUnits = inventoryHead.totalUnits;
+                console.log("$scope.totalunits :%O", $scope.totalUnits);
+                ProjectService.get({
+                    'id': inventoryHead.projectId
+                }, function (projectObject) {
+                    $scope.projectName = projectObject.name;
+                });
+                PropertyTypeService.get({
+                    'id': inventoryHead.noOfBhk
+                }, function (propType) {
+                    $scope.projectType = propType.numberOfBhk;
+                });
+                PropertyCategoryService.get({
+                    'id': inventoryHead.propertyCategoryId
+                }, function (propCategory) {
+                    $scope.propertyCategory = propCategory.category;
+                });
+            });
+
+            $scope.$watch('inventoryHead.totalUnits', function (totalUnits) {
+                $scope.$watch('editableInventoryDetail.startUnitNo', function (startUnitNo) {
+//                    console.log("Total Units :%O", $scope.totalUnits);
+//                    var totalUnits = $scope.totalUnits;
+                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
+                    $scope.editableInventoryDetail.endUnitNo = endUnitNo - 1;
+                });
+            });
+
+            $scope.saveInventoryDetail = function (inventoryDetail) {
+                console.log("Inventory Detail :%O", inventoryDetail);
+                for (var i = inventoryDetail.startUnitNo; i <= inventoryDetail.endUnitNo; i++) {
                     var tempObject = {};
-                    tempObject.projectId = inventory.projectId;
-                    tempObject.noOfBhk = inventory.noOfBhk;
-                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
-                    tempObject.unitNo = i.toString();
-                    tempObject.floorNo = inventory.floorNo;
-                    tempObject.buildingName = inventory.buildingName;
-                    tempObject.pricePerSqft = inventory.pricePerSqft;
-                    tempObject.totalArea = inventory.totalArea;
-                    tempObject.offeredPrice = inventory.offeredPrice;
-                    tempObject.noOfBalcony = inventory.noOfBalcony;
-                    tempObject.noOfWashroom = inventory.noOfWashroom;
-                    tempObject.openTerrace = inventory.openTerrace;
+                    tempObject.inventoryHeadId = $stateParams.inventoryHeadId;
+                    tempObject.description = inventoryDetail.description;
+                    tempObject.facing = inventoryDetail.facing;
+                    tempObject.floorNo = inventoryDetail.floorNo;
+                    tempObject.noOfBalcony = inventoryDetail.noOfBalcony;
+                    tempObject.noOfWashroom = inventoryDetail.noOfWashroom;
+                    tempObject.openTerrace = inventoryDetail.openTerrace;
+                    tempObject.openLand = inventoryDetail.openLand;
                     tempObject.isAvailable = true;
                     tempObject.isReserved = false;
                     tempObject.isSold = false;
+                    tempObject.offerAmount = inventoryDetail.offerAmount;
+                    tempObject.validity = inventoryDetail.validity;
+                    tempObject.extraCharges = inventoryDetail.extraCharges;
+                    tempObject.unitNo = i.toString();
+//                    console.log("This is Temp Object :%O", tempObject);
+//                    tempObject.projectId = inventoryDetail.projectId;
+//                    tempObject.noOfBhk = inventoryDetail.noOfBhk;
+//                    tempObject.propertyCategoryId = inventoryDetail.propertyCategoryId;
+//                    tempObject.unitNo = i.toString();
+//                    tempObject.floorNo = inventoryDetail.floorNo;
+//                    tempObject.buildingName = inventoryDetail.buildingName;
+//                    tempObject.pricePerSqft = inventoryDetail.pricePerSqft;
+//                    tempObject.totalArea = inventoryDetail.totalArea;
+//                    tempObject.offeredPrice = inventoryDetail.offeredPrice;
+//                    tempObject.noOfBalcony = inventoryDetail.noOfBalcony;
+//                    tempObject.noOfWashroom = inventoryDetail.noOfWashroom;
+//                    tempObject.openTerrace = inventoryDetail.openTerrace;
+//                    tempObject.isAvailable = true;
+//                    tempObject.isReserved = false;
+//                    tempObject.isSold = false;
+                    console.log("Temp Object :%O", tempObject);
 
-                    InventoryService.save(tempObject, function () {
-                        $state.go('admin.masters_project', null, {'reload': true});
-                    });
+//                    InventoryService.save(tempObject, function () {
+//                        $state.go('admin.masters_project', null, {'reload': true});
+//                    });
 
                 }
-
             };
+//            ProjectService.get({
+//                'id': $stateParams.projectId
+//            }, function (projectObject) {
+//                $scope.editableInventoryDetail.projectId = projectObject.id;
+//                $scope.projectName = projectObject.name;
+//            });
+//
+//            $scope.setPropertyCategory = function (propertyCategory) {
+//                $scope.editableInventoryDetail.propertyCategoryObject = propertyCategory;
+//                $scope.editableInventoryDetail.propertyCategoryId = propertyCategory.id;
+//
+//            };
+//            $scope.searchPropertyCategory = function (searchTerm) {
+//                return PropertyCategoryService.findByPropertyCategoryLike({
+//                    'category': searchTerm
+//                }).$promise;
+//            };
+//
+//            PropertyTypeService.query(function (propertyTypeList) {
+//                $scope.propertyTypeList = propertyTypeList;
+//            });
+//
+//            $scope.$watch('editableInventory.totalArea', function (totalArea) {
+//                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {
+//                    var offeredPrice = (pricePerSqft * totalArea);
+//                    $scope.editableInventoryDetail.offeredPrice = offeredPrice;
+//                });
+//            });
+//
+////            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
+////                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
+////                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
+////                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
+////                });
+////            });
+//
+//
+//
+////            $scope.setPropertyType = function (propertyType) {
+////                $scope.editableInventory.propertyTypeObject = propertyType;
+////                $scope.editableInventory.propertyType = propertyType.id;
+////            };
+////            $scope.searchPropertyType = function (searchTerm) {
+////                return PropertyTypeService.findByNumberOfBhkLike({
+////                    'numberOfBhk': searchTerm
+////                }).$promise;
+////            };
+//
+//            $scope.saveInventory = function (inventory) {
+//                console.log("Inventory Head :%O", inventory);
+//                InventoryHeadService.save(inventory, function () {
+//                    console.log("Inventory Head Service Saved");
+//                });
+////                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
+////                    var tempObject = {};
+////                    tempObject.projectId = inventory.projectId;
+////                    tempObject.noOfBhk = inventory.noOfBhk;
+////                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
+////                    tempObject.unitNo = i.toString();
+////                    tempObject.floorNo = inventory.floorNo;
+////                    tempObject.buildingName = inventory.buildingName;
+////                    tempObject.pricePerSqft = inventory.pricePerSqft;
+////                    tempObject.totalArea = inventory.totalArea;
+////                    tempObject.offeredPrice = inventory.offeredPrice;
+////                    tempObject.noOfBalcony = inventory.noOfBalcony;
+////                    tempObject.noOfWashroom = inventory.noOfWashroom;
+////                    tempObject.openTerrace = inventory.openTerrace;
+////                    tempObject.isAvailable = true;
+////                    tempObject.isReserved = false;
+////                    tempObject.isSold = false;
+////
+////                    InventoryService.save(tempObject, function () {
+////                        $state.go('admin.masters_project', null, {'reload': true});
+////                    });
+////
+////                }
+//
+//            };
 
         })
         .controller('ProjectAddController', function (ProjectService, SocietyMaintenanceService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {

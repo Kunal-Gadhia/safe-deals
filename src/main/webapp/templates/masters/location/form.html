@@ -74,296 +74,230 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Location categories </label>
-                                        <!--                                                                                <div class="typeahead-demo">
-                                                                                                                            <input class="form-control"
-                                                                                                                                   placeholder="Type Location Category" 
-                                                                                                                                   uib-typeahead="locationCategory.name for locationCategory in searchLocationCategories($viewValue)"
-                                                                                                                                   typeahead-on-select="setLocationCategories($item)"
-                                                                                                                                   typeahead-editable="false"
-                                                                                                                                   typeahead-loading="loadingLocationCategories"
-                                                                                                                                   typeahead-no-results="noLocationCategories"
-                                                                                                                                   ng-model="locationCategory"/> 
-                                                                                                                            <p ng-show="noLocationCategories" class="help-block text-muted">No Result found</p>
-                                                                                                                            <p ng-show="loadingLocationCategories" class="help-block text-muted">loading...</p>      
-                                                                                                                        </div>-->
-                                        <div class="col-md-9" ng-dropdown-multiselect="" 
-                                             options="example14data" 
-                                             selected-model="editableLocation.locationCategoriesObject" 
-                                             checkboxes="true" extra-settings="example14settings"></div> 
-                                        <!--<pre>Selected Model: {{example14model}}</pre>-->
-                                        <!--                                        <div>
-                                                                                    <ul>
-                                                                                        <li ng-repeat="data in editableLocation.locationCategoriesObject">{{data}}</li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!--                            <div class="row">
-                                                            <div class="col-sm-6">
-                                                                                                            <ul ng-repeat="workplaces in workplacesDisplay">
-                                                                                                                <li>{{workplaces.name}}                                                     
-                                                                                                                    <button type="button" ng-click="removeWorkplaces(workplaces)">Remove</button>
-                                                                                                                </li>
-                                                                                                            </ul>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <ul ng-repeat="locationCategories in locationCategoriesDisplay">
-                                                                    <li>{{locationCategories.name}} 
-                                                                        <button type="button" ng-click="removeLocationCategory(locationCategories)">Remove</button>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>-->
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>SD Zone </label>
-                                        <!--                                <div class="typeahead-demo">
-                                                                            <input class="form-control"
-                                                                                   placeholder="SafedealZone" 
-                                                                                   uib-typeahead="safedealZone.name for safedealZone in searchSafedealZones($viewValue)"
-                                                                                   typeahead-on-select="setSafedealZone($item)"
-                                                                                   typeahead-editable="false" 
-                                                                                   typeahead-loading="loadingSafedealZones"
-                                                                                   typeahead-no-results="noSafedealZones"
-                                                                                   ng-model="editableLocation.safedealZone.name" >
-                                                                            <p ng-show="noSafedealZones" class="help-block text-muted">No Result found</p>
-                                                                            <p ng-show="loadingSafedealZones" class="help-block text-muted">loading...</p>
-                                                                        </div>-->
-                                        <select class="form-control" ng-model="editableLocation.safedealZoneId" id="sdZone" required="required">
-                                            <option value="">Select Safedeal Zone</option>
-                                            <option ng-repeat="sdZone in safedealsZoneList" value="{{sdZone.id}}" >{{sdZone.name}}</option>
-                                        </select>
-                                    </div>
-                                </div>                                                               
-                                <!--                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label>Migration Rate Per Annum</label>
-                                                                        <input type="number" class="form-control" placeholder="Migration Rate Per Annum" ng-model="editableLocation.migrationRatePerAnnum"> 
-                                                                    </div>
-                                                                </div>-->
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Migration Rate Per Annum</label>
-                                        <select class="form-control" ng-model="editableLocation.migrationRatePerAnnum">
-                                            <option value="">Select Migration Rate Per Annum</option>
-                                            <option value="LOW">LOW</option>
-                                            <option value="MODERATE">MODERATE</option>
-                                            <option value="HIGH">HIGH</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>                            
-                            <div class="row">                                 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Major approach road</label>
-                                        <input class="form-control"
-                                               placeholder="Select Major Approach Road"
-                                               uib-typeahead="road.id as road.name for road in searchRoad($viewValue)"
-                                               typeahead-on-select="setRoad($item)"
-                                               typeahead-editable="false"
-                                               typeahead-loading="loadingRoad" 
-                                               typeahead-no-results="noRoadFound"                                       
-                                               ng-model="editableLocation.road.name" required=""/>
-                                        <p ng-show="noRoadFound" class="help-block text-muted">No Road Found</p>
-                                        <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
-                                        <!--<input class="form-control" placeholder="Major approach road" ng-model="editableLocation.majorApproachRoad">--> 
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="col-sm-6 padding">
-                                            <label>Distance</label>   
-                                            <input class="form-control" type="number" placeholder="Distance" ng-model="editableLocation.distance"/> 
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Unit</label>
-                                                <input class="form-control"
-                                                       placeholder="Select Unit"
-                                                       uib-typeahead="unit.id  as unit.abbreviation for unit in searchUnit($viewValue)"
-                                                       typeahead-on-select="setUnit($item)"
-                                                       typeahead-editable="false"
-                                                       typeahead-loading="loadingUnit" 
-                                                       typeahead-no-results="noUnitFound"                                       
-                                                       ng-model="editableLocation.unit" required=""/>
-                                                <p ng-show="noUnitFound" class="help-block text-muted">No Unit Found</p>
-                                                <p ng-show="loadingUnit" class="help-block text-muted">Loading...</p>
+                                        <label>Location Categories</label>
+                                        <div id="selectGroup">
+                                            <div class="selected-group">
+                                                <div class="input-group">
+                                                    <input class="form-control master-input" placeholder="Select Location Categories" readonly=""  required=""/>
+                                                    <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-primary master-input" ng-click="showLocationCategoryWidget = !showLocationCategoryWidget">
+                                                            <i class="fa fa-paper-plane"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>                                
+                                                <div data-sd-location-category-multi-select=""
+                                                     locationcategories-dir="editableLocation.locationCategoryNames"
+                                                     locationcategories-ids="editableLocation.locationCategories" 
+                                                     data-show-widget="showLocationCategoryWidget" 
+                                                     data-on-select='setLocationCategories(locationCategories)'>
+                                                </div>
+                                                <div>
+                                                    <ul class="">
+                                                        <li ng-repeat="locationCategory in editableLocation.locationCategoryNames">
+                                                            <span>{{locationCategory.name}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>SD Zone </label>                                                
+                                            <select class="form-control" ng-model="editableLocation.safedealZoneId" id="sdZone" required="required">
+                                                <option value="">Select Safedeal Zone</option>
+                                                <option ng-repeat="sdZone in safedealsZoneList" value="{{sdZone.id}}" >{{sdZone.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>                     
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Migration Rate Per Annum</label>
+                                            <select class="form-control" ng-model="editableLocation.migrationRatePerAnnum">
+                                                <option value="">Select Migration Rate Per Annum</option>
+                                                <option value="LOW">LOW</option>
+                                                <option value="MODERATE">MODERATE</option>
+                                                <option value="HIGH">HIGH</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="row">                                 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Major approach road</label>
+                                            <input class="form-control"
+                                                   placeholder="Select Major Approach Road"
+                                                   uib-typeahead="road.id as road.name for road in searchRoad($viewValue)"
+                                                   typeahead-on-select="setRoad($item)"
+                                                   typeahead-editable="false"
+                                                   typeahead-loading="loadingRoad" 
+                                                   typeahead-no-results="noRoadFound"                                       
+                                                   ng-model="editableLocation.road.name" required=""/>
+                                            <p ng-show="noRoadFound" class="help-block text-muted">No Road Found</p>
+                                            <p ng-show="loadingRoad" class="help-block text-muted">Loading...</p>
+                                            <!--<input class="form-control" placeholder="Major approach road" ng-model="editableLocation.majorApproachRoad">--> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 padding">
+                                                <label>Distance</label>   
+                                                <input class="form-control" type="number" placeholder="Distance" ng-model="editableLocation.distance"/> 
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Unit</label>
+                                                    <input class="form-control"
+                                                           placeholder="Select Unit"
+                                                           uib-typeahead="unit.id  as unit.abbreviation for unit in searchUnit($viewValue)"
+                                                           typeahead-on-select="setUnit($item)"
+                                                           typeahead-editable="false"
+                                                           typeahead-loading="loadingUnit" 
+                                                           typeahead-no-results="noUnitFound"                                       
+                                                           ng-model="editableLocation.unit" required=""/>
+                                                    <p ng-show="noUnitFound" class="help-block text-muted">No Unit Found</p>
+                                                    <p ng-show="loadingUnit" class="help-block text-muted">Loading...</p>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>advantage</label>
+                                            <input class="form-control" placeholder="Advantage" ng-model="editableLocation.advantage"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>disadvantage</label>
+                                            <input class="form-control" placeholder="Disadvantage" ng-model="editableLocation.disadvantage"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>population</label>
+                                            <input type="number" class="form-control" placeholder="Population" ng-model="editableLocation.population"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input class="form-control" placeholder="Description" ng-model="editableLocation.description"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!--                            <div class="form-group">
+                                                                        <label>Distance From Centre Of City</label>
+                                                                        <input type="number" class="form-control" placeholder="Distance From Centre Of City" ng-model="editableLocation.distanceFromCentreOfCity"> 
+                                                                    </div>-->
+                                        <div class="form-group">
+                                            <label>Source Of Water</label>          
+                                            <!--                                        <select class="form-control" ng-model="editableLocation.sourceOfWater">
+                                                                                        <option value="">Choose source water</option>
+                                                                                        <option value="CORPORATION_SUPPLY">Corporation Supply</option>
+                                                                                        <option value="BOREWELL">Bore well</option>
+                                                                                        <option value="OPEN_WELL">Open well</option> 
+                                                                                    </select>-->
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.corporationSupply">&nbsp;&nbsp;
+                                            <label>Corporation Supply</label>
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.borewell">&nbsp;&nbsp;
+                                            <label>Bore well</label>
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.openWell">&nbsp;&nbsp;
+                                            <label>Open well</label>
+                                        </div>
+                                    </div>
 
-                                    </div> 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Basic Amenities</label>                                                    
-                                        <input class="form-control"
-                                               placeholder="Select Basic Amenities"
-                                               uib-typeahead="basicAmenities.id as basicAmenitites.name for basicAmenitites in searchBasicAmenities($viewValue)"
-                                               typeahead-on-select="setBasicAmenities($item)"
-                                               typeahead-editable="false"
-                                               typeahead-loading="loadingBasicAmenities" 
-                                               typeahead-no-results="noBasicAmenitiesFound"                                       
-                                               ng-model="basicAmenities" />
-                                        <p ng-show="noBasicAmenitiesFound" class="help-block text-muted">No Basic Amenities Found</p>
-                                        <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Public Transport </label>
+                                            <!--                                        <select class="form-control" ng-model="editableLocation.publicTransport">
+                                                                                        <option value="">Choose public transport</option>
+                                                                                        <option value="REGULAR">Regular</option>
+                                                                                        <option value="LESS_REGULAR">Less Regular</option>
+                                                                                        <option value="NOT_AVAILABLE">Not Available</option> 
+                                                                                    </select>-->
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.bus">&nbsp;&nbsp;
+                                            <label>Bus</label>
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.auto">&nbsp;&nbsp;
+                                            <label>Auto</label>
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.taxi">&nbsp;&nbsp;
+                                            <label>Taxi</label>
+                                        </div>
+                                        <div class="form-group">                                  
+                                            <input type="checkbox" ng-model="editableLocation.metro">&nbsp;&nbsp;
+                                            <label>Metro</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Luxury Amenities</label>
-                                        <input class="form-control"
-                                               placeholder="Select Luxury Amenities"
-                                               uib-typeahead="luxuryAmenities.id as luxuryAmenities.name for luxuryAmenities in searchLuxuryAmenities($viewValue)"
-                                               typeahead-on-select="setLuxuryAmenities($item)"
-                                               typeahead-editable="false"
-                                               typeahead-loading="loadingLuxuryAmenities" 
-                                               typeahead-no-results="noLuxuryAmenitiesFound"                                       
-                                               ng-model="luxuryAmenities" />
-                                        <p ng-show="noLuxuryAmenitiesFound" class="help-block text-muted">No Luxury Amenities Found</p>
-                                        <p ng-show="loadingLuxuryAmenities" class="help-block text-muted">Loading...</p>
+                                <div class="row modal-title">
+                                    <h3>Forecast</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Demand Potential</label>
+                                            <select class="form-control" ng-model="editableLocation.demandPotential">
+                                                <option value="">Select Demand Potential</option>
+                                                <option value="LOW">Low</option>
+                                                <option value="MODERATE">Moderate</option>
+                                                <option value="HIGH">High</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>                                        
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>advantage</label>
-                                        <input class="form-control" placeholder="Advantage" ng-model="editableLocation.advantage"> 
+                                    <div class="col-sm-6">                                    
+                                    </div>
+                                </div>                            
+                                <div class="row modal-title">
+                                    <h3>Coordinates</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Latitude</label>
+                                            <input type="number" step="any" class="form-control" placeholder="Latitude" ng-model="editableLocation.latitude"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Longitude</label>
+                                            <input type="number" step="any" class="form-control" placeholder="Longitude" ng-model="editableLocation.longitude"> 
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>disadvantage</label>
-                                        <input class="form-control" placeholder="Disadvantage" ng-model="editableLocation.disadvantage"> 
+                                <div class="row">
+                                    <div class="form-group col-sm-6">                                            
+                                        <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>population</label>
-                                        <input type="number" class="form-control" placeholder="Population" ng-model="editableLocation.population"> 
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <input class="form-control" placeholder="Description" ng-model="editableLocation.description"> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <!--                            <div class="form-group">
-                                                                    <label>Distance From Centre Of City</label>
-                                                                    <input type="number" class="form-control" placeholder="Distance From Centre Of City" ng-model="editableLocation.distanceFromCentreOfCity"> 
-                                                                </div>-->
-                                    <div class="form-group">
-                                        <label>Source Of Water</label>          
-                                        <!--                                        <select class="form-control" ng-model="editableLocation.sourceOfWater">
-                                                                                    <option value="">Choose source water</option>
-                                                                                    <option value="CORPORATION_SUPPLY">Corporation Supply</option>
-                                                                                    <option value="BOREWELL">Bore well</option>
-                                                                                    <option value="OPEN_WELL">Open well</option> 
-                                                                                </select>-->
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.corporationSupply">&nbsp;&nbsp;
-                                        <label>Corporation Supply</label>
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.borewell">&nbsp;&nbsp;
-                                        <label>Bore well</label>
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.openWell">&nbsp;&nbsp;
-                                        <label>Open well</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Public Transport </label>
-                                        <!--                                        <select class="form-control" ng-model="editableLocation.publicTransport">
-                                                                                    <option value="">Choose public transport</option>
-                                                                                    <option value="REGULAR">Regular</option>
-                                                                                    <option value="LESS_REGULAR">Less Regular</option>
-                                                                                    <option value="NOT_AVAILABLE">Not Available</option> 
-                                                                                </select>-->
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.bus">&nbsp;&nbsp;
-                                        <label>Bus</label>
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.auto">&nbsp;&nbsp;
-                                        <label>Auto</label>
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.taxi">&nbsp;&nbsp;
-                                        <label>Taxi</label>
-                                    </div>
-                                    <div class="form-group">                                  
-                                        <input type="checkbox" ng-model="editableLocation.metro">&nbsp;&nbsp;
-                                        <label>Metro</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row modal-title">
-                                <h3>Forecast</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Demand Potential</label>
-                                        <select class="form-control" ng-model="editableLocation.demandPotential">
-                                            <option value="">Select Demand Potential</option>
-                                            <option value="LOW">Low</option>
-                                            <option value="MODERATE">Moderate</option>
-                                            <option value="HIGH">High</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">                                    
-                                </div>
-                            </div>                            
-                            <div class="row modal-title">
-                                <h3>Coordinates</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Latitude</label>
-                                        <input type="number" step="any" class="form-control" placeholder="Latitude" ng-model="editableLocation.latitude"> 
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Longitude</label>
-                                        <input type="number" step="any" class="form-control" placeholder="Longitude" ng-model="editableLocation.longitude"> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">                                            
-                                    <span>To get coordinates refer this link : <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a></span>
-                                </div>
-                            </div>
-                            <!--                    <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Image Url</label>
-                                                            <input class="form-control" placeholder="Image Url" ng-model="editableLocation.imageUrl"> 
+                                <!--                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Image Url</label>
+                                                                <input class="form-control" placeholder="Image Url" ng-model="editableLocation.imageUrl"> 
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>-->
+                                                    </div>-->
+                            </div>
                         </div>
                         <div ng-switch-when="Risk Factors" class="locations">
                             <div class="modal-body">

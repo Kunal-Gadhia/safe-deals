@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <h3 class="modal-title">
                         <i class="fa fa-inventory-o" aria-hidden="true"></i>
-                        Inventory Form
+                        Inventory Head Form
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -21,13 +21,9 @@
                             <div class="form-group">
                                 <label>No of BHK</label>
                                 <select class="form-control" ng-model="editableInventory.noOfBhk">
-                                    <option value="">Select No of BHK</option>
-                                    <!--<option ng-repeat=""></option>--> 
+                                    <option value="">Select No of BHK</option>                                    
                                     <option ng-repeat="propertyType in propertyTypeList" value="{{propertyType.id}}" > {{propertyType.numberOfBhk}}</option>
-                                </select>
-
-
-                                <!--<input class="form-control" placeholder="No of BHK" ng-model="editableInventory.noOfBhk"/>-->
+                                </select>                                
                             </div>
                         </div> 
                     </div>
@@ -50,37 +46,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Total Units</label>
-                                <input class="form-control" placeholder="Total Units" ng-model="editableInventory.totalUnits"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Start Unit No</label>
-                                <input class="form-control" placeholder="Start Unit No" ng-model="editableInventory.startUnitNo"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>End Unit No</label>
-                                <input class="form-control" placeholder="End Unit No" ng-model="editableInventory.endUnitNo"readonly=""/>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Floor No</label>
-                                <input class="form-control" placeholder="Floor No" ng-model="editableInventory.floorNo"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Building Name</label>
-                                <input class="form-control" placeholder="Building Name" ng-model="editableInventory.buildingName"/>
+                                <label>Total Area</label>
+                                <input class="form-control" placeholder="Total Area" ng-model="editableInventory.totalArea"/>
                             </div>
                         </div>
 
@@ -94,59 +61,29 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Total Area</label>
-                                <input class="form-control" placeholder="Total Area" ng-model="editableInventory.totalArea"/>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
                                 <label>Offered Price</label>
                                 <input class="form-control" placeholder="Offered Price" ng-model="editableInventory.offeredPrice"/>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">                        
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>No Of Balcony</label>
-                                <input class="form-control" placeholder="No Of Balcony" ng-model="editableInventory.noOfBalcony"/>
+                                <label>Building Name</label>
+                                <input class="form-control" placeholder="Building Name" ng-model="editableInventory.buildingName"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Units</label>
+                                <input class="form-control" placeholder="Total Units" ng-model="editableInventory.totalUnits"/>
                             </div>
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>No Of Washroom</label>
-                                <input class="form-control" placeholder="No Of Washroom" ng-model="editableInventory.noOfWashroom"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Property Status</label>
-                            <div class="form-group">                                  
-                                <input id="availablity" type="checkbox" ng-model="editableInventory.isAvailable">&nbsp;&nbsp;
-                                <label>Is Available</label>
-                            </div>
-                            <div class="form-group">                                  
-                                <input id="availablity" type="checkbox" ng-model="editableInventory.isReserved">&nbsp;&nbsp;                                        
-                                <label>Is Reserved</label> 
-                            </div>
-                            <div class="form-group">                                  
-                                <input id="availablity" type="checkbox" ng-model="editableInventory.isSold">&nbsp;&nbsp;
-                                <label>Is Sold</label>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">                                  
-                                    <input type="checkbox" ng-model="editableInventory.openTerrace">&nbsp;&nbsp;
-                                    <label>Open Terrace</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-lg btn-primary">
