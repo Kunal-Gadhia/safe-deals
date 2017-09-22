@@ -40,6 +40,8 @@ public class Location {
     private Boolean openWell;
     private Double distance;
     private Integer unit;
+    private List<Integer> basicAmenities;
+    private List<Integer> luxuryAmenities;
 
     public Integer getId() {
         return id;
@@ -321,44 +323,67 @@ public class Location {
         this.unit = unit;
     }
 
+    public List<Integer> getBasicAmenities() {
+        return basicAmenities;
+    }
+
+    public void setBasicAmenities(List<Integer> basicAmenities) {
+        this.basicAmenities = basicAmenities;
+    }
+
+    public List<Integer> getLuxuryAmenities() {
+        return luxuryAmenities;
+    }
+
+    public void setLuxuryAmenities(List<Integer> luxuryAmenities) {
+        this.luxuryAmenities = luxuryAmenities;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" + "id=" + id + ", name=" + name + ", description=" + description + ", cityId=" + cityId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", safedealZoneId=" + safedealZoneId + ", majorApproachRoad=" + majorApproachRoad + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", latitude=" + latitude + ", longitude=" + longitude + ", migrationRatePerAnnum=" + migrationRatePerAnnum + ", distanceFromCentreOfCity=" + distanceFromCentreOfCity + ", isCommercialCenter=" + isCommercialCenter + ", distanceFromCommercialCenter=" + distanceFromCommercialCenter + ", demandPotential=" + demandPotential + ", powerPlant=" + powerPlant + ", medicineIndustry=" + medicineIndustry + ", steelIndustry=" + steelIndustry + ", filthyLake=" + filthyLake + ", lowLyingArea=" + lowLyingArea + ", dumpYard=" + dumpYard + ", stp=" + stp + ", imageUrl=" + imageUrl + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", corporationSupply=" + corporationSupply + ", borewell=" + borewell + ", openWell=" + openWell + ", distance=" + distance + ", unit=" + unit + ", basicAmenities=" + basicAmenities + ", luxuryAmenities=" + luxuryAmenities + '}';
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.name);
-        hash = 43 * hash + Objects.hashCode(this.description);
-        hash = 43 * hash + Objects.hashCode(this.cityId);
-        hash = 43 * hash + Objects.hashCode(this.locationTypeId);
-        hash = 43 * hash + Objects.hashCode(this.locationCategories);
-        hash = 43 * hash + Objects.hashCode(this.safedealZoneId);
-        hash = 43 * hash + Objects.hashCode(this.majorApproachRoad);
-        hash = 43 * hash + Objects.hashCode(this.advantage);
-        hash = 43 * hash + Objects.hashCode(this.disadvantage);
-        hash = 43 * hash + Objects.hashCode(this.population);
-        hash = 43 * hash + Objects.hashCode(this.latitude);
-        hash = 43 * hash + Objects.hashCode(this.longitude);
-        hash = 43 * hash + Objects.hashCode(this.migrationRatePerAnnum);
-        hash = 43 * hash + Objects.hashCode(this.distanceFromCentreOfCity);
-        hash = 43 * hash + Objects.hashCode(this.isCommercialCenter);
-        hash = 43 * hash + Objects.hashCode(this.distanceFromCommercialCenter);
-        hash = 43 * hash + Objects.hashCode(this.demandPotential);
-        hash = 43 * hash + Objects.hashCode(this.powerPlant);
-        hash = 43 * hash + Objects.hashCode(this.medicineIndustry);
-        hash = 43 * hash + Objects.hashCode(this.steelIndustry);
-        hash = 43 * hash + Objects.hashCode(this.filthyLake);
-        hash = 43 * hash + Objects.hashCode(this.lowLyingArea);
-        hash = 43 * hash + Objects.hashCode(this.dumpYard);
-        hash = 43 * hash + Objects.hashCode(this.stp);
-        hash = 43 * hash + Objects.hashCode(this.imageUrl);
-        hash = 43 * hash + Objects.hashCode(this.bus);
-        hash = 43 * hash + Objects.hashCode(this.auto);
-        hash = 43 * hash + Objects.hashCode(this.taxi);
-        hash = 43 * hash + Objects.hashCode(this.metro);
-        hash = 43 * hash + Objects.hashCode(this.corporationSupply);
-        hash = 43 * hash + Objects.hashCode(this.borewell);
-        hash = 43 * hash + Objects.hashCode(this.openWell);
-        hash = 43 * hash + Objects.hashCode(this.distance);
-        hash = 43 * hash + Objects.hashCode(this.unit);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.description);
+        hash = 79 * hash + Objects.hashCode(this.cityId);
+        hash = 79 * hash + Objects.hashCode(this.locationTypeId);
+        hash = 79 * hash + Objects.hashCode(this.locationCategories);
+        hash = 79 * hash + Objects.hashCode(this.safedealZoneId);
+        hash = 79 * hash + Objects.hashCode(this.majorApproachRoad);
+        hash = 79 * hash + Objects.hashCode(this.advantage);
+        hash = 79 * hash + Objects.hashCode(this.disadvantage);
+        hash = 79 * hash + Objects.hashCode(this.population);
+        hash = 79 * hash + Objects.hashCode(this.latitude);
+        hash = 79 * hash + Objects.hashCode(this.longitude);
+        hash = 79 * hash + Objects.hashCode(this.migrationRatePerAnnum);
+        hash = 79 * hash + Objects.hashCode(this.distanceFromCentreOfCity);
+        hash = 79 * hash + Objects.hashCode(this.isCommercialCenter);
+        hash = 79 * hash + Objects.hashCode(this.distanceFromCommercialCenter);
+        hash = 79 * hash + Objects.hashCode(this.demandPotential);
+        hash = 79 * hash + Objects.hashCode(this.powerPlant);
+        hash = 79 * hash + Objects.hashCode(this.medicineIndustry);
+        hash = 79 * hash + Objects.hashCode(this.steelIndustry);
+        hash = 79 * hash + Objects.hashCode(this.filthyLake);
+        hash = 79 * hash + Objects.hashCode(this.lowLyingArea);
+        hash = 79 * hash + Objects.hashCode(this.dumpYard);
+        hash = 79 * hash + Objects.hashCode(this.stp);
+        hash = 79 * hash + Objects.hashCode(this.imageUrl);
+        hash = 79 * hash + Objects.hashCode(this.bus);
+        hash = 79 * hash + Objects.hashCode(this.auto);
+        hash = 79 * hash + Objects.hashCode(this.taxi);
+        hash = 79 * hash + Objects.hashCode(this.metro);
+        hash = 79 * hash + Objects.hashCode(this.corporationSupply);
+        hash = 79 * hash + Objects.hashCode(this.borewell);
+        hash = 79 * hash + Objects.hashCode(this.openWell);
+        hash = 79 * hash + Objects.hashCode(this.distance);
+        hash = 79 * hash + Objects.hashCode(this.unit);
+        hash = 79 * hash + Objects.hashCode(this.basicAmenities);
+        hash = 79 * hash + Objects.hashCode(this.luxuryAmenities);
         return hash;
     }
 
@@ -476,12 +501,13 @@ public class Location {
         if (!Objects.equals(this.unit, other.unit)) {
             return false;
         }
+        if (!Objects.equals(this.basicAmenities, other.basicAmenities)) {
+            return false;
+        }
+        if (!Objects.equals(this.luxuryAmenities, other.luxuryAmenities)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Location{" + "id=" + id + ", name=" + name + ", description=" + description + ", cityId=" + cityId + ", locationTypeId=" + locationTypeId + ", locationCategories=" + locationCategories + ", safedealZoneId=" + safedealZoneId + ", majorApproachRoad=" + majorApproachRoad + ", advantage=" + advantage + ", disadvantage=" + disadvantage + ", population=" + population + ", latitude=" + latitude + ", longitude=" + longitude + ", migrationRatePerAnnum=" + migrationRatePerAnnum + ", distanceFromCentreOfCity=" + distanceFromCentreOfCity + ", isCommercialCenter=" + isCommercialCenter + ", distanceFromCommercialCenter=" + distanceFromCommercialCenter + ", demandPotential=" + demandPotential + ", powerPlant=" + powerPlant + ", medicineIndustry=" + medicineIndustry + ", steelIndustry=" + steelIndustry + ", filthyLake=" + filthyLake + ", lowLyingArea=" + lowLyingArea + ", dumpYard=" + dumpYard + ", stp=" + stp + ", imageUrl=" + imageUrl + ", bus=" + bus + ", auto=" + auto + ", taxi=" + taxi + ", metro=" + metro + ", corporationSupply=" + corporationSupply + ", borewell=" + borewell + ", openWell=" + openWell + ", distance=" + distance + ", unit=" + unit + '}';
-    }
-    
 }

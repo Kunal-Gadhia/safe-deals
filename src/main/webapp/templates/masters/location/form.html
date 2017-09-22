@@ -200,6 +200,38 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Basic Amenities</label>                                                    
+                                        <input class="form-control"
+                                               placeholder="Select Basic Amenities"
+                                               uib-typeahead="basicAmenities.id as basicAmenitites.name for basicAmenitites in searchBasicAmenities($viewValue)"
+                                               typeahead-on-select="setBasicAmenities($item)"
+                                               typeahead-editable="false"
+                                               typeahead-loading="loadingBasicAmenities" 
+                                               typeahead-no-results="noBasicAmenitiesFound"                                       
+                                               ng-model="basicAmenities" />
+                                        <p ng-show="noBasicAmenitiesFound" class="help-block text-muted">No Basic Amenities Found</p>
+                                        <p ng-show="loadingBasicAmenities" class="help-block text-muted">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Luxury Amenities</label>
+                                        <input class="form-control"
+                                               placeholder="Select Luxury Amenities"
+                                               uib-typeahead="luxuryAmenities.id as luxuryAmenities.name for luxuryAmenities in searchLuxuryAmenities($viewValue)"
+                                               typeahead-on-select="setLuxuryAmenities($item)"
+                                               typeahead-editable="false"
+                                               typeahead-loading="loadingLuxuryAmenities" 
+                                               typeahead-no-results="noLuxuryAmenitiesFound"                                       
+                                               ng-model="luxuryAmenities" />
+                                        <p ng-show="noLuxuryAmenitiesFound" class="help-block text-muted">No Luxury Amenities Found</p>
+                                        <p ng-show="loadingLuxuryAmenities" class="help-block text-muted">Loading...</p>
+                                    </div>
+                                </div>                                        
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>advantage</label>

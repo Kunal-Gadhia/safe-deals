@@ -53,7 +53,7 @@
                                                typeahead-editable="false"
                                                typeahead-loading="loadingCities" 
                                                typeahead-no-results="noCitiesFound"  
-                                               ng-disabled="!editableProperty.stateId"
+                                              
                                                ng-model="editableProperty.city.name" />
                                         <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
                                         <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
@@ -355,66 +355,82 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+                                <!--                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Payment Schedule</label>
+                                                                            <input class="form-control" placeholder="Payment Schedule" ng-model="editableProperty.paymentSchedule">
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Down Payment</label>
+                                                                            <input type="number" placeholder="Down Payment" class="form-control" ng-model="editableProperty.downpayment">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+
                                 <div class="row">
-                  
-
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label>Payment Schedule</label>
-                                            
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Schedule</th>
-                                                                <th>Percent</th>
-                                                                <th>Schedule</th>
-                                                                <th>Percent</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Booking Amount</td>
-                                                                <td><input type="number" ng-disabled="e" class="form-control" ng-model="editableProperty.bookingAmount"></td>
-                                                                <td>Start Of Construction</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.startOfConstruction"></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Completion Of Plinth</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.completionOfPlinth"></td>
-                                                                <td>Each Slab</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.eachSlab"></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Brick Work</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.brickWork"></td>
-                                                                <td>Plastering</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.plastering"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Finishing Work</td>
-                                                                <td><input type="number" class="form-control" ng-model="editableProperty.finishingWork"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Payment Schedule</label>
+                                            <!--<input class="form-control" ng-model="editableProject.paymentSchedule" required="">-->
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Schedule</th>
+                                                            <th>Percent</th>
+                                                            <th>Schedule</th>
+                                                            <th>Percent</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Booking Amount</td>
+                                                            <td><input type="number" ng-disabled="e" class="form-control" ng-model="editableProperty.bookingAmount"></td>
+                                                            <td>Start Of Construction</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.startOfConstruction"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Completion Of Plinth</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.completionOfPlinth"></td>
+                                                            <td>Each Slab</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.eachSlab"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Brick Work</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.brickWork"></td>
+                                                            <td>Plastering</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.plastering"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Finishing Work</td>
+                                                            <td><input type="number" class="form-control" ng-model="editableProperty.finishingWork"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                    </div> 
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Down Payment</label>
-                                                <input type="number" class="form-control" ng-model="editableProperty.downpayment">
-                                            </div>
-
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Down Payment</label>
+                                            <input type="number" placeholder="Down Payment" class="form-control" ng-model="editableProperty.downpayment">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div ng-switch-when="Neighbourhood">
                             <div ng-show="neighbourhood">
                                 <div class="row">
@@ -433,15 +449,15 @@
                                             <p ng-show="loadingWorkplaces" class="help-block text-muted">Loading...</p>
                                         </div>
                                     </div>  
-<!--                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Workplaces</label>
-                                            <multiselect class="input-xlarge multiselect" ng-model="workplaces" options="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
-                                                         header="Select Stuff" selected-header="options selected" multiple="true" required complex-models="false" select-limit-use-filtered ="true"
-                                                         enable-filter="true" filter-placeholder="Filter stuff..">
-                                            </multiselect>
-                                        </div>
-                                    </div> -->
+                                    <!--                                    <div class="col-sm-4">
+                                                                            <div class="form-group">
+                                                                                <label>Workplaces</label>
+                                                                                <multiselect class="input-xlarge multiselect" ng-model="workplaces" options="workplaces.id as workplaces.name for workplaces in searchWorkplaces($viewValue)"
+                                                                                             header="Select Stuff" selected-header="options selected" multiple="true" required complex-models="false" select-limit-use-filtered ="true"
+                                                                                             enable-filter="true" filter-placeholder="Filter stuff..">
+                                                                                </multiselect>
+                                                                            </div>
+                                                                        </div> -->
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Nearby Projects</label>

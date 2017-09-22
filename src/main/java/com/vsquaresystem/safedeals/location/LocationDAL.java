@@ -60,6 +60,8 @@ public class LocationDAL {
         public static final String OPEN_WELL = "open_well";
         public static final String DISTANCE = "distance";
         public static final String UNIT = "unit";
+        public static final String BASIC_AMENITIES = "basic_amenities";
+        public static final String LUXURY_AMENITIES = "luxury_amenities";
 
     }
 
@@ -108,7 +110,9 @@ public class LocationDAL {
                         Columns.BOREWELL,
                         Columns.OPEN_WELL,
                         Columns.DISTANCE,
-                        Columns.UNIT
+                        Columns.UNIT,
+                        Columns.BASIC_AMENITIES,
+                        Columns.LUXURY_AMENITIES
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -259,6 +263,8 @@ public class LocationDAL {
 
         parameters.put(Columns.DISTANCE, location.getDistance());
         parameters.put(Columns.UNIT, location.getUnit());
+        parameters.put(Columns.BASIC_AMENITIES, location.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(location.getBasicAmenities()));
+        parameters.put(Columns.LUXURY_AMENITIES, location.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(location.getLuxuryAmenities()));
 
         System.out.println("param" + parameters);
         Number newId = insertLocation.executeAndReturnKey(parameters);
@@ -306,7 +312,9 @@ public class LocationDAL {
                 + Columns.BOREWELL + "=?, "
                 + Columns.OPEN_WELL + "=?, "
                 + Columns.DISTANCE + "=?, "
-                + Columns.UNIT + "=?  WHERE " + Columns.ID + " = ?";
+                + Columns.UNIT + "=?, "
+                + Columns.BASIC_AMENITIES + "=?, "
+                + Columns.LUXURY_AMENITIES + "=?  WHERE " + Columns.ID + " = ?";
         jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     location.getName(),
@@ -348,6 +356,8 @@ public class LocationDAL {
                     location.getOpenWell(),
                     location.getDistance(),
                     location.getUnit(),
+                    location.getBasicAmenities() == null ? "[]" : mapper.writeValueAsString(location.getBasicAmenities()),
+                    location.getLuxuryAmenities() == null ? "[]" : mapper.writeValueAsString(location.getLuxuryAmenities()),
                     location.getId()
                 }
         );
@@ -420,10 +430,29 @@ public class LocationDAL {
             location.setOpenWell(rs.getBoolean(Columns.OPEN_WELL));
             location.setDistance(rs.getDouble(Columns.DISTANCE));
             location.setUnit(rs.getInt(Columns.UNIT));
+
             if (rs.wasNull()) {
                 location.setUnit(null);
             }
 
+            String basicAmenitiesList = rs.getString(Columns.BASIC_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> basicAmenities = mapper.readValue(basicAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                location.setBasicAmenities(basicAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing basicAmenitiesList: '" + basicAmenitiesList + "' ", ex);
+            }
+            String luxuryAmenitiesList = rs.getString(Columns.LUXURY_AMENITIES);
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                List<Integer> luxuryAmenities = mapper.readValue(luxuryAmenitiesList, new TypeReference<List<Integer>>() {
+                });
+                location.setLuxuryAmenities(luxuryAmenities);
+            } catch (IOException ex) {
+                throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
+            }
             return location;
         }
 

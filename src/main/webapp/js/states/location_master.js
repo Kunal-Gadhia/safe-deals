@@ -114,7 +114,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             };
         })
-        .controller('LocationAddController', function (CityService, UnitService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
+        .controller('LocationAddController', function (CityService, AmenityDetailService, UnitService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
             $scope.locationSteps = [
                 'Basic Details',
                 'Risk Factors'
@@ -141,6 +141,11 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             $scope.cities = CityService.findAllCities();
             $scope.safedealZones = SafedealZoneService.query();
             $scope.locationTypes = LocationTypeService.query();
+
+            $scope.basicAmenitiesDisplay = [];
+            $scope.editableLocation.basicAmenities = [];
+            $scope.luxuryAmenitiesDisplay = [];
+            $scope.editableLocation.luxuryAmenities = [];
 
             $scope.setCity = function (city) {
                 console.log("selected city ", city);
@@ -185,6 +190,39 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
                 console.log("Updated %O", $scope.editableLocation.locationCategories);
             };
+
+            $scope.setBasicAmenities = function (basicAmenities) {
+                console.log("xyz", basicAmenities);
+                $scope.basicAmenitiesDisplay.push(basicAmenities);
+                $scope.$parent.basicAmenities = "";
+                $scope.editableLocation.basicAmenities.push(basicAmenities.id);
+            };
+            $scope.removeBasicAmenities = function (basicAmenities) {
+                console.log("Getting the thing :%O", basicAmenities);
+                var index = $scope.basicAmenitiesDisplay.indexOf(basicAmenities);
+                var index1 = $scope.editableLocation.basicAmenities.indexOf(basicAmenities.id);
+                $scope.basicAmenitiesDisplay.splice(index, 1);
+                $scope.editableLocation.basicAmenities.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.basicAmenitiesDisplay);
+                console.log("Updated %O", $scope.editableLocation.basicAmenities);
+            };
+            $scope.setLuxuryAmenities = function (luxuryAmenities) {
+                console.log("xyz", luxuryAmenities);
+                $scope.luxuryAmenitiesDisplay.push(luxuryAmenities);
+                $scope.luxuryAmenities = "";
+                $scope.editableLocation.luxuryAmenities.push(luxuryAmenities.id);
+            };
+            $scope.removeLuxuryAmenities = function (luxuryAmenities) {
+                console.log("Getting the thing :%O", luxuryAmenities);
+                var index = $scope.luxuryAmenitiesDisplay.indexOf(luxuryAmenities);
+                var index1 = $scope.editableLocation.luxuryAmenities.indexOf(luxuryAmenities.id);
+                $scope.luxuryAmenitiesDisplay.splice(index, 1);
+                $scope.editableLocation.luxuryAmenities.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.luxuryAmenitiesDisplay);
+                console.log("Updated %O", $scope.editableLocation.luxuryAmenities);
+            };
+
+
             $scope.setRoad = function (road) {
                 $scope.editableLocation.majorApproachRoad = road.id;
                 $scope.editableLocation.road = road;
@@ -208,6 +246,17 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return CityService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+
+            $scope.searchBasicAmenities = function (searchTerm) {
+                return AmenityDetailService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+            $scope.searchLuxuryAmenities = function (searchTerm) {
+                return AmenityDetailService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
@@ -317,7 +366,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
 
         })
-        .controller('LocationEditController', function (CityService, UnitService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
+        .controller('LocationEditController', function (CityService, AmenityDetailService, UnitService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
             $scope.editableLocation = LocationService.get({
                 'id': $stateParams.locationId
             }, function () {
@@ -349,11 +398,31 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }, function (sdZoneData) {
                     $("#sdZone").val(sdZoneData.id);
                 });
+
+                $scope.basicAmenitiesDisplay = [];
+                angular.forEach($scope.editableLocation.basicAmenities, function (basicAmenities) {
+                    AmenityDetailService.get({
+                        'id': basicAmenities
+                    }, function (data) {
+                        $scope.basicAmenitiesDisplay.push(data);
+                    });
+                });
+                $scope.luxuryAmenitiesDisplay = [];
+                angular.forEach($scope.editableLocation.luxuryAmenities, function (luxuryAmenities) {
+                    AmenityDetailService.get({
+                        'id': luxuryAmenities
+                    }, function (data) {
+                        $scope.luxuryAmenitiesDisplay.push(data);
+                    });
+                });
+
             });
             $scope.locationSteps = [
                 'Basic Details',
                 'Risk Factors'
             ];
+            $scope.editableLocation.basicAmenities = [];
+            $scope.editableLocation.luxuryAmenities = [];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
             $scope.getLocationStep = function (locationstep) {
@@ -407,6 +476,39 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
                 console.log("Updated %O", $scope.editableLocation.locationCategories);
             };
+
+            $scope.setBasicAmenities = function (basicAmenities) {
+                console.log("xyz", basicAmenities);
+                $scope.basicAmenitiesDisplay.push(basicAmenities);
+                $scope.$parent.basicAmenities = "";
+                $scope.editableLocation.basicAmenities.push(basicAmenities.id);
+            };
+            $scope.removeBasicAmenities = function (basicAmenities) {
+                console.log("Getting the thing :%O", basicAmenities);
+                var index = $scope.basicAmenitiesDisplay.indexOf(basicAmenities);
+                var index1 = $scope.editableLocation.basicAmenities.indexOf(basicAmenities.id);
+                $scope.basicAmenitiesDisplay.splice(index, 1);
+                $scope.editableLocation.basicAmenities.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.basicAmenitiesDisplay);
+                console.log("Updated %O", $scope.editableLocation.basicAmenities);
+            };
+            $scope.setLuxuryAmenities = function (luxuryAmenities) {
+                console.log("xyz", luxuryAmenities);
+                $scope.luxuryAmenitiesDisplay.push(luxuryAmenities);
+                $scope.luxuryAmenities = "";
+                $scope.editableLocation.luxuryAmenities.push(luxuryAmenities.id);
+            };
+            $scope.removeLuxuryAmenities = function (luxuryAmenities) {
+                console.log("Getting the thing :%O", luxuryAmenities);
+                var index = $scope.luxuryAmenitiesDisplay.indexOf(luxuryAmenities);
+                var index1 = $scope.editableLocation.luxuryAmenities.indexOf(luxuryAmenities.id);
+                $scope.luxuryAmenitiesDisplay.splice(index, 1);
+                $scope.editableLocation.luxuryAmenities.splice(index1, 1);
+                console.log("Updated Type Display :%O", $scope.luxuryAmenitiesDisplay);
+                console.log("Updated %O", $scope.editableLocation.luxuryAmenities);
+            };
+
+
             $scope.setRoad = function (road) {
                 $scope.editableLocation.majorApproachRoad = road.id;
                 $scope.editableLocation.road = road;
@@ -433,6 +535,16 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }).$promise;
             };
 
+            $scope.searchBasicAmenities = function (searchTerm) {
+                return AmenityDetailService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
+            $scope.searchLuxuryAmenities = function (searchTerm) {
+                return AmenityDetailService.findByNameLike({
+                    'name': searchTerm
+                }).$promise;
+            };
             $scope.searchLocationTypes = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
                 return LocationTypeService.findByNameLike({
