@@ -176,14 +176,30 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
 
         })
-        .controller('ProjectInventoryDetailController', function (InventoryHeadService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
+        .controller('ProjectInventoryDetailController', function (InventoryDetailService, InventoryHeadService, PropertyTypeService, ProjectService, PropertyCategoryService, $scope, $stateParams, $state) {
             $scope.editableInventoryDetail = {};
             $scope.totalUnits;
-
+            $scope.disableDoneButton = true;
+            $scope.disableSaveButton = false;
             InventoryHeadService.get({
                 'id': $stateParams.inventoryHeadId
             }, function (inventoryHead) {
                 $scope.inventoryHead = inventoryHead;
+
+                InventoryDetailService.findByInventoryHeadId({
+                    'inventoryHeadId': $stateParams.inventoryHeadId
+                }, function (inventoryDetailsList) {
+                    $scope.inventoryDetails = inventoryDetailsList;
+                    if ($scope.inventoryDetails.length === $scope.inventoryHead.totalUnits) {
+                        console.log("AAAAAAAAAAAAA Length is same");
+                        $scope.disableDoneButton = false;
+                        $scope.disableSaveButton = true;
+                    }
+                });
+//                if ($scope.inventoryDetails.length === inventoryHead.totalUnits) {
+//                    console.log("Entries are same ");
+//                    $scope.showDoneButton = false;
+//                }
                 $scope.totalUnits = inventoryHead.totalUnits;
                 console.log("$scope.totalunits :%O", $scope.totalUnits);
                 ProjectService.get({
@@ -202,18 +218,37 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.propertyCategory = propCategory.category;
                 });
             });
+//            InventoryDetailService.findByInventoryHeadId({
+//                'inventoryHeadId': $stateParams.inventoryHeadId
+//            }, function (inventoryDetailsList) {
+//                $scope.inventoryDetails = inventoryDetailsList;
+//                if ($scope.inventoryDetails.length === $scope.inventoryHead.totalUnits) {
+////                    console.log("Length is same");
+//                    $scope.showDoneButton = false;
+//                }
+//            });
 
-            $scope.$watch('inventoryHead.totalUnits', function (totalUnits) {
-                $scope.$watch('editableInventoryDetail.startUnitNo', function (startUnitNo) {
-//                    console.log("Total Units :%O", $scope.totalUnits);
-//                    var totalUnits = $scope.totalUnits;
-                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-                    $scope.editableInventoryDetail.endUnitNo = endUnitNo - 1;
-                });
+//            $scope.$watch('inventoryHead.totalUnits', function (totalUnits) {
+//                $scope.$watch('editableInventoryDetail.startUnitNo', function (startUnitNo) {
+////                    console.log("Total Units :%O", $scope.totalUnits);
+////                    var totalUnits = $scope.totalUnits;
+//                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
+//                    $scope.editableInventoryDetail.endUnitNo = endUnitNo - 1;
+//                });
+//            });
+
+            InventoryDetailService.findByInventoryHeadId({
+                'inventoryHeadId': $stateParams.inventoryHeadId
+            }, function (inventoryDetails) {
+                $scope.inventoryDetails = inventoryDetails;
             });
 
+            $scope.done = function () {
+                $state.go('admin.masters_project', null, {'reload': true});
+            };
+
             $scope.saveInventoryDetail = function (inventoryDetail) {
-                console.log("Inventory Detail :%O", inventoryDetail);
+//                console.log("Inventory Detail :%O", inventoryDetail);
                 for (var i = inventoryDetail.startUnitNo; i <= inventoryDetail.endUnitNo; i++) {
                     var tempObject = {};
                     tempObject.inventoryHeadId = $stateParams.inventoryHeadId;
@@ -248,6 +283,27 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 //                    tempObject.isReserved = false;
 //                    tempObject.isSold = false;
                     console.log("Temp Object :%O", tempObject);
+                    InventoryDetailService.save(tempObject, function () {
+                        $scope.editableInventoryDetail = {};
+                        InventoryDetailService.findByInventoryHeadId({
+                            'inventoryHeadId': $stateParams.inventoryHeadId
+                        }, function (inventoryDetailsList) {
+                            $scope.inventoryDetails = inventoryDetailsList;
+                            if ($scope.inventoryDetails.length === $scope.inventoryHead.totalUnits) {
+                                console.log("Length is same");
+                                $scope.disableDoneButton = false;
+                                $scope.disableSaveButton = true;
+                            }
+                        });
+//                        console.log("Inventory Head :%O", $scope.inventoryHead);
+//                        InventoryDetailService.query(function (inventoryDetailsList) {
+//                            console.log("Inventory Details List :%O", inventoryDetailsList.length);
+//                            if ($scope.inventoryHead.totalUnits === inventoryDetailsList.length) {
+//                                console.log("Length is Equal");
+//                            };
+//                        });
+//                        console.log("Inventory Details Length :%O", $scope.inventoryDetails.length);
+                    });
 
 //                    InventoryService.save(tempObject, function () {
 //                        $state.go('admin.masters_project', null, {'reload': true});
