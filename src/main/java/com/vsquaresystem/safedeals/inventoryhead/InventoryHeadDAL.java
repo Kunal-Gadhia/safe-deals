@@ -28,7 +28,7 @@ public class InventoryHeadDAL {
         public static final String PRICE_PER_SQFT = "price_per_sqft";
         public static final String OFFERED_PRICE = "offered_price";
         public static final String BUILDING_NAME = "building_name";
-        public static final String TOTAL_UNITS = "total_uints";
+        public static final String TOTAL_UNITS = "total_units";
     };
 
     @Autowired
