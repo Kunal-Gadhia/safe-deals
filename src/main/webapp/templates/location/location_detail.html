@@ -2,114 +2,249 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
 <script>
     //Main Slider//
-    var Slideshow = {
-    navigate: function () {
-    $('a', '#slideshow-nav').click(function (e) {
-    e.preventDefault();
-    var $a = $(this);
-    var slide = $($a.attr('href'));
-    var wrapper = $('#slideshow-wrapper');
-    wrapper.animate({
-    left: - slide.position().left
-    }, 1000, 'linear', function () {
-    $a.addClass('active').siblings().removeClass('active');
-    });
-    });
-    },
-            init: function () {
-            this.navigate();
-            }
-
-    };
-    Slideshow.init();
+//    var Slideshow = {
+//        navigate: function () {
+//            $('a', '#slideshow-nav').click(function (e) {
+//                e.preventDefault();
+//                var $a = $(this);
+//                var slide = $($a.attr('href'));
+//                var wrapper = $('#slideshow-wrapper');
+//                wrapper.animate({
+//                    left: -slide.position().left
+//                }, 1000, 'linear', function () {
+//                    $a.addClass('active').siblings().removeClass('active');
+//                });
+//            });
+//        },
+//        init: function () {
+//            this.navigate();
+//        }
+//
+//    };
+//    Slideshow.init();
     //Main Slider//
 
+    $('.slider').each(function() {
+    var $this = $(this);
+    var $group = $this.find('.slide_group');
+    var $slides = $this.find('.slide');
+    var bulletArray = [];
+    var currentIndex = 0;
+    var timeout;
+    function move(newIndex) {
+    var animateLeft, slideLeft;
+    advance();
+    if ($group.is(':animated') || currentIndex === newIndex) {
+    return;
+    }
+
+    bulletArray[currentIndex].removeClass('active');
+    bulletArray[newIndex].addClass('active');
+    if (newIndex > currentIndex) {
+    slideLeft = '100%';
+    animateLeft = '-100%';
+    } else {
+    slideLeft = '-100%';
+    animateLeft = '100%';
+    }
+
+    $slides.eq(newIndex).css({
+    display: 'block',
+            left: slideLeft
+    });
+    $group.animate({
+    left: animateLeft
+    }, function() {
+    $slides.eq(currentIndex).css({
+    display: 'none'
+    });
+    $slides.eq(newIndex).css({
+    left: 0
+    });
+    $group.css({
+    left: 0
+    });
+    currentIndex = newIndex;
+    });
+    }
+
+    function advance() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+    if (currentIndex < ($slides.length - 1)) {
+    move(currentIndex + 1);
+    } else {
+    move(0);
+    }
+    }, 4000);
+    }
+
+    $('.next_btn').on('click', function() {
+    if (currentIndex < ($slides.length - 1)) {
+    move(currentIndex + 1);
+    } else {
+    move(0);
+    }
+    });
+    $('.previous_btn').on('click', function() {
+    if (currentIndex !== 0) {
+    move(currentIndex - 1);
+    } else {
+    move(3);
+    }
+    });
+    $.each($slides, function(index) {
+    var $button = $('<a class="slide_btn">&bull;</a>');
+    if (index === currentIndex) {
+    $button.addClass('active');
+    }
+    $button.on('click', function() {
+    move(index);
+    }).appendTo('.slide_buttons');
+    bulletArray.push($button);
+    });
+    advance();
+    });
     //Button Click Scroll Animation//
-    $(".BasicInforLink").click(function() {
+    $(".BasicInforLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".BasicInformationDIV").offset().top},
             'slow');
     });
-    $(".NeighborhoodLink").click(function() {
+    $(".NeighborhoodLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".NeighborhoodDIV").offset().top},
             'slow');
     });
-    $(".WorkLink").click(function() {
+    $(".WorkLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".PlacesDIV").offset().top},
             'slow');
     });
-    $(".DevelopmentLink").click(function() {
+    $(".DevelopmentLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".PlacesDIV").offset().top},
             'slow');
     });
-    
-    $(".KeyLink").click(function() {
+    $(".KeyLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".KeyDIV").offset().top},
             'slow');
     });
-    $(".BasicLink").click(function() {
+    $(".BasicLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".BasicDIV").offset().top},
             'slow');
     });
-    $(".LuxuryLink").click(function() {
+    $(".LuxuryLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".LuxuryDIV").offset().top},
             'slow');
     });
-    $(".ReportsLink").click(function() {
+    $(".ReportsLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".ReportsDIV").offset().top},
             'slow');
     });
-    $(".ForcastLink").click(function() {
+    $(".ForcastLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".ForcastDIV").offset().top},
             'slow');
     });
-    $(".FindingsLink").click(function() {
+    $(".FindingsLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".FindingsDIV").offset().top},
             'slow');
     });
     //Button Click Scroll Animation//
 </script>
-<ul class="TopNavigation">
-    <li><a class="BasicInforLink" href="#1" title="Home">Basic Information</a></li>
-    <li><a class="NeighborhoodLink" href="#" title="Products">Neighborhood</a></li>
-    <li><a class="WorkLink" href="#2" title="Support">Work Places</a></li>
-    <li><a class="DevelopmentLink" href="#3" title="About">Development</a></li>
-    <li><a class="KeyLink" href="#5" title="Contact">Key Amenities</a></li>
-    <li><a class="BasicLink" href="#5" title="Contact">Basic Amenities</a></li>
-    <li><a class="LuxuryLink" href="#5" title="Contact">Luxury Amenities</a></li>
-    <li><a class="ReportsLink" href="#5" title="Contact">Price Reports For Previous Year</a></li>
-    <li><a class="ForcastLink" href="#5" title="Contact">Forcast</a></li>
-    <li><a class="FindingsLink" href="#5" title="Contact">Findings</a></li>
-</ul>
+<nav class="navbar navbar-default CustomNav" id="navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle toggle" data-toggle="collapse" data-target="#DetailPageTopNavigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        </button>          
+    </div>
+    <div class="collapse navbar-collapse TopNavBar" id="DetailPageTopNavigation">
+        <ul class="TopNavigation nav navbar-nav navbar-right">
+            <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Home">Basic Information</a></li>
+            <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Products">Neighborhood</a></li>
+            <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support">Work Places</a></li>
+            <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About">Development</a></li>
+            <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact">Key Amenities</a></li>
+            <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
+            <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>
+            <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact">Price Reports For Previous Year</a></li>
+            <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Forcast</a></li>
+            <li><a class="FindingsLink hidden-xs hidden-md" href="#5" title="Contact">Findings</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
 <div class="thumbnail LocationDetail">
     <div class="row">        
         <div class="BasicInformationDIV col-md-12" id="1">
             <h3 class="modal-title TopHeadingText InformationDIV">
                 Basic Information
             </h3>
-            <div class='SliderContainer col-md-12'>
-                <div id="slideshow">
-                    <div id="slideshow-wrapper">
-                        <div class="slide" id="s1"><img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive"></div>
-                        <div class="slide" id="s2"><img alt="slide2" src="images/slide2.jpg" width="1600" class="img-responsive"></div>
-                        <div class="slide" id="s3"><img alt="slide3" src="images/slide3.jpg" width="1600" class="img-responsive"></div>
-                    </div>
-                    <div id="slideshow-nav">
-                        <a href="#s1" class="active"><span>1</span></a>
-                        <a href="#s2"><span>2</span></a>
-                        <a href="#s3"><span>3</span></a>
+
+
+
+            <div class="slider">
+                <div class="slide_viewer">
+                    <div class="slide_group">
+                        <div class="slide">
+                            <img alt="slide1" src="http://www.palmolympia.com/images/bgimg1.jpg" class="img-responsive">
+                        </div>
+                        <div class="slide">
+                            <img alt="slide1" src="https://www.emaar.com/en/Images/1600x707px-India-_tcm223-51484.jpg" class="img-responsive">
+                        </div>
+                        <div class="slide">
+                            <img alt="slide1" src="http://www.newindiaclassifieds.com/categories/realestate/flatforsale/2bhk/3743flat_Chennai_4055.jpeg" class="img-responsive">
+                        </div>
+                        <div class="slide">
+                            <img alt="slide1" src="http://www.meelasinternational.com/meelasinternational/images/REAL%20ESTATE.jpg" class="img-responsive">
+                        </div>
                     </div>
                 </div>
-            </div>  
+            </div><!-- End // .slider -->
+
+            <div class="slide_buttons">
+            </div>
+
+            <div class="directional_nav">
+                <div class="previous_btn" title="Previous">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+                    <g>
+                    <g>
+                    <path fill="#000000" d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+                          c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z"/>
+                    <path fill="#000000" d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z"/>
+                    </g>
+                    </g>
+                    </svg>
+                </div>
+                <div class="next_btn" title="Next">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+                    <g>
+                    <g>
+                    <path fill="#000000" d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z"/>
+                    <path fill="#000000" d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z"/>
+                    </g>
+                    </g>
+                    </svg>
+                </div>
+            </div>          
+
             <div class="MapContainerDIV col-md-12">
                 <div>
                     <h3 class="modal-title pull-left">
@@ -356,309 +491,356 @@
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText NeighborhoodDIV">Neighborhood</h3>
-            <div class="col-md-3">
-                <div class="product">
-                    <div class="product__image-overlay ">
-                        <div class="img-circle">
-                            <img src="images/house2.jpg" class="img-responsive">
+            <h3 class="TopHeadingText NeighborhoodDIV">LANDMARK</h3>
+            <img alt="slide1" src="http://www.palmolympia.com/images/bgimg1.jpg" width="1600" class="img-responsive">
+            <div class="col-md-12 LandmarkDIV">
+                <h4>Landmark Specifications</h4>
+                <div class="col-md-3 BasicInfo">
+                    Completed<br>
+                    <span>status</span>
+                </div>
+                <div class="col-md-3 BasicInfo">
+                    148<br>
+                    <span>total launched apartments</span>
+                </div>
+                <div class="col-md-3 BasicInfo">
+                    Mar'12<br>
+                    <span>launch date</span>
+                </div>
+                <div class="col-md-3 BasicInfo">
+                    New and Resale<br>
+                    <span>availability</span>
+                </div>
+                <p>
+                    Safe Deal has launched its premium housing project, Landmark, in Margao, Goa. The project offers 2, 3 BHK Apartment from 1194 sqft to 1518 sqft in Goa Central. Among the many luxurious amenities that the project hosts are Lift Available, Children's play area, Swimming Pool, Piped Gas Supply System , Landscaped Gardens etc. Starting at @Rs 4,275 per sqft,Apartment are available for sale from Rs 51.04 lacs to Rs 64.89 lacs. Safe Deal Landmark is Completed project and possession in Nov 17.
+                <p>
+            </div>
+            <!--            <div class="col-md-3">
+                            <div class="product">
+                                <div class="product__image-overlay ">
+                                    <div class="img-circle">
+                                        <img src="images/house2.jpg" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="product__content">
+                                    <div class="MiddleInformation">
+                                        <h4>Price:Rs.500000</h4>
+                                        <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                        <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                    </div>
+            
+                                    <div class="BottomInformation">
+                                        <div class="BedInformation col-md-4">
+                                            <img src="images/bed.png" class="img-responsive">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="BathInformation col-md-4">
+                                            <img src="images/BathTub.png" class="img-responsive">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="GarageInformation col-md-4">
+                                            <img src="images/garage.png" class="img-responsive">
+                                            <span>1</span>
+                                        </div>                                                                
+                                    </div>
+                                    <div class="BuyNowBtn">
+                                        <button class="btn"><span>More Details</span>
+                                    </div>
+                                </div>
+                                <div class="product__image img-blur">
+                                    <img src="images/5.jpg" class="img-responsive">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product__content">
-                        <div class="MiddleInformation">
-                            <h4>Price:Rs.500000</h4>
-                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                        <div class="col-md-3">
+                            <div class="product">
+                                <div class="product__image-overlay ">
+                                    <div class="img-circle">
+                                        <img src="images/5.jpg" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="product__content">
+                                    <div class="MiddleInformation">
+                                        <h4>Price:Rs.7500000</h4>
+                                        <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                        <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                    </div>
+                                    <div class="BottomInformation">
+                                        <div class="BedInformation col-md-4">
+                                            <img src="images/bed.png" class="img-responsive">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="BathInformation col-md-4">
+                                            <img src="images/BathTub.png" class="img-responsive">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="GarageInformation col-md-4">
+                                            <img src="images/garage.png" class="img-responsive">
+                                            <span>1</span>
+                                        </div>                                                                
+                                    </div>
+                                    <div class="BuyNowBtn">
+                                        <button class="btn"><span>More Details</span>
+                                    </div>
+                                </div>
+                                <div class="product__image img-blur">
+                                    <img src="images/house2.jpg" class="img-responsive">
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product">
+                                <div class="product__image-overlay ">
+                                    <div class="img-circle">
+                                        <img src="images/1.jpg" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="product__content">
+                                    <div class="MiddleInformation">
+                                        <h4>Price:Rs.2500000</h4>
+                                        <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                        <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                    </div>
+                                    <div class="BottomInformation">
+                                        <div class="BedInformation col-md-4">
+                                            <img src="images/bed.png" class="img-responsive">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="BathInformation col-md-4">
+                                            <img src="images/BathTub.png" class="img-responsive">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="GarageInformation col-md-4">
+                                            <img src="images/garage.png" class="img-responsive">
+                                            <span>1</span>
+                                        </div>                                                                
+                                    </div>
+                                    <div class="BuyNowBtn">
+                                        <button class="btn"><span>More Details</span>
+                                    </div>
+                                </div>
+                                <div class="product__image img-blur">
+                                    <img src="images/1.jpg" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="product">
+                                <div class="product__image-overlay ">
+                                    <div class="img-circle">
+                                        <img src="images/4.jpg" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="product__content">
+                                    <div class="MiddleInformation">
+                                        <h4>Price:Rs.7500000</h4>
+                                        <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                        <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                    </div>
+                                    <div class="BottomInformation">
+                                        <div class="BedInformation col-md-4">
+                                            <img src="images/bed.png" class="img-responsive">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="BathInformation col-md-4">
+                                            <img src="images/BathTub.png" class="img-responsive">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="GarageInformation col-md-4">
+                                            <img src="images/garage.png" class="img-responsive">
+                                            <span>1</span>
+                                        </div>                                                                
+                                    </div>
+                                    <div class="BuyNowBtn">
+                                        <button class="btn"><span>More Details</span>
+                                    </div>
+                                </div>
+                                <div class="product__image img-blur">
+                                    <img src="images/4.jpg" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>-->
 
-                        <div class="BottomInformation">
-                            <div class="BedInformation col-md-4">
-                                <img src="images/bed.png" class="img-responsive">
-                                <span>4</span>
-                            </div>
-                            <div class="BathInformation col-md-4">
-                                <img src="images/BathTub.png" class="img-responsive">
-                                <span>2</span>
-                            </div>
-                            <div class="GarageInformation col-md-4">
-                                <img src="images/garage.png" class="img-responsive">
-                                <span>1</span>
-                            </div>                                                                
-                        </div>
-                        <div class="BuyNowBtn">
-                            <button class="btn"><span>More Details</span>
-                        </div>
-                    </div>
-                    <div class="product__image img-blur">
-                        <img src="images/5.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product">
-                    <div class="product__image-overlay ">
-                        <div class="img-circle">
-                            <img src="images/5.jpg" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="product__content">
-                        <div class="MiddleInformation">
-                            <h4>Price:Rs.7500000</h4>
-                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                        </div>
-                        <div class="BottomInformation">
-                            <div class="BedInformation col-md-4">
-                                <img src="images/bed.png" class="img-responsive">
-                                <span>4</span>
-                            </div>
-                            <div class="BathInformation col-md-4">
-                                <img src="images/BathTub.png" class="img-responsive">
-                                <span>2</span>
-                            </div>
-                            <div class="GarageInformation col-md-4">
-                                <img src="images/garage.png" class="img-responsive">
-                                <span>1</span>
-                            </div>                                                                
-                        </div>
-                        <div class="BuyNowBtn">
-                            <button class="btn"><span>More Details</span>
-                        </div>
-                    </div>
-                    <div class="product__image img-blur">
-                        <img src="images/house2.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product">
-                    <div class="product__image-overlay ">
-                        <div class="img-circle">
-                            <img src="images/1.jpg" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="product__content">
-                        <div class="MiddleInformation">
-                            <h4>Price:Rs.2500000</h4>
-                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                        </div>
-                        <div class="BottomInformation">
-                            <div class="BedInformation col-md-4">
-                                <img src="images/bed.png" class="img-responsive">
-                                <span>4</span>
-                            </div>
-                            <div class="BathInformation col-md-4">
-                                <img src="images/BathTub.png" class="img-responsive">
-                                <span>2</span>
-                            </div>
-                            <div class="GarageInformation col-md-4">
-                                <img src="images/garage.png" class="img-responsive">
-                                <span>1</span>
-                            </div>                                                                
-                        </div>
-                        <div class="BuyNowBtn">
-                            <button class="btn"><span>More Details</span>
-                        </div>
-                    </div>
-                    <div class="product__image img-blur">
-                        <img src="images/1.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product">
-                    <div class="product__image-overlay ">
-                        <div class="img-circle">
-                            <img src="images/4.jpg" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="product__content">
-                        <div class="MiddleInformation">
-                            <h4>Price:Rs.7500000</h4>
-                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                        </div>
-                        <div class="BottomInformation">
-                            <div class="BedInformation col-md-4">
-                                <img src="images/bed.png" class="img-responsive">
-                                <span>4</span>
-                            </div>
-                            <div class="BathInformation col-md-4">
-                                <img src="images/BathTub.png" class="img-responsive">
-                                <span>2</span>
-                            </div>
-                            <div class="GarageInformation col-md-4">
-                                <img src="images/garage.png" class="img-responsive">
-                                <span>1</span>
-                            </div>                                                                
-                        </div>
-                        <div class="BuyNowBtn">
-                            <button class="btn"><span>More Details</span>
-                        </div>
-                    </div>
-                    <div class="product__image img-blur">
-                        <img src="images/4.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="BasicDetailDIV col-md-12">
             <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
             <div class="PlacesContainer">
-                <div class="InnerPlaces col-md-2">
-                    <b>Corporate Office</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>12</span>
                     </div>
+                    <b>Corporate Office</b>                    
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Defence Establishment</b>
-                    <div class="inner-circle">                        
+                <div class="InnerPlaces col-md-4">
+                     <div class="inner-circle">                        
                         <span>3</span>
                     </div>
+                    <b>Defence Establishment</b>                   
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Education institutes</b>
-                    <div class="inner-circle">                        
+                <div class="InnerPlaces col-md-4">
+                     <div class="inner-circle">                        
                         <span>8</span>
                     </div>
+                    <b>Education institutes</b>                   
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Government Office</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>50</span>
                     </div>
+                    <b>Government Office</b>                    
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Health care</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>1</span>
                     </div>
+                    <b>Health care</b>                    
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Hospitality</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>5</span>
                     </div>
+                    <b>Hospitality</b>                    
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>IT Company</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>9</span>
                     </div>
+                    <b>IT Company</b>                    
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>Industries</b>
-                    <div class="inner-circle">                        
+                <div class="InnerPlaces col-md-4">
+                     <div class="inner-circle">                        
                         <span>10</span>
                     </div>
+                    <b>Industries</b>                   
                 </div>
-                <div class="InnerPlaces col-md-2">
-                    <b>PSUs</b>
+                <div class="InnerPlaces col-md-4">
                     <div class="inner-circle">                        
                         <span>7</span>
                     </div>
+                    <b>PSUs</b>                    
                 </div>
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">
             <h3 class="TopHeadingText DevelopmentDIV">Development</h3>
-            <div class="InnerPlaces col-md-2">
-                <b>Ongoing projects</b>
+            <div class="InnerPlaces col-md-4">
                 <div class="inner-circle">                        
                     <span>25</span>
                 </div>
+                <b>Ongoing projects</b>                
             </div>
-            <div class="InnerPlaces col-md-2">
-                <b>Upcoming Projectts</b>
+            <div class="InnerPlaces col-md-4">
                 <div class="inner-circle">                        
                     <span>14</span>
                 </div>
+                <b>Upcoming Projects</b>                
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">
             <h3 class="TopHeadingText LivabilityDIV">Livability</h3>
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
-                <img src="images/ammenities.jpeg" class="img-responsive">
+                <div>Enter Key Amenities Here</div>
             </div>
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
                 <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-plane"></i>
+                        <span>Airport</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-train"></i>
+                        <span>Railway Station</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-bus"></i>
+                        <span>Bus Stop</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-subway"></i>
+                        <span>Metro Station</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-shopping-basket"></i>
+                        <span>Daily Needs</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-ambulance"></i>
+                        <span>Hospital</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-tree"></i>
+                        <span>Park</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-university"></i>
+                        <span>Bank</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-credit-card"></i>
+                        <span>ATM</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-users"></i>
+                        <span>School</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-graduation-cap"></i>
+                        <span>College</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-coffee"></i>
+                        <span>Cafe</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-cutlery"></i>
+                        <span>Restaurant</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-birthday-cake"></i>
+                        <span>Bakery</span>
                     </div>          
                 </div>
             </div>
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
                 <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-bath"></i>
+                        <span>Swimming Pool</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-bicycle"></i>
+                        <span>GYM</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-cc-diners-club"></i>
+                        <span>Club</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-glass"></i>
+                        <span>Bar</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-shopping-cart"></i>
+                        <span>Shopping Mall</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-film"></i>
+                        <span>Theater</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-scissors"></i>
+                        <span>Salon</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-building"></i>
+                        <span>Government Offices</span>
                     </div>
-                    <div class="IconsAll col-md-1">
+                    <div class="IconsAll col-md-2">
                         <i class="fa fa-bed"></i>
+                        <span>Hotels</span>
                     </div>   
                 </div>
             </div>
