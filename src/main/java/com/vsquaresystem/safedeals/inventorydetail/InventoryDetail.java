@@ -18,7 +18,7 @@ public class InventoryDetail {
     private Integer inventoryHeadId;
     private String description;
     private Facing facing;
-    private Integer floorNo;
+    private String floorNo;
     private Integer noOfBalcony;
     private Integer noOfWashroom;
     private Boolean openTerrace;
@@ -63,11 +63,11 @@ public class InventoryDetail {
         this.facing = facing;
     }
 
-    public Integer getFloorNo() {
+    public String getFloorNo() {
         return floorNo;
     }
 
-    public void setFloorNo(Integer floorNo) {
+    public void setFloorNo(String floorNo) {
         this.floorNo = floorNo;
     }
 
@@ -161,23 +161,23 @@ public class InventoryDetail {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.inventoryHeadId);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.facing);
-        hash = 67 * hash + Objects.hashCode(this.floorNo);
-        hash = 67 * hash + Objects.hashCode(this.noOfBalcony);
-        hash = 67 * hash + Objects.hashCode(this.noOfWashroom);
-        hash = 67 * hash + Objects.hashCode(this.openTerrace);
-        hash = 67 * hash + Objects.hashCode(this.openLand);
-        hash = 67 * hash + Objects.hashCode(this.isAvailable);
-        hash = 67 * hash + Objects.hashCode(this.isReserved);
-        hash = 67 * hash + Objects.hashCode(this.isSold);
-        hash = 67 * hash + Objects.hashCode(this.offerAmount);
-        hash = 67 * hash + Objects.hashCode(this.validity);
-        hash = 67 * hash + Objects.hashCode(this.extraCharges);
-        hash = 67 * hash + Objects.hashCode(this.unitNo);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.inventoryHeadId);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.facing);
+        hash = 41 * hash + Objects.hashCode(this.floorNo);
+        hash = 41 * hash + Objects.hashCode(this.noOfBalcony);
+        hash = 41 * hash + Objects.hashCode(this.noOfWashroom);
+        hash = 41 * hash + Objects.hashCode(this.openTerrace);
+        hash = 41 * hash + Objects.hashCode(this.openLand);
+        hash = 41 * hash + Objects.hashCode(this.isAvailable);
+        hash = 41 * hash + Objects.hashCode(this.isReserved);
+        hash = 41 * hash + Objects.hashCode(this.isSold);
+        hash = 41 * hash + Objects.hashCode(this.offerAmount);
+        hash = 41 * hash + Objects.hashCode(this.validity);
+        hash = 41 * hash + Objects.hashCode(this.extraCharges);
+        hash = 41 * hash + Objects.hashCode(this.unitNo);
         return hash;
     }
 
