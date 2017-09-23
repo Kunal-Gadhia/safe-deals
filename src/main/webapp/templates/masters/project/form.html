@@ -259,6 +259,12 @@
                                         <input class="form-control" placeholder="Longitude" type="number" step="any" ng-model="editableProject.longitude" required=""/>
                                     </div>
                                 </div>  
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>RERA Reg No</label>
+                                        <input class="form-control" placeholder="RERA Reg No" ng-model="editableProject.reraRegNo" required=""/>
+                                    </div>
+                                </div>  
                             </div>
                             <div class="row">   
                                 <div class="col-sm-6">
@@ -328,35 +334,35 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="row">   
-                                                                        <div class="col-sm-6">
-                                                                            <div class="form-group">
-                                                                                <label>Public Transport</label>                                                    
-                                                                                <input class="form-control"
-                                                                                       placeholder="Select Public Transport"
-                                                                                       uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
-                                                                                       typeahead-on-select="setTransportation($item)"
-                                                                                       typeahead-editable="false"
-                                                                                       typeahead-loading="loadingTransportation" 
-                                                                                       typeahead-no-results="noTransportationFound"                                       
-                                                                                       ng-model="basicAmenities" />
-                                                                                <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
-                                                                                <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-6">
-                                                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
-                                                                                <li class="col-md-8">
-                                                                                    {{basicAmenities.name}} 
-                                                                                </li>
-                                                                                <li class="col-md-4 list-unstyled">
-                                                                                    <button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
-                                                                                        <i class="fa fa-trash"></i>
-                                                                                    </button>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                </div>                                        -->
+                                <!--                                <div class="row">   
+                                                                                                        <div class="col-sm-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label>Public Transport</label>                                                    
+                                                                                                                <input class="form-control"
+                                                                                                                       placeholder="Select Public Transport"
+                                                                                                                       uib-typeahead="publicTransport.id as publicTransport.name for publicTransport in searchTransportation($viewValue)"
+                                                                                                                       typeahead-on-select="setTransportation($item)"
+                                                                                                                       typeahead-editable="false"
+                                                                                                                       typeahead-loading="loadingTransportation" 
+                                                                                                                       typeahead-no-results="noTransportationFound"                                       
+                                                                                                                       ng-model="basicAmenities" />
+                                                                                                                <p ng-show="noTransportationFound" class="help-block text-muted">No Transportation Found</p>
+                                                                                                                <p ng-show="loadingTransportation" class="help-block text-muted">Loading...</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-6">
+                                                                                                            <ul ng-repeat="basicAmenities in publicTransportDisplay" class="left_margin">
+                                                                                                                <li class="col-md-8">
+                                                                                                                    {{basicAmenities.name}} 
+                                                                                                                </li>
+                                                                                                                <li class="col-md-4 list-unstyled">
+                                                                                                                    <button type="button" ng-click="removeTransportation(basicAmenities)" class="btn btn-link top_padding">
+                                                                                                                        <i class="fa fa-trash"></i>
+                                                                                                                    </button>
+                                                                                                                </li>
+                                                                                                            </ul>
+                                                                                                        </div>
+                                                                </div>                                        -->
                             </div>
                         </div>
                         <div ng-switch-when="Costing" class="locations">

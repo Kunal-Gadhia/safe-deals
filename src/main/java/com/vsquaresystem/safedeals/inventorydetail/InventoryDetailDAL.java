@@ -77,7 +77,7 @@ public class InventoryDetailDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE LIMIT 5 OFFSET ? ";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(InventoryDetail.class));
     }
-    
+
     public List<InventoryDetail> findByInventoryHeadId(Integer inventoryHeadId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.INVENTORY_HEAD_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{inventoryHeadId}, new BeanPropertyRowMapper<>(InventoryDetail.class));
@@ -103,9 +103,9 @@ public class InventoryDetailDAL {
             parameters.put(Columns.OPEN_TERRACE, inventoryDetail.getOpenTerrace());
         }
         if (inventoryDetail.getOpenLand() == null) {
-            parameters.put(Columns.OPEN_TERRACE, 0);
+            parameters.put(Columns.OPEN_LAND, 0);
         } else {
-            parameters.put(Columns.OPEN_TERRACE, inventoryDetail.getOpenLand());
+            parameters.put(Columns.OPEN_LAND, inventoryDetail.getOpenLand());
         }
         if (inventoryDetail.getIsAvailable() == null) {
             parameters.put(Columns.IS_AVAILABLE, 0);

@@ -110,6 +110,7 @@ public class ProjectDAL {
         public static final String SOCIETY_MAINTENANCE = "society_maintenance";
         public static final String SOCIETY_MAINTENANCE_AMOUNT = "society_maintenance_amount";
         public static final String SOCIETY_MAINTENANCE_DURATION = "society_maintenance_duration";
+        public static final String RERA_REG_NO = "rera_reg_no";
     }
 
     @Autowired
@@ -186,7 +187,8 @@ public class ProjectDAL {
                         Columns.FINISHING_WORK,
                         Columns.SOCIETY_MAINTENANCE,
                         Columns.SOCIETY_MAINTENANCE_AMOUNT,
-                        Columns.SOCIETY_MAINTENANCE_DURATION
+                        Columns.SOCIETY_MAINTENANCE_DURATION,
+                        Columns.RERA_REG_NO
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -320,6 +322,7 @@ public class ProjectDAL {
         parameters.put(Columns.SOCIETY_MAINTENANCE, project.getSocietyMaintenances() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenances()));
         parameters.put(Columns.SOCIETY_MAINTENANCE_AMOUNT, project.getSocietyMaintenanceAmount());
         parameters.put(Columns.SOCIETY_MAINTENANCE_DURATION, project.getSocietyMaintenanceDuration());
+        parameters.put(Columns.RERA_REG_NO, project.getReraRegNo());
 
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());
@@ -405,7 +408,8 @@ public class ProjectDAL {
                 + Columns.FINISHING_WORK + " =?,"
                 + Columns.SOCIETY_MAINTENANCE + " =?,"
                 + Columns.SOCIETY_MAINTENANCE_AMOUNT + " =?,"
-                + Columns.SOCIETY_MAINTENANCE_DURATION + " =? WHERE "
+                + Columns.SOCIETY_MAINTENANCE_DURATION + " =?,"
+                + Columns.RERA_REG_NO + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -478,6 +482,7 @@ public class ProjectDAL {
             project.getSocietyMaintenances() == null ? "[]" : mapper.writeValueAsString(project.getSocietyMaintenances()),
             project.getSocietyMaintenanceAmount(),
             project.getSocietyMaintenanceDuration(),
+            project.getReraRegNo(),
             project.getId()}
         );
         project = findById(project.getId());
@@ -800,6 +805,7 @@ public class ProjectDAL {
 
             project.setSocietyMaintenanceAmount(rs.getDouble(Columns.SOCIETY_MAINTENANCE_AMOUNT));
             project.setSocietyMaintenanceDuration(rs.getDouble(Columns.SOCIETY_MAINTENANCE_DURATION));
+            project.setReraRegNo(rs.getString(Columns.RERA_REG_NO));
 
             return project;
         }
