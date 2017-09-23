@@ -1155,7 +1155,7 @@ tcb-testimonial-carousel*/
 }
 .BasicDetailImage img{
     border:6px solid #ccc;
-    height: 270px;  
+    min-height: 370px;
 }
 .LeftDescription span{
     font-weight: bold;
@@ -1480,9 +1480,8 @@ tcb-testimonial-carousel*/
     width: 100%;
 }
 .VideoContainer{
-    height: 269px;
+    height: 350px;
 }
-/*-------------End of CSS added by amit sharma for location detail page. 14/09/2017 to 16/09/2017-------------*/
 .LandmarkDIV h4{
     font-size: 19px;
     color:#000000;
@@ -1517,21 +1516,20 @@ tcb-testimonial-carousel*/
 .TopFixedNavBarForLocation{
     top: 100px;
 }
-
-
-
-
-
-
-
-
 @media (max-width: 1200px) {
     .TopFixedNavBarForLocation{
         top: 91px!important;
 
     }
 }
-
+.table-responsive-vertical tbody tr td i{
+    font-size: 1.3em;
+    padding-right: 3px;
+}
+.table-responsive-vertical tbody tr td{
+    font-size: 12px;
+}
+/*-------------End of CSS added by amit sharma for location detail page. 14/09/2017 to 16/09/2017-------------*/
 
 
 
