@@ -1049,80 +1049,13 @@ tcb-testimonial-carousel*/
 
 /*-------------Start of CSS added by amit sharma for location detail page. 14/09/2017 to 16/09/2017-------------*/
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-
-/* iPads (landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : landscape) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-
-/* iPads (portrait) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-/* iPhone 5 (portrait &amp; landscape)----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-
-/* iPhone 5 (landscape)----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px)
-and (orientation : landscape) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
-
-/* iPhone 5 (portrait)----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px)
-and (orientation : portrait) {
-    .CustomNav{
-        position: relative!important;
-    }
-}
 .LocationDetail{
     padding-top: 73px;
 }
 .TopNavigation {
-    display: inline-block;
     list-style: none;
     background: #ffffff;
-    padding: 18px;
+    margin: 25px 32px;
 }
 .TopNavigation > li, .TopNavigation:active > .active {
     float: left;
@@ -1186,26 +1119,25 @@ and (orientation : portrait) {
     margin: 0;
     background: none;
     border:none;
-    position: fixed;
-    height: 84px;
-    top: 112px;
     z-index: 1000000;
 }
 .CustomNav .TopNavigation > li > a {
     position: relative;
     line-height: 44px!important;
-    padding: 0 19.4px;
+    padding: 0 14.7px;
     font-size: 12px!important;
     font-weight: bold;
     color: inherit;
     text-decoration: none;
     outline: 0;
+    display: block!important;
+    text-align: center;
 }
 .TopNavBar{
     padding: 0;
+    background: #ffffff;
 }
 .TopNavigation > li > a:before {
-    content: attr(title);
     position: absolute;
     top: 1px;
     left: 20px;
@@ -1219,6 +1151,7 @@ and (orientation : portrait) {
     font-family: 'Roboto', sans-serif;
     width: 100%;
     font-size: 1.5em;
+    clear:both
 }
 .BasicDetailImage img{
     border:6px solid #ccc;
@@ -1483,6 +1416,16 @@ and (orientation : portrait) {
     text-align: center;
     cursor: pointer;
 }
+.RiskFactorIcons .fa{
+    font-size: 2em;
+    color: #d08a04;
+    padding: 11px;
+    width: 50px;
+    border-radius: 49px;
+    text-align: center;
+    cursor: pointer;
+    height: 50px;
+}
 .IconsAll{
     margin-top: 5px;
     text-align: center;
@@ -1504,10 +1447,6 @@ and (orientation : portrait) {
 }
 .LocationAdvantages  p{
     font-family: 'Raleway', sans-serif;
-}
-#slideshow-nav{
-    background: url("../images/SliderNavigationBg.jpg") no-repeat 100% 100%;
-    margin: 0 122px;
 }
 .LocationTabs{
     border-bottom: 1px solid #d08a04;
@@ -1544,112 +1483,6 @@ and (orientation : portrait) {
     height: 269px;
 }
 /*-------------End of CSS added by amit sharma for location detail page. 14/09/2017 to 16/09/2017-------------*/
-
-
-
-
-.slider {
-    margin: 0 auto;
-    max-width: 100%;
-}
-
-.slide_viewer {
-    height: 450px;
-    overflow: hidden;
-    position: relative;
-}
-
-.slide_group {
-    height: 100%;
-    position: relative;
-    width: 100%;
-}
-
-.slide {
-    display: none;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-}
-
-.slide:first-child {
-    display: block;
-}
-
-.slide_buttons {
-    left: 0;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    z-index: 1;
-    line-height: 1;
-}
-.slide img{
-    width:100%;
-    height: 550px;
-}
-a.slide_btn {
-    color: #474544;
-    font-size: 42px;
-    margin: 0 0.175em;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-}
-
-.slide_btn.active, .slide_btn:hover {
-    color: #428CC6;
-    cursor: pointer;
-}
-
-.directional_nav {
-    margin: 0 auto;
-    max-width: 940px;
-    position: relative;
-    top: -164px;
-}
-
-.previous_btn {
-    bottom: 0;
-    margin: auto;
-    position: absolute;
-    top: 0;
-}
-
-.next_btn {
-    bottom: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.previous_btn, .next_btn {
-    cursor: pointer;
-    height: 65px;
-    opacity: 0.5;
-    -webkit-transition: opacity 0.4s ease-in-out;
-    -moz-transition: opacity 0.4s ease-in-out;
-    -ms-transition: opacity 0.4s ease-in-out;
-    -o-transition: opacity 0.4s ease-in-out;
-    transition: opacity 0.4s ease-in-out;
-    width: 65px;
-}
-
-.previous_btn:hover, .next_btn:hover {
-    opacity: 1;
-}
-
-@media only screen and (max-width: 767px) {
-    .previous_btn {
-        left: 50px;
-    }
-    .next_btn {
-        right: 50px;
-    }
-}
 .LandmarkDIV h4{
     font-size: 19px;
     color:#000000;
@@ -1668,3 +1501,46 @@ a.slide_btn {
     font-size: 0.9em;
     font-family: 'Roboto', sans-serif;
 }
+.TopMainCarousel{
+    overflow: hidden;
+}
+.ActiveColorGreen{
+    border: 1px solid green;
+    color: green;
+    padding: 3px;
+}
+.ActiveColorRed{
+    border: 1px solid red;
+    color: red;
+    padding: 3px;
+}
+.TopFixedNavBarForLocation{
+    top: 100px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1200px) {
+    .TopFixedNavBarForLocation{
+        top: 91px!important;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
