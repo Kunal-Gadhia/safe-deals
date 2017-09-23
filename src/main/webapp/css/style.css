@@ -1532,7 +1532,17 @@ tcb-testimonial-carousel*/
 /*-------------End of CSS added by amit sharma for location detail page. 14/09/2017 to 16/09/2017-------------*/
 
 
+.list-group-bootify li:hover {
+  color: #FFF;
+  background-position: 0 0;
+}
 
+.list-group-bootify li {
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ff6861 50%, #ff6861);
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all .4s ease-in;
+}
 
 
 
