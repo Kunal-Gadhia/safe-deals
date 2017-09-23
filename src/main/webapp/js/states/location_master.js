@@ -114,7 +114,7 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
 
             };
         })
-        .controller('LocationAddController', function (CityService, AmenityDetailService, UnitService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
+        .controller('LocationAddController', function (CityService, AmenityService, AmenityDetailService, AmenityCodeService, UnitService, LocationTypeService, RoadService, SafedealZoneService, LocationService, LocationCategoryService, $scope, $state) {
             $scope.locationSteps = [
                 'Basic Details',
                 'Risk Factors'
@@ -251,14 +251,32 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
             };
 
             $scope.searchBasicAmenities = function (searchTerm) {
-                return AmenityDetailService.findByNameLike({
+                AmenityCodeService.findByNameLike({
+                    'name': 'basic'
+                }, function (name) {
+                    console.log("Amenity code array %O", name);
+                    $scope.amenityCodeId = name[0].id;
+                });
+                console.log("Amenity Code Id :%O", $scope.amenityCodeId);
+                return AmenityService.findByAmenityCodeAndAmenityNameLike({
+                    'amenityCodeId': $scope.amenityCodeId,
                     'name': searchTerm
                 }).$promise;
+
             };
             $scope.searchLuxuryAmenities = function (searchTerm) {
-                return AmenityDetailService.findByNameLike({
+                AmenityCodeService.findByNameLike({
+                    'name': 'luxury'
+                }, function (name) {
+                    console.log("Amenity code array %O", name);
+                    $scope.amenityCodeId = name[0].id;
+                });
+                console.log("Amenity Code Id :%O", $scope.amenityCodeId);
+                return AmenityService.findByAmenityCodeAndAmenityNameLike({
+                    'amenityCodeId': $scope.amenityCodeId,
                     'name': searchTerm
                 }).$promise;
+
             };
 
             $scope.searchLocationTypes = function (searchTerm) {

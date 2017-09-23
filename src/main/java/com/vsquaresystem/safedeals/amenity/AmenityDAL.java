@@ -65,11 +65,15 @@ public class AmenityDAL {
     }
 
     //For basic and luxury amenities
-
-    public List<Amenity> findByAmenityCodeAndAmenityNameLike(String name) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE?";
+//    public List<Amenity> findByAmenityCodeAndAmenityNameLike(Integer amenityCodeId, String name) {
+//        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(name) LIKE? AND" + Columns.AMENITY_CODE_ID + "=?";
+//        String nameLike = "%" + name.toLowerCase() + "%";
+//        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Amenity.class));
+//    }
+    public List<Amenity> findByAmenityCodeAndAmenityNameLike(Integer amenityCodeId, String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.AMENITY_CODE_ID + " = ? AND lower(name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
-        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Amenity.class));
+        return jdbcTemplate.query(sqlQuery, new Object[]{amenityCodeId, nameLike}, new BeanPropertyRowMapper<>(Amenity.class));
     }
 
     public List<Amenity> findByNameLike(String name) {

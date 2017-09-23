@@ -57,6 +57,13 @@ public class AmenityRest {
         return amenityDal.findByAmenityCode(amenityCodeId);
     }
 
+    @RequestMapping(value = "/find/amenity_code_and_amenity_name_like", method = RequestMethod.GET)
+    public List<Amenity> findByAmenityCodeAndAmenityNameLike(
+            @RequestParam("amenityCodeId") Integer amenityCodeId,
+            @RequestParam("name") String name) {
+        return amenityDal.findByAmenityCodeAndAmenityNameLike(amenityCodeId, name);
+    }
+
     @RequestMapping(value = "/find/amenity_name", method = RequestMethod.GET)
     public Amenity findByAmenityName(@RequestParam("name") String name) {
         return amenityDal.findByAmenityName(name);

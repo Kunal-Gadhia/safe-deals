@@ -15,6 +15,15 @@ angular.module("safedeals.services.amenity")
                     },
                     'isArray': true
                 },
+                'findByAmenityCodeAndAmenityNameLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/amenity/find/amenity_code_and_amenity_name_like',
+                    'params': {
+                        'amenityCodeId': '@amenityCodeId',
+                        'name': '@name'
+                    },
+                    'isArray': true
+                },
                 'exportAllAmenities': {
                     'method': 'POST',
                     'url': restRoot + '/amenity/export'
