@@ -145,14 +145,12 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
 //            };
 
             $scope.saveInventory = function (inventory) {
-                console.log("Inventory Head :%O", inventory);
                 InventoryHeadService.save(inventory, function (inventoryHead) {
-                    console.log("Inventory Head Service Saved");
-                    console.log("Getting Inventory Head Id :%O", inventoryHead.id);
-                    $state.go('admin.masters_project.inventory_detail', null, {
-                        'inventoryHeadId': inventoryHead.id,
-                        'reload': true
-                    });
+                    $state.go('admin.masters_project.inventory_detail',
+                            {
+                                'inventoryHeadId': inventoryHead.id,
+                                'reload': true
+                            });
                 });
 //                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
 //                    var tempObject = {};
