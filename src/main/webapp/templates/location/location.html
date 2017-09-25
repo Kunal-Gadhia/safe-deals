@@ -1,13 +1,17 @@
 <script>
     $(".icon").click(function () {
-        $("#icon1").toggleClass("glyphicon-minus glyphicon-plus");
-    });
-</script>
+    $("#icon1").toggleClass("glyphicon-minus glyphicon-plus");
+    });</script>
 
 <div class="panel-body thumbnail">
     <div>
         <h2>Location Within Budget</h2>
-    </div>        
+        <span class="pull-left">
+            <button class="btn btn-link" title="Details" ng-click="gotoTop()" 
+                    data-ui-sref="main.project">
+                View Project</button>
+        </span>
+    </div>   
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
@@ -68,9 +72,9 @@
                     </div>
                 </form>
             </div>
-<!--            <div class="form-group" ng-hide="hideDescription">
-                You Queried for a {{propertySize}} property in {{cityName}} city of {{stateName}} state with minimum budget of &#8377; {{minBudget}} and maximum budget of &#8377; {{maxBudget}}
-            </div>-->
+            <!--            <div class="form-group" ng-hide="hideDescription">
+                            You Queried for a {{propertySize}} property in {{cityName}} city of {{stateName}} state with minimum budget of &#8377; {{minBudget}} and maximum budget of &#8377; {{maxBudget}}
+                        </div>-->
             <div class="form-group" ng-hide="hideDescription">
                 Following are the locations where you can find location matching to your search criteria
             </div>

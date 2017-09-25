@@ -1,0 +1,578 @@
+<style>
+    .nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+    .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #d08a04 !important; background: transparent; }
+    .nav-tabs > li > a::after { content: ""; background: #d08a04; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+    .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+    .tab-pane { padding: 15px 0; }
+    .tab-content{padding:20px}
+
+    .card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }
+    .middleWrapper {  clear: both;
+                      margin-top: 20px;
+                      border: 1px solid #ececec;
+                      content: " ";
+                      overflow: hidden; }
+    .middleWrapper ul li { list-style: none; background: url(images/arrow.png) no-repeat 0 15px; padding: 10px 0px 0px 12px;}
+    .sep{border-right: 1px solid #ececec}
+</style>
+
+<div id="myCarousel" class="carousel " data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="http://www.palmolympia.com/images/bgimg1.jpg" alt="" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="https://www.emaar.com/en/Images/1600x707px-India-_tcm223-51484.jpg" alt="" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="http://www.meelasinternational.com/meelasinternational/images/REAL%20ESTATE.jpg" alt="" style="width:100%; height: 500px;">
+        </div>
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="thumbnail">	
+    <div class="default">
+        <nav class="navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="projTab">
+                    <ul class=" nav navbar-nav nav-tabs">
+                        <li><a href="#/#basic" class="">Basic</a></li>
+                        <li><a href="#/#addon" class="">Add on Features</a></li>
+                        <li><a href="#/#amenities" class="">Amenities within Project</a></li>
+                        <li><a href="#/#specification" class="">Construction Specification</a></li>
+                        <li><a href="#/#demand" class="">Demand indicator</a></li>
+                        <li><a href="#/#livability" class="">Livability</a></li>
+                        <li><a href="#/#marketability" class="">Marketability</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="section">   
+        <!-- Basic Section -->            
+        <div class="w3-container w3-padding-32" id="basic">
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">BASIC DETAILS</h3>    
+
+            <div class="BasicDetailDIV col-md-12">              
+                <div class="col-md-5">
+                    <div class="BasicDetailImage">
+                        <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="BasicDetailText">
+                        <h3>Manish Nagar / Nagpur</h3>
+                        <div class="table-responsive-vertical">
+                            <!-- Table starts here -->
+                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                <tbody>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-user"></i>Type of Project</td>
+                                        <td data-title="Name">10000 (as per survey 2011)</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-map-o"></i>Approach road</td>
+                                        <td data-title="Name">Residential</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-rupee"></i>Distance from Major road</td>
+                                        <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-rupee"></i>Type and size  of approach road</td>
+                                        <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-glass"></i>Type of Property:</td>
+                                        <td data-title="Name">Resi/Comm/Indus</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-road"></i>Type of ownership:</td>
+                                        <td data-title="Name">free hold/lease</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-tint"></i>Source of water</td>
+                                        <td data-title="Name">sewage disposal, sewage treatment plant, rain water harvesting etc</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-road"></i>Carpet vs Covered area</td>
+                                        <td data-title="Name">3 KM</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID"><i class="fa fa-road"></i>Building Condition</td>
+                                        <td data-title="Name">3 KM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>              
+                    </div>
+                </div>
+            </div>
+
+            <!--            <div class="col-md-6">
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-building"></i>
+                                <div class="form-group">                            
+                                    <label>Type of Project</label>
+                                    <span> : {{property.city.name}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-road"></i>
+                                <div class="form-group">                            
+                                    <label>Approach road</label>                                                    
+                                    <span> : {{property.location.name}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-road"></i>
+                                <div class="form-group">                    
+                                    <label>Distance from Major road</label>                                                    
+                                    <span> : {{property.propertyType}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-road"></i>
+                                <div class="form-group">
+                                    <label>Type and size  of approach road</label>
+                                    <span> : {{property.propertySizeObject.numberOfBhk}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">                        
+                                <i class="fa fa-4x fa-building-o"></i>
+                                <div class="form-group">
+                                    <label>Type of Property Resi/Comm/Indus </label>
+                                    <span> :&#8377; {{property.priceRange}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-building"></i>
+                                <div class="form-group">
+                                    <label> Type of ownership free hold/lease</label>
+                                    <span> : {{property.size}} sq.ft</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-tint"></i>
+                                <div class="form-group">
+                                    <label>Source of water, </label>                                                    
+                                    <span> : {{property.totalFloors}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-building"></i>
+                                <div class="form-group">
+                                    <label>Carpet vs Covered area</label>                                                    
+                                    <span> : {{property.entryFacing}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-bank"></i>
+                                <div class="form-group">
+                                    <label>Building Condition</label>
+                                    <span> : {{property.buildingCondition}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <i class="fa fa-4x fa-university"></i>
+                                <div class="form-group">
+                                    <label>Project Name</label>                                                    
+                                    <span> : {{property.project.name}}</span>
+                                </div>
+                            </div>
+                        </div>-->
+            <!--                <div class="col-md-6">
+                                <img src="images/property_buying.jpg" style="width:100%; height: 300px;" class="img-responsive"/>
+                                <img ng-src="./rest/image/{{image.id}}/attachment" style="width:100%; height: 300px; margin: auto" class="img-responsive"/>
+                            </div>-->
+        </div>
+
+        <!-- amenities Section -->        
+        <div class="col-md-6">
+            <div class="w3-container w3-padding-32" id="addon">           
+                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">ADD ON FEATURES</h3>      
+                <div class="description middleWrapper">
+                    <div class="col-md-3 sep" style="height: 120px;">
+                        <ul class="panel-body">
+                            <li>Dialy needs: <strong>4 Acres</strong></li>
+                            <li>Public transport: <strong>4</strong></li>
+                            <li>Hospital: <strong>4</strong></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 sep nosep" style="height: 120px;">
+                        <ul class="panel-body">
+                            <li>Parks: <strong>4</strong></li>
+                            <li>ATM  <strong> NA</strong> </li>
+                            <li>Bank: <strong>Jul. 2014</strong></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 sep" style="height: 120px;">
+                        <ul class="panel-body">
+                            <li>School: <strong>Yes</strong></li>
+                            <li>College: <strong>Yes</strong></li>
+                            <li>Coaching: <strong>Yes</strong></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3" style="height: 120px;">
+                        <ul class="panel-body">
+                            <li>Petrol pump: <strong>Yes</strong></li>
+                            <li>Resturant: <strong>Yes</strong></li>
+                            <li>Bakery: <strong>Yes</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amenities within Project Section -->        
+        <div class="col-md-6">
+            <div class="w3-container w3-padding-32" id="amenities">
+                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">AMENITIES WITHIN PROJECT</h3>
+
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/ground.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Ground</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/gym.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Gym</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/pool.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Pool</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/security.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Security</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/garden.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Garden</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/theater.png" class="icon_ht">
+                        </div> 
+                        <span title="">Theater</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/yoga.svg" class="icon_ht">
+                        </div> 
+                        <span title="">Yoga</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="form-group text-center">
+                        <div class="master">
+                            <img src="images/icons_svg/club.png" class="icon_ht">
+                        </div> 
+                        <span title="">Club</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Specification Section -->
+        <div class="w3-container w3-padding-32" id="specification">
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">Construction Specification</h3>
+            <div class="col-md-6">
+                <div class="BasicDetailText">
+                    <h3>Specification</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID">STRUCTURE</td>
+                                    <td data-title="Name">10000 (as per survey 2011)</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">FLOORING</td>
+                                    <td data-title="Name">Residential</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">WALLS</td>
+                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">PAINT</td>
+                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">SANITARY</td>
+                                    <td data-title="Name">Borewell and Supply</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">DOORS</td>
+                                    <td data-title="Name">Hingna Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">WINDOWS</td>
+                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">ELECTRIC FITTING</td>
+                                    <td data-title="Name">3 KM</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">KITCHEN</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">WATER PROOFING</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>              
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="BasicDetailText">
+                    <h3>Costing</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID">STREET LIGHTS</td>
+                                    <td data-title="Name">10000 (as per survey 2011)</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">LIFTS</td>
+                                    <td data-title="Name">Residential</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">SECURITY GUARD</td>
+                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">COMMON ELECTRIC/WATER BILLS</td>
+                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">COMMON FACILITIES MAINTENANCE</td>
+                                    <td data-title="Name">Borewell and Supply</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">COMMON AREA SWEEPER</td>
+                                    <td data-title="Name">Hingna Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">GARDNER & ELECTRICIAN</td>
+                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">PLUMBER</td>
+                                    <td data-title="Name">3 KM</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">CARPENTER</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">PAINTER ON CALL</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">OFFER PRICE</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">PAYMENT SCHEDULE</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>              
+                </div>
+            </div>
+        </div>
+        <!-- Demand Indicator Section -->
+        <div class="w3-container w3-padding-32" id="demand">
+            <div class="BasicDetailDIV col-md-12">                
+                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">PRICE REPORTS FOR PREVIOUS YEARS</h3>
+                <!--<h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>-->
+                <div class="col-md-6">
+                    <h4>Past Price range for M.V.</h4>
+                    <div id="chartContainer">
+                        <img src="images/chart.png" class="img-responsive">
+                    </div>      
+                </div>
+                <div class="col-md-6">
+                    <h4>Past Price range for Rental (2 BHK)</h4>
+                    <div id="chartContainer">
+                        <img src="images/chart.png" class="img-responsive">
+                    </div>   
+                </div>
+            </div>
+            <div class="BasicDetailDIV col-md-12">                
+                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">FORECAST</h3>
+                <!--<h3 class="TopHeadingText ForcastDIV">Forcast</h3>-->
+                <div class="col-md-6">
+                    <h4>Migration Potential</h4>
+                    <div id="chartContainer">
+                        <img src="images/chart1.gif" class="img-responsive">
+                    </div>      
+                </div>
+                <div class="col-md-6">
+                    <h4>Demand Potential</h4>
+                    <div id="chartContainer">
+                        <img src="images/chart1.gif" class="img-responsive">
+                    </div>   
+                </div>
+            </div>        
+        </div>
+        <!-- livability Section -->
+        <div class="w3-container w3-padding-32" id="livability">
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">LIVABILITY</h3>
+            <div class="AmenityInnerContents">
+                <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
+                <div class="AmenitiesIcon">
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-plane"></i>
+                        <span>Airport</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-train"></i>
+                        <span>Railway Station</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-bus"></i>
+                        <span>Bus Stop</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-subway"></i>
+                        <span>Metro Station</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-shopping-basket"></i>
+                        <span>Daily Needs</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-ambulance"></i>
+                        <span>Hospital</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-tree"></i>
+                        <span>Park</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-university"></i>
+                        <span>Bank</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-credit-card"></i>
+                        <span>ATM</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-users"></i>
+                        <span>School</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span>College</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-coffee"></i>
+                        <span>Cafe</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-cutlery"></i>
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-birthday-cake"></i>
+                        <span>Bakery</span>
+                    </div>          
+                </div>
+            </div>
+            <div class="AmenityInnerContents">
+                <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
+                <div class="AmenitiesIcon">
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-bath"></i>
+                        <span>Swimming Pool</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-bicycle"></i>
+                        <span>GYM</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-cc-diners-club"></i>
+                        <span>Club</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-glass"></i>
+                        <span>Bar</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Shopping Mall</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-film"></i>
+                        <span>Theater</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-scissors"></i>
+                        <span>Salon</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-building"></i>
+                        <span>Government Offices</span>
+                    </div>
+                    <div class="IconsAll col-md-2">
+                        <i class="fa fa-bed"></i>
+                        <span>Hotels</span>
+                    </div>   
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

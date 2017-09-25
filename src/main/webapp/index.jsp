@@ -134,6 +134,7 @@
         <script src="${pageContext.request.contextPath}/js/states/thanku.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/help.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/final_deal.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/project.js"></script>
         <!---masters script--->
         <script src="${pageContext.request.contextPath}/js/states/branch.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/country.js"></script>
