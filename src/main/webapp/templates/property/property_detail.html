@@ -3,60 +3,60 @@
 <script>
     //Button Click Scroll Animation//
     $(".BasicInforLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".BasicInformationDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".BasicInformationDIV").offset().top},
+            'slow');
     });
     $(".NeighborhoodLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".NeighborhoodDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".NeighborhoodDIV").offset().top},
+            'slow');
     });
     $(".WorkLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".PlacesDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".PlacesDIV").offset().top},
+            'slow');
     });
     $(".DevelopmentLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".PlacesDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".PlacesDIV").offset().top},
+            'slow');
     });
     $(".KeyLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".KeyDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".KeyDIV").offset().top},
+            'slow');
     });
     $(".BasicLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".BasicDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".BasicDIV").offset().top},
+            'slow');
     });
     $(".LuxuryLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".LuxuryDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".LuxuryDIV").offset().top},
+            'slow');
     });
     $(".ReportsLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".ReportsDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".ReportsDIV").offset().top},
+            'slow');
     });
     $(".ForcastLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".ForcastDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".ForcastDIV").offset().top},
+            'slow');
     });
     $(".FindingsLink").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".FindingsDIV").offset().top},
-                'slow');
+    $('html,body').animate({
+    scrollTop: $(".FindingsDIV").offset().top},
+            'slow');
     });
     $('.carousel1').carousel({
-        interval: 3000,
-        pause: false
+    interval: 3000,
+            pause: false
     })
-    //Button Click Scroll Animation//
+            //Button Click Scroll Animation//
 </script>
 <div class="navbar-fixed-top TopFixedNavBarForLocation">
     <nav class="navbar navbar-default CustomNav" id="navbar-default">
@@ -114,34 +114,12 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="carousel carousel1 slide TopMainCarousel" id="myCarousel1" data-ride="carousel">
-                    <ol  class="carousel-indicators">
-                        <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel1" data-slide-to="1"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <iframe class="video VideoContainer" ng-src="{{video.videoUrl}}" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="item">
-                            <iframe class="video VideoContainer" ng-src="{{video.videoUrl}}" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#myCarousel1" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="carousel-control right" href="#myCarousel1" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </div>            
+                <iframe class="video VideoContainer" ng-src="{{video.videoUrl}}" frameborder="0" allowfullscreen></iframe>           
             </div>
-
-
         </div>
         <div class="BasicDetailDIV col-md-12">              
             <div class="col-md-6">
-                <div class="BasicDetailText">
+                <div class="BasicDetailText CustomHeight">
                     <h3>Basic Details</h3>
                     <div class="table-responsive-vertical">
                         <!-- Table starts here -->
@@ -185,7 +163,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="BasicDetailText">
+                <div class="BasicDetailText CustomHeight">
                     <h3>Construction Specification</h3>
                     <div class="table-responsive-vertical">
                         <!-- Table starts here -->
@@ -237,16 +215,11 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
         <div class="BasicDetailDIV col-md-12">              
             <div class="col-md-6">
-                <div class="BasicDetailText">
+                <div class="BasicDetailText CustomHeight">
                     <h3>Add-on Features</h3>
-                    <div class="col-md-4 col-sm-4 col-xs-6">
+                    <div>
                         <ul class="list-group list-group-bootify">
                             <li class="list-group-item">Cras justo odio</li>
                             <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -254,12 +227,11 @@
                             <li class="list-group-item">Porta ac consectetur ac</li>
                             <li class="list-group-item">Vestibulum at eros</li>
                         </ul>
-
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="BasicDetailText">
+                <div class="BasicDetailText CustomHeight">
                     <h3>Costing</h3>
                     <div class="table-responsive-vertical">
                         <!-- Table starts here -->
@@ -305,11 +277,11 @@
                                     <td data-title="ID">PAINTER ON CALL</td>
                                     <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td data-title="ID">OFFER PRICE</td>
                                     <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td data-title="ID">PAYMENT SCHEDULE</td>
                                     <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
                                 </tr>
@@ -319,9 +291,257 @@
                 </div>
             </div>
         </div>
-
-
-
+        <div class="BasicDetailDIV col-md-12">              
+            <div class="col-md-6">
+                <div class="BasicDetailText CustomHeight">
+                    <h3>Demand Indicator</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue DemandIndicatorTable">                            
+                            <thead>
+                                <tr>
+                                    <th>MIGRATION POTENTIAL IS 50%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee : 100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VSPL</td>
+                                    <td data-title="Name">Total Employee  100</td>
+                                    <td data-title="Name">0-15K  25</td>
+                                    <td data-title="Name">15-30K  30</td>
+                                    <td data-title="Name">30-60K  20</td>
+                                    <td data-title="Name"><60K  2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="BasicDetailText CustomHeight">
+                    <h3>Price Trends for Previous Years</h3>
+                    <img src="https://shawglobalnews.files.wordpress.com/2016/02/capture10.png?w=720&h=480&crop=1" class="img-responsive">             
+                </div>
+            </div>
+        </div>
+        <div class="BasicDetailDIV col-md-12">              
+            <div class="col-md-6">
+                <div class="BasicDetailText CustomHeight">
+                    <h3>Legal Documents</h3>                   
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID">MUTATION COPY</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">SALE DEED</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">DEVELOPMENT AGREEMENT</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">POWER OF AUTHORITY</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">TAX RECEIPT</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">LAYOUT SANCTION</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">DEVELOPMENT PLAN</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">RELEASE LETTER</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">BUILDING SANCTION</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">COMPLETION CERTIFICATE</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">OCCUPANCY CERTIFICATE</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">ELEVATION</td>
+                                    <td data-title="Name">N/A</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>   
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="BasicDetailText CustomHeight">
+                    <h3>Inventory</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID">SIZE</td>
+                                    <td data-title="Name">10000 (as per survey 2011)</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">NUMBER of ROOMS</td>
+                                    <td data-title="Name">Residential</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">NUMBER of TOILETS</td>
+                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">CARPET AREA</td>
+                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">SALABLE AREA</td>
+                                    <td data-title="Name">Borewell and Supply</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">OPEN SPACE</td>
+                                    <td data-title="Name">Hingna Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">NUMBER OF BALCONY</td>
+                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">TERRACE</td>
+                                    <td data-title="Name">3 KM</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">FLOOR NUMBER</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">TOTAL FLOORS</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">AGE of CONSTRUCTION</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">POSSESSION DATE</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">VASTU COMPLIANCE</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">ENTRY to THE PROJECT</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>              
+                </div>
+            </div>
+        </div>
         <div class="BasicDetailDIV col-md-12">
             <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
             <div class="PlacesContainer">
@@ -405,59 +625,59 @@
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
                 <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-plane"></i>
                         <span>Airport</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-train"></i>
                         <span>Railway Station</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-bus"></i>
                         <span>Bus Stop</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-subway"></i>
                         <span>Metro Station</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-shopping-basket"></i>
                         <span>Daily Needs</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-ambulance"></i>
                         <span>Hospital</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-tree"></i>
                         <span>Park</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-university"></i>
                         <span>Bank</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-credit-card"></i>
                         <span>ATM</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-users"></i>
                         <span>School</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-graduation-cap"></i>
                         <span>College</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-coffee"></i>
                         <span>Cafe</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-cutlery"></i>
                         <span>Restaurant</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-birthday-cake"></i>
                         <span>Bakery</span>
                     </div>          
@@ -466,130 +686,43 @@
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
                 <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-bath"></i>
                         <span>Swimming Pool</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-bicycle"></i>
                         <span>GYM</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-cc-diners-club"></i>
                         <span>Club</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-glass"></i>
                         <span>Bar</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-shopping-cart"></i>
                         <span>Shopping Mall</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-film"></i>
                         <span>Theater</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-scissors"></i>
                         <span>Salon</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-building"></i>
                         <span>Government Offices</span>
                     </div>
-                    <div class="IconsAll col-md-2">
+                    <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-bed"></i>
                         <span>Hotels</span>
                     </div>   
                 </div>
-            </div>
-        </div>
-        <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>
-            <div class="col-md-6">
-                <h4>Past Price range for M.V.</h4>
-                <div id="chartContainer">
-                    <img src="images/chart.png" class="img-responsive">
-                </div>      
-            </div>
-            <div class="col-md-6">
-                <h4>Past Price range for Rental (2 BHK)</h4>
-                <div id="chartContainer">
-                    <img src="images/chart.png" class="img-responsive">
-                </div>   
-            </div>
-        </div>
-        <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText ForcastDIV">Forcast</h3>
-            <div class="col-md-6">
-                <h4>Migration Potential</h4>
-                <div id="chartContainer">
-                    <img src="images/chart1.gif" class="img-responsive">
-                </div>      
-            </div>
-            <div class="col-md-6">
-                <h4>Demand Potential</h4>
-                <div id="chartContainer">
-                    <img src="images/chart1.gif" class="img-responsive">
-                </div>   
-            </div>
-        </div>
-        <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText FindingsDIV">Risk Factors</h3>
-            <div class="RiskFactorIcons">
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-industry ActiveColorGreen"></i><br>
-                    <span>Power Plant</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-plus ActiveColorRed"></i><br>
-                    <span>Medicine Industry</span><br>
-                    <span class="ActiveColorRed">YES</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-chain ActiveColorGreen"></i><br>
-                    <span>Steel/Cement Industry</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-ship ActiveColorGreen"></i><br>
-                    <span>Filthy Lake</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-soundcloud ActiveColorGreen"></i><br>
-                    <span>Area Prone to Floods</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-tint ActiveColorGreen"></i><br>
-                    <span>Low Area Prone to Water Logging</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-trash-o ActiveColorGreen"></i><br>
-                    <span>Dump Yard</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-                <div class="IconsAll col-md-2">
-                    <i class="fa fa-tv ActiveColorGreen"></i><br>
-                    <span>STP</span><br>
-                    <span class="ActiveColorGreen">NO</span>
-                </div>
-            </div>
-        </div>
-        <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText FindingsDIV">Findings</h3>
-            <div class="LocationAdvantages col-md-6">
-                <h2>Location Advantages</h2>
-                <p>Isasani is a prominent location with good connectivity, attached to main city, ideal location for peaceful living having great potential for rental income and capital gain.</p>
-            </div>
-            <div class="LocationAdvantages col-md-6">
-                <h2>Location Dis-Advantages</h2>
-                <p>Some portion of government land is encroached by slum population whereby beauty of area is compromised. 
-                </p>
             </div>
         </div>
         <!--    <div class="row">
