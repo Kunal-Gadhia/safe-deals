@@ -274,85 +274,62 @@
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">              
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="BasicDetailImage">
                     <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="BasicDetailText">
                     <h3>{{location.name}} / {{cityName}}</h3>
-                    <div class="col-md-6 BorderRight">
-                        <div class="LeftDescription">
-                            <i class="fa fa-user"></i>
-                            <span>POPULATION</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-map-o"></i>
-                            <span>LOCATION IS KNOWN FOR</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-rupee"></i>
-                            <span>CURRENT PRICE RANGE FOR M.V</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-rupee"></i>
-                            <span>CURRENT PRICE RANGE FOR RENTAL(2BHK)</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-glass"></i>
-                            <span>SOURCE OF WATER</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-road"></i>
-                            <span>MAJOR APPROACH ROAD</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-road"></i>
-                            <span>TYPE AND SIZE OF APPROACH ROAD</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-road"></i>
-                            <span>DISTANCE OF MAIN ROAD</span>
-                        </div>
-                        <div class="LeftDescription">
-                            <i class="fa fa-bus"></i>
-                            <span>AVAILABILITY OF PUBLIC TRANSPORT</span>
-                        </div>                 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="RightDescription">
-                            <span>{{location.population}}</span>
-                        </div>
-                        <div class="RightDescription">
-                            <!--<span>-->
-                            <ul ng-repeat="locationCategory in locationCategoryDisplay">
-                                <li>{{locationCategory.name}}</li>
-                            </ul>
-                            <!--</span>-->
-                        </div>
-                        <div class="RightDescription">
-                            <span>Rs. 2000 - Rs. 3000 Per Sq. Ft.</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>Rs. 4000 - Rs. 6000 Per Month</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>Borewell and Supply</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>Hingna Road</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>18 Mtr, Tar Road</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>3 KM</span>
-                        </div>
-                        <div class="RightDescription">
-                            <span>Auto Rikshaw, Taxi, City Bus, Metro</span>
-                        </div>
-                    </div>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
+                                    <td data-title="Name">{{location.population}}</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
+                                    <td data-title="Name">
+                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
+                                            <li>{{locationCategory.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
+                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                </tr>
+<!--                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR RENTAL(2BHK)</td>
+                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                </tr>-->
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
+                                    <td data-title="Name">Borewell and Supply</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>MAJOR APPROACH ROAD</td>
+                                    <td data-title="Name">Hingna Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
+                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>DISTANCE OF MAIN ROAD</td>
+                                    <td data-title="Name">3 KM</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>              
+                    >>>>>>> 5415c9206475a8f2934bf39f1653fcabb3a6f665
                 </div>
             </div>
         </div>
