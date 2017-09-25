@@ -88,6 +88,21 @@ public class PropertyDAL {
         public static final String PLASTERING = "plastering";
         public static final String FINISHING_WORK = "finishing_work";
 
+        public static final String BRICK_WORK_PLASTERING = "bwp";
+        public static final String FLOORING = "flooring";
+
+        public static final String KITCHEN = "kitchen";
+        public static final String SANITORY = "sanitory";
+        public static final String DOORS = "doors";
+        public static final String WINDOWS = "windows";
+        public static final String PAINTINGS = "paintings";
+        public static final String FALSE_CEILING = "false_ceiling";
+        public static final String ELECTRIC_FITTINGS = "electric_fittings";
+        public static final String LIFT = "lift";
+        public static final String STRUCTURE = "structure";
+        public static final String WALLS = "walls";
+        public static final String WATER_PROOFING = "water_proofing";
+
     }
 
     public static final String TABLE_NAME = "property";
@@ -156,7 +171,20 @@ public class PropertyDAL {
                         Columns.EACH_SLAB,
                         Columns.BRICK_WORK,
                         Columns.PLASTERING,
-                        Columns.FINISHING_WORK
+                        Columns.FINISHING_WORK,
+                        Columns.BRICK_WORK_PLASTERING,
+                        Columns.FLOORING,
+                        Columns.KITCHEN,
+                        Columns.SANITORY,
+                        Columns.DOORS,
+                        Columns.WINDOWS,
+                        Columns.PAINTINGS,
+                        Columns.FALSE_CEILING,
+                        Columns.ELECTRIC_FITTINGS,
+                        Columns.LIFT,
+                        Columns.STRUCTURE,
+                        Columns.WALLS,
+                        Columns.WATER_PROOFING
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -281,6 +309,21 @@ public class PropertyDAL {
         parameters.put(Columns.PLASTERING, property.getPlastering());
         parameters.put(Columns.FINISHING_WORK, property.getFinishingWork());
 
+        parameters.put(Columns.BRICK_WORK_PLASTERING, property.getBrickWorkPlastering());
+        parameters.put(Columns.FLOORING, property.getFlooring());
+        parameters.put(Columns.KITCHEN, property.getKitchen());
+        parameters.put(Columns.SANITORY, property.getSanitory());
+        parameters.put(Columns.DOORS, property.getDoors());
+        parameters.put(Columns.WINDOWS, property.getWindows());
+        parameters.put(Columns.PAINTINGS, property.getPaintings());
+
+        parameters.put(Columns.FALSE_CEILING, property.getFalseCeiling());
+        parameters.put(Columns.ELECTRIC_FITTINGS, property.getElectricFitings());
+        parameters.put(Columns.LIFT, property.getLift());
+        parameters.put(Columns.STRUCTURE, property.getStructure());
+        parameters.put(Columns.WALLS, property.getWalls());
+        parameters.put(Columns.WATER_PROOFING, property.getWaterProofing());
+
         Number newId = insertProperty.executeAndReturnKey(parameters);
         property = findById(newId.intValue());
         return property;
@@ -374,7 +417,20 @@ public class PropertyDAL {
                 + Columns.EACH_SLAB + " =?,"
                 + Columns.BRICK_WORK + " =?,"
                 + Columns.PLASTERING + " =?,"
-                + Columns.FINISHING_WORK + " =? WHERE "
+                + Columns.FINISHING_WORK + " =?,"
+                + Columns.BRICK_WORK_PLASTERING + " =?,"
+                + Columns.FLOORING + " =?,"
+                + Columns.KITCHEN + " =?,"
+                + Columns.SANITORY + " =?,"
+                + Columns.DOORS + " =?,"
+                + Columns.WINDOWS + " =?,"
+                + Columns.PAINTINGS + " =?,"
+                + Columns.FALSE_CEILING + " =?,"
+                + Columns.ELECTRIC_FITTINGS + " =?,"
+                + Columns.LIFT + " =?,"
+                + Columns.STRUCTURE + " =?,"
+                + Columns.WALLS + " =?,"
+                + Columns.WATER_PROOFING + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             property.getName(),
@@ -433,6 +489,19 @@ public class PropertyDAL {
             property.getBrickWork(),
             property.getPlastering(),
             property.getFinishingWork(),
+            property.getBrickWorkPlastering(),
+            property.getFlooring(),
+            property.getKitchen(),
+            property.getSanitory(),
+            property.getDoors(),
+            property.getWindows(),
+            property.getPaintings(),
+            property.getFalseCeiling(),
+            property.getElectricFitings(),
+            property.getLift(),
+            property.getStructure(),
+            property.getWalls(),
+            property.getWaterProofing(),
             property.getId()});
         property = findById(property.getId());
         return property;
@@ -619,7 +688,6 @@ public class PropertyDAL {
             property.setMetro(rs.getBoolean(Columns.METRO));
             property.setDistance(rs.getDouble(Columns.DISTANCE));
             property.setUnit(rs.getInt(Columns.UNIT));
-
             property.setBookingAmount(rs.getDouble(Columns.BOOKING_AMOUNT));
             property.setStartOfConstruction(rs.getDouble(Columns.START_OF_CONSTRUCTION));
             property.setCompletionOfPlinth(rs.getDouble(Columns.COMPLETION_OF_PLINTH));
@@ -627,6 +695,19 @@ public class PropertyDAL {
             property.setBrickWork(rs.getDouble(Columns.BRICK_WORK));
             property.setPlastering(rs.getDouble(Columns.PLASTERING));
             property.setFinishingWork(rs.getDouble(Columns.FINISHING_WORK));
+            property.setBrickWorkPlastering(rs.getString(Columns.BRICK_WORK_PLASTERING));
+            property.setFlooring(rs.getString(Columns.FLOORING));
+            property.setKitchen(rs.getString(Columns.KITCHEN));
+            property.setSanitory(rs.getString(Columns.SANITORY));
+            property.setDoors(rs.getString(Columns.DOORS));
+            property.setWindows(rs.getString(Columns.WINDOWS));
+            property.setPaintings(rs.getString(Columns.PAINTINGS));
+            property.setFalseCeiling(rs.getString(Columns.FALSE_CEILING));
+            property.setElectricFitings(rs.getString(Columns.ELECTRIC_FITTINGS));
+            property.setLift(rs.getString(Columns.LIFT));
+            property.setStructure(rs.getString(Columns.STRUCTURE));
+            property.setWalls(rs.getString(Columns.WALLS));
+            property.setWaterProofing(rs.getString(Columns.WATER_PROOFING));
 
             //  property.setTotalArea(rs.getDouble(Columns.TOTAL_AREA));
             return property;

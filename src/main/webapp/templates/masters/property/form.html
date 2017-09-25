@@ -53,7 +53,7 @@
                                                typeahead-editable="false"
                                                typeahead-loading="loadingCities" 
                                                typeahead-no-results="noCitiesFound"  
-                                              
+
                                                ng-model="editableProperty.city.name" />
                                         <p ng-show="noCitiesFound" class="help-block text-muted">No Cities found</p>
                                         <p ng-show="loadingCities" class="help-block text-muted">loading...</p>
@@ -430,7 +430,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div ng-switch-when="Neighbourhood">
                             <div ng-show="neighbourhood">
                                 <div class="row">
@@ -732,14 +732,115 @@
                                             <label>Longitude</label>
                                             <input class="form-control" placeholder="Longitude" type="number" step="any" ng-model="editableProperty.longitude" />
                                         </div>
-                                    </div>                                        
+                                    </div> 
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Brick Work</label>
+                                            <input step="any" placeholder="Brick Work" class="form-control" ng-model="editableProperty.brickWorkPlastering" >
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="form-group col-sm-6">                                            
                                         <label>To get coordinates refer this link:</label>
                                         <a href="http://www.maps.ie/coordinates.html" target="_blank">Maps.ie</a>
                                     </div>
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Flooring</label>
+                                            <input step="any" placeholder="Flooring" class="form-control" ng-model="editableProperty.flooring">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Kitchen</label>
+                                            <input  step="any" placeholder="Kitchen" class="form-control" ng-model="editableProperty.kitchen">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Sanitory</label>
+                                            <input step="any" placeholder="Sanitory" class="form-control" ng-model="editableProperty.sanitory" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Doors</label>
+                                            <input step="any" placeholder="Doors" class="form-control" ng-model="editableProperty.doors">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Windows</label>
+                                            <input  step="any" placeholder="Windows" class="form-control" ng-model="editableProperty.windows">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Paintings</label>
+                                            <input step="any" placeholder="Paintings" class="form-control" ng-model="editableProperty.paintings" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>False Ceiling</label>
+                                            <input step="any" placeholder="False Ceiling" class="form-control" ng-model="editableProperty.falseCeiling">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Electric Fittings</label>
+                                            <input  step="any" placeholder="Electric Fittings" class="form-control" ng-model="editableProperty.electricFitings">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Lift</label>
+                                            <input step="any" placeholder="Lift" class="form-control" ng-model="editableProperty.lift" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Structure</label>
+                                            <input step="any" placeholder="Structure" class="form-control" ng-model="editableProperty.structure">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Walls</label>
+                                            <input  step="any" placeholder="Walls" class="form-control" ng-model="editableProperty.walls">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Water Proofing</label>
+                                            <input step="any" placeholder="Water Proofing" class="form-control" ng-model="editableProperty.waterProofing" >
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                         <div ng-switch-when="Seller Commision Agreement">

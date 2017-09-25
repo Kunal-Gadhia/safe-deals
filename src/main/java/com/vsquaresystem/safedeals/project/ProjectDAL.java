@@ -111,6 +111,21 @@ public class ProjectDAL {
         public static final String SOCIETY_MAINTENANCE_AMOUNT = "society_maintenance_amount";
         public static final String SOCIETY_MAINTENANCE_DURATION = "society_maintenance_duration";
         public static final String RERA_REG_NO = "rera_reg_no";
+
+        public static final String BRICK_WORK_PLASTERING = "bwp";
+        public static final String FLOORING = "flooring";
+
+        public static final String KITCHEN = "kitchen";
+        public static final String SANITORY = "sanitory";
+        public static final String DOORS = "doors";
+        public static final String WINDOWS = "windows";
+        public static final String PAINTINGS = "paintings";
+        public static final String FALSE_CEILING = "false_ceiling";
+        public static final String ELECTRIC_FITTINGS = "electric_fittings";
+        public static final String LIFT = "lift";
+        public static final String STRUCTURE = "structure";
+        public static final String WALLS = "walls";
+        public static final String WATER_PROOFING = "water_proofing";
     }
 
     @Autowired
@@ -188,7 +203,20 @@ public class ProjectDAL {
                         Columns.SOCIETY_MAINTENANCE,
                         Columns.SOCIETY_MAINTENANCE_AMOUNT,
                         Columns.SOCIETY_MAINTENANCE_DURATION,
-                        Columns.RERA_REG_NO
+                        Columns.RERA_REG_NO,
+                        Columns.BRICK_WORK_PLASTERING,
+                        Columns.FLOORING,
+                        Columns.KITCHEN,
+                        Columns.SANITORY,
+                        Columns.DOORS,
+                        Columns.WINDOWS,
+                        Columns.PAINTINGS,
+                        Columns.FALSE_CEILING,
+                        Columns.ELECTRIC_FITTINGS,
+                        Columns.LIFT,
+                        Columns.STRUCTURE,
+                        Columns.WALLS,
+                        Columns.WATER_PROOFING
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -324,6 +352,21 @@ public class ProjectDAL {
         parameters.put(Columns.SOCIETY_MAINTENANCE_DURATION, project.getSocietyMaintenanceDuration());
         parameters.put(Columns.RERA_REG_NO, project.getReraRegNo());
 
+        parameters.put(Columns.BRICK_WORK_PLASTERING, project.getBrickWorkPlastering());
+        parameters.put(Columns.FLOORING, project.getFlooring());
+        parameters.put(Columns.KITCHEN, project.getKitchen());
+        parameters.put(Columns.SANITORY, project.getSanitory());
+        parameters.put(Columns.DOORS, project.getDoors());
+        parameters.put(Columns.WINDOWS, project.getWindows());
+        parameters.put(Columns.PAINTINGS, project.getPaintings());
+
+        parameters.put(Columns.FALSE_CEILING, project.getFalseCeiling());
+        parameters.put(Columns.ELECTRIC_FITTINGS, project.getElectricFitings());
+        parameters.put(Columns.LIFT, project.getLift());
+        parameters.put(Columns.STRUCTURE, project.getStructure());
+        parameters.put(Columns.WALLS, project.getWalls());
+        parameters.put(Columns.WATER_PROOFING, project.getWaterProofing());
+
         Number newId = insertProject.executeAndReturnKey(parameters);
         project = findById(newId.intValue());
         return project;
@@ -409,7 +452,20 @@ public class ProjectDAL {
                 + Columns.SOCIETY_MAINTENANCE + " =?,"
                 + Columns.SOCIETY_MAINTENANCE_AMOUNT + " =?,"
                 + Columns.SOCIETY_MAINTENANCE_DURATION + " =?,"
-                + Columns.RERA_REG_NO + " =? WHERE "
+                + Columns.RERA_REG_NO + " =?,"
+                + Columns.BRICK_WORK_PLASTERING + " =?,"
+                + Columns.FLOORING + " =?,"
+                + Columns.KITCHEN + " =?,"
+                + Columns.SANITORY + " =?,"
+                + Columns.DOORS + " =?,"
+                + Columns.WINDOWS + " =?,"
+                + Columns.PAINTINGS + " =?,"
+                + Columns.FALSE_CEILING + " =?,"
+                + Columns.ELECTRIC_FITTINGS + " =?,"
+                + Columns.LIFT + " =?,"
+                + Columns.STRUCTURE + " =?,"
+                + Columns.WALLS + " =?,"
+                + Columns.WATER_PROOFING + " =? WHERE "
                 + Columns.ID + " =?";
         jdbcTemplate.update(sqlQuery, new Object[]{
             project.getName(),
@@ -483,6 +539,19 @@ public class ProjectDAL {
             project.getSocietyMaintenanceAmount(),
             project.getSocietyMaintenanceDuration(),
             project.getReraRegNo(),
+            project.getBrickWorkPlastering(),
+            project.getFlooring(),
+            project.getKitchen(),
+            project.getSanitory(),
+            project.getDoors(),
+            project.getWindows(),
+            project.getPaintings(),
+            project.getFalseCeiling(),
+            project.getElectricFitings(),
+            project.getLift(),
+            project.getStructure(),
+            project.getWalls(),
+            project.getWaterProofing(),
             project.getId()}
         );
         project = findById(project.getId());
@@ -806,6 +875,20 @@ public class ProjectDAL {
             project.setSocietyMaintenanceAmount(rs.getDouble(Columns.SOCIETY_MAINTENANCE_AMOUNT));
             project.setSocietyMaintenanceDuration(rs.getDouble(Columns.SOCIETY_MAINTENANCE_DURATION));
             project.setReraRegNo(rs.getString(Columns.RERA_REG_NO));
+            project.setBrickWorkPlastering(rs.getString(Columns.BRICK_WORK_PLASTERING));
+
+            project.setFlooring(rs.getString(Columns.FLOORING));
+            project.setKitchen(rs.getString(Columns.KITCHEN));
+            project.setSanitory(rs.getString(Columns.SANITORY));
+            project.setDoors(rs.getString(Columns.DOORS));
+            project.setWindows(rs.getString(Columns.WINDOWS));
+            project.setPaintings(rs.getString(Columns.PAINTINGS));
+            project.setFalseCeiling(rs.getString(Columns.FALSE_CEILING));
+            project.setElectricFitings(rs.getString(Columns.ELECTRIC_FITTINGS));
+            project.setLift(rs.getString(Columns.LIFT));
+            project.setStructure(rs.getString(Columns.STRUCTURE));
+            project.setWalls(rs.getString(Columns.WALLS));
+            project.setWaterProofing(rs.getString(Columns.WATER_PROOFING));
 
             return project;
         }
