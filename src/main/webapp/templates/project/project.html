@@ -1,22 +1,13 @@
-<style>
-    .nav-tabs { border-bottom: 2px solid #DDD; }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
-    .nav-tabs > li > a { border: none; color: #666; }
-    .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #d08a04 !important; background: transparent; }
-    .nav-tabs > li > a::after { content: ""; background: #d08a04; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
-    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
-    .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
-    .tab-pane { padding: 15px 0; }
-    .tab-content{padding:20px}
-
-    .card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }
-    .middleWrapper {  clear: both;
-                      margin-top: 20px;
-                      border: 1px solid #ececec;
-                      content: " ";
-                      overflow: hidden; }
-    .middleWrapper ul li { list-style: none; background: url(images/arrow.png) no-repeat 0 15px; padding: 10px 0px 0px 12px;}
-    .sep{border-right: 1px solid #ececec}
+<style> 
+    .affix {
+        top:110px;
+        width: 100%;
+        z-index: 9999 !important;
+    }
+    .affix ~ .carousel {
+        position: relative;
+        top: 500px;
+    }
 </style>
 
 <div id="myCarousel" class="carousel " data-ride="carousel">
@@ -52,18 +43,18 @@
     </a>
 </div>
 <div class="thumbnail">	
-    <div class="default">
-        <nav class="navbar-default">
+    <div class="navbar-fixed-top TopFixedNavBarForLocation">
+        <nav class="navbar-default" data-spy="affix" data-offset-top="500">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="projTab">
                     <ul class=" nav navbar-nav nav-tabs">
-                        <li><a href="#/#basic" class="">Basic</a></li>
-                        <li><a href="#/#addon" class="">Add on Features</a></li>
-                        <li><a href="#/#amenities" class="">Amenities within Project</a></li>
-                        <li><a href="#/#specification" class="">Construction Specification</a></li>
-                        <li><a href="#/#demand" class="">Demand indicator</a></li>
-                        <li><a href="#/#livability" class="">Livability</a></li>
-                        <li><a href="#/#marketability" class="">Marketability</a></li>
+                        <li><a href="#basic" class="">Basic</a></li>
+                        <li><a href="#addon" class="">Add on Features</a></li>
+                        <li><a href="#amenities" class="">Amenities within Project</a></li>
+                        <li><a href="#specification" class="">Construction Specification</a></li>
+                        <li><a href="#demand" class="">Demand indicator</a></li>
+                        <li><a href="#livability" class="">Livability</a></li>
+                        <li><a href="#marketability" class="">Marketability</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,13 +64,7 @@
         <!-- Basic Section -->            
         <div class="w3-container w3-padding-32" id="basic">
             <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">BASIC DETAILS</h3>    
-
-            <div class="BasicDetailDIV col-md-12">              
-                <div class="col-md-5">
-                    <div class="BasicDetailImage">
-                        <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
-                    </div>
-                </div>
+            <div class="BasicDetailDIV col-md-12">               
                 <div class="col-md-7">
                     <div class="BasicDetailText">
                         <h3>Manish Nagar / Nagpur</h3>
@@ -126,6 +111,11 @@
                                 </tbody>
                             </table>
                         </div>              
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="BasicDetailImage">
+                        <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
                     </div>
                 </div>
             </div>

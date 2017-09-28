@@ -132,6 +132,12 @@ a:focus, a:hover{
     font-size: 18px;
     line-height: 10px;
 }
+#projTab .navbar-nav>li>a {
+    color: #70330C;
+    font-size: 15px;
+    line-height: 10px;
+    /*background-color: #f0f;*/
+}
 
 .navbar-default.nav-upper {
     height: 50px;

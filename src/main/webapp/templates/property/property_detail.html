@@ -59,32 +59,61 @@
             //Button Click Scroll Animation//
 </script>
 <div class="navbar-fixed-top TopFixedNavBarForLocation">
-    <nav class="navbar navbar-default CustomNav" id="navbar-default">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle toggle" data-toggle="collapse" data-target="#DetailPageTopNavigation">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-            </button>          
-        </div>
-        <div class="collapse navbar-collapse TopNavBar" id="DetailPageTopNavigation">
-            <ul class="TopNavigation nav navbar-nav navbar-right">
-                <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Home">Basic Information</a></li>
-                <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Products">Neighborhood</a></li>
-                <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support">Work Places</a></li>
-                <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About">Development</a></li>
-                <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact">Key Amenities</a></li>
-                <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
-                <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>
-                <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact">Price Reports For Previous Year</a></li>
-                <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Forcast</a></li>
-                <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Risk Factor</a></li>
-                <li><a class="FindingsLink hidden-xs hidden-md" href="#5" title="Contact">Findings</a></li>
-            </ul>
+    <nav class="navbar-default" data-spy="affix" data-offset-top="500">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="projTab">
+                <ul class=" nav navbar-nav nav-tabs nav-justified">
+                    <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Home">Basic Information</a></li>
+                    <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Products">Neighborhood</a></li>
+                    <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support">Work Places</a></li>
+                    <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About">Development</a></li>
+                    <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact">Livability</a></li>
+<!--                    <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
+                    <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>-->
+                    <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact">Reports</a></li>
+                    <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Forecast</a></li>
+                    <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Risk Factor</a></li>
+                    <li><a class="FindingsLink hidden-xs hidden-md" href="#5" title="Contact">Findings</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
+    <!--    <nav class="navbar navbar-default CustomNav" id="navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle toggle" data-toggle="collapse" data-target="#DetailPageTopNavigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>          
+            </div>
+            <div class="collapse navbar-collapse TopNavBar" id="DetailPageTopNavigation">
+                <ul class="TopNavigation nav navbar-nav navbar-right">
+                    <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Home">Basic Information</a></li>
+                    <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Products">Neighborhood</a></li>
+                    <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support">Work Places</a></li>
+                    <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About">Development</a></li>
+                    <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact">Key Amenities</a></li>
+                    <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
+                    <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>
+                    <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact">Price Reports For Previous Year</a></li>
+                    <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Forcast</a></li>
+                    <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact">Risk Factor</a></li>
+                    <li><a class="FindingsLink hidden-xs hidden-md" href="#5" title="Contact">Findings</a></li>
+                </ul>
+            </div>
+        </nav>-->
 </div>
 <div class="thumbnail LocationDetail">
+    <div class="">
+        <h2 class="modal-title text-center text-uppercase">
+            <i><b>{{property.name}}, {{property.city.name}}</b></i>
+            <button type="button"
+                    onclick="window.history.back()"
+                    class=" pull-right btn btn-link">
+                <i class="fa fa-times"></i>
+            </button>
+        </h2> 
+    </div>
     <div class="row">        
         <div class="BasicInformationDIV col-md-12">
             <h3 class="modal-title TopHeadingText InformationDIV">
@@ -422,51 +451,51 @@
                             <tbody>
                                 <tr>
                                     <td data-title="ID">MUTATION COPY</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">SALE DEED</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">NO <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">DEVELOPMENT AGREEMENT</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">POWER OF AUTHORITY</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">NO <button class="btn btn-link pull-right ">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">TAX RECEIPT</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">NO <button class="btn btn-link pull-right ">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">LAYOUT SANCTION</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">DEVELOPMENT PLAN</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">RELEASE LETTER</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">BUILDING SANCTION</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">COMPLETION CERTIFICATE</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">OCCUPANCY CERTIFICATE</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">ELEVATION</td>
-                                    <td data-title="Name">N/A</td>
+                                    <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>                                
                             </tbody>
                         </table>
