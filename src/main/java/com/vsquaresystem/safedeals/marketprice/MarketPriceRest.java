@@ -49,6 +49,11 @@ public class MarketPriceRest {
         return marketpriceDal.findByLocation(locationId);
     }
 
+    @RequestMapping(value = "/find_by_location/year", method = RequestMethod.GET)
+    public List<MarketPrice> findByLocationAndYear(@RequestParam("locationId") Integer locationId, @RequestParam("year") Integer year) {
+        return marketpriceDal.findByLocationAndYear(locationId, year);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public MarketPrice findById(@PathVariable("id") Integer id) {
         return marketpriceDal.findById(id);

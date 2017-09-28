@@ -114,7 +114,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                             console.log("Results :%O", results);
                             console.log("Status :%O", status);
                             if (status === google.maps.GeocoderStatus.OK) {
-                                $scope.gpsCityName = results[4].address_components[0].long_name;
+                                $scope.gpsCityName = results[5].address_components[0].long_name;
                                 console.log("Results :%O", results);
                                 console.log("GPS City Name :%O", $scope.gpsCityName);
                                 CityService.findByCityName({

@@ -309,7 +309,7 @@ angular.module("safedeals.states.location", [])
 //            console.log("$rootScope", $rootScope);
 //            console.log("$parent", $parent);
         })
-        .controller('LocationDetailController', function ($scope, $filter, CityService, LocationCategoryService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
+        .controller('LocationDetailController', function ($scope, $filter, RoadService, UnitService, CityService, LocationCategoryService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MarketPriceService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, ProjectService, $stateParams) {
             $scope.map;
             $scope.map1;
             $scope.map2;
@@ -588,7 +588,6 @@ angular.module("safedeals.states.location", [])
                 $scope.location = location;
                 $scope.locationCategoryDisplay = [];
                 angular.forEach($scope.location.locationCategories, function (locationCategory) {
-                    console.log("Location Ctaegory :%O", locationCategory);
                     LocationCategoryService.get({
                         'id': locationCategory
                     }, function (locationCategory) {
@@ -596,10 +595,40 @@ angular.module("safedeals.states.location", [])
                     });
                 });
 
+                $scope.date = new Date();
+                $scope.lowestPriceAverage;
+                $scope.highestPriceAverage;
+
+                MarketPriceService.findByLocationAndYear({
+                    'locationId': location.id,
+                    'year': $scope.date.getFullYear()
+                }, function (marketPriceList) {
+                    var lowMarketPrice = 0;
+                    var highMarketPrice = 0;
+                    angular.forEach(marketPriceList, function (marketPriceObject) {
+                        lowMarketPrice = lowMarketPrice + marketPriceObject.mpResidentialLowest;
+                        highMarketPrice = highMarketPrice + marketPriceObject.mpResidentialHighest;
+                    });
+                    $scope.lowestPriceAverage = lowMarketPrice / 12;
+                    $scope.highestPriceAverage = highMarketPrice / 12;
+                });
+
                 CityService.get({
                     'id': location.cityId
                 }, function (cityObject) {
                     $scope.cityName = cityObject.name;
+                });
+
+                UnitService.get({
+                    'id': location.unit
+                }, function (unitObject) {
+                    $scope.location.unitObject = unitObject;
+                });
+
+                RoadService.get({
+                    'id': location.majorApproachRoad
+                }, function (roadObject) {
+                    $scope.location.roadObject = roadObject;
                 });
 
                 var nagpurCoordinate = new google.maps.LatLng(location.latitude, location.longitude);

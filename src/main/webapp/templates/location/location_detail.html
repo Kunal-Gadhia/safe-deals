@@ -300,36 +300,52 @@
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
-                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                    <td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>
                                 </tr>
-<!--                                <tr>
-                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR RENTAL(2BHK)</td>
-                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
-                                </tr>-->
+                                <!--                                <tr>
+                                                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR RENTAL(2BHK)</td>
+                                                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                                                </tr>-->
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
-                                    <td data-title="Name">Borewell and Supply</td>
+                                    <td data-title="Name">
+                                        <ul>
+                                            <li ng-show="location.corporationSupply">Corporation Supply</li>
+                                            <li ng-show="location.openWell">Open Well</li>
+                                            <li ng-show="location.borewell">Bore Well</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>MAJOR APPROACH ROAD</td>
-                                    <td data-title="Name">Hingna Road</td>
+                                    <td data-title="Name">{{location.roadObject.name}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
-                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                    <td data-title="Name">
+                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>DISTANCE OF MAIN ROAD</td>
-                                    <td data-title="Name">3 KM</td>
+                                    <td data-title="Name">{{location.distance}} {{location.unitObject.abbreviation}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                    <td data-title="Name">
+                                        <ul>
+                                            <li ng-show="location.bus">Bus</li>
+                                            <li ng-show="location.auto">Auto</li>
+                                            <li ng-show="location.taxi">Taxi</li>
+                                            <li ng-show="location.metro">Metro</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>              
-                    >>>>>>> 5415c9206475a8f2934bf39f1653fcabb3a6f665
+                    </div>                                  
                 </div>
             </div>
         </div>

@@ -12,6 +12,15 @@ angular.module("safedeals.services.market_price")
                     },
                     'isArray': true
                 },
+                'findByLocationAndYear': {
+                    'method': 'GET',
+                    'url': restRoot + '/market_price/find_by_location/year',
+                    'params': {
+                        'locationId': '@locationId',
+                        'year': '@year'
+                    },
+                    'isArray': true
+                },
                 'findByLocation': {
                     'method': 'GET',
                     'url': restRoot + '/market_price/find_by_location',

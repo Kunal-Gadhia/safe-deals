@@ -85,9 +85,13 @@ public class MarketPriceDAL {
     }
 
     public List<MarketPrice> findByLocation(Integer locationId) {
-        logger.info("Location Id :" + locationId);
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{locationId}, new BeanPropertyRowMapper<>(MarketPrice.class));
+    }
+
+    public List<MarketPrice> findByLocationAndYear(Integer locationId, Integer year) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.LOCATION_ID + " = ? AND " + Columns.YEAR + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{locationId, year}, new BeanPropertyRowMapper<>(MarketPrice.class));
     }
 
     public void truncateAll() {
