@@ -1,0 +1,252 @@
+<div class="modal modal-safedeals">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog modal-lg">        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fa fa-inventory-o" aria-hidden="true"></i>
+                    Inventory Detail Form
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Project : </label>                                
+                            <span>{{projectName}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>No of BHK : </label>
+                            <span>{{projectType}}</span>                            
+                        </div>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Property Category : </label>
+                            <span>{{propertyCategory}}</span>                            
+                        </div>                 
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Total Area : </label>
+                            <span>{{inventoryHead.totalArea}} Sq.Ft</span>                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Price Per Sq ft : </label>
+                            <span>&#8377; {{inventoryHead.pricePerSqft}}</span>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Offered Price : </label>
+                            <span>&#8377; {{inventoryHead.offeredPrice}}</span>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">                        
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Building Name : </label>
+                            <span>{{inventoryHead.buildingName}}</span>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Total Units : </label>
+                            <span>{{inventoryHead.totalUnits}}</span>                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <form ng-submit="saveInventoryDetail(editableInventoryDetail)">
+                <div class="modal-body">                
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Entry Facing</label>    
+                                <select class="form-control" ng-model="editableInventoryDetail.facing">
+                                    <option value="">Select Entry Facing</option>
+                                    <option value="EAST">East</option>
+                                    <option value="WEST">West</option>
+                                    <option value="NORTH">North</option>
+                                    <option value="SOUTH">South</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Floor Number</label>
+                                <input class="form-control" ng-model="editableInventoryDetail.floorNo">                      
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Balcony</label>    
+                                <input class="form-control" type="number" min="0" ng-model="editableInventoryDetail.noOfBalcony">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Washrooms</label>
+                                <input class="form-control" type="number" min="0" ng-model="editableInventoryDetail.noOfWashroom">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Open Terrace  </label>    
+                                <input type="checkbox" ng-model="editableInventoryDetail.openTerrace">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Open Land  </label>
+                                <input type="checkbox" ng-model="editableInventoryDetail.openLand">
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Available</label>
+                                <input type="checkbox" ng-model="editableInventoryDetail.isAvailable">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Reserved</label>
+                                <input type="checkbox" ng-model="editableInventoryDetail.isReserved">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Sold</label>
+                                <input type="checkbox" ng-model="editableInventoryDetail.isSold">
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Offer Amount (If Any)</label>
+                            <input class="form-control" type="number" step="any" ng-model="editableInventoryDetail.offerAmount" >
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">                                        
+                                <label>Offer Valid Till</label>
+                                <p class="form-inline text-center">
+                                <ng-combo-date-picker ng-model="editableInventoryDetail.validity" 
+                                                      ng-placeholder="Year,Month,Date" 
+                                                      ng-attrs-date='{"class": "form-control"}' 
+                                                      ng-attrs-month='{"class": "form-control"}' 
+                                                      ng-attrs-year='{"class": "form-control"}'>                                                                  
+                                </ng-combo-date-picker>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Extra Charges (If Any)</label>
+                            <input class="form-control" type="text" ng-model="editableInventoryDetail.extraCharges">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Description for Extra Charges</label>
+                            <input class="form-control" type="text" ng-model="editableInventoryDetail.description">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Start Unit No</label>
+                                <input type="number" class="form-control" ng-model="editableInventoryDetail.startUnitNo">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>End Unit No</label>
+                                <input type="number" class="form-control" ng-model="editableInventoryDetail.endUnitNo">
+                            </div>                            
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary" ng-disabled="disableSaveButton">
+                            <i class="fa fa-save"></i>
+                            Add
+                        </button>                        
+                    </div>                    
+
+                </div>
+            </form>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-right">#</th>
+                            <th>Unit Number</th>
+                            <th>Entry Facing</th>
+                            <th>Floor Number</th>
+                            <th>Total Balconies</th>
+                            <th>Total Washrooms</th>
+                            <th>Open Terrace</th>
+                            <th>Open Land</th>
+                            <th>Offer</th>
+                            <th>Offer Validity</th>
+                            <th>Extra Charges</th>
+                            <th>Description</th>
+
+                            <!--                            <th class="text-right">
+                                                            Actions
+                                                        </th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="inventory in inventoryDetails">
+                            <td class="text-right">{{$index + 1}}</td>
+                            <td>{{ inventory.unitNo}}</td>
+                            <td>{{ inventory.facing}}</td>
+                            <td>{{ inventory.floorNo}}</td>
+                            <td>{{ inventory.noOfBalcony}}</td>
+                            <td>{{ inventory.noOfWashroom}}</td>
+                            <td>{{ inventory.openTerrace}}</td>
+                            <td>{{ inventory.openLand}}</td>
+                            <td>{{ inventory.offerAmount}}</td>
+                            <td>{{ inventory.validity}}</td>
+                            <td>{{ inventory.extraCharges}}</td>
+                            <td>{{ inventory.description}}</td>
+                            <!--                            <td class="text-right">
+                                                            <a data-ui-sref="admin.masters_agency.edit({ agencyId: agency.id })"
+                                                               class="btn btn-primary">					
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <a data-ui-sref="admin.masters_agency.delete({ agencyId: agency.id })"
+                                                               class="btn btn-danger">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
+                                                        </td>-->
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal-footer">                    
+                    <button type="button"  class="btn btn-lg btn-primary" ng-disabled="disableDoneButton" ng-click="done()">
+                        Done
+                    </button>                        
+                </div>       
+            </div>
+
+        </div>
+
+    </div>
+</div>
