@@ -18,7 +18,7 @@ angular.module("safedeals.states.location", [])
             });
         })
 
-        .controller('LocationController', function ($scope, $location, $state, $filter, PriceRangeService, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
+        .controller('LocationController', function ($scope, $anchorScroll, $location, $state, $filter, PriceRangeService, PropertyService, LocationService, $stateParams, MarketPriceService, CityService, StateService) {
             $scope.gotoTop = function () {
                 $location.hash('top');
                 $anchorScroll();

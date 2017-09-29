@@ -4,20 +4,21 @@
         width: 100%;
         z-index: 9999 !important;
     }
-    .affix ~ #myCarousel {
+    .affix ~ .carousel {
         position: relative;
         top: 500px;
     }
 </style>
-<h2 class="modal-title text-center text-uppercase">
-    <b>Godrej Anandam,Nagpur</b>
-    <!--    <button type="button" ng-click="print()" class="btn btn-link pull-right">
-            <i class="fa fa-print"></i>
+<div class="">
+    <h2 class="modal-title text-center text-uppercase">
+        <i><b>Godrej Anandam, Nagpur</b></i>        
+<!--        <button type="button"
+                onclick="window.history.back()"
+                class=" pull-right btn btn-link">
+            <i class="fa fa-times"></i>
         </button>-->
-    <button type="button" onclick="window.history.back()" class="btn btn-link pull-right">
-        <i class="fa fa-times"></i>
-    </button>
-</h2> 
+    </h2> 
+</div>
 <div id="myCarousel" class="carousel " data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -50,22 +51,24 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<div class="">
-    <nav class="navbar-default" data-spy="affix" data-offset-top="500">
-        <div class="collapse navbar-collapse" id="projTab">
-            <ul class=" nav navbar-nav nav-tabs nav-justified">
-                <li><a href="#basic" class=""><b>Basic</b></a></li>
-                <li><a href="#basic" class=""><b>Add on Features</b></a></li>
-                <li><a href="#basic" class=""><b>Amenities within Project</b></a></li>
-                <li><a href="#specification" class=""><b>Construction Specification</b></a></li>
-                <li><a href="#demand" class=""><b>Demand indicator</b></a></li>
-                <li><a href="#livability" class=""><b>Livability</b></a></li>
-                <li><a href="#marketability" class=""><b>Marketability</b></a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
 <div class="thumbnail">	
+<!--    <div class="navbar-fixed-top TopFixedNavBarForLocation">
+        <nav class="navbar-default" data-spy="affix" data-offset-top="500">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="projTab">
+                    <ul class=" nav navbar-nav nav-tabs">
+                        <li><a href="#basic" class="">Basic</a></li>
+                        <li><a href="#addon" class="">Add on Features</a></li>
+                        <li><a href="#amenities" class="">Amenities within Project</a></li>
+                        <li><a href="#specification" class="">Construction Specification</a></li>
+                        <li><a href="#demand" class="">Demand indicator</a></li>
+                        <li><a href="#livability" class="">Livability</a></li>
+                        <li><a href="#marketability" class="">Marketability</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>-->
     <div class="section">   
         <!-- Basic Section -->            
         <div class="w3-container w3-padding-32" id="basic">
@@ -414,24 +417,6 @@
                                         </div>
                                         <div class="col-sm-6">
                                             Rs 24000/- (Duration - 1 Year)
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Payment Schedule : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul>
-                                                <li>Booking Amount: 15 %</li>
-                                                <li>Start Of Construction: 15 %</li>
-                                                <li>Completion Of Plinth: 15 %</li>
-                                                <li>Each Slab: 15 %</li>
-                                                <li>Brick Work: 15 %</li>
-                                                <li>Plastering : 20 %</li>
-                                                <li>Finishing Work : 20 %</li>
-                                            </ul>
                                         </div>
                                     </td>
                                 </tr>
