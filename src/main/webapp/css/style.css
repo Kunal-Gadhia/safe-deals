@@ -1479,7 +1479,7 @@ tcb-testimonial-carousel*/
     margin-bottom: 0;
 }
 .LocationTabs>li.active>a, .LocationTabs>li.active>a:focus, .LocationTabs>li.active>a:hover{
-    background: #d08a04;
+    /*background: #d08a04;*/
     color: #ffffff;
     border:1px solid #d08a04;
 }

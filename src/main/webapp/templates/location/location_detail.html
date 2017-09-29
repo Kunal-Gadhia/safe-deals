@@ -47,6 +47,11 @@
     scrollTop: $(".ForcastDIV").offset().top},
             'slow');
     });
+    $(".RiskLink").click(function () {
+    $('html,body').animate({
+    scrollTop: $(".RiskDIV").offset().top},
+            'slow');
+    });
     $(".FindingsLink").click(function () {
     $('html,body').animate({
     scrollTop: $(".FindingsDIV").offset().top},
@@ -54,18 +59,45 @@
     });
     //Button Click Scroll Animation//
 </script>
-<div class="navbar-fixed-top TopFixedNavBarForLocation">
+
+<!--<div class="LocationDetail">-->
+<h2 class="modal-title text-center text-uppercase">
+    <b>{{location.name}}, {{cityName}}</b>
+    <button type="button" onclick="window.history.back()" class="btn btn-link pull-right">
+        <i class="fa fa-times"></i>
+    </button>
+</h2>    
+<!--</div>-->
+<div class="carousel slide TopMainCarousel" id="myCarousel" data-ride="carousel">
+    <ol  class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <img alt="" src="images/bg1.jpg" class="img-responsive"  style="width:100%; height: 480px;">
+        </div>
+        <div class="item">
+            <img alt="" src="images/bg2.jpg" class="img-responsive"  style="width:100%; height: 480px;">
+        </div>
+        <div class="item">
+            <img alt="" src="images/bg1.jpg" class="img-responsive"  style="width:100%; height: 480px;">
+        </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+<div class="">
     <nav class="navbar-default" data-spy="affix" data-offset-top="500">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="projTab">
                 <ul class=" nav navbar-nav nav-tabs nav-justified">
-                    <!--                        <li><a href="#basic" class="">Basic</a></li>
-                                            <li><a href="#addon" class="">Add on Features</a></li>
-                                            <li><a href="#amenities" class="">Amenities within Project</a></li>
-                                            <li><a href="#specification" class="">Construction Specification</a></li>
-                                            <li><a href="#demand" class="">Demand indicator</a></li>
-                                            <li><a href="#livability" class="">Livability</a></li>
-                                            <li><a href="#marketability" class="">Marketability</a></li>-->
                     <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Home"><b>Basic Information</b> </a></li>
                     <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Products"><b>Neighborhood</b></a></li>
                     <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support"><b>Work Places</b> </a></li>
@@ -75,7 +107,7 @@
                                         <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>-->
                     <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact"><b>Reports</b></a></li>
                     <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact"><b>Forecast</b></a></li>
-                    <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact"><b>Risk Factor</b> </a></li>
+                    <li><a class="RiskLink hidden-xs hidden-md" href="#5" title="Contact"><b>Risk Factor</b> </a></li>
                     <li><a class="FindingsLink hidden-xs hidden-md" href="#5" title="Contact"><b>Findings</b></a></li>
                 </ul>
             </div>
@@ -106,45 +138,96 @@
             </div>
         </nav>-->
 </div>
-<div class="LocationDetail">
-    <h2 class="modal-title text-center text-uppercase">
-        <b>{{location.name}}, {{cityName}}</b>
-        <button type="button" onclick="window.history.back()" class="btn btn-link pull-right">
-            <i class="fa fa-times"></i>
-        </button>
-    </h2>    
-</div>
-<div class="carousel slide TopMainCarousel" id="myCarousel" data-ride="carousel">
-    <ol  class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="item active">
-            <img alt="" src="images/bg1.jpg" class="img-responsive"  style="width:100%; height: 480px;">
-        </div>
-        <div class="item">
-            <img alt="" src="images/bg2.jpg" class="img-responsive"  style="width:100%; height: 480px;">
-        </div>
-        <div class="item">
-            <img alt="" src="images/bg1.jpg" class="img-responsive"  style="width:100%; height: 480px;">
-        </div>
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div>
 <div class="thumbnail">
     <div class="row">          
         <div class="BasicInformationDIV col-md-12" id="1">
             <h3 class="modal-title TopHeadingText InformationDIV">
                 Basic Information
             </h3>   
+            <div class="">
+                <div class="BasicDetailText">
+                    <h3>{{location.name}} / {{cityName}}</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-map-signs"></i>CATEGORY OF LOCATION</td>
+                                    <td data-title="Name">Attached To City</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
+                                    <td data-title="Name">10,000(as per survey 2011)</td>
+                                    <!--<td data-title="Name">{{location.population}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
+                                    <td data-title="Name">Residential
+                                        <!--                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
+                                                                                    <li>{{locationCategory.name}}</li>
+                                                                                </ul>-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
+                                    <td data-title="Name">Rs.2000 - Rs.3000 Per Sq. Ft.</td>
+                                    <!--<td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>-->
+                                </tr>
+
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR RENTAL(2BHK)</td>
+                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                </tr>
+
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>TYPE OF PROPERTIES</td>
+                                    <td data-title="Name">1BHK/2BHK/3BHK</td>
+                                </tr>
+
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
+                                    <td data-title="Name">Borewell
+<!--                                        <ul>
+                                            <li ng-show="location.corporationSupply">Corporation Supply</li>
+                                            <li ng-show="location.openWell">Open Well</li>
+                                            <li ng-show="location.borewell">Bore Well</li>
+                                        </ul>-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>MAJOR APPROACH ROAD</td>
+                                    <td data-title="Name">Hingna Road</td>
+                                    <!--<td data-title="Name">{{location.roadObject.name}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
+                                    <td data-title="Name">18 Mtr, Tar Road
+<!--                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-road"></i>DISTANCE OF MAIN ROAD</td>
+                                    <td data-title="Name">3 KM</td>
+                                    <!--<td data-title="Name">{{location.distance}} {{location.unitObject.abbreviation}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
+                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro
+<!--                                        <ul>
+                                            <li ng-show="location.bus">Bus</li>
+                                            <li ng-show="location.auto">Auto</li>
+                                            <li ng-show="location.taxi">Taxi</li>
+                                            <li ng-show="location.metro">Metro</li>
+                                        </ul>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>              
+                </div>
+            </div>
             <div class="MapContainerDIV col-md-12">
 
                 <div class="modal-body pull-left SuperWidthClass">
@@ -311,82 +394,7 @@
                                 <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
                             </div>
                         </div>-->
-            <div class="">
-                <div class="BasicDetailText">
-                    <h3>{{location.name}} / {{cityName}}</h3>
-                    <div class="table-responsive-vertical">
-                        <!-- Table starts here -->
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
-                                    <td data-title="Name">{{location.population}}</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
-                                    <td data-title="Name">
-                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
-                                            <li>{{locationCategory.name}}</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
-                                    <td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>
-                                </tr>
-<!--<<<<<<< HEAD
-                                                                <tr>
-                                                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR RENTAL(2BHK)</td>
-                                                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
-                                                                </tr>
-=======-->
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-rupee"></i>TYPE OF PROPERTIES</td>
-                                    <td data-title="Name">1BHK/2BHK/3BHK</td>
-                                </tr>
 
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
-                                    <td data-title="Name">
-                                        <ul>
-                                            <li ng-show="location.corporationSupply">Corporation Supply</li>
-                                            <li ng-show="location.openWell">Open Well</li>
-                                            <li ng-show="location.borewell">Bore Well</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-road"></i>MAJOR APPROACH ROAD</td>
-                                    <td data-title="Name">{{location.roadObject.name}}</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
-                                    <td data-title="Name">
-                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
-                                        <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
-                                        <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-road"></i>DISTANCE OF MAIN ROAD</td>
-                                    <td data-title="Name">{{location.distance}} {{location.unitObject.abbreviation}}</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
-                                    <td data-title="Name">
-                                        <ul>
-                                            <li ng-show="location.bus">Bus</li>
-                                            <li ng-show="location.auto">Auto</li>
-                                            <li ng-show="location.taxi">Taxi</li>
-                                            <li ng-show="location.metro">Metro</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>              
-                </div>
-            </div>
         </div>
         <!--        <div class="BasicDetailDIV col-md-12">
                     <h3 class="TopHeadingText NeighborhoodDIV">LANDMARK</h3>
@@ -744,8 +752,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="ReportsDIV col-md-6">
+        <div class="ReportsDIV col-md-12">
+            <div class=" col-md-6">
                 <h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>
                 <h4>Past Price range for M.V.</h4>
                 <div id="chartContainer">
@@ -760,7 +768,7 @@
                 </div>
             </div>
         </div>
-        <div class="BasicDetailDIV col-md-12">
+        <div class="RiskDIV col-md-12">
             <h3 class="TopHeadingText FindingsDIV">Risk Factors</h3>
             <div class="panel-body">
                 <div class="BasicDetailText panel-body">
@@ -779,7 +787,7 @@
                                 </tr>
                                 <tr class="">
                                     <td data-title="ID"><b>
-                                        Steel/Cement Industry</b></td>
+                                            Steel/Cement Industry</b></td>
                                     <td data-title="Name">YES</td>
                                 </tr>                                
                             </tbody>
@@ -794,12 +802,12 @@
                                 </tr>
                                 <tr class="">
                                     <td data-title="ID"><b>
-                                        Area Prone to Floods</b></td>
+                                            Area Prone to Floods</b></td>
                                     <td data-title="Name">NO</td>
                                 </tr>
                                 <tr class="">
                                     <td data-title="ID"><b>
-                                        Low Area Prone to Water Logging</b></td>
+                                            Low Area Prone to Water Logging</b></td>
                                     <td data-title="Name">NO</td>
                                 </tr>
                             </tbody>
@@ -810,12 +818,12 @@
                             <tbody>  
                                 <tr class="">
                                     <td data-title="ID"><b>
-                                        Dump Yard</b></td>
+                                            Dump Yard</b></td>
                                     <td data-title="Name">YES</td>
                                 </tr>
                                 <tr class="">
                                     <td data-title="ID"><b>
-                                        STP</b></td>
+                                            STP</b></td>
                                     <td data-title="Name">NO</td>
                                 </tr>
                             </tbody>
