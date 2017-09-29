@@ -27,7 +27,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 $location.hash('top');
                 $anchorScroll();
             };
-            
+
             console.log("State Params :%O", $stateParams);
             $scope.hideCompareButton = true;
             $scope.hideSutaibleProperty = true;
@@ -557,7 +557,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
         })
 
-        .controller('PropertyDetailController', function ($scope, $q, $filter, CityService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, PropertyTypeService, ProjectService, $stateParams, ImageService, VideoService) {
+        .controller('PropertyDetailController', function ($scope, $q, $filter, CityService, UnitService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, PropertyTypeService, ProjectService, $stateParams, ImageService, VideoService) {
             $scope.images = [];
             $scope.videos = [];
             $scope.myInterval = 3000;
@@ -837,9 +837,13 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 property.road = RoadService.get({
                     'id': property.majorApproachRoad
                 });
+                property.unitObject = UnitService.get({
+                    'id': property.unit
+                });
                 property.propertySizeObject = PropertyTypeService.get({
                     'id': property.propertySize
                 });
+
                 property.publicTransportObjects = [];
                 console.log("Public Transport :%O", property.publicTransport);
                 angular.forEach(property.publicTransport, function (publicTransport) {

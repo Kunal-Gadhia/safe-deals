@@ -3,60 +3,60 @@
 <script>
     //Button Click Scroll Animation//
     $(".BasicInforLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicInformationDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicInformationDIV").offset().top},
+        'slow');
     });
     $(".NeighborhoodLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".NeighborhoodDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".NeighborhoodDIV").offset().top},
+        'slow');
     });
     $(".WorkLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".DevelopmentLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".KeyLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".KeyDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".KeyDIV").offset().top},
+        'slow');
     });
     $(".BasicLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicDIV").offset().top},
+        'slow');
     });
     $(".LuxuryLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".LuxuryDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".LuxuryDIV").offset().top},
+        'slow');
     });
     $(".ReportsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ReportsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ReportsDIV").offset().top},
+        'slow');
     });
     $(".ForcastLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ForcastDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ForcastDIV").offset().top},
+        'slow');
     });
     $(".FindingsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".FindingsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".FindingsDIV").offset().top},
+        'slow');
     });
     $('.carousel1').carousel({
-    interval: 3000,
-            pause: false
+        interval: 3000,
+        pause: false
     })
-            //Button Click Scroll Animation//
+    //Button Click Scroll Animation//
 </script>
 <div class="navbar-fixed-top TopFixedNavBarForLocation">
     <nav class="navbar-default" data-spy="affix" data-offset-top="500">
@@ -68,8 +68,8 @@
                     <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support"><b>Work Places</b> </a></li>
                     <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About"><b>Development</b></a></li>
                     <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact"><b>Livability</b></a></li>
-<!--                    <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
-                    <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>-->
+                    <!--                    <li><a class="BasicLink hidden-xs hidden-md" href="#5" title="Contact">Basic Amenities</a></li>
+                                        <li><a class="LuxuryLink hidden-xs hidden-md" href="#5" title="Contact">Luxury Amenities</a></li>-->
                     <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact"><b>Reports</b></a></li>
                     <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact"><b>Forecast</b></a></li>
                     <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact"><b>Risk Factor</b> </a></li>
@@ -155,24 +155,24 @@
                         <table id="table" class="table table-hover table-mc-light-blue">                            
                             <tbody>
                                 <tr>
-                                    <td data-title="ID">TYPE of PROJECT</td>
-                                    <td data-title="Name">Residential</td>
+                                    <td data-title="ID">Type Of Project</td>
+                                    <td data-title="Name">{{property.propertyType}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">APPROACH ROAD</td>
-                                    <td data-title="Name">South Ambazari</td>
+                                    <td data-title="Name">{{property.road.name}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">DISTANCE FROM MAJOR ROAD</td>
-                                    <td data-title="Name">10KM</td>
+                                    <td data-title="Name">{{property.distance}} {{property.unitObject.abbreviation}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">TYPE and SIZE OF APPROACH ROAD</td>
-                                    <td data-title="Name">Minimal Distance with 2KM</td>
+                                    <td data-title="Name">{{property.road.roadType}}, {{property.road.size}}m</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">TYPE OF PROPERTY</td>
-                                    <td data-title="Name">Commercial</td>
+                                    <td data-title="Name">{{property.propertyType}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">TYPE of OWNERSHIP</td>
@@ -180,11 +180,11 @@
                                 </tr>
                                 <tr>
                                     <td data-title="ID">SOURCE of WATER</td>
-                                    <td data-title="Name">Rain Water Harvesting</td>
+                                    <td data-title="Name">Corporation Supply, Borewell, Open well</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">CARPET VS COVERED AREA</td>
-                                    <td data-title="Name">Yes</td>
+                                    <td data-title="Name">{{property.carpetArea}}Sqft, {{property.buildUpArea}}Sqft</td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -200,43 +200,43 @@
                             <tbody>
                                 <tr>
                                     <td data-title="ID">STRUCTURE</td>
-                                    <td data-title="Name">10000 (as per survey 2011)</td>
+                                    <td data-title="Name">{{property.structure}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">FLOORING</td>
-                                    <td data-title="Name">Residential</td>
+                                    <td data-title="Name">{{property.flooring}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">WALLS</td>
-                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                    <td data-title="Name">{{property.walls}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">PAINT</td>
-                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                    <td data-title="Name">{{property.paintings}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">SANITARY</td>
-                                    <td data-title="Name">Borewell and Supply</td>
+                                    <td data-title="Name">{{property.sanitory}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">DOORS</td>
-                                    <td data-title="Name">Hingna Road</td>
+                                    <td data-title="Name">{{property.doors}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">WINDOWS</td>
-                                    <td data-title="Name">18 Mtr, Tar Road</td>
+                                    <td data-title="Name">{{property.windows}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">ELECTRIC FITTING</td>
-                                    <td data-title="Name">3 KM</td>
+                                    <td data-title="Name">{{property.electricFitings}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">KITCHEN</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                    <td data-title="Name">{{property.kitchen}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">WATER PROOFING</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                    <td data-title="Name">{{property.waterProofing}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -246,33 +246,58 @@
         </div>
         <div class="MapContainerDIV col-md-12">
 
-                <div class="modal-body pull-left SuperWidthClass">
-                    <!--                    <div class="row">
-                                            <ul class="nav nav-tabs LocationTabs" id="location_tabs">
-                                                <li ng-repeat="locationstep in locationSteps" ng-class="{
-                                                            active: $index == getCurrentStepIndex()
-                                                        }">
-                                                    <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
-                                                </li>
-                                            </ul>
-                                        </div>   -->
-                    <div class="row">
-                                <ul class="nav nav-tabs LocationTabs" id="location_tabs">
-                                    <li ng-repeat="propertyStep in propertySteps" ng-class="{
+            <div class="modal-body pull-left SuperWidthClass">
+                <!--                    <div class="row">
+                                        <ul class="nav nav-tabs LocationTabs" id="location_tabs">
+                                            <li ng-repeat="locationstep in locationSteps" ng-class="{
+                                                        active: $index == getCurrentStepIndex()
+                                                    }">
+                                                <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>   -->
+                <div class="row">
+                    <ul class="nav nav-tabs LocationTabs" id="location_tabs">
+                        <li ng-repeat="propertyStep in propertySteps" ng-class="{
                                                 active: $index == getCurrentStepIndex()
                                             }">
-                                        <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
+                            <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div  ng-switch on="selection" class="locations"> 
+                    <!--                    <div ng-show="myValue">-->
+                    <div ng-show="myValue">
+                        <div class="row">
+                            <nav class="">
+                                <ul class="nav ChildTabsForLocationTabs">
+                                    <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                        <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left black_color">{{amenityCode.name}}</a>
                                     </li>
                                 </ul>
-                            </div>
-                    <div  ng-switch on="selection" class="locations"> 
-                        <!--                    <div ng-show="myValue">-->
-                        <div ng-show="myValue">
+                            </nav>
+                        </div>
+                        <div ng-show="amenities">
+                            <nav class="navbar main_locations LocationDropBox locations_nav">
+                                <ul id={{amenityCode.id}} class="nav ChildTabsForLocationTabs">
+                                    <li ng-repeat="amenity in amenitiesList">
+                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                        <hr class="custom_hr">
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="row">   
+                            <div id="propertyDetailMapContainer" style="height: 400px;"></div>    
+                        </div>
+                    </div>
+                    <div ng-switch-when="Work Places" class="locations">
+                        <div ng-show="myWorkplaces">
                             <div class="row">
                                 <nav class="">
                                     <ul class="nav ChildTabsForLocationTabs">
-                                        <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
-                                            <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="pull-left black_color">{{amenityCode.name}}</a>
+                                        <li ng-repeat="workplace in workplaces" ng-click="toggle()">
+                                            <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left black_color">{{workplace.name}}</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -280,208 +305,182 @@
                             <div ng-show="amenities">
                                 <nav class="navbar main_locations LocationDropBox locations_nav">
                                     <ul id={{amenityCode.id}} class="nav ChildTabsForLocationTabs">
-                                        <li ng-repeat="amenity in amenitiesList">
-                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                        <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
+                                            <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
                                             <hr class="custom_hr">
                                         </li>
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="row">   
-                                <div id="propertyDetailMapContainer" style="height: 400px;"></div>    
+                            <div class="row">    
+                                <div id="propertyDetailMapContainerWorkplaces" style="height: 400px;"></div>    
                             </div>
                         </div>
-                        <div ng-switch-when="Work Places" class="locations">
-                            <div ng-show="myWorkplaces">
-                                <div class="row">
-                                    <nav class="">
-                                        <ul class="nav ChildTabsForLocationTabs">
-                                            <li ng-repeat="workplace in workplaces" ng-click="toggle()">
-                                                <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left black_color">{{workplace.name}}</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div ng-show="amenities">
-                                    <nav class="navbar main_locations LocationDropBox locations_nav">
-                                        <ul id={{amenityCode.id}} class="nav ChildTabsForLocationTabs">
-                                            <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
-                                                <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="black_color"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
-                                                <hr class="custom_hr">
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="row">    
-                                    <div id="propertyDetailMapContainerWorkplaces" style="height: 400px;"></div>    
-                                </div>
+                    </div>
+                    <div ng-switch-when="Projects" class="locations">
+                        <div ng-show="myProjects">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav ChildTabsForLocationTabs">
+                                        <li ng-repeat="project in projects" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations LocationDropBox">{{project.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--                            <div ng-show="amenities">
+                                                            <nav class="navbar locations_nav">
+                                                                <ul id={{amenityCode.id}} class="nav">
+                                                                    <li ng-repeat="amenity in amenitiesList">
+                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </nav>
+                                                        </div>-->
+                            <div class="row">    
+                                <div id="propertyDetailMapContainerProjects" style="height: 400px;"></div>    
                             </div>
                         </div>
-                        <div ng-switch-when="Projects" class="locations">
-                            <div ng-show="myProjects">
-                                <div class="col-md-offset-4">
-                                    <nav class="navbar locations_nav">
-                                        <ul class="nav ChildTabsForLocationTabs">
-                                            <li ng-repeat="project in projects" ng-click="toggle()">
-                                                <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations LocationDropBox">{{project.name}}</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--                            <div ng-show="amenities">
-                                                                <nav class="navbar locations_nav">
-                                                                    <ul id={{amenityCode.id}} class="nav">
-                                                                        <li ng-repeat="amenity in amenitiesList">
-                                                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </nav>
-                                                            </div>-->
-                                <div class="row">    
-                                    <div id="propertyDetailMapContainerProjects" style="height: 400px;"></div>    
-                                </div>
+                    </div>
+                    <div ng-switch-when="Properties" class="locations">
+                        <div ng-show="myProperties">
+                            <div class="col-md-offset-4">
+                                <nav class="navbar locations_nav">
+                                    <ul class="nav">
+                                        <li ng-repeat="property in properties" ng-click="toggle()">
+                                            <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--                            <div ng-show="amenities">
+                                                            <nav class="navbar locations_nav">
+                                                                <ul id={{amenityCode.id}} class="nav">
+                                                                    <li ng-repeat="amenity in amenitiesList">
+                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </nav>
+                                                        </div>-->
+                            <div class="row">    
+                                <div id="propertyDetailMapContainerProperties" style="height: 400px;"></div>    
                             </div>
                         </div>
-                        <div ng-switch-when="Properties" class="locations">
-                            <div ng-show="myProperties">
-                                <div class="col-md-offset-4">
-                                    <nav class="navbar locations_nav">
-                                        <ul class="nav">
-                                            <li ng-repeat="property in properties" ng-click="toggle()">
-                                                <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--                            <div ng-show="amenities">
-                                                                <nav class="navbar locations_nav">
-                                                                    <ul id={{amenityCode.id}} class="nav">
-                                                                        <li ng-repeat="amenity in amenitiesList">
-                                                                            <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </nav>
-                                                            </div>-->
-                                <div class="row">    
-                                    <div id="propertyDetailMapContainerProperties" style="height: 400px;"></div>    
-                                </div>
-                            </div>
-                        </div>
-                        <div ng-switch-when="Overview">
-                            <div>
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td><label>Location Name : </label></td>
-                                            <td> {{ location.name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Location Description :</label></td>
-                                            <td> {{ location.description}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Population :</label></td>
-                                            <td> {{ location.population}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Major Approach Road : </label></td>
-                                            <td> {{ location.majorApproachRoad}}</td>
-                                        </tr>
+                    </div>
+                    <div ng-switch-when="Overview">
+                        <div>
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><label>Location Name : </label></td>
+                                        <td> {{ location.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Location Description :</label></td>
+                                        <td> {{ location.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Population :</label></td>
+                                        <td> {{ location.population}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Major Approach Road : </label></td>
+                                        <td> {{ location.majorApproachRoad}}</td>
+                                    </tr>
 
-                                        <tr>
-                                            <td><label>Public Transport :</label></td>
-                                            <td> {{ location.publicTransport}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Source Of Water :</label></td>
-                                            <td>      
-                                                {{ location.sourceOfWater}} 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>  
-                            </div>
+                                    <tr>
+                                        <td><label>Public Transport :</label></td>
+                                        <td> {{ location.publicTransport}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Source Of Water :</label></td>
+                                        <td>      
+                                            {{ location.sourceOfWater}} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>  
                         </div>
-                        <div ng-switch-when="Price Trends">
-                            <!--<h2>Dummy Text for Price Trends</h2>-->
-                            <div class="row">
-                                <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
-                                                            </div>-->
-                            </div>
+                    </div>
+                    <div ng-switch-when="Price Trends">
+                        <!--<h2>Dummy Text for Price Trends</h2>-->
+                        <div class="row">
+                            <!--                            <div fusioncharts width="600" height="400" type="column2d" dataSource="">
+                                                        </div>-->
                         </div>
-                    </div>           
-                </div>
+                    </div>
+                </div>           
             </div>
+        </div>
         <div class="BasicDetailDIV col-md-12">              
             <div class="col-md-6">
                 <div class="BasicDetailText CustomHeight">
                     <h3>Add-on Features</h3>
                     <div>
                         <ul class="list-group list-group-bootify">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                            <li class="list-group-item">Modular Kitchen</li>
+                            <li class="list-group-item">False ceiling</li>
+                            <li class="list-group-item">Furniture</li>
+                            <li class="list-group-item">Home Appliances</li>
+                            <li class="list-group-item">Security System</li>
+                            <li class="list-group-item">Automation Systems</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="BasicDetailText CustomHeight">
+                <div class="BasicDetailText">
                     <h3>Costing</h3>
                     <div class="table-responsive-vertical">
                         <!-- Table starts here -->
                         <table id="table" class="table table-hover table-mc-light-blue">                            
                             <tbody>
                                 <tr>
-                                    <td data-title="ID">STREET LIGHTS</td>
-                                    <td data-title="Name">10000 (as per survey 2011)</td>
+                                    <td data-title="ID">
+                                        <div class="col-sm-6">
+                                            <label>Society Maintainance Includes : </label>    
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul>
+                                                <li>STREET LIGHTS</li>
+                                                <li>LIFTS</li>
+                                                <li>SECURITY GUARD</li>
+                                                <li>COMMON ELECTRIC/WATER BILLS</li>
+                                                <li>COMMON FACILITIES MAINTENANCE</li>
+                                                <li>COMMON AREA SWEEPER</li>
+                                                <li>GARDNER & ELECTRICIAN</li>
+                                                <li>PLUMBER</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
                                 </tr>
                                 <tr>
-                                    <td data-title="ID">LIFTS</td>
-                                    <td data-title="Name">Residential</td>
+                                    <td data-title="ID">
+                                        <div class="col-sm-6">
+                                            <label>Offered Price : </label>    
+                                        </div>
+                                        <div class="col-sm-6">
+                                            Rs.{{property.offeredPrice}}
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td data-title="ID">SECURITY GUARD</td>
-                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">COMMON ELECTRIC/WATER BILLS</td>
-                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">COMMON FACILITIES MAINTENANCE</td>
-                                    <td data-title="Name">Borewell and Supply</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">COMMON AREA SWEEPER</td>
-                                    <td data-title="Name">Hingna Road</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">GARDNER & ELECTRICIAN</td>
-                                    <td data-title="Name">18 Mtr, Tar Road</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">PLUMBER</td>
-                                    <td data-title="Name">3 KM</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">CARPENTER</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">PAINTER ON CALL</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">OFFER PRICE</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">PAYMENT SCHEDULE</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
+                            <td data-title="ID">
+                                <div class="col-sm-6">
+                                    <label>Payment Schedule : </label>    
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul>
+                                        <li>Booking Amount: {{property.bookingAmount}}%</li>
+                                        <li>Start Of Construction: {{property.startOfConstruction}}%</li>
+                                        <li>Completion Of Plinth: {{property.completionOfPlinth}}%</li>
+                                        <li>Each Slab: {{property.eachSlab}}%</li>
+                                        <li>Brick Work: {{property.brickWork}}%</li>
+                                        <li>Plastering : {{property.plastering}}%</li>
+                                        <li>Finishing Work : {{property.finishingWork}}%</li>
+                                    </ul>
+                                </div>
+                            </td>
                             </tbody>
                         </table>
                     </div>              
@@ -610,7 +609,7 @@
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">              
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="BasicDetailText CustomHeight">
                     <h3>Legal Documents</h3>                   
                     <div class="table-responsive-vertical">
@@ -670,74 +669,74 @@
                     </div>   
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="BasicDetailText CustomHeight">
-                    <h3>Inventory</h3>
-                    <div class="table-responsive-vertical">
-                        <!-- Table starts here -->
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr>
-                                    <td data-title="ID">SIZE</td>
-                                    <td data-title="Name">10000 (as per survey 2011)</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">NUMBER of ROOMS</td>
-                                    <td data-title="Name">Residential</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">NUMBER of TOILETS</td>
-                                    <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">CARPET AREA</td>
-                                    <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">SALABLE AREA</td>
-                                    <td data-title="Name">Borewell and Supply</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">OPEN SPACE</td>
-                                    <td data-title="Name">Hingna Road</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">NUMBER OF BALCONY</td>
-                                    <td data-title="Name">18 Mtr, Tar Road</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">TERRACE</td>
-                                    <td data-title="Name">3 KM</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">FLOOR NUMBER</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">TOTAL FLOORS</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">AGE of CONSTRUCTION</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">POSSESSION DATE</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">VASTU COMPLIANCE</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">ENTRY to THE PROJECT</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>              
-                </div>
-            </div>
+            <!--            <div class="col-md-6">
+                            <div class="BasicDetailText CustomHeight">
+                                <h3>Inventory</h3>
+                                <div class="table-responsive-vertical">
+                                     Table starts here 
+                                    <table id="table" class="table table-hover table-mc-light-blue">                            
+                                        <tbody>
+                                            <tr>
+                                                <td data-title="ID">SIZE</td>
+                                                <td data-title="Name">10000 (as per survey 2011)</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">NUMBER of ROOMS</td>
+                                                <td data-title="Name">Residential</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">NUMBER of TOILETS</td>
+                                                <td data-title="Name">Rs. 2000 - Rs. 3000 Per Sq. Ft.</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">CARPET AREA</td>
+                                                <td data-title="Name">Rs. 4000 - Rs. 6000 Per Month</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">SALABLE AREA</td>
+                                                <td data-title="Name">Borewell and Supply</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">OPEN SPACE</td>
+                                                <td data-title="Name">Hingna Road</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">NUMBER OF BALCONY</td>
+                                                <td data-title="Name">18 Mtr, Tar Road</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">TERRACE</td>
+                                                <td data-title="Name">3 KM</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">FLOOR NUMBER</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">TOTAL FLOORS</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">AGE of CONSTRUCTION</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">POSSESSION DATE</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">VASTU COMPLIANCE</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="ID">ENTRY to THE PROJECT</td>
+                                                <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>              
+                            </div>
+                        </div>-->
         </div>
         <div class="BasicDetailDIV col-md-12">
             <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
@@ -834,10 +833,10 @@
                         <i class="fa fa-bus"></i>
                         <span>Bus Stop</span>
                     </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-subway"></i>
-                        <span>Metro Station</span>
-                    </div>
+                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
+                                            <i class="fa fa-subway"></i>
+                                            <span>Metro Station</span>
+                                        </div>-->
                     <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-shopping-basket"></i>
                         <span>Daily Needs</span>
@@ -866,10 +865,10 @@
                         <i class="fa fa-graduation-cap"></i>
                         <span>College</span>
                     </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-coffee"></i>
-                        <span>Cafe</span>
-                    </div>
+                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
+                                            <i class="fa fa-coffee"></i>
+                                            <span>Cafe</span>
+                                        </div>-->
                     <div class="IconsAll col-md-2 col-xs-6">
                         <i class="fa fa-cutlery"></i>
                         <span>Restaurant</span>
