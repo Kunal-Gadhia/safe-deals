@@ -187,11 +187,11 @@
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
                                     <td data-title="Name">Borewell
-<!--                                        <ul>
-                                            <li ng-show="location.corporationSupply">Corporation Supply</li>
-                                            <li ng-show="location.openWell">Open Well</li>
-                                            <li ng-show="location.borewell">Bore Well</li>
-                                        </ul>-->
+                                        <!--                                        <ul>
+                                                                                    <li ng-show="location.corporationSupply">Corporation Supply</li>
+                                                                                    <li ng-show="location.openWell">Open Well</li>
+                                                                                    <li ng-show="location.borewell">Bore Well</li>
+                                                                                </ul>-->
                                     </td>
                                 </tr>
                                 <tr>
@@ -202,9 +202,9 @@
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
                                     <td data-title="Name">18 Mtr, Tar Road
-<!--                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
-                                        <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
-                                        <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>-->
+                                        <!--                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
+                                                                                <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
+                                                                                <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>-->
                                     </td>
                                 </tr>
                                 <tr>
@@ -215,12 +215,12 @@
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
                                     <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro
-<!--                                        <ul>
-                                            <li ng-show="location.bus">Bus</li>
-                                            <li ng-show="location.auto">Auto</li>
-                                            <li ng-show="location.taxi">Taxi</li>
-                                            <li ng-show="location.metro">Metro</li>
-                                        </ul>-->
+                                        <!--                                        <ul>
+                                                                                    <li ng-show="location.bus">Bus</li>
+                                                                                    <li ng-show="location.auto">Auto</li>
+                                                                                    <li ng-show="location.taxi">Taxi</li>
+                                                                                    <li ng-show="location.metro">Metro</li>
+                                                                                </ul>-->
                                     </td>
                                 </tr>
                             </tbody>
@@ -394,775 +394,803 @@
                                 <img alt="slide1" src="images/slide2.jpg" width="1600" class="img-responsive">
                             </div>
                         </div>-->
+            <div class="">
+                <div class="BasicDetailText">
+                    <h3>{{location.name}} / {{cityName}}</h3>
+                    <div class="table-responsive-vertical">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">                            
+                            <tbody>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
+                                    <td data-title="Name">{{location.population}}</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
+                                    <td data-title="Name">
+                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
+                                            <li>{{locationCategory.name}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
+                                    <td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>
+                                </tr>
 
-        </div>
-        <!--        <div class="BasicDetailDIV col-md-12">
-                    <h3 class="TopHeadingText NeighborhoodDIV">LANDMARK</h3>
-                    <img alt="slide1" src="http://www.palmolympia.com/images/bgimg1.jpg" width="1600" class="img-responsive">
-                    <div class="col-md-12 LandmarkDIV">
-                        <h4>Landmark Specifications</h4>
-                        <div class="col-md-3 BasicInfo">
-                            Completed<br>
-                            <span>status</span>
-                        </div>
-                        <div class="col-md-3 BasicInfo">
-                            148<br>
-                            <span>total launched apartments</span>
-                        </div>
-                        <div class="col-md-3 BasicInfo">
-                            Mar'12<br>
-                            <span>launch date</span>
-                        </div>
-                        <div class="col-md-3 BasicInfo">
-                            New and Resale<br>
-                            <span>availability</span>
-                        </div>
-                        <p>
-                            Safe Deal has launched its premium housing project, Landmark, in Margao, Goa. The project offers 2, 3 BHK Apartment from 1194 sqft to 1518 sqft in Goa Central. Among the many luxurious amenities that the project hosts are Lift Available, Children's play area, Swimming Pool, Piped Gas Supply System , Landscaped Gardens etc. Starting at @Rs 4,275 per sqft,Apartment are available for sale from Rs 51.04 lacs to Rs 64.89 lacs. Safe Deal Landmark is Completed project and possession in Nov 17.
-                        <p>
+                                <tr>
+                                    <td data-title="ID"><i class="fa fa-rupee"></i>TYPE OF PROPERTIES</td>
+                                    <td data-title="Name">1BHK/2BHK/3BHK</td>
+                                </tr>
+
+                                </div>
+                                <!--        <div class="BasicDetailDIV col-md-12">
+                                            <h3 class="TopHeadingText NeighborhoodDIV">LANDMARK</h3>
+                                            <img alt="slide1" src="http://www.palmolympia.com/images/bgimg1.jpg" width="1600" class="img-responsive">
+                                            <div class="col-md-12 LandmarkDIV">
+                                                <h4>Landmark Specifications</h4>
+                                                <div class="col-md-3 BasicInfo">
+                                                    Completed<br>
+                                                    <span>status</span>
+                                                </div>
+                                                <div class="col-md-3 BasicInfo">
+                                                    148<br>
+                                                    <span>total launched apartments</span>
+                                                </div>
+                                                <div class="col-md-3 BasicInfo">
+                                                    Mar'12<br>
+                                                    <span>launch date</span>
+                                                </div>
+                                                <div class="col-md-3 BasicInfo">
+                                                    New and Resale<br>
+                                                    <span>availability</span>
+                                                </div>
+                                                <p>
+                                                    Safe Deal has launched its premium housing project, Landmark, in Margao, Goa. The project offers 2, 3 BHK Apartment from 1194 sqft to 1518 sqft in Goa Central. Among the many luxurious amenities that the project hosts are Lift Available, Children's play area, Swimming Pool, Piped Gas Supply System , Landscaped Gardens etc. Starting at @Rs 4,275 per sqft,Apartment are available for sale from Rs 51.04 lacs to Rs 64.89 lacs. Safe Deal Landmark is Completed project and possession in Nov 17.
+                                                <p>
+                                            </div>
+                                        </div>-->
+                                <!--            <div class="col-md-3">
+                                                <div class="product">
+                                                    <div class="product__image-overlay ">
+                                                        <div class="img-circle">
+                                                            <img src="images/house2.jpg" class="img-responsive">
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__content">
+                                                        <div class="MiddleInformation">
+                                                            <h4>Price:Rs.500000</h4>
+                                                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                                        </div>
+                                
+                                                        <div class="BottomInformation">
+                                                            <div class="BedInformation col-md-4">
+                                                                <img src="images/bed.png" class="img-responsive">
+                                                                <span>4</span>
+                                                            </div>
+                                                            <div class="BathInformation col-md-4">
+                                                                <img src="images/BathTub.png" class="img-responsive">
+                                                                <span>2</span>
+                                                            </div>
+                                                            <div class="GarageInformation col-md-4">
+                                                                <img src="images/garage.png" class="img-responsive">
+                                                                <span>1</span>
+                                                            </div>                                                                
+                                                        </div>
+                                                        <div class="BuyNowBtn">
+                                                            <button class="btn"><span>More Details</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__image img-blur">
+                                                        <img src="images/5.jpg" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="product">
+                                                    <div class="product__image-overlay ">
+                                                        <div class="img-circle">
+                                                            <img src="images/5.jpg" class="img-responsive">
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__content">
+                                                        <div class="MiddleInformation">
+                                                            <h4>Price:Rs.7500000</h4>
+                                                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                                        </div>
+                                                        <div class="BottomInformation">
+                                                            <div class="BedInformation col-md-4">
+                                                                <img src="images/bed.png" class="img-responsive">
+                                                                <span>4</span>
+                                                            </div>
+                                                            <div class="BathInformation col-md-4">
+                                                                <img src="images/BathTub.png" class="img-responsive">
+                                                                <span>2</span>
+                                                            </div>
+                                                            <div class="GarageInformation col-md-4">
+                                                                <img src="images/garage.png" class="img-responsive">
+                                                                <span>1</span>
+                                                            </div>                                                                
+                                                        </div>
+                                                        <div class="BuyNowBtn">
+                                                            <button class="btn"><span>More Details</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__image img-blur">
+                                                        <img src="images/house2.jpg" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="product">
+                                                    <div class="product__image-overlay ">
+                                                        <div class="img-circle">
+                                                            <img src="images/1.jpg" class="img-responsive">
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__content">
+                                                        <div class="MiddleInformation">
+                                                            <h4>Price:Rs.2500000</h4>
+                                                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                                        </div>
+                                                        <div class="BottomInformation">
+                                                            <div class="BedInformation col-md-4">
+                                                                <img src="images/bed.png" class="img-responsive">
+                                                                <span>4</span>
+                                                            </div>
+                                                            <div class="BathInformation col-md-4">
+                                                                <img src="images/BathTub.png" class="img-responsive">
+                                                                <span>2</span>
+                                                            </div>
+                                                            <div class="GarageInformation col-md-4">
+                                                                <img src="images/garage.png" class="img-responsive">
+                                                                <span>1</span>
+                                                            </div>                                                                
+                                                        </div>
+                                                        <div class="BuyNowBtn">
+                                                            <button class="btn"><span>More Details</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__image img-blur">
+                                                        <img src="images/1.jpg" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="product">
+                                                    <div class="product__image-overlay ">
+                                                        <div class="img-circle">
+                                                            <img src="images/4.jpg" class="img-responsive">
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__content">
+                                                        <div class="MiddleInformation">
+                                                            <h4>Price:Rs.7500000</h4>
+                                                            <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
+                                                            <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
+                                                        </div>
+                                                        <div class="BottomInformation">
+                                                            <div class="BedInformation col-md-4">
+                                                                <img src="images/bed.png" class="img-responsive">
+                                                                <span>4</span>
+                                                            </div>
+                                                            <div class="BathInformation col-md-4">
+                                                                <img src="images/BathTub.png" class="img-responsive">
+                                                                <span>2</span>
+                                                            </div>
+                                                            <div class="GarageInformation col-md-4">
+                                                                <img src="images/garage.png" class="img-responsive">
+                                                                <span>1</span>
+                                                            </div>                                                                
+                                                        </div>
+                                                        <div class="BuyNowBtn">
+                                                            <button class="btn"><span>More Details</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__image img-blur">
+                                                        <img src="images/4.jpg" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>-->
+
+
+                            <div class="PlacesDIV col-md-12">
+                                <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
+                                <div class="PlacesContainer">
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>12</span>
+                                        </div>
+                                        <b>Corporate Office</b>                    
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>3</span>
+                                        </div>
+                                        <b>Defence Establishment</b>                   
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>8</span>
+                                        </div>
+                                        <b>Education institutes</b>                   
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>50</span>
+                                        </div>
+                                        <b>Government Office</b>                    
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>1</span>
+                                        </div>
+                                        <b>Health care</b>                    
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>5</span>
+                                        </div>
+                                        <b>Hospitality</b>                    
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>9</span>
+                                        </div>
+                                        <b>IT Company</b>                    
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>10</span>
+                                        </div>
+                                        <b>Industries</b>                   
+                                    </div>
+                                    <div class="InnerPlaces col-md-4">
+                                        <div class="inner-circle">                        
+                                            <span>7</span>
+                                        </div>
+                                        <b>PSUs</b>                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="PlacesDIV col-md-12">
+                                <h3 class="TopHeadingText DevelopmentDIV">Development</h3>
+                                <div class="InnerPlaces col-md-4">
+                                    <div class="inner-circle">                        
+                                        <span>25</span>
+                                    </div>
+                                    <b>Ongoing projects</b>                
+                                </div>
+                                <div class="InnerPlaces col-md-4">
+                                    <div class="inner-circle">                        
+                                        <span>14</span>
+                                    </div>
+                                    <b>Upcoming Projects</b>                
+                                </div>
+                            </div>
+                            <div class="KeyDIV col-md-12">
+                                <h3 class="TopHeadingText LivabilityDIV">Livability</h3>
+                                <div class="AmenityInnerContents">
+                                    <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
+                                    <div>Enter Key Amenities Here</div>
+                                </div>
+                                <div class="AmenityInnerContents">
+                                    <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
+                                    <div class="AmenitiesIcon">
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-plane"></i>
+                                            <span>Airport</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-train"></i>
+                                            <span>Railway Station</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-bus"></i>
+                                            <span>Bus Stop</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-subway"></i>
+                                            <span>Metro Station</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-shopping-basket"></i>
+                                            <span>Daily Needs</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-ambulance"></i>
+                                            <span>Hospital</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-tree"></i>
+                                            <span>Park</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-university"></i>
+                                            <span>Bank</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-credit-card"></i>
+                                            <span>ATM</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-users"></i>
+                                            <span>School</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-graduation-cap"></i>
+                                            <span>College</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-coffee"></i>
+                                            <span>Cafe</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-cutlery"></i>
+                                            <span>Restaurant</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-birthday-cake"></i>
+                                            <span>Bakery</span>
+                                        </div>          
+                                    </div>
+                                </div>
+                                <div class="AmenityInnerContents">
+                                    <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
+                                    <div class="AmenitiesIcon">
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-bath"></i>
+                                            <span>Swimming Pool</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-bicycle"></i>
+                                            <span>GYM</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-cc-diners-club"></i>
+                                            <span>Club</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-glass"></i>
+                                            <span>Bar</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>Shopping Mall</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-film"></i>
+                                            <span>Theater</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-scissors"></i>
+                                            <span>Salon</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-building"></i>
+                                            <span>Government Offices</span>
+                                        </div>
+                                        <div class="IconsAll col-md-2">
+                                            <i class="fa fa-bed"></i>
+                                            <span>Hotels</span>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ReportsDIV col-md-12">
+                                <div class=" col-md-6">
+                                    <h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>
+                                    <h4>Past Price range for M.V.</h4>
+                                    <div id="chartContainer">
+                                        <img src="images/chart.png" class="img-responsive">
+                                    </div> 
+                                </div>
+                                <div class="ForcastDIV col-md-6">
+                                    <h3 class="TopHeadingText ForcastDIV">Forecast</h3>
+                                    <h4>Demand & Supply</h4>
+                                    <div id="chartContainer">
+                                        <img src="images/chart1.gif" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="RiskDIV col-md-12">
+                                <h3 class="TopHeadingText FindingsDIV">Risk Factors</h3>
+                                <div class="panel-body">
+                                    <div class="BasicDetailText panel-body">
+                                        <div class="col-md-4">
+                                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                                <tbody>
+                                                    <tr class="">
+                                                        <td data-title="ID">
+                                                            <b>Medicine Industry</b></td>
+                                                        <td data-title="Name">YES</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td data-title="ID" class="">
+                                                            <b>Power Plant</b></td>
+                                                        <td data-title="Name">NO</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>
+                                                                Steel/Cement Industry</b></td>
+                                                        <td data-title="Name">YES</td>
+                                                    </tr>                                
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                        <div class="col-md-4">
+                                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                                <tbody>
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>Filthy Lake</b></td>
+                                                        <td data-title="Name">NO</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>
+                                                                Area Prone to Floods</b></td>
+                                                        <td data-title="Name">NO</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>
+                                                                Low Area Prone to Water Logging</b></td>
+                                                        <td data-title="Name">NO</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>  
+                                        <div class="col-md-4">
+                                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                                <tbody>  
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>
+                                                                Dump Yard</b></td>
+                                                        <td data-title="Name">YES</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td data-title="ID"><b>
+                                                                STP</b></td>
+                                                        <td data-title="Name">NO</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>  
+                                    </div> 
+                                </div> 
+                                <!--            <div class="RiskFactorIcons">
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-industry ActiveColorGreen"></i><br>
+                                                    <span>Power Plant</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-plus ActiveColorRed"></i><br>
+                                                    <span>Medicine Industry</span><br>
+                                                    <span class="ActiveColorRed">YES</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-chain ActiveColorGreen"></i><br>
+                                                    <span>Steel/Cement Industry</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-ship ActiveColorGreen"></i><br>
+                                                    <span>Filthy Lake</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-soundcloud ActiveColorGreen"></i><br>
+                                                    <span>Area Prone to Floods</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-tint ActiveColorGreen"></i><br>
+                                                    <span>Low Area Prone to Water Logging</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-trash-o ActiveColorGreen"></i><br>
+                                                    <span>Dump Yard</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                                <div class="IconsAll col-md-2">
+                                                    <i class="fa fa-tv ActiveColorGreen"></i><br>
+                                                    <span>STP</span><br>
+                                                    <span class="ActiveColorGreen">NO</span>
+                                                </div>
+                                            </div>-->
+                            </div>
+                            <div class="FindingsDIV col-md-12">
+                                <h3 class="TopHeadingText FindingsDIV">Findings</h3>
+                                <div class="LocationAdvantages col-md-6">
+                                    <h2>Location Advantages</h2>
+                                    <p>Isasani is a prominent location with good connectivity, attached to main city, ideal location for peaceful living having great potential for rental income and capital gain.</p>
+                                </div>
+                                <div class="LocationAdvantages col-md-6">
+                                    <h2>Location Dis-Advantages</h2>
+                                    <p>Some portion of government land is encroached by slum population whereby beauty of area is compromised. 
+                                    </p>
+                                </div>
+                            </div>
                     </div>
-                </div>-->
-        <!--            <div class="col-md-3">
-                        <div class="product">
-                            <div class="product__image-overlay ">
-                                <div class="img-circle">
-                                    <img src="images/house2.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <div class="MiddleInformation">
-                                    <h4>Price:Rs.500000</h4>
-                                    <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                                    <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                                </div>
-        
-                                <div class="BottomInformation">
-                                    <div class="BedInformation col-md-4">
-                                        <img src="images/bed.png" class="img-responsive">
-                                        <span>4</span>
-                                    </div>
-                                    <div class="BathInformation col-md-4">
-                                        <img src="images/BathTub.png" class="img-responsive">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="GarageInformation col-md-4">
-                                        <img src="images/garage.png" class="img-responsive">
-                                        <span>1</span>
-                                    </div>                                                                
-                                </div>
-                                <div class="BuyNowBtn">
-                                    <button class="btn"><span>More Details</span>
-                                </div>
-                            </div>
-                            <div class="product__image img-blur">
-                                <img src="images/5.jpg" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="product">
-                            <div class="product__image-overlay ">
-                                <div class="img-circle">
-                                    <img src="images/5.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <div class="MiddleInformation">
-                                    <h4>Price:Rs.7500000</h4>
-                                    <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                                    <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                                </div>
-                                <div class="BottomInformation">
-                                    <div class="BedInformation col-md-4">
-                                        <img src="images/bed.png" class="img-responsive">
-                                        <span>4</span>
-                                    </div>
-                                    <div class="BathInformation col-md-4">
-                                        <img src="images/BathTub.png" class="img-responsive">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="GarageInformation col-md-4">
-                                        <img src="images/garage.png" class="img-responsive">
-                                        <span>1</span>
-                                    </div>                                                                
-                                </div>
-                                <div class="BuyNowBtn">
-                                    <button class="btn"><span>More Details</span>
-                                </div>
-                            </div>
-                            <div class="product__image img-blur">
-                                <img src="images/house2.jpg" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="product">
-                            <div class="product__image-overlay ">
-                                <div class="img-circle">
-                                    <img src="images/1.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <div class="MiddleInformation">
-                                    <h4>Price:Rs.2500000</h4>
-                                    <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                                    <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                                </div>
-                                <div class="BottomInformation">
-                                    <div class="BedInformation col-md-4">
-                                        <img src="images/bed.png" class="img-responsive">
-                                        <span>4</span>
-                                    </div>
-                                    <div class="BathInformation col-md-4">
-                                        <img src="images/BathTub.png" class="img-responsive">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="GarageInformation col-md-4">
-                                        <img src="images/garage.png" class="img-responsive">
-                                        <span>1</span>
-                                    </div>                                                                
-                                </div>
-                                <div class="BuyNowBtn">
-                                    <button class="btn"><span>More Details</span>
-                                </div>
-                            </div>
-                            <div class="product__image img-blur">
-                                <img src="images/1.jpg" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="product">
-                            <div class="product__image-overlay ">
-                                <div class="img-circle">
-                                    <img src="images/4.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <div class="MiddleInformation">
-                                    <h4>Price:Rs.7500000</h4>
-                                    <p>2 Bedroom Apartment / Flat for Sale in Ujawal Nagar</p>
-                                    <p>Ujwal Nagar is situated in Nagpur, India. Manage your Travel time by accessing Google map of Ujwal Nagar at MagicBricks.com! Checkout Ujwal Nagar Road Map for getting driving directions to reach Schools, Bus Stops, Hospitals, Shopping Malls, Restaurants Banks, ATMs & other important Points of Interest.</p>
-                                </div>
-                                <div class="BottomInformation">
-                                    <div class="BedInformation col-md-4">
-                                        <img src="images/bed.png" class="img-responsive">
-                                        <span>4</span>
-                                    </div>
-                                    <div class="BathInformation col-md-4">
-                                        <img src="images/BathTub.png" class="img-responsive">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="GarageInformation col-md-4">
-                                        <img src="images/garage.png" class="img-responsive">
-                                        <span>1</span>
-                                    </div>                                                                
-                                </div>
-                                <div class="BuyNowBtn">
-                                    <button class="btn"><span>More Details</span>
-                                </div>
-                            </div>
-                            <div class="product__image img-blur">
-                                <img src="images/4.jpg" class="img-responsive">
-                            </div>
+                </div>
+
+
+
+                <!--    <div class="row">
+                        <input ng-click="clearMarker()" type=button value="Hide Markers">
+                    </div>-->
+                <!--    <div class="row" >
+                        <div class="col-md-12">
+                            The distance between {{location.name}} and {{destinationAmenity}} is {{finalDistance}}
                         </div>
                     </div>-->
-
-
-        <div class="PlacesDIV col-md-12">
-            <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
-            <div class="PlacesContainer">
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>12</span>
-                    </div>
-                    <b>Corporate Office</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>3</span>
-                    </div>
-                    <b>Defence Establishment</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>8</span>
-                    </div>
-                    <b>Education institutes</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>50</span>
-                    </div>
-                    <b>Government Office</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>1</span>
-                    </div>
-                    <b>Health care</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>5</span>
-                    </div>
-                    <b>Hospitality</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>9</span>
-                    </div>
-                    <b>IT Company</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>10</span>
-                    </div>
-                    <b>Industries</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>7</span>
-                    </div>
-                    <b>PSUs</b>                    
-                </div>
-            </div>
-        </div>
-        <div class="PlacesDIV col-md-12">
-            <h3 class="TopHeadingText DevelopmentDIV">Development</h3>
-            <div class="InnerPlaces col-md-4">
-                <div class="inner-circle">                        
-                    <span>25</span>
-                </div>
-                <b>Ongoing projects</b>                
-            </div>
-            <div class="InnerPlaces col-md-4">
-                <div class="inner-circle">                        
-                    <span>14</span>
-                </div>
-                <b>Upcoming Projects</b>                
-            </div>
-        </div>
-        <div class="KeyDIV col-md-12">
-            <h3 class="TopHeadingText LivabilityDIV">Livability</h3>
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
-                <div>Enter Key Amenities Here</div>
-            </div>
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
-                <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-plane"></i>
-                        <span>Airport</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-train"></i>
-                        <span>Railway Station</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-bus"></i>
-                        <span>Bus Stop</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-subway"></i>
-                        <span>Metro Station</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-shopping-basket"></i>
-                        <span>Daily Needs</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-ambulance"></i>
-                        <span>Hospital</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-tree"></i>
-                        <span>Park</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-university"></i>
-                        <span>Bank</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-credit-card"></i>
-                        <span>ATM</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-users"></i>
-                        <span>School</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-graduation-cap"></i>
-                        <span>College</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-coffee"></i>
-                        <span>Cafe</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-cutlery"></i>
-                        <span>Restaurant</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-birthday-cake"></i>
-                        <span>Bakery</span>
-                    </div>          
-                </div>
-            </div>
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
-                <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-bath"></i>
-                        <span>Swimming Pool</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-bicycle"></i>
-                        <span>GYM</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-cc-diners-club"></i>
-                        <span>Club</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-glass"></i>
-                        <span>Bar</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Shopping Mall</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-film"></i>
-                        <span>Theater</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-scissors"></i>
-                        <span>Salon</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-building"></i>
-                        <span>Government Offices</span>
-                    </div>
-                    <div class="IconsAll col-md-2">
-                        <i class="fa fa-bed"></i>
-                        <span>Hotels</span>
-                    </div>   
-                </div>
-            </div>
-        </div>
-        <div class="ReportsDIV col-md-12">
-            <div class=" col-md-6">
-                <h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>
-                <h4>Past Price range for M.V.</h4>
-                <div id="chartContainer">
-                    <img src="images/chart.png" class="img-responsive">
-                </div> 
-            </div>
-            <div class="ForcastDIV col-md-6">
-                <h3 class="TopHeadingText ForcastDIV">Forecast</h3>
-                <h4>Demand & Supply</h4>
-                <div id="chartContainer">
-                    <img src="images/chart1.gif" class="img-responsive">
-                </div>
-            </div>
-        </div>
-        <div class="RiskDIV col-md-12">
-            <h3 class="TopHeadingText FindingsDIV">Risk Factors</h3>
-            <div class="panel-body">
-                <div class="BasicDetailText panel-body">
-                    <div class="col-md-4">
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr class="">
-                                    <td data-title="ID">
-                                        <b>Medicine Industry</b></td>
-                                    <td data-title="Name">YES</td>
-                                </tr>
-                                <tr class="">
-                                    <td data-title="ID" class="">
-                                        <b>Power Plant</b></td>
-                                    <td data-title="Name">NO</td>
-                                </tr>
-                                <tr class="">
-                                    <td data-title="ID"><b>
-                                            Steel/Cement Industry</b></td>
-                                    <td data-title="Name">YES</td>
-                                </tr>                                
-                            </tbody>
-                        </table>
-                    </div> 
-                    <div class="col-md-4">
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr class="">
-                                    <td data-title="ID"><b>Filthy Lake</b></td>
-                                    <td data-title="Name">NO</td>
-                                </tr>
-                                <tr class="">
-                                    <td data-title="ID"><b>
-                                            Area Prone to Floods</b></td>
-                                    <td data-title="Name">NO</td>
-                                </tr>
-                                <tr class="">
-                                    <td data-title="ID"><b>
-                                            Low Area Prone to Water Logging</b></td>
-                                    <td data-title="Name">NO</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>  
-                    <div class="col-md-4">
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>  
-                                <tr class="">
-                                    <td data-title="ID"><b>
-                                            Dump Yard</b></td>
-                                    <td data-title="Name">YES</td>
-                                </tr>
-                                <tr class="">
-                                    <td data-title="ID"><b>
-                                            STP</b></td>
-                                    <td data-title="Name">NO</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>  
-                </div> 
-            </div> 
-            <!--            <div class="RiskFactorIcons">
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-industry ActiveColorGreen"></i><br>
-                                <span>Power Plant</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-plus ActiveColorRed"></i><br>
-                                <span>Medicine Industry</span><br>
-                                <span class="ActiveColorRed">YES</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-chain ActiveColorGreen"></i><br>
-                                <span>Steel/Cement Industry</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-ship ActiveColorGreen"></i><br>
-                                <span>Filthy Lake</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-soundcloud ActiveColorGreen"></i><br>
-                                <span>Area Prone to Floods</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-tint ActiveColorGreen"></i><br>
-                                <span>Low Area Prone to Water Logging</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-trash-o ActiveColorGreen"></i><br>
-                                <span>Dump Yard</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                            <div class="IconsAll col-md-2">
-                                <i class="fa fa-tv ActiveColorGreen"></i><br>
-                                <span>STP</span><br>
-                                <span class="ActiveColorGreen">NO</span>
-                            </div>
-                        </div>-->
-        </div>
-        <div class="FindingsDIV col-md-12">
-            <h3 class="TopHeadingText FindingsDIV">Findings</h3>
-            <div class="LocationAdvantages col-md-6">
-                <h2>Location Advantages</h2>
-                <p>Isasani is a prominent location with good connectivity, attached to main city, ideal location for peaceful living having great potential for rental income and capital gain.</p>
-            </div>
-            <div class="LocationAdvantages col-md-6">
-                <h2>Location Dis-Advantages</h2>
-                <p>Some portion of government land is encroached by slum population whereby beauty of area is compromised. 
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!--    <div class="row">
-        <input ng-click="clearMarker()" type=button value="Hide Markers">
-    </div>-->
-<!--    <div class="row" >
-        <div class="col-md-12">
-            The distance between {{location.name}} and {{destinationAmenity}} is {{finalDistance}}
-        </div>
-    </div>-->
-<!--<div class="thumbnail">
-    <div class="modal-header">
-        <div class="row">
-            <div class="col-md-10">
-                <h3 class="modal-title">
-                    {{location.name}}
-                </h3>
-            </div>
-            <div class="col-md-2">
-                <button type="button"
-                        onclick="window.history.back()"
-                        class=" pull-right btn btn-link">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-2">
-                <ul class="nav nav-tabs tabs-left" style="height:458px" id="location_tabs">
-                    <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
-                        <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-10">
-                <div  ng-switch on="selection" class=""> 
-                                        <div ng-show="myValue">
-                    <div ng-show="myValue">
-                        <div class="row">   
-                            <div id="locationDetailMapContainer" style="height: 400px;"></div> 
-                            <div class="">
-                                <div class="col-md-3 main_locations">
-                                    <nav class="navbar locations_nav">
-                                        <ul class="nav">
-                                            <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
-                                                <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="">{{amenityCode.name}}</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="col-md-3 main_locations">
-                                    <div ng-show="amenities">
-                                        <nav class="navbar locations_nav">
-                                            <ul id={{amenityCode.id}} class="nav">
-                                                <li ng-repeat="amenity in amenitiesList">
-                                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left"  style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-switch-when="Work Places" class="locations">
-                        <div ng-show="myWorkplaces">
-                            <div class="col-md-offset-4">
-                                <nav class="navbar locations_nav">
-                                    <ul class="nav">
-                                        <li ng-repeat="workplace in workplaces" ng-click="toggle()">
-                                            <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left main_locations">{{workplace.name}}</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div ng-show="amenities">
-                                <nav class="navbar locations_nav">
-                                    <ul id={{amenityCode.id}} class="nav">
-                                        <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
-                                            <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="row">    
-                                <div id="locationDetailMapContainerWorkplaces" style="height: 400px;"></div>    
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-switch-when="Projects" class="locations">
-                        <div ng-show="myProjects">
-                            <div class="col-md-offset-4">
-                                <nav class="navbar locations_nav">
-                                    <ul class="nav">
-                                        <li ng-repeat="project in projects" ng-click="toggle()">
-                                            <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations">{{project.name}}</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                                                        <div ng-show="amenities">
-                                                            <nav class="navbar locations_nav">
-                                                                <ul id={{amenityCode.id}} class="nav">
-                                                                    <li ng-repeat="amenity in amenitiesList">
-                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
-                            <div class="row">    
-                                <div id="locationDetailMapContainerProjects" style="height: 400px;"></div>    
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-switch-when="Properties" class="locations">
-                        <div ng-show="myProperties">
-                            <div class="col-md-offset-4">
-                                <nav class="navbar locations_nav">
-                                    <ul class="nav">
-                                        <li ng-repeat="property in properties" ng-click="toggle()">
-                                            <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                                                        <div ng-show="amenities">
-                                                            <nav class="navbar locations_nav">
-                                                                <ul id={{amenityCode.id}} class="nav">
-                                                                    <li ng-repeat="amenity in amenitiesList">
-                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
-                            <div class="row">    
-                                <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-switch-when="Overview">
-                        <div>
-                            <table class="table table-bordered table-striped">
-                                <tbody>
-                                    <tr>
-                                        <td><label>Location Name : </label></td>
-                                        <td> {{ location.name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Location Description :</label></td>
-                                        <td> {{ location.description}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Population :</label></td>
-                                        <td> {{ location.population}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Major Approach Road : </label></td>
-                                        <td> {{ location.majorApproachRoad}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><label>Public Transport :</label></td>
-                                        <td> {{ location.publicTransport}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Source Of Water :</label></td>
-                                        <td>      
-                                            {{ location.sourceOfWater}} 
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>  
-                        </div>
-                    </div>
-                    <div ng-switch-when="Price Trends">
-                        <h2>Dummy Text for Price Trends</h2>
+                <!--<div class="thumbnail">
+                    <div class="modal-header">
                         <div class="row">
-                                                        <div fusioncharts width="600" height="400" type="column2d" dataSource="">
-                                                        </div>
+                            <div class="col-md-10">
+                                <h3 class="modal-title">
+                                    {{location.name}}
+                                </h3>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button"
+                                        onclick="window.history.back()"
+                                        class=" pull-right btn btn-link">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>           
-            </div>
-        </div>
-    </div>
-</div>-->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <ul class="nav nav-tabs tabs-left" style="height:458px" id="location_tabs">
+                                    <li ng-repeat="locationstep in locationSteps" ng-class="{active: $index == getCurrentStepIndex()}">
+                                        <a ng-click="getLocationStep(locationstep)" href="">{{locationstep}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-10">
+                                <div  ng-switch on="selection" class=""> 
+                                                        <div ng-show="myValue">
+                                    <div ng-show="myValue">
+                                        <div class="row">   
+                                            <div id="locationDetailMapContainer" style="height: 400px;"></div> 
+                                            <div class="">
+                                                <div class="col-md-3 main_locations">
+                                                    <nav class="navbar locations_nav">
+                                                        <ul class="nav">
+                                                            <li ng-repeat="amenityCode in amenityCodes" ng-click="toggle()">
+                                                                <a ng-click="getAmenityByAmenityCode(amenityCode)" href="" class="">{{amenityCode.name}}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                                <div class="col-md-3 main_locations">
+                                                    <div ng-show="amenities">
+                                                        <nav class="navbar locations_nav">
+                                                            <ul id={{amenityCode.id}} class="nav">
+                                                                <li ng-repeat="amenity in amenitiesList">
+                                                                    <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left"  style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenity.name}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Work Places" class="locations">
+                                        <div ng-show="myWorkplaces">
+                                            <div class="col-md-offset-4">
+                                                <nav class="navbar locations_nav">
+                                                    <ul class="nav">
+                                                        <li ng-repeat="workplace in workplaces" ng-click="toggle()">
+                                                            <a ng-click="getWorkplaceByAmenityCode(workplace)" href="" class="pull-left main_locations">{{workplace.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                            <div ng-show="amenities">
+                                                <nav class="navbar locations_nav">
+                                                    <ul id={{amenityCode.id}} class="nav">
+                                                        <li ng-repeat="amenityWorkplace in amenitiesWorkplaceList">
+                                                            <a ng-click="getAmenityDetailByAmenityWorkplaces(amenityWorkplace)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp; {{amenityWorkplace.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                            <div class="row">    
+                                                <div id="locationDetailMapContainerWorkplaces" style="height: 400px;"></div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Projects" class="locations">
+                                        <div ng-show="myProjects">
+                                            <div class="col-md-offset-4">
+                                                <nav class="navbar locations_nav">
+                                                    <ul class="nav">
+                                                        <li ng-repeat="project in projects" ng-click="toggle()">
+                                                            <a ng-click="getAmenityByAmenityCode(project)" href="" class="pull-left main_locations">{{project.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                                                        <div ng-show="amenities">
+                                                                            <nav class="navbar locations_nav">
+                                                                                <ul id={{amenityCode.id}} class="nav">
+                                                                                    <li ng-repeat="amenity in amenitiesList">
+                                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                        </div>
+                                            <div class="row">    
+                                                <div id="locationDetailMapContainerProjects" style="height: 400px;"></div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Properties" class="locations">
+                                        <div ng-show="myProperties">
+                                            <div class="col-md-offset-4">
+                                                <nav class="navbar locations_nav">
+                                                    <ul class="nav">
+                                                        <li ng-repeat="property in properties" ng-click="toggle()">
+                                                            <a ng-click="getAmenityByAmenityCode(property)" href="" class="pull-left main_locations">{{property.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                                                        <div ng-show="amenities">
+                                                                            <nav class="navbar locations_nav">
+                                                                                <ul id={{amenityCode.id}} class="nav">
+                                                                                    <li ng-repeat="amenity in amenitiesList">
+                                                                                        <a ng-click="getAmenityDetailByAmenity(amenity)" href="" class="pull-left" style="color: #000"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;{{amenity.name}}</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                        </div>
+                                            <div class="row">    
+                                                <div id="locationDetailMapContainerProperties" style="height: 400px;"></div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Overview">
+                                        <div>
+                                            <table class="table table-bordered table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><label>Location Name : </label></td>
+                                                        <td> {{ location.name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Location Description :</label></td>
+                                                        <td> {{ location.description}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Population :</label></td>
+                                                        <td> {{ location.population}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Major Approach Road : </label></td>
+                                                        <td> {{ location.majorApproachRoad}}</td>
+                                                    </tr>
+                
+                                                    <tr>
+                                                        <td><label>Public Transport :</label></td>
+                                                        <td> {{ location.publicTransport}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Source Of Water :</label></td>
+                                                        <td>      
+                                                            {{ location.sourceOfWater}} 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>  
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Price Trends">
+                                        <h2>Dummy Text for Price Trends</h2>
+                                        <div class="row">
+                                                                        <div fusioncharts width="600" height="400" type="column2d" dataSource="">
+                                                                        </div>
+                                        </div>
+                                    </div>
+                                </div>           
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
 
-<!--old code-->
-<!--<div class="row">
-    <div class="col-sm-2" style="padding-right: 0">
-        <nav class="navbar">
-            <ul class="nav nav-pills nav-stacked navbar-default"  style="height: 500px;">
-                <li ng-class="{'active': amenity === 'property'}" ng-click="showAmenity('property')"><a>Properties</a></li>
-                <li ng-class="{'active': amenity === 'project'}" ng-click="showAmenity('project')"><a>Projects</a></li>
-                <li ng-class="{'active': amenity === 'school'}" ng-click="showAmenity('school')"><a>Schools</a></li>                                          
-                <li ng-class="{'active': amenity === 'bank'}" ng-click="showAmenity('bank')"><a>Bank/Atm's</a></li>                                          
-                <li ng-class="{'active': amenity === 'hospital'}" ng-click="showAmenity('hospital')"><a>Hospitals</a></li>                                          
-                <li ng-class="{'active': amenity === 'mall'}" ng-click="showAmenity('mall')"><a>Shopping Mall's</a></li>
-                <li data-ui-sref-active="active"><a href="#">Bus Stop</a></li>
-                <li data-ui-sref-active="active"><a href="#">Worship Place</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-sm-10" style="padding-left: 0">    
-        <input id="pac-input" class="map-controls" type="text" placeholder="Search Box" style="color: #333">
-        <div id="locationMapContainer" style="height:500px;"></div>    
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6"> 
-        <div class="form-group">
-            <div id="chartContainer"></div>
-        </div>
-    </div>
-    <div class="col-md-6"> 
-        <div class="form-group">                           
-            <div id="chart"></div>
-        </div>            
-    </div>
-</div>
-<div class="modal-header panel-heading">
-
-    <div class="modal-title"><h3>Location Details</h3></div>
-</div>
-
-<div class="modal-body">
-    <h5><b>Orchid Petals</b></h5>
-    <p>By Landmark Properties Builders & Developers</p>
-    <p><strong>Property Type:</strong> 2 BHK Apartment</p>
-    <p><strong>Price:</strong> INR 69.68 Lacs </p>
-    <p><strong>Possession:</strong> 1 April, 2016</p>
-    <p>Well planned spacious apartments skillfully crafted to give you a comfortable life. It is a piece of architectural brilliance that will invoke awe among the visitors and instill a sense of pride in the resident. Situated in lush green surroundings it provides you with clean and pollution free environment.</p>
-    <p>Strategically established apartments which cater all the modern facilities and necessary amenities to provide you luxurious lifestyle. Elegantly designed to create a serene ambiance so that you can achieve luxury and satisfy every need of aspiring families. Apartments which you will love to call as your Home-Sweet-Home.</p>
-    <p>Read More...</p>
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <p><strong>Project Area:</strong></p>
-            <p>16 Acres</p>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Total No. of Tower:</strong></p>
-            <p>9</p>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Total No. of Floors:</strong></p>
-            <p>21 Floors</p>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Total & available units:</strong></p>
-            <p>750</p>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <p><strong>Carpet Area:</strong></p>
-            <p>1058 sq. ft.</p>
-
-        </div>
-        <div class="col-md-3">
-            <p><strong> Price:</strong> 
-            <p>Rs. 61.10 Lac</p>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Possession</strong> 
-            <p>June 2018</p>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Furnished:</strong> 
-            <p>Unfurnished</p>
-            </p>
-        </div>
-    </div>
-</div>        -->
+                <!--old code-->
+                <!--<div class="row">
+                    <div class="col-sm-2" style="padding-right: 0">
+                        <nav class="navbar">
+                            <ul class="nav nav-pills nav-stacked navbar-default"  style="height: 500px;">
+                                <li ng-class="{'active': amenity === 'property'}" ng-click="showAmenity('property')"><a>Properties</a></li>
+                                <li ng-class="{'active': amenity === 'project'}" ng-click="showAmenity('project')"><a>Projects</a></li>
+                                <li ng-class="{'active': amenity === 'school'}" ng-click="showAmenity('school')"><a>Schools</a></li>                                          
+                                <li ng-class="{'active': amenity === 'bank'}" ng-click="showAmenity('bank')"><a>Bank/Atm's</a></li>                                          
+                                <li ng-class="{'active': amenity === 'hospital'}" ng-click="showAmenity('hospital')"><a>Hospitals</a></li>                                          
+                                <li ng-class="{'active': amenity === 'mall'}" ng-click="showAmenity('mall')"><a>Shopping Mall's</a></li>
+                                <li data-ui-sref-active="active"><a href="#">Bus Stop</a></li>
+                                <li data-ui-sref-active="active"><a href="#">Worship Place</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-sm-10" style="padding-left: 0">    
+                        <input id="pac-input" class="map-controls" type="text" placeholder="Search Box" style="color: #333">
+                        <div id="locationMapContainer" style="height:500px;"></div>    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                            <div id="chartContainer"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"> 
+                        <div class="form-group">                           
+                            <div id="chart"></div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="modal-header panel-heading">
+                
+                    <div class="modal-title"><h3>Location Details</h3></div>
+                </div>
+                
+                <div class="modal-body">
+                    <h5><b>Orchid Petals</b></h5>
+                    <p>By Landmark Properties Builders & Developers</p>
+                    <p><strong>Property Type:</strong> 2 BHK Apartment</p>
+                    <p><strong>Price:</strong> INR 69.68 Lacs </p>
+                    <p><strong>Possession:</strong> 1 April, 2016</p>
+                    <p>Well planned spacious apartments skillfully crafted to give you a comfortable life. It is a piece of architectural brilliance that will invoke awe among the visitors and instill a sense of pride in the resident. Situated in lush green surroundings it provides you with clean and pollution free environment.</p>
+                    <p>Strategically established apartments which cater all the modern facilities and necessary amenities to provide you luxurious lifestyle. Elegantly designed to create a serene ambiance so that you can achieve luxury and satisfy every need of aspiring families. Apartments which you will love to call as your Home-Sweet-Home.</p>
+                    <p>Read More...</p>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <p><strong>Project Area:</strong></p>
+                            <p>16 Acres</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Total No. of Tower:</strong></p>
+                            <p>9</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Total No. of Floors:</strong></p>
+                            <p>21 Floors</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Total & available units:</strong></p>
+                            <p>750</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <p><strong>Carpet Area:</strong></p>
+                            <p>1058 sq. ft.</p>
+                
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong> Price:</strong> 
+                            <p>Rs. 61.10 Lac</p>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Possession</strong> 
+                            <p>June 2018</p>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Furnished:</strong> 
+                            <p>Unfurnished</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>        -->
