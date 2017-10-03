@@ -106,7 +106,8 @@
 
 <div class="LocationDetail">
     <h2 class="modal-title text-center text-uppercase">
-        <i><b>{{property.name}}, {{property.city.name}}</b></i>
+        <i><b>{{property.name}}  , {{property.location.name}} , {{property.subLocation}} ,
+                {{property.city.name}}</b></i>
         <button type="button"
                 onclick="window.history.back()"
                 class=" pull-right btn btn-link">
@@ -234,6 +235,10 @@
                                 <tr>
                                     <td data-title="ID">KITCHEN</td>
                                     <td data-title="Name">{{property.kitchen}}</td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">WATER PROOFING</td>
+                                    <td data-title="Name">{{property.waterProofing}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID">WATER PROOFING</td>
@@ -431,7 +436,7 @@
             </div>
             <div class="col-md-6">
                 <div class="BasicDetailText">
-                    <h3>Costing</h3>
+                    <h3>Extra Payable</h3>
                     <div class="table-responsive-vertical">
                         <!-- Table starts here -->
                         <table id="table" class="table table-hover table-mc-light-blue">                            
@@ -462,7 +467,7 @@
                                             <label>Offered Price : </label>    
                                         </div>
                                         <div class="col-sm-6">
-                                            Rs.{{property.offeredPrice}}
+                                            &#8377.{{property.offeredPrice}}
                                         </div>
                                     </td>
                                 </tr>
@@ -521,7 +526,7 @@
                         <table id="table" class="table table-hover table-mc-light-blue">                            
                             <tbody>
                                 <tr>
-                                    <td data-title="ID">MUTATION COPY</td>
+                                    <td data-title="ID">MUTATION COPY / OWNERSHIP PROOF</td>
                                     <td data-title="Name">YES <button class="btn btn-link pull-right">View</button></td>
                                 </tr>
                                 <tr>
@@ -717,7 +722,7 @@
             </div>
         </div>
         <div class="BasicDetailDIV col-md-12">
-            <h3 class="TopHeadingText LivabilityDIV">Livability</h3>
+            <h3 class="TopHeadingText LivabilityDIV">Amenities</h3>
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
                 <div>Enter Key Amenities Here</div>
