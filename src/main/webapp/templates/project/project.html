@@ -11,9 +11,9 @@
 </style>
 <h2 class="modal-title text-center text-uppercase">
     <b>Godrej Anandam,Nagpur</b>
-<!--        <button type="button" ng-click="print()" class="btn btn-link pull-right">
-            <i class="fa fa-print"></i>
-        </button>-->
+    <!--        <button type="button" ng-click="print()" class="btn btn-link pull-right">
+                <i class="fa fa-print"></i>
+            </button>-->
     <button type="button" onclick="window.history.back()" class="btn btn-link pull-right">
         <i class="fa fa-times"></i>
     </button>
@@ -50,27 +50,25 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<div class="">
-    <nav class="navbar-default" data-spy="affix" data-offset-top="500">
-        <div class="collapse navbar-collapse" id="projTab">
-            <ul class=" nav navbar-nav nav-tabs nav-justified">
-                <li><a href="#basic" class=""><b>Basic</b></a></li>
-                <li><a href="#basic" class=""><b>Add on Features</b></a></li>
-                <li><a href="#basic" class=""><b>Amenities within Project</b></a></li>
-                <li><a href="#specification" class=""><b>Construction Specification</b></a></li>
-                <li><a href="#demand" class=""><b>Demand indicator</b></a></li>
-                <li><a href="#livability" class=""><b>Livability</b></a></li>
-                <li><a href="#marketability" class=""><b>Marketability</b></a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
+<nav class="navbar-default" data-spy="affix" data-offset-top="500">
+    <div class="collapse navbar-collapse" id="projTab">
+        <ul class=" nav navbar-nav nav-tabs nav-justified">
+            <li><a href="#basic" class=""><b>Basic</b></a></li>
+            <li><a href="#basic" class=""><b>Add on Features</b></a></li>
+            <li><a href="#basic" class=""><b>Amenities within Project</b></a></li>
+            <li><a href="#specification" class=""><b>Construction Specification</b></a></li>
+            <li><a href="#demand" class=""><b>Demand indicator</b></a></li>
+            <li><a href="#livability" class=""><b>Livability</b></a></li>
+            <li><a href="#marketability" class=""><b>Marketability</b></a></li>
+        </ul>
+    </div>
+</nav>
 <div class="thumbnail">	
     <div class="section">   
         <!-- Basic Section -->            
-        <div class="w3-container w3-padding-32" id="basic">
-            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">BASIC DETAILS</h3>    
-            <div class="BasicDetailDIV col-md-12">               
+        <div class="" id="basic">
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">BASIC DETAILS</h3>    
+            <div class="BasicDetailDIV row">               
                 <div class="col-md-7">
                     <div class="BasicDetailText">
                         <h3>Godrej Anandam / Nagpur</h3>
@@ -139,335 +137,267 @@
                 </div>
             </div>
 
-            <!--            <div class="col-md-6">
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-building"></i>
-                                <div class="form-group">                            
-                                    <label>Type of Project</label>
-                                    <span> : {{property.city.name}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-road"></i>
-                                <div class="form-group">                            
-                                    <label>Approach road</label>                                                    
-                                    <span> : {{property.location.name}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-road"></i>
-                                <div class="form-group">                    
-                                    <label>Distance from Major road</label>                                                    
-                                    <span> : {{property.propertyType}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-road"></i>
-                                <div class="form-group">
-                                    <label>Type and size  of approach road</label>
-                                    <span> : {{property.propertySizeObject.numberOfBhk}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">                        
-                                <i class="fa fa-4x fa-building-o"></i>
-                                <div class="form-group">
-                                    <label>Type of Property Resi/Comm/Indus </label>
-                                    <span> :&#8377; {{property.priceRange}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-building"></i>
-                                <div class="form-group">
-                                    <label> Type of ownership free hold/lease</label>
-                                    <span> : {{property.size}} sq.ft</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-tint"></i>
-                                <div class="form-group">
-                                    <label>Source of water, </label>                                                    
-                                    <span> : {{property.totalFloors}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-building"></i>
-                                <div class="form-group">
-                                    <label>Carpet vs Covered area</label>                                                    
-                                    <span> : {{property.entryFacing}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-bank"></i>
-                                <div class="form-group">
-                                    <label>Building Condition</label>
-                                    <span> : {{property.buildingCondition}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                <i class="fa fa-4x fa-university"></i>
-                                <div class="form-group">
-                                    <label>Project Name</label>                                                    
-                                    <span> : {{property.project.name}}</span>
-                                </div>
-                            </div>
-                        </div>-->
             <!--                <div class="col-md-6">
                                 <img src="images/property_buying.jpg" style="width:100%; height: 300px;" class="img-responsive"/>
                                 <img ng-src="./rest/image/{{image.id}}/attachment" style="width:100%; height: 300px; margin: auto" class="img-responsive"/>
                             </div>-->
         </div>
-
-        <!-- amenities Section -->        
-        <div class="col-md-6">
-            <div class="w3-container w3-padding-32" id="addon">           
-                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">ADD ON FEATURES</h3>      
-                <div class="description middleWrapper">
-                    <div class="col-md-3 sep" style="height: 120px;">
-                        <ul class="panel-body">
-                            <li>Modular Kitchen</li>
-                            <li>False Ceiling</li>
-                            <!--<li>Hospital: <strong>4</strong></li>-->
-                        </ul>
+        <div class="row">
+            <!-- amenities Section -->        
+            <div class="col-md-6">
+                <div class="" id="addon">           
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">ADD ON FEATURES</h3>      
+                    <div class="description middleWrapper">
+                        <div class="col-md-3 sep" style="height: 120px;">
+                            <ul class="panel-body">
+                                <li>Modular Kitchen</li>
+                                <li>False Ceiling</li>
+                                <!--<li>Hospital: <strong>4</strong></li>-->
+                            </ul>
+                        </div>
+                        <div class="col-md-3 sep nosep" style="height: 120px;">
+                            <ul class="panel-body">
+                                <li>Furniture</li>
+                                <li>Home Appliances</li>
+                                <!--<li>Bank: <strong>Jul. 2014</strong></li>-->
+                            </ul>
+                        </div>
+                        <div class="col-md-3 sep" style="height: 120px;">
+                            <ul class="panel-body">
+                                <li>Security System</li>
+                                <li>Automation System</li>
+                                <!--<li>Coaching: <strong>Yes</strong></li>-->
+                            </ul>
+                        </div>
+                        <!--                    <div class="col-md-3" style="height: 120px;">
+                                                <ul class="panel-body">
+                                                    <li>Petrol pump</li>
+                                                    <li>Resturant</li>
+                                                    <li>Bakery: <strong>Yes</strong></li>
+                                                </ul>
+                                            </div>-->
                     </div>
-                    <div class="col-md-3 sep nosep" style="height: 120px;">
-                        <ul class="panel-body">
-                            <li>Furniture</li>
-                            <li>Home Appliances</li>
-                            <!--<li>Bank: <strong>Jul. 2014</strong></li>-->
-                        </ul>
-                    </div>
-                    <div class="col-md-3 sep" style="height: 120px;">
-                        <ul class="panel-body">
-                            <li>Security System</li>
-                            <li>Automation System</li>
-                            <!--<li>Coaching: <strong>Yes</strong></li>-->
-                        </ul>
-                    </div>
-                    <!--                    <div class="col-md-3" style="height: 120px;">
-                                            <ul class="panel-body">
-                                                <li>Petrol pump</li>
-                                                <li>Resturant</li>
-                                                <li>Bakery: <strong>Yes</strong></li>
-                                            </ul>
-                                        </div>-->
                 </div>
             </div>
-        </div>
+            <!-- Amenities within Project Section -->        
+            <div class="col-md-6">
+                <div class="" id="amenities">
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">AMENITIES WITHIN PROJECT</h3>
 
-        <!-- Amenities within Project Section -->        
-        <div class="col-md-6">
-            <div class="w3-container w3-padding-32" id="amenities">
-                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">AMENITIES WITHIN PROJECT</h3>
-
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/ground.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Ground</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/ground.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Ground</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/gym.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Gym</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/gym.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Gym</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/pool.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Pool</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/pool.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Pool</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/security.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Security</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/security.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Security</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/garden.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Garden</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/garden.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Garden</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/theater.png" class="icon_ht">
-                        </div> 
-                        <span title="">Theater</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/theater.png" class="icon_ht">
+                            </div> 
+                            <span title="">Theater</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/yoga.svg" class="icon_ht">
-                        </div> 
-                        <span title="">Yoga</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/yoga.svg" class="icon_ht">
+                            </div> 
+                            <span title="">Yoga</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="form-group text-center">
-                        <div class="master">
-                            <img src="images/icons_svg/club.png" class="icon_ht">
-                        </div> 
-                        <span title="">Club</span>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="form-group text-center">
+                            <div class="master">
+                                <img src="images/icons_svg/club.png" class="icon_ht">
+                            </div> 
+                            <span title="">Club</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Specification Section -->
-        <div class="w3-container w3-padding-32" id="specification">
-            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">Construction Specification</h3>
-            <div class="col-md-6">
-                <div class="BasicDetailText">
-                    <h3>Specification</h3>
-                    <div class="table-responsive-vertical">
-                        <!-- Table starts here -->
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr>
-                                    <td data-title="ID">STRUCTURE</td>
-                                    <td data-title="Name">Red brick / Fly Ash will be used of good quality. All exterior wall will be 150 mm thick & internal wall will be 115 mm thick</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">FLOORING</td>
-                                    <td data-title="Name">Drawing room & Bedroom Double Charged Vitrified Tiles.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">WALLS</td>
-                                    <td data-title="Name">All exterior wall will be 150 mm thick & internal wall will be 115 mm thick.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">PAINT</td>
-                                    <td data-title="Name">High Quality Plastic Paint.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">SANITARY</td>
-                                    <td data-title="Name">Toilet U.P.V.C. fitting. W.C. (Simpolo, Johnson, Bell or equal quality).</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">DOORS</td>
-                                    <td data-title="Name">Main Door Teakwood or designer door, Remaining doors of Designer flush type (Water Proof) with R.C.C. frame</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">WINDOWS</td>
-                                    <td data-title="Name">Aluminium Sliding Windows (Powder coated) with MS Grills.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">ELECTRIC FITTING</td>
-                                    <td data-title="Name">Good Quality Modular Switches.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">KITCHEN</td>
-                                    <td data-title="Name">Platform Granite Top resting on Aluminum Structure Stainless steel Sink.</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">WATER PROOFING</td>
-                                    <td data-title="Name">Best Waterproofing solution will be provided</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>              
+        <div id="specification">
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Construction Specification</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="BasicDetailText">
+                        <h3>Specification</h3>
+                        <div class="table-responsive-vertical">
+                            <!-- Table starts here -->
+                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                <tbody>
+                                    <tr>
+                                        <td data-title="ID">STRUCTURE</td>
+                                        <td data-title="Name">Red brick / Fly Ash will be used of good quality. All exterior wall will be 150 mm thick & internal wall will be 115 mm thick</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">FLOORING</td>
+                                        <td data-title="Name">Drawing room & Bedroom Double Charged Vitrified Tiles.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">WALLS</td>
+                                        <td data-title="Name">All exterior wall will be 150 mm thick & internal wall will be 115 mm thick.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">PAINT</td>
+                                        <td data-title="Name">High Quality Plastic Paint.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">SANITARY</td>
+                                        <td data-title="Name">Toilet U.P.V.C. fitting. W.C. (Simpolo, Johnson, Bell or equal quality).</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">DOORS</td>
+                                        <td data-title="Name">Main Door Teakwood or designer door, Remaining doors of Designer flush type (Water Proof) with R.C.C. frame</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">WINDOWS</td>
+                                        <td data-title="Name">Aluminium Sliding Windows (Powder coated) with MS Grills.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">ELECTRIC FITTING</td>
+                                        <td data-title="Name">Good Quality Modular Switches.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">KITCHEN</td>
+                                        <td data-title="Name">Platform Granite Top resting on Aluminum Structure Stainless steel Sink.</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">WATER PROOFING</td>
+                                        <td data-title="Name">Best Waterproofing solution will be provided</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>              
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="BasicDetailText">
-                    <h3>Costing</h3>
-                    <div class="table-responsive-vertical">
-                        <!-- Table starts here -->
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Society Maintainance Includes : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul>
-                                                <li>STREET LIGHTS</li>
-                                                <li>LIFTS</li>
-                                                <li>SECURITY GUARD</li>
-                                                <li>COMMON ELECTRIC/WATER BILLS</li>
-                                                <li>COMMON FACILITIES MAINTENANCE</li>
-                                                <li>COMMON AREA SWEEPER</li>
-                                                <li>GARDNER & ELECTRICIAN</li>
-                                                <li>PLUMBER</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Society Maintainance Amount : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            Rs 24000/- (Duration - 1 Year)
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Payment Schedule : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul>
-                                                <li>Booking Amount: 15 %</li>
-                                                <li>Start Of Construction: 15 %</li>
-                                                <li>Completion Of Plinth: 15 %</li>
-                                                <li>Each Slab: 15 %</li>
-                                                <li>Brick Work: 15 %</li>
-                                                <li>Plastering : 20 %</li>
-                                                <li>Finishing Work : 20 %</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>              
+                <div class="col-md-6">
+                    <div class="BasicDetailText">
+                        <h3>Costing</h3>
+                        <div class="table-responsive-vertical">
+                            <!-- Table starts here -->
+                            <table id="table" class="table table-hover table-mc-light-blue">                            
+                                <tbody>
+                                    <tr>
+                                        <td data-title="ID">
+                                            <div class="col-sm-6">
+                                                <label>Society Maintainance Includes : </label>    
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul>
+                                                    <li>STREET LIGHTS</li>
+                                                    <li>LIFTS</li>
+                                                    <li>SECURITY GUARD</li>
+                                                    <li>COMMON ELECTRIC/WATER BILLS</li>
+                                                    <li>COMMON FACILITIES MAINTENANCE</li>
+                                                    <li>COMMON AREA SWEEPER</li>
+                                                    <li>GARDNER & ELECTRICIAN</li>
+                                                    <li>PLUMBER</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">
+                                            <div class="col-sm-6">
+                                                <label>Society Maintainance Amount : </label>    
+                                            </div>
+                                            <div class="col-sm-6">
+                                                Rs 24000/- (Duration - 1 Year)
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="ID">
+                                            <div class="col-sm-6">
+                                                <label>Payment Schedule : </label>    
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul>
+                                                    <li>Booking Amount: 15 %</li>
+                                                    <li>Start Of Construction: 15 %</li>
+                                                    <li>Completion Of Plinth: 15 %</li>
+                                                    <li>Each Slab: 15 %</li>
+                                                    <li>Brick Work: 15 %</li>
+                                                    <li>Plastering : 20 %</li>
+                                                    <li>Finishing Work : 20 %</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>              
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Demand Indicator Section -->
-        <div class="w3-container w3-padding-32" id="demand">
-            <div class="BasicDetailDIV col-md-6">                
-                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">PRICE REPORTS FOR PREVIOUS YEARS</h3>
-                <!--<h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>-->
-                <div class="col-md-12">
-                    <!--<h4>Past Price range for M.V.</h4>-->
-                    <div id="chartContainer">
-                        <img src="images/chart.png" class="img-responsive">
-                    </div>      
+        <div class="" id="demand">
+            <div class="row" >
+                <div class="BasicDetailDIV col-md-6">                
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">PRICE REPORTS FOR PREVIOUS YEARS</h3>
+                    <!--<h3 class="TopHeadingText ReportsDIV">Price Reports For Previous Year</h3>-->
+                    <div class="col-md-12">
+                        <!--<h4>Past Price range for M.V.</h4>-->
+                        <div id="chartContainer">
+                            <img src="images/chart.png" class="img-responsive">
+                        </div>      
+                    </div>
                 </div>
+                <div class="BasicDetailDIV col-md-6">                
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">FORECAST</h3>                
+                    <div class="col-md-12">
+                        <h4>Demand Potential</h4>
+                        <div id="chartContainer">
+                            <img src="images/chart1.gif" class="img-responsive">
+                        </div>   
+                    </div>
+                </div>        
             </div>
-            <div class="BasicDetailDIV col-md-6">                
-                <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">FORECAST</h3>                
-                <div class="col-md-12">
-                    <h4>Demand Potential</h4>
-                    <div id="chartContainer">
-                        <img src="images/chart1.gif" class="img-responsive">
-                    </div>   
-                </div>
-            </div>        
         </div>
         <!-- Inventory -->        
-        <div class="w3-container w3-padding-32" id="Inventory">
-            <div class="BasicDetailDIV col-md-12">              
+        <div class="" id="Inventory">
+            <div class="BasicDetailDIV row">              
                 <div class="col-md-6">
-                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">Legal Documents</h3>
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Legal Documents</h3>
                     <div class="BasicDetailText CustomHeight">
                         <!--<h3>Legal Documents</h3>-->                   
                         <div class="table-responsive-vertical">
@@ -528,7 +458,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">Inventory</h3>
+                    <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Inventory</h3>
                     <div class="BasicDetailText CustomHeight">
                         <!--<h3>Inventory</h3>-->
                         <div class="table-responsive-vertical">
@@ -581,7 +511,7 @@
         </div>
         <!-- livability Section -->
         <div class="w3-container w3-padding-32" id="livability">
-            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey w3-padding-16">LIVABILITY</h3>
+            <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">LIVABILITY</h3>
             <div class="AmenityInnerContents">
                 <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
                 <div class="AmenitiesIcon">
