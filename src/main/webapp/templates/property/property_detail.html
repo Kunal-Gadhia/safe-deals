@@ -3,60 +3,60 @@
 <script>
     //Button Click Scroll Animation//
     $(".BasicInforLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicInformationDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicInformationDIV").offset().top},
+        'slow');
     });
     $(".NeighborhoodLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".NeighborhoodDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".NeighborhoodDIV").offset().top},
+        'slow');
     });
     $(".WorkLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".DevelopmentLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".KeyLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".KeyDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".KeyDIV").offset().top},
+        'slow');
     });
     $(".BasicLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicDIV").offset().top},
+        'slow');
     });
     $(".LuxuryLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".LuxuryDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".LuxuryDIV").offset().top},
+        'slow');
     });
     $(".ReportsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ReportsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ReportsDIV").offset().top},
+        'slow');
     });
     $(".ForcastLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ForcastDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ForcastDIV").offset().top},
+        'slow');
     });
     $(".FindingsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".FindingsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".FindingsDIV").offset().top},
+        'slow');
     });
     $('.carousel1').carousel({
-    interval: 3000,
-            pause: false
+        interval: 3000,
+        pause: false
     })
-            //Button Click Scroll Animation//
+    //Button Click Scroll Animation//
 </script>
 <!--<div class="navbar-fixed-top TopFixedNavBarForLocation">
     <nav class="navbar-default" data-spy="affix" data-offset-top="500">
@@ -107,7 +107,7 @@
 <div class="LocationDetail">
     <h2 class="modal-title text-center text-uppercase">
         <i><b>{{property.name}}  , {{property.location.name}} , {{property.subLocation}} ,
-                {{property.city.name}}</b></i>
+                {{property.city.name}} (Property ID: {{property.propertyId}})</b></i>
         <button type="button"
                 onclick="window.history.back()"
                 class=" pull-right btn btn-link">
@@ -444,6 +444,16 @@
                                 <tr>
                                     <td data-title="ID">
                                         <div class="col-sm-6">
+                                            <label>Offered Price : </label>    
+                                        </div>
+                                        <div class="col-sm-6">
+                                            &#8377.{{property.offeredPrice}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-title="ID">
+                                        <div class="col-sm-6">
                                             <label>Society Maintainance Includes : </label>    
                                         </div>
                                         <div class="col-sm-6">
@@ -461,16 +471,7 @@
                                     </td>
                                     <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
                                 </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Offered Price : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            &#8377.{{property.offeredPrice}}
-                                        </div>
-                                    </td>
-                                </tr>
+
                                 <tr>
                                     <td data-title="ID">
                                         <div class="col-sm-6">
