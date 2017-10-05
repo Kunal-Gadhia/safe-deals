@@ -1065,7 +1065,7 @@ tcb-testimonial-carousel*/
                   border: 1px solid #ececec;
                   content: " ";
                   overflow: hidden; }
-.middleWrapper ul li { list-style: none; background: url(images/arrow.png) no-repeat 0 15px; padding: 10px 0px 0px 12px;}
+.middleWrapper ul li { list-style: none; background: url("../images/arrow.png") no-repeat 0 15px; padding: 10px 0px 0px 12px;}
 .sep{border-right: 1px solid #ececec}
 .affix {
         top:110px;
