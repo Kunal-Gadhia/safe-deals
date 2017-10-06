@@ -2102,9 +2102,15 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         autoUpload: true,
                         alias: 'attachment'
                     });
+                    var fileName=[];
+                    $scope.btnFileName = function(){
+                        $('#elevationID').click();
+                    };
                     uploader.onBeforeUploadItem = function (item) {
                         $scope.uploadInProgress = true;
                         $scope.uploadSuccess = false;
+                        fileName.push(item.file.name+"<br>");
+                        $("#fileName").html(fileName);
                         console.log("before upload item:", item);
                         console.log("uploader", uploader);
                     };
