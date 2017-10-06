@@ -2110,6 +2110,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         $scope.uploadInProgress = true;
                         $scope.uploadSuccess = false;
                         fileName.push(item.file.name+"<br>");
+                        $("#fileName").html(fileName);
                         console.log("before upload item:", item);
                         console.log("uploader", uploader);
                     };
