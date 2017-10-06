@@ -200,7 +200,11 @@
                     <div class="col-sm-6">
                         <div ng-hide="showDetails === 'false'">                            
                             <span>
-                                <input ng-if="showElevation" type="file" name="file" uploader="fileUploader" nv-file-select="" multiple>    
+                                <input ng-if="showElevation" type="file" name="file" uploader="fileUploader"
+                                       nv-file-select="" multiple id="elevationID" class="hidden">
+                                <input ng-if="showElevation" type="button" id="btnElevationId" 
+                                       class="btn btn-primary btn-sm"  ng-click="btnFileName()" value="SELECT FILE">
+                                <br><span id="fileName"></span>
                             </span>
                         </div>
                     </div>
