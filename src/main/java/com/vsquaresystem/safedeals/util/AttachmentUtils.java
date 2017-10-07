@@ -405,9 +405,10 @@ public class AttachmentUtils {
                 String[] items = entityDir.list();
                 for (String s : items) {
                     File currentFile = new File(entityDir.getPath(), s);
-                    currentFile.delete();
+                    logger.info("Current File is **********"+currentFile);
+//                    currentFile.delete();
                 }
-                entityDir.mkdirs();
+//                entityDir.mkdirs();
             }
             return entityDir;
         }
@@ -501,9 +502,10 @@ public class AttachmentUtils {
                 String[] items = entityDir.list();
                 for (String s : items) {
                     File currentFile = new File(entityDir.getPath(), s);
-                    currentFile.delete();
+                    logger.info("Current File is **********"+currentFile);
+//                    currentFile.delete();
                 }
-                entityDir.mkdirs();
+//                entityDir.mkdirs();
             }
             return entityDir;
         }
