@@ -1,23 +1,21 @@
 <script>
     $(function () {
 
-        $('#login-form-link').click(function (e) {
-            $("#login-form").delay(100).fadeIn(100);
-            $("#register-form").fadeOut(100);
-            $('#register-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-        $('#register-form-link').click(function (e) {
-            $("#register-form").delay(100).fadeIn(100);
-            $("#login-form").fadeOut(100);
-            $('#login-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-
+    $('#login-form-link').click(function (e) {
+    $("#login-form").delay(100).fadeIn(100);
+    $("#register-form").fadeOut(100);
+    $('#register-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
     });
-</script>
+    $('#register-form-link').click(function (e) {
+    $("#register-form").delay(100).fadeIn(100);
+    $("#login-form").fadeOut(100);
+    $('#login-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+    });
+    });</script>
 
 <div class="loginpage ">
     <div class="container">
@@ -91,7 +89,7 @@
                                             </div>
                                             <div class="col-md-4 col-xs-4 form-group padding">
                                                 <label class="radio-inline">
-                                                    <input ng-model="newUser.userType" value="UT_BANK" type="radio" name="radio">
+                                                    <input ng-model="newUser.userType" value="UT_BANK" type="radio" name="radio" required>
                                                     As Bank
                                                 </label>
                                             </div>
@@ -111,20 +109,20 @@
                                             </div>                                            
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Full Name</label>
-                                            <input ng-model="newUser.name" type="text" name="Name" id="name" class="form-control" placeholder="Full Name" value="">
+                                            <label for="name">Full Name<span class="compulsory_field"> * </span></label>
+                                            <input ng-model="newUser.name" type="text" name="Name" id="name" class="form-control" placeholder="Full Name" value="" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="company">Name of Company</label>
-                                            <input ng-model="newUser.nameOfCompany" type="text" name="company" id="company" class="form-control" placeholder="Name Of Company" value="">
+                                            <label for="company">Name of Company<span class="compulsory_field"> * </span></label>
+                                            <input ng-model="newUser.nameOfCompany" type="text" name="company" id="company" class="form-control" placeholder="Name Of Company" value="" required>
                                         </div>
                                         <div class="">
                                             <div class="col-md-6 form-group padding">
-                                                <label for="address">Address</label>
-                                                <input ng-model="newUser.address" type="text" name="address" id="address" class="form-control" placeholder="Address">
+                                                <label for="address">Address<span class="compulsory_field"> * </span></label>
+                                                <input ng-model="newUser.address" type="text" name="address" id="address" class="form-control" placeholder="Address" required>
                                             </div>
                                             <div class="col-md-6 form-group padding">
-                                                <label for="city">City</label>
+                                                <label for="city">City<span class="compulsory_field"> * </span></label>
                                                 <!--<input type="text" name="city" id="city" class="form-control" placeholder="City">-->
                                                 <input class="form-control"
                                                        placeholder="Select City"
@@ -140,12 +138,12 @@
                                         </div>
                                         <div class="">
                                             <div class="form-group">
-                                                <label for="mobile">Mobile No.</label>
-                                                <input type="number" ng-model="newUser.mobileNo" name="mobile" id="mobile" class="form-control" placeholder="Mobile No.">
+                                                <label for="mobile">Mobile No.<span class="compulsory_field"> * </span></label>
+                                                <input type="text" pattern="[789][0-9]{9}" ng-model="newUser.mobileNo" name="mobile" id="mobile" class="form-control" placeholder="Enter 10 Digit number(9081234567)" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" ng-model="newUser.username" name="email" id="email" class="form-control" placeholder="Email">
+                                                <label for="email">Email<span class="compulsory_field"> * </span></label>
+                                                <input type="email" ng-model="newUser.username" name="email" id="email" class="form-control" placeholder="Email" required>
                                             </div>
                                             <div ng-show="repeatEmail">
                                                 <span>
@@ -154,8 +152,8 @@
                                             </div>
                                             <div class="">
                                                 <div class="col-md-6 form-group padding">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" ng-model="newUser.password" name="password" id="password1" class="form-control" placeholder="Password" value="">
+                                                    <label for="password">Password<span class="compulsory_field"> * </span></label>
+                                                    <input type="password" ng-model="newUser.password" name="password" id="password1" class="form-control" placeholder="Password" value="" required>
                                                 </div>
                                                 <div class="col-md-6 form-group padding">
                                                     <label for="confirm-password">Confirm password</label>
@@ -175,6 +173,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -184,40 +183,39 @@
             </div>
         </div>
     </div>
-</div>
 
-<!--old code-->
-<!--                <div class="wrap">
-                                   <div id="google_translate_element"></div>
-                                   <div class="alert alert-info" ng-if="message">
-                                       {{ message}}
-                                   </div>
-                                   <div class="alert alert-danger" ng-if="error">
-                                       {{ error}}
-                                   </div>
-                                   <p class="form-title">
-                                       Sign In</p>
-                                   <form class="login" ng-submit="login(username, password)">
-                                       <input type="text" required="" ng-model="username" placeholder="Username" />
-                                       <div ng-show="form.$submitted || form.username.$touched">
-                                           <div ng-show="form.username.$error.required">Please enter username.</div>
+    <!--old code-->
+    <!--                <div class="wrap">
+                                       <div id="google_translate_element"></div>
+                                       <div class="alert alert-info" ng-if="message">
+                                           {{ message}}
                                        </div>
-                                       <input type="password" required="" ng-model="password" placeholder="Password" />
-                                       <div ng-show="form.$submitted || form.password.$touched">
-                                           <span ng-show="form.password.$error.required">Please enter Password.</span>
+                                       <div class="alert alert-danger" ng-if="error">
+                                           {{ error}}
                                        </div>
-                                       <input type="submit" value="Sign In" class="btn btn-success btn-sm"/>
-                                       <div class="remember-forgot">
-                                           <div class="row">
-                                               <div class="col-md-6 forgot-pass-content">
-                                                                                       <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-                                                   <button type="button" class="forgot-pass btn btn-link btn-sm">Forgot Password?</button>
-                                               </div>
-                                               <div class="col-md-6 forgot-pass-content">
-                                                   <button type="button" class="btn btn-link btn-sm" ng-click="guestLogin()">Sign in as a guest!!</button>
+                                       <p class="form-title">
+                                           Sign In</p>
+                                       <form class="login" ng-submit="login(username, password)">
+                                           <input type="text" required="" ng-model="username" placeholder="Username" />
+                                           <div ng-show="form.$submitted || form.username.$touched">
+                                               <div ng-show="form.username.$error.required">Please enter username.</div>
+                                           </div>
+                                           <input type="password" required="" ng-model="password" placeholder="Password" />
+                                           <div ng-show="form.$submitted || form.password.$touched">
+                                               <span ng-show="form.password.$error.required">Please enter Password.</span>
+                                           </div>
+                                           <input type="submit" value="Sign In" class="btn btn-success btn-sm"/>
+                                           <div class="remember-forgot">
+                                               <div class="row">
+                                                   <div class="col-md-6 forgot-pass-content">
+                                                                                           <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                                                       <button type="button" class="forgot-pass btn btn-link btn-sm">Forgot Password?</button>
+                                                   </div>
+                                                   <div class="col-md-6 forgot-pass-content">
+                                                       <button type="button" class="btn btn-link btn-sm" ng-click="guestLogin()">Sign in as a guest!!</button>
+                                                   </div>
                                                </div>
                                            </div>
-                                       </div>
-                                   </form>
-                               </div>-->
+                                       </form>
+                                   </div>-->
 
