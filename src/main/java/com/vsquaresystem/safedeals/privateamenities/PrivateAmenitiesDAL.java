@@ -5,7 +5,6 @@
  */
 package com.vsquaresystem.safedeals.privateamenities;
 
-import com.vsquaresystem.safedeals.amenitycode.AmenityCodeDAL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

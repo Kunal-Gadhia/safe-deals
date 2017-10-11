@@ -22,48 +22,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-//
-///**
-// *
-// * @author ruchita
-// * Modified by Sudarshan Bhalerao
-// */
-//
 
 @Service
 public class PhotoUtils {
-//    
-//    private static final String PHOTO_FILE_NAME = "photo";
-//
-//    @Autowired
-//    private AttachmentUtils attachmentUtils;
-//
-//    private final Logger logger = LoggerFactory.getLogger(getClass());
-//
-//    public File getPhoto(Integer videoId) throws FileNotFoundException, IOException {
-//        File photoFile = getPhotoFile(videoId);
-//        if (!photoFile.exists()) {
-//            throw new FileNotFoundException();
-//        }
-//        return photoFile;
-//    }
-//
-//    public File setPhoto(
-//            InputStream inputStream,
-//            Integer videoId)
-//            throws IOException {
-//
-//        File photoFile = getPhotoFile(videoId);
-//        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));        
-//        return photoFile;
-//    }
-//
-//    private File getPhotoFile(Integer videoId) throws IOException{
-//        File videoDir = attachmentUtils.getDirectoryByAttachmentTypeAndVideoId(AttachmentType.VIDEO, videoId);
-//        logger.info("videoDir for photo", videoDir);
-//        return new File(videoDir, PHOTO_FILE_NAME);
-//    }
-//    
 
     private String PHOTO_FILE_NAME = "";
     @Autowired
@@ -166,32 +127,6 @@ public class PhotoUtils {
         return new File(projectMutationCopyDir, PHOTO_FILE_NAME);
     }
 
-    /////////////////////////////////////////////// sale deed
-    
-//    public File getProjectSaleDeedPhoto(Project project) throws FileNotFoundException, IOException {
-//        if (project.getSaleDeed() != null) {
-//            PHOTO_FILE_NAME = project.getSaleDeed().get(0).toString();
-//        }
-//        File photoFile = getProjectSaleDeedPhoto(project);
-//        return photoFile;
-//    }
-//
-//    public File setProjectSaleDeedPhoto(
-//            InputStream inputStream,
-//            Project project)
-//            throws IOException {
-//
-//        File photoFile = getProjectSaleDeedPhotoFile(project);
-//        FileCopyUtils.copy(inputStream, new FileOutputStream(photoFile));
-//        return photoFile;
-//    }
-//
-//    public File getProjectSaleDeedPhotoFile(Project project) throws IOException {
-//        File projectSaleDeedDir = attachmentUtils.getDirectoryByAttachmentTypeAndEntityId(AttachmentType.PROJECT_SALE_DEED, project.getId(), true);
-//        return new File(projectSaleDeedDir, PHOTO_FILE_NAME);
-//    }
-
-    ///////////////////////////////////////////////
     public File getImagePhoto(Image image) throws FileNotFoundException, IOException {
         if (image.getPhotoPath() != null) {
             PHOTO_FILE_NAME = image.getPhotoPath().get(0).toString();

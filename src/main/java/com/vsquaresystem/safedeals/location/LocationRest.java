@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +37,6 @@ public class LocationRest {
     @Autowired
     private LocationService locationservice;
 
-//    @RequestMapping(value = "/current", method = RequestMethod.GET)
-//    public org.springframework.security.core.locationdetails.Location getPrincipal(
-//            @AuthenticationPrincipal org.springframework.security.core.locationdetails.Location location) {
-//        return location;
-//    }
     @RequestMapping(method = RequestMethod.GET)
     public List<Location> findAll(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         logger.info("Coming to find all rest");
@@ -90,7 +84,6 @@ public class LocationRest {
         return locationDAL.update(location);
     }
 
-//    @RolesAllowed("ROLE_SUPER_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) throws Exception {
         locationDAL.delete(id);

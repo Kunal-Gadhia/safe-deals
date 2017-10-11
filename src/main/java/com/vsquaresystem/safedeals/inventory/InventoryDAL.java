@@ -114,46 +114,6 @@ public class InventoryDAL {
         return inventory;
     }
 
-//    public Inventory update(Inventory inventory) {
-//        String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
-//                + Columns.PROJECT_ID + " = ?, "
-//                + Columns.NO_OF_BHK + " = ?, "
-//                + Columns.PROPERTY_CATEGORY_ID + " = ?, "
-//                + Columns.TOTAL_UNITS + " = ?, "
-//                + Columns.UNIT_NO + " = ?, "
-//                + Columns.FLOOR_NO + " = ?, "
-//                + Columns.BUILDING_NAME + " = ?, "
-//                + Columns.PRICE_PER_SQFT + " = ?, "
-//                + Columns.TOTAL_AREA + " = ?, "
-//                + Columns.OFFERED_PRICE + " = ?, "
-//                + Columns.NO_OF_BALCONY + " = ?, "
-//                + Columns.NO_OF_WASHROOM + " = ?, "
-//                + Columns.OPEN_TERRACE + " = ?, "
-//                + Columns.IS_AVAILABLE + " = ?, "
-//                + Columns.IS_RESERVED + " = ?, "
-//                + Columns.IS_SOLD + " = ? WHERE " 
-//                + Columns.ID + " = ?";
-//        jdbcTemplate.update(sqlQuery, new Object[]{
-//            inventory.getProjectId(),
-//            inventory.getNoOfBhk(),
-//            inventory.getPropertyTypeId(),
-//            inventory.getTotalUnits(),
-//            inventory.getUnitNo(),
-//            inventory.getFloorNo(),
-//            inventory.getBuildingName(),
-//            inventory.getPricePerSqft(),
-//            inventory.getTotalArea(),
-//            inventory.getOfferedPrice(),
-//            inventory.getNoOfBalcony(),
-//            inventory.getNoOfWashroom(),
-//            inventory.getOpenTerrace(),
-//            inventory.getIsAvailable(),
-//            inventory.getIsReserved(),
-//            inventory.getIsSold()
-//        });
-//        inventory = findById(inventory.getId());
-//        return inventory;
-//    }
     public Inventory update(Inventory inventory) throws JsonProcessingException {
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.PROJECT_ID + "=?, "

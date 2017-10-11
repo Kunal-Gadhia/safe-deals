@@ -36,7 +36,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class AmenityService {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private AmenityDAL amenityDAL;
 
@@ -58,7 +57,7 @@ public class AmenityService {
     }
 
     public Boolean exportExcel() throws IOException {
-        logger.info("getExportExcel method is working");
+
         List<Amenity> rs = amenityDAL.findAllAmenities();
         System.out.println("result set excel sop" + rs);
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -91,63 +90,56 @@ public class AmenityService {
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.LOCATION);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
+
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
                     if (myCell != null) {
                         switch (myCell.getCellType()) {
                             case Cell.CELL_TYPE_BOOLEAN:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_NUMERIC:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_STRING:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_BLANK:
                                 break;
                             case Cell.CELL_TYPE_ERROR:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
-
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
         return cellVectorHolder;
 
     }

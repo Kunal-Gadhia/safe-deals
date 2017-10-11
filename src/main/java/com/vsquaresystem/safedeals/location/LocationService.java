@@ -81,88 +81,65 @@ public class LocationService {
         xssfrow.getCell(1).setCellValue("Location Id");
         xssfrow.getCell(2).setCellValue("Location Name");
         xssfrow.getCell(3).setCellValue("City Id");
-        //        List<Book> listBook = excelWriter.getListBook();
         String fileName = "/LocationMasterData.xls";
         String exportPath = attachmentUtils.getLocationExportAttachmentRootDirectory() + fileName;
-//        String str = FileUtils.readFileToString(exportPath) + fileName;
         System.out.println("exportPath" + exportPath);
-//        String excelFilePath = "/home/hp-pc/Downloads/LocationMasterData.xls";
-
-        //        excelWriter.writeExcel(listBook, excelFilePath);
-        //        Workbook workbook = new HSSFWorkbook();
-        //    Sheet sheet = workbook.createSheet();
         int rowCount = 0;
-
         for (Location aLocation : rs) {
             Row row = sheet.createRow(++rowCount);
             writeBook(aLocation, row);
         }
-
         try (FileOutputStream outputStream = new FileOutputStream(exportPath)) {
             workbook.write(outputStream);
         }
-
         return true;
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.LOCATION);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
                     if (myCell != null) {
                         switch (myCell.getCellType()) {
                             case Cell.CELL_TYPE_BOOLEAN:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_NUMERIC:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_STRING:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_BLANK:
                                 break;
                             case Cell.CELL_TYPE_ERROR:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
-
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
+
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
         return cellVectorHolder;
 
     }
@@ -196,8 +173,6 @@ public class LocationService {
         DataFormatter formatter = new DataFormatter();
         for (Iterator iterator = dataHolder.iterator(); iterator.hasNext();) {
             List list = (List) iterator.next();
-//            logger.info("list log 182", list.size());
-//             System.out.println("list sop 182 GET" + list);
             name = list.get(0).toString();
             description = list.get(1).toString();
             cityId = list.get(2).toString();
