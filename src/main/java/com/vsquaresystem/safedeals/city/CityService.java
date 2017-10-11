@@ -77,16 +77,9 @@ public class CityService {
         xssfrow.getCell(4).setCellValue("State Id");
         xssfrow.getCell(5).setCellValue("Latitude Id");
         xssfrow.getCell(6).setCellValue("Longitude Id");
-        //        List<Book> listBook = excelWriter.getListBook();
         String fileName = "/CityMasterData.xls";
         String exportPath = attachmentUtils.getCityExportAttachmentRootDirectory() + fileName;
-//        String str = FileUtils.readFileToString(exportPath) + fileName;
         System.out.println("exportPath" + exportPath);
-//        String excelFilePath = "/home/hp-pc/Downloads/LocationMasterData.xls";
-
-        //        excelWriter.writeExcel(listBook, excelFilePath);
-        //        Workbook workbook = new HSSFWorkbook();
-        //    Sheet sheet = workbook.createSheet();
         int rowCount = 0;
 
         for (City aLocation : rs) {

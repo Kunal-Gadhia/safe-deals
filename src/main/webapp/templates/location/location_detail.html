@@ -3,59 +3,59 @@
 <script>
     //Button Click Scroll Animation//
     $(".BasicInforLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicInformationDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicInformationDIV").offset().top},
+        'slow');
     });
     $(".NeighborhoodLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".NeighborhoodDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".NeighborhoodDIV").offset().top},
+        'slow');
     });
     $(".WorkLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".DevelopmentLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".PlacesDIV").offset().top},
+        'slow');
     });
     $(".KeyLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".KeyDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".KeyDIV").offset().top},
+        'slow');
     });
     $(".BasicLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicDIV").offset().top},
+        'slow');
     });
     $(".LuxuryLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".LuxuryDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".LuxuryDIV").offset().top},
+        'slow');
     });
     $(".ReportsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ReportsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ReportsDIV").offset().top},
+        'slow');
     });
     $(".ForcastLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ForcastDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".ForcastDIV").offset().top},
+        'slow');
     });
     $(".RiskLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".RiskDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".RiskDIV").offset().top},
+        'slow');
     });
     $(".FindingsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".FindingsDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".FindingsDIV").offset().top},
+        'slow');
     });
     //Button Click Scroll Animation//
 </script>
@@ -153,25 +153,31 @@
                             <tbody>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-map-signs"></i>CATEGORY OF LOCATION</td>
-                                    <td data-title="Name">Attached To City</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
-                                    <td data-title="Name">10,000(as per survey 2011)</td>
-                                    <!--<td data-title="Name">{{location.population}}</td>-->
-                                </tr>
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
-                                    <td data-title="Name">Residential
-                                        <!--                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
-                                                                                    <li>{{locationCategory.name}}</li>
-                                                                                </ul>-->
+                                    <td data-title="Name">
+                                        <ul ng-repeat="locationCategory in locationCategoryDisplay">
+                                            <li>{{locationCategory.name}}</li>
+                                        </ul>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td data-title="ID"><i class="fa fa-user"></i>POPULATION</td>
+                                    <td data-title="Name">{{location.population}}</td>
+                                    <!--<td data-title="Name">{{location.population}}</td>-->
+                                </tr>
+                                <!--                                <tr>
+                                                                    <td data-title="ID"><i class="fa fa-map-o"></i>LOCATION IS KNOWN FOR</td>
+                                                                    <td data-title="Name">Residential
+                                                                                                                <ul ng-repeat="locationCategory in locationCategoryDisplay">
+                                                                                                                    <li>{{locationCategory.name}}</li>
+                                                                                                                </ul>
+                                                                    </td>
+                                                                </tr>-->
+                                <tr>
                                     <td data-title="ID"><i class="fa fa-rupee"></i>CURRENT PRICE RANGE FOR M.V</td>
-                                    <td data-title="Name">&#8377. 2000 - &#8377.3000 Per Sq. Ft.</td>
-                                    <!--<td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>-->
+
+                                    <!--                                    <td data-title="Name">Rs.2000 - Rs.3000 Per Sq. Ft.</td>-->
+                                    <td data-title="Name">Rs. {{lowestPriceAverage}} - Rs. {{highestPriceAverage}} Per Sq. Ft.</td>
+
                                 </tr>
 
                                 <tr>
@@ -179,48 +185,50 @@
                                     <td data-title="Name">&#8377 4000 - &#8377 6000 Per Month</td>
                                 </tr>
 
-                                <tr>
-                                    <td data-title="ID"><i class="fa fa-rupee"></i>TYPE OF PROPERTIES</td>
-                                    <td data-title="Name">1BHK/2BHK/3BHK</td>
-                                </tr>
+                                <!--                                <tr>
+                                                                    <td data-title="ID"><i class="fa fa-rupee"></i>TYPE OF PROPERTIES</td>
+                                                                    <td data-title="Name">                                        
+                                                                    </td>
+                                                                </tr>-->
 
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-glass"></i>SOURCE OF WATER</td>
-                                    <td data-title="Name">Borewell
-                                        <!--                                        <ul>
-                                                                                    <li ng-show="location.corporationSupply">Corporation Supply</li>
-                                                                                    <li ng-show="location.openWell">Open Well</li>
-                                                                                    <li ng-show="location.borewell">Bore Well</li>
-                                                                                </ul>-->
+                                    <td data-title="Name">
+                                        <ul>
+                                            <li ng-show="location.corporationSupply">Corporation Supply</li>
+                                            <li ng-show="location.openWell">Open Well</li>
+                                            <li ng-show="location.borewell">Bore Well</li>
+                                        </ul>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>MAJOR APPROACH ROAD</td>
-                                    <td data-title="Name">Hingna Road</td>
-                                    <!--<td data-title="Name">{{location.roadObject.name}}</td>-->
+                                    <!--<td data-title="Name">Hingna Road</td>-->
+                                    <td data-title="Name">{{location.roadObject.name}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>TYPE AND SIZE OF APPROACH ROAD</td>
-                                    <td data-title="Name">18 Mtr, Tar Road
-                                        <!--                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
-                                                                                <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
-                                                                                <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>-->
+                                    <td data-title="Name">
+                                        {{location.roadObject.size}} Mtr, <span ng-if="location.roadObject.roadType === 'TAR_ROAD'">Tar Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'CEMENT_ROAD'">Cement Road</span>
+                                        <span ng-if="location.roadObject.roadType === 'KACCHA_ROAD'">Kaccha Road</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-road"></i>DISTANCE OF MAIN ROAD</td>
-                                    <td data-title="Name">3 KM</td>
-                                    <!--<td data-title="Name">{{location.distance}} {{location.unitObject.abbreviation}}</td>-->
+                                    <!--<td data-title="Name">3 KM</td>-->
+                                    <td data-title="Name">{{location.distance}} {{location.unitObject.abbreviation}}</td>
                                 </tr>
                                 <tr>
                                     <td data-title="ID"><i class="fa fa-bus"></i>AVAILABILITY OF PUBLIC TRANSPORT</td>
-                                    <td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro
-                                        <!--                                        <ul>
-                                                                                    <li ng-show="location.bus">Bus</li>
-                                                                                    <li ng-show="location.auto">Auto</li>
-                                                                                    <li ng-show="location.taxi">Taxi</li>
-                                                                                    <li ng-show="location.metro">Metro</li>
-                                                                                </ul>-->
+                                    <!--<td data-title="Name">Auto Rikshaw, Taxi, City Bus, Metro-->
+                                    <td data-title="Name">
+                                        <ul>
+                                            <li ng-show="location.bus">Bus</li>
+                                            <li ng-show="location.auto">Auto</li>
+                                            <li ng-show="location.taxi">Taxi</li>
+                                            <li ng-show="location.metro">Metro</li>
+                                        </ul>
                                     </td>
                                 </tr>
                             </tbody>

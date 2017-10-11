@@ -50,8 +50,7 @@ public class ReadyReckonerService {
     @Transactional(readOnly = false)
     public Boolean insertAttachments(MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         Readyreckoner rr = new Readyreckoner();
-//        logger.info("attachmentMultipartFile in service Line31{}", attachmentMultipartFile);
-//        System.out.println("attachmentMultipartFile" + attachmentMultipartFile);
+
         File outputFile = attachmentUtils.storeAttachmentByAttachmentType(
                 attachmentMultipartFile.getOriginalFilename(),
                 attachmentMultipartFile.getInputStream(),
@@ -61,23 +60,23 @@ public class ReadyReckonerService {
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
+
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.READY_RECKONER);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
+
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
@@ -102,34 +101,27 @@ public class ReadyReckonerService {
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
+
         return cellVectorHolder;
 
     }
 
     private boolean saveToDatabase(Vector dataHolder) throws IOException {
-//        logger.info("save to database");
-//        System.out.println("save to database");
-//        System.out.println("save to database" + dataHolder);
-//        logger.info("save to database", dataHolder);
+
         readyReckonerDAL.truncateAll();
         dataHolder.remove(0);
-//         logger.info("line1235SAVE::", dataHolder);
+
         Readyreckoner readyReckoner = new Readyreckoner();
         String id = "";
         String locationId = "";
@@ -147,20 +139,12 @@ public class ReadyReckonerService {
             rrRateLand = list.get(3).toString();
             rrRatePlot = list.get(4).toString();
             rrRateApartment = list.get(5).toString();
-            //List<String> strList = new ArrayList<String>(Arrays.asList(locationCategories.split(",")));
-           // List<Integer> numberList = new ArrayList<Integer>();
-//            for (String number : strList) {
-//                numberList.add(Integer.parseInt(number));
-//            }
-
             try {
                 readyReckoner.setLocationId(Integer.parseInt(locationId));
                 readyReckoner.setRrYear(Double.parseDouble(rrYear));
                 readyReckoner.setRrRateLand(Double.parseDouble(rrRateLand));
                 readyReckoner.setRrRatePlot(Double.parseDouble(rrRatePlot));
                 readyReckoner.setRrRateApartment(Double.parseDouble(rrRateApartment));
-//                System.out.println("location line167check" + location);
-//                System.out.println(numberList);
                 readyReckonerDAL.insert(readyReckoner);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -204,20 +188,6 @@ public class ReadyReckonerService {
                     System.out.println("JOptionPane closed");
                     break;
             }
-            //            if (response == JOptionPane.NO_OPTION) {
-            //                System.out.println("No button clicked");
-            //            } else if (response == JOptionPane.YES_OPTION) {
-            //                saveToDatabase(checkCellVectorHolder);
-            //                System.out.println("Yes button clicked");
-            //                if (saveToDatabase(checkCellVectorHolder) == true) {
-            //                    JOptionPane.showMessageDialog(parent, "Saved succesfully");
-            //                    return true;
-            //                } else {
-            //                    JOptionPane.showMessageDialog(parent, "unsuccesfull");
-            //                }
-            //            } else if (response == JOptionPane.CLOSED_OPTION) {
-            //                System.out.println("JOptionPane closed");
-            //            }
 
         } else {
             System.out.println("No selected");

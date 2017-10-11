@@ -64,23 +64,23 @@ public class RawMarketPriceService {
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
+
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.RAW_MARKET_PRICE);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
+
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+            
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
@@ -105,48 +105,41 @@ public class RawMarketPriceService {
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
+
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
         return cellVectorHolder;
 
     }
 
     public Boolean checkExistingData() throws IOException {
-//        logger.info("check ke andar hai bhai??");
+
         Boolean a = true;
         Result result = new Result();
         result.response = "true";
         Vector checkCellVectorHolder = read();
-//        logger.info("checkCellVectorHolder line116 :{}", checkCellVectorHolder);
-//        logger.info("read in check line117 :{}", read());
+
         int excelSize = checkCellVectorHolder.size() - 1;
-//        System.out.println("excelSize" + excelSize);
+
         List<RawMarketPrice> rs = rawMarketPriceDAL.getAll();
         JFrame parent = new JFrame();
 
-//        System.out.println("rs" + rs);
         int listSize = rs.size();
-//        logger.info("rsss:::::", listSize);
-//        System.out.println("rsss:::::" + listSize);
+
         if (excelSize == listSize || excelSize > listSize) {
 
         } else {
             System.out.println("No selected");
-//                return false;
+
         }
         return true;
     }
@@ -156,7 +149,7 @@ public class RawMarketPriceService {
         Vector dataHolder = read();
         rawMarketPriceDAL.truncateAll();
         dataHolder.remove(0);
-//         logger.info("line1235SAVE::", dataHolder);
+
         RawMarketPrice rawMarketPrice = new RawMarketPrice();
         String id = "";
         String cityId = "";
@@ -243,8 +236,6 @@ public class RawMarketPriceService {
                 rawMarketPrice.setPopulation(Integer.parseInt(population));
                 rawMarketPrice.setMigrationRate(Integer.parseInt(migrationRate));
                 rawMarketPrice.setIsCommercialCenter((Boolean.parseBoolean(isCommercialCenter)));
-//                System.out.println("location line167check" + location);
-//                System.out.println(numberList);
                 rawMarketPriceDAL.insert(rawMarketPrice);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -32,45 +32,45 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class MarketPriceService {
-    
-     private final Logger logger = LoggerFactory.getLogger(getClass());
-     
-     @Autowired
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Autowired
     private MarketPriceDAL marketPriceDAL;
-     
+
     @Autowired
     private AttachmentUtils attachmentUtils;
-    
+
     @Transactional(readOnly = false)
     public Boolean insertAttachments(MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
-//        logger.info("attachmentMultipartFile in service Line31{}", attachmentMultipartFile);
-//        System.out.println("attachmentMultipartFile" + attachmentMultipartFile);
         File outputFile = attachmentUtils.storeAttachmentByAttachmentType(
                 attachmentMultipartFile.getOriginalFilename(),
                 attachmentMultipartFile.getInputStream(),
                 AttachmentUtils.AttachmentType.MARKET_PRICE
         );
         return outputFile.exists();
-    };
+    }
+
+    ;
     
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
+
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.MARKET_PRICE);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
+
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
@@ -95,14 +95,11 @@ public class MarketPriceService {
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
                 logger.info("Line Line108 {}" + list);
                 System.out.println("MAINlist" + list);
@@ -111,13 +108,11 @@ public class MarketPriceService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
+
         return cellVectorHolder;
 
     }
-    
-    
-    
+
     public Boolean checkExistingData() throws IOException {
         Vector checkCellVectorHolder = read();
         int excelSize = checkCellVectorHolder.size() - 1;
@@ -125,20 +120,18 @@ public class MarketPriceService {
         JFrame parent = new JFrame();
         Boolean val;
         int listSize = rs.size();
-        if (excelSize == listSize || excelSize > listSize) {            
+        if (excelSize == listSize || excelSize > listSize) {
             val = true;
-        } 
-                else
-            {
-                System.out.println("No selected");
-                val = false;
-            }
-        
+        } else {
+            System.out.println("No selected");
+            val = false;
+        }
+
         return val;
     }
-    
+
     public boolean saveExcelToDatabase() throws IOException {
-//        System.out.println("inside saveExcelToDatabase");
+
         Vector dataHolder = read();
         marketPriceDAL.truncateAll();
         dataHolder.remove(0);
@@ -169,12 +162,12 @@ public class MarketPriceService {
         String population = "";
         String migrationRate = "";
         String isCommercialCenter = "";
-//        System.out.println(dataHolder);
+
         DataFormatter formatter = new DataFormatter();
         for (Iterator iterator = dataHolder.iterator(); iterator.hasNext();) {
-//            System.out.println("inside for each loop");
+
             List list = (List) iterator.next();
-//            logger.info("list for save", list);
+
             System.out.println("list for save" + list);
             cityId = list.get(1).toString();
             locationId = list.get(2).toString();
@@ -188,31 +181,27 @@ public class MarketPriceService {
             mpResidentialHighest = list.get(10).toString();
             mpCommercialLowest = list.get(11).toString();
             mpCommercialHighest = list.get(12).toString();
-//            List<String> strList = new ArrayList<String>(Arrays.asList(locationCategories.split(",")));
+
             List<Integer> numberList = new ArrayList<Integer>();
-//            for (String number : strList) {
-//                numberList.add(Integer.parseInt(number));
-//            }
 
             try {
-//                System.out.println("Inside try catch check");
+
                 marketPrice.setCityId(Integer.parseInt(cityId));
                 marketPrice.setLocationId(Integer.parseInt(locationId));
                 marketPrice.setYear(Integer.parseInt(year));
                 marketPrice.setMonth(Integer.parseInt(month));
                 marketPrice.setMpAgriLandLowest(Double.parseDouble(mpAgriLandLowest));
                 marketPrice.setMpAgriLandHighest(Double.parseDouble(mpAgriLandHighest));
-//                marketPrice.setMpAgriLandAverage(0.0);
+
                 marketPrice.setMpPlotLowest(Double.parseDouble(mpPlotLowest));
                 marketPrice.setMpPlotHighest(Double.parseDouble(mpPlotHighest));
-//                marketPrice.setMpPlotAverage(0.0);
+
                 marketPrice.setMpResidentialLowest(Double.parseDouble(mpResidentialLowest));
                 marketPrice.setMpResidentialHighest(Double.parseDouble(mpResidentialHighest));
-//                marketPrice.setMpResidentialAverage(0.0);
+
                 marketPrice.setMpCommercialLowest(Double.parseDouble(mpCommercialLowest));
                 marketPrice.setMpCommercialHighest(Double.parseDouble(mpCommercialHighest));
-//                marketPrice.setMpCommercialAverage(0.0);
-//                System.out.println("try catch market price"+ marketPrice);
+
                 marketPriceDAL.insert(marketPrice);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -223,5 +212,5 @@ public class MarketPriceService {
         return true;
 
     }
-     
+
 }

@@ -13,8 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class ImageService {
-
-    public final Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     AttachmentUtils attachmentUtils;
@@ -53,7 +49,6 @@ public class ImageService {
         List<String> attachments = new ArrayList<>();
         attachments.add(outputFile.getName().toString());
         image.setPhotoPath(attachments);
-//
         imageDAL.update(image);
         return image;
     }

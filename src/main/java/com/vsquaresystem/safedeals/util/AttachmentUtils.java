@@ -123,11 +123,11 @@ public class AttachmentUtils {
      * @return the {File} instance representing the attachment root directory
      */
     public File getAttachmentRootDirectory() {
-//        System.out.println("are we inside getAttachmentRootDirectory");
+
         Setting setting = settingDAL.findByKey(SettingKey.ATTACHMENT_ROOT_PATH);
-//        System.out.println("setting" + setting);
+
         File rootDir = new File(setting.getSettingValue());
-//        System.out.println("rootDir" + rootDir);
+
         if (!rootDir.exists()) {
             logger.info("attachment root directory {} does not exist, creating...", rootDir);
             rootDir.mkdirs();
@@ -141,10 +141,6 @@ public class AttachmentUtils {
         System.out.println("setting" + setting);
         String rootDir = setting.getSettingValue();
         System.out.println("rootDir" + rootDir);
-//        if (!rootDir.exists()) {
-//            logger.info("attachment root directory {} does not exist, creating...", rootDir);
-//            rootDir.mkdirs();
-//        }
         return rootDir;
     }
 
@@ -163,10 +159,6 @@ public class AttachmentUtils {
         System.out.println("setting" + setting);
         String rootDir = setting.getSettingValue();
         System.out.println("rootDir" + rootDir);
-//        if (!rootDir.exists()) {
-//            logger.info("attachment root directory {} does not exist, creating...", rootDir);
-//            rootDir.mkdirs();
-//        }
         return rootDir;
     }
 
@@ -185,10 +177,6 @@ public class AttachmentUtils {
         System.out.println("setting" + setting);
         String rootDir = setting.getSettingValue();
         System.out.println("rootDir" + rootDir);
-//        if (!rootDir.exists()) {
-//            logger.info("attachment root directory {} does not exist, creating...", rootDir);
-//            rootDir.mkdirs();
-//        }
         return rootDir;
     }
 
@@ -205,11 +193,8 @@ public class AttachmentUtils {
      * @throws IOException when the {AttachmentType} specified is not recognized
      */
     public File getDirectoryByAttachmentType(AttachmentType attachmentType) throws IOException {
-//        logger.info("are we in getDirectoryByAttachmentType");
-//        System.out.println("are we in getDirectoryByAttachmentType");
+
         File attachmentDir = null;
-//        System.out.println("attachmentType" + attachmentType);
-//        logger.info("attachmentType", attachmentType);
 
         switch (attachmentType) {
             case RAW_READY_RECKONER:
@@ -227,10 +212,7 @@ public class AttachmentUtils {
             case READY_RECKONER:
                 attachmentDir = new File(getAttachmentRootDirectory(), READY_RECKONER_ATTACHMENT_DIR_NAME);
                 break;
-//            case VIDEO:
-//                attachmentDir = new File(getAttachmentRootDirectory(), VIDEO_ATTACHMENT_DIR_NAME);
-//                logger.info("attachmentDir Ruchita line n0 101");
-//                break;
+
             case LOCATION:
                 attachmentDir = new File(getAttachmentRootDirectory(), LOCATION_ATTACHMENT_DIR_NAME);
                 logger.info("attachmentDir Ruchita line n0 101");
@@ -290,27 +272,6 @@ public class AttachmentUtils {
     }
 
     /**
-     * TODO WRITE DOCS HERE
-     *
-     * For Example: /foo/bar/visa/156 for {AttachmentType.VISA} and a {Visa}
-     * with id 156
-     *
-     * @param attachmentType
-     * @param videoId
-     * @return
-     * @throws IOException
-     */
-//    public File getDirectoryByAttachmentTypeAndVideoId(AttachmentType attachmentType, Integer videoId) throws IOException {
-//        File videoDir = new File(getDirectoryByAttachmentType(attachmentType), videoId.toString());
-//
-//        if (!videoDir.exists()) {
-//            videoDir.mkdirs();
-//            
-//        }
-////        logger.info("getDirectoryByAttachmentTypeAndVideoId");
-//        return videoDir;
-//    }
-    /**
      *
      * @param outputFilename
      * @param inputStream
@@ -327,73 +288,17 @@ public class AttachmentUtils {
             throws FileExistsException, IOException {
         logger.info("storeAttachmentByAttachmentType {} ..", attachmentType);
         File parentDir = getDirectoryByAttachmentType(attachmentType);
-        //TODO sanitize the filename before using it like this.
-        //TODO also make sure the file size is within limits here
         File outputFile = new File(parentDir, outputFilename);
         logger.info("outputFile" + outputFile);
         logger.info("parentDir" + parentDir);
         String filePath = outputFile.getPath();
         logger.info("filePath ::::::::::" + filePath);
 
-//        
-//         if (outputFile.exists()) {
-//            throw new FileExistsException(outputFile);
-//        }
         FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//        Vector dataHolder = read(filePath);
-//        checkExistingData(dataHolder);
-//        System.out.println("are we going in read method?");
-//        logger.info("dataHolder ::::::::::" + dataHolder);
+
         return outputFile;
     }
 
-    /**
-     *
-     * @param outputFilename
-     * @param inputStream
-     * @param attachmentType
-     * @param videoId
-     * @return
-     * @throws FileExistsException
-     * @throws IOException
-     */
-//    public File storeAttachmentByAttachmentTypeAndVideoId(
-//            String outputFilename,
-//            InputStream inputStream,
-//            AttachmentType attachmentType,
-//            Integer videoId)
-//            throws FileExistsException, IOException {
-//
-//        File parentDir = getDirectoryByAttachmentTypeAndVideoId(attachmentType, videoId);
-//        //TODO sanitize the filename before using it like this.
-//        //TODO also make sure the file size is within limits here
-//        File outputFile = new File(parentDir, outputFilename);
-//
-//        if (outputFile.exists()) {
-//            throw new FileExistsException(outputFile);
-//        }
-//
-//        FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//        System.out.println("storeAttachmentByAttachmentTypeAndVideoId");
-//        return outputFile;
-//    }
-//    public boolean deleteAttachmentByAttachmentTypeAndVideoId(
-//            String filename,
-//            AttachmentType attachmentType,
-//            Integer videoId)
-//            throws FileNotFoundException, IOException {
-//
-//        File parentDir = getDirectoryByAttachmentTypeAndVideoId(attachmentType, videoId);
-//        //TODO sanitize the filename before using it like this.
-//        //TODO also make sure the file size is within limits here
-//        File toBeDeletedFile = new File(parentDir, filename);
-//
-//        if (!toBeDeletedFile.exists()) {
-//            throw new FileNotFoundException(toBeDeletedFile.getName());
-//        }
-//
-//        return toBeDeletedFile.delete();
-//    }
     public File getDirectoryByAttachmentTypeAndEntityId(AttachmentType attachmentType, Integer entityId, Boolean view) throws IOException {
         File entityDir = new File(getDirectoryByAttachmentType(attachmentType), entityId.toString());
         if (view == true) {
@@ -405,10 +310,10 @@ public class AttachmentUtils {
                 String[] items = entityDir.list();
                 for (String s : items) {
                     File currentFile = new File(entityDir.getPath(), s);
-                    logger.info("Current File is **********"+currentFile);
-//                    currentFile.delete();
+                    logger.info("Current File is **********" + currentFile);
+
                 }
-//                entityDir.mkdirs();
+
             }
             return entityDir;
         }
@@ -417,8 +322,6 @@ public class AttachmentUtils {
     ////////////////////////////////////////////////////////////////////////////
     public File getDirectoryByAttachmentTypeAndEntityIdAndDocumentType(AttachmentType attachmentType, DocumentType documentType, Integer entityId, Boolean view) throws IOException {
         File documentDir = null;
-//        System.out.println("attachmentType" + attachmentType);
-//        logger.info("attachmentType", attachmentType);
 
         switch (documentType) {
             case MUTATION_COPY:
@@ -502,10 +405,10 @@ public class AttachmentUtils {
                 String[] items = entityDir.list();
                 for (String s : items) {
                     File currentFile = new File(entityDir.getPath(), s);
-                    logger.info("Current File is **********"+currentFile);
-//                    currentFile.delete();
+                    logger.info("Current File is **********" + currentFile);
+
                 }
-//                entityDir.mkdirs();
+
             }
             return entityDir;
         }
@@ -531,16 +434,15 @@ public class AttachmentUtils {
             throws FileExistsException, IOException {
 
         File parentDir = getDirectoryByAttachmentTypeAndEntityId(attachmentType, entityId, isView);
-        //TODO sanitize the filename before using it like this.
-        //TODO also make sure the file size is within limits here
+
         File outputFile = new File(parentDir, outputFilename);
         if (outputFile.exists()) {
             outputFile.delete();
             FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//            File outputFile = new File(parentDir, outputFilename);
+
         } else {
             FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//            File outputFile = new File(parentDir, outputFilename);
+
         }
         return outputFile;
     }
@@ -556,16 +458,15 @@ public class AttachmentUtils {
             throws FileExistsException, IOException {
 
         File parentDir = getDirectoryByAttachmentTypeAndEntityIdAndDocumentType(attachmentType, documentType, entityId, isView);
-        //TODO sanitize the filename before using it like this.
-        //TODO also make sure the file size is within limits here
+
         File outputFile = new File(parentDir, outputFilename);
         if (outputFile.exists()) {
             outputFile.delete();
             FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//            File outputFile = new File(parentDir, outputFilename);
+
         } else {
             FileCopyUtils.copy(inputStream, new FileOutputStream(outputFile));
-//            File outputFile = new File(parentDir, outputFilename);
+
         }
         return outputFile;
     }
@@ -579,8 +480,6 @@ public class AttachmentUtils {
             throws FileNotFoundException, IOException {
 
         File parentDir = getDirectoryByAttachmentTypeAndEntityId(attachmentType, entityId, isView);
-        //TODO sanitize the filename before using it like this.
-        //TODO also make sure the file size is within limits here
         File toBeDeletedFile = new File(parentDir, filename);
 
         if (!toBeDeletedFile.exists()) {

@@ -40,12 +40,6 @@ public class TeamService {
 
     public Team insertAttachments(Integer teamId, MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         Team team = teamDAL.findById(teamId);
-//        if (team.getAttachment().get(0).length()>0) {
-//            boolean b = attachmentUtils.deleteAttachmentByAttachmentTypeAndEntityId(
-//                    team.getAttachment().get(0).toString(),
-//                    AttachmentUtils.AttachmentType.TESTIMONIAL,
-//                    team.getId());
-//        }
         Boolean isView = false;
         File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
                 attachmentMultipartFile.getOriginalFilename(),

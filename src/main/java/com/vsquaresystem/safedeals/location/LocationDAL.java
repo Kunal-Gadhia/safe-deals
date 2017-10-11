@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class LocationDAL {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static final class Columns {
 
@@ -156,7 +152,6 @@ public class LocationDAL {
     }
 
     public Location insert(Location location) throws JsonProcessingException {
-        logger.info("location object in DAL line95 {}", location);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Columns.NAME, location.getName());
         parameters.put(Columns.CITY_ID, location.getCityId());
@@ -334,11 +329,6 @@ public class LocationDAL {
                     location.getIsCommercialCenter(),
                     location.getDistanceFromCommercialCenter(),
                     location.getDemandPotential().name(),
-                    //                     if (location.getCorporationSupply() == null) {
-                    //            parameters.put(Columns.CORPORATIN_SUPPLY, 0);
-                    //        } else {
-                    //            parameters.put(Columns.CORPORATIN_SUPPLY, location.getCorporationSupply());
-                    //        }                    
                     location.getPowerPlant(),
                     location.getMedicineIndustry(),
                     location.getSteelIndustry(),
@@ -386,7 +376,7 @@ public class LocationDAL {
                 ObjectMapper mapper = new ObjectMapper();
                 List<Integer> locationCategories = mapper.readValue(locationCategoryList, new TypeReference<List<Integer>>() {
                 });
-//                logger.info("locationCategories:{}", locationCategories);
+
                 location.setLocationCategories(locationCategories);
 
             } catch (IOException ex) {

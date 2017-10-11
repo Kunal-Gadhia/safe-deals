@@ -42,8 +42,6 @@ public class RawReadyReckonerService {
     @Transactional(readOnly = false)
     public Boolean insertAttachments(MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         RawReadyReckoner rr = new RawReadyReckoner();
-//        logger.info("attachmentMultipartFile in service Line31{}", attachmentMultipartFile);
-//        System.out.println("attachmentMultipartFile" + attachmentMultipartFile);
         File outputFile = attachmentUtils.storeAttachmentByAttachmentType(
                 attachmentMultipartFile.getOriginalFilename(),
                 attachmentMultipartFile.getInputStream(),
@@ -53,23 +51,23 @@ public class RawReadyReckonerService {
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
+
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.RAW_READY_RECKONER);
         File[] listofFiles = excelFile.listFiles();
         String fileName = excelFile + "/" + listofFiles[0].getName();
-//        logger.info("fileeeeeeeeeee" + fileName);
+
         Vector cellVectorHolder = new Vector();
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
@@ -94,34 +92,28 @@ public class RawReadyReckonerService {
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
+
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
+
         return cellVectorHolder;
 
     }
 
     private boolean saveToDatabase(Vector dataHolder) throws IOException {
-//        logger.info("save to database");
-//        System.out.println("save to database");
-//        System.out.println("save to database" + dataHolder);
-//        logger.info("save to database", dataHolder);
+
         rawReadyReckonerDAL.truncateAll();
         dataHolder.remove(0);
-//         logger.info("line1235SAVE::", dataHolder);
+
         RawReadyReckoner rawReadyReckoner = new RawReadyReckoner();
         String id = "";
         String cityId = "";
@@ -163,8 +155,7 @@ public class RawReadyReckonerService {
                 rawReadyReckoner.setRrRateLand(Double.parseDouble(rrRateLand));
                 rawReadyReckoner.setRrRatePlot(Double.parseDouble(rrRatePlot));
                 rawReadyReckoner.setRrRateApartment(Double.parseDouble(rrRateApartment));
-//                System.out.println("location line167check" + location);
-//                System.out.println(numberList);
+
                 rawReadyReckonerDAL.insert(rawReadyReckoner);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -177,27 +168,24 @@ public class RawReadyReckonerService {
     }
 
     public Boolean checkExistingDataa() throws IOException {
-//        logger.info("check ke andar hai bhai??");
+
         Vector checkCellVectorHolder = read();
-//        logger.info("checkCellVectorHolder line116 :{}", checkCellVectorHolder);
-//        logger.info("read in check line117 :{}", read());
+
         int excelSize = checkCellVectorHolder.size() - 1;
-//        System.out.println("excelSize" + excelSize);
         List<RawReadyReckoner> rs = rawReadyReckonerDAL.getAll();
         JFrame parent = new JFrame();
 
         System.out.println("rs" + rs);
         int listSize = rs.size();
-//        logger.info("rsss:::::", listSize);
-//        System.out.println("rsss:::::" + listSize);
+
         if (excelSize == listSize || excelSize > listSize) {
             JDialog.setDefaultLookAndFeelDecorated(true);
             int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            switch(response){
+            switch (response) {
                 case JOptionPane.NO_OPTION:
-                     System.out.println("No button clicked");
-                     JOptionPane.showMessageDialog(parent, "upload Cancelled");
+                    System.out.println("No button clicked");
+                    JOptionPane.showMessageDialog(parent, "upload Cancelled");
                     break;
                 case JOptionPane.YES_NO_OPTION:
                     saveToDatabase(checkCellVectorHolder);
@@ -208,20 +196,6 @@ public class RawReadyReckonerService {
                     System.out.println("JOptionPane closed");
                     break;
             }
-            //            if (response == JOptionPane.NO_OPTION) {
-            //                System.out.println("No button clicked");
-            //            } else if (response == JOptionPane.YES_OPTION) {
-            //                saveToDatabase(checkCellVectorHolder);
-            //                System.out.println("Yes button clicked");
-            //                if (saveToDatabase(checkCellVectorHolder) == true) {
-            //                    JOptionPane.showMessageDialog(parent, "Saved succesfully");
-            //                    return true;
-            //                } else {
-            //                    JOptionPane.showMessageDialog(parent, "unsuccesfull");
-            //                }
-            //            } else if (response == JOptionPane.CLOSED_OPTION) {
-            //                System.out.println("JOptionPane closed");
-            //            }
 
         } else {
             System.out.println("No selected");
