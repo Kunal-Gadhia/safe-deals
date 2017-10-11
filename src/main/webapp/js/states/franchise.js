@@ -194,7 +194,7 @@ angular.module("safedeals.states.franchise", [])
                     $state.go('admin.masters_franchise', null, {'reload': true});
                 });
             };
-        }); /*AmenityDetailService, LocationService, CityService, */
+        }); 
 
 
 

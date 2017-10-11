@@ -307,34 +307,8 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }).$promise;
             };
 
-//            $scope.$watch('editableLocation.name', function (name) {
-//                console.log("Name :" + name);
-//                LocationService.findByName({'name': name}).$promise.catch(function (response) {
-//                    if (response.status === 500) {
-//                        $scope.editableLocation.repeatName = false;
-//                    }
-//                    else if (response.status === 404) {
-//                        $scope.editableLocation.repeatName = false;
-//                    }
-//                    else if (response.status === 400) {
-//                        $scope.editableLocation.repeatName = false;
-//                    }
-//                }).then(function (location) {
-//                    if (location.name !== null) {
-//                        $scope.editableLocation.repeatName = true;
-//                    }
-//                    ;
-//                });
-//            });
-
             $scope.saveLocation = function (location) {
                 console.log("Saved location", location);
-//                $scope.locArray = [];
-//                angular.forEach(location.locationCategoriesObject, function (locationCategoryData) {
-//                    $scope.locArray.push(locationCategoryData.id);
-////                    location.locationCategories.push(locationCategoryData.id);
-//                });
-//                location.locationCategories = _.uniq($scope.locArray);
                 LocationService.save(location, function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
@@ -365,24 +339,6 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     }
                 });
             });
-
-            ///////////////////////////////////////////Multiselect
-//            $scope.editableLocation.locationCategoriesObject = [];
-//            $scope.example14settings = {
-//                scrollableHeight: '200px',
-//                scrollable: true,
-//                enableSearch: true
-//            };
-//            LocationCategoryService.query(function (locationCategory) {
-//                $scope.example14data = locationCategory;
-//            });
-//            $scope.example2settings = {
-//                displayProp: 'name'
-//            };
-            ///////////////////////////////////////////
-
-
-
         })
         .controller('LocationEditController', function (CityService, AmenityDetailService, UnitService, RoadService, SafedealZoneService, LocationTypeService, LocationService, LocationCategoryService, $scope, $stateParams, $state, $filter, paginationLimit) {
             $scope.editableLocation = LocationService.get({
@@ -591,130 +547,14 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                 }).$promise;
             };
 
-//            $scope.$watch('editableLocation.locationTypeId', function (locationTypeId) {
-//                console.log("locationTypeId %O", locationTypeId);
-//                LocationTypeService.get({
-//                    'id': locationTypeId
-//                }, function (locationTypeObject) {
-//                    if (locationTypeObject.name === "WITHIN_CITY") {
-//                        $scope.editableLocation.auto = true;
-//                        $scope.editableLocation.bus = true;
-//                        $scope.editableLocation.taxi = true;
-//                        $scope.editableLocation.metro = true;
-//                        $scope.editableLocation.corporationSupply = true;
-//                        $scope.editableLocation.borewell = true;
-//                        $scope.editableLocation.openWell = true;
-//                    }
-//                    else {
-//                        $scope.editableLocation.auto = false;
-//                        $scope.editableLocation.bus = false;
-//                        $scope.editableLocation.taxi = false;
-//                        $scope.editableLocation.metro = false;
-//                        $scope.editableLocation.corporationSupply = false;
-//                        $scope.editableLocation.borewell = false;
-//                        $scope.editableLocation.openWell = false;
-//                    }
-//                });
-//
-//
-//            });
-
-//            $scope.cities = CityService.findAllCities();
-////            $scope.safedealZones = SafedealZoneService.query();
-////            $scope.locationTypes = LocationTypeService.query();
-//            console.log("$scope.locationTypes", $scope.locationTypes);
-//            $scope.editableLocation = LocationService.get({'id': $stateParams.locationId}, function (location) {
-//
-//            });
-//            LocationTypeService.query(function (locationTypes) {
-//                console.log("Location Types :%O", locationTypes);
-//                $scope.locationTypesList = locationTypes;
-//            });
-//            SafedealZoneService.query(function (sdZone) {
-//                $scope.safedealsZoneList = sdZone;
-//            });
-//
-////            $scope.preSelected2 = [];
-////            $scope.editableLocation.$promise.then(function (data) {
-////
-////                $scope.editableLocation.locationCategoriesObjects = [];
-////                console.log("data", data);
-////                console.log("$scope.editableLocation.locationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
-//////                $scope.editableLocation.optionalAttendiesObjects = [];
-////                angular.forEach(data.locationCategories, function (locationId) {
-////                    console.log("data.locationCategories", data.locationCategories);
-////                    console.log("data : locationId", locationId);
-////                    $scope.editableLocation.locationCategoriesObjects.push(LocationCategoryService.get({
-////                        'id': locationId
-////                    }));
-////                });
-////                $scope.preSelected = $scope.editableLocation.locationCategoriesObjects;
-////                console.log("$scope.preSelected", $scope.preSelected);
-////                console.log("$scope.editableLocationlocationCategoriesObjects", $scope.editableLocation.locationCategoriesObjects);
-////            });
-//
-//            $scope.searchLocationCategories = function (searchTerm) {
-//                console.log("Search Term :%O", searchTerm);
-//                return LocationCategoryService.findByNameLike({
-//                    'name': searchTerm
-//                }).$promise;
-//            };
-//            $scope.locationCategoriesDisplay = [];
-//            $scope.editableLocation.locationCategories = [];
-//            
-//            $scope.setLocationCategories = function (locationCategories) {
-//                $scope.locationCategoriesDisplay.push(locationCategories);
-//                console.log("Location Categories Display :%O", $scope.locationCategoriesDisplay);
-//                $scope.locationCategory = "";
-//                $scope.editableLocation.locationCategories.push(locationCategories.id);
-//            };
-//            $scope.removeLocationCategory = function (locationCategory) {
-//                console.log("Getting the thing :%O", locationCategory);
-//                var index = $scope.locationCategoriesDisplay.indexOf(locationCategory);
-//                var index1 = $scope.editableLocation.locationCategories.indexOf(locationCategory.id);
-//                $scope.locationCategoriesDisplay.splice(index, 1);
-//                $scope.editableLocation.locationCategories.splice(index1, 1);
-//                console.log("Updated Type Display :%O", $scope.locationCategoriesDisplay);
-//                console.log("Updated %O", $scope.editableLocation.locationCategories);
-//            };
-//            $scope.setCity = function (city) {
-//                $scope.editableLocation.cityId = city.id;
-//                $scope.editableLocation.city = city;
-//            };
-//            $scope.setRoad = function (road) {
-//                $scope.editableLocation.majorApproachRoad = road.id;
-//                $scope.editableLocation.road = road;
-//            };
-//            $scope.searchRoad = function (searchTerm) {
-//                return RoadService.findByNameLike({
-//                    'name': searchTerm
-//                }).$promise;
-//            };
-//            $scope.setLocationCategories = function (locationCategories) {
-//                //console.log("Array me locationCategory mila kya?", locationCategories);
-////                $scope.editableLocation.locationCategoryId = locationCategory.id;
-////                $scope.editableLocation.locationCategory = locationCategory;
-//
-//                $scope.editableLocation.locationCategoriesObjects = [];
-//                $scope.editableLocation.locationCategories = [];
-//                angular.forEach(locationCategories, function (locationCategory) {
-//                    $scope.editableLocation.locationCategories.push(locationCategory.id);
-//                });
-//
-//            };
-//            $scope.setLocationType = function (locationType) {
-//                console.log("editableLocation.locationType", locationType);
-//                $scope.editableLocation.locationTypeId = locationType.id;
-//                $scope.editableLocation.locationType = locationType;
-//            };
             $scope.saveLocation = function (location) {
                 console.log("edit location :%O", location);
                 location.$save(function () {
                     $state.go('admin.masters_location', null, {'reload': true});
                 });
             };
-            ///////////////////////////////////////////Multiselect
-//            $scope.editableLocation.locationCategoriesObject = [];
+            ///////////////////////////////////////////
+
             $scope.example14settings = {
                 scrollableHeight: '200px',
                 scrollable: true,
@@ -871,38 +711,9 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                             $state.go('admin.masters_location', null, {'reload': true});
                         });
                     });
-//--------------------------------------------------------------------
-//                    $scope.AmenityDetails.push({
-//                        locationId : $scope.editableLocation.id,
-//                        address : result.vicinity;
-//                    });
-//                    if (status == google.maps.places.PlacesServiceStatus.OK) {
-//                        for (var i = 0; i < results.length; i++) {
-//                            createMarker(results[i]);
-//                        }
-//                    }
                 }
 
-//                angular.forEach(results, function (result) {
-//                    console.log("RESULTS", result);
-//                    AmenityDetailService.save(locationAmenity, function () {
-//                        $state.go('admin.masters_location', null, {'reload': true});
-//                    });
-//                });
             };
-//            console.log("$scope.locationAmenities", $scope.locationAmenities);
-//            var mapCenter = new google.maps.LatLng(19.7515, 75.7139);
-//            var showMap = function () {
-//                var mapContainer = document.getElementById("locationAmenitiesMapContainer");
-//                var mapProp = {
-//                    center: mapCenter,
-//                    zoom: 11,
-//                    mapTypeId: google.maps.MapTypeId.ROADMAP
-//                };
-//                var map = new google.maps.Map(mapContainer, mapProp);
-//            };
-//            showMap();
-//            console.log("are we here?");
         })
         .controller('LocationImportController', function (CityService, LocationService, RawMarketPriceService, RawReadyReckonerService, $scope, $stateParams, $state, paginationLimit) {
             console.log("chck loc imp");
@@ -1019,14 +830,14 @@ angular.module("safedeals.states.location_master", ['angularjs-dropdown-multisel
                     $scope.uploadFailed = false;
                 }, 2000);
                 console.log("upload error");
-//                $scope.refreshRawMarketPrice();
+
             };
             uploader.onCompleteItem = function (fileItem, response, status, headers) {
                 $scope.uploadInProgress = true;
                 $timeout(function () {
                     $scope.uploadInProgress = false;
                 }, 2000);
-//                $scope.refreshRawMarketPrice();
+
                 console.log("upload completion", fileItem);
 
             };

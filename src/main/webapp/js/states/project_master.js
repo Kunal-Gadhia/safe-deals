@@ -124,26 +124,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.editableInventory.offeredPrice = offeredPrice;
                 });
             });
-
-//            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
-//                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
-//                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-//                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
-//                });
-//            });
-
-
-
-//            $scope.setPropertyType = function (propertyType) {
-//                $scope.editableInventory.propertyTypeObject = propertyType;
-//                $scope.editableInventory.propertyType = propertyType.id;
-//            };
-//            $scope.searchPropertyType = function (searchTerm) {
-//                return PropertyTypeService.findByNumberOfBhkLike({
-//                    'numberOfBhk': searchTerm
-//                }).$promise;
-//            };
-
             $scope.saveInventory = function (inventory) {
                 InventoryHeadService.save(inventory, function (inventoryHead) {
                     $state.go('admin.masters_project.inventory_detail',
@@ -152,30 +132,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                                 'reload': true
                             });
                 });
-//                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
-//                    var tempObject = {};
-//                    tempObject.projectId = inventory.projectId;
-//                    tempObject.noOfBhk = inventory.noOfBhk;
-//                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
-//                    tempObject.unitNo = i.toString();
-//                    tempObject.floorNo = inventory.floorNo;
-//                    tempObject.buildingName = inventory.buildingName;
-//                    tempObject.pricePerSqft = inventory.pricePerSqft;
-//                    tempObject.totalArea = inventory.totalArea;
-//                    tempObject.offeredPrice = inventory.offeredPrice;
-//                    tempObject.noOfBalcony = inventory.noOfBalcony;
-//                    tempObject.noOfWashroom = inventory.noOfWashroom;
-//                    tempObject.openTerrace = inventory.openTerrace;
-//                    tempObject.isAvailable = true;
-//                    tempObject.isReserved = false;
-//                    tempObject.isSold = false;
-//
-//                    InventoryService.save(tempObject, function () {
-//                        $state.go('admin.masters_project', null, {'reload': true});
-//                    });
-//
-//                }
-
             };
 
         })
@@ -199,10 +155,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         $scope.disableSaveButton = true;
                     }
                 });
-//                if ($scope.inventoryDetails.length === inventoryHead.totalUnits) {
-//                    console.log("Entries are same ");
-//                    $scope.showDoneButton = false;
-//                }
                 $scope.totalUnits = inventoryHead.totalUnits;
                 console.log("$scope.totalunits :%O", $scope.totalUnits);
                 ProjectService.get({
@@ -221,25 +173,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.propertyCategory = propCategory.category;
                 });
             });
-//            InventoryDetailService.findByInventoryHeadId({
-//                'inventoryHeadId': $stateParams.inventoryHeadId
-//            }, function (inventoryDetailsList) {
-//                $scope.inventoryDetails = inventoryDetailsList;
-//                if ($scope.inventoryDetails.length === $scope.inventoryHead.totalUnits) {
-////                    console.log("Length is same");
-//                    $scope.showDoneButton = false;
-//                }
-//            });
-
-//            $scope.$watch('inventoryHead.totalUnits', function (totalUnits) {
-//                $scope.$watch('editableInventoryDetail.startUnitNo', function (startUnitNo) {
-////                    console.log("Total Units :%O", $scope.totalUnits);
-////                    var totalUnits = $scope.totalUnits;
-//                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-//                    $scope.editableInventoryDetail.endUnitNo = endUnitNo - 1;
-//                });
-//            });
-
             InventoryDetailService.findByInventoryHeadId({
                 'inventoryHeadId': $stateParams.inventoryHeadId
             }, function (inventoryDetails) {
@@ -269,22 +202,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     tempObject.validity = inventoryDetail.validity;
                     tempObject.extraCharges = inventoryDetail.extraCharges;
                     tempObject.unitNo = i.toString();
-//                    console.log("This is Temp Object :%O", tempObject);
-//                    tempObject.projectId = inventoryDetail.projectId;
-//                    tempObject.noOfBhk = inventoryDetail.noOfBhk;
-//                    tempObject.propertyCategoryId = inventoryDetail.propertyCategoryId;
-//                    tempObject.unitNo = i.toString();
-//                    tempObject.floorNo = inventoryDetail.floorNo;
-//                    tempObject.buildingName = inventoryDetail.buildingName;
-//                    tempObject.pricePerSqft = inventoryDetail.pricePerSqft;
-//                    tempObject.totalArea = inventoryDetail.totalArea;
-//                    tempObject.offeredPrice = inventoryDetail.offeredPrice;
-//                    tempObject.noOfBalcony = inventoryDetail.noOfBalcony;
-//                    tempObject.noOfWashroom = inventoryDetail.noOfWashroom;
-//                    tempObject.openTerrace = inventoryDetail.openTerrace;
-//                    tempObject.isAvailable = true;
-//                    tempObject.isReserved = false;
-//                    tempObject.isSold = false;
                     console.log("Temp Object :%O", tempObject);
                     InventoryDetailService.save(tempObject, function () {
                         $scope.editableInventoryDetail = {};
@@ -298,101 +215,9 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                                 $scope.disableSaveButton = true;
                             }
                         });
-//                        console.log("Inventory Head :%O", $scope.inventoryHead);
-//                        InventoryDetailService.query(function (inventoryDetailsList) {
-//                            console.log("Inventory Details List :%O", inventoryDetailsList.length);
-//                            if ($scope.inventoryHead.totalUnits === inventoryDetailsList.length) {
-//                                console.log("Length is Equal");
-//                            };
-//                        });
-//                        console.log("Inventory Details Length :%O", $scope.inventoryDetails.length);
                     });
-
-//                    InventoryService.save(tempObject, function () {
-//                        $state.go('admin.masters_project', null, {'reload': true});
-//                    });
-
                 }
             };
-//            ProjectService.get({
-//                'id': $stateParams.projectId
-//            }, function (projectObject) {
-//                $scope.editableInventoryDetail.projectId = projectObject.id;
-//                $scope.projectName = projectObject.name;
-//            });
-//
-//            $scope.setPropertyCategory = function (propertyCategory) {
-//                $scope.editableInventoryDetail.propertyCategoryObject = propertyCategory;
-//                $scope.editableInventoryDetail.propertyCategoryId = propertyCategory.id;
-//
-//            };
-//            $scope.searchPropertyCategory = function (searchTerm) {
-//                return PropertyCategoryService.findByPropertyCategoryLike({
-//                    'category': searchTerm
-//                }).$promise;
-//            };
-//
-//            PropertyTypeService.query(function (propertyTypeList) {
-//                $scope.propertyTypeList = propertyTypeList;
-//            });
-//
-//            $scope.$watch('editableInventory.totalArea', function (totalArea) {
-//                $scope.$watch('editableInventory.pricePerSqft', function (pricePerSqft) {
-//                    var offeredPrice = (pricePerSqft * totalArea);
-//                    $scope.editableInventoryDetail.offeredPrice = offeredPrice;
-//                });
-//            });
-//
-////            $scope.$watch('editableInventory.totalUnits', function (totalUnits) {
-////                $scope.$watch('editableInventory.startUnitNo', function (startUnitNo) {
-////                    var endUnitNo = (parseInt(startUnitNo) + parseInt(totalUnits));
-////                    $scope.editableInventory.endUnitNo = endUnitNo - 1;
-////                });
-////            });
-//
-//
-//
-////            $scope.setPropertyType = function (propertyType) {
-////                $scope.editableInventory.propertyTypeObject = propertyType;
-////                $scope.editableInventory.propertyType = propertyType.id;
-////            };
-////            $scope.searchPropertyType = function (searchTerm) {
-////                return PropertyTypeService.findByNumberOfBhkLike({
-////                    'numberOfBhk': searchTerm
-////                }).$promise;
-////            };
-//
-//            $scope.saveInventory = function (inventory) {
-//                console.log("Inventory Head :%O", inventory);
-//                InventoryHeadService.save(inventory, function () {
-//                    console.log("Inventory Head Service Saved");
-//                });
-////                for (var i = inventory.startUnitNo; i <= inventory.endUnitNo; i++) {
-////                    var tempObject = {};
-////                    tempObject.projectId = inventory.projectId;
-////                    tempObject.noOfBhk = inventory.noOfBhk;
-////                    tempObject.propertyCategoryId = inventory.propertyCategoryId;
-////                    tempObject.unitNo = i.toString();
-////                    tempObject.floorNo = inventory.floorNo;
-////                    tempObject.buildingName = inventory.buildingName;
-////                    tempObject.pricePerSqft = inventory.pricePerSqft;
-////                    tempObject.totalArea = inventory.totalArea;
-////                    tempObject.offeredPrice = inventory.offeredPrice;
-////                    tempObject.noOfBalcony = inventory.noOfBalcony;
-////                    tempObject.noOfWashroom = inventory.noOfWashroom;
-////                    tempObject.openTerrace = inventory.openTerrace;
-////                    tempObject.isAvailable = true;
-////                    tempObject.isReserved = false;
-////                    tempObject.isSold = false;
-////
-////                    InventoryService.save(tempObject, function () {
-////                        $state.go('admin.masters_project', null, {'reload': true});
-////                    });
-////
-////                }
-//
-//            };
-
         })
         .controller('ProjectAddController', function (ProjectService, SocietyMaintenanceService, LocationTypeService, UnitService, PrivateAmenitiesService, BankService, AmenityDetailService, TransportationService, RoadService, PropertyTypeService, LocationService, CityService, StateService, CountryService, PropertyService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableProject = {};
@@ -427,27 +252,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-
-//OLD DATEPICKER          
-//            $scope.datePicker = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.completionDatePicker = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.offerValidTill = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-
             $scope.saveProject = function (project, $stateParams) {
                 console.log("Project :%O", project);
                 ProjectService.save(project, function (projectId) {
@@ -928,20 +732,20 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 });
             });
             console.log("We Are inside Edit");
-//            $scope.propertiesTypeDisplay = [];
+
             $scope.editableProject.propertiesType = [];
-//            $scope.publicTransportDisplay = [];
+
             $scope.editableProject.publicTransport = [];
-//            $scope.workplacesDisplay = [];
+
             $scope.editableProject.workplaces = [];
-//            $scope.basicAmenitiesDisplay = [];
+
             $scope.editableProject.basicAmenities = [];
-//            $scope.luxuryAmenitiesDisplay = [];
+
             $scope.editableProject.luxuryAmenities = [];
             $scope.editableProject.societyMaintenances = [];
-//            $scope.approvedBanksDisplay = [];
+
             $scope.editableProject.approvedBanks = [];
-//            $scope.amenitiesWithinProjectDisplay = [];
+
             $scope.editableProject.amenitiesWithinProject = [];
             $scope.locationSteps = [
                 'Basic Details',
@@ -955,27 +759,6 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             ];
             $scope.selection = $scope.locationSteps[0];
             $scope.myValue = true;
-
-//OLD DATEPICKER
-//            $scope.datePicker = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.completionDatePicker = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.offerValidTill = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-
             $scope.saveProject = function (project) {
                 console.log("Project :%O", project);
                 project.$save(project, function () {
@@ -1257,9 +1040,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                 $scope.selection = locationstep;
                 if (locationstep === "Basic Details") {
                     console.log("Hello baisc details");
-//                    $scope.amenityCodes = AmenityCodeService.findByTabName({
-//                       'name' : AMENITIES
-//                    });
+
                     $scope.myValue = true;
                 } else if (locationstep === "Connectivity") {
                     console.log("Hello Connectivity");
@@ -1271,10 +1052,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     $scope.projectHighlights = false;
                     $scope.sellersCredibality = false;
                     $scope.unitDetails = false;
-//                    $scope.clear = function(){
-//                        console.log("Coming to clear function??");
-//                      $scope.transportation = "";  
-//                    };
+
                 }
                 else if (locationstep === "Costing") {
                     console.log("Hello Costing");
@@ -1363,7 +1141,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
             };
         })
         .controller('ProjectPhotoController', function (restRoot, FileUploader, $scope, $stateParams, $state) {
-//            $scope.enableSaveButton = false;
+
             $scope.goBack = function () {
                 $state.go('admin.masters_project', {}, {'reload': true});
             };
@@ -1394,34 +1172,29 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                     uploader.onBeforeUploadItem = function (item) {
                         $scope.uploadInProgress = true;
                         $scope.uploadSuccess = false;
-                        console.log("before upload item:", item);
-                        console.log("uploader", uploader);
+                       
                     };
                     uploader.onErrorItem = function ($scope) {
                         $scope.uploadFailed = true;
                         $scope.uploadInProgress = false;
                         $scope.uploadSuccess = false;
-//                    $state.go('.', {}, {'reload': true});
-                        console.log("upload error");
-//                $scope.refreshRawMarketPrice();
+
+                       
                     };
                     uploader.onCompleteItem = function ($scope, response, status) {
-                        console.log("Status :%O", status);
+                        
                         if (status === 200) {
-                            console.log("Coming to 200 ??");
+                           
                             $scope.uploadInProgress = false;
                             $scope.uploadFailed = false;
                             $scope.uploadSuccess = true;
                             $scope.enableSaveButton = true;
-                            console.log("In Progress :" + $scope.uploadInProgress);
-                            console.log("Failed :" + $scope.uploadFailed);
-                            console.log("Success :" + $scope.uploadSuccess);
-                            console.log("Save Button :" + $scope.enableSaveButton);
+                           
                         } else if (status === 500)
                         {
                             $scope.uploadInProgress = false;
                             $scope.uploadFailed = false;
-//                    $scope.uploadWarning = true;
+//                  
                         } else {
                             console.log("Coming to else??");
                             $scope.uploadInProgress = false;
@@ -1481,7 +1254,7 @@ angular.module("safedeals.states.project_master", ['ngComboDatePicker'])
                         {
                             $scope.uploadInProgress = false;
                             $scope.uploadFailed = false;
-//                    $scope.uploadWarning = true;
+
                         } else {
                             console.log("Coming to else??");
                             $scope.uploadInProgress = false;

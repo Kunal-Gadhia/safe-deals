@@ -97,8 +97,6 @@ angular.module("safedeals.states.landmark", [])
                 }).$promise;
             };
             $scope.searchLocations = function (searchTerm) {
-//                console.log("Search Term :%O", searchTerm);
-//                console.log("City Id :%O", $scope.editableLandmark.cityId);
                 if ($scope.editableLandmark.cityId === undefined) {
                     console.log("Coming to if ??");
                     return LocationService.findByNameLike({

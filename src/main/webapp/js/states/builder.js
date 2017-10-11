@@ -49,7 +49,7 @@ angular.module("safedeals.states.builder", [])
 
                 });
             });
-            //console.log("$scope.franchises" , $scope.franchises);
+       
 
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
@@ -66,10 +66,10 @@ angular.module("safedeals.states.builder", [])
         .controller('BuilderAddController', function (BuilderService, CityService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableBuilder = {};
             $scope.setCity = function (city) {
-                //console.log("xyz", city);
+         
                 $scope.editableBuilder.cityId = city.id;
                 $scope.editableBuilder.city = city;
-                //console.log("$scope.editableFranchise.city ", $scope.editableFranchise.city);
+              
             };
             $scope.searchCities = function (searchTerm) {
                 console.log("Search Term :%O", searchTerm);
@@ -104,7 +104,7 @@ angular.module("safedeals.states.builder", [])
 
 
         .controller('BuilderEditController', function (BuilderService, CityService, $scope, $stateParams, $state, paginationLimit) {
-//                        $scope.cities = CityService.findAllCities();   
+
             $scope.editableBuilder = BuilderService.get({'id': $stateParams.builderId}, function () {
                 $scope.editableBuilder.city = CityService.get({
                     id: $scope.editableBuilder.cityId
@@ -136,8 +136,7 @@ angular.module("safedeals.states.builder", [])
                     $state.go('admin.masters_builder', null, {'reload': true});
                 });
             };
-        }); /*AmenityDetailService, LocationService, CityService, */
-
+        }); 
 
 
 

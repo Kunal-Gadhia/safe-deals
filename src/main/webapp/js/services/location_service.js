@@ -16,14 +16,7 @@ angular.module("safedeals.services.location")
                     'method': 'POST',
                     'url': restRoot + '/location/export'
                 },
-//                'findByName': {
-//                    'method': 'GET',
-//                    'url': restRoot + '/location/find/location',
-//                    'params': {
-//                        'name': '@name'
-//                    },
-//                    'isArray': true
-//                },
+
                 'findByNameLike': {
                     'method': 'GET',
                     'url': restRoot + '/location/find/location_like',

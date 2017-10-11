@@ -59,27 +59,18 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     });
                     $scope.minBudget = $stateParams.minBudget;
                     $scope.maxBudget = $stateParams.maxBudget;
-//                    $("#minBudget").val($stateParams.minBudget);
-//                    $("#maxBudget").val($stateParams.maxBudget);
                     $scope.propertySize = $stateParams.propertySize;
-                    console.log("Min Budget :%O", $scope.minBudget);
+
                     $scope.hideDescription = false;
                 });
 
             }
-
-
-
             $scope.propertyTypesList = PropertyTypeService.query();
-            console.log("Property type List :%O", $scope.propertyTypesList);
+
             $scope.validateForm = function (cityId, locationId, propertySize, minBudget, maxBudget) {
-                console.log("City Id :%O", cityId);
-                console.log("Location Id :%O", locationId);
-                console.log("Property Size :%O", propertySize);
-                console.log("Min Budget :" + minBudget);
-                console.log("Max Budget :" + maxBudget);
+
                 if (cityId !== undefined & locationId !== undefined & propertySize !== undefined & minBudget === undefined & maxBudget === undefined) {
-                    console.log("Filter By City & Location");
+
                     $state.go('main.property', {
                         cityId: cityId,
                         locationId: locationId,
@@ -88,9 +79,9 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         maxBudget: null
                     });
                 } else if (cityId === undefined & locationId === undefined & propertySize !== undefined & minBudget !== undefined & maxBudget !== undefined) {
-                    console.log("Filter By Budget");
+
                     var difference = maxBudget - minBudget;
-                    console.log("Difference :" + difference);
+
                     if (difference < 0) {
                         alert("Minimum budget is more than maximum budget, Select correct value.");
                     } else {
@@ -122,23 +113,6 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }
 
             };
-
-//            $scope.searchLocationByLocationAndBudget = function (cityName, minBudget, maxBudget, propertySize) {
-//                console.log("property:" + propertySize);
-//                console.log("City Id :" + cityName);
-//                console.log("Min Budget :" + minBudget);
-//                console.log("Max Budget :" + maxBudget);
-//                $scope.cityObject = CityService.findByCityName({
-//                    'name': cityName
-//                });
-//                console.log("City Object :%O", $scope.cityObject);
-//                $state.go('main.location', {
-//                    locationMinBudget: minBudget / propertySize,
-//                    locationMaxBudget: maxBudget / propertySize,
-//                    propertyDetails: propertySize,
-//                    cityId: $scope.cityId
-//                });
-//            };
             var map;
             var mapContainer = document.getElementById("locationMapContainer");
             var nagpurCoordinate = new google.maps.LatLng(21.1458, 79.0882);
@@ -179,7 +153,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             });
 
             $scope.searchCities = function (searchTerm) {
-                console.log("State Id :%O", $scope.stateId);
+
                 if ($scope.stateId === undefined) {
                     return CityService.findByNameLike({
                         'name': searchTerm
@@ -192,18 +166,16 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }
             };
             $scope.selectCity = function (city) {
-                //only change if not same as previously selected state
-                console.log("City :%O", city);
+
                 $scope.cityName = city.name;
                 $scope.cityId = city.id;
                 $scope.city = city;
             };
 
             $scope.searchLocations = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
-                console.log("City Id :%O", $scope.cityId);
+
                 if ($scope.cityId === undefined) {
-                    console.log("Coming to if ??");
+
                     return LocationService.findByNameLike({
                         'name': searchTerm
                     }).$promise;
@@ -219,28 +191,25 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 $scope.locationId = location.id;
                 $scope.locationName = location.name;
                 $scope.location = location;
-                console.log("$scope.location ", $scope.location);
+
             };
             drawMap();
-            console.log("Location Min Budget :%O", $stateParams.locationMinBudget);
+
             if ($stateParams.cityId !== null & $stateParams.locationId !== null & $stateParams.propertySize !== null & $stateParams.minBudget === null & $stateParams.maxBudget === null) {
-                console.log("Location Filter Main Thing");
-                console.log("StateParams :%O", $stateParams);
 
                 PropertyService.findByLocationAndCity({
                     'locationId': $stateParams.locationId,
                     'cityId': $stateParams.cityId,
                     'propertySize': $stateParams.propertySize
                 }, function (propertyObjects) {
-                    console.log("Property objects :%O", propertyObjects);
+
                     $scope.propertyList = propertyObjects;
                     angular.forEach(propertyObjects, function (propertyObject) {
                         $scope.properties.push(propertyObject);
                         LocationService.get({
                             'id': propertyObject.locationId
                         }, function (location) {
-//                            $scope.locations.push(location);
-                            console.log("Locations :%O", location);
+//                      
                             drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
                             var myCity = new google.maps.Circle({
                                 center: new google.maps.LatLng(location.latitude, location.longitude),
@@ -254,74 +223,10 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                             });
                             myCity.setMap(map);
                             map.fitBounds(myCity.getBounds());
-//                            myCity.setZoom(13);
+
                         });
                     });
                 });
-//                console.log("City Id :%O", $stateParams.cityId);
-//                console.log("Min Budget :%O", $stateParams.locationMinBudget);
-//                console.log("Max Budget :%O", $stateParams.locationMaxBudget);
-//                MarketPriceService.findByRequirement({
-//                    'cityId': $stateParams.cityId, // cityId is hard coded for 1.0 version
-//                    'locationMinBudget': Math.round($stateParams.locationMinBudget),
-//                    'locationMaxBudget': Math.round($stateParams.locationMaxBudget)
-//                }, function (mpObjects) {
-//                    console.log("$scope.mpObjects =  %O", mpObjects);
-//                    angular.forEach(mpObjects, function (mpObject) {
-//                        LocationService.get({
-//                            'id': mpObject.locationId
-//                        }, function (location) {
-//                            $scope.locations.push(location);
-//                            console.log("Locations :%O", location);
-//                            drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
-//                            var myCity = new google.maps.Circle({
-//                                center: new google.maps.LatLng(location.latitude, location.longitude),
-//                                radius: 750,
-//                                strokeColor: "#87C4C2",
-//                                strokeOpacity: 0.8,
-//                                strokeWeight: 2,
-//                                fillColor: "#C1E6E5",
-//                                fillOpacity: 0.2,
-//                                zoom: 13
-//                            });
-//                            myCity.setMap(map);
-//                            myCity.setMap(map);
-//                            myCity.setMap(map);
-//                            map.fitBounds(myCity.getBounds());
-////                            myCity.setZoom(13);
-//                        });
-//                    });
-//                    $scope.$watch("locations", function (n, o) {
-//                        $scope.selectedLocationList = $filter("filter")(n, {flag: true});
-//                        console.log("What is trues :%O", $scope.selectedLocationList);
-//                        console.log("Trues Length :%O", $scope.selectedLocationList.length);
-//                        if ($scope.selectedLocationList.length === 0) {
-//                            $scope.hideCompareButton = true;
-//                        } else if ($scope.selectedLocationList.length > 0) {
-//                            $scope.hideCompareButton = false;
-//                        }
-//                        if ($scope.selectedLocationList.length === 3) {
-//                            console.log("Coming to if?");
-//                            $scope.hideCheckbox = true;
-//                        }
-//                    }, true);
-//                    $scope.removeLocation = function (location) {
-//                        console.log("You are called with :%O", location);
-//                        location.flag = false;
-//                        var index = $scope.selectedLocationList.indexOf(location);
-//                        console.log("Index :%O", index);
-//                        $scope.selectedLocationList.splice(index, 1);
-////                        $scope.s
-////                        $scope.selectedLocationList.splice(location);
-//                        console.log("After Removing List:%O", $scope.selectedLocationList);
-//                        if ($scope.selectedLocationList.length < 3) {
-//                            $scope.hideCheckbox = false;
-//                        }
-//                    };
-//                    $scope.compareLocations = function () {
-//                        console.log("Coming to compare??");
-//                    };
-//                });
             } else if ($stateParams.cityId === null & $stateParams.locationId === null & $stateParams.propertySize !== null & $stateParams.minBudget !== null & $stateParams.maxBudget !== null) {
                 console.log("Coming to budget main thing");
                 PropertyService.findByMinAndMaxBudget({
@@ -362,7 +267,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'minBudget': $stateParams.minBudget,
                     'maxBudget': $stateParams.maxBudget
                 }, function (propertyObjects) {
-                    console.log("Property objects :%O", propertyObjects);
+
                     $scope.propertyList = propertyObjects;
                     angular.forEach(propertyObjects, function (propertyObject) {
                         $scope.hideSutaibleProperty = false;
@@ -370,7 +275,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         LocationService.get({
                             'id': propertyObject.locationId
                         }, function (location) {
-                            console.log("Locations :%O", location);
+
                             drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
                             var myCity = new google.maps.Circle({
                                 center: new google.maps.LatLng(location.latitude, location.longitude),
@@ -388,7 +293,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     });
                 });
             } else {
-                console.log("Coming to else??");
+
                 $scope.$watch('state', function (state) {
                     map.setCenter({
                         lat: state.latitude,
@@ -414,10 +319,9 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             ;
 
             $scope.$watch("properties", function (n, o) {
-                console.log("Detecting Change");
+
                 $scope.selectedPropertyList = $filter("filter")(n, {flag: true});
-                console.log("What is trues :%O", $scope.selectedPropertyList);
-                console.log("Trues Length :%O", $scope.selectedPropertyList.length);
+
                 $scope.length = $scope.selectedPropertyList.length;
                 if ($scope.selectedPropertyList.length === 0) {
                     $scope.hideCompareButton = true;
@@ -430,24 +334,21 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }
             }, true);
             $scope.removeProperty = function (property) {
-                console.log("You are called with :%O", property);
+
                 property.flag = false;
                 var index = $scope.selectedPropertyList.indexOf(property);
-                console.log("Index :%O", index);
+
                 $scope.selectedPropertyList.splice(index, 1);
-//                        $scope.s
-//                        $scope.selectedLocationList.splice(location);
-                console.log("After Removing List:%O", $scope.selectedPropertyList);
                 if ($scope.selectedPropertyList.length < 3) {
                     $scope.hideCheckbox = false;
                 }
             };
             $scope.compareLocations = function () {
-                console.log("Coming to compare??");
+
             };
 
             var drawMarker = function (position, title, map) {
-                console.log("Position :%O", position);
+
                 new google.maps.Marker({
                     map: map,
                     position: position,
@@ -468,30 +369,21 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'id': compareList.locationId
                 }, function (locationObject) {
                     compareList.location = locationObject;
-                    console.log("compareList.location111 :%O", compareList.location);
+
                 });
 
                 ProjectService.get({
                     'id': compareList.projectId
                 }, function (projectObject) {
                     compareList.project = projectObject;
-                    console.log("compareList.project111 :%O", compareList.project);
+
                 });
 
                 RoadService.get({
                     'id': compareList.majorApproachRoad
                 }, function (majorApproachRoadObject) {
                     compareList.majorApproachRoadObject = majorApproachRoadObject;
-                    //  console.log("compareList.majorApproachRoad111 :%O", compareList.majorApproachRoadObject);
                 });
-
-//                TransportationService.get({
-//                    'id': compareList.publicTransport
-//                }, function (publicTransportObject) {
-//                    compareList.publicTransportObject = publicTransportObject;
-//                  //  console.log("compareList.publicTransport111 :%O", compareList.publicTransportObject);
-//                });
-
                 compareList.publicTransportDisplay = [];
                 angular.forEach(compareList.publicTransport, function (publicTransport) {
                     TransportationService.get({
@@ -541,20 +433,15 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
 
                 compareList.projectsNearbyDisplay = [];
                 angular.forEach(compareList.projectsNearby, function (projectsNearby) {
-                    console.log("Nearby Projects :%O", projectsNearby);
+
                     ProjectService.get({
                         'id': projectsNearby
                     }, function (data) {
                         compareList.projectsNearbyDisplay.push(data);
                     });
                 });
-
-                console.log("compareList.location :%O", compareList.location);
                 $scope.finalCompareArray.push(compareList);
             });
-
-
-
         })
 
         .controller('PropertyDetailController', function ($scope, $q, $filter, CityService, UnitService, BankService, PrivateAmenitiesService, TransportationService, RoadService, PropertyService, AmenityDetailService, HospitalService, AmenityCodeService, AmenityService, LocationService, MallService, CoordinateService, BranchService, SchoolService, PropertyService, PropertyTypeService, ProjectService, $stateParams, ImageService, VideoService) {
@@ -562,46 +449,30 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             $scope.videos = [];
             $scope.myInterval = 3000;
 
-//            ImageService.findByPropertyId({
-//                'propertyId': $stateParams.propertyId
-//            }, function (images) {
-//                $scope.images = images;
-//                angular.forEach(images, function(image){
-//                    
-//                });
-//            });
-
             var fetchImages = function () {
 
                 var defered = $q.defer();
                 ImageService.findByPropertyId({
                     'propertyId': $stateParams.propertyId
                 }, function (images) {
-//                    angular.forEach(images, function (image) {
-//                        $scope.images.push(image);
-//                    });
                     defered.resolve(images);
 
                 });
-                console.log("What is Deferred Promise :%O", defered.promise);
+
                 return defered.promise;
             };
 
             fetchImages().then(function (images) {
-                console.log("Images List :%O", images);
-//                angular.forEach(images, function (image) {
-//                    $scope.images.push(image);
-//                });
                 $scope.images = images;
             });
 
             VideoService.findByPropertyId({
                 'propertyId': $stateParams.propertyId
             }, function (videos) {
-                console.log("Videos :%O", videos);
+
                 angular.forEach(videos, function (data) {
                     $scope.video = data;
-                    console.log(" $scope.video ", $scope.video);
+
                 });
             });
 
@@ -618,19 +489,19 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             });
             $scope.markers = [];
             $scope.setMapOnAll = function (map) {
-                console.log("Setting map null :%O", map);
+
                 for (var i = 0; i < $scope.markers.length; i++) {
                     $scope.markers[i].setMap(map);
                 }
             };
             $scope.distanceService = new google.maps.DistanceMatrixService();
-            console.log("$stateparams ID::::::", $stateParams.propertyId);
+
             var drawMap = function (mapProperty) {
-                console.log("Coming To Draw Map %O", mapContainer);
+
                 $scope.map = new google.maps.Map(mapContainer, mapProperty);
             };
             var drawMap1 = function (mapProperty, mapContainer1) {
-                console.log("Coming To Draw Map 1 :" + mapContainer1);
+
                 $scope.map1 = new google.maps.Map(mapContainer1, mapProperty);
             };
             var drawMap2 = function (mapProperty, mapContainer2) {
@@ -642,7 +513,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 $scope.map3 = new google.maps.Map(mapContainer3, mapProperty);
             };
             var drawMarker = function (position, title, map) {
-                console.log("Position :%O", position);
+
                 new google.maps.Marker({
                     map: map,
                     position: position,
@@ -690,7 +561,7 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         $scope.distanceService.getDistanceMatrix(distanceRequest, function (response, status) {
                             console.log("Response in distance :%O", response);
                             console.log("Distance is :%O", response.rows[0].elements[0].distance.text);
-//                        $scope.distanceBox(title, response.rows[0].elements[0].distance.text);
+
                         });
                     });
 
@@ -796,31 +667,6 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 });
 
             };
-//            LocationService.get({
-//                'id': $stateParams.locationId
-//            }, function (location) {
-//                $scope.location = location;
-//                var nagpurCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
-//                var mapProp = {
-//                    center: nagpurCoordinate,
-//                    zoom: 15,
-//                    mapTypeId: google.maps.MapTypeId.ROADMAP
-//                };
-//                drawMap(mapProp);
-//                drawMarker({lat: location.latitude, lng: location.longitude}, location.name, map);
-//                var myCity = new google.maps.Circle({
-//                    center: new google.maps.LatLng(location.latitude, location.longitude),
-//                    radius: 5000,
-//                    strokeColor: "#87C4C2",
-//                    strokeOpacity: 0.8,
-//                    strokeWeight: 2,
-//                    fillColor: "#C1E6E5",
-//                    fillOpacity: 0.2,
-//                    zoom: 13
-//                });
-//                myCity.setMap(map);
-//                map.fitBounds(myCity.getBounds());
-//            });
             PropertyService.get({
                 'id': $stateParams.propertyId
             }, function (property) {
@@ -1225,18 +1071,13 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                     'amenityId': amenityDetail.id,
                     'cityId': $scope.property.cityId
                 }, function (amenityDetailObject) {
-//                    $scope.amenityDetailsList = amenityDetailObject;
+
                     $scope.amenityDetailsList = [];
                     angular.forEach(amenityDetailObject, function (amenityDetail) {
                         var d = $scope.getDistanceFromLatLonInKm($scope.property.latitude, $scope.property.longitude, amenityDetail.latitude, amenityDetail.longitude);
                         if (d <= "5") {
                             $scope.amenityDetailsList.push(amenityDetail);
                         }
-
-//                        var infoWindow = new google.maps.InfoWindow({
-//                            'content': amenityDetail.name
-//                        });
-//                        infoWindow.open(map, drawMarker());
                     });
                     drawAmenityMarker($scope.amenityDetailsList, $scope.map);
                 });
@@ -1269,7 +1110,6 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 'Amenities',
                 'Work Places',
                 'Projects'
-//                'Overview'
             ];
             $scope.selection = $scope.propertySteps[0];
             console.log("What is Selection :%O", $scope.selection);
@@ -1289,12 +1129,11 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
             $scope.amenityCodes = AmenityCodeService.findByTabName({
                 'name': $scope.selection
             });
-//            $scope.locations = [];
             $scope.getCurrentStepIndex = function () {
-                // Get the index of the current step given selection
+
                 return _.indexOf($scope.propertySteps, $scope.selection);
             };
-//            // Go to a defined step index
+
             $scope.goToStep = function (index) {
                 if (!_.isUndefined($scope.propertySteps[index]))
                 {
@@ -1342,9 +1181,6 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 console.log("Property Step :%O", propertyStep);
                 $scope.selection = propertyStep;
                 if (propertyStep === "Amenities") {
-//                    $scope.amenityCodes = AmenityCodeService.findByTabName({
-//                       'name' : AMENITIES
-//                    });
                     $scope.myValue = true;
                 } else if (propertyStep === "Work Places") {
                     $scope.myWorkplaces = true;
@@ -1419,43 +1255,6 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                         map2.fitBounds(myCity2.getBounds());
                     });
                 }
-//                else if (propertyStep === "Properties") {
-//                    $scope.myProperties = true;
-//                    $scope.myWorkplaces = false;
-//                    $scope.myProjects = false;
-//                    $scope.myValue = false;
-//                    LocationService.get({
-//                        'id': $stateParams.locationId
-//                    }, function (location) {
-//                        var mapContainer3 = document.getElementById("locationDetailMapContainerProperties");
-//                        var locationCoordinate = new google.maps.LatLng(location.latitude, location.longitude);
-//                        var mapProp = {
-//                            center: locationCoordinate,
-//                            zoom: 15,
-//                            mapTypeId: google.maps.MapTypeId.ROADMAP
-//                        };
-//                        drawMap3(mapProp, mapContainer3);
-//                        var drawMarker3 = new google.maps.Marker({
-//                            map: map3,
-//                            position: locationCoordinate,
-//                            title: location.name,
-//                            icon: 'images/icons_svg/dot.png'
-//                        });
-//                        var myCity3 = new google.maps.Circle({
-//                            center: new google.maps.LatLng(location.latitude, location.longitude),
-//                            radius: 5000,
-//                            strokeColor: "#87C4C2",
-//                            strokeOpacity: 0.8,
-//                            strokeWeight: 2,
-//                            fillColor: "#C1E6E5",
-//                            fillOpacity: 0.2,
-//                            zoom: 13
-//                        });
-//                        myCity3.setMap(map3);
-//                        drawMarker3.setMap(map3);
-//                        map3.fitBounds(myCity3.getBounds());
-//                    });
-//                } 
                 else {
                     $scope.myValue = false;
                     $scope.myWorkplaces = false;
@@ -1464,187 +1263,4 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 }
             };
 
-            //           image Gallery
-//            $scope.galleryModal = true;
-//            $scope.images = ImageService.findByPropertyId({
-//                'propertyId': $stateParams.propertyId
-//            }, function (images) {
-//                console.log("Images :%O", images);
-//            });
-//            $scope.openLightboxModal = function (image) {
-//                $scope.galleryModal = false;
-//                $scope.tempImageId = image.id;
-//                $scope.arrayImage = [];
-//                console.log("What is image :" + image);
-//                angular.forEach($scope.images, function (image) {
-//                    $scope.arrayImage.push(image.id);
-//                });
-//                console.log("Array :%O", $scope.arrayImage);
-////                Lightbox.openModal($scope.images, index);
-//            };
-//
-//            $scope.closeLightboxModal = function () {
-//                $scope.galleryModal = true;
-//            };
-            //           image Gallery
         });
-//
-////angular.module("safedeals.states.property", [])
-//        .config(function ($stateProvider, templateRoot) {
-//            $stateProvider.state("main.property", {
-//                'url': '/property',
-//                'templateUrl': templateRoot + '/property/property_content.html',
-//                'controller': 'PropertyController'
-//            });
-//            $stateProvider.state("main.property.property_map_container", {
-//                'url': '/property_map',
-//                'templateUrl': templateRoot + '/property/property_right_sidebar/properties.html',
-//                'controller': 'PropertyMapController'
-//            });
-//            $stateProvider.state("main.property.project_map_container", {
-//                'url': '/project_map',
-//                'templateUrl': templateRoot + '/property/property_right_sidebar/projects.html',
-//                'controller': 'ProjectMapController'
-//            });
-//            $stateProvider.state("main.property.school_map_container", {
-//                'url': '/school_map',
-//                'templateUrl': templateRoot + '/property/property_right_sidebar/schools.html',
-//                'controller': 'SchoolMapController'
-//            });
-//        })
-//
-//
-//        .controller('PropertyController', function ($scope, CoordinateService, PropertyService, MapService, templateRoot) {
-//            $scope.slabs = [
-//                'INR 5Lac',
-//                'INR 25Lac',
-//                'INR 50Lac',
-//                'INR 75Lac'
-//            ];
-//            $scope.getMinSlabValue = function(slab){
-//                console.log(slab);
-//            };
-//        })
-//        .controller('PropertyMapController', function ($scope, CoordinateService, PropertyService, MapService, templateRoot) {
-//            $scope.mapData = {
-//                'mapContainer': document.getElementById('mapContainer'),
-//                'mapCenter': {
-//                    'lat': 21.1500,
-//                    'lng': 79.0900
-//                },
-//                'markers': [
-//                ]
-//            };
-//            $scope.properties = PropertyService.findByLocationId({
-//                'locationId': 1
-//            }, function (properties) {
-//                angular.forEach(properties, function (property) {
-//                    $scope.mapData.markers.push({
-//                        'lat': property.latitude,
-//                        'lng': property.longitude,
-//                        'title': property.name
-//                    });
-//                });
-//                MapService.drawMap($scope.mapData);
-//            });
-////            console.log("mapData", $scope.mapData.markers);
-//
-//
-////            var nagpur = new google.maps.LatLng(21.1500, 79.0900);
-////            var dhantoliNagpur = new google.maps.LatLng(21.1418, 79.0843);
-////            var initialize = function () {
-////                var mapContainer = document.getElementById('mapContainer');
-////                var mapProp = {
-////                    center: nagpur,
-////                    zoom: 13,
-////                    mapTypeId: google.maps.MapTypeId.ROADMAP
-////                };
-////
-////                var map = new google.maps.Map(mapContainer, mapProp);
-////                var myCity = new google.maps.Circle({
-////                    center: dhantoliNagpur,
-////                    radius: 500,
-////                    editable: true,
-////                    draggable: true,
-////                    strokeColor: "#0000FF",
-////                    strokeOpacity: 0.5,
-////                    strokeWeight: 2,
-////                    fillColor: "#0000FF",
-////                    fillOpacity: 0.2
-////                });
-////                var marker = new google.maps.Marker({
-////                    position: dhantoliNagpur,
-////                    map: map,
-//////                    icon: 'images/map_markers/office-building.png',
-////                    title: 'Dhantoli'
-////                });
-////                var contentString = '<div id="content">' +
-////                        '<div id="siteNotice">' +
-////                        '</div>' +
-////                        '<div id="bodyContent">' +
-////                        '<p><b>Himalaya Mansion</b></br>P. S. Road, Dhantoli<hr>Rs.65 lakhs</br>2 bhk Appartment</p>' +
-////                        '</div>' +
-////                        '</div>';
-////
-////                var infowindow = new google.maps.InfoWindow({
-////                    content: contentString
-////                });
-////                marker.addListener('mouseover', function () {
-////                    infowindow.open(map, marker);
-////                });
-////                marker.addListener('mouseout', function () {
-////                    infowindow.close(map, marker);
-////                });
-////                myCity.setMap(map);
-////            };
-//////            google.maps.event.addDomListener(window, 'load', initialize);
-////            initialize();
-//        })
-//        .controller('ProjectMapController', function ($scope, ProjectService, MapService, templateRoot) {
-//            $scope.mapData = {
-//                'mapContainer': document.getElementById('mapContainer'),
-//                'mapCenter': {
-//                    'lat': 21.104836,
-//                    'lng': 79.003682
-//                },
-//                'markers': [
-//                ]
-//            };
-//            $scope.projects = ProjectService.findByLocationId({
-//                'locationId': 1
-//            }, function (projects) {
-//                angular.forEach(projects, function (project) {
-//                    console.log("project", project);
-//                    $scope.mapData.markers.push({
-//                        'lat': project.latitude,
-//                        'lng': project.longitude,
-//                        'title': project.name
-//                    });
-//                });
-//                MapService.drawMap($scope.mapData);
-//            });
-//        })
-//        .controller('SchoolMapController', function ($scope, SchoolService, MapService, templateRoot) {
-//            $scope.mapData = {
-//                'mapContainer': document.getElementById('mapContainer'),
-//                'mapCenter': {
-//                    'lat': 21.104836,
-//                    'lng': 79.003682
-//                },
-//                'markers': [
-//                ]
-//            };
-//            $scope.schools = SchoolService.findByLocationId({
-//                'locationId': 1
-//            }, function (schools) {
-//                angular.forEach(schools, function (school) {
-//                    console.log("school", school);
-//                    $scope.mapData.markers.push({
-//                        'lat': school.latitude,
-//                        'lng': school.longitude,
-//                        'title': school.name
-//                    });
-//                });
-//                MapService.drawMap($scope.mapData);
-//            });
-//        });

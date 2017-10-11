@@ -17,11 +17,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 'templateUrl': templateRoot + '/guidelines/budget_report.html',
                 'controller': 'BudgetReportController'
             });
-//            $stateProvider.state("main.guidelines.loan_eligibility", {
-//                'url': '/loan_eligibility',
-//                'templateUrl': templateRoot + '/guidelines/loan_eligibility.html',
-//                'controller': 'LoanEligibilityController'
-//            });
         })
         .controller('GuidelinesReportController', function ($scope, $stateParams, $state, restRoot, $window, GuidelinesService) {
             console.log("$stateParams", $stateParams.userDetails);
@@ -31,10 +26,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
             $scope.personalDetails.grossBudget = $scope.grossBudget;
             $scope.personalDetails.emiEligibility = $scope.emiEligibility;
             $scope.personalDetails.eligiblePropertyValue = $scope.eligiblePropertyValue;
-//            console.log("Inside GuidelinesReportController", $scope.personalDetails);
-//            /* @ngInject */
             $scope.saveGuidelinesReportDetail = function (details) {
-//                $scope.personalDetails = details;
                 $scope.personalDetails.name = details.name;
                 $scope.personalDetails.email = details.email;
                 $scope.personalDetails.cashInHand = Number($scope.cashInHand.toFixed(2));
@@ -42,10 +34,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 $scope.personalDetails.grossBudget = Number($scope.grossBudget.toFixed(2));
                 $scope.personalDetails.emiEligibility = Number($scope.emiEligibility.toFixed(2));
                 $scope.personalDetails.eligiblePropertyValue = Number($scope.eligiblePropertyValue.toFixed(2));
-//                $window.open('//google.com');
-//                $window.location.href = 'templates/guidelines/property_requirement.html';
-//                GuidelinesService.getGuidelinesReport(personalDetails);
-//                  return restRoot + "/guidelines/report";
                 console.log("post saving details:", $scope.personalDetails);
                 GuidelinesService.sendGuidelinesReportByMail({
                     'name': $scope.personalDetails.name,
@@ -59,9 +47,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     console.log("Return report", a);
                 });
                 $state.go('budget_report', {budgetDetails: $scope.personalDetails});
-//                $window.open($state.href('budget_report', {budgetDetails: $scope.personalDetails}, {absolute: true}), '_blank');
-//                var url = $state.href('budget_report', {budgetDetails : $scope.personalDetails});
-//                window.open(url, '_blank');
+//   
             };
         })
         .controller('BudgetReportController', function ($scope, $stateParams, $state, restRoot, $window) {
@@ -95,7 +81,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 }
             };
             $scope.selectCity = function (city) {
-                //only change if not same as previously selected state
+
                 console.log("City Name KG:%O", city);
                 $scope.cityName = city.name;
                 $scope.cityId = city.id;
@@ -132,10 +118,10 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
             }
 
             $scope.getCurrentStepIndex = function () {
-                // Get the index of the current step given selection
+
                 return _.indexOf($scope.steps, $scope.selection);
             };
-            // Go to a defined step index
+
             $scope.goToStep = function (index) {
                 if (!_.isUndefined($scope.steps[index]))
                 {
@@ -145,13 +131,13 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
             $scope.hasNextStep = function () {
                 var stepIndex = $scope.getCurrentStepIndex();
                 var nextStep = stepIndex + 1;
-                // Return true if there is a next step, false if not
+
                 return !_.isUndefined($scope.steps[nextStep]);
             };
             $scope.hasPreviousStep = function () {
                 var stepIndex = $scope.getCurrentStepIndex();
                 var previousStep = stepIndex - 1;
-                // Return true if there is a next step, false if not
+
                 return !_.isUndefined($scope.steps[previousStep]);
             };
             $scope.incrementStep = function () {
@@ -261,27 +247,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     $scope.applicantTwo = false;
                 }
             };
-
-//OLD DATEPICKER            
-//            $scope.datePicker = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.datePicker1 = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-//            $scope.datePicker2 = {
-//                opened: false,
-//                toggle: function () {
-//                    this.opened = !this.opened;
-//                }
-//            };
-
             $scope.personalInfo = function () {
                 console.log("selectedOption", $scope.selectedOption.id);
                 switch ($scope.selectedOption.id) {
@@ -315,7 +280,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 }
             };
 
-//            $scope.propertyTypesList = PropertyTypeService.findAllEntries();
             PropertyTypeService.findAllEntries(function (propertyType) {
                 $scope.propertyTypesList = propertyType;
                 console.log("Property type List :%O", $scope.propertyTypesList);
@@ -344,26 +308,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
             });
             $scope.submitFamilyDetails = function (totalRooms) {
                 console.log("family", totalRooms);
-
-//                $scope.totalRooms = [];
-//                $scope.totalNoOfRooms = 0;
-//
-//                angular.forEach(totalRooms, function (room) {
-//                    console.log("room", room);
-//                    $scope.totalRooms.push(room);
-//                });
-//                $.each($scope.totalRooms, function () {
-//                    $scope.totalNoOfRooms += this;
-//                    console.log("total", $scope.totalNoOfRooms);
-//                });
-//                angular.forEach(totalRooms, function (a) {
-//                    console.log("aaaaaaaaaaa::::::::", a);
-//                });
-//                if (totalRooms != null) {
-//                    alert("Saved successfully");
-//                } else {
-//                    alert("Please fill the details");
-//                }
                 console.log("Total Number Of Rooms Kunal:%O", totalRooms);
 
                 $scope.propertyType = PropertyTypeService.findByNumberOfBhkLike({
@@ -372,11 +316,8 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     angular.forEach(propertyType, function (propertyType1) {
                         $scope.propertyTypeArea = propertyType1;
                         $scope.carpetArea = propertyType1.carpetArea;
-                        console.log("mila kya", $scope.carpetArea);
+
                     });
-                    console.log("propertType", propertyType);
-//                    $scope.propertyTypeArea = propertType;
-//                    $scope.carpetArea = $scope.propertyTypeArea.carpetArea;
 
                 });
 
@@ -412,24 +353,17 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     additionalIncomeType: 'monthlyIncome',
                     income: 0
                 });
-//                 $scope.primaryApplicant.additionalIncomeDetails = $scope.primaryincomeDetailsArray;
             };
             $scope.getPrimaryIncomePrimaryType = function (primaryIncomeType) {
                 $scope.primaryApplicant.primaryIncome = primaryIncomeType;
                 console.log("primaryIncomeType", primaryIncomeType);
             };
             $scope.getPrimaryIncomeType = function (incomeVal) {
-//                $scope.primaryApplicant.PrimaryAppPrimaryIncome = incomeVal * 12;
-//                console.log("$scope.PrimaryAppPrimaryIncome" + $scope.PrimaryAppPrimaryIncome);
                 console.log("we here", incomeVal);
                 $scope.primaryApplicant.primaryValueType = incomeVal;
                 $scope.primaryApplicant.PrimaryAppPrimaryIncome = 0;
             };
-//            $scope.getPrimaryAnnualIncome = function (incomeVal) {
-//                $scope.PrimaryAppPrimaryIncome = incomeVal * 1;
-//                console.log("$scope.PrimaryAppPrimaryIncome" + $scope.PrimaryAppPrimaryIncome);
-//            };
-//            
+
             $scope.getPrimaryMonthlyIncomeValue = function (val) {
                 if ($scope.primaryApplicant.primaryValueType === 'monthlyIncome') {
                     console.log("val this is monthly", val);
@@ -466,7 +400,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 console.log("totalValue", totalValue);
                 $scope.primaryAppAdditonalTotalIncome = Number(totalValue.toFixed(2));
                 console.log("$scope.primaryAppAdditonalTotalIncome", $scope.primaryAppAdditonalTotalIncome);
-//                $scope.primaryAppAdditonalTotalIncome = total * 0.7;
                 $scope.primaryAppTotalIncome = $scope.primaryAppAdditonalTotalIncome + $scope.primaryApplicant.PrimaryAppPrimaryIncome;
                 console.log("$scope.primaryAppTotalIncome", $scope.primaryAppTotalIncome);
                 return  $scope.primaryAppAdditonalTotalIncome + $scope.primaryApplicant.PrimaryAppPrimaryIncome;
@@ -487,15 +420,14 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     additionalIncomeType: 'coApplicantmonthlyIncome',
                     income: 0
                 });
-//                $scope.coApplicant1.additionalIncomeDetails = $scope.coAppincomeDetailsArray;
+//              
             };
             $scope.getPrimaryIncomeCoAppOneType = function (primaryCoappIncomeType) {
                 $scope.coApplicant1.primaryIncome = primaryCoappIncomeType;
                 console.log("$scope.coApplicant1.primaryIncome", $scope.coApplicant1.primaryIncome);
             };
             $scope.getCoAppPrimaryIncomeType = function (incomeVal) {
-//                $scope.primaryApplicant.PrimaryAppPrimaryIncome = incomeVal * 12;
-//                console.log("$scope.PrimaryAppPrimaryIncome" + $scope.PrimaryAppPrimaryIncome);
+//               
                 console.log("we here", incomeVal);
                 $scope.coApplicant1.primaryValueType = incomeVal;
                 $scope.coApplicant1.CoAppOnePrimaryIncome = 0;
@@ -521,14 +453,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     }
                 }
             };
-//            $scope.getCoApplicantMonthlyIncome = function (incomeVal) {
-//                $scope.CoApplicantMonthlyIncome = incomeVal * 12;
-//                console.log("$scope.CoApplicantMonthlyIncome * 12", $scope.CoApplicantMonthlyIncome);
-//            };
-//            $scope.getCoApplicantAnnualIncome = function (incomeVal) {
-//                $scope.CoApplicantMonthlyIncome = incomeVal * 1;
-//                console.log("$scope.CoApplicantMonthlyIncome * 1", $scope.CoApplicantMonthlyIncome);
-//            };
+//    
             $scope.updateCoApplicantDetailIncome = function (updateDetailsValue, $index) {
                 $scope.coAppincomeDetailsArray.coAppIncomeDetails[$index].income = updateDetailsValue;
             };
@@ -540,7 +465,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 var coAppTotalValue = coAppTotal * 0.7;
                 console.log("coAppTotalValue", coAppTotalValue);
                 $scope.coAppOneAdditonalTotalIncome = Number(coAppTotalValue.toFixed(2));
-//                $scope.coAppOneAdditonalTotalIncome = coAppTotal * 0.7;
+//              
                 console.log("$scope.coAppOneAdditonalTotalIncome ", $scope.coAppOneAdditonalTotalIncome);
                 $scope.coAppTotalIncome = $scope.coAppOneAdditonalTotalIncome + $scope.coApplicant1.CoAppOnePrimaryIncome;
                 console.log("$scope.coAppTotalIncome total:", $scope.coAppTotalIncome);
@@ -562,46 +487,38 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                     additionalIncomeType: 'coApplicantTwomonthlyIncome',
                     income: 0
                 });
-//                $scope.coApplicant2.additionalIncomeDetails = $scope.coAppTwoincomeDetailsArray;
+//               
             };
             $scope.getPrimaryIncomeCoAppTwoType = function (primaryCoappIncomeType) {
                 $scope.coApplicant2.primaryIncome = primaryCoappIncomeType;
-                console.log("$scope.coApplicant2.primaryIncome", $scope.coApplicant2.primaryIncome);
+
             };
             $scope.getCoAppTwoPrimaryIncomeType = function (incomeVal) {
-//                $scope.primaryApplicant.PrimaryAppPrimaryIncome = incomeVal * 12;
-//                console.log("$scope.PrimaryAppPrimaryIncome" + $scope.PrimaryAppPrimaryIncome);
-                console.log("we here", incomeVal);
+//              
+
                 $scope.coApplicant2.primaryValueType = incomeVal;
                 $scope.coApplicant2.CoAppTwoPrimaryIncome = 0;
             };
             $scope.getCoAppTwoPrimaryIncomeValue = function (val) {
                 if ($scope.coApplicant2.primaryValueType === 'monthlyIncome') {
                     if (angular.isNumber(val)) {
-                        console.log("val this is monthly", val);
+
                         $scope.coApplicant2.CoAppTwoPrimaryIncome = val * 12;
-                        console.log("$scope.coApplicant2.CoAppTwoPrimaryIncome", $scope.coApplicant2.CoAppTwoPrimaryIncome);
-                        console.log("$scope.coApplicant2", $scope.coApplicant2);
+
                     } else {
                         $scope.coApplicant2.CoAppTwoPrimaryIncome = 0;
                     }
                 } else {
                     if (angular.isNumber(val)) {
-                        console.log("this is annual");
+
                         $scope.coApplicant2.CoAppTwoPrimaryIncome = val * 1;
-                        console.log("$scope.coApplicant2.CoAppTwoPrimaryIncome", $scope.coApplicant2.CoAppTwoPrimaryIncome);
-                        console.log("$scope.coApplicant2", $scope.coApplicant2);
+
                     } else {
                         $scope.coApplicant2.CoAppTwoPrimaryIncome = 0;
                     }
                 }
             };
-//            $scope.getCoApplicantTwoMonthlyIncome = function (incomeVal) {
-//                $scope.CoApplicantTwoMonthlyIncome = incomeVal * 12;
-//            };
-//            $scope.getCoApplicantTwoAnnualIncome = function (incomeVal) {
-//                $scope.CoApplicantTwoMonthlyIncome = incomeVal * 1;
-//            };
+//         
             $scope.updateCoApplicantTwoDetailIncome = function (updateDetailsValue, $index) {
 
                 $scope.coAppTwoincomeDetailsArray.coAppTwoIncomeDetails[$index].income = updateDetailsValue;
@@ -619,7 +536,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 $scope.coAppTwoincomeDetailsArray.coAppTwoIncomeDetails.splice(index, 1);
             };
             $scope.showIncomeDetailsTotal = function () {
-                console.log("priamry", $scope.primaryApplicant, "co1", $scope.coApplicant1, "co2", $scope.coApplicant2);
+
                 $scope.IncomeDetailsTotalIncome = $scope.coAppTwoTotalIncome + $scope.coAppTotalIncome + $scope.primaryAppTotalIncome;
                 $scope.incomeDetail = true;
             };
@@ -629,7 +546,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 switch ($scope.selectedOption.id) {
                     case 1:
                         if ($scope.primaryApplicant.PrimaryAppPrimaryIncome !== 0) {
-                            console.log("bhai chal gaya");
+
                             $scope.incrementStep();
                         } else {
                             alert('Please fill the mandatory fields.');
@@ -637,8 +554,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                         break;
                     case 2:
                         if ($scope.primaryApplicant.PrimaryAppPrimaryIncome !== 0 && $scope.coApplicant1.CoAppOnePrimaryIncome !== 0) {
-                            console.log("bhai chal gaya", $scope.coApplicant1);
-                            console.log("bhai chal gaya", $scope.primaryApplicant);
+
                             $scope.incrementStep();
                         } else {
                             alert('Please fill the mandatory fields.');
@@ -646,7 +562,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                         break;
                     case 3:
                         if ($scope.primaryApplicant.PrimaryAppPrimaryIncome !== 0 && $scope.coApplicant1.CoAppOnePrimaryIncome !== 0 && $scope.coApplicant2.CoAppTwoPrimaryIncome !== 0) {
-                            console.log("bhai chal gaya");
+
                             $scope.incrementStep();
                         } else {
                             alert('Please fill the mandatory fields.');
@@ -715,20 +631,20 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 console.log("$scope.primaryApplicantOtherExpense : ", $scope.primaryApplicantOtherExpense);
             };
             $scope.showPrimaryApplicantLiabilityTotalIncome = function () {
-                console.log(" check lia total ");
+
                 $scope.primaryApplicantTotalLiabilityIncomeValue = $scope.primaryApplicantOtherExpense + $scope.primaryApplicantMedicalExpenditure + $scope.primaryApplicantVehiclePurchase + $scope.primaryApplicantDaughtersMarriage + $scope.primaryApplicantChildrenEducation;
-                console.log("$scope.primaryApplicantTotalLiabilityIncomeValue", $scope.primaryApplicantTotalLiabilityIncomeValue);
+
                 $scope.LiablitiyValue = true;
             };
             $scope.showPrimaryApplicantAssetsTotalIncome = function () {
-                console.log(" check lia total ");
+
                 //$scope.primaryApplicantTotalLiabilityIncomeValue = $scope.primaryApplicantOtherExpense + $scope.primaryApplicantMedicalExpenditure + $scope.primaryApplicantVehiclePurchase + $scope.primaryApplicantDaughtersMarriage + $scope.primaryApplicantChildrenEducation;
                 $scope.totalPrimaryAssetsIncomeValue = $scope.primaryApplicantSavings + $scope.primaryApplicantLiquidableInvestment + $scope.primaryApplicantOtherPlannedIncome;
-                console.log("$scope.totalPrimaryAssetsIncomeValue", $scope.totalPrimaryAssetsIncomeValue);
+
                 $scope.AssestsValue = true;
                 $scope.AssestsValues = true;
                 $scope.primarycashInHandDetails = $scope.totalPrimaryAssetsIncomeValue - $scope.primaryApplicantTotalLiabilityIncomeValue;
-                console.log("$scope.primarycashInHandDetails", $scope.primarycashInHandDetails);
+
             };
             /*********************************************************/
             /*********************Liabilities************************************/
@@ -797,15 +713,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 $scope.CoAppOnecashInHandDetails = $scope.totalCoAppOneAssetsIncomeValue - $scope.coApplicantOneTotalLiabilityIncomeValue;
                 console.log("$scope.CoAppOnecashInHandDetails", $scope.CoAppOnecashInHandDetails);
             };
-//            $scope.showLiabilityAssetsIncomeTotal = function () {
-////                console.log(" check lia total ");
-////                //$scope.totalLiabilityIncomeValue = $scope.otherExpense + $scope.medicalExpenditure + $scope.vehiclePurchase + $scope.daughtersMarriage + $scope.childrenEducation;
-////                $scope.primaryApplicantTotalAssetsIncomeValue = $scope.savings + $scope.liquidableInvestment + $scope.otherPlannedIncome;
-////                console.log("$scope.totalLiabilityIncomeValue", $scope.totalLiabilityIncomeValue);
-////                $scope.LiablitiyValue = true;
-////                $scope.AssestsValue = true;
-//                $scope.incrementStep();
-//            };
+
             /*********************Liabilities************************************/
             /**************************************************************************************/
             $scope.primaryApplicantEmiLiability = null;
@@ -874,12 +782,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 console.log("$scope.CoAppTwocashInHandDetails", $scope.CoAppTwocashInHandDetails);
             };
             $scope.showLiabilityAssetsIncomeTotal = function () {
-//                console.log(" check lia total ");
-//                //$scope.totalLiabilityIncomeValue = $scope.otherExpense + $scope.medicalExpenditure + $scope.vehiclePurchase + $scope.daughtersMarriage + $scope.childrenEducation;
-//                $scope.primaryApplicantTotalAssetsIncomeValue = $scope.savings + $scope.liquidableInvestment + $scope.otherPlannedIncome;
-//                console.log("$scope.totalLiabilityIncomeValue", $scope.totalLiabilityIncomeValue);
-//                $scope.LiablitiyValue = true;
-//                $scope.AssestsValue = true;
                 $scope.incrementStep();
             };
             $scope.show = function () {
@@ -992,21 +894,6 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 console.log("sumOfAllAplicantsOnChange", sumOfAllAplicantsOnChange);
                 var mainApplicantOnChange = getMainApplicant($scope.primaryApplicant, $scope.coApplicant1, $scope.coApplicant2);
                 console.log("mainApplicantOnChange", mainApplicantOnChange);
-//                if (mainApplicantOnChange.primaryIncome === "salaried") {
-//                    $scope.loanTenureEligibilityOnChange = 60 - mainApplicantOnChange.age;
-//                    console.log(" $scope.loanTenure monthly wala", $scope.loanTenureEligibilityOnChange);
-//                } else {
-//                    $scope.loanTenureEligibilityOnChange = 70 - mainApplicantOnChange.age;
-//                    console.log(" $scope.loanTenure annual wala", $scope.loanTenureEligibilityOnChange);
-//                }
-//////
-//                if ($scope.loanTenureEligibilityOnChange > $scope.editableliabilityBank.bank.maxLoanTenure) {
-//                    $scope.loanTenureEligibilityOnChange = $scope.editableliabilityBank.bank.maxLoanTenure;
-//                    console.log("$scope.loanTenure", $scope.loanTenure);
-//                } else {
-//                    $scope.loanTenureEligibilityOnChange;
-//                    console.log("$scope.loanTenure", $scope.loanTenure);
-//                }
 
                 if (mainApplicantOnChange.gender === "male") {
                     rateOfInterestForLoanOnChange = $scope.editableliabilityBank.bank.loanInterestRateForMale;
@@ -1171,57 +1058,7 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 }
                 $scope.totalIncome = totalPrimaryIncome + totalAdditionalIncome;
             };
-//            $scope.setBank = function (bank) {
-//                if (bank !== null) {
-//                    $scope.bankId = bank.id;
-//                    console.log("bank ki id", $scope.bankId);
-//                    $scope.bank = bank;
-//                } else {
-//                    $scope.bankId = null;
-//                    $scope.bank = null;
-//                }
-//
-//
-//                $scope.incomeSlabs = IncomeSlabService.findByBankId({
-//                    'bankId': $scope.bankId
-//                }, function () {
-//
-//                    angular.forEach($scope.incomeSlabs, function (incomeSlab) {
-//                        console.log("incomeSlab", incomeSlab);
-//                        console.log("$scope.totalIncome", $scope.totalIncome);
-////                        $scope.liabilities = 0;
-//                        console.log("$scope.liabilities", $scope.liabilities);
-//                        if (angular.isNumber($scope.liabilities)) {
-//                            if ($scope.totalIncome >= incomeSlab.minRange && $scope.totalIncome <= incomeSlab.maxRange) {
-//                                $scope.emi = (($scope.totalIncome * (incomeSlab.percentageDeduction / 100)) / 12) - $scope.liabilities;
-//
-//                            }
-//                        } else {
-//                            if ($scope.totalIncome >= incomeSlab.minRange && $scope.totalIncome <= incomeSlab.maxRange) {
-//                                $scope.emi = ($scope.totalIncome * (incomeSlab.percentageDeduction / 100)) / 12;
-//                            }
-//                            ;
-//                        }
-//                        ;
-////                        if ($scope.totalIncome >= incomeSlab.minRange && $scope.totalIncome <= incomeSlab.maxRange) {
-////                            $scope.emi = (($scope.totalIncome * (incomeSlab.percentageDeduction / 100)) / 12) - $scope.liabilities;
-////                        }
-////                        ;
-//
-//                    });
-//
-//                    console.log("$scope.emi", $scope.emi);
-//                });
-//
-//
-//            };
-
             $scope.totalExpenditure = function () {
-//                    $scope.result=parseInt(primaryIncome) + parseInt(additionalIncome);
-//                $scope.expenditure = $scope.childEducation + $scope.marriage + $scope.vehicle;
-
-
-
 
                 if (angular.isNumber($scope.childEducation || $scope.marriage || $scope.vehicle)) {
                     $scope.expenditure = $scope.childEducation + $scope.marriage + $scope.vehicle;
@@ -1229,29 +1066,15 @@ angular.module("safedeals.states.guidelines", ['ngComboDatePicker'])
                 } else {
                     $scope.expenditure = "No Expenditure";
                 }
-
-
             };
             $scope.totalContribution = function () {
-//                    $scope.result=parseInt(primaryIncome) + parseInt(additionalIncome);
-//                $scope.expenditure = $scope.childEducation + $scope.marriage + $scope.vehicle;
-
-
-
-
                 if (angular.isNumber($scope.saving || $scope.liquid || $scope.retirement)) {
                     $scope.contribution = $scope.saving + $scope.liquid + $scope.retirement;
                     console.log("contribution", $scope.contribution);
                 } else {
                     $scope.contribution = "No contribution";
                 }
-
-
             };
-//            $scope.bStage = 0;
-//            $scope.bStage= $scope.totalIncome * (0.5);
-//            console.log("bstage",$scope.bStage );
-
         });
 
 

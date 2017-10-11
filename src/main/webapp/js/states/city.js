@@ -26,14 +26,6 @@ angular.module("safedeals.states.city", [])
                 'countryId': $stateParams.countryId,
                 'stateId': $stateParams.stateId
             };
-//            $scope.cityExport = function () {
-//                console.log("are we in export?");
-//                CityService.exportAllCities(function (a) {
-//                    console.log("a", a);
-//                    alert("Downloaded successfully");
-//                });
-//
-//            };
             $scope.saveCity = function (city) {
                 CityService.save(city, function (savedCity) {
                     $state.go('admin.masters_country.state.city', null, {'reload': true});

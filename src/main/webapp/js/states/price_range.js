@@ -63,27 +63,6 @@ angular.module("safedeals.states.price_range", [])
                     $state.go('admin.masters_price_range', null, {'reload': true});
                 });
             };
-//            $scope.$watch('editableRoad.name', function (name) {
-//                console.log("Name :" + name);
-//                PriceRangeService.findByName({'name': name}).$promise.catch(function (response) {
-//                    console.log("Response :%O", response);
-//                    if (response.status === 500) {
-//                        $scope.editablePriceRange.repeatName = false;
-//                    }
-//                    else if (response.status === 404) {
-//                        $scope.editablePriceRange.repeatName = false;
-//                    }
-//                    else if (response.status === 400) {
-//                        $scope.editablePriceRange.repeatName = false;
-//                    }
-//                }).then(function (road) {
-//                    console.log("Road :%O", road);
-//                    if (road.name !== null) {
-//                        $scope.editablePriceRange.repeatName = true;
-//                    }
-//                    ;
-//                });
-//            });
         })
         .controller('PriceRangeEditController', function (PriceRangeService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editablePriceRange = PriceRangeService.get({'id': $stateParams.priceRangeId});

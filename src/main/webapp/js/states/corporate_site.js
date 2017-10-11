@@ -71,51 +71,9 @@ angular.module("safedeals.states.corporate_site", [])
             $scope.noWrapSlides = false;
             $scope.active = 0;
             $scope.slides = TestimonialService.findByCategory();
-            
-//                    [
-//                        {
-//                            image: 'images/img5.jpg',
-//                            name: 'Kristiana',
-//                            designation: 'Web Developer www.example1.com',
-//                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-//Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-//                        },
-//                        {
-//                            image: 'images/img6.jpg',
-//                            name: 'Kristiana',
-//                            designation: 'photographer www.example1.com',
-//                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-//Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-//                        },
-//                        {
-//                            image: 'images/img7.jpg',
-//                            name: 'Kristiana',
-//                            designation: 'Web Developer www.example1.com',
-//                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-//Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-//                        },
-//                        {
-//                            image: 'images/img8.jpg',
-//                            name: 'Kristiana',
-//                            designation: 'Web Developer www.example1.com',
-//                            text: 'Lorem ipsum dolor sit amet consectetur quam felis, ultricies nec, pellentesque eu, pretium quis, sem\n\
-//Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo,rhoncus ut'
-//                        }
-//                    ];
-//                    
-//            $scope.IsVisible = true;
-////            $scope.IsHidden = true;
-////            $scope.IsContent = true;
-////            $scope.IsHide = true;
-////            $scope.IsToggle = true;
-//            $scope.testimonials = TestimonialService.query();
-//            console.log("$scope.testimonials", $scope.testimonials);
-//            $scope.myInterval = 3000;
         })
 
         .controller('SdNetworkController', function ($scope, CityService, FranchiseService, LocationService, CityService, $state, paginationLimit, $stateParams) {
-
-
             var map;
             var mapContainer = document.getElementById("mapContainerSdNetwork");
             var nagpurCoordinate = new google.maps.LatLng(21.1458, 79.0882);
@@ -181,36 +139,6 @@ angular.module("safedeals.states.corporate_site", [])
                     'name': searchTerm
                 }).$promise;
             };
-//            if (
-//                    $stateParams.offset === undefined ||
-//                    isNaN($stateParams.offset) ||
-//                    new Number($stateParams.offset) < 0)
-//            {
-//                $scope.currentOffset = 0;
-//            } else {
-//                $scope.currentOffset = new Number($stateParams.offset);
-//            }
-//
-//            $scope.nextOffset = $scope.currentOffset + 5;
-//
-//            $scope.nextFranchises = FranchiseService.query({
-//                'offset': $scope.nextOffset
-//            });
-//
-//            $scope.franchises = FranchiseService.query({
-//                'offset': $scope.currentOffset
-//            }
-//            , function (franchises) {
-//                angular.forEach(franchises, function (franchise) {
-//
-//                    franchise.city = CityService.get({
-//                        'id': franchise.cityId
-//                    });
-//                    franchise.location = LocationService.get({
-//                        'id': franchise.locationId
-//                    });
-//                });
-//            });
             console.log("$scope.franchises", $scope.franchises);
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;

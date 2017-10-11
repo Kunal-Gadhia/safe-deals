@@ -71,9 +71,6 @@ angular.module("safedeals.states.branch", [])
         .controller('BranchAddController', function (BranchService, BankService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
             console.log("Coming to add controller");
             $scope.editableBranch = {};
-//            $scope.locations = LocationService.query();
-//            $scope.banks = BankService.query();
-//            $scope.cities = CityService.query();
 
             $scope.setLocation = function (location) {
                 $scope.editableBranch.locationId = location.id;
@@ -147,9 +144,6 @@ angular.module("safedeals.states.branch", [])
         })
         .controller('BranchEditController', function (BranchService, BankService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
             console.log("Coming to edit controller");
-//            $scope.locations = LocationService.query();
-//            $scope.banks = BankService.query();
-//            $scope.cities = CityService.query();
             $scope.editableBranch = BranchService.get({'id': $stateParams.branchId}, function () {
                 console.log("Inside Function :%O", $scope.editableBranch);
 

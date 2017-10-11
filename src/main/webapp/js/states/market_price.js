@@ -73,8 +73,6 @@ angular.module("safedeals.states.market_price", [])
         })
         .controller('MarketPriceAddController', function (MarketPriceService, LocationService, $scope, $stateParams, $state, paginationLimit, CityService) {
             $scope.editableMarketPrice = {};
-//            $scope.locations = LocationService.findAllLocations();
-//            $scope.cities = CityService.findAllCities();
             console.log("hiiiiii", $scope.locations);
             $scope.setLocation = function (location) {
                 $scope.editableMarketPrice.locationId = location.id;
@@ -114,11 +112,11 @@ angular.module("safedeals.states.market_price", [])
                     $state.go('admin.masters_market_price', null, {'reload': true});
                 });
             };
-            // console.log("$scope.marketPrices.month",$scope.marketPrices.month);
+          
         })
 
         .controller('MarketPriceEditController', function (MarketPriceService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
-            //  $scope.locations = LocationService.query();
+          
             $scope.editableMarketPrice = MarketPriceService.get({'id': $stateParams.marketPriceId}, function () {
                 $scope.editableMarketPrice.location = LocationService.get({
                     id: $scope.editableMarketPrice.locationId

@@ -27,8 +27,7 @@ angular.module("safedeals.states.alerts", [])
                         'id': user.cityId
                     });
                 });
-//                var count = $scope.unapprovedUserList.length;
-//                console.log("Count :%O", count);
+
             });
         })
         .controller('AlertsApprovedController', function (UserService, MailService, $scope, $stateParams, $state, paginationLimit) {

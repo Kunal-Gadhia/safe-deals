@@ -20,9 +20,6 @@ angular.module("safedeals.services.enquiry")
                 'sendSms': {
                     'method': 'POST',
                     'url': restRoot + '/enquiry/send_sms'
-//                    'params': {
-//                        'clientNumber': '@clientNumber'
-//                    }
                 }
             });
         });

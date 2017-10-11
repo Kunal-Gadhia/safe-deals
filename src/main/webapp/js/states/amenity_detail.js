@@ -70,25 +70,11 @@ angular.module("safedeals.states.amenity_detail", [])
                     console.log('amenitydetail.amenity', amenitydetail.amenity);
                 });
             });
-//            console.log("$scope.amenitydetails", $scope.amenitydetails);
-
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
-//            angular.element($window).bind("scroll", function () {
-//                console.log("Page Y Offset :%O", this.pageYOffset);
-//                if (this.pageYOffset >= 10) {
-//
-//                      $scope.nextPage();
-//                    console.log('Scrolled below header.');
-//                } else {
-//
-////                    $scope.previousPage();
-//                    console.log('Header is in view.');
-//                }
-//                $scope.$apply();
-//            });
+
             $scope.previousPage = function () {
                 if ($scope.currentOffset <= 0) {
                     return;
@@ -249,7 +235,6 @@ angular.module("safedeals.states.amenity_detail", [])
                     $state.go('admin.masters_amenity_detail', null, {'reload': true});
                 });
             };
-//            console.log("$scope.editableAmenityDetail" , $scope.editableAmenityDetail);
         })
         .controller('AmenityDetailDeleteController', function (AmenityDetailService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableAmenityDetail = AmenityDetailService.get({'id': $stateParams.amenity_detailId});
@@ -259,7 +244,7 @@ angular.module("safedeals.states.amenity_detail", [])
                     $state.go('admin.masters_amenity_detail', null, {'reload': true});
                 });
             };
-        }) /*AmenityDetailService, LocationService, CityService, */
+        })
         .controller('AmenityDetailImportController', function (AmenityDetailService, AmenityService, CityService, LocationService, RawReadyReckonerService, $scope, $stateParams, $state, paginationLimit) {
             var map;
             var mapContainer = document.getElementById("amenityDetailImportMapContainer");
@@ -292,31 +277,6 @@ angular.module("safedeals.states.amenity_detail", [])
                     types: $scope.requiredAmenities
                 };
 
-//                var service = new google.maps.places.PlacesService(map);
-//                service.radarSearch(request, callback);
-//                function callback(results, status) {
-//                    console.log("results ", results);
-//                    angular.forEach(results, function (result) {
-//                        var request = {
-//                            placeId: result.place_id
-//                        };
-//                        service.getDetails(request, callback2);
-//                    });
-//                    function callback2(place, status) {
-//                        console.log("place in callback2", place);
-//                        console.log("status in callback2", status);
-//                        if (status === google.maps.places.PlacesServiceStatus.OK) {
-//                            createMarker(place);
-//                        }
-//                    }
-//                    function createMarker(place) {
-//                        var marker = new google.maps.Marker({
-//                            map: map,
-//                            position: place.geometry.location,
-//                            title: place.name
-//                        });
-//                    }
-//                }
             };
             var showMap = function () {
                 map = new google.maps.Map(mapContainer, mapProp);
@@ -336,44 +296,29 @@ angular.module("safedeals.states.amenity_detail", [])
             };
             function callback(results, status) {
                 $scope.results = results;
-//                createMarker(null);
-//                console.log("results", results);
+
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
                         createMarker(results[i]);
                     }
                 }
                 angular.forEach($scope.results, function (result) {
-//                    console.log("result", result);
-//                    angular.forEach($scope.results, function (result) {
-//                        var request = {
-//                            placeId: result.place_id
-//                        };
-//                        service.getDetails(request, callback2);
-//                    });
-//                    function callback2(place, status) {
-//                        console.log("place in callback2", place);
-//                        $scope.phoneNo = place.formatted_phone_number;
-////                        console.log("status in callback2", status);
-////                        if (status === google.maps.places.PlacesServiceStatus.OK) {
-////                            createMarker(place);
-////                        }
-//                    }
+
                     $scope.amenityDetailResult = {};
                     $scope.amenityDetailResult.name = result.name;
                     $scope.amenityDetailResult.amenityId = $scope.amenityId;
                     $scope.amenityDetailResult.address = result.formatted_address;
-//                    $scope.amenityDetailResult.phoneNumber =  $scope.phoneNo;
+
                     $scope.amenityDetailResult.latitude = result.geometry.location.lat();
                     $scope.amenityDetailResult.longitude = result.geometry.location.lng();
-//                    console.log("amenityDetailResult", $scope.amenityDetailResult);
+
                     AmenityDetailService.save($scope.amenityDetailResult, function () {
                         $state.go('admin.masters_amenity_detail', null, {'reload': true});
                     });
                 });
             }
             function createMarker(place) {
-//                console.log("place", place);
+
                 var placeLoc = place.geometry.location;
                 var marker = new google.maps.Marker({
                     map: map,
@@ -383,27 +328,13 @@ angular.module("safedeals.states.amenity_detail", [])
                 google.maps.event.addListener(marker, 'click', function () {
                     infowindow.setContent(place.name);
                     infowindow.open(map, this);
-                })
-//            angular.forEach($scope.results, function (result) {
-//                    console.log("result1", result);
-//                    AmenityDetailService.save(result, function () {
-//                        $state.go('admin.masters_amenity_detail', null, {'reload': true});
-//                    })
-//                })
+                });
             }
             ;
-//            $scope.saveAmenityDetailFromMap = function () {
-//                angular.forEach($scope.results, function (result) {
-//                    console.log("result", result);
-//                    AmenityDetailService.save(result, function () {
-//                        $state.go('admin.masters_amenity_detail', null, {'reload': true});
-//                    });
-//                });
-//            };
+
             showMap();
         })
         .controller('AmenityDetailExcelImportController', function (FileUploader, $timeout, restRoot, AmenityDetailService, $scope, $stateParams, $state, paginationLimit) {
-//            console.log("showDetails", $scope.showDetails);
             var uploader = $scope.fileUploader = new FileUploader({
                 url: restRoot + '/location/attachment',
                 autoUpload: true,
@@ -428,14 +359,13 @@ angular.module("safedeals.states.amenity_detail", [])
                     $scope.uploadFailed = false;
                 }, 2000);
                 console.log("upload error");
-//                $scope.refreshRawMarketPrice();
             };
             uploader.onCompleteItem = function (fileItem, response, status, headers) {
                 $scope.uploadInProgress = true;
                 $timeout(function () {
                     $scope.uploadInProgress = false;
                 }, 2000);
-//                $scope.refreshRawMarketPrice();
+
                 console.log("upload completion", fileItem);
 
             };
