@@ -153,7 +153,7 @@ public class ProjectDAL {
                         Columns.OFFERED_PRICE,
                         Columns.DISCOUNT,
                         Columns.OFFER_VALID_TILL,
-                        //                        Columns.PAYMENT_SCHEDULE,
+                     
                         Columns.WORKPLACES,
                         Columns.BASIC_AMENITIES,
                         Columns.LUXURY_AMENITIES,
@@ -617,19 +617,10 @@ public class ProjectDAL {
             if (rs.wasNull()) {
                 project.setMajorApproachRoad(null);
             }
-//            String publicTransportList = rs.getString(Columns.PUBLIC_TRANSPORT);
-//            try {
-//                ObjectMapper mapper = new ObjectMapper();
-//                List<Integer> publicTransport = mapper.readValue(publicTransportList, new TypeReference<List<Integer>>() {
-//                });
-//                project.setPublicTransport(publicTransport);
-//            } catch (IOException ex) {
-//                throw new RuntimeException("Error parsing publicTransportList: '" + publicTransportList + "' ", ex);
-//            }
             project.setOfferedPrice(rs.getDouble(Columns.OFFERED_PRICE));
             project.setDiscount(rs.getDouble(Columns.DISCOUNT));
             project.setOfferValidTill(rs.getDate(Columns.OFFER_VALID_TILL));
-//            project.setPaymentSchedule(rs.getString(Columns.PAYMENT_SCHEDULE));
+
             String workplacesList = rs.getString(Columns.WORKPLACES);
             try {
                 ObjectMapper mapper = new ObjectMapper();
@@ -657,15 +648,7 @@ public class ProjectDAL {
             } catch (IOException ex) {
                 throw new RuntimeException("Error parsing luxuryAmenitiesList: '" + luxuryAmenitiesList + "' ", ex);
             }
-//            String ownershipProofList = rs.getString(Columns.OWNERSHIP_PROOF);
-//            try {
-//                ObjectMapper mapper = new ObjectMapper();
-//                List<String> ownershipProof = mapper.readValue(ownershipProofList, new TypeReference<List<String>>() {
-//                });
-//                project.setOwnershipProof(ownershipProof);
-//            } catch (IOException ex) {
-//                throw new RuntimeException("Error parsing ownershipProofList: '" + ownershipProofList + "' ", ex);
-//            }
+
             String approvedBanksList = rs.getString(Columns.APPROVED_BANKS);
             try {
                 ObjectMapper mapper = new ObjectMapper();
@@ -892,11 +875,6 @@ public class ProjectDAL {
 
             return project;
         }
-//
-//        @Override
-//        public Project mapRow(ResultSet rs, int i) throws SQLException {
-//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        }
 
     };
 

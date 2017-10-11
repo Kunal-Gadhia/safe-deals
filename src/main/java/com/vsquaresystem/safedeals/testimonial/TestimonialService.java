@@ -40,12 +40,6 @@ public class TestimonialService {
 
     public Testimonial insertAttachments(Integer testimonialId, MultipartFile attachmentMultipartFile) throws JsonProcessingException, IOException {
         Testimonial testimonial = testimonialDAL.findById(testimonialId);
-//        if (testimonial.getAttachment().get(0).length()>0) {
-//            boolean b = attachmentUtils.deleteAttachmentByAttachmentTypeAndEntityId(
-//                    testimonial.getAttachment().get(0).toString(),
-//                    AttachmentUtils.AttachmentType.TESTIMONIAL,
-//                    testimonial.getId());
-//        }
         Boolean isView = false;
         File outputFile = attachmentUtils.storeAttachmentByAttachmentTypeAndEntityId(
                 attachmentMultipartFile.getOriginalFilename(),
@@ -58,7 +52,6 @@ public class TestimonialService {
         List<String> attachments = new ArrayList<>();
         attachments.add(outputFile.getName().toString());
         testimonial.setAttachment(attachments);
-//
         testimonialDAL.update(testimonial);
         return testimonial;
     }

@@ -114,12 +114,7 @@ public class AmenityDetailService {
         xssfrow.getCell(9).setCellValue("Amenity Detail City Id");
         String fileName = "/AmenityDetailMasterData.xls";
         String exportPath = attachmentUtils.getAmenityDetailExportAttachmentRootDirectory() + fileName;
-//         System.out.println("exportPath" + exportPath);
-//        String excelFilePath = "/home/hp-pc/Downloads/LocationMasterData.xls";
 
-        //        excelWriter.writeExcel(listBook, excelFilePath);
-        //        Workbook workbook = new HSSFWorkbook();
-        //    Sheet sheet = workbook.createSheet();
         int rowCount = 0;
 
         for (AmenityDetail aAmenityDetail : rs) {
@@ -135,7 +130,7 @@ public class AmenityDetailService {
     }
 
     public Vector read() throws IOException {
-//        logger.info("are we in the vector read?");
+
         File excelFile = attachmentUtils.getDirectoryByAttachmentType(AttachmentUtils.AttachmentType.AMENITY_DETAIL);
         logger.info("Excel FIle Kunal :" + excelFile);
         logger.info("Excel File List Kunal :" + excelFile.listFiles());
@@ -146,54 +141,49 @@ public class AmenityDetailService {
         int type;
         try {
             FileInputStream myInput = new FileInputStream(fileName);
-            //POIFSFileSystem myFileSystem = new POIFSFileSystem(myInput);
+           
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator rowIter = mySheet.rowIterator();
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
                 Iterator cellIter = myRow.cellIterator();
-                //Vector cellStoreVector=new Vector();              
+                           
                 List list = new ArrayList();
                 while (cellIter.hasNext()) {
                     XSSFCell myCell = (XSSFCell) cellIter.next();
                     if (myCell != null) {
                         switch (myCell.getCellType()) {
                             case Cell.CELL_TYPE_BOOLEAN:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_NUMERIC:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_STRING:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
                             case Cell.CELL_TYPE_BLANK:
                                 break;
                             case Cell.CELL_TYPE_ERROR:
-//                                System.out.println(new DataFormatter().formatCellValue(myCell));
+
                                 list.add(new DataFormatter().formatCellValue(myCell));
                                 break;
 
-                            // CELL_TYPE_FORMULA will never occur
                             case Cell.CELL_TYPE_FORMULA:
                                 break;
                         }
                     }
 
-//                    type = myCell.getCellType();
-//                    list.add(myCell);
                 }
-//                logger.info("Line Line108 {}" + list);
                 cellVectorHolder.addElement(list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        logger.info("cellVectorHolder Line108 {}" + cellVectorHolder);
         return cellVectorHolder;
 
     }
@@ -217,8 +207,6 @@ public class AmenityDetailService {
         DataFormatter formatter = new DataFormatter();
         for (Iterator iterator = dataHolder.iterator(); iterator.hasNext();) {
             List list = (List) iterator.next();
-//            logger.info("list log 182", list.size());
-//             System.out.println("list sop 182 GET" + list);
             name = list.get(1).toString();
             address = list.get(2).toString();
             phoneNumber = list.get(3).toString();
@@ -228,11 +216,6 @@ public class AmenityDetailService {
             latitude = list.get(7).toString();
             longitude = list.get(8).toString();
             cityId = list.get(9).toString();
-//            List<String> strList = new ArrayList<String>(Arrays.asList(locationCategories.split(",")));
-//            List<Integer> numberList = new ArrayList<Integer>();
-//            for (String number : strList) {
-//                numberList.add(Integer.parseInt(number));
-//            }
             try {
                 amenityDetail.setName(name);
                 amenityDetail.setAddress(address);

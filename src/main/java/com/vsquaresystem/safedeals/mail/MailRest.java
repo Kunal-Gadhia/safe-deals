@@ -27,21 +27,18 @@ public class MailRest {
 
     @RequestMapping(value = "/send_mail", method = RequestMethod.POST)
     public String sendMail(String mailId) {
-        // logger.info("client no rest ", clientNumber);
         mailService.sendMail(mailId);
         return "greeting";
     }
 
     @RequestMapping(value = "/send_approved_mail", method = RequestMethod.POST)
     public String sendApprovedMail(String mailId) {
-        // logger.info("client no rest ", clientNumber);
         mailService.sendApprovedMail(mailId);
         return "greeting";
     }
 
     @RequestMapping(value = "/send_rejection_mail", method = RequestMethod.POST)
     public String sendRejectionMail(String mailId) {
-        // logger.info("client no rest ", clientNumber);
         mailService.sendRejectionMail(mailId);
         return "greeting";
     }

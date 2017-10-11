@@ -20,8 +20,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class GuidelinesService {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Boolean sendBudgetReportEmail(String name, String email, String cashInHand, String loanEligibility, String grossBudget,
             String emiEligibility, String eligiblePropertyValue) throws AddressException, MessagingException {

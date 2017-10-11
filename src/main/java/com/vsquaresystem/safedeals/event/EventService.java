@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class EventService {
-    public final Logger logger = LoggerFactory.getLogger(getClass());
+   
     @Autowired
     AttachmentUtils attachmentUtils;    
 
@@ -51,7 +51,6 @@ public class EventService {
         List<String> attachments = new ArrayList<>();
         attachments.add(outputFile.getName().toString());
         event.setPhotoPath(attachments);
-//
         eventDAL.update(event);
         return event;
     }

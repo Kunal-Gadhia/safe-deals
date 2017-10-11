@@ -920,6 +920,16 @@ angular.module("safedeals.states.property", ['bootstrapLightbox'])
                 myCity.setMap($scope.map);
                 $scope.map.fitBounds(myCity.getBounds());
             });
+
+            $scope.$watch('property.carpetArea', function (carpetArea) {
+                console.log("carpetArea " + carpetArea);
+                $scope.$watch('property.buildUpArea', function (buildUpArea) {
+                    console.log("buildUpArea" + buildUpArea);
+                    $scope.carpetVsBuildup = ((carpetArea / buildUpArea) * 100);
+
+                });
+
+            });
             //////////////////////Distance Calculator Manual////////////////////
             $scope.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
                 console.log("Lat 1 :%O", lat1);

@@ -52,6 +52,11 @@
     background-color: #CCA650;
     border-color: #70330C;
 }
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #CCA650;
+    border-color: #70330C;
+}
 
 .btn-primary.active, .btn-primary:active{
     color: #fff;
@@ -1065,9 +1070,17 @@ tcb-testimonial-carousel*/
                   border: 1px solid #ececec;
                   content: " ";
                   overflow: hidden; }
-.middleWrapper ul li { list-style: none; background: url(images/arrow.png) no-repeat 0 15px; padding: 10px 0px 0px 12px;}
+.middleWrapper ul li { list-style: none; background: url("../images/arrow.png") no-repeat 0 15px; padding: 10px 0px 0px 12px;}
 .sep{border-right: 1px solid #ececec}
-
+.affix {
+        top:110px;
+        width: 100%;
+        z-index: 9999 !important;
+    }
+    .affix ~ #myCarousel {
+        position: relative;
+        top: 500px;
+    }
 /*************************** end of project nav tabs ********************************/
 
 
@@ -1504,7 +1517,7 @@ tcb-testimonial-carousel*/
     width: 100%;
 }
 .VideoContainer{
-    height: 350px;
+    height: 342px;
 }
 .LandmarkDIV h4{
     font-size: 19px;
@@ -1564,9 +1577,9 @@ tcb-testimonial-carousel*/
     font-size: 1.3em;
     padding-right: 3px;
 }
-.table-responsive-vertical tbody tr td{
+/*.table-responsive-vertical tbody tr td{
     font-size: 12px;
-}
+}*/
 .list-group-bootify li {   
     border-bottom-right-radius: 0px!important;
     border-bottom-left-radius: 0px!important;
