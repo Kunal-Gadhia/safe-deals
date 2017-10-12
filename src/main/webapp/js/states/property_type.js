@@ -31,7 +31,7 @@ angular.module("safedeals.states.property_type", [])
             } else {
                 $scope.currentOffset = new Number($stateParams.offset);
             }
-            
+
             $scope.nextOffset = $scope.currentOffset + 5;
 
             $scope.nextPropertyTypes = PropertyTypeService.query({
@@ -60,7 +60,7 @@ angular.module("safedeals.states.property_type", [])
             $scope.editablePropertyType = {};
 
             $scope.savePropertyType = function (property_type) {
-                console.log("property_type", property_type);
+
                 PropertyTypeService.save(property_type, function () {
                     $state.go('admin.masters_property_type', null, {'reload': true});
                 });
@@ -71,7 +71,7 @@ angular.module("safedeals.states.property_type", [])
             $scope.editablePropertyType = PropertyTypeService.get({'id': $stateParams.propertyTypeId});
 
             $scope.savePropertyType = function (property_type) {
-                console.log("property_type", property_type);
+
                 property_type.$save(function () {
                     $state.go('admin.masters_property_type', null, {'reload': true});
                 });
@@ -80,7 +80,7 @@ angular.module("safedeals.states.property_type", [])
 
         .controller('PropertyTypeDeleteController', function (PropertyTypeService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editablePropertyType = PropertyTypeService.get({'id': $stateParams.propertyTypeId});
-            console.log("are we here?");
+
             $scope.deletePropertyType = function (property_type) {
                 property_type.$delete(function () {
                     $state.go('admin.masters_property_type', null, {'reload': true});

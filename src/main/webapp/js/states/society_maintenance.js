@@ -41,7 +41,7 @@ angular.module("safedeals.states.society_maintenance", [])
             $scope.societyMaintenances = SocietyMaintenanceService.query({
                 'offset': $scope.currentOffset
             }, function (s) {
-                console.log("SocietyMaintenanceService ", s);
+
             });
 
             $scope.nextPage = function () {
@@ -60,7 +60,7 @@ angular.module("safedeals.states.society_maintenance", [])
 
             $scope.editableSocietyMaintenance = {};
             $scope.saveSocietyMaintenance = function (society_maintenance) {
-                console.log("society_maintenance", society_maintenance);
+
                 SocietyMaintenanceService.save(society_maintenance, function () {
                     $state.go('admin.masters_society_maintenance', null, {'reload': true});
                 });
@@ -78,7 +78,7 @@ angular.module("safedeals.states.society_maintenance", [])
         })
         .controller('SocietyMaintenanceDeleteController', function (SocietyMaintenanceService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableSocietyMaintenance = SocietyMaintenanceService.get({'id': $stateParams.societyMaintenanceId});
-            console.log("are we here?");
+
             $scope.deleteSocietyMaintenance = function (society_maintenance) {
                 society_maintenance.$delete(function () {
                     $state.go('admin.masters_society_maintenance', null, {'reload': true});

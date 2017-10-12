@@ -21,7 +21,7 @@ angular.module("safedeals.states.state", [])
                 'controller': 'CityListController'
             });
         })
-        .controller('StateAddController', function (StateService, CountryService, $state, $scope, $stateParams) {            
+        .controller('StateAddController', function (StateService, CountryService, $state, $scope, $stateParams) {
             $scope.editableState = {
                 'countryId': $stateParams.countryId
             };
@@ -46,7 +46,7 @@ angular.module("safedeals.states.state", [])
         .controller('StateDeleteController', function (StateService, $state, $scope, $stateParams) {
             $scope.editableState = StateService.get({'id': $stateParams.stateId});
             $scope.deleteState = function (state) {
-                console.log(state);
+
                 state.$delete(function () {
                     $state.go('admin.masters_country.state', null, {'reload': true});
                 });
@@ -61,9 +61,9 @@ angular.module("safedeals.states.state", [])
             });
 
             $scope.cityExport = function () {
-                console.log("are we in export?");
+
                 CityService.exportAllCities(function (a) {
-                    console.log("a", a);
+
                     alert("Downloaded successfully");
                 });
 

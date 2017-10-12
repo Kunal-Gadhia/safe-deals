@@ -40,7 +40,7 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
                 'offset': $scope.currentOffset
             }, function () {
                 angular.forEach($scope.rawReadyReckoners, function (rawReadyReckoner) {
-                    console.log("rawReadyReckoner ", rawReadyReckoner);
+
                     rawReadyReckoner.safedealZone = SafedealZoneService.get({
                         'id': rawReadyReckoner.safedealZoneId
                     });
@@ -65,7 +65,7 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
             var latLongLocations = [];
 
             $scope.rawReadyReckonersLocations = RawReadyReckonerService.getAll();
-//            var geocoder = new google.maps.Geocoder();
+
             $scope.findlocation = function () {
                 var geocoder = new google.maps.Geocoder();
                 angular.forEach($scope.rawReadyReckonersLocations, function (rrLocation) {
@@ -79,12 +79,9 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
                         var request = {};
                         request.location = {};
                         if (status == google.maps.GeocoderStatus.OK) {
-//                            alert("location : " + results[0].geometry.location.lat() + " " + results[0].geometry.location.lng());
                             request.location.lat = results[0].geometry.location.lat();
                             request.location.lng = results[0].geometry.location.lng();
                             var searchLoc = new google.maps.LatLng(request.location.lat, request.location.lng);
-//                            service.nearbySearch();
-
                         } else {
                             request.location.lat = 0;
                             request.location.lng = 0;
@@ -94,8 +91,6 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
 
                 });
             };
-//            
-
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
@@ -122,14 +117,14 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
             };
 
             $scope.searchLocations = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return LocationService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
 
             $scope.searchCities = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return CityService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
@@ -140,8 +135,8 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
                 });
             };
         })
-        .controller('RawReadyReckonerEditController', function (RawReadyReckonerService, BankService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
-            console.log("rawReadyReckonerId", $stateParams.rawReadyReckonerId);
+        .controller('RawReadyReckonerEditController', function (RawReadyReckonerService, $scope, $stateParams, $state, paginationLimit) {
+
             $scope.editableRawReadyReckoner = RawReadyReckonerService.get({'id': $stateParams.rawReadyReckonerId});
 
             $scope.saveRawReadyReckoner = function (rawReadyReckoner) {
@@ -158,40 +153,34 @@ angular.module("safedeals.states.raw_ready_reckoner", [])
                 });
             };
         })
-        .controller('RawReadyReckonerBrowseController', function ($scope, $state, $stateParams, RawReadyReckonerService, $timeout, FileUploader, restRoot) {
-            console.log("showDetails", $scope.showDetails);
+        .controller('RawReadyReckonerBrowseController', function ($scope, $state, RawReadyReckonerService, $timeout, FileUploader, restRoot) {
+
             var uploader = $scope.fileUploader = new FileUploader({
                 url: restRoot + '/rawreadyreckoner/attachment',
                 autoUpload: true,
                 alias: 'attachment'
             });
 
-            uploader.onBeforeUploadItem = function (item) {
+            uploader.onBeforeUploadItem = function () {
                 $scope.uploadInProgress = true;
-                console.log("before upload item:", item);
-                console.log("uploader", uploader);
+
             };
-            uploader.onErrorItem = function (fileItem, response, status, headers) {
+            uploader.onErrorItem = function () {
                 $scope.uploadFailed = true;
                 $timeout(function () {
                     $scope.uploadFailed = false;
                 }, 2000);
-                console.log("upload error");
-//                $scope.refreshRawReadyReckoner();
+
             };
-            uploader.onCompleteItem = function (fileItem, response, status, headers) {
+            uploader.onCompleteItem = function () {
                 $scope.uploadInProgress = true;
                 $timeout(function () {
                     $scope.uploadInProgress = false;
                 }, 2000);
-//                $scope.refreshRawReadyReckoner();
-                console.log("upload completion", fileItem);
-
             };
             $scope.saveExcelAttachment = function (fileUploader) {
                 RawReadyReckonerService.saveExcelData(fileUploader, function () {
                     $state.go('admin.masters_raw_ready_reckoner', null, {'reload': true});
-
                 });
             };
         });

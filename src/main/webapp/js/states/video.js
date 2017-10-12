@@ -20,11 +20,7 @@ angular.module("safedeals.states.video", [])
                 'templateUrl': templateRoot + '/masters/video/delete.html',
                 'controller': 'VideoDeleteController'
             });
-//            $stateProvider.state('admin.masters_video.upload', {
-//                'url': '/:videoId/upload',
-//                'templateUrl': templateRoot + '/masters/video/upload.html',
-//                'controller': 'VideoUploadController'
-//            });
+
         })
 
         .controller('VideoListController', function (VideoService, PropertyService, ProjectService, $scope, $stateParams, $state, paginationLimit) {
@@ -75,7 +71,7 @@ angular.module("safedeals.states.video", [])
             $scope.editableVideo = {};
 
             $scope.$watch('editableVideo.name', function (name) {
-                    console.log("Video  Name :" + name);
+                    
                 VideoService.findByVideoName({'name': name}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableVideo.repeatVideo = false;
@@ -178,78 +174,3 @@ angular.module("safedeals.states.video", [])
                 });
             };
         });
-//        .controller('VideoUploadController', function (VideoService, $scope, $stateParams, $state, paginationLimit, $timeout, FileUploader, restRoot) {
-//            $scope.editableVideo = VideoService.get({'id': $stateParams.videoId});
-//            console.log("are we here?",$scope.editableVideo);
-//
-//            console.log("showDetails", $scope.showDetails);
-//            var uploader = $scope.videoUploader = new FileUploader({
-//                url: restRoot + '/video/' + $stateParams.videoId + '/setVideo',
-//                autoUpload: true,
-//                alias: 'video'
-//            });
-//
-//            uploader.onBeforeUploadItem = function (item) {
-//                $scope.uploadInProgress = true;
-//                console.log("before upload item:", item);
-//                console.log("uploader", uploader);
-//            };
-//            uploader.onErrorItem = function (fileItem, response, status, headers) {
-//                $scope.uploadFailed = true;
-//                $timeout(function () {
-//                    $scope.uploadFailed = false;
-//                }, 2000);
-//                console.log("upload error");
-//            };
-//            uploader.onCompleteItem = function (fileItem, response, status, headers) {
-//                $scope.uploadInProgress = true;
-//                $timeout(function () {
-//                    $scope.uploadInProgress = false;
-//                }, 2000);
-////                $scope.refreshRawReadyReckoner();
-//                console.log("upload completion", fileItem);
-//
-//            };
-//            var photouploader = $scope.photoUploader = new FileUploader({
-//                url: restRoot + '/video/' + $stateParams.videoId + '/setPhoto',
-//                autoUpload: true,
-//                alias: 'photo'
-//            });
-//            photouploader.onBeforeUploadItem = function (item) {
-//                $scope.uploadInProgress = true;
-//                console.log("before upload item:", item);
-//                console.log("uploader", photouploader);
-//            };
-//            photouploader.onErrorItem = function (fileItem, response, status, headers) {
-//                $scope.uploadFailed = true;
-//                $timeout(function () {
-//                    $scope.uploadFailed = false;
-//                }, 2000);
-//                console.log("upload error");
-//            };
-//            photouploader.onCompleteItem = function (fileItem, response, status, headers) {
-//                $scope.uploadInProgress = true;
-//                $timeout(function () {
-//                    $scope.uploadInProgress = false;
-//                }, 2000);
-////                $scope.refreshRawReadyReckoner();
-//                console.log("upload completion", fileItem);
-//
-//            };
-//            $scope.saveVideo = function (video) {
-//                console.log("video line no 153", video);
-//                VideoService.save(video, function (savedVideo) {
-//                    $state.go('admin.masters_video', {videoId : savedVideo.id}, {'reload': true});
-//                    console.log("video save after function", video);
-//                });
-//            };
-////            $scope.saveVideo = function (video) {
-////                console.log("video save", video);
-////                video.$save(function () {
-////                    $state.go('admin.masters_video', null, {'reload': true});
-////                console.log("video save after function", video);
-////                });
-////            };
-//        });
-
-        

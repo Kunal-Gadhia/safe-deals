@@ -67,9 +67,6 @@ angular.module("safedeals.states.ready_reckoner", [])
         })
         .controller('ReadyReckonerAddController', function (ReadyReckonerService, LocationService, /*BankService, CityService, */$scope, $stateParams, $state, paginationLimit) {
             $scope.editableReadyReckoner = {};
-//            $scope.locations = LocationService.query();
-//            $scope.banks = BankService.query();
-//            $scope.cities = CityService.query();
 
             $scope.setLocation = function (location) {
                 $scope.editableReadyReckoner.locationId = location.id;
@@ -77,23 +74,20 @@ angular.module("safedeals.states.ready_reckoner", [])
             };
 
             $scope.searchLocations = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return LocationService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
 
             $scope.saveReadyReckoner = function (readyReckoner) {
-                console.log("Save ??");
+
                 ReadyReckonerService.save(readyReckoner, function () {
                     $state.go('admin.masters_ready_reckoner', null, {'reload': true});
                 });
             };
         })
-        .controller('ReadyReckonerEditController', function (ReadyReckonerService, BankService, LocationService, CityService, $scope, $stateParams, $state, paginationLimit) {
-//            $scope.locations = LocationService.query();
-//            $scope.editableReadyReckoner = ReadyReckonerService.get({'id': $stateParams.readyReckonerId});
-
+        .controller('ReadyReckonerEditController', function (ReadyReckonerService, LocationService, $scope, $stateParams, $state) {
             $scope.editableReadyReckoner = ReadyReckonerService.get({'id': $stateParams.readyReckonerId}, function () {
                 $scope.editableReadyReckoner.location = LocationService.get({
                     'id': $scope.editableReadyReckoner.locationId
@@ -104,14 +98,8 @@ angular.module("safedeals.states.ready_reckoner", [])
                 $scope.editableReadyReckoner.location = location;
             };
 
-//            $scope.saveReadyReckoner = function (readyReckoner) {
-//                ReadyReckonerService.$save(readyReckoner, function () {
-//                    $state.go('admin.masters_ready_reckoner', null, {'reload': true});
-//                });
-//            };
-
             $scope.searchLocations = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return LocationService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
@@ -136,38 +124,32 @@ angular.module("safedeals.states.ready_reckoner", [])
             };
         })
 
-        .controller('ReadyReckonerBrowseController', function ($scope, $state, $stateParams, ReadyReckonerService, $timeout, FileUploader, restRoot) {
-            console.log("showDetails", $scope.showDetails);
+        .controller('ReadyReckonerBrowseController', function ($scope, $state, ReadyReckonerService, $timeout, FileUploader, restRoot) {
+
             var uploader = $scope.fileUploader = new FileUploader({
                 url: restRoot + '/readyreckoner/attachment',
                 autoUpload: true,
                 alias: 'attachment'
             });
 
-            uploader.onBeforeUploadItem = function (item) {
+            uploader.onBeforeUploadItem = function () {
                 $scope.uploadInProgress = true;
-                console.log("before upload item:", item);
-                console.log("uploader", uploader);
+
             };
-            uploader.onErrorItem = function (fileItem, response, status, headers) {
+            uploader.onErrorItem = function () {
                 $scope.uploadFailed = true;
                 $timeout(function () {
                     $scope.uploadFailed = false;
                 }, 2000);
-                console.log("upload error");
-//                $scope.refreshRawReadyReckoner();
             };
-            uploader.onCompleteItem = function (fileItem, response, status, headers) {
+            uploader.onCompleteItem = function () {
                 $scope.uploadInProgress = true;
                 $timeout(function () {
                     $scope.uploadInProgress = false;
                 }, 2000);
-//                $scope.refreshRawReadyReckoner();
-                console.log("upload completion", fileItem);
-
             };
             $scope.saveExcelAttachment = function (fileUploader) {
-                console.log("fileUploader", fileUploader);
+
                 ReadyReckonerService.saveExcelData(fileUploader, function () {
                     $state.go('admin.masters_ready_reckoner', null, {'reload': true});
 

@@ -42,14 +42,12 @@ angular.module("safedeals.states.road", [])
                 'offset': $scope.currentOffset
             }, function (roads) {
                 angular.forEach(roads, function (road) {
-                    console.log("road:%O", road);
+
                     road.cityObject = CityService.get({
                         'id': road.cityId
                     });
                 });
             });
-            console.log("Roads :%O", $scope.roads);
-
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
@@ -66,28 +64,28 @@ angular.module("safedeals.states.road", [])
             $scope.editableRoad = {};
 
             $scope.setCity = function (city) {
-                console.log("set city", city);
+
                 $scope.editableRoad.cityId = city.id;
                 $scope.editableRoad.city = city;
             };
 
             $scope.searchCities = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return CityService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
             };
 
             $scope.saveRoad = function (road) {
-                console.log("Road :%O", road);
+
                 RoadService.save(road, function () {
                     $state.go('admin.masters_road', null, {'reload': true});
                 });
             };
             $scope.$watch('editableRoad.name', function (name) {
-                console.log("Name :" + name);
+
                 RoadService.findByName({'name': name}).$promise.catch(function (response) {
-                    console.log("Response :%O", response);
+
                     if (response.status === 500) {
                         $scope.editableRoad.repeatName = false;
                     }
@@ -98,7 +96,7 @@ angular.module("safedeals.states.road", [])
                         $scope.editableRoad.repeatName = false;
                     }
                 }).then(function (road) {
-                    console.log("Road :%O", road);
+
                     if (road.name !== null) {
                         $scope.editableRoad.repeatName = true;
                     }
@@ -113,14 +111,14 @@ angular.module("safedeals.states.road", [])
                 });
             });
 
-                        $scope.setCity = function (city) {
-                console.log("set city", city);
+            $scope.setCity = function (city) {
+
                 $scope.editableRoad.cityId = city.id;
                 $scope.editableRoad.city = city;
             };
 
             $scope.searchCities = function (searchTerm) {
-                console.log("Search Term :%O", searchTerm);
+
                 return CityService.findByNameLike({
                     'name': searchTerm
                 }).$promise;
@@ -133,7 +131,7 @@ angular.module("safedeals.states.road", [])
         })
         .controller('RoadDeleteController', function (RoadService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableRoad = RoadService.get({'id': $stateParams.roadId});
-//            console.log("are we here?");
+
             $scope.deleteRoad = function (road) {
                 road.$delete(function () {
                     $state.go('admin.masters_road', null, {'reload': true});

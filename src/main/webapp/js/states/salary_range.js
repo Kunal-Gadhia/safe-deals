@@ -12,12 +12,12 @@ angular.module("safedeals.states.salary_range", [])
             });
             $stateProvider.state('admin.masters_salary_range.edit', {
                 'url': '/:salaryRangeId/edit',
-                        'templateUrl': templateRoot + '/masters/salaryrange/form.html',
+                'templateUrl': templateRoot + '/masters/salaryrange/form.html',
                 'controller': 'SalaryRangeEditController'
             });
             $stateProvider.state('admin.masters_salary_range.delete', {
                 'url': '/:salaryRangeId/delete',
-                        'templateUrl': templateRoot + '/masters/salaryrange/delete.html',
+                'templateUrl': templateRoot + '/masters/salaryrange/delete.html',
                 'controller': 'SalaryRangeDeleteController'
             });
         })
@@ -32,8 +32,8 @@ angular.module("safedeals.states.salary_range", [])
             } else {
                 $scope.currentOffset = new Number($stateParams.offset);
             }
-            
-             $scope.nextOffset = $scope.currentOffset + 5;
+
+            $scope.nextOffset = $scope.currentOffset + 5;
 
             $scope.nextSalaryRanges = SalaryRangeService.query({
                 'offset': $scope.nextOffset
@@ -41,8 +41,8 @@ angular.module("safedeals.states.salary_range", [])
 
             $scope.salaryRanges = SalaryRangeService.query({
                 'offset': $scope.currentOffset
-            }, function(s){
-                console.log("salary ",s);
+            }, function (s) {
+
             });
 
             $scope.nextPage = function () {
@@ -57,22 +57,17 @@ angular.module("safedeals.states.salary_range", [])
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
             };
         })
-        .controller('SalaryRangeAddController', function (SalaryRangeService, /*SalaryRangeService, LocationService, CityService, */$scope, $stateParams, $state, paginationLimit) {
-           
+        .controller('SalaryRangeAddController', function (SalaryRangeService, $scope, $state) {
+
             $scope.editableSalaryRange = {};
-//            $scope.locations = LocationService.query();
-//            $scope.salary_ranges = SalaryRangeService.query();
-//            $scope.cities = CityService.query();
-
-
             $scope.saveSalaryRange = function (salary_range) {
-                console.log("salary_range",salary_range);
+
                 SalaryRangeService.save(salary_range, function () {
                     $state.go('admin.masters_salary_range', null, {'reload': true});
                 });
             };
         })
-        .controller('SalaryRangeEditController', function (SalaryRangeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('SalaryRangeEditController', function (SalaryRangeService, $scope, $stateParams, $state) {
             $scope.editableSalaryRange = SalaryRangeService.get({'id': $stateParams.salaryRangeId});
 
             $scope.saveSalaryRange = function (salary_range) {
@@ -81,9 +76,9 @@ angular.module("safedeals.states.salary_range", [])
                 });
             };
         })
-        .controller('SalaryRangeDeleteController', function (SalaryRangeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('SalaryRangeDeleteController', function (SalaryRangeService, $scope, $stateParams, $state) {
             $scope.editableSalaryRange = SalaryRangeService.get({'id': $stateParams.salaryRangeId});
-            console.log("are we here?");
+
             $scope.deleteSalaryRange = function (salary_range) {
                 salary_range.$delete(function () {
                     $state.go('admin.masters_salary_range', null, {'reload': true});

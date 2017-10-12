@@ -41,7 +41,7 @@ angular.module("safedeals.states.safedeal_zone", [])
             $scope.safedealZones = SafedealZoneService.query({
                 'offset': $scope.currentOffset
             }, function (s) {
-                console.log("SafedealZoneService ", s);
+
             });
 
             $scope.nextPage = function () {
@@ -59,20 +59,15 @@ angular.module("safedeals.states.safedeal_zone", [])
         .controller('SafedealZoneAddController', function (SafedealZoneService, /*SalaryRangeService, LocationService, CityService, */$scope, $stateParams, $state, paginationLimit) {
 
             $scope.editableSafedealZone = {};
-//            $scope.locations = LocationService.query();
-//            $scope.salary_ranges = SalaryRangeService.query();
-//            $scope.cities = CityService.query();
-
-
             $scope.saveSafedealZone = function (safedeal_zone) {
-                console.log("safedeal_zone", safedeal_zone);
+
                 SafedealZoneService.save(safedeal_zone, function () {
                     $state.go('admin.masters_safedeal_zone', null, {'reload': true});
                 });
             };
 
             $scope.$watch('editableSafedealZone.name', function (name) {
-                console.log("Name :" + name);
+
                 SafedealZoneService.findByName({'name': name}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableSafedealZone.repeatName = false;
@@ -91,7 +86,6 @@ angular.module("safedeals.states.safedeal_zone", [])
         })
         .controller('SafedealZoneEditController', function (SafedealZoneService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableSafedealZone = SafedealZoneService.get({'id': $stateParams.safedealZoneId});
-
             $scope.saveSafedealZone = function (safedeal_zone) {
                 safedeal_zone.$save(function () {
                     $state.go('admin.masters_safedeal_zone', null, {'reload': true});
@@ -100,11 +94,9 @@ angular.module("safedeals.states.safedeal_zone", [])
         })
         .controller('SafedealZoneDeleteController', function (SafedealZoneService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableSafedealZone = SafedealZoneService.get({'id': $stateParams.safedealZoneId});
-            console.log("are we here?");
             $scope.deleteSafedealZone = function (safedeal_zone) {
                 safedeal_zone.$delete(function () {
                     $state.go('admin.masters_safedeal_zone', null, {'reload': true});
                 });
             };
         });
-        

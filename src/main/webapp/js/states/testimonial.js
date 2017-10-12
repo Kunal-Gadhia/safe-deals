@@ -39,12 +39,12 @@ angular.module("safedeals.states.testimonial", [])
         })
         .controller('TestimonialViewController', function (restRoot, FileUploader, TestimonialService, $scope, $stateParams, $state, paginationLimit, $timeout) {
 
-            $scope.testimonial={};
+            $scope.testimonial = {};
             $scope.testimonial.id = $stateParams.testimonialId;
             $scope.goBack = function () {
                 $state.go('admin.testimonial', {}, {'reload': true});
             };
-            
+
             console.log("THIS IS TESTIMONIAL ID", $stateParams.testimonialId);
         })
         .controller('TestimonialPhotoController', function (restRoot, FileUploader, TestimonialService, $scope, $stateParams, $state, paginationLimit, $timeout) {
@@ -60,16 +60,13 @@ angular.module("safedeals.states.testimonial", [])
             uploader.onBeforeUploadItem = function (item) {
                 $scope.uploadInProgress = true;
                 $scope.uploadSuccess = false;
-                console.log("before upload item:", item);
-                console.log("uploader", uploader);
+
             };
             uploader.onErrorItem = function (fileItem, response, status, headers) {
                 $scope.uploadFailed = true;
                 $scope.uploadInProgress = false;
                 $scope.uploadSuccess = false;
-//                    $state.go('.', {}, {'reload': true});
-                console.log("upload error");
-//                $scope.refreshRawMarketPrice();
+
             };
             uploader.onCompleteItem = function (fileItem, response, status, headers) {
                 if (status === 200) {
@@ -81,13 +78,12 @@ angular.module("safedeals.states.testimonial", [])
                 {
                     $scope.uploadInProgress = false;
                     $scope.uploadFailed = false;
-//                    $scope.uploadWarning = true;
+
                 } else {
                     $scope.uploadInProgress = false;
                     $scope.uploadFailed = true;
                 }
 
-                console.log("upload completion", response);
             };
         })
         .controller('TestimonialListController', function (TestimonialService, $scope, $stateParams, $state, paginationLimit) {
@@ -102,13 +98,13 @@ angular.module("safedeals.states.testimonial", [])
             } else {
                 $scope.currentOffset = new Number($stateParams.offset);
             }
-            
+
             $scope.nextOffset = $scope.currentOffset + 5;
 
             $scope.nextTestimonials = TestimonialService.query({
                 'offset': $scope.nextOffset
             });
-            
+
             TestimonialService.findAll({
                 'offset': $scope.currentOffset
             }, function (data) {
@@ -136,12 +132,12 @@ angular.module("safedeals.states.testimonial", [])
             $scope.editableTestimonial = {};
             $scope.saveTestimonial = function (data) {
                 TestimonialService.save(data, function (data) {
-                    console.log("DATA DATA", data);
+
                     $state.go('admin.testimonial', {}, {'reload': true});
                 });
             };
             $scope.$watch('editableTestimonial.name', function (name) {
-                console.log("Name :" + name);
+
                 TestimonialService.findByName({'name': name}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableTestimonial.repeatName = false;
