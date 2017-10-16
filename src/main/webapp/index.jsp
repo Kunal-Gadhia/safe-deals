@@ -238,7 +238,7 @@
         <script src="${pageContext.request.contextPath}/js/services/society_maintenance_service.js"></script>
 
     </head>
-    <body>
+    <body data-spy="scroll" data-target=".scrollspy">
         <div id="parrentDiv" class="bg-city-spcl" data-ui-view></div>
     </body>
 </html>

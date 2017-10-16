@@ -3,63 +3,47 @@
 <script>
     //Button Click Scroll Animation//
     $(".BasicInforLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicInformationDIV").offset().top},
-            'slow');
+        $('html,body').animate({
+            scrollTop: $(".BasicInformationDIV").offset().top - 70},
+                'slow');
     });
-    $(".NeighborhoodLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".NeighborhoodDIV").offset().top},
-            'slow');
+    $(".SpecificationLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".SpecificationDIV").offset().top - 100},
+                'slow');
     });
-    $(".WorkLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+    $(".CostingLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".CostingDIV").offset().top - 60},
+                'slow');
     });
-    $(".DevelopmentLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".PlacesDIV").offset().top},
-            'slow');
+    $(".DemandLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".DemandDIV").offset().top - 60},
+                'slow');
     });
-    $(".KeyLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".KeyDIV").offset().top},
-            'slow');
+    $(".InventoryLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".InventoryDIV").offset().top - 60},
+                'slow');
     });
-    $(".BasicLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".BasicDIV").offset().top},
-            'slow');
+    $(".AmenitiesLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".AmenitiesDIV").offset().top - 60},
+                'slow');
     });
-    $(".LuxuryLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".LuxuryDIV").offset().top},
-            'slow');
-    });
-    $(".ReportsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ReportsDIV").offset().top},
-            'slow');
-    });
-    $(".ForcastLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".ForcastDIV").offset().top},
-            'slow');
-    });
-    $(".FindingsLink").click(function () {
-    $('html,body').animate({
-    scrollTop: $(".FindingsDIV").offset().top},
-            'slow');
+    $(".MarketabilityLink").click(function () {
+        $('html,body').animate({
+            scrollTop: $(".MarketabilityDIV").offset().top - 60},
+                'slow');
     });
     $('.carousel1').carousel({
-    interval: 3000,
-            pause: false
+        interval: 3000,
+        pause: false
     })
             //Button Click Scroll Animation//
 </script>
 <!--<div class="navbar-fixed-top TopFixedNavBarForLocation">-->
-
 <!--</div>-->
 <!--<nav class="navbar navbar-default CustomNav" id="navbar-default">
     <div class="navbar-header">
@@ -85,7 +69,6 @@
         </ul>
     </div>
 </nav>-->
-
 <div class="LocationDetail">
     <h2 class="modal-title text-center text-uppercase">
         <em><b>{{property.name}}, {{property.location.name}}, {{property.subLocation}},
@@ -101,13 +84,13 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="projTab">
             <ul class=" nav navbar-nav nav-tabs nav-justified">
-                <li><a class="BasicInforLink hidden-xs hidden-md" href="#1" title="Basic"><b>Basic Information</b> </a></li>
-                <li><a class="NeighborhoodLink hidden-xs hidden-md" href="#" title="Specification"><b>Specification</b></a></li>
-                <li><a class="WorkLink hidden-xs hidden-md" href="#2" title="Support"><b>Costing</b> </a></li>
-                <li><a class="DevelopmentLink hidden-xs hidden-md" href="#3" title="About"><b>Demand indicator</b></a></li>
-                <li><a class="KeyLink hidden-xs hidden-md" href="#5" title="Contact"><b>Inventory</b></a></li>
-                <li><a class="ReportsLink hidden-xs hidden-md" href="#5" title="Contact"><b>Amenities</b></a></li>
-                <li><a class="ForcastLink hidden-xs hidden-md" href="#5" title="Contact"><b>Marketability</b></a></li>
+                <li><a class="BasicInforLink hidden-xs hidden-md" data-target="#1" title="Basic"><b>Basic Information</b> </a></li>
+                <li><a class="SpecificationLink hidden-xs hidden-md" data-target="#" title="Specification"><b>Specification</b></a></li>
+                <li><a class="CostingLink hidden-xs hidden-md" data-target="#2" title="Support"><b>Costing</b> </a></li>
+                <li><a class="DemandLink hidden-xs hidden-md" data-target="#3" title="About"><b>Demand indicator</b></a></li>
+                <li><a class="InventoryLink hidden-xs hidden-md" data-target="#5" title="Contact"><b>Inventory</b></a></li>
+                <li><a class="AmenitiesLink hidden-xs hidden-md" data-target="#5" title="Contact"><b>Amenities</b></a></li>
+                <li><a class="MarketabilityLink hidden-xs hidden-md" data-target="#5" title="Contact"><b>Marketability</b></a></li>
             </ul>
         </div>
     </div>
@@ -190,7 +173,7 @@
             </div>            
         </div>
     </div>
-    <div class="NeighborhoodDIV">  
+    <div class="SpecificationDIV">  
         <div class="form-group">
             <h3 class="modal-title TopHeadingText">
                 Construction Specification
@@ -273,8 +256,8 @@
                 <div class="row">
                     <ul class="nav nav-tabs LocationTabs" id="location_tabs">
                         <li ng-repeat="propertyStep in propertySteps" ng-class="{
-                                                active: $index == getCurrentStepIndex()
-                                            }">
+                            active: $index == getCurrentStepIndex()
+                            }">
                             <a ng-click="getPropertyStep(propertyStep)" href="">{{propertyStep}}</a>
                         </li>
                     </ul>
@@ -481,69 +464,72 @@
                     </div>
                 </div>                    
             </div>
-            <div class="col-md-6">
-                <div class="BasicDetailText">
-                    <h3>Extra Payable</h3>
-                    <div class="table-responsive-vertical">
-                        <!-- Table starts here -->
-                        <table id="table" class="table table-hover table-mc-light-blue">                            
-                            <tbody>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Offered Price : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            &#8377.{{property.offeredPrice}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Society Maintainance Includes : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul>
-                                                <li>STREET LIGHTS</li>
-                                                <li>LIFTS</li>
-                                                <li>SECURITY GUARD</li>
-                                                <li>COMMON ELECTRIC/WATER BILLS</li>
-                                                <li>COMMON FACILITIES MAINTENANCE</li>
-                                                <li>COMMON AREA SWEEPER</li>
-                                                <li>GARDNER & ELECTRICIAN</li>
-                                                <li>PLUMBER</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
-                                </tr>
-                                <tr>
-                                    <td data-title="ID">
-                                        <div class="col-sm-6">
-                                            <label>Payment Schedule : </label>    
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul>
-                                                <li>Booking Amount: {{property.bookingAmount}}%</li>
-                                                <li>Start Of Construction: {{property.startOfConstruction}}%</li>
-                                                <li>Completion Of Plinth: {{property.completionOfPlinth}}%</li>
-                                                <li>Each Slab: {{property.eachSlab}}%</li>
-                                                <li>Brick Work: {{property.brickWork}}%</li>
-                                                <li>Plastering : {{property.plastering}}%</li>
-                                                <li>Finishing Work : {{property.finishingWork}}%</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>              
-                </div>
+        </div>
+    </div>
+    <div class="CostingDIV">
+        <h3 class="TopHeadingText">Costing</h3>
+        <div class="">
+            <div class="BasicDetailText">
+                <h3>Extra Payable</h3>
+                <div class="table-responsive-vertical">
+                    <!-- Table starts here -->
+                    <table id="table" class="table table-hover table-mc-light-blue">                            
+                        <tbody>
+                            <tr>
+                                <td data-title="ID">
+                                    <div class="col-sm-6">
+                                        <label>Offered Price : </label>    
+                                    </div>
+                                    <div class="col-sm-6">
+                                        &#8377.{{property.offeredPrice}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-title="ID">
+                                    <div class="col-sm-6">
+                                        <label>Society Maintainance Includes : </label>    
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul>
+                                            <li>STREET LIGHTS</li>
+                                            <li>LIFTS</li>
+                                            <li>SECURITY GUARD</li>
+                                            <li>COMMON ELECTRIC/WATER BILLS</li>
+                                            <li>COMMON FACILITIES MAINTENANCE</li>
+                                            <li>COMMON AREA SWEEPER</li>
+                                            <li>GARDNER & ELECTRICIAN</li>
+                                            <li>PLUMBER</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <!--<td data-title="Name">10000 (as per survey 2011)</td>-->
+                            </tr>
+                            <tr>
+                                <td data-title="ID">
+                                    <div class="col-sm-6">
+                                        <label>Payment Schedule : </label>    
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul>
+                                            <li>Booking Amount: {{property.bookingAmount}}%</li>
+                                            <li>Start Of Construction: {{property.startOfConstruction}}%</li>
+                                            <li>Completion Of Plinth: {{property.completionOfPlinth}}%</li>
+                                            <li>Each Slab: {{property.eachSlab}}%</li>
+                                            <li>Brick Work: {{property.brickWork}}%</li>
+                                            <li>Plastering : {{property.plastering}}%</li>
+                                            <li>Finishing Work : {{property.finishingWork}}%</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>              
             </div>
         </div>
     </div>
-    <div class="ReportsDIV">         
+    <div class="DemandDIV">         
         <h3 class="TopHeadingText">Reports</h3>
         <div class="row form-group">              
             <div class="col-md-6">
@@ -566,9 +552,199 @@
                     <img src="https://shawglobalnews.files.wordpress.com/2016/02/capture10.png?w=720&h=480&crop=1" class="img-responsive">             
                 </div>
             </div>
+        </div>    
+        <div class="FindingsDIV">
+            <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
+            <div class="row panel-body">
+                <div class="PlacesContainer">
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>12</span>
+                        </div>
+                        <b>Corporate Office</b>                    
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>3</span>
+                        </div>
+                        <b>Defence Establishment</b>                   
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>8</span>
+                        </div>
+                        <b>Education institutes</b>                   
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>50</span>
+                        </div>
+                        <b>Government Office</b>                    
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>1</span>
+                        </div>
+                        <b>Health care</b>                    
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>5</span>
+                        </div>
+                        <b>Hospitality</b>                    
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>9</span>
+                        </div>
+                        <b>IT Company</b>                    
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>10</span>
+                        </div>
+                        <b>Industries</b>                   
+                    </div>
+                    <div class="InnerPlaces col-md-4">
+                        <div class="inner-circle">                        
+                            <span>7</span>
+                        </div>
+                        <b>PSUs</b>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="BasicDetailDIV">
+            <h3 class="TopHeadingText DevelopmentDIV">Development</h3>
+            <div class="row panel-body">
+                <div class="InnerPlaces col-md-4">
+                    <div class="inner-circle">                        
+                        <span>25</span>
+                    </div>
+                    <b>Ongoing projects</b>                
+                </div>
+                <div class="InnerPlaces col-md-4">
+                    <div class="inner-circle">                        
+                        <span>14</span>
+                    </div>
+                    <b>Upcoming Projects</b>                
+                </div>
+            </div>
         </div>
     </div>
-    <div class="ForcastDIV">              
+    <div class="AmenitiesDIV">
+        <h3 class="TopHeadingText">Amenities</h3>
+        <div class="row panel-body">
+            <!--            <div class="col-md-6">
+                            <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
+                            <div>Enter Key Amenities Here</div>
+                        </div>-->
+            <div class="col-md-6">
+                <h5 class="AmmenityHeading">Basic Amenities</h5>
+                <div class="AmenitiesIcon">
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-plane"></i>
+                        <span>Airport</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-train"></i>
+                        <span>Railway Station</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-bus"></i>
+                        <span>Bus Stop</span>
+                    </div>
+                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
+                                            <i class="fa fa-subway"></i>
+                                            <span>Metro Station</span>
+                                        </div>-->
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-shopping-basket"></i>
+                        <span>Daily Needs</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-ambulance"></i>
+                        <span>Hospital</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-tree"></i>
+                        <span>Park</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-university"></i>
+                        <span>Bank</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-credit-card"></i>
+                        <span>ATM</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-users"></i>
+                        <span>School</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span>College</span>
+                    </div>
+                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
+                                            <i class="fa fa-coffee"></i>
+                                            <span>Cafe</span>
+                                        </div>-->
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-cutlery"></i>
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-birthday-cake"></i>
+                        <span>Bakery</span>
+                    </div>          
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="AmmenityHeading">Luxury Amenities</h5>
+                <div class="AmenitiesIcon">
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-bath"></i>
+                        <span>Swimming Pool</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-bicycle"></i>
+                        <span>GYM</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-cc-diners-club"></i>
+                        <span>Club</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-glass"></i>
+                        <span>Bar</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Shopping Mall</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-film"></i>
+                        <span>Theater</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-scissors"></i>
+                        <span>Salon</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-building"></i>
+                        <span>Government Offices</span>
+                    </div>
+                    <div class="IconsAll col-md-2 col-xs-6">
+                        <i class="fa fa-bed"></i>
+                        <span>Hotels</span>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="MarketabilityDIV">            
+        <h3 class="TopHeadingText LivabilityDIV">Marketability</h3>  
         <div class="BasicDetailText CustomHeight">
             <h3>Legal Documents</h3>                   
             <div class="row panel-body">
@@ -630,199 +806,10 @@
             </div>
         </div>
     </div>
-    <div class="FindingsDIV">
-        <h3 class="TopHeadingText PlacesDIV">Work Places</h3>
-        <div class="row panel-body">
-            <div class="PlacesContainer">
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>12</span>
-                    </div>
-                    <b>Corporate Office</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>3</span>
-                    </div>
-                    <b>Defence Establishment</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>8</span>
-                    </div>
-                    <b>Education institutes</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>50</span>
-                    </div>
-                    <b>Government Office</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>1</span>
-                    </div>
-                    <b>Health care</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>5</span>
-                    </div>
-                    <b>Hospitality</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>9</span>
-                    </div>
-                    <b>IT Company</b>                    
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>10</span>
-                    </div>
-                    <b>Industries</b>                   
-                </div>
-                <div class="InnerPlaces col-md-4">
-                    <div class="inner-circle">                        
-                        <span>7</span>
-                    </div>
-                    <b>PSUs</b>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="BasicDetailDIV">
-        <h3 class="TopHeadingText DevelopmentDIV">Development</h3>
-        <div class="row panel-body">
-            <div class="InnerPlaces col-md-4">
-                <div class="inner-circle">                        
-                    <span>25</span>
-                </div>
-                <b>Ongoing projects</b>                
-            </div>
-            <div class="InnerPlaces col-md-4">
-                <div class="inner-circle">                        
-                    <span>14</span>
-                </div>
-                <b>Upcoming Projects</b>                
-            </div>
-        </div>
-    </div>
-    <div class="BasicDIV">
-        <h3 class="TopHeadingText LivabilityDIV">Amenities</h3>
-        <div class="row panel-body">
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading KeyDIV">Key Amenities</h5>
-                <div>Enter Key Amenities Here</div>
-            </div>
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
-                <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-plane"></i>
-                        <span>Airport</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-train"></i>
-                        <span>Railway Station</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-bus"></i>
-                        <span>Bus Stop</span>
-                    </div>
-                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
-                                            <i class="fa fa-subway"></i>
-                                            <span>Metro Station</span>
-                                        </div>-->
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-shopping-basket"></i>
-                        <span>Daily Needs</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-ambulance"></i>
-                        <span>Hospital</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-tree"></i>
-                        <span>Park</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-university"></i>
-                        <span>Bank</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-credit-card"></i>
-                        <span>ATM</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-users"></i>
-                        <span>School</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-graduation-cap"></i>
-                        <span>College</span>
-                    </div>
-                    <!--                    <div class="IconsAll col-md-2 col-xs-6">
-                                            <i class="fa fa-coffee"></i>
-                                            <span>Cafe</span>
-                                        </div>-->
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-cutlery"></i>
-                        <span>Restaurant</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-birthday-cake"></i>
-                        <span>Bakery</span>
-                    </div>          
-                </div>
-            </div>
-            <div class="AmenityInnerContents">
-                <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
-                <div class="AmenitiesIcon">
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-bath"></i>
-                        <span>Swimming Pool</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-bicycle"></i>
-                        <span>GYM</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-cc-diners-club"></i>
-                        <span>Club</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-glass"></i>
-                        <span>Bar</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Shopping Mall</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-film"></i>
-                        <span>Theater</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-scissors"></i>
-                        <span>Salon</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-building"></i>
-                        <span>Government Offices</span>
-                    </div>
-                    <div class="IconsAll col-md-2 col-xs-6">
-                        <i class="fa fa-bed"></i>
-                        <span>Hotels</span>
-                    </div>   
-                </div>
-            </div>
-        </div>
-    </div>   
 </div>   
 
 <!--old code-->
-<div>
+<div class="OLD CODE">
     <!--    <div class="row">
             <input ng-click="clearMarker()" type=button value="Hide Markers">
         </div>-->

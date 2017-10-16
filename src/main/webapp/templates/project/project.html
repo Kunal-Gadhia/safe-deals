@@ -1,5 +1,5 @@
 <style> 
-    
+
 </style>
 <h2 class="modal-title text-center text-uppercase">
     <b>Godrej Anandam,Ganeshpeth, Ganeshpeth Petrol Pump,Nagpur(Project ID  : NagGan2)</b>
@@ -45,20 +45,20 @@
 <nav class="navbar-default" data-spy="affix" data-offset-top="500">
     <div class="collapse navbar-collapse" id="projTab">
         <ul class=" nav navbar-nav nav-tabs nav-justified">
-            <li><a href="#basic" class=""><b>Basic</b></a></li>
-            <li><a href="#basic" class=""><b>Add on Features</b></a></li>
-            <li><a href="#basic" class=""><b>Amenities within Project</b></a></li>
-            <li><a href="#specification" class=""><b>Construction Specification</b></a></li>
-            <li><a href="#demand" class=""><b>Demand indicator</b></a></li>
-            <li><a href="#livability" class=""><b>Livability</b></a></li>
-            <li><a href="#marketability" class=""><b>Marketability</b></a></li>
+            <li><a data-target="#basic"  data-toggle="tab" class=""><b>Basic</b></a></li>
+            <li><a data-target="#basic"  data-toggle="tab" class=""><b>Add on Features</b></a></li>
+            <li><a data-target="#basic"  data-toggle="tab" class=""><b>Amenities within Project</b></a></li>
+            <li><a data-target="#specification"  data-toggle="tab" class=""><b>Construction Specification</b></a></li>
+            <li><a data-target="#demand"  data-toggle="tab" class=""><b>Demand indicator</b></a></li>
+            <li><a data-target="#livability"  data-toggle="tab" class=""><b>Livability</b></a></li>
+            <li><a data-target="#marketability"  data-toggle="tab" class=""><b>Marketability</b></a></li>
         </ul>
     </div>
 </nav>
 <div class="thumbnail">	
-    <div class="section">   
+    <div class="tab-content">   
         <!-- Basic Section -->            
-        <div class="" id="basic">
+        <div class="tab-pane" id="basic">
             <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">BASIC DETAILS</h3>    
             <div class="BasicDetailDIV row">               
                 <div class="col-md-7">
@@ -111,8 +111,8 @@
                                     </tr>
                                     <tr>
                                         <td data-title="ID"><i class="fa fa-road"></i>Carpet vs Covered area</td>
-                                         <!--Formula carpet/covered*100-->
-                                        
+                                        <!--Formula carpet/covered*100-->
+
                                         <td data-title="Name">0.76%</td>
                                     </tr>
                                     <tr>
@@ -151,7 +151,7 @@
                                 <img ng-src="./rest/image/{{image.id}}/attachment" style="width:100%; height: 300px; margin: auto" class="img-responsive"/>
                             </div>-->
         </div>
-        <div class="row">
+        <div class="row tab-pane">
             <!-- amenities Section -->        
             <div class="col-md-6">
                 <div class="" id="addon">           
@@ -244,36 +244,36 @@
                             <span title="">Bakery</span>
                         </div>
                     </div>
-<!--                    <div class="description middleWrapper">
-                        <div class="col-md-3 sep" style="height: 120px;">
-                            <ul class="">
-                                <li>Modular Kitchen</li>
-                                <li>False Ceiling</li>
-                                <li>Hospital</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 sep nosep" style="height: 120px;">
-                            <ul class="">
-                                <li>Furniture</li>
-                                <li>Home Appliances</li>
-                                <li>Bank</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 sep" style="height: 120px;">
-                            <ul class="">
-                                <li>Security System</li>
-                                <li>Automation System</li>
-                                <li>Coaching</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3" style="height: 120px;">
-                            <ul class="">
-                                <li>Petrol pump</li>
-                                <li>Resturant</li>
-                                <li>Bakery </li>
-                            </ul>
-                        </div>
-                    </div>-->
+                    <!--                    <div class="description middleWrapper">
+                                            <div class="col-md-3 sep" style="height: 120px;">
+                                                <ul class="">
+                                                    <li>Modular Kitchen</li>
+                                                    <li>False Ceiling</li>
+                                                    <li>Hospital</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 sep nosep" style="height: 120px;">
+                                                <ul class="">
+                                                    <li>Furniture</li>
+                                                    <li>Home Appliances</li>
+                                                    <li>Bank</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 sep" style="height: 120px;">
+                                                <ul class="">
+                                                    <li>Security System</li>
+                                                    <li>Automation System</li>
+                                                    <li>Coaching</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3" style="height: 120px;">
+                                                <ul class="">
+                                                    <li>Petrol pump</li>
+                                                    <li>Resturant</li>
+                                                    <li>Bakery </li>
+                                                </ul>
+                                            </div>
+                                        </div>-->
                 </div>
             </div>
             <!-- Amenities within Project Section -->        
@@ -349,7 +349,7 @@
             </div>
         </div>
         <!-- Specification Section -->
-        <div id="specification">
+        <div class="tab-pane" id="specification">
             <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Construction Specification</h3>
             <div class="row">
                 <div class="col-md-6">
@@ -467,7 +467,7 @@
             </div>
         </div>
         <!-- Demand Indicator Section -->
-        <div class="" id="demand">
+        <div class="tab-pane" id="demand">
             <div class="row" >
                 <div class="BasicDetailDIV col-md-6">                
                     <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">PRICE REPORTS FOR PREVIOUS YEARS</h3>
@@ -491,7 +491,7 @@
             </div>
         </div>
         <!-- Inventory -->        
-        <div class="" id="Inventory">
+        <div class="tab-pane" id="Inventory">
             <div class="BasicDetailDIV row">              
                 <div class="col-md-6">
                     <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Legal Documents</h3>
@@ -607,112 +607,123 @@
             </div>
         </div>
         <!-- livability Section -->
-        <div id="livability">
+        <div class="tab-pane" id="livability">
             <h3 class="TopHeadingText w3-border-bottom w3-border-light-grey">Amenities</h3>
             <div class="panel-body">
-                <div class="AmenityInnerContents">
+            <div class="row">
+                <div class="col-md-6">
                     <h5 class="AmmenityHeading BasicDIV">Basic Amenities</h5>
                     <div class="AmenitiesIcon">
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-plane"></i>
-                            <span>Airport</span>
+                        <div class="row form-group">
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-plane"></i>
+                                <span>Airport</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-train"></i>
+                                <span>Railway Station</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-bus"></i>
+                                <span>Bus Stop</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-subway"></i>
+                                <span>Metro Station</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-shopping-basket"></i>
+                                <span>Daily Needs</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-ambulance"></i>
+                                <span>Hospital</span>
+                            </div>
                         </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-train"></i>
-                            <span>Railway Station</span>
+                        <div class="row form-group">
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-tree"></i>
+                                <span>Park</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-university"></i>
+                                <span>Bank</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-credit-card"></i>
+                                <span>ATM</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-users"></i>
+                                <span>School</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-graduation-cap"></i>
+                                <span>College</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-coffee"></i>
+                                <span>Cafe</span>
+                            </div>
                         </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-bus"></i>
-                            <span>Bus Stop</span>
+                        <div class="row form-group">
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-cutlery"></i>
+                                <span>Restaurant</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span>Bakery</span>
+                            </div>          
                         </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-subway"></i>
-                            <span>Metro Station</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-shopping-basket"></i>
-                            <span>Daily Needs</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-ambulance"></i>
-                            <span>Hospital</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-tree"></i>
-                            <span>Park</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-university"></i>
-                            <span>Bank</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-credit-card"></i>
-                            <span>ATM</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-users"></i>
-                            <span>School</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-graduation-cap"></i>
-                            <span>College</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-coffee"></i>
-                            <span>Cafe</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-cutlery"></i>
-                            <span>Restaurant</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-birthday-cake"></i>
-                            <span>Bakery</span>
-                        </div>          
                     </div>
                 </div>
-                <div class="AmenityInnerContents">
+                <div class="col-md-6">
                     <h5 class="AmmenityHeading LuxuryDIV">Luxury Amenities</h5>
                     <div class="AmenitiesIcon">
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-bath"></i>
-                            <span>Swimming Pool</span>
+                        <div class="row form-group">
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-bath"></i>
+                                <span>Swimming Pool</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-bicycle"></i>
+                                <span>GYM</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-cc-diners-club"></i>
+                                <span>Club</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-glass"></i>
+                                <span>Bar</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Shopping Mall</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-film"></i>
+                                <span>Theater</span>
+                            </div>
                         </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-bicycle"></i>
-                            <span>GYM</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-cc-diners-club"></i>
-                            <span>Club</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-glass"></i>
-                            <span>Bar</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Shopping Mall</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-film"></i>
-                            <span>Theater</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-scissors"></i>
-                            <span>Salon</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-building"></i>
-                            <span>Government Offices</span>
-                        </div>
-                        <div class="IconsAll col-md-2">
-                            <i class="fa fa-bed"></i>
-                            <span>Hotels</span>
+                        <div class="row form-group">
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-scissors"></i>
+                                <span>Salon</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-building"></i>
+                                <span>Government Offices</span>
+                            </div>
+                            <div class="text-center col-md-2">
+                                <i class="fa fa-bed"></i>
+                                <span>Hotels</span>
+                            </div>   
                         </div>   
                     </div>
                 </div>
-
+            </div>
             </div>
         </div>
     </div>
